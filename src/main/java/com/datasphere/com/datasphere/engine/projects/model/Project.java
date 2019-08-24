@@ -7,27 +7,20 @@ import com.datasphere.engine.shaker.workflow.panel.domain.Panel;
 
 
 public class Project extends BaseEntity {
-	//项目名称
-//	@NotBlank(message="{PROJECT.NAME.NOTBLANK}", groups={UpdateValidatorTag.class})
-//	@Length(min=0,max = 50, message="{PROJECT.NAME.LENGTN}", groups={UpdateValidatorTag.class,LengthValidatorTag.class})
 	private String projectName;
-	
 	//项目描述
-//	@Length(min=0,max = 200, message="{PROJECT.DESC.LENGTN}", groups={UpdateValidatorTag.class,LengthValidatorTag.class})
 	private String projectDesc;
-	
 	//创建人id
 	private String creator;
-	
 	//面板总数
 	private String panelTotal;
-	
 	//面板条数：0：查询全部，4：返回4条
 	private String  panelPageSize;
-	
 	//面板第几页
 	private String  panelPageNumber;
-	
+	//该项目下的面板列表
+    List<Panel>  panelList;
+    
 	public String getPanelPageNumber() {
 		return panelPageNumber;
 	}
@@ -43,11 +36,6 @@ public class Project extends BaseEntity {
 	public void setPanelPageSize(String panelPageSize) {
 		this.panelPageSize = panelPageSize;
 	}
-
-//	//该项目下的面板列表
-    List<Panel>  panelList;
-    
-    
 
 	public String getPanelTotal() {
 		return panelTotal;
