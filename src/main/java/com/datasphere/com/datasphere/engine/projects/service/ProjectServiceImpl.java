@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import com.datasphere.com.datasphere.engine.projects.dao.ProjectDao;
 import com.datasphere.com.datasphere.engine.projects.model.Project;
 import com.datasphere.core.common.BaseService;
@@ -17,17 +14,16 @@ import com.datasphere.engine.manager.resource.provider.service.ExchangeSSOServic
 import org.apache.commons.lang3.StringUtils;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Singleton
+@Service
 public class ProjectServiceImpl extends BaseService {
 	public static String DEFAULT_PROJECT_NAME = "默认项目";
 
-	@Inject
+	@Autowired
 	ExchangeSSOService exchangeSSOService;
 	
-//	@Resource(name="dfcTerminal")
-//	WebsiteTerminal terminal;
-
 	/**1
 	 * 检验名称是否已经存在
 	 * @param projectName
@@ -46,9 +42,6 @@ public class ProjectServiceImpl extends BaseService {
 	 * @param project
 	 */
 	public int create(Project project, String token) {
-//		if(project.getProjectName() != null && veriftyName(project.getProjectName())){
-//			throw new JIllegalOperationException("项目重命名！");
-//		}
 		project.setCreator(exchangeSSOService.getAccount(token));
 		project.setId(UUID.randomUUID().toString());
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
@@ -169,7 +162,7 @@ public class ProjectServiceImpl extends BaseService {
 		}
 	}
 
-	/**7
+	/**
 	 * 根据条件查询项目列表,如按名称查询，按描述查询
 	 * @param project
 	 * @return
