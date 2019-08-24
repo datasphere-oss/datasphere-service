@@ -3,7 +3,7 @@ package com.datasphere.engine.shaker.processor.definition.service;
 import com.datasphere.resource.manager.module.panel.domain.ComponentDefinitionPanel;
 import com.datasphere.server.manager.common.constant.GlobalDefine;
 import com.datasphere.core.common.BaseService;
-import com.datasphere.engine.server.dictionary.DSSWord;
+import com.datasphere.engine.manager.resource.provider.dictionary.model.DSSWord;
 import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
 import com.datasphere.engine.shaker.processor.definition.dao.ComponentDefinitionDao;
 

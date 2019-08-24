@@ -1,4 +1,4 @@
-package com.datasphere.engine.server.dictionary;
+package com.datasphere.engine.manager.resource.provider.dictionary.model;
 
 import java.util.ArrayList;
 import java.util.Collections;

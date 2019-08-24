@@ -1,4 +1,4 @@
-package com.datasphere.engine.manager.resource.dictionary.controller;
+package com.datasphere.engine.manager.resource.provider.dictionary.model.controller;
 
 import javax.annotation.Resource;
 
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.datasphere.core.common.BaseController;
-import com.datasphere.engine.server.dictionary.DSSWord;
+import com.datasphere.engine.manager.resource.provider.dictionary.model.DSSWord;
 
 @Controller("/dict")
 public class DictionaryController extends BaseController {
