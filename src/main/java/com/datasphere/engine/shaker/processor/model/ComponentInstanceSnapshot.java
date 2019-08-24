@@ -12,7 +12,7 @@
 
 package com.datasphere.engine.shaker.processor.model;
 
-import com.datasphere.server.manager.module.component.instance.domain.ComponentInstance;
+import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 
 public class ComponentInstanceSnapshot extends ComponentInstance {
 	

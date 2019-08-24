@@ -8,13 +8,13 @@ import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.shaker.processor.ProcessRunCallable;
 import com.datasphere.engine.shaker.processor.buscommon.ReturnMessageUtils;
 import com.datasphere.engine.shaker.processor.instance.callbackresult.ComponentCalcuateResult;
+import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;
+import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
 import com.datasphere.engine.shaker.processor.message.status.notice.CallBackStatusMessage;
 import com.datasphere.engine.shaker.processor.service.ProcessDaasService;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
 import com.datasphere.engine.shaker.processor.service.ProcessService;
 import com.datasphere.engine.shaker.processor.stop.StopSingleInstance;
-import com.datasphere.server.manager.module.component.instance.buscommon.constant.ComponentInstanceStatus;
-import com.datasphere.server.manager.module.component.instance.service.ComponentInstanceService;
 import com.datasphere.server.manager.module.dal.buscommon.utils.StringUtils;
 import com.datasphere.server.manager.module.panel.service.PanelServiceImpl;
 

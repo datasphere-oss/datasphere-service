@@ -1,61 +1,50 @@
 package com.datasphere.engine.shaker.processor.factory;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.datasphere.core.common.BaseEntity;
-import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.common.message.CustomizedPropertyPlaceholderConfigurer;
+import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
 import com.datasphere.engine.shaker.processor.instance.Component;
 import com.datasphere.engine.shaker.processor.instance.datasource.SimpleDataSourceComponent;
-import com.datasphere.engine.shaker.processor.instance.defaultcomponent.DefaultComponentInstance;
+import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.instance.predatacomponent.PreDataComponentInstance;
+import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceRelationService;
+import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
+import com.datasphere.engine.shaker.processor.instance.service.PreDataComponentService;
 import com.datasphere.engine.shaker.processor.instance.validation.base.AbstractComponentValition;
 import com.datasphere.engine.shaker.processor.instance.validation.base.IBaseValidation;
-import com.datasphere.engine.shaker.processor.instance.validation.instances.*;
+import com.datasphere.engine.shaker.processor.instance.validation.instances.DefaultValidationInstances;
+import com.datasphere.engine.shaker.processor.instance.validation.instances.SplitValidationInstances;
 import com.datasphere.engine.shaker.processor.service.ComponentInstanceSnapshotService;
 import com.datasphere.engine.shaker.processor.service.ComponentService;
 import com.datasphere.engine.shaker.processor.service.ProcessInstanceService;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
-import com.datasphere.server.manager.module.component.buscommon.constant.ComponentClassification;
-import com.datasphere.server.manager.module.component.instance.domain.ComponentInstance;
-import com.datasphere.server.manager.module.component.instance.service.ComponentInstanceRelationService;
-import com.datasphere.server.manager.module.component.instance.service.ComponentInstanceService;
-import com.datasphere.server.manager.module.component.instance.service.PreDataComponentService;
 import com.datasphere.server.manager.module.dal.service.DataAccessor;
 import com.datasphere.server.manager.module.panel.service.PanelServiceImpl;
 import com.datasphere.server.manager.module.panel.service.SubPanelService;
-import com.jusfoun.common.springmvc.exception.JIllegalOperationException;
 
-//@org.springframework.stereotype.Component("componentFactory")
 public class ComponentFactory {
 
-	@Inject
+	@Autowired
 	private ComponentInstanceService componentInstanceService;
-	@Inject
+	@Autowired
 	private ComponentInstanceRelationService componentInstanceRelationService;
-	@Inject
+	@Autowired
 	private ProcessRecordService processRecordService;
-
-//	@Inject
-//	private ComponentService componentService;
-	@Inject
+	@Autowired
 	private ProcessInstanceService processInstanceService;
-	@Inject
+	@Autowired
 	private ComponentInstanceSnapshotService componentInstanceSnapshotService;
-
-	@Inject
+	@Autowired
 	private PanelServiceImpl panelService;
-//	@Inject
+
 	private DataAccessor dataAccessor;
-//	@Inject
 	private CustomizedPropertyPlaceholderConfigurer propertiesBean;
-	@Inject
+	@Autowired
 	private SubPanelService subPanelService;
-	@Inject
+	@Autowired
 	private PreDataComponentService preDataComponentService;
-//	@Inject
 	private IBaseValidation baseValidation;
 	
 	public Component getInstance(ComponentInstance componentInstance, ComponentService componentService) {

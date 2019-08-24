@@ -6,8 +6,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.datasphere.common.dmpbase.data.Dataset;
 import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
-import com.datasphere.resource.manager.module.component.instance.buscommon.analyse.WarpInputAndOutput;
-import com.datasphere.resource.manager.module.component.instance.domain.ComponentInstance;
+import com.datasphere.engine.shaker.processor.instance.analysis.WarpInputAndOutput;
+import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 
 public class SimpleDataSourceComponent extends AbstractComponent {
 

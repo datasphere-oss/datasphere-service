@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.shaker.processor.factory.ComponentFactory;
 import com.datasphere.engine.shaker.processor.instance.Component;
-import com.datasphere.server.manager.module.component.instance.domain.ComponentInstance;
-import com.datasphere.server.manager.module.component.instance.service.ComponentInstanceService;
+import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
+import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
 
 /**
  * 组件服务接口实现类
