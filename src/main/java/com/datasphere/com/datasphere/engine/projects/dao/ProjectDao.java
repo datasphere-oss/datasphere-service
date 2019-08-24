@@ -9,13 +9,11 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 public interface ProjectDao {
-//public interface ProjectDao extends IBaseDao<Project, String> {
     //名称模糊查询
 	public List<Project> findByNamePager(String projectName, String creator, String sortField, String orderBy, @Param("pager") Pager pager);
 
 	@Select("select count(1) from app_project where id = #{0} and creator = #{1}")
 	public Boolean existsByCreator(String projectId, String creator);
-
 
 	boolean veriftyName(@Param(value = "project_name") String project_name, @Param(value = "creator") String creator);
 
