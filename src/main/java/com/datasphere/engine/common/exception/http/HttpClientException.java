@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.resource.manager.common.http.exception;
+package com.datasphere.engine.common.exception.http;
 
 import com.datasphere.engine.common.exception.JRuntimeException;
 
