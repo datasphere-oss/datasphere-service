@@ -1,14 +1,15 @@
 package com.datasphere.engine.shaker.processor.instance.validation.instances;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.CollectionUtils;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.datasphere.engine.shaker.processor.instance.validation.AbstractComponentValition;
 import com.datasphere.engine.shaker.processor.instance.validation.ComponentParamsNameDescription;
 import com.datasphere.engine.shaker.processor.instance.validation.ValidationChangType;
 import com.datasphere.engine.shaker.processor.instance.validation.ValidationParamsRole;
-import com.datasphere.resource.manager.module.dal.buscommon.utils.StringUtils;
 
-import io.micronaut.core.util.CollectionUtils;
 
 /**
  * {"JoinCondition":"左连接","on":[{"r":"Survived","l":"label"}],"LeftOutput":[
@@ -21,8 +22,6 @@ import io.micronaut.core.util.CollectionUtils;
  * Description:
  * </p>
  * 
- * @author kevin
- * @date 2017年8月15日 下午3:50:32
  */
 public class JoinValidationInstances extends AbstractComponentValition {
 
@@ -52,13 +51,6 @@ public class JoinValidationInstances extends AbstractComponentValition {
 				}
 			}
 		}
-
-//		JSONArray LeftOutput = JSONArray.parseArray(JSONArray.toJSONString(reqParams.get("LeftOutput")));
-//		JSONArray RightOutput = JSONArray.parseArray(JSONArray.toJSONString(reqParams.get("RightOutput")));
-//		if (CollectionUtils.isEmpty(LeftOutput) && CollectionUtils.isEmpty(RightOutput)) {
-//			errorFlag = true;
-//			errorMessage.append("组件[" + componentName + "]["+ComponentParamsNameDescription.JoinOutColumn+"]没有设置输出列！");
-//		}
 	}
 
 }

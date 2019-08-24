@@ -14,8 +14,6 @@ import com.datasphere.engine.shaker.processor.instance.validation.ValidationPara
  * Description:
  * </p>
  * 
- * @author kevin
- * @date 2017年8月15日 下午5:29:34
  */
 public class SplitValidationInstances extends AbstractComponentValition {
 
