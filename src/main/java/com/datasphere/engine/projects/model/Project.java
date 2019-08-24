@@ -1,4 +1,4 @@
-package com.datasphere.com.datasphere.engine.projects.model;
+package com.datasphere.engine.projects.model;
 
 import java.util.List;
 

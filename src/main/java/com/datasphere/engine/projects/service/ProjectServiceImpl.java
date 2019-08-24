@@ -1,15 +1,15 @@
-package com.datasphere.com.datasphere.engine.projects.service;
+package com.datasphere.engine.projects.service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.datasphere.com.datasphere.engine.projects.dao.ProjectDao;
-import com.datasphere.com.datasphere.engine.projects.model.Project;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.datasource.mybatis.page.Pager;
 import com.datasphere.engine.manager.resource.provider.service.ExchangeSSOService;
+import com.datasphere.engine.projects.dao.ProjectDao;
+import com.datasphere.engine.projects.model.Project;
 
 import org.apache.commons.lang3.StringUtils;
 

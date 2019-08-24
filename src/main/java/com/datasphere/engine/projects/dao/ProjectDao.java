@@ -1,9 +1,9 @@
-package com.datasphere.com.datasphere.engine.projects.dao;
+package com.datasphere.engine.projects.dao;
 
 import java.util.List;
 
-import com.datasphere.com.datasphere.engine.projects.model.Project;
 import com.datasphere.engine.datasource.mybatis.page.Pager;
+import com.datasphere.engine.projects.model.Project;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

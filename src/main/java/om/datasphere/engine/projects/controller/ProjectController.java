@@ -1,9 +1,9 @@
-package com.datasphere.com.datasphere.engine.projects.controller;
+package om.datasphere.engine.projects.controller;
 
-import com.datasphere.com.datasphere.engine.projects.model.Project;
-import com.datasphere.com.datasphere.engine.projects.service.ProjectServiceImpl;
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
+import com.datasphere.engine.projects.model.Project;
+import com.datasphere.engine.projects.service.ProjectServiceImpl;
 
 import io.reactivex.Single;
 import org.apache.commons.lang3.StringUtils;

@@ -2,7 +2,7 @@ package com.datasphere.engine.shaker.workflow.panel.domain;
 
 import java.util.List;
 
-import com.datasphere.com.datasphere.engine.projects.model.Project;
+import com.datasphere.engine.projects.model.Project;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstanceRelation;
 
