@@ -1,8 +1,8 @@
 package com.datasphere.engine.common.message;
 
-import com.datasphere.resource.manager.common.utils.O;
-
 import java.io.IOException;
+
+import com.datasphere.core.common.utils.O;
 
 public class CustomizedPropertyPlaceholderConfigurer {
 	private String language = "ZH";

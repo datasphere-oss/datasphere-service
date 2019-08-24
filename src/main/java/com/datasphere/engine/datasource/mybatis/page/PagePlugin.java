@@ -1,7 +1,7 @@
 package com.datasphere.engine.datasource.mybatis.page;
 
+import com.datasphere.core.common.utils.ReflectHelper;
 import com.datasphere.engine.datasource.mybatis.page.Pager;
-import com.datasphere.resource.manager.common.utils.ReflectHelper;
 
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.mapping.*;
