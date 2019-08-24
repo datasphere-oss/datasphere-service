@@ -27,10 +27,10 @@ import com.datasphere.engine.shaker.processor.service.ComponentService;
 import com.datasphere.engine.shaker.processor.service.ProcessInstanceService;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
 import com.datasphere.engine.shaker.processor.stop.StopSingleInstance;
-import com.datasphere.server.manager.module.dal.service.DataAccessor;
-import com.datasphere.server.manager.module.panel.domain.Panel;
-import com.datasphere.server.manager.module.panel.service.PanelServiceImpl;
-import com.datasphere.server.manager.module.panel.service.SubPanelService;
+import com.datasphere.engine.shaker.workflow.panel.domain.Panel;
+import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
+import com.datasphere.engine.shaker.workflow.panel.service.SubPanelService;
+import com.datasphere.server.connections.service.DataAccessor;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -20,9 +20,9 @@ import com.datasphere.engine.shaker.processor.service.ComponentInstanceSnapshotS
 import com.datasphere.engine.shaker.processor.service.ComponentService;
 import com.datasphere.engine.shaker.processor.service.ProcessInstanceService;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
-import com.datasphere.server.manager.module.dal.service.DataAccessor;
-import com.datasphere.server.manager.module.panel.service.PanelServiceImpl;
-import com.datasphere.server.manager.module.panel.service.SubPanelService;
+import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
+import com.datasphere.engine.shaker.workflow.panel.service.SubPanelService;
+import com.datasphere.server.connections.service.DataAccessor;
 
 public class ComponentFactory {
 

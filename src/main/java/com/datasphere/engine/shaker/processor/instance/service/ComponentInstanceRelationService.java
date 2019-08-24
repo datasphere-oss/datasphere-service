@@ -12,12 +12,12 @@ import org.springframework.stereotype.Service;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.core.common.utils.UUIDUtils;
 import com.datasphere.engine.core.utils.JAssert;
+import com.datasphere.engine.manager.resource.provider.service.ExchangeSSOService;
 import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.instance.dao.ComponentInstanceDao;
 import com.datasphere.engine.shaker.processor.instance.dao.ComponentInstanceRelationDao;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstanceRelation;
-import com.datasphere.server.manager.module.datasource.service.ExchangeSSOService;
 
 /**
  * 组件实例关系服务接口

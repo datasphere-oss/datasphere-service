@@ -5,8 +5,8 @@ import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.common.exception.JIllegalOperationException;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.shaker.processor.buscommon.utils.HttpUtils;
-import com.datasphere.server.manager.module.panel.domain.sub.PreDataProcessEntity;
-import com.datasphere.server.manager.module.prepsc.buscommon.ReturnData;
+import com.datasphere.engine.shaker.processor.prep.ReturnData;
+import com.datasphere.engine.shaker.workflow.panel.domain.sub.PreDataProcessEntity;
 
 import java.io.IOException;
 

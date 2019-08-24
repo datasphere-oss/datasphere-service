@@ -3,10 +3,10 @@ package com.datasphere.engine.shaker.processor.metadata;
 import java.util.Date;
 import java.util.List;
 
-import com.datasphere.server.manager.module.prepsc.buscommon.data.ColumnData;
-import com.datasphere.server.manager.module.prepsc.buscommon.data.EvaluationData;
-import com.datasphere.server.manager.module.prepsc.buscommon.data.OperateData;
-import com.datasphere.server.manager.module.prepsc.buscommon.data.ProgramData;
+import com.datasphere.engine.shaker.processor.prep.data.ColumnData;
+import com.datasphere.engine.shaker.processor.prep.data.EvaluationData;
+import com.datasphere.engine.shaker.processor.prep.data.OperateData;
+import com.datasphere.engine.shaker.processor.prep.data.ProgramData;
 
 public class ProcessMetadata {
 

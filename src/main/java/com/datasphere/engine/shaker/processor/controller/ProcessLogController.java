@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.shaker.processor.service.ProcessInstanceService;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
-import com.datasphere.server.manager.module.dal.buscommon.utils.StringUtils;
+import com.datasphere.server.connections.utils.StringUtils;
 import com.jusfoun.common.springmvc.utils.JsonWrapper;
 import io.micronaut.context.annotation.Parameter;
 import io.micronaut.http.annotation.Post;

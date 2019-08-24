@@ -15,8 +15,8 @@ import com.datasphere.engine.shaker.processor.service.ProcessDaasService;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
 import com.datasphere.engine.shaker.processor.service.ProcessService;
 import com.datasphere.engine.shaker.processor.stop.StopSingleInstance;
-import com.datasphere.server.manager.module.dal.buscommon.utils.StringUtils;
-import com.datasphere.server.manager.module.panel.service.PanelServiceImpl;
+import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
+import com.datasphere.server.connections.utils.StringUtils;
 
 import io.micronaut.context.annotation.Parameter;
 import io.micronaut.http.HttpRequest;

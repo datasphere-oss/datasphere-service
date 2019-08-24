@@ -21,7 +21,7 @@ import com.datasphere.engine.shaker.processor.instance.Component;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 import com.datasphere.engine.shaker.processor.runner.SubProcessRunner;
-import com.datasphere.server.manager.module.panel.buscommon.constant.PanelState;
+import com.datasphere.engine.shaker.workflow.panel.constant.PanelState;
 
 
 public class SubComponentInstance extends AbstractComponent {

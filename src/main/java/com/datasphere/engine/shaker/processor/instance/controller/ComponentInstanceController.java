@@ -3,40 +3,28 @@ package com.datasphere.engine.shaker.processor.instance.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.inject.Inject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
-import com.datasphere.resource.manager.module.dal.buscommon.utils.StringUtils;
-import com.datasphere.resource.manager.module.dal.domain.DataSetInstance;
 import com.datasphere.common.dmpbase.data.Dataset;
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.core.utils.JsonWrapper;
-import com.datasphere.resource.manager.module.component.instance.domain.ComponentInstance;
-import com.datasphere.resource.manager.module.component.instance.domain.DeleteComponentInstanceResult;
-import com.datasphere.resource.manager.module.component.instance.domain.QueryDataParams;
-import com.datasphere.resource.manager.module.component.instance.domain.UpdatePositionEntity;
-import com.datasphere.resource.manager.module.component.instance.service.ComponentInstanceService;
-import com.datasphere.resource.manager.module.datasource.service.DataQueryService;
 
-import io.micronaut.context.annotation.Parameter;
-import io.micronaut.http.HttpRequest;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Post;
-//import io.micronaut.validation.Validated;
 import io.reactivex.Single;
 
 /**
  * 组件实例操作接口
  * 组件拖拽进panel、组件从面板中删除、组件在面板中编辑
  */
-//@Validated
+@Controller
 public class ComponentInstanceController extends BaseController {
 	public static final String BASE_PATH = "/component/instances";
 
-	@Inject
+	@Autowired
 	ComponentInstanceService componentInstanceService;
 
-	@Inject
+	@Autowired
 	DataQueryService dataQueryService;
 	/**
 	 * 查询组件实例的详细信息
