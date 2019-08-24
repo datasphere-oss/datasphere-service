@@ -2,26 +2,26 @@ package com.datasphere.engine.manager.resource.dictionary.controller;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.server.dictionary.DSSWord;
 
-import io.micronaut.http.annotation.Controller;
-import io.micronaut.http.annotation.Get;
-
-//@Validated
 @Controller("/dict")
 public class DictionaryController extends BaseController {
 
 	@Resource(name="dictionaryService")
 //	DictionaryService dictionaryService;
 	
-	@Get("/listBy")
+	@RequestMapping(value = "/listBy", method = RequestMethod.GET) 
 	public Object listBy(DSSWord word) {
 //		return JsonWrapper.successWrapper(dictionaryService.listBy(word));
 		return null;
 	}
 	
-	@Get("/listForTree")
+	@RequestMapping(value = "/listForTree", method = RequestMethod.GET) 
 	public Object listForTree(DSSWord word) {
 //		return JsonWrapper.successWrapper(dictionaryService.listForTree(word));
 		return null;
