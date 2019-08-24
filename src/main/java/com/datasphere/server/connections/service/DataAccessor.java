@@ -13,8 +13,8 @@ import java.util.Map;
 import javax.inject.Singleton;
 import javax.sql.DataSource;
 
-import com.datasphere.common.dmpbase.data.Column;
-import com.datasphere.common.dmpbase.data.Dataset;
+import com.datasphere.common.data.Column;
+import com.datasphere.common.data.Dataset;
 import com.datasphere.server.connections.constant.KeyWord;
 import com.datasphere.server.connections.dao.DatasetDAO;
 import com.datasphere.server.connections.dao.TableDAO;

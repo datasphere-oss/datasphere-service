@@ -5,7 +5,7 @@ import com.datasphere.resource.manager.module.dal.domain.Pager;
 import com.datasphere.resource.manager.module.dal.domain.TableMetaData;
 import com.datasphere.resource.manager.module.dal.domain.TableQuery;
 import com.datasphere.resource.manager.module.dal.service.DataAccessor;
-import com.datasphere.common.dmpbase.data.Column;
+import com.datasphere.common.data.Column;
 import com.datasphere.resource.manager.module.dal.buscommon.dbutils.ConnectionFactory;
 import com.datasphere.resource.manager.module.dal.buscommon.dbutils.JDBCUtils;
 

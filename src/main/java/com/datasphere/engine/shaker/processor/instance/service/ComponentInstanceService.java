@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.datasphere.common.dmpbase.data.Dataset;
+import com.datasphere.common.data.Dataset;
 import com.datasphere.common.utils.OkHttpRequest;
 import com.datasphere.common.utils.RandomUtils;
 import com.datasphere.core.common.BaseService;

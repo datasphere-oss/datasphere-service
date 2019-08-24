@@ -1,6 +1,6 @@
 package com.datasphere.engine.shaker.processor.prep.data;
 
-import com.datasphere.common.dmpbase.data.ParamsVO;
+import com.datasphere.common.data.ParamsVO;
 import com.datasphere.engine.shaker.processor.prep.domain.Column;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

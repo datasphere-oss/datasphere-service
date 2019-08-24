@@ -1,9 +1,9 @@
 package com.datasphere.engine.manager.resource.provider.service;
 
 import com.alibaba.fastjson.JSON;
+import com.datasphere.common.data.Column;
+import com.datasphere.common.data.Dataset;
 import com.datasphere.common.dmpbase.utils.O;
-import com.datasphere.common.dmpbase.data.Column;
-import com.datasphere.common.dmpbase.data.Dataset;
 import com.datasphere.common.utils.PageUtil;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.common.exception.JIllegalOperationException;

@@ -1,6 +1,6 @@
 package com.datasphere.server.connections.dao;
 
-import com.datasphere.common.dmpbase.data.Dataset;
+import com.datasphere.common.data.Dataset;
 import com.datasphere.resource.manager.module.dal.buscommon.dbutils.ConnectionFactory;
 
 import java.sql.Connection;

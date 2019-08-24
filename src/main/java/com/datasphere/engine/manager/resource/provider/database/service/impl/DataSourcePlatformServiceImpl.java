@@ -1,7 +1,7 @@
 package com.datasphere.engine.manager.resource.provider.database.service.impl;
 
-import com.datasphere.common.dmpbase.data.Column;
-import com.datasphere.common.dmpbase.data.Dataset;
+import com.datasphere.common.data.Column;
+import com.datasphere.common.data.Dataset;
 import com.datasphere.engine.manager.resource.provider.database.entity.DBTableField;
 import com.datasphere.server.connections.service.DataAccessor;
 

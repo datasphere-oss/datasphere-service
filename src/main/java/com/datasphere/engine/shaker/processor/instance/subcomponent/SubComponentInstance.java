@@ -13,7 +13,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.CollectionUtils;
 
-import com.datasphere.common.dmpbase.data.Dataset;
+import com.datasphere.common.data.Dataset;
 import com.datasphere.core.common.utils.UUIDUtils;
 import com.datasphere.engine.common.exception.JIllegalOperationException;
 import com.datasphere.engine.shaker.processor.instance.AbstractComponent;

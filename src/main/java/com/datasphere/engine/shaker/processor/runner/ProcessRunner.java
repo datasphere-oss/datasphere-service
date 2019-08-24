@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.datasphere.resource.manager.module.dal.service.DataAccessor;
-import com.datasphere.common.dmpbase.data.Dataset;
+import com.datasphere.common.data.Dataset;
 import com.datasphere.engine.shaker.processor.instance.AssociationEndpoint;
 import com.datasphere.engine.shaker.processor.instance.Component;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;

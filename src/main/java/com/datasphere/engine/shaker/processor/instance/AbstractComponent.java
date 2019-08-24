@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.common.dmpbase.data.Dataset;
+import com.datasphere.common.data.Dataset;
 import com.datasphere.engine.common.message.CustomizedPropertyPlaceholderConfigurer;
 import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.factory.ComponentFactory;

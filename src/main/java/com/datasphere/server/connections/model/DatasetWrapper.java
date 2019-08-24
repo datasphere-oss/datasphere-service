@@ -1,6 +1,6 @@
 package com.datasphere.server.connections.model;
 
-import com.datasphere.common.dmpbase.data.Dataset;
+import com.datasphere.common.data.Dataset;
 
 
 public class DatasetWrapper extends Dataset {

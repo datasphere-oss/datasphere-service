@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.datasphere.resource.manager.module.dal.buscommon.utils.StringUtils;
-import com.datasphere.common.dmpbase.data.Dataset;
+import com.datasphere.common.data.Dataset;
 import com.datasphere.engine.common.exception.JIllegalOperationException;
 import com.datasphere.engine.shaker.processor.buscommon.utils.HttpUtils;
 import com.datasphere.engine.shaker.processor.instance.AbstractComponent;

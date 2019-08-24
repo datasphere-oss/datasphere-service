@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.common.dmpbase.data.Dataset;
+import com.datasphere.common.data.Dataset;
 import com.datasphere.engine.shaker.processor.buscommon.utils.HttpUtils;
 import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
 import com.datasphere.engine.shaker.processor.instance.analyse.WarpInputAndOutput;

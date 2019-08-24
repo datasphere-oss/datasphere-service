@@ -2,7 +2,7 @@ package com.datasphere.engine.shaker.processor.prep.data;
 
 import java.util.Date;
 
-import com.datasphere.common.dmpbase.data.Column;
+import com.datasphere.common.data.Column;
 
 //@Table(name = "T_COLUMNS")
 public class ColumnData {

@@ -1,6 +1,6 @@
 package com.datasphere.server.connections.model;
 
-import com.datasphere.common.dmpbase.data.Column;
+import com.datasphere.common.data.Column;
 
 public class TableMetaData {
 	

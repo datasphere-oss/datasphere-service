@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.datasphere.common.dmpbase.data.Dataset;
+import com.datasphere.common.data.Dataset;
 import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
 import com.datasphere.engine.shaker.processor.instance.analysis.WarpInputAndOutput;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
