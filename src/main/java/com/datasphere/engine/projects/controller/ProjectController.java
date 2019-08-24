@@ -1,4 +1,4 @@
-package om.datasphere.engine.projects.controller;
+package com.datasphere.engine.projects.controller;
 
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
