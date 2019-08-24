@@ -8,27 +8,22 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.datasphere.common.dmpbase.data.Dataset;
-import com.datasphere.core.common.utils.UUIDUtils;
-import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
-import com.datasphere.engine.shaker.processor.instance.Component;
-import com.datasphere.engine.shaker.processor.model.ProcessInstance;
-import com.datasphere.engine.shaker.processor.runner.SubProcessRunner;
-import com.datasphere.resource.manager.module.component.instance.domain.ComponentInstance;
-import com.datasphere.resource.manager.module.panel.buscommon.constant.PanelState;
-
-import io.micronaut.core.util.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.util.CollectionUtils;
 
-import com.jusfoun.common.springmvc.exception.JIllegalOperationException;
+import com.datasphere.common.dmpbase.data.Dataset;
+import com.datasphere.core.common.utils.UUIDUtils;
+import com.datasphere.engine.common.exception.JIllegalOperationException;
+import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
+import com.datasphere.engine.shaker.processor.instance.Component;
+import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
+import com.datasphere.engine.shaker.processor.model.ProcessInstance;
+import com.datasphere.engine.shaker.processor.runner.SubProcessRunner;
+import com.datasphere.server.manager.module.panel.buscommon.constant.PanelState;
 
-/**
- * Title: SubComponentInstance
- * Description: 子流程类
- * @date 2017年6月19日 下午6:31:47
- */
+
 public class SubComponentInstance extends AbstractComponent {
 	private final static Log logger = LogFactory.getLog(SubComponentInstance.class);
 	private final ExecutorService executor = Executors.newCachedThreadPool();
@@ -42,31 +37,14 @@ public class SubComponentInstance extends AbstractComponent {
 		OUTPUT_NAMES.add(OUTPUT_NAME);
 	}
 
-//	public SubComponentInstance(ComponentInstance componentInstance,
-//			ComponentInstanceSnapshotService componentInstanceSnapshotService,
-//			ProcessInstanceService processInstanceService, ComponentService componentService) {
-//		super(componentInstance);
-//		this.componentInstanceSnapshotService = componentInstanceSnapshotService;
-//		this.processInstanceService = processInstanceService;
-//		this.componentService = componentService;
-//		this.componentInstance = componentInstance;
-//	}
 
 	@Override
 	protected void compute() throws Exception {
 		String subPanelId = this.componentInstance.getSubPanelId();
-//		assembleProcessInputDatasets();
 		wrapParams();
 		runProcess(subPanelId);
 	}
 
-	/**
-	 * 
-	 * @author kevin 2017年6月19日 下午6:27:05
-	 * @param subPanel
-	 * @return
-	 * @throws Exception
-	 */
 	public String runProcess(String subPanel) throws Exception {
 		List<Component> fromComponents = filterVersion(componentService.getBeginComponents(subPanel));
 		List<Component> toComponents = filterVersion(componentService.getEndComponents(subPanel));
@@ -74,13 +52,6 @@ public class SubComponentInstance extends AbstractComponent {
 		return executeProcess(subPanel, fromComponents, toComponents, allComponents);
 	}
 
-	/**
-	 * 
-	 * @author kevin 2017年6月19日 下午6:26:51
-	 * @param components
-	 *            过滤版本
-	 * @return
-	 */
 	public List<Component> filterVersion(List<Component> components) {
 		String version = this.getVersion();
 		List<Component> list = new ArrayList<>();
@@ -100,28 +71,6 @@ public class SubComponentInstance extends AbstractComponent {
 		return list;
 	}
 	
-//	public void assembleProcessInputDatasets() throws Exception {
-//		List<String> inputNames = getInputNames();
-//		for (String inputName : inputNames) {
-//			if(StringUtils.isBlank(inputName)) continue;
-//			AssociationEndpoint endpoint = getParentOutputEndpointByInputName(inputName);
-//			if (endpoint == null) {
-//				continue;
-//			}
-//			Dataset dataset = null;
-//			Component component = endpoint.getComponent();
-//			
-//			if (component != null) {
-//				dataset = component.getOutput(endpoint.getName());
-//			} else {
-//				String pre_dataKey = "dataset_"  + endpoint.getComponent().getId();
-//				dataset = dataAccessor.getDatasetMetadata(pre_dataKey);
-//			}
-////			dataset=getInput(inputName);
-//			this.setInput(inputName, dataset);
-//		}
-//	}
-
 
 	private String executeProcess(final String subPanel, final List<Component> fromComponents, final List<Component> toComponents,
 			final List<Component> allComponentsWithProcess) throws Exception {
@@ -154,7 +103,7 @@ public class SubComponentInstance extends AbstractComponent {
 							processInstance.getId());
 					processInstance.setBeginTime(new Date());
 					processInstanceService.add(processInstance);
-					logger.info("======================子流程开始＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝allsize" + allComponentsWithProcess.size());
+					logger.info("a subprocess starts" + allComponentsWithProcess.size());
 
 					subRunner.run(latch);
 					processInstance.setStatus(PanelState.SUCCESS);
@@ -173,7 +122,7 @@ public class SubComponentInstance extends AbstractComponent {
 
 						logger.info("the subprocess[" + processInstance.getId() + "] runs fail.");
 					}
-					logger.info("======================子流程结束＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝");
+					logger.info("the subprocess ends");
 				} catch (Exception e) {
 					processInstance.setStatus(PanelState.FAILURE);
 					logger.error("the subprocess[" + processInstance.getId() + "] runs fail.", e);
@@ -193,7 +142,6 @@ public class SubComponentInstance extends AbstractComponent {
 
 	@Override
 	protected void wrapParams() throws Exception {
-		// TODO Auto-generated method stub
 		if(null==inputsMap) throw new JIllegalOperationException("没有数据输入！");
 	}
 
