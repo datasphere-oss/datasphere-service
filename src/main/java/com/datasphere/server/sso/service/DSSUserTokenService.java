@@ -1,4 +1,4 @@
-package com.datasphere.server.manager.module.common.service;
+package com.datasphere.server.sso.service;
 
 
 import java.util.Map;

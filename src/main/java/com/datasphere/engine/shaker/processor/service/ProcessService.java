@@ -41,6 +41,8 @@ import com.datasphere.server.manager.module.datasource.service.DataQueryService;
 import com.datasphere.server.manager.module.datasource.service.ExchangeSSOService;
 import com.datasphere.server.manager.module.panel.buscommon.constant.PanelState;
 import com.datasphere.server.manager.module.panel.service.PanelServiceImpl;
+import com.datasphere.server.sso.service.DSSUserTokenService;
+import com.datasphere.server.sso.service.DSSVersionService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.apache.commons.lang3.StringUtils;
@@ -49,6 +51,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -67,9 +70,9 @@ public class ProcessService extends BaseService {
 	@Autowired
 	private ProcessDaasService processDaasService;
 	@Autowired
-	private DSSUserTokenService dSSUserTokenService;
+	private DSSUserTokenService dssUserTokenService;
 	@Autowired
-	private DaasVersionService daasVersionService;
+	private DSSVersionService dssVersionService;
 	@Autowired
 	private DBOperationService dbOperationService;
 	@Autowired
@@ -216,7 +219,6 @@ public class ProcessService extends BaseService {
 		}
 	}
 
-//******************基于Daas的数据统一访问******************
 	/** Daas-1
 	 * 根据ci_id获取组件实例的sql
 	 */
@@ -971,7 +973,7 @@ public class ProcessService extends BaseService {
 		String secondPath = second_path_prefix + getNewVersion2(daas_ds_id,right_cd_id) + second_path_next;// 两表join
 		String urlPath = this.daasServerAPIV2RootUrl + secondPath;
 		try {
-			virtualDataset = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toJSONString(), dSSUserTokenService.getCurrentToken());
+			virtualDataset = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toJSONString(), dssUserTokenService.getCurrentToken());
 			addCILog(PROCESS_ID,PANEL_ID,right_source_ci_id,"两表"+jsonParam.getString("joinType")+"成功",1);
 		} catch (Exception e) {
 			addCILog(PROCESS_ID,PANEL_ID,right_source_ci_id,"两表"+jsonParam.getString("joinType")+"异常:"+e.getMessage(),2);
@@ -1536,7 +1538,7 @@ public class ProcessService extends BaseService {
 		jsonParam.put("spaceName", space_name);
 		jsonParam.put("dbName", db_name);
 		jsonParam.put("tableName", table_name);
-		return daasVersionService.getCurrentVersion(jsonParam);
+		return dssVersionService.getCurrentVersion(jsonParam);
 	}
 
 	public DataSetInstance getDataSetInstance(String upper_ci_id) {

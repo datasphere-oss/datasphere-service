@@ -43,7 +43,6 @@ import com.datasphere.engine.shaker.processor.instance.model.ComponentInstanceRe
 import com.datasphere.engine.shaker.processor.instance.model.DeleteComponentInstanceResult;
 import com.datasphere.engine.shaker.processor.instance.model.GraphNode;
 import com.datasphere.engine.shaker.processor.instance.model.UpdatePositionEntity;
-import com.datasphere.server.manager.module.common.service.DSSUserTokenService;
 import com.datasphere.server.manager.module.dal.dao.DataSetInstanceDao;
 import com.datasphere.server.manager.module.dal.domain.DataSetInstance;
 import com.datasphere.server.manager.module.dal.service.DataAccessor;
@@ -53,6 +52,7 @@ import com.datasphere.server.manager.module.datasource.domain.es.QueryDBDataPara
 import com.datasphere.server.manager.module.datasource.service.DataQueryService;
 import com.datasphere.server.manager.module.datasource.service.ExchangeSSOService;
 import com.datasphere.server.manager.module.panel.dao.PanelDao;
+import com.datasphere.server.sso.service.DSSUserTokenService;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

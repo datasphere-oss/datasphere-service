@@ -1,4 +1,4 @@
-package com.datasphere.server.manager.module.common.service;
+package com.datasphere.server.sso.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,14 +98,5 @@ public class DSSVersionService extends BaseService {
             log.error(ex.toString());
         }
         return null;
-    }
-
-    public static void main(String[] args) {
-        JSONObject j = new JSONObject();
-        j.put("spaceName","Elasticsearch");
-        j.put("dbName","bank");
-        j.put("tableName","account");
-
-//        System.out.println(getCurrentVersion(j));
     }
 }
