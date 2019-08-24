@@ -2,26 +2,24 @@ package com.datasphere.engine.shaker.processor.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.shaker.processor.factory.ComponentFactory;
 import com.datasphere.engine.shaker.processor.instance.Component;
-import com.datasphere.resource.manager.module.component.instance.domain.ComponentInstance;
-import com.datasphere.resource.manager.module.component.instance.service.ComponentInstanceRelationService;
-import com.datasphere.resource.manager.module.component.instance.service.ComponentInstanceService;
+import com.datasphere.server.manager.module.component.instance.domain.ComponentInstance;
+import com.datasphere.server.manager.module.component.instance.service.ComponentInstanceService;
 
 /**
  * 组件服务接口实现类
  */
-@Singleton
+@Service
 public class ComponentService extends BaseService {
-	@Inject
+	@Autowired
 	private ComponentInstanceService componentInstanceService;
-//	@Inject
-//	private ComponentInstanceRelationService componentInstanceRelationService;
-	@Inject
+	@Autowired
 	private ComponentFactory componentFactory;
 	
 	public Component getById(String componentId){

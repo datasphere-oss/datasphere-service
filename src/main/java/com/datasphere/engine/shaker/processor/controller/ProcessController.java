@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import com.alibaba.fastjson.JSON;
 import com.datasphere.core.common.BaseController;
+import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.shaker.processor.ProcessRunCallable;
 import com.datasphere.engine.shaker.processor.buscommon.ReturnMessageUtils;
 import com.datasphere.engine.shaker.processor.instance.callbackresult.ComponentCalcuateResult;
@@ -12,7 +13,6 @@ import com.datasphere.engine.shaker.processor.service.ProcessDaasService;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
 import com.datasphere.engine.shaker.processor.service.ProcessService;
 import com.datasphere.engine.shaker.processor.stop.StopSingleInstance;
-import com.datasphere.resource.manager.utils.JsonWrapper;
 import com.datasphere.server.manager.module.component.instance.buscommon.constant.ComponentInstanceStatus;
 import com.datasphere.server.manager.module.component.instance.service.ComponentInstanceService;
 import com.datasphere.server.manager.module.dal.buscommon.utils.StringUtils;

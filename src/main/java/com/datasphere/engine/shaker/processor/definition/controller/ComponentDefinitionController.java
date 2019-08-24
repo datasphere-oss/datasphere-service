@@ -13,11 +13,11 @@
 package com.datasphere.engine.shaker.processor.definition.controller;
 
 import com.datasphere.core.common.BaseController;
+import com.datasphere.engine.core.utils.ExceptionConst;
+import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
 import com.datasphere.engine.shaker.processor.definition.service.ComponentDefinitionServiceImpl;
-import com.datasphere.resource.manager.utils.ExceptionConst;
-import com.datasphere.resource.manager.utils.JsonWrapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

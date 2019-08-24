@@ -6,8 +6,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -16,6 +14,7 @@ import com.datasphere.common.utils.OkHttpRequest;
 import com.datasphere.common.utils.RandomUtils;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.core.common.utils.UUIDUtils;
+import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.shaker.processor.buscommon.AggregationFunctions;
 import com.datasphere.engine.shaker.processor.buscommon.CharReplaceUtils;
 import com.datasphere.engine.shaker.processor.buscommon.OperatorUtils;
@@ -25,7 +24,6 @@ import com.datasphere.engine.shaker.processor.model.BinaryTree;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 import com.datasphere.engine.shaker.processor.runner.ProcessRunner;
 import com.datasphere.engine.shaker.processor.stop.StopSingleInstance;
-import com.datasphere.resource.manager.utils.JsonWrapper;
 import com.datasphere.server.manager.common.constant.ConnectionInfoAndOthers;
 import com.datasphere.server.manager.module.common.service.DaasUserTokenService;
 import com.datasphere.server.manager.module.common.service.DaasVersionService;
@@ -49,18 +47,18 @@ import com.datasphere.server.manager.module.panel.buscommon.constant.PanelState;
 import com.datasphere.server.manager.module.panel.service.PanelServiceImpl;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.jusfoun.common.jms.rabbitmq.RMQClient;
 import org.apache.commons.lang3.StringUtils;
 
 import org.apache.ibatis.session.SqlSession;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 /**
  * 工作流-服务
  */
-@Singleton
+@Service
 public class ProcessService extends BaseService {
 	private final static Logger logger = LoggerFactory.getLogger(ProcessService.class);
 	private final ExecutorService executor = Executors.newCachedThreadPool();
@@ -70,23 +68,34 @@ public class ProcessService extends BaseService {
 	public static String PROCESS_ID = "0";
 	public static String TOKEN;
 
-	@Inject private ProcessDaasService processDaasService;
-	@Inject private DaasUserTokenService daasUserTokenService;
-	@Inject private DaasVersionService daasVersionService;
-	@Inject private DBOperationService dbOperationService;
-	@Inject private DataQueryService dataQueryService;
-	@Inject private PanelServiceImpl panelService;
-	@Inject private ComponentService componentService;
-	@Inject private ComponentInstanceService componentInstanceService;
-    @Inject private ComponentInstanceRelationService componentInstanceRelationService;
-	@Inject private ComponentInstanceSnapshotService componentInstanceSnapshotService;
-	@Inject private ProcessInstanceService processInstanceService;
-	@Inject private ProcessRecordService processRecordService;
+	@Autowired
+	private ProcessDaasService processDaasService;
+	@Autowired
+	private DaasUserTokenService daasUserTokenService;
+	@Autowired
+	private DaasVersionService daasVersionService;
+	@Autowired
+	private DBOperationService dbOperationService;
+	@Autowired
+	private DataQueryService dataQueryService;
+	@Autowired
+	private PanelServiceImpl panelService;
+	@Autowired
+	private ComponentService componentService;
+	@Autowired
+	private ComponentInstanceService componentInstanceService;
+	@Autowired
+	private ComponentInstanceRelationService componentInstanceRelationService;
+	@Autowired
+	private ComponentInstanceSnapshotService componentInstanceSnapshotService;
+	@Autowired
+	private ProcessInstanceService processInstanceService;
+	@Autowired
+	private ProcessRecordService processRecordService;
 	private DataAccessor dataAccessor;
-	private RMQClient amq;
-	@Inject ExchangeSSOService exchangeSSOService;
+	@Autowired
+	ExchangeSSOService exchangeSSOService;
 
-	/** DMP>>> */
 	public String runProcess(String creator_user_id, String panelId) {
 		List<Component> fromComponents = componentService.getBeginComponents(panelId);//获取panel中所有的源组件
 		List<Component> toComponents = componentService.getEndComponents(panelId);//获取panel中所有的目标组件
@@ -100,13 +109,11 @@ public class ProcessService extends BaseService {
 	}
 	private String executeProcess(String creator_user_id, String panelId, List<Component> fromComponents,
 			List<Component> toComponents, List<Component> allComponentsWithProcess) {
-		String processId = UUIDUtils.random();
-		executor.submit(() -> {
-            // 创建【处理实例】
+			String processId = UUIDUtils.random();
+			executor.submit(() -> {
             ProcessInstance processInstance = new ProcessInstance();
             processInstance.setId(processId);
             processInstance.setPanelId(panelId);
-            processInstance.setAmq(amq);
             processInstance.setCreateUserId(creator_user_id);
             processInstance.setFromComponentInstanceIds(StringUtils.join(getComponentIds(fromComponents), ","));
             List<String> toComponentIds = getComponentIds(toComponents);
@@ -128,7 +135,7 @@ public class ProcessService extends BaseService {
                 componentInstanceSnapshotService.createComponentInstanceSnapshotsByPanelId(panelId, processInstance.getId());//创建 组件实例快照cis
                 processInstance.setBeginTime(new Date());
                 processInstance.setStatus(PanelState.RUNNING);
-                processInstanceService.add(processInstance);//新建 工作流（任务）
+                processInstanceService.add(processInstance); //新建 工作流（任务）
 
                 runner.run(latch);
                 latch.await();
@@ -151,7 +158,7 @@ public class ProcessService extends BaseService {
                 processInstance.setStatus(PanelState.FAILURE);
                 logger.error("The process[" + processInstance.getId() + "] runs fail.", e);
             } finally {
-                processInstanceService.modify(processInstance);//更新 工作流（任务）运行状态
+                processInstanceService.modify(processInstance); //更新 工作流（任务）运行状态
             }
             return null;
         });
@@ -212,7 +219,6 @@ public class ProcessService extends BaseService {
 			return null;
 		}
 	}
-	/** <<<DMP */
 
 //******************基于Daas的数据统一访问******************
 	/** Daas-1

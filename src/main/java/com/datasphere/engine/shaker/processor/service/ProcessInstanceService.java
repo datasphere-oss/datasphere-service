@@ -5,19 +5,13 @@ import com.datasphere.engine.shaker.processor.dao.ProcessInstanceDao;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import javax.inject.Singleton;
 
-@Singleton
+@Service
 public class ProcessInstanceService extends BaseService {
-	
-//	@Inject
-//	ProcessInstanceDao processInstanceDAO;
-	
-//	@Inject
-//	ComponentInstanceService componentInstanceService;
 	
 	public void add(ProcessInstance processInstance){
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {

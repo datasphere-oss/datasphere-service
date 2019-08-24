@@ -2,8 +2,6 @@ package com.datasphere.engine.shaker.processor.service;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import com.datasphere.resource.manager.module.dal.buscommon.utils.ObjectMapperUtils;
 import com.datasphere.core.common.BaseService;
@@ -13,17 +11,17 @@ import com.datasphere.resource.manager.module.component.instance.service.Compone
 import com.datasphere.resource.manager.module.component.instance.service.ComponentInstanceService;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * 组件实例快照服务实现类
  */
-@Singleton
+@Service
 public class ComponentInstanceSnapshotService extends BaseService {
-//	@Inject
-//	private ComponentInstanceRelationSnapshotService componentInstanceRelationSnapshotService;
-	@Inject
+	@Autowired
 	ComponentInstanceService componentInstanceService;
-	@Inject
+	@Autowired
 	ComponentInstanceRelationService componentInstanceRelationService;
 	
 	public void createComponentInstanceSnapshotsByPanelId(String panelId,String processId) {

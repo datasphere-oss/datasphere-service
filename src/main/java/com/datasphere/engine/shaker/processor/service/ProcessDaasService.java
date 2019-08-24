@@ -9,18 +9,16 @@ import com.datasphere.engine.shaker.processor.buscommon.ReturnMessageUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
-/**
- * 工作流-请求daas服务
- */
-@Singleton
+@Service
 public class ProcessDaasService extends BaseService {
     private final static Logger logger = LoggerFactory.getLogger(ProcessDaasService.class);
 
-    @Inject private DaasUserTokenService daasUserTokenService;
+    @Autowired
+    private DaasUserTokenService daasUserTokenService;
 
     public String runSqlOnDaas(String upper_sql) {
         //调用daas接口执行sql语句
@@ -72,7 +70,6 @@ public class ProcessDaasService extends BaseService {
     }
 
     public String executeSqlOnDaas(String sql) {
-//	http://117.107.241.79:7090/apiv2/datasets/new_untitled_sql_and_run?newVersion=0002424622392793
         String urlPath = this.daasServerAPIV3RootUrl + "/sql";
         JSONObject jsonParam = new JSONObject();
         jsonParam.put("sql", sql.toString());
@@ -88,8 +85,6 @@ public class ProcessDaasService extends BaseService {
         try {
             Thread.sleep(100);
             String catalogEntity = OkHttpRequest.okHttpClientGet(this.daasServerAPIV3RootUrl+"/catalog/"+dass_ds_id, daasUserTokenService.getCurrentToken());
-// 正确：{"entityType":"source","config":{"hostname":"172.16.11.36","port":"3306","password":"$DREMIO_EXISTING_VALUE$","authenticationType":"MASTER","fetchSize":10},"state":{"status":"good","messages":[]},"id":"1c664927-ec0a-4561-b54e-79b6cbd07446","tag":"0","type":"MYSQL","name":"mysqlDaas牛逼测试2","description":"es高级测试详细信息","createdAt":"2018-09-25T10:19:33.269Z","metadataPolicy":{"authTTLMs":86400000,"namesRefreshMs":3600000,"datasetRefreshAfterMs":3600000,"datasetExpireAfterMs":10800000,"datasetUpdateMode":"PREFETCH_QUERIED"},"accelerationGracePeriodMs":10800000,"accelerationRefreshPeriodMs":3600000,"accelerationNeverExpire":false,"accelerationNeverRefresh":false,"children":[{"id":"a458f659-b3b9-4e4a-9a38-2059bc673b27","path":["mysqlDaas牛逼测试2","buffer_test"],"tag":"0","type":"CONTAINER","containerType":"FOLDER"},{"id":"9d534b66-2512-400c-8eff-4b095d009e4c","path":["mysqlDaas牛逼测试2","catalog_db"],"tag":"0","type":"CONTAINER","containerType":"FOLDER"},{"id":"b9a174b1-60f2-4213-a7eb-ef1ae36044d2","path":["mysqlDaas牛逼测试2","mysql"],"tag":"0","type":"CONTAINER","containerType":"FOLDER"},{"id":"993bdfd8-844c-455e-90aa-ee67a452b7dc","path":["mysqlDaas牛逼测试2","performance_schema"],"tag":"0","type":"CONTAINER","containerType":"FOLDER"},{"id":"aabb411e-b7c0-4066-98de-28ad27845acf","path":["mysqlDaas牛逼测试2","test"],"tag":"0","type":"CONTAINER","containerType":"FOLDER"}]}
-// 错误：{"errorMessage":"The source [\"auto_843da4cc-db59-4c2d-98af-b08994d30873\"] is currently unavailable. Info: [[Message{level=ERROR, msg=Could not retrieve connection info from pool}]].","context":["ERROR Could not retrieve connection info from pool"],"moreInfo":""}
             System.err.println(catalogEntity);
             if(catalogEntity.contains("\"errorMessage\"")) return null;
             return JSON.parseObject(catalogEntity).getString("name");

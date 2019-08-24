@@ -2,9 +2,6 @@ package com.datasphere.engine.shaker.processor.service;
 
 import java.util.*;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -16,16 +13,13 @@ import com.datasphere.engine.shaker.processor.model.ProcessRecord;
 import com.datasphere.resource.manager.module.dal.buscommon.utils.StringUtils;
 import com.jusfoun.common.springmvc.utils.JAssert;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-/**
- * 流程执行记录服务接口实现类
- */
-@Singleton
+@Service
 public class ProcessRecordService extends BaseService {
-//	@Inject
-//	ProcessRecordDao processRecordDao;
 
-	@Inject
+	@Autowired
 	ProcessInstanceService processInstanceService;
 	
 	public void add(ProcessRecord processRecord){

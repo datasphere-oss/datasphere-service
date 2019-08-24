@@ -15,7 +15,7 @@ package com.datasphere.engine.shaker.processor.definition.dao.handler;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 
-import com.datasphere.resource.manager.utils.ObjectMapperUtils;
+import com.datasphere.engine.core.utils.ObjectMapperUtils;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
