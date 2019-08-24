@@ -2,7 +2,6 @@ package com.datasphere.engine.shaker.processor.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.datasphere.resource.manager.module.common.service.DaasUserTokenService;
 import com.datasphere.common.utils.OkHttpRequest;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.shaker.processor.buscommon.ReturnMessageUtils;

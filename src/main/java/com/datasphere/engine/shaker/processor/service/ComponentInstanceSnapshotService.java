@@ -3,16 +3,16 @@ package com.datasphere.engine.shaker.processor.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.datasphere.resource.manager.module.dal.buscommon.utils.ObjectMapperUtils;
-import com.datasphere.core.common.BaseService;
-import com.datasphere.engine.shaker.processor.dao.ComponentInstanceSnapshotDao;
-import com.datasphere.engine.shaker.processor.model.ComponentInstanceSnapshot;
-import com.datasphere.resource.manager.module.component.instance.service.ComponentInstanceRelationService;
-import com.datasphere.resource.manager.module.component.instance.service.ComponentInstanceService;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.datasphere.core.common.BaseService;
+import com.datasphere.engine.core.utils.ObjectMapperUtils;
+import com.datasphere.engine.shaker.processor.dao.ComponentInstanceSnapshotDao;
+import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceRelationService;
+import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
+import com.datasphere.engine.shaker.processor.model.ComponentInstanceSnapshot;
 
 /**
  * 组件实例快照服务实现类

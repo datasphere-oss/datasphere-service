@@ -10,8 +10,6 @@ import com.datasphere.core.common.utils.UUIDUtils;
 import com.datasphere.engine.shaker.processor.dao.ProcessRecordDao;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 import com.datasphere.engine.shaker.processor.model.ProcessRecord;
-import com.datasphere.resource.manager.module.dal.buscommon.utils.StringUtils;
-import com.jusfoun.common.springmvc.utils.JAssert;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
