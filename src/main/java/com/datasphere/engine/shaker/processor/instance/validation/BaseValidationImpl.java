@@ -1,14 +1,13 @@
-package com.datasphere.engine.shaker.processor.instance.validation.base;
+package com.datasphere.engine.shaker.processor.instance.validation;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.inject.Singleton;
 
-//@Service("baseValidation")
-@Singleton
+@Service
 public class BaseValidationImpl implements IBaseValidation {
 	private int defaultDecimal = 2;
 
@@ -80,7 +79,6 @@ public class BaseValidationImpl implements IBaseValidation {
 
 	@Override
 	public boolean validationNotBlank(String data) {
-		// TODO Auto-generated method stub
 		return StringUtils.isNotBlank(data);
 	}
 

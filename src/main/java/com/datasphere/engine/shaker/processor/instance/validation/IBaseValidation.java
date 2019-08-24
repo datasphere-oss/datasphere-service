@@ -1,4 +1,4 @@
-package com.datasphere.engine.shaker.processor.instance.validation.base;
+package com.datasphere.engine.shaker.processor.instance.validation;
 
 public interface IBaseValidation {
 

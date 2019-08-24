@@ -1,9 +1,9 @@
 package com.datasphere.engine.shaker.processor.instance.validation.instances;
 
-import com.datasphere.engine.shaker.processor.instance.validation.base.AbstractComponentValition;
-import com.datasphere.engine.shaker.processor.instance.validation.base.ComponentParamsNameDescription;
-import com.datasphere.engine.shaker.processor.instance.validation.base.ValidationChangType;
-import com.datasphere.engine.shaker.processor.instance.validation.base.ValidationParamsRole;
+import com.datasphere.engine.shaker.processor.instance.validation.AbstractComponentValition;
+import com.datasphere.engine.shaker.processor.instance.validation.ComponentParamsNameDescription;
+import com.datasphere.engine.shaker.processor.instance.validation.ValidationChangType;
+import com.datasphere.engine.shaker.processor.instance.validation.ValidationParamsRole;
 
 /**
  * {"percentage":0.8,"Stratified":false,"AttributedIndices":"","method":"fit"}

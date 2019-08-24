@@ -1,6 +1,6 @@
 package com.datasphere.engine.shaker.processor.instance.validation.instances;
 
-import com.datasphere.engine.shaker.processor.instance.validation.base.AbstractComponentValition;
+import com.datasphere.engine.shaker.processor.instance.validation.AbstractComponentValition;
 
 public class DefaultValidationInstances extends AbstractComponentValition {
 

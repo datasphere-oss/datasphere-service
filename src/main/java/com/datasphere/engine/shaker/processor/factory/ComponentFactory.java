@@ -12,8 +12,8 @@ import com.datasphere.engine.shaker.processor.instance.predatacomponent.PreDataC
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceRelationService;
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
 import com.datasphere.engine.shaker.processor.instance.service.PreDataComponentService;
-import com.datasphere.engine.shaker.processor.instance.validation.base.AbstractComponentValition;
-import com.datasphere.engine.shaker.processor.instance.validation.base.IBaseValidation;
+import com.datasphere.engine.shaker.processor.instance.validation.AbstractComponentValition;
+import com.datasphere.engine.shaker.processor.instance.validation.IBaseValidation;
 import com.datasphere.engine.shaker.processor.instance.validation.instances.DefaultValidationInstances;
 import com.datasphere.engine.shaker.processor.instance.validation.instances.SplitValidationInstances;
 import com.datasphere.engine.shaker.processor.service.ComponentInstanceSnapshotService;

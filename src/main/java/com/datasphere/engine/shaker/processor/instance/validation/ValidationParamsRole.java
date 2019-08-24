@@ -1,4 +1,4 @@
-package com.datasphere.engine.shaker.processor.instance.validation.base;
+package com.datasphere.engine.shaker.processor.instance.validation;
 
 public class ValidationParamsRole {
 	private String name;
@@ -13,22 +13,14 @@ public class ValidationParamsRole {
 	private StringBuilder message = new StringBuilder();
 	private int bit = 2;
 	private String nameDesc;
-	
-	
-	
-	
 
 	public String getNameDesc() {
 		return nameDesc;
 	}
 
-
-
 	public void setNameDesc(String nameDesc) {
 		this.nameDesc = nameDesc;
 	}
-
-
 
 	public ValidationParamsRole(String name, boolean isAllowEmpty, ValidationChangType type) {
 		super();
@@ -36,8 +28,6 @@ public class ValidationParamsRole {
 		this.isAllowEmpty = isAllowEmpty;
 		this.type = type;
 	}
-
-
 
 	public ValidationParamsRole(String name, Object value,boolean isAllowEmpty, ValidationChangType type) {
 		super();

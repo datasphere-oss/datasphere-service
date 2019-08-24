@@ -1,7 +1,6 @@
-package com.datasphere.engine.shaker.processor.instance.validation.base;
+package com.datasphere.engine.shaker.processor.instance.validation;
 
 public class ComponentParamsNameDescription {
-	// FPGrowthValidationInstances
 	public static final String fpgrowth_min_support = "最小支持";
 	public static final String aprior_min_support = "最小支持";
 	public static final String JoinCondition = "连接方式";

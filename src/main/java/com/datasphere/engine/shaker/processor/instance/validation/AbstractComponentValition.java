@@ -1,11 +1,12 @@
-package com.datasphere.engine.shaker.processor.instance.validation.base;
-
-import com.datasphere.resource.manager.module.dal.buscommon.utils.StringUtils;
-import com.datasphere.resource.manager.module.component.instance.domain.ComponentInstance;
+package com.datasphere.engine.shaker.processor.instance.validation;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 
 public abstract class AbstractComponentValition {
 	protected IBaseValidation baseValidation;
@@ -62,11 +63,6 @@ public abstract class AbstractComponentValition {
 		this.baseValidation = baseValidation;
 	}
 
-	/**
-	 * 初始化规则
-	 * 
-	 * @author kevin 2017年8月15日 下午12:47:04
-	 */
 	public abstract void init();
 	
 	public void validation() {
@@ -119,8 +115,6 @@ public abstract class AbstractComponentValition {
 					errorFlag = true;
 				}
 			}
-			
-
 		}
 	}
 

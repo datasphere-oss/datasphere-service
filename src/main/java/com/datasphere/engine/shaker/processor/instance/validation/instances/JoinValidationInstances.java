@@ -2,10 +2,10 @@ package com.datasphere.engine.shaker.processor.instance.validation.instances;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.datasphere.engine.shaker.processor.instance.validation.base.AbstractComponentValition;
-import com.datasphere.engine.shaker.processor.instance.validation.base.ComponentParamsNameDescription;
-import com.datasphere.engine.shaker.processor.instance.validation.base.ValidationChangType;
-import com.datasphere.engine.shaker.processor.instance.validation.base.ValidationParamsRole;
+import com.datasphere.engine.shaker.processor.instance.validation.AbstractComponentValition;
+import com.datasphere.engine.shaker.processor.instance.validation.ComponentParamsNameDescription;
+import com.datasphere.engine.shaker.processor.instance.validation.ValidationChangType;
+import com.datasphere.engine.shaker.processor.instance.validation.ValidationParamsRole;
 import com.datasphere.resource.manager.module.dal.buscommon.utils.StringUtils;
 
 import io.micronaut.core.util.CollectionUtils;
