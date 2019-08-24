@@ -43,17 +43,17 @@ public interface ComponentDefinitionDao {
 	 */
 //	List<JusfounWord> listGroup(@Param("group") String group, @Param("name") String name);//*****************
 
-	List<JusfounWord> listGroupNameIsNull(@Param("creator") String creator);//*****************
+	List<DSSWord> listGroupNameIsNull(@Param("creator") String creator);//*****************
 
-	List<JusfounWord> listGroup(@Param("creator") String creator, @Param("name") String name);
+	List<DSSWord> listGroup(@Param("creator") String creator, @Param("name") String name);
 
 	List<ComponentDefinition> listGroup2(@Param("type") String type);//*****************
 
 	List<ComponentDefinition> listGroup1(@Param("name") String name);//*****************
 
-	List<JusfounWord> listGroupNameIsNull2(String group);//********************
+	List<DSSWord> listGroupNameIsNull2(String group);//********************
 
-	JusfounWord myDataSouce(String name);//********************
+	DSSWord myDataSouce(String name);//********************
 
 	List<ComponentDefinition> listBy(ComponentDefinition componentDefinition);
 

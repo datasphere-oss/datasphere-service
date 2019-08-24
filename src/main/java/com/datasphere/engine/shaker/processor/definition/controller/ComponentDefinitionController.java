@@ -15,7 +15,7 @@ package com.datasphere.engine.shaker.processor.definition.controller;
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
-import com.datasphere.resource.manager.module.component.definition.service.ComponentDefinitionServiceImpl;
+import com.datasphere.engine.shaker.processor.definition.service.ComponentDefinitionServiceImpl;
 import com.datasphere.resource.manager.utils.ExceptionConst;
 import com.datasphere.resource.manager.utils.JsonWrapper;
 
