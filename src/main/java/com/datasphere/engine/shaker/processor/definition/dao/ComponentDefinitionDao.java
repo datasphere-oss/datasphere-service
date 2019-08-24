@@ -14,9 +14,9 @@ package com.datasphere.engine.shaker.processor.definition.dao;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
 import com.datasphere.resource.manager.module.dictionary.domain.JusfounWord;
 import com.datasphere.resource.manager.module.panel.domain.ComponentDefinitionPanel;
-import com.datasphere.resource.manager.module.component.definition.domain.ComponentDefinition;
 
 import java.util.List;
 
