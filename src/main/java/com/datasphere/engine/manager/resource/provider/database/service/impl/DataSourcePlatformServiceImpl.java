@@ -5,18 +5,19 @@ import com.datasphere.common.data.Dataset;
 import com.datasphere.engine.manager.resource.provider.database.model.DBTableField;
 import com.datasphere.server.connections.service.DataAccessor;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Singleton
+
+@Service
 public class DataSourcePlatformServiceImpl{
 
-	@Inject
+	@Autowired
 	DataAccessor dataAccessor;
 	
 	public void write(String key,String tableName,List<List<DBTableField>> dataList) throws Exception {

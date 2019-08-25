@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.datasphere.engine.manager.resource.provider.database.model.DBQuery;
 import com.datasphere.engine.manager.resource.provider.database.model.DBTableField;
 import com.datasphere.engine.manager.resource.provider.database.service.impl.DataSourcePlatformServiceImpl;
-import com.datasphere.engine.manager.resource.provider.database.service.impl.DataSourceWebSocketServiceImpl;
 import com.datasphere.engine.manager.resource.provider.model.DataSource;
 
 import javax.annotation.Resource;
@@ -39,8 +38,7 @@ public class DataSourceTableMigrationService {
 	@Resource(name="dataSourceConsoleService")
     DataSourceConsoleService consoleService;
 
-	@Autowired
-    DataSourceWebSocketServiceImpl webSocketService;
+	
 
 	DataSourceTableMigrationService(){
 		migrationTheadPool = Executors.newCachedThreadPool();
