@@ -2,7 +2,7 @@ package com.datasphere.engine.projects.dao;
 
 import java.util.List;
 
-import com.datasphere.engine.datasource.mybatis.page.Pager;
+import com.datasphere.engine.manager.resource.provider.mybatis.page.Pager;
 import com.datasphere.engine.projects.model.Project;
 
 import org.apache.ibatis.annotations.Param;

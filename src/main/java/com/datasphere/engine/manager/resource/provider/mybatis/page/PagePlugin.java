@@ -1,7 +1,7 @@
-package com.datasphere.engine.datasource.mybatis.page;
+package com.datasphere.engine.manager.resource.provider.mybatis.page;
 
 import com.datasphere.core.common.utils.ReflectHelper;
-import com.datasphere.engine.datasource.mybatis.page.Pager;
+import com.datasphere.engine.manager.resource.provider.mybatis.page.Pager;
 
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.mapping.*;
@@ -62,11 +62,6 @@ public class PagePlugin implements Interceptor
         return sqlBuffer.toString();
     }
     
-    private String getSnappyDataPageSql(final Pager page, final StringBuffer sqlBuffer) {
-        final int offset = (page.getPageNumber() - 1) * page.getPageSize();
-        sqlBuffer.append(" offset ").append(offset).append(" rows fetch next ").append(page.getPageSize()).append(" rows only");
-        return sqlBuffer.toString();
-    }
     
     private String fileterString(String sqlvalue) {
         if (StringUtils.isEmpty(sqlvalue)) {

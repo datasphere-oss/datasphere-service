@@ -1,4 +1,4 @@
-package com.datasphere.engine.datasource.hadoop.hive;
+package com.datasphere.engine.manager.resource.provider.hive;
 
 public class HiveTableInfo {
 

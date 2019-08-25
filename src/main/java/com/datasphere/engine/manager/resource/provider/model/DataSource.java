@@ -3,7 +3,7 @@ package com.datasphere.engine.manager.resource.provider.model;
 
 import java.util.Date;
 
-import com.datasphere.engine.datasource.mybatis.page.Pager;
+import com.datasphere.engine.manager.resource.provider.mybatis.page.Pager;
 
 public class DataSource {
 	private String id;

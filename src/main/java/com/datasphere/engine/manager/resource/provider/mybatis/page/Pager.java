@@ -1,4 +1,4 @@
-package com.datasphere.engine.datasource.mybatis.page;
+package com.datasphere.engine.manager.resource.provider.mybatis.page;
 
 import java.util.*;
 

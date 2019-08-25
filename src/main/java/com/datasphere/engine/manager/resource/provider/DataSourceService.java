@@ -1,4 +1,4 @@
-package com.datasphere.engine.datasource;
+package com.datasphere.engine.manager.resource.provider;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

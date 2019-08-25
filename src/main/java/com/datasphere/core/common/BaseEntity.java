@@ -14,7 +14,7 @@ package com.datasphere.core.common;
 
 import java.util.Date;
 
-import com.datasphere.engine.datasource.mybatis.page.Pager;
+import com.datasphere.engine.manager.resource.provider.mybatis.page.Pager;
 
 public abstract class BaseEntity {
 	protected String id;

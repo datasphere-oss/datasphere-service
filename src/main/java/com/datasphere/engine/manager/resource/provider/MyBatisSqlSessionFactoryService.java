@@ -1,4 +1,4 @@
-package com.datasphere.engine.datasource;
+package com.datasphere.engine.manager.resource.provider;
 
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.Configuration;

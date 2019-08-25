@@ -2,7 +2,7 @@ package com.datasphere.engine.manager.resource.provider.hive.model;
 
 import java.util.List;
 
-import com.datasphere.engine.datasource.hadoop.hive.HiveTableInfo;
+import com.datasphere.engine.manager.resource.provider.hive.HiveTableInfo;
 
 public class HiveDataSourceInfo {
 

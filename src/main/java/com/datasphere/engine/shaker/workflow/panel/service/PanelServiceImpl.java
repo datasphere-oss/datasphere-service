@@ -13,7 +13,7 @@ import com.datasphere.engine.common.exception.JIllegalOperationException;
 import com.datasphere.engine.common.named.NameGenerator;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.core.utils.JAssert;
-import com.datasphere.engine.datasource.mybatis.page.Pager;
+import com.datasphere.engine.manager.resource.provider.mybatis.page.Pager;
 import com.datasphere.engine.manager.resource.provider.service.ExchangeSSOService;
 import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceModified;
 import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;

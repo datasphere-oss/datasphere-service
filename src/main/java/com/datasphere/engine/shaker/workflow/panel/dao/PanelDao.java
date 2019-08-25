@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.inject.Singleton;
 
-import com.datasphere.engine.datasource.mybatis.page.Pager;
+import com.datasphere.engine.manager.resource.provider.mybatis.page.Pager;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 import com.datasphere.engine.shaker.workflow.panel.domain.Panel;
 

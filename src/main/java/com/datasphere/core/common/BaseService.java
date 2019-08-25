@@ -14,7 +14,7 @@ package com.datasphere.core.common;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.datasphere.engine.datasource.MyBatisSqlSessionFactoryService;
+import com.datasphere.engine.manager.resource.provider.MyBatisSqlSessionFactoryService;
 
 @Service
 public class BaseService {
