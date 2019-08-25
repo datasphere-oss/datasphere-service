@@ -3,7 +3,7 @@ package com.datasphere.engine.shaker.processor.prep.data;
 import java.util.Date;
 import java.util.List;
 
-import com.datasphere.engine.shaker.processor.prep.domain.EvaluationProgram;
+import com.datasphere.engine.shaker.processor.prep.model.EvaluationProgram;
 
 //@Table(name = "T_EVALUATIONS")
 public class EvaluationData {

@@ -2,7 +2,7 @@ package com.datasphere.engine.shaker.processor.prep.data;
 
 import java.util.List;
 
-import com.datasphere.engine.shaker.processor.prep.domain.Column;
+import com.datasphere.engine.shaker.processor.prep.model.Column;
 
 /**
  * Created by wangjt on 2017/7/26.

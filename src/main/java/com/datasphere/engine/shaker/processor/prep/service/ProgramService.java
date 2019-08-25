@@ -6,10 +6,10 @@ import com.datasphere.engine.shaker.processor.prep.data.ColumnData;
 import com.datasphere.engine.shaker.processor.prep.data.OperateData;
 import com.datasphere.engine.shaker.processor.prep.data.ProgramFlowData;
 import com.datasphere.engine.shaker.processor.prep.data.ProgramOutputData;
-import com.datasphere.engine.shaker.processor.prep.domain.Column;
-import com.datasphere.engine.shaker.processor.prep.domain.OperateCode;
-import com.datasphere.engine.shaker.processor.prep.domain.Program;
-import com.datasphere.engine.shaker.processor.prep.domain.ProgramColumn;
+import com.datasphere.engine.shaker.processor.prep.model.Column;
+import com.datasphere.engine.shaker.processor.prep.model.OperateCode;
+import com.datasphere.engine.shaker.processor.prep.model.Program;
+import com.datasphere.engine.shaker.processor.prep.model.ProgramColumn;
 import com.google.common.collect.Lists;
 import org.apache.ibatis.session.SqlSession;
 

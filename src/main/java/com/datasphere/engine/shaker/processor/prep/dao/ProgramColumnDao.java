@@ -2,7 +2,7 @@ package com.datasphere.engine.shaker.processor.prep.dao;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.datasphere.engine.shaker.processor.prep.domain.ProgramColumn;
+import com.datasphere.engine.shaker.processor.prep.model.ProgramColumn;
 
 import javax.inject.Singleton;
 import java.util.List;

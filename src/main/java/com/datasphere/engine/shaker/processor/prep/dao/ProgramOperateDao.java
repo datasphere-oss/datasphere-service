@@ -2,7 +2,7 @@ package com.datasphere.engine.shaker.processor.prep.dao;
 
 import javax.inject.Singleton;
 
-import com.datasphere.engine.shaker.processor.prep.domain.ProgramOperate;
+import com.datasphere.engine.shaker.processor.prep.model.ProgramOperate;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.datasphere.engine.shaker.processor.prep.domain;
+package com.datasphere.engine.shaker.processor.prep.model;
 
 //import javax.persistence.Id;
 //import javax.persistence.Table;

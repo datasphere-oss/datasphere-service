@@ -2,7 +2,7 @@ package com.datasphere.engine.shaker.processor.prep.dao;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.datasphere.engine.shaker.processor.prep.domain.Program;
+import com.datasphere.engine.shaker.processor.prep.model.Program;
 
 import java.util.List;
 

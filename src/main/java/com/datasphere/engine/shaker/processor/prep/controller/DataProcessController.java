@@ -21,7 +21,7 @@ import static com.datasphere.engine.shaker.processor.prep.constant.ReturnConst.F
 import static com.datasphere.engine.shaker.processor.prep.constant.ReturnConst.ParameterInvalid;
 
 /**
- * 数据处理
+ * data preprocessing by dataflow
  */
 public class DataProcessController extends BaseController{
     private final static Log logger = LogFactory.getLog(DataProcessController.class);
