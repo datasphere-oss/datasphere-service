@@ -1,13 +1,11 @@
-package com.datasphere.engine.manager.resource.provider.database.entity;
+package com.datasphere.engine.manager.resource.provider.database.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class DBQuery {
 	
 	private String databaseName;
-	
 	private String schemaName;
-	
 	private String tableName;
 	
 	@JsonIgnore

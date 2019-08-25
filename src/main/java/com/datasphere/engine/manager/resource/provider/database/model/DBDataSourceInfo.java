@@ -1,4 +1,4 @@
-package com.datasphere.engine.manager.resource.provider.database.entity;
+package com.datasphere.engine.manager.resource.provider.database.model;
 
 public class DBDataSourceInfo {
 

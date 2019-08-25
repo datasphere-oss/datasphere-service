@@ -3,7 +3,7 @@ package com.datasphere.engine.manager.resource.provider.database.dao;
 import org.apache.commons.lang3.StringUtils;
 
 import com.datasphere.engine.manager.resource.provider.database.config.DBConfig;
-import com.datasphere.engine.manager.resource.provider.database.entity.DBTableField;
+import com.datasphere.engine.manager.resource.provider.database.model.DBTableField;
 import com.datasphere.engine.manager.resource.provider.database.util.DALTypeUtil;
 
 import java.sql.*;

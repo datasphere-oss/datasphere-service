@@ -3,8 +3,8 @@ package com.datasphere.engine.manager.resource.provider.database.service;
 import org.apache.commons.lang3.StringUtils;
 
 import com.datasphere.engine.manager.resource.provider.database.dao.BaseDao;
-import com.datasphere.engine.manager.resource.provider.database.entity.DBQuery;
 import com.datasphere.engine.manager.resource.provider.database.exception.JSQLException;
+import com.datasphere.engine.manager.resource.provider.database.model.DBQuery;
 
 import java.sql.SQLException;
 import java.util.Map;

@@ -1,13 +1,10 @@
-package com.datasphere.engine.manager.resource.provider.database.entity;
+package com.datasphere.engine.manager.resource.provider.database.model;
 
 public class DBTableField {
 
 	private String name;
-	
 	private String value;
-	
 	private int type;
-	
 	private String businessDataType;
 
 	public String getName() {

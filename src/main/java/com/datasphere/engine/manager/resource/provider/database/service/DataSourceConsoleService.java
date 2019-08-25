@@ -2,9 +2,9 @@ package com.datasphere.engine.manager.resource.provider.database.service;
 
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.core.utils.JAssert;
-import com.datasphere.engine.manager.resource.provider.database.entity.DBCommonInfo;
-import com.datasphere.engine.manager.resource.provider.database.entity.DBDataSourceInfo;
-import com.datasphere.engine.manager.resource.provider.database.entity.DBTableDataList;
+import com.datasphere.engine.manager.resource.provider.database.model.DBCommonInfo;
+import com.datasphere.engine.manager.resource.provider.database.model.DBDataSourceInfo;
+import com.datasphere.engine.manager.resource.provider.database.model.DBTableDataList;
 import com.datasphere.engine.manager.resource.provider.database.service.impl.DataSourcePlatformServiceImpl;
 import com.datasphere.engine.manager.resource.provider.database.util.BeanToMapUtil;
 import com.datasphere.engine.manager.resource.provider.database.util.DALTypeUtil;

@@ -1,4 +1,4 @@
-package com.datasphere.engine.manager.resource.provider.database.entity;
+package com.datasphere.engine.manager.resource.provider.database.model;
 
 import java.util.List;
 
@@ -7,19 +7,12 @@ import com.datasphere.engine.common.exception.JRuntimeException;
 public class DBCommonInfo extends DBQuery implements Cloneable{
 	
 	private String host;
-	
 	private Integer port;
-	
 	private String user;
-	
 	private String password;
-	
 	private String databaseType;
-	
 	private String serviceName;
-	
 	private String serviceType;
-	
 	private String dataSourceJson;
 	
 	private List<DBDataSourceInfo> dataSources;

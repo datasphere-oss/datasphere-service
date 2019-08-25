@@ -3,9 +3,9 @@ package com.datasphere.engine.manager.resource.provider.database.service.impl;
 import org.apache.commons.lang3.StringUtils;
 
 import com.datasphere.engine.manager.resource.provider.database.dao.MSSQLDao;
-import com.datasphere.engine.manager.resource.provider.database.entity.DBQuery;
-import com.datasphere.engine.manager.resource.provider.database.entity.DBTableField;
 import com.datasphere.engine.manager.resource.provider.database.exception.JSQLException;
+import com.datasphere.engine.manager.resource.provider.database.model.DBQuery;
+import com.datasphere.engine.manager.resource.provider.database.model.DBTableField;
 import com.datasphere.engine.manager.resource.provider.database.service.AbstractDatabaseService;
 import com.datasphere.engine.manager.resource.provider.database.service.DataSourceDatabaseService;
 import com.datasphere.engine.manager.resource.provider.database.util.DALTypeUtil;

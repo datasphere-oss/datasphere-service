@@ -11,7 +11,7 @@ import com.datasphere.engine.common.exception.http.HttpClientException;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.manager.resource.provider.catalog.model.RequestParams;
 import com.datasphere.engine.manager.resource.provider.dao.DataSourceDao;
-import com.datasphere.engine.manager.resource.provider.database.entity.DBCommonInfo;
+import com.datasphere.engine.manager.resource.provider.database.model.DBCommonInfo;
 import com.datasphere.engine.manager.resource.provider.database.service.DataSourceDatabaseFactory;
 import com.datasphere.engine.manager.resource.provider.database.service.DataSourceDatabaseService;
 import com.datasphere.engine.manager.resource.provider.database.util.BeanToMapUtil;

@@ -3,8 +3,8 @@ package com.datasphere.engine.manager.resource.provider.database.service;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.engine.manager.resource.provider.database.entity.DBQuery;
-import com.datasphere.engine.manager.resource.provider.database.entity.DBTableField;
+import com.datasphere.engine.manager.resource.provider.database.model.DBQuery;
+import com.datasphere.engine.manager.resource.provider.database.model.DBTableField;
 import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
 
 

@@ -3,7 +3,7 @@ package com.datasphere.engine.manager.resource.provider.controller;
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.manager.resource.provider.catalog.model.RequestParams;
-import com.datasphere.engine.manager.resource.provider.database.entity.DBCommonInfo;
+import com.datasphere.engine.manager.resource.provider.database.model.DBCommonInfo;
 import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.hive.model.HiveConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.model.*;
