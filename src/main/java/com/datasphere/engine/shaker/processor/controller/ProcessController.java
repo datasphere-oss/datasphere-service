@@ -1,7 +1,5 @@
 package com.datasphere.engine.shaker.processor.controller;
 
-import javax.inject.Inject;
-
 import com.alibaba.fastjson.JSON;
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
@@ -18,33 +16,32 @@ import com.datasphere.engine.shaker.processor.stop.StopSingleInstance;
 import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
 import com.datasphere.server.connections.utils.StringUtils;
 
-import io.micronaut.context.annotation.Parameter;
-import io.micronaut.http.HttpRequest;
-import io.micronaut.http.annotation.Post;
 import io.reactivex.Single;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Map;
 
 /**
- * 数据流-处理流程controller
- * @author jeq
+ * dataflow controller
  */
-//@Validated
+@Controller
 public class ProcessController extends BaseController {
 	private final static Log logger = LogFactory.getLog(ProcessController.class);
-	public static final String BASE_PATH = "/dmp-dfc/process";
+	public static final String BASE_PATH = "/dataflow";
 
-	@Inject
+	@Autowired
 	private PanelServiceImpl panelService;
-	@Inject
+	@Autowired
 	private ProcessService processService;
-	@Inject
+	@Autowired
 	private ProcessRecordService processRecordService;
-	@Inject
+	@Autowired
 	private ComponentInstanceService componentInstanceService;
-	@Inject
+	@Autowired
     private ProcessDaasService processDaasService;
 
 	/** Daas-1 test-ok
@@ -52,7 +49,7 @@ public class ProcessController extends BaseController {
 	 * @param componentInstanceId
 	 * @return
 	 */
-	@Post(BASE_PATH + "/queryByCIId")
+	@PostMapping(value = BASE_PATH + "/queryByCIId")
 	public Single<Map<String,Object>> queryByCIId(@Parameter String componentInstanceId, HttpRequest request) {
 		return Single.fromCallable(() -> {
 			String ciName = "";
@@ -85,7 +82,7 @@ public class ProcessController extends BaseController {
      * @param componentInstanceId
      * @return
      */
-    @Post(BASE_PATH + "/runToThis")
+	@PostMapping(value = BASE_PATH + "/runToThis")
     public Single<Map<String,Object>> runToThis(@Parameter String panelId, @Parameter String componentInstanceId, HttpRequest request) {
         return Single.fromCallable(() -> {
 			String panelName = "";
@@ -116,7 +113,7 @@ public class ProcessController extends BaseController {
 	 * @param componentInstanceId
 	 * @return
 	 */
-	@Post(BASE_PATH + "/runFromThis")
+	@PostMapping(value = BASE_PATH + "/runFromThis")
 	public Single<Map<String,Object>> runFromThis(@Parameter String panelId, @Parameter String componentInstanceId, HttpRequest request) {
 		return Single.fromCallable(() -> {
 			try {
@@ -137,7 +134,7 @@ public class ProcessController extends BaseController {
 	 * @param panelId
 	 * @return
 	 */
-	@Post(BASE_PATH + "/runAll")
+	@PostMapping(value = BASE_PATH + "/runAll")
 	public Single<Map<String,Object>> runAll(@Parameter String panelId, HttpRequest request) {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -178,7 +175,7 @@ public class ProcessController extends BaseController {
 	 * @param jobId
 	 * @return
 	 */
-	@Post(BASE_PATH + "/cancel")
+	@PostMapping(value = BASE_PATH + "/cancel")
 	public Single<Map<String,Object>> cancel(@Parameter String jobId, HttpRequest request) {
 		return Single.fromCallable(() -> {
 			try {
@@ -204,7 +201,7 @@ public class ProcessController extends BaseController {
 	 * @param jobId
 	 * @return
 	 */
-	@Post(BASE_PATH + "/getProcessState")
+	@PostMapping(value = BASE_PATH + "/getProcessState")
 	public Single<Map<String,Object>> getProcessState(@Parameter String jobId) {
 		return Single.fromCallable(() -> {
 			try {
@@ -222,7 +219,7 @@ public class ProcessController extends BaseController {
 	 * @param panelId
 	 * @return
 	 */
-	@Post(BASE_PATH + "/run")
+	@PostMapping(value = BASE_PATH + "/run")
 	public Map<String,Object> run(@Parameter String panelId) {
 //	public Single<Map<String,Object>> run(@Parameter String panelId) { //, String creator
 //		return Single.fromCallable(() -> {
@@ -239,7 +236,7 @@ public class ProcessController extends BaseController {
 	 * @param panelId
 	 * @return
 	 */
-	@Post(BASE_PATH + "/stop")
+	@PostMapping(value = BASE_PATH + "/stop")
 	public Single<Map<String,Object>> stop(@Parameter String panelId) { //,@Parameter String creator
 		return Single.fromCallable(() -> {
 			try {
@@ -251,7 +248,7 @@ public class ProcessController extends BaseController {
 		});
 	}
 
-	@Post(BASE_PATH + "/run_to")
+	@PostMapping(value = BASE_PATH + "/run_to")
 	public Single<Map<String,Object>> runTo(@Parameter String panelId, @Parameter String componentId) {//, String creator
 //		return processHandle(new ProcessRunCallable() {
 //			@Override
@@ -263,7 +260,7 @@ public class ProcessController extends BaseController {
 		return null;
 	}
 
-	@Post(BASE_PATH + "/run_from")
+	@PostMapping(value = BASE_PATH + "/run_from")
 	public Single<Map<String,Object>> runFrom(@Parameter String panelId, @Parameter String componentId) {//, String creator
 //		return processHandle(new ProcessRunCallable() {
 //			@Override
@@ -284,7 +281,7 @@ public class ProcessController extends BaseController {
 	 * @param code
 	 * @param message
 	 */
-	@Post(BASE_PATH + "/callBack/{id}")
+	@PostMapping(value = BASE_PATH + "/callBack/{id}")
 	public void callBackUrl(@Parameter String id, @Parameter int code, @Parameter String message) { //, String creator
 		ComponentCalcuateResult calcuateResult = new ComponentCalcuateResult();
 		calcuateResult.setStatus(0 == code ? ComponentInstanceStatus.SUCCESS : ComponentInstanceStatus.FAILURE);
@@ -293,7 +290,7 @@ public class ProcessController extends BaseController {
 		logger.info("计算平台回调结果===>code=" + code + ",message=" + message);
 	}
 
-	@Post(BASE_PATH + "/lastRecord")
+	@PostMapping(value = BASE_PATH + "lastRecord")
 	public Single<Map<String,Object>> lastRecord(@Parameter String componentId) { //, String creator
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(processRecordService.getLatestRecord(componentId));
