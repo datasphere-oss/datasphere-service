@@ -10,7 +10,7 @@ import com.datasphere.engine.common.exception.JIllegalOperationException;
 import com.datasphere.engine.common.exception.http.HttpClientException;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.manager.resource.provider.catalog.model.RequestParams;
-import com.datasphere.engine.manager.resource.provider.dao.DataSourceDao;
+import com.datasphere.engine.manager.resource.provider.db.dao.DataSourceDao;
 import com.datasphere.engine.manager.resource.provider.elastic.model.CSVInfo;
 import com.datasphere.engine.manager.resource.provider.elastic.model.DremioDataSourceInfo;
 import com.datasphere.engine.manager.resource.provider.elastic.model.JSONInfo;

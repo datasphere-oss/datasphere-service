@@ -31,7 +31,7 @@ import com.datasphere.engine.common.exception.JRuntimeException;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.core.utils.ObjectMapperUtils;
-import com.datasphere.engine.manager.resource.provider.dao.DataSourceDao;
+import com.datasphere.engine.manager.resource.provider.db.dao.DataSourceDao;
 import com.datasphere.engine.manager.resource.provider.elastic.model.QueryDBDataParams;
 import com.datasphere.engine.manager.resource.provider.model.DataSource;
 import com.datasphere.engine.manager.resource.provider.service.DataQueryService;
