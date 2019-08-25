@@ -19,7 +19,6 @@ import com.datasphere.engine.manager.resource.provider.dao.DataSourceDao;
 import com.datasphere.engine.manager.resource.provider.database.service.DBOperationService;
 import com.datasphere.engine.manager.resource.provider.model.DataSource;
 import com.datasphere.engine.manager.resource.provider.service.DataQueryService;
-import com.datasphere.engine.manager.resource.provider.service.ExchangeSSOService;
 import com.datasphere.engine.shaker.processor.buscommon.AggregationFunctions;
 import com.datasphere.engine.shaker.processor.buscommon.CharReplaceUtils;
 import com.datasphere.engine.shaker.processor.buscommon.OperatorUtils;

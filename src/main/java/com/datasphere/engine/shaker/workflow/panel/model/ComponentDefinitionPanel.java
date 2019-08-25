@@ -1,4 +1,4 @@
-package com.datasphere.engine.shaker.workflow.panel.domain;
+package com.datasphere.engine.shaker.workflow.panel.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

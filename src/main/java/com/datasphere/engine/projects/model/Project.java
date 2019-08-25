@@ -3,7 +3,7 @@ package com.datasphere.engine.projects.model;
 import java.util.List;
 
 import com.datasphere.core.common.BaseEntity;
-import com.datasphere.engine.shaker.workflow.panel.domain.Panel;
+import com.datasphere.engine.shaker.workflow.panel.model.Panel;
 
 
 public class Project extends BaseEntity {

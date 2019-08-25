@@ -27,7 +27,7 @@ import com.datasphere.engine.shaker.processor.service.ComponentService;
 import com.datasphere.engine.shaker.processor.service.ProcessInstanceService;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
 import com.datasphere.engine.shaker.processor.stop.StopSingleInstance;
-import com.datasphere.engine.shaker.workflow.panel.domain.Panel;
+import com.datasphere.engine.shaker.workflow.panel.model.Panel;
 import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
 import com.datasphere.engine.shaker.workflow.panel.service.SubPanelService;
 import com.datasphere.server.connections.service.DataAccessor;

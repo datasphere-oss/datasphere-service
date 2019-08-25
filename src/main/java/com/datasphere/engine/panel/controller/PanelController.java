@@ -7,8 +7,8 @@ import java.util.Map;
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.core.utils.JsonWrapper;
-import com.datasphere.engine.shaker.workflow.panel.domain.Panel;
-import com.datasphere.engine.shaker.workflow.panel.domain.PanelType;
+import com.datasphere.engine.shaker.workflow.panel.model.Panel;
+import com.datasphere.engine.shaker.workflow.panel.model.PanelType;
 import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
 
 import io.reactivex.Single;

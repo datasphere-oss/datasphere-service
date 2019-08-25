@@ -1,4 +1,4 @@
-package com.datasphere.engine.shaker.workflow.panel.domain.sub.vo;
+package com.datasphere.engine.shaker.workflow.panel.model.sub.vo;
 
 public class Operate {
 	private String operateCode;

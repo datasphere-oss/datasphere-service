@@ -1,4 +1,4 @@
-package com.datasphere.engine.shaker.workflow.panel.domain;
+package com.datasphere.engine.shaker.workflow.panel.model;
 
 import com.datasphere.core.common.BaseEntity;
 

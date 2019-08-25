@@ -25,8 +25,8 @@ import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 import com.datasphere.engine.shaker.processor.model.ProcessRecord;
 import com.datasphere.engine.shaker.workflow.panel.constant.PanelState;
 import com.datasphere.engine.shaker.workflow.panel.dao.PanelDao;
-import com.datasphere.engine.shaker.workflow.panel.domain.Panel;
-import com.datasphere.engine.shaker.workflow.panel.domain.PanelWithAll;
+import com.datasphere.engine.shaker.workflow.panel.model.Panel;
+import com.datasphere.engine.shaker.workflow.panel.model.PanelWithAll;
 import com.datasphere.server.manager.common.utils.UUIDUtils;
 import com.datasphere.server.manager.module.login.redis.RedisServiceImpl;
 

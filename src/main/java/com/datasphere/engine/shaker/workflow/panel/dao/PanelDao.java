@@ -7,7 +7,7 @@ import javax.inject.Singleton;
 
 import com.datasphere.engine.manager.resource.provider.mybatis.page.Pager;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
-import com.datasphere.engine.shaker.workflow.panel.domain.Panel;
+import com.datasphere.engine.shaker.workflow.panel.model.Panel;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

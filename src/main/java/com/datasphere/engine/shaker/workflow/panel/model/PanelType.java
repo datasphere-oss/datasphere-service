@@ -1,4 +1,4 @@
-package com.datasphere.engine.shaker.workflow.panel.domain;
+package com.datasphere.engine.shaker.workflow.panel.model;
 
 public class PanelType {
 	public static final int DEFAULT = 0;

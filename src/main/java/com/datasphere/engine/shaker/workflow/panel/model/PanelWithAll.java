@@ -1,4 +1,4 @@
-package com.datasphere.engine.shaker.workflow.panel.domain;
+package com.datasphere.engine.shaker.workflow.panel.model;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import com.datasphere.engine.projects.model.Project;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstanceRelation;
 
-public class PanelWithAll extends com.datasphere.engine.shaker.workflow.panel.domain.Panel {
+public class PanelWithAll extends com.datasphere.engine.shaker.workflow.panel.model.Panel {
 	public String getStatus() {
 		return status;
 	}
@@ -19,7 +19,7 @@ public class PanelWithAll extends com.datasphere.engine.shaker.workflow.panel.do
 
 	List<Project> projects;
 	
-	List<com.datasphere.engine.shaker.workflow.panel.domain.Panel> panels;
+	List<com.datasphere.engine.shaker.workflow.panel.model.Panel> panels;
 	
 	List<ComponentInstance> componentInstances;
 	
@@ -33,11 +33,11 @@ public class PanelWithAll extends com.datasphere.engine.shaker.workflow.panel.do
 		this.projects = projects;
 	}
 
-	public List<com.datasphere.engine.shaker.workflow.panel.domain.Panel> getPanels() {
+	public List<com.datasphere.engine.shaker.workflow.panel.model.Panel> getPanels() {
 		return panels;
 	}
 
-	public void setPanels(List<com.datasphere.engine.shaker.workflow.panel.domain.Panel> panels) {
+	public void setPanels(List<com.datasphere.engine.shaker.workflow.panel.model.Panel> panels) {
 		this.panels = panels;
 	}
 

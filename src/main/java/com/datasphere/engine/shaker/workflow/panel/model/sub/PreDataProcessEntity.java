@@ -1,4 +1,4 @@
-package com.datasphere.engine.shaker.workflow.panel.domain.sub;
+package com.datasphere.engine.shaker.workflow.panel.model.sub;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
