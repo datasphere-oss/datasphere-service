@@ -1,22 +1,9 @@
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
-package app.metatron.discovery.domain.dataconnection.accessor;
+
+package com.datasphere.server.connections.jdbc.accessor;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.pf4j.Extension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,15 +19,11 @@ import app.metatron.discovery.domain.dataconnection.dialect.HiveDialect;
 import app.metatron.discovery.domain.datasource.Field;
 import app.metatron.discovery.domain.datasource.connection.jdbc.HiveTableInformation;
 import app.metatron.discovery.domain.workbench.hive.HiveNamingRule;
-import app.metatron.discovery.extension.dataconnection.jdbc.JdbcConnectInformation;
-import app.metatron.discovery.extension.dataconnection.jdbc.accessor.AbstractJdbcDataAccessor;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 import app.metatron.discovery.util.AuthUtils;
 
 import static java.util.stream.Collectors.toList;
 
-@Extension
+
 public class HiveDataAccessor extends AbstractJdbcDataAccessor {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(HiveDataAccessor.class);
