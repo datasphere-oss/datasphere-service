@@ -5,79 +5,79 @@ import com.datasphere.engine.manager.resource.provider.database.dao.ElasticSearc
 import com.datasphere.engine.manager.resource.provider.database.dao.MySQLDao;
 import com.datasphere.engine.manager.resource.provider.database.dao.OracleDao;
 import com.datasphere.engine.manager.resource.provider.database.dao.PostgreSQLDao;
-import com.datasphere.server.manager.common.constant.ConnectionInfoAndOthers;
+import com.datasphere.server.connections.constant.ConnectionInfo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
-import javax.inject.Singleton;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-@Singleton
+@Service
 public class DBOperationService extends BaseService {
     private static final Logger log = LoggerFactory.getLogger(DBOperationService.class);
 
-    public boolean insertDatas(ConnectionInfoAndOthers connectionInfoAndOthers) throws Exception {
+    public boolean insertDatas(ConnectionInfo connectionInfo) throws Exception {
         boolean result = false;
-        log.info("{}",connectionInfoAndOthers.getTypeName().toUpperCase());
-        switch (connectionInfoAndOthers.getTypeName().toUpperCase()) {
+        log.info("{}",connectionInfo.getTypeName().toUpperCase());
+        switch (connectionInfo.getTypeName().toUpperCase()) {
             case "ORACLE":
                 OracleDao oracleDao = new OracleDao();
-                result = oracleDao.insertDatas(connectionInfoAndOthers);
+                result = oracleDao.insertDatas(connectionInfo);
                 break;
             case "MYSQL":
                 MySQLDao mySQLDao = new MySQLDao();
-                result = mySQLDao.insertDatas(connectionInfoAndOthers);
+                result = mySQLDao.insertDatas(connectionInfo);
                 break;
             case "POSTGRES":
                 PostgreSQLDao postgreSQLDao = new PostgreSQLDao();
-                result = postgreSQLDao.insertDatas(connectionInfoAndOthers);
+                result = postgreSQLDao.insertDatas(connectionInfo);
                 break;
             case "ELASTIC":
                 ElasticSearchDao elasticSearchDao = new ElasticSearchDao();
-                result = elasticSearchDao.insertDatas(connectionInfoAndOthers);
+                result = elasticSearchDao.insertDatas(connectionInfo);
                 break;
         }
         return result;
     }
 
-    public String selectFields(ConnectionInfoAndOthers connectionInfoAndOthers) throws SQLException {
+    public String selectFields(ConnectionInfo connectionInfo) throws SQLException {
         String result = "";
-        log.info("{}",connectionInfoAndOthers.getTypeName().toUpperCase());
-        switch (connectionInfoAndOthers.getTypeName().toUpperCase()) {
+        log.info("{}",connectionInfo.getTypeName().toUpperCase());
+        switch (connectionInfo.getTypeName().toUpperCase()) {
             case "ORACLE":
                 OracleDao oracleDao = new OracleDao();
-                result = oracleDao.selectFields(connectionInfoAndOthers);
+                result = oracleDao.selectFields(connectionInfo);
                 break;
             case "MYSQL":
                 MySQLDao mySQLDao = new MySQLDao();
-                result = mySQLDao.selectFields(connectionInfoAndOthers);
+                result = mySQLDao.selectFields(connectionInfo);
                 break;
             case "POSTGRES":
                 PostgreSQLDao postgreSQLDao = new PostgreSQLDao();
-                result = postgreSQLDao.selectFields(connectionInfoAndOthers);
+                result = postgreSQLDao.selectFields(connectionInfo);
                 break;
         }
         return result;
     }
 
-    public Map<String, Object> selectDatas(ConnectionInfoAndOthers connectionInfoAndOthers) {
+    public Map<String, Object> selectDatas(ConnectionInfo connectionInfo) {
         Map<String, Object> result = new HashMap<>();
-        log.info("{}",connectionInfoAndOthers.getTypeName().toUpperCase());
-        switch (connectionInfoAndOthers.getTypeName().toUpperCase()) {
+        log.info("{}",connectionInfo.getTypeName().toUpperCase());
+        switch (connectionInfo.getTypeName().toUpperCase()) {
             case "ORACLE":
                 OracleDao oracleDao = new OracleDao();
-                result = oracleDao.selectDatas(connectionInfoAndOthers);
+                result = oracleDao.selectDatas(connectionInfo);
                 break;
             case "MYSQL":
                 MySQLDao mySQLDao = new MySQLDao();
-                result = mySQLDao.selectDatas(connectionInfoAndOthers);
+                result = mySQLDao.selectDatas(connectionInfo);
                 break;
             case "POSTGRES":
                 PostgreSQLDao postgreSQLDao = new PostgreSQLDao();
-                result = postgreSQLDao.selectDatas(connectionInfoAndOthers);
+                result = postgreSQLDao.selectDatas(connectionInfo);
                 break;
         }
         return result;

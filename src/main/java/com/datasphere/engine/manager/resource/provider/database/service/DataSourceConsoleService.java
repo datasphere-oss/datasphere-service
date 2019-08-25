@@ -1,6 +1,7 @@
 package com.datasphere.engine.manager.resource.provider.database.service;
 
 import com.datasphere.core.common.BaseService;
+import com.datasphere.core.common.utils.UUIDUtils;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.manager.resource.provider.database.model.DBCommonInfo;
 import com.datasphere.engine.manager.resource.provider.database.model.DBDataSourceInfo;
@@ -11,30 +12,29 @@ import com.datasphere.engine.manager.resource.provider.database.util.DALTypeUtil
 import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
 import com.datasphere.engine.manager.resource.provider.model.DataSource;
 import com.datasphere.server.connections.utils.ObjectMapperUtils;
-import com.datasphere.server.manager.common.utils.UUIDUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
-@Singleton
+@Service
 public class DataSourceConsoleService extends BaseService {
 
 	public static final Log logger = LogFactory.getLog(DataSourceConsoleService.class);
 	
-	@Inject
+	@Autowired
     DataSourceTableMigrationService migrationService;
 
 //	@Inject
 //	DataSourceService dataSourceService;
 	
-	@Inject
+	@Autowired
 	public DataSourcePlatformServiceImpl platformAccessService;
 	
 	/**

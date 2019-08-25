@@ -2,6 +2,8 @@ package com.datasphere.engine.manager.resource.provider.database.service;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.datasphere.engine.manager.resource.provider.database.model.DBQuery;
 import com.datasphere.engine.manager.resource.provider.database.model.DBTableField;
@@ -10,8 +12,6 @@ import com.datasphere.engine.manager.resource.provider.database.service.impl.Dat
 import com.datasphere.engine.manager.resource.provider.model.DataSource;
 
 import javax.annotation.Resource;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +20,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-@Singleton
+@Service
 public class DataSourceTableMigrationService {
 
 	private static final Log logger = LogFactory.getLog(DataSourceTableMigrationService.class);
@@ -33,13 +33,13 @@ public class DataSourceTableMigrationService {
 
 	private volatile int migrateDataSegment = 10;
 
-	@Inject
+	@Autowired
 	public DataSourcePlatformServiceImpl platformAccessService;
 
 	@Resource(name="dataSourceConsoleService")
     DataSourceConsoleService consoleService;
 
-	@Inject
+	@Autowired
     DataSourceWebSocketServiceImpl webSocketService;
 
 	DataSourceTableMigrationService(){
