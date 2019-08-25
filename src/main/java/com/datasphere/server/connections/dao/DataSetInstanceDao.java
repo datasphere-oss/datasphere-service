@@ -1,10 +1,7 @@
 package com.datasphere.server.connections.dao;
 
-import com.datasphere.resource.manager.module.dal.domain.DataSetInstance;
+import com.datasphere.server.connections.model.DataSetInstance;
 
-/**
- * dataset_instance  jxm
- */
 public interface DataSetInstanceDao {
     void insert(DataSetInstance dataSetInstance);
     DataSetInstance get(String id);

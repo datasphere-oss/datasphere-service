@@ -1,10 +1,10 @@
 package com.datasphere.server.connections.dao;
 
 
-import com.datasphere.resource.manager.module.dal.domain.TableMetaData;
-import com.datasphere.resource.manager.module.dal.domain.TableQuery;
 import com.datasphere.common.data.Column;
-import com.datasphere.resource.manager.module.dal.buscommon.dbutils.ConnectionFactory;
+import com.datasphere.server.connections.dbutils.ConnectionFactory;
+import com.datasphere.server.connections.model.TableMetaData;
+import com.datasphere.server.connections.model.TableQuery;
 
 import java.sql.SQLException;
 

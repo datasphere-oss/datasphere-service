@@ -6,19 +6,22 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.datasphere.engine.shaker.processor.definition.service.ComponentDefinitionServiceImpl;
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceRelationService;
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
 
-@Singleton
+@Service
 public class SubPanelService {
-	@Inject
+	@Autowired
 	ComponentInstanceService componentInstanceService;
-	@Inject
+	@Autowired
 	ComponentInstanceRelationService componentInstanceRelationService;
-	@Inject
+	@Autowired
 	ComponentDefinitionServiceImpl componentDefinitionService;
-	@Inject
+	@Autowired
 	PanelServiceImpl panelService;
 
 //	public Object preDataProcessWarp(PreDataProcessEntity preDataProcessEntity) {

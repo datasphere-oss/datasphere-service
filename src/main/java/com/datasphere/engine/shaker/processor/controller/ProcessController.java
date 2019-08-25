@@ -31,7 +31,7 @@ import java.util.Map;
 @Controller
 public class ProcessController extends BaseController {
 	private final static Log logger = LogFactory.getLog(ProcessController.class);
-	public static final String BASE_PATH = "/dataflow";
+	public static final String BASE_PATH = "/workflow";
 
 	@Autowired
 	private PanelServiceImpl panelService;

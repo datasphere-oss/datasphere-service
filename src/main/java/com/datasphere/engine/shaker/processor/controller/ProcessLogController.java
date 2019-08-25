@@ -17,7 +17,7 @@ import java.util.Map;
 @Controller
 public class ProcessLogController extends BaseController {
 	private final static Log logger = LogFactory.getLog(ProcessController.class);
-	public static final String BASE_PATH = "/dataflow/log";
+	public static final String BASE_PATH = "/workflow/log";
 
 	@Autowired
 	private ProcessInstanceService processInstanceService;

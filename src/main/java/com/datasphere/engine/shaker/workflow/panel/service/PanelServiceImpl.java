@@ -14,7 +14,6 @@ import com.datasphere.engine.common.named.NameGenerator;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.manager.resource.provider.mybatis.page.Pager;
-import com.datasphere.engine.manager.resource.provider.service.ExchangeSSOService;
 import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceModified;
 import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
@@ -27,31 +26,28 @@ import com.datasphere.engine.shaker.workflow.panel.constant.PanelState;
 import com.datasphere.engine.shaker.workflow.panel.dao.PanelDao;
 import com.datasphere.engine.shaker.workflow.panel.model.Panel;
 import com.datasphere.engine.shaker.workflow.panel.model.PanelWithAll;
-import com.datasphere.server.manager.common.utils.UUIDUtils;
-import com.datasphere.server.manager.module.login.redis.RedisServiceImpl;
 
-import io.micronaut.core.util.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Singleton
+@Service
 public class PanelServiceImpl extends BaseService {
 	public static final String CustomPanelName = "默认项目";// 自定义面板默认名称
 
-//	@Inject
+//	@@Autowired
 //    ProjectServiceImpl projectService;
-	@Inject
+	@Autowired
     ComponentInstanceService componentInstanceService;
-    @Inject
+	@Autowired
     ComponentInstanceRelationService componentInstanceRelationService;
-	@Inject
+	@Autowired
 	NameGenerator nameGenerator;
-//	@Inject
+//	@@Autowired
 //	ProcessRecordService processRecordServiceImpl;
-	@Inject
-	ExchangeSSOService exchangeSSOService;
-	@Inject
-	RedisServiceImpl redisService;
+//	@Autowired
+//	RedisServiceImpl redisService;
 
 	/**
 	 * 创建面板（包含"自动保存"的自定义面板创建，命名为draft1,draft2,....）
@@ -82,7 +78,7 @@ public class PanelServiceImpl extends BaseService {
 //		departmentId = departmentId.substring(0, departmentId.length()-1);
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			PanelDao dao = sqlSession.getMapper(PanelDao.class);
-			panel.setCreator(exchangeSSOService.getAccount(token));
+//			panel.setCreator(exchangeSSOService.getAccount(token));
 			panel.setCreateTime(new Date(System.currentTimeMillis()));
 //            panel.setUserId(userId);
 //            panel.setDepartmentId(departmentId);
