@@ -3,13 +3,14 @@ package com.datasphere.engine.manager.resource.provider.dictionary.model.service
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.manager.resource.provider.dictionary.model.DSSWord;
 
-import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Singleton
+import org.springframework.stereotype.Service;
+
+@Service
 public class DictionaryService extends BaseService {
 
 
