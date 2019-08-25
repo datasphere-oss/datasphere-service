@@ -1,7 +1,7 @@
 package com.datasphere.server.connections.model;
 
 /**
- * dataset_instance 表实例 jxm
+ * dataset_instance 表实例
  */
 public class DataSetInstance {
     private String id; //组件实例id

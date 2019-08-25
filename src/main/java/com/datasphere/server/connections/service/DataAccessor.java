@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 
 import com.datasphere.common.data.Column;
 import com.datasphere.common.data.Dataset;
+import com.datasphere.core.common.utils.UUIDUtils;
 import com.datasphere.server.connections.constant.KeyWord;
 import com.datasphere.server.connections.dao.DatasetDAO;
 import com.datasphere.server.connections.dao.TableDAO;
@@ -30,14 +31,12 @@ import com.datasphere.server.connections.model.TableMetaData;
 import com.datasphere.server.connections.model.TableQuery;
 import com.datasphere.server.connections.utils.Assert;
 import com.datasphere.server.connections.utils.StringUtils;
-import com.datasphere.server.manager.common.constant.constant.BusinessDataType;
-import com.datasphere.server.manager.common.utils.UUIDUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 1. KEY的生成（应该是由DAL生成）
+ * 1. KEY的生成（应该是由数据访问层生成）
  * 2. 第三方 数据中心，计算中心，持久化中心
  */
 @Singleton

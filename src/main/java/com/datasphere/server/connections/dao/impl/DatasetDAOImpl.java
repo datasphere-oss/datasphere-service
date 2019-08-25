@@ -5,18 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.datasphere.resource.manager.module.dal.dao.DatasetDAO;
-import com.datasphere.resource.manager.module.dal.service.DataAccessor;
 import com.datasphere.common.data.Column;
 import com.datasphere.common.data.Dataset;
-import com.datasphere.resource.manager.module.dal.buscommon.dbutils.ConnectionFactory;
-import com.datasphere.resource.manager.module.dal.buscommon.dbutils.JDBCUtils;
+import com.datasphere.server.connections.dao.DatasetDAO;
+import com.datasphere.server.connections.dbutils.ConnectionFactory;
+import com.datasphere.server.connections.dbutils.JDBCUtils;
+import com.datasphere.server.connections.service.DataAccessor;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 public class DatasetDAOImpl implements DatasetDAO {
 	ConnectionFactory connectionFactory = new ConnectionFactoryImpl(DataAccessor.PG_URL,false);

@@ -1,6 +1,6 @@
 package com.datasphere.server.connections.dao.impl;
 
-import com.datasphere.resource.manager.module.dal.dao.TableNameGenerator;
+import com.datasphere.server.connections.dao.TableNameGenerator;
 
 public class DefaultTableNameGenerator implements TableNameGenerator {
 	public static final String PREFIX = "DATASET_";

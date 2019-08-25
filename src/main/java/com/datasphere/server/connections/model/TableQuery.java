@@ -1,6 +1,5 @@
 package com.datasphere.server.connections.model;
 
-import com.datasphere.resource.manager.module.dal.domain.Pager;
 public class TableQuery {
 
 	String tabelName;

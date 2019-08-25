@@ -1,13 +1,13 @@
 package com.datasphere.server.connections.dao.impl;
 
-import com.datasphere.resource.manager.module.dal.dao.TableDAO;
-import com.datasphere.resource.manager.module.dal.domain.Pager;
-import com.datasphere.resource.manager.module.dal.domain.TableMetaData;
-import com.datasphere.resource.manager.module.dal.domain.TableQuery;
-import com.datasphere.resource.manager.module.dal.service.DataAccessor;
 import com.datasphere.common.data.Column;
-import com.datasphere.resource.manager.module.dal.buscommon.dbutils.ConnectionFactory;
-import com.datasphere.resource.manager.module.dal.buscommon.dbutils.JDBCUtils;
+import com.datasphere.server.connections.dao.TableDAO;
+import com.datasphere.server.connections.dbutils.ConnectionFactory;
+import com.datasphere.server.connections.dbutils.JDBCUtils;
+import com.datasphere.server.connections.model.Pager;
+import com.datasphere.server.connections.model.TableMetaData;
+import com.datasphere.server.connections.model.TableQuery;
+import com.datasphere.server.connections.service.DataAccessor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

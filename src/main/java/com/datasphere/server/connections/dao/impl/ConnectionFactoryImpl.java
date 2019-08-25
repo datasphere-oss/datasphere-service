@@ -6,12 +6,12 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
-import com.datasphere.resource.manager.module.dal.buscommon.utils.Assert;
-import com.datasphere.resource.manager.module.dal.buscommon.utils.StringUtils;
-import com.datasphere.resource.manager.module.dal.buscommon.dbutils.ConnectionFactory;
-
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.dbcp.DelegatingConnection;
+import org.apache.commons.lang3.StringUtils;
+
+import com.datasphere.server.connections.dbutils.ConnectionFactory;
+import com.datasphere.server.connections.utils.Assert;
 
 public class ConnectionFactoryImpl implements ConnectionFactory {
 	DataSource dataSource;
