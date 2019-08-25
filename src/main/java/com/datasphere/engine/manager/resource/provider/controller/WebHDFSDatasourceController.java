@@ -7,37 +7,36 @@ import com.datasphere.engine.manager.resource.provider.service.DataSourceService
 import com.datasphere.engine.manager.resource.provider.webhdfs.model.WebHDFSConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.webhdfs.model.WebHDFSDataSourceInfo;
 
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Post;
-import io.micronaut.validation.Validated;
 import io.reactivex.Single;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by jxm 2018/8/30
- */
-//@Validated
+
+@Controller
 public class WebHDFSDatasourceController extends BaseController {
 
     private static final Logger log = LoggerFactory.getLogger(WebHDFSDatasourceController.class);
 
     public static final String BASE_PATH = "/datasource/webhdfs";
 
-    @Inject
+    @Autowired
     DataSourceService dataSourceService;
 
     /**
-     * test connection  webhdfs    - on-presto
+     * test connection  webhdfs 
      * @param webHDFSConnectionInfo
      * @return
      */
-    @Post(BASE_PATH + "/testWebHDFS")
+	@PostMapping(value = BASE_PATH + "/testWebHDFS")
     public Single<Map<String,Object>> testWebHDFS(@Body WebHDFSConnectionInfo webHDFSConnectionInfo) {
         return Single.fromCallable(() -> {
             int result = dataSourceService.testWebHDFS(webHDFSConnectionInfo);
@@ -49,11 +48,11 @@ public class WebHDFSDatasourceController extends BaseController {
     }
 
     /**
-     * select webhdfs list table   - on-presto
+     * select webhdfs list table
      * @param webHDFSConnectionInfo
      * @webhdfsConnectionInfo
      */
-    @Post(BASE_PATH + "/webHDFSListFiles")
+    @PostMapping(value = BASE_PATH + "/webHDFSListFiles")
     public Object webHDFSListFiles(@Body WebHDFSConnectionInfo webHDFSConnectionInfo){
         return Single.fromCallable(() -> {
             List<DBTableInfodmp> dbTableInfodmps = dataSourceService.webHDFSListFiles(webHDFSConnectionInfo);
@@ -69,7 +68,7 @@ public class WebHDFSDatasourceController extends BaseController {
      * @param webHDFSDataSourceInfo
      * @return
      */
-    @Post(BASE_PATH + "/createWebHDFS")
+    @PostMapping(value = BASE_PATH + "/createWebHDFS")
     public Single<Map<String,Object>> createWebHDFS(@Body WebHDFSDataSourceInfo webHDFSDataSourceInfo){
         return Single.fromCallable(() -> {
             if(webHDFSDataSourceInfo.getBusinessType() == null){
@@ -88,7 +87,7 @@ public class WebHDFSDatasourceController extends BaseController {
      * @param webHDFSDataSourceInfo
      * @return
      */
-    @Post(BASE_PATH + "/updateWebHDFS")
+    @PostMapping(value = BASE_PATH + "/updateWebHDFS")
     public Single<Map<String,Object>> updateWebHDFS(@Body WebHDFSDataSourceInfo webHDFSDataSourceInfo){
         return Single.fromCallable(() -> {
             if(StringUtils.isBlank(webHDFSDataSourceInfo.getId())){

@@ -7,38 +7,37 @@ import com.datasphere.engine.manager.resource.provider.hive.model.HiveDataSource
 import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
 import com.datasphere.engine.manager.resource.provider.service.DataSourceService;
 
-import io.micronaut.http.HttpRequest;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Post;
-//import io.micronaut.validation.Validated;
 import io.reactivex.Single;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 
 /**
  * hive
  */
-//@Validated
+@Controller
 public class HiveDataSourceController extends BaseController {
 
     private static final Logger log = LoggerFactory.getLogger(HiveDataSourceController.class);
 
     public static final String BASE_PATH = "/datasource/hive";
 
-    @Inject
+    @Autowired
     DataSourceService dataSourceService;
 
     /**
-     * test connection  hive    - on-presto
+     * test connection  hive
      * @param hiveConnectionInfo
      * @return
      */
-    @Post(BASE_PATH + "/testHive")
+	@RequestMapping(value = BASE_PATH + "/testHive", method = RequestMethod.POST) 
     public Single<Map<String,Object>> testHive(@Body HiveConnectionInfo hiveConnectionInfo) {
         return Single.fromCallable(() -> {
             int result = dataSourceService.testHive(hiveConnectionInfo);
@@ -50,11 +49,11 @@ public class HiveDataSourceController extends BaseController {
     }
 
     /**
-     * select hive list table   - on-presto
+     * select hive list table
      * @param hiveConnectionInfo
      * @hiveConnectionInfo
      */
-    @Post(BASE_PATH + "/HiveListTable")
+	@RequestMapping(value = BASE_PATH + "/HiveListTable", method = RequestMethod.POST) 
     public Object HiveListTable(@Body HiveConnectionInfo hiveConnectionInfo){
         return Single.fromCallable(() -> {
             List<DBTableInfodmp> dbTableInfodmps = dataSourceService.HiveListTable(hiveConnectionInfo);
@@ -66,11 +65,11 @@ public class HiveDataSourceController extends BaseController {
     }
 
     /**
-     * select hive table data    - on-presto
+     * select hive table data 
      * @param hiveConnectionInfo
      * @hiveConnectionInfo
      */
-    @Post(BASE_PATH + "/queryHiveTableData")
+	@RequestMapping(value = BASE_PATH + "/queryHiveTableData", method = RequestMethod.POST) 
     public Object queryHiveTableData(@Body HiveConnectionInfo hiveConnectionInfo){
         return Single.fromCallable(() -> {
             return JsonWrapper.successWrapper(dataSourceService.queryHiveTableData(hiveConnectionInfo));
@@ -82,7 +81,7 @@ public class HiveDataSourceController extends BaseController {
      * @param hiveDataSourceInfo
      * @return
      */
-    @Post(BASE_PATH + "/createHive")
+	@RequestMapping(value = BASE_PATH + "/createHive", method = RequestMethod.POST) 
     public Single<Map<String,Object>> createHive(@Body HiveDataSourceInfo hiveDataSourceInfo, HttpRequest request){
         return Single.fromCallable(() -> {
             String token = request.getParameters().get("token");
@@ -100,7 +99,7 @@ public class HiveDataSourceController extends BaseController {
      * @param hiveDataSourceInfo
      * @return
      */
-    @Post(BASE_PATH + "/updateHive")
+	@RequestMapping(value = BASE_PATH + "/updateHive", method = RequestMethod.POST) 
     public Single<Map<String,Object>> updateHiveById(@Body HiveDataSourceInfo hiveDataSourceInfo, HttpRequest request){
         return Single.fromCallable(() -> {
             if(StringUtils.isBlank(hiveDataSourceInfo.getId())){

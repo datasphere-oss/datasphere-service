@@ -7,38 +7,34 @@ import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseDataSour
 import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
 import com.datasphere.engine.manager.resource.provider.service.DataSourceService;
 
-import io.micronaut.http.HttpRequest;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Post;
-import io.micronaut.validation.Validated;
 import io.reactivex.Single;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 
-/**
- * hbase
- */
-//@Validated
+@Controller
 public class HbaseDatasourceController extends BaseController {
 
     private static final Logger log = LoggerFactory.getLogger(HbaseDatasourceController.class);
 
     public static final String BASE_PATH = "/datasource/hbase";
 
-    @Inject
+    @Autowired
     DataSourceService dataSourceService;
 
     /**
-     * test connection  hbase    - on-presto
+     * test connection  hbase
      * @param hbaseConnectionInfo
      * @return
      */
-    @Post(BASE_PATH + "/testHBase")
+	@RequestMapping(value = BASE_PATH + "/testHBase", method = RequestMethod.POST) 
     public Single<Map<String,Object>> testHBase(@Body HbaseConnectionInfo hbaseConnectionInfo) {
         return Single.fromCallable(() -> {
             int result = dataSourceService.testHBase(hbaseConnectionInfo);
@@ -50,11 +46,11 @@ public class HbaseDatasourceController extends BaseController {
     }
 
     /**
-     * select hbase list table   - on-presto
+     * select hbase list table
      * @param hbaseConnectionInfo
      * @hbaseConnectionInfo
      */
-    @Post(BASE_PATH + "/hBaseListTable")
+	@RequestMapping(value = BASE_PATH + "/hBaseListTable", method = RequestMethod.POST) 
     public Object hBaseListTable(@Body HbaseConnectionInfo hbaseConnectionInfo){
         return Single.fromCallable(() -> {
             List<DBTableInfodmp> dbTableInfodmps = dataSourceService.hBaseListTable(hbaseConnectionInfo);
@@ -66,11 +62,11 @@ public class HbaseDatasourceController extends BaseController {
     }
 
     /**
-     * select hbase table data    - on-presto
+     * select hbase table data
      * @param hbaseConnectionInfo
      * @hbaseConnectionInfo
      */
-    @Post(BASE_PATH + "/queryHBaseTableData")
+	@RequestMapping(value = BASE_PATH + "/queryHBaseTableData", method = RequestMethod.POST) 
     public Object queryHBaseTableData(@Body HbaseConnectionInfo hbaseConnectionInfo){
         return Single.fromCallable(() -> {
             return JsonWrapper.successWrapper(dataSourceService.queryHBaseTableData(hbaseConnectionInfo));
@@ -82,7 +78,7 @@ public class HbaseDatasourceController extends BaseController {
      * @param hbaseDataSourceInfo
      * @return
      */
-    @Post(BASE_PATH + "/createHBase")
+	@RequestMapping(value = BASE_PATH + "/createHBase", method = RequestMethod.POST) 
     public Single<Map<String,Object>> createHBase(@Body HbaseDataSourceInfo hbaseDataSourceInfo, HttpRequest request){
         return Single.fromCallable(() -> {
             if(hbaseDataSourceInfo.getBusinessType() == null){
@@ -103,7 +99,7 @@ public class HbaseDatasourceController extends BaseController {
      * @param hbaseDataSourceInfo
      * @return
      */
-    @Post(BASE_PATH + "/updateHBase")
+	@RequestMapping(value = BASE_PATH + "/updateHBase", method = RequestMethod.POST) 
     public Single<Map<String,Object>> updateHBaseById(@Body HbaseDataSourceInfo hbaseDataSourceInfo, HttpRequest request){
         return Single.fromCallable(() -> {
             if(StringUtils.isBlank(hbaseDataSourceInfo.getId())){

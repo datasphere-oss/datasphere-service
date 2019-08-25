@@ -8,20 +8,17 @@ import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseConnecti
 import com.datasphere.engine.manager.resource.provider.hive.model.HiveConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.model.*;
 import com.datasphere.engine.manager.resource.provider.service.DataSourceService;
-import com.datasphere.server.manager.common.constant.GlobalDefine;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import io.micronaut.context.annotation.Parameter;
-import io.micronaut.http.HttpRequest;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Post;
-import io.micronaut.validation.Validated;
 import io.reactivex.Single;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.inject.Inject;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,12 +29,12 @@ import java.util.Map;
 /**
  * 数据源管理  DB
  */
-//@Validated
+@Controller
 public class DaasController extends BaseController {
     private static final Logger log = LoggerFactory.getLogger(DaasController.class);
 	public static final String BASE_PATH = "/datasource1";
 
-	@Inject
+	@Autowired
 	DataSourceService dataSourceService;
 
 	/**
@@ -45,7 +42,7 @@ public class DaasController extends BaseController {
 	 * @param
 	 * @return
 	 */
-	@Post(BASE_PATH + "/listAll")
+	@RequestMapping(value = BASE_PATH+"/listAll", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> listAll(@Parameter Integer pageIndex,@Parameter Integer pageSize,@Parameter String name,HttpRequest request) {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -59,7 +56,7 @@ public class DaasController extends BaseController {
 	 * @param name
 	 * @return
 	 */
-	@Post(BASE_PATH + "/verifyDatasourceName")
+	@RequestMapping(value = BASE_PATH+"/verifyDatasourceName", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> verifyDatasourceName(@Parameter String name){
 		return Single.fromCallable(() -> {
 			if(StringUtils.isBlank(name)){
@@ -82,7 +79,7 @@ public class DaasController extends BaseController {
 	 * @param dataSource
 	 * @return
 	 */
-	@Post(BASE_PATH + "/update")
+	@RequestMapping(value = BASE_PATH+"/update", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> update(@Body DataSource dataSource){
 		return Single.fromCallable(() -> {
 			if (StringUtils.isBlank(dataSource.getId()) && StringUtils.isBlank(dataSource.getName())){
@@ -116,7 +113,7 @@ public class DaasController extends BaseController {
 	 * @param info
 	 * @return
 	 */
-	@Post(BASE_PATH + "/listTable")
+	@RequestMapping(value = BASE_PATH+"/listTable", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> listTableInfo(@Body DBCommonInfo info){
 		return Single.fromCallable(() -> {
 			List<DBTableInfodmp> dbTableInfodmps = dataSourceService.listTableInfo(info);
@@ -132,7 +129,7 @@ public class DaasController extends BaseController {
 	 * @param dataSourceInfo
 	 * @return
 	 */
-	@Post(BASE_PATH + "/createDatasource")
+	@RequestMapping(value = BASE_PATH+"/createDatasource", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> create(@Body DBDataSourceInfo dataSourceInfo, HttpRequest request){
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -146,11 +143,11 @@ public class DaasController extends BaseController {
 	}
 
     /**
-     * 测试连接  DB 数据源  - on-presto
+     * 测试连接  DB 数据源
      * @param connectionInfo
      * @return
      */
-    @Post(BASE_PATH + "/testDatabase")
+	@RequestMapping(value = BASE_PATH+"/testDatabase", method = RequestMethod.POST) 
     public Single<Map<String,Object>> testDatabase(@Body DBConnectionInfo connectionInfo) {
 		return Single.fromCallable(() -> {
             int result = dataSourceService.testDatabase(connectionInfo);
@@ -166,7 +163,7 @@ public class DaasController extends BaseController {
 	 * @param connectionInfo
 	 * @return
 	 */
-	@Post(BASE_PATH + "/queryTableData")
+	@RequestMapping(value = BASE_PATH+"/queryTableData", method = RequestMethod.POST) 
 	public Object queryTableData(@Body DBConnectionInfo connectionInfo){
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(dataSourceService.queryTableData(connectionInfo));
@@ -175,11 +172,11 @@ public class DaasController extends BaseController {
 
 
 	/**
-	 * 根据id查询 DB and COMPONENT 数据源数据 - on-presto TODO
+	 * 根据id查询 DB and COMPONENT 数据源数据
 	 * @param dbQuery
 	 * @return
 	 */
-	@Post(BASE_PATH + "/queryTableDataById")
+	@RequestMapping(value = BASE_PATH+"/queryTableDataById", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> queryTableDataById(
 			@Body DBQuery dbQuery
 			){
@@ -249,7 +246,7 @@ public class DaasController extends BaseController {
 	 * @param id
 	 * @return
 	 */
-	@Post(BASE_PATH + "/findConnectionById")
+	@RequestMapping(value = BASE_PATH+"/findConnectionById", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> findConnectionById(@Parameter String id){
 		return Single.fromCallable(() -> {
 			//查询数据源信息ById
@@ -301,7 +298,7 @@ public class DaasController extends BaseController {
 	 * @param dataSourceInfo
 	 * @return
 	 */
-	@Post(BASE_PATH + "/updateDatasource")
+	@RequestMapping(value = BASE_PATH+"/updateDatasource", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> updateDatasourceById(@Body DBDataSourceInfo dataSourceInfo, HttpRequest request){
 		return Single.fromCallable(() -> {
 			if(StringUtils.isBlank(dataSourceInfo.getId())){
@@ -325,7 +322,7 @@ public class DaasController extends BaseController {
 	 * @param id
 	 * @return
 	 */
-	@Post(BASE_PATH + "/findDatasourceById")
+	@RequestMapping(value = BASE_PATH+"/findDatasourceById", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> findDatasourceById(@Parameter String id){
 		return Single.fromCallable(() -> {
 			//查询数据源信息ById
@@ -342,7 +339,7 @@ public class DaasController extends BaseController {
 	 * @param ids
 	 * @return
 	 */
-	@Post(BASE_PATH + "/delete")
+	@RequestMapping(value = BASE_PATH+"/delete", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> deleteDatasourceById(@Parameter String ids){
 		return Single.fromCallable(() -> {
 			//查询数据源信息ById
@@ -359,7 +356,7 @@ public class DaasController extends BaseController {
 	 * @param requestParams
 	 * @return
 	 */
-	@Post(BASE_PATH + "/subscribeDatasource")
+	@RequestMapping(value = BASE_PATH+"/subscribeDatasource", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> getSubscribeDatasource(@Body RequestParams requestParams){
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(dataSourceService.getSubscribeDatasource(requestParams));
@@ -368,7 +365,7 @@ public class DaasController extends BaseController {
 
 
 	//	type == 'SimpleDataSource' ? url = API.dataSourceDetail : url = API.getInstances;
-	/** dataSourceDetail: '/dmp/datasource/dataSourceDetail'
+	/** 
 	 * 通过组件实例id，获取数据源详细信息
 	 * 触发操作：点击已经拖拽进去的组件 jeq
 	 * @param id 组件实例id
@@ -381,7 +378,7 @@ public class DaasController extends BaseController {
 	 * UNION  				002	并表
 	 * Split  				002	拆分
 	 */
-	@Post(BASE_PATH + "/dataSourceDetail")
+	@RequestMapping(value = BASE_PATH+"/dataSourceDetail", method = RequestMethod.POST) 
 	public Object dataSourceDetail(@Parameter String id,@Parameter String code,@Parameter String classification, HttpRequest request) {
 		return Single.fromCallable(() -> {
 			if (!StringUtils.isBlank(id)) {
@@ -400,15 +397,15 @@ public class DaasController extends BaseController {
 		});
 	}
 
-	/** getInstances: '/dmp/dmp-dfc/component/instances/get'
+	/** 
 	 * 根据id获得数据源信息
 	 * @param id 数据源id
 	 * @return
 	 */
-	@Post(BASE_PATH + "/get")
+	@RequestMapping(value = BASE_PATH+"/get", method = RequestMethod.POST) 
 	public Object get(@Parameter String id, HttpRequest request) {
 		return Single.fromCallable(() -> {
-			if(!com.datalsphere.drmp.module.dal.buscommon.utils.StringUtils.isBlank(id)) {
+			if(!StringUtils.isBlank(id)) {
 				String token = request.getParameters().get("token");
 				if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
 				DataSourceWithAll dataSource = dataSourceService.getWithPanel(id,token);
