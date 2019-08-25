@@ -2,9 +2,9 @@ package com.datasphere.engine.manager.resource.provider.database.service;
 
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.manager.resource.provider.database.dao.ElasticSearchDao;
-import com.datasphere.engine.manager.resource.provider.database.dao.MysqlDao;
+import com.datasphere.engine.manager.resource.provider.database.dao.MySQLDao;
 import com.datasphere.engine.manager.resource.provider.database.dao.OracleDao;
-import com.datasphere.engine.manager.resource.provider.database.dao.PostgresDao;
+import com.datasphere.engine.manager.resource.provider.database.dao.PostgreSQLDao;
 import com.datasphere.server.manager.common.constant.ConnectionInfoAndOthers;
 
 import org.slf4j.Logger;
@@ -28,12 +28,12 @@ public class DBOperationService extends BaseService {
                 result = oracleDao.insertDatas(connectionInfoAndOthers);
                 break;
             case "MYSQL":
-                MysqlDao mysqlDao = new MysqlDao();
-                result = mysqlDao.insertDatas(connectionInfoAndOthers);
+                MySQLDao mySQLDao = new MySQLDao();
+                result = mySQLDao.insertDatas(connectionInfoAndOthers);
                 break;
             case "POSTGRES":
-                PostgresDao postgresDao = new PostgresDao();
-                result = postgresDao.insertDatas(connectionInfoAndOthers);
+                PostgreSQLDao postgreSQLDao = new PostgreSQLDao();
+                result = postgreSQLDao.insertDatas(connectionInfoAndOthers);
                 break;
             case "ELASTIC":
                 ElasticSearchDao elasticSearchDao = new ElasticSearchDao();
@@ -52,12 +52,12 @@ public class DBOperationService extends BaseService {
                 result = oracleDao.selectFields(connectionInfoAndOthers);
                 break;
             case "MYSQL":
-                MysqlDao mysqlDao = new MysqlDao();
-                result = mysqlDao.selectFields(connectionInfoAndOthers);
+                MySQLDao mySQLDao = new MySQLDao();
+                result = mySQLDao.selectFields(connectionInfoAndOthers);
                 break;
             case "POSTGRES":
-                PostgresDao postgresDao = new PostgresDao();
-                result = postgresDao.selectFields(connectionInfoAndOthers);
+                PostgreSQLDao postgreSQLDao = new PostgreSQLDao();
+                result = postgreSQLDao.selectFields(connectionInfoAndOthers);
                 break;
         }
         return result;
@@ -72,12 +72,12 @@ public class DBOperationService extends BaseService {
                 result = oracleDao.selectDatas(connectionInfoAndOthers);
                 break;
             case "MYSQL":
-                MysqlDao mysqlDao = new MysqlDao();
-                result = mysqlDao.selectDatas(connectionInfoAndOthers);
+                MySQLDao mySQLDao = new MySQLDao();
+                result = mySQLDao.selectDatas(connectionInfoAndOthers);
                 break;
             case "POSTGRES":
-                PostgresDao postgresDao = new PostgresDao();
-                result = postgresDao.selectDatas(connectionInfoAndOthers);
+                PostgreSQLDao postgreSQLDao = new PostgreSQLDao();
+                result = postgreSQLDao.selectDatas(connectionInfoAndOthers);
                 break;
         }
         return result;

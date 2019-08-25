@@ -2,7 +2,7 @@ package com.datasphere.engine.manager.resource.provider.database.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.datasphere.engine.manager.resource.provider.database.dao.MssqlDao;
+import com.datasphere.engine.manager.resource.provider.database.dao.MSSQLDao;
 import com.datasphere.engine.manager.resource.provider.database.entity.DBQuery;
 import com.datasphere.engine.manager.resource.provider.database.entity.DBTableField;
 import com.datasphere.engine.manager.resource.provider.database.exception.JSQLException;
@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 @Singleton
-public class MssqlDatabaseServiceImpl extends AbstractDatabaseService<MssqlDao> implements DataSourceDatabaseService {
+public class MssqlDatabaseServiceImpl extends AbstractDatabaseService<MSSQLDao> implements DataSourceDatabaseService {
 
 	public List<List<DBTableField>> readTable(DBQuery query) {
 		try {

@@ -2,7 +2,7 @@ package com.datasphere.engine.manager.resource.provider.database.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.datasphere.engine.manager.resource.provider.database.dao.MysqlDao;
+import com.datasphere.engine.manager.resource.provider.database.dao.MySQLDao;
 import com.datasphere.engine.manager.resource.provider.database.entity.DBQuery;
 import com.datasphere.engine.manager.resource.provider.database.entity.DBTableField;
 import com.datasphere.engine.manager.resource.provider.database.exception.JSQLException;
@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 @Singleton
-public class MysqlDatabaseServiceImpl extends AbstractDatabaseService<MysqlDao> implements DataSourceDatabaseService {
+public class MysqlDatabaseServiceImpl extends AbstractDatabaseService<MySQLDao> implements DataSourceDatabaseService {
 
 	public boolean tableExsit(DBQuery query) {
 		try {

@@ -5,10 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.datasphere.core.common.utils.O;
 import com.datasphere.engine.manager.resource.provider.database.config.DBConfig;
-import com.datasphere.server.manager.common.utils.O;
 
-public class MssqlDao extends BaseDao<DBConfig> {
+public class MSSQLDao extends BaseDao<DBConfig> {
 
 	private final static String SQL_DB_LIST = "SELECT name FROM sys.databases WHERE name NOT IN ('master','tempdb','model','msdb')";
 	private final static String SQL_TABLE_LIST = "SELECT name FROM sys.tables WHERE  type = 'U' AND SCHEMA_NAME(Schema_id) = ?";

@@ -1,8 +1,8 @@
 package com.datasphere.engine.manager.resource.provider.database.dao;
 
+import com.datasphere.core.common.utils.O;
 import com.datasphere.engine.common.exception.JRuntimeException;
-import com.datasphere.server.manager.common.constant.ConnectionInfoAndOthers;
-import com.datasphere.server.manager.common.utils.O;
+import com.datasphere.server.connections.constant.ConnectionInfo;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -13,22 +13,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PostgresDao {
+public class PostgreSQLDao {
 
-    public boolean insertDatas(ConnectionInfoAndOthers ciao) throws SQLException {
+    public boolean insertDatas(ConnectionInfo ci) throws SQLException {
         Connection con = null;
         PreparedStatement pst = null;
-        String datas = ciao.getDatas();
+        String datas = ci.getDatas();
 //        try {
-            con = getConnection(ciao);
+            con = getConnection(ci);
             if (!datas.equals("") && datas.contains("insert into")) {
                 pst = con.prepareStatement(datas);
                 pst.execute();// insert remaining records
             }else {
-                JsonObject objs = new Gson().fromJson(ciao.getDatas(), JsonObject.class);
+                JsonObject objs = new Gson().fromJson(ci.getDatas(), JsonObject.class);
                 JsonArray rows = objs.getAsJsonArray("rows");
                 StringBuffer sql = new StringBuffer();
-                sql.append("insert into \""+ciao.getScheme()+"\".\""+ciao.getTableName()+"\" (");
+                sql.append("insert into \""+ci.getSchema()+"\".\""+ci.getTableName()+"\" (");
 
                 JsonArray schema = objs.getAsJsonArray("schema");
                 if (schema.size() > 0) {
@@ -51,7 +51,7 @@ public class PostgresDao {
                 Long startTime = System.currentTimeMillis();
                 pst = con.prepareStatement(sql.toString(),ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
 //            pst = con.prepareStatement(sql.toString());
-                final int batchSize = Integer.parseInt(ciao.getBatchSize());
+                final int batchSize = Integer.parseInt(ci.getBatchSize());
                 int count = 0;
                 for (int i = 0; i < rows.size(); i++) {
                     JsonObject data = rows.get(i).getAsJsonObject();
@@ -96,16 +96,16 @@ public class PostgresDao {
         return true;
     }
 
-    public Connection getConnection(ConnectionInfoAndOthers ciao) throws SQLException{
+    public Connection getConnection(ConnectionInfo ci) throws SQLException{
         Connection connection = null;
         if(connection == null){
             StringBuilder sb = new StringBuilder();
             sb.append("jdbc:postgresql://").
-                    append(ciao.getHostIP()).
+                    append(ci.getHostIP()).
                     append(":").
-                    append(ciao.getHostPort()).
+                    append(ci.getHostPort()).
                     append("/").
-                    append(ciao.getDatabaseName());
+                    append(ci.getDatabaseName());
 
             String connectString = sb.toString();
             O.log(connectString);
@@ -116,7 +116,7 @@ public class PostgresDao {
             }
 
             try{
-                connection = DriverManager.getConnection(connectString,ciao.getUserName(),ciao.getUserPassword());
+                connection = DriverManager.getConnection(connectString,ci.getUserName(),ci.getUserPassword());
             }catch (Exception e) {
                 if(!(e instanceof SQLException)){
                     throw new SQLException("connect failed to '"+connectString+"'.");
@@ -131,14 +131,14 @@ public class PostgresDao {
 
 
     public static void main(String[] args) {
-        ConnectionInfoAndOthers ciao = new ConnectionInfoAndOthers();
+        ConnectionInfo ciao = new ConnectionInfo();
         ciao.setBatchSize(50+"");
-        ciao.setDatabaseName("buffer_test");
-        ciao.setScheme("public");
-        ciao.setHostIP("117.107.241.79");
+        ciao.setDatabaseName("test");
+        ciao.setSchema("public");
+        ciao.setHostIP("127.0.0.1");
         ciao.setHostPort("5432");
         ciao.setUserName("postgres");
-        ciao.setUserPassword("DataCatalogCenter!123456");
+        ciao.setUserPassword("admin");
 
         String datas = "{\n" +
                 "\t\t\t\"schema\": [\n" +
@@ -162,7 +162,7 @@ public class PostgresDao {
 //        insertDatas(ciao);
     }
 
-    public String selectFields(ConnectionInfoAndOthers connectionInfoAndOthers) throws SQLException {
+    public String selectFields(ConnectionInfo connectionInfoAndOthers) throws SQLException {
         Connection conn = getConnection(connectionInfoAndOthers);
         String sql = "SELECT * FROM " + connectionInfoAndOthers.getTableName()+" LIMIT  0";
         conn.setCatalog(connectionInfoAndOthers.getDatabaseName());
@@ -180,7 +180,7 @@ public class PostgresDao {
         }
     }
 
-    public Map<String, Object> selectDatas(ConnectionInfoAndOthers connectionInfoAndOthers) {
+    public Map<String, Object> selectDatas(ConnectionInfo connectionInfo) {
         //获取连接
         Connection conn = null;
         PreparedStatement pst = null;
@@ -188,10 +188,10 @@ public class PostgresDao {
         ResultSet rs = null;
         Map<String, Object> result = new HashMap<String, Object>();
         try {
-            conn = getConnection(connectionInfoAndOthers);
-            conn.setSchema(connectionInfoAndOthers.getScheme());
+            conn = getConnection(connectionInfo);
+            conn.setSchema(connectionInfo.getSchema());
             stat = conn.createStatement();
-            rs = stat.executeQuery(connectionInfoAndOthers.getDatas());
+            rs = stat.executeQuery(connectionInfo.getDatas());
 
             List<Object> dataList = new ArrayList<Object>();
             List<Object> metaList = new ArrayList<Object>();

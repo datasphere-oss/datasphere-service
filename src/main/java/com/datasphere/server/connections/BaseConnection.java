@@ -3,6 +3,8 @@ package com.datasphere.server.connections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.datasphere.server.connections.constant.ConnectionInfo;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 

@@ -2,8 +2,7 @@ package com.datasphere.engine.manager.resource.provider.database.dao;
 
 import com.datasphere.engine.common.exception.JRuntimeException;
 import com.datasphere.engine.manager.resource.provider.database.config.DBConfig;
-import com.datasphere.engine.manager.resource.provider.model.DBConnectionInfo;
-import com.datasphere.server.manager.common.constant.ConnectionInfoAndOthers;
+import com.datasphere.server.connections.constant.ConnectionInfo;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -11,7 +10,7 @@ import com.google.gson.JsonObject;
 import java.sql.*;
 import java.util.*;
 
-public class MysqlDao extends BaseDao<DBConfig> {
+public class MySQLDao extends BaseDao<DBConfig> {
 
 	private final static String SQL_DB_LIST = "SELECT SCHEMA_NAME FROM information_schema.SCHEMATA";
 	private final static String SQL_TABLE_LIST = "SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = ?";
@@ -159,24 +158,24 @@ public class MysqlDao extends BaseDao<DBConfig> {
 
 	/**
 	 * 动态sql插入数据
-	 * @param connectionInfoAndOthers
+	 * @param connectionInfo
 	 * @return
 	 */
-	public boolean insertDatas(ConnectionInfoAndOthers connectionInfoAndOthers) throws SQLException {
+	public boolean insertDatas(ConnectionInfo connectionInfo) throws SQLException {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		Gson gson = new Gson();
-		String datas = connectionInfoAndOthers.getDatas();
+		String datas = connectionInfo.getDatas();
 //		try {
-			conn = getConnection(connectionInfoAndOthers);
+			conn = getConnection(connectionInfo);
 			if (!datas.equals("") && datas.contains("insert into")) {
 				pst = conn.prepareStatement(datas);
 				pst.execute();// insert remaining records
 			} else {
-				JsonObject objs = gson.fromJson(connectionInfoAndOthers.getDatas(), JsonObject.class);
+				JsonObject objs = gson.fromJson(connectionInfo.getDatas(), JsonObject.class);
 				JsonArray rows = objs.getAsJsonArray("rows");
 				StringBuffer sql = new StringBuffer();
-				sql.append("INSERT INTO "+connectionInfoAndOthers.getTableName()+ "(");
+				sql.append("INSERT INTO "+connectionInfo.getTableName()+ "(");
 
 				JsonArray schema = objs.getAsJsonArray("schema");
 				if (schema.size() > 0) {
@@ -192,7 +191,7 @@ public class MysqlDao extends BaseDao<DBConfig> {
 				}
 				pst = conn.prepareStatement(sql.toString());
 				if (rows.size() > 0) {
-					final int batchSize = Integer.parseInt(connectionInfoAndOthers.getBatchSize());
+					final int batchSize = Integer.parseInt(connectionInfo.getBatchSize());
 					int count = 0;
 					for (int i = 1; i <= rows.size(); i++) {
 						// 遍历 jsonarray 数组，把每一个对象转成 json 对象
@@ -242,12 +241,12 @@ public class MysqlDao extends BaseDao<DBConfig> {
 	 * jdbc:mysql://192.168.15.122:3306/test?user=root&password=123456
 	 * @throws SQLException
 	 */
-	public Connection getConnection(ConnectionInfoAndOthers ciao) throws SQLException {
+	public Connection getConnection(ConnectionInfo ci) throws SQLException {
         Connection connection = null;
 		if(connection == null){
 			StringBuilder sb = new StringBuilder();
-			sb.append("jdbc:mysql://").append(ciao.getHostIP()).append(":").append(ciao.getHostPort())
-            .append("/").append(ciao.getDatabaseName()).append("?useUnicode=true&characterEncoding=UTF-8");
+			sb.append("jdbc:mysql://").append(ci.getHostIP()).append(":").append(ci.getHostPort())
+            .append("/").append(ci.getDatabaseName()).append("?useUnicode=true&characterEncoding=UTF-8");
 			String connectString = sb.toString();
 
 			try {
@@ -256,7 +255,7 @@ public class MysqlDao extends BaseDao<DBConfig> {
 				throw new JRuntimeException(e.getMessage());
 			}
 			try{
-				connection = DriverManager.getConnection(connectString,ciao.getUserName(),ciao.getUserPassword());
+				connection = DriverManager.getConnection(connectString,ci.getUserName(),ci.getUserPassword());
 			} catch (Exception e) {
 				if(!(e instanceof SQLException)){
 					throw new SQLException("connect failed to '"+connectString+"'.",CONNECT_FAILED_CODE);
@@ -269,13 +268,13 @@ public class MysqlDao extends BaseDao<DBConfig> {
 	}
 
     public static void main(String[] args) {
-        ConnectionInfoAndOthers ciao = new ConnectionInfoAndOthers();
-        ciao.setBatchSize(500+"");
-        ciao.setDatabaseName("catalog_db");
-        ciao.setHostIP("117.107.241.79");
-        ciao.setHostPort("3306");
-        ciao.setUserName("root");
-        ciao.setUserPassword("gg!007");
+        ConnectionInfo ci = new ConnectionInfo();
+        ci.setBatchSize(500+"");
+        ci.setDatabaseName("catalog_db");
+        ci.setHostIP("127.0.0.1");
+        ci.setHostPort("3306");
+        ci.setUserName("root");
+        ci.setUserPassword("gg!007");
 
         String datas = "{\n" +
                 "\t\t\t\"schema\": [\n" +
@@ -295,15 +294,15 @@ public class MysqlDao extends BaseDao<DBConfig> {
                 "\t\t\t]\n" +
                 "\t\t}";
 
-        ciao.setDatas(datas);
-        ciao.setTableName("test");
+        ci.setDatas(datas);
+        ci.setTableName("test");
 //		insertDatas(ciao);
     }
 
-	public String selectFields(ConnectionInfoAndOthers connectionInfoAndOthers) throws SQLException {
-		Connection conn = getConnection(connectionInfoAndOthers);
-		String sql = "SELECT * FROM " + connectionInfoAndOthers.getTableName()+" LIMIT  0";
-		conn.setCatalog(connectionInfoAndOthers.getDatabaseName());
+	public String selectFields(ConnectionInfo connectionInfo) throws SQLException {
+		Connection conn = getConnection(connectionInfo);
+		String sql = "SELECT * FROM " + connectionInfo.getTableName()+" LIMIT  0";
+		conn.setCatalog(connectionInfo.getDatabaseName());
 		try(PreparedStatement pst = conn.prepareStatement(sql)){
 			ResultSet resultSet = pst.executeQuery();
 			ResultSetMetaData metaData = resultSet.getMetaData();
@@ -318,15 +317,15 @@ public class MysqlDao extends BaseDao<DBConfig> {
 		}
 	}
 
-    public Map<String, Object> selectDatas(ConnectionInfoAndOthers connectionInfoAndOthers) {
+    public Map<String, Object> selectDatas(ConnectionInfo connectionInfo) {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
-			conn = getConnection(connectionInfoAndOthers);
-			String sql = connectionInfoAndOthers.getDatas();//获取转换后的sql
-			conn.setCatalog(connectionInfoAndOthers.getDatabaseName());
+			conn = getConnection(connectionInfo);
+			String sql = connectionInfo.getDatas();//获取转换后的sql
+			conn.setCatalog(connectionInfo.getDatabaseName());
 			pst = conn.prepareStatement(sql);
 			rs = pst.executeQuery();
 
@@ -356,7 +355,7 @@ public class MysqlDao extends BaseDao<DBConfig> {
 				array2.put("name",metaData.getColumnLabel(i));
 				metaList.add(array2);
 			}
-//			result.put("tableName",connectionInfoAndOthers.getTableName());
+//			result.put("tableName",connectionInfo.getTableName());
 			result.put("schema",metaList);
 			result.put("rows",dataList);
 			result.put("rowCount",rows);

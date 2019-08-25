@@ -2,7 +2,7 @@ package com.datasphere.engine.manager.resource.provider.database.dao;
 
 import com.datasphere.common.utils.RandomUtils;
 import com.datasphere.engine.shaker.processor.buscommon.DatasetVersion;
-import com.datasphere.server.manager.common.constant.ConnectionInfoAndOthers;
+import com.datasphere.server.connections.constant.ConnectionInfo;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -19,9 +19,9 @@ public class ElasticSearchDao {
     private static final Logger log = LoggerFactory.getLogger(ElasticSearchDao.class);
 
 
-    public Boolean insertDatas(ConnectionInfoAndOthers ciao) throws Exception {
-        String url = "http://"+ciao.getHostIP()+":"+
-                ciao.getHostPort()+"/"+ciao.getDatabaseName()+"/"+ciao.getTableName()+"/";
+    public Boolean insertDatas(ConnectionInfo ci) throws Exception {
+        String url = "http://"+ci.getHostIP()+":"+
+        		ci.getHostPort()+"/"+ci.getDatabaseName()+"/"+ci.getTableName()+"/";
 
         OkHttpClient httpClient = new OkHttpClient();
         Gson gson = new Gson();
@@ -31,7 +31,7 @@ public class ElasticSearchDao {
                 .just("start")
                 .flatMap(start -> {
                     return Flowable.<JsonObject>create(subscriber -> {
-                        JsonObject objs = new Gson().fromJson(ciao.getDatas(), JsonObject.class);
+                        JsonObject objs = new Gson().fromJson(ci.getDatas(), JsonObject.class);
                         JsonArray rows = objs.getAsJsonArray("rows");
                         for (int k = 0; k < rows.size(); k++){
                             JsonObject item = rows.get(k).getAsJsonObject();
@@ -64,13 +64,13 @@ public class ElasticSearchDao {
 
 
     public static void main(String[] args) {
-        ConnectionInfoAndOthers ciao = new ConnectionInfoAndOthers();
-        ciao.setBatchSize(50+"");
-        ciao.setDatabaseName("es_test");
-        ciao.setHostIP("117.107.241.79");
-        ciao.setHostPort("9200");
-        ciao.setUserName("");
-        ciao.setUserPassword("");
+        ConnectionInfo ci = new ConnectionInfo();
+        ci.setBatchSize(50+"");
+        ci.setDatabaseName("es_test");
+        ci.setHostIP("127.0.0.1");
+        ci.setHostPort("9200");
+        ci.setUserName("");
+        ci.setUserPassword("");
 
         String datas = "{\n" +
                 "\t\t\t\"schema\": [\n" +
@@ -90,8 +90,8 @@ public class ElasticSearchDao {
                 "\t\t\t]\n" +
                 "\t\t}";
 
-        ciao.setDatas(datas);
-        ciao.setTableName("es_test");
+        ci.setDatas(datas);
+        ci.setTableName("es_test");
 //		insertDatas(ciao);
     }
 

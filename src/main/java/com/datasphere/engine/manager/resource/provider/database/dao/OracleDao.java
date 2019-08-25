@@ -1,9 +1,9 @@
 package com.datasphere.engine.manager.resource.provider.database.dao;
 
+import com.datasphere.core.common.utils.O;
 import com.datasphere.engine.common.exception.JRuntimeException;
 import com.datasphere.engine.manager.resource.provider.database.config.OracleDBConfig;
-import com.datasphere.server.manager.common.constant.ConnectionInfoAndOthers;
-import com.datasphere.server.manager.common.utils.O;
+import com.datasphere.server.connections.constant.ConnectionInfo;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -230,20 +230,20 @@ public class OracleDao extends BaseDao<OracleDBConfig> {
 	}
 
 
-	public boolean insertDatas(ConnectionInfoAndOthers ciao) throws SQLException {
+	public boolean insertDatas(ConnectionInfo ci) throws SQLException {
 		Connection con = null;
 		PreparedStatement pst = null;
-		String datas = ciao.getDatas();
+		String datas = ci.getDatas();
 //		try {
-			con = getConnection(ciao);
+			con = getConnection(ci);
 			if (!datas.equals("") && datas.contains("insert into")) {
 				pst = con.prepareStatement(datas);
 				pst.execute();// insert remaining records
 			}else {
-				JsonObject objs = new Gson().fromJson(ciao.getDatas(), JsonObject.class);
+				JsonObject objs = new Gson().fromJson(ci.getDatas(), JsonObject.class);
 				JsonArray rows = objs.getAsJsonArray("rows");
 				StringBuffer sql = new StringBuffer();
-				sql.append("insert into \""+ciao.getTableName()+"\" NOLOGGING (");
+				sql.append("insert into \""+ci.getTableName()+"\" NOLOGGING (");
 
 				JsonArray schema = objs.getAsJsonArray("schema");
 				if (schema.size() > 0) {
@@ -265,7 +265,7 @@ public class OracleDao extends BaseDao<OracleDBConfig> {
 
 				Long startTime = System.currentTimeMillis();
 				pst = con.prepareStatement(sql.toString());
-				final int batchSize = Integer.parseInt(ciao.getBatchSize());
+				final int batchSize = Integer.parseInt(ci.getBatchSize());
 				int count = 0;
 				for (int i = 0; i < rows.size(); i++) {
 					JsonObject data = rows.get(i).getAsJsonObject();
@@ -310,7 +310,7 @@ public class OracleDao extends BaseDao<OracleDBConfig> {
 		return true;
 	}
 
-	public Connection getConnection(ConnectionInfoAndOthers ciao) throws SQLException{
+	public Connection getConnection(ConnectionInfo ci) throws SQLException{
 		Connection connection = null;
 		if(connection == null){
 			StringBuilder sb = new StringBuilder();
@@ -318,18 +318,18 @@ public class OracleDao extends BaseDao<OracleDBConfig> {
 			if("1".equals("1")){
 				sb.append("jdbc:oracle:thin:").
 						append("@").
-						append(ciao.getHostIP()).
+						append(ci.getHostIP()).
 						append(":").
-						append(ciao.getHostPort()).
+						append(ci.getHostPort()).
 						append(":").
-						append(ciao.getDatabaseName());
+						append(ci.getDatabaseName());
 			}else{
 				sb.append("jdbc:oracle:thin:@//").
-						append(ciao.getHostIP()).
+						append(ci.getHostIP()).
 						append(":").
-						append(ciao.getHostPort()).
+						append(ci.getHostPort()).
 						append("/").
-						append(ciao.getDatabaseName());
+						append(ci.getDatabaseName());
 			}
 			String connectString = sb.toString();
 
@@ -345,7 +345,7 @@ public class OracleDao extends BaseDao<OracleDBConfig> {
 				connection =
 //						config.getUser() == null ?
 //						DriverManager.getConnection(sb.toString()) :
-						DriverManager.getConnection(connectString,ciao.getUserName(),ciao.getUserPassword());
+						DriverManager.getConnection(connectString,ci.getUserName(),ci.getUserPassword());
 			}catch (Exception e) {
 				if(!(e instanceof SQLException)){
 					throw new SQLException("connect failed to '"+connectString+"'.",CONNECT_FAILED_CODE);
@@ -362,13 +362,13 @@ public class OracleDao extends BaseDao<OracleDBConfig> {
 
 
 	public static void main(String[] args) {
-		ConnectionInfoAndOthers ciao = new ConnectionInfoAndOthers();
-		ciao.setBatchSize(50+"");
-		ciao.setDatabaseName("helowin");
-		ciao.setHostIP("117.107.241.79");
-		ciao.setHostPort("1528");
-		ciao.setUserName("datalliance");
-		ciao.setUserPassword("datalliance");
+		ConnectionInfo ci = new ConnectionInfo();
+		ci.setBatchSize(50+"");
+		ci.setDatabaseName("helowin");
+		ci.setHostIP("127.0.0.1");
+		ci.setHostPort("1528");
+		ci.setUserName("admin");
+		ci.setUserPassword("admin");
 
 		String datas = "{\n" +
 				"\t\t\t\"schema\": [\n" +
@@ -387,12 +387,12 @@ public class OracleDao extends BaseDao<OracleDBConfig> {
 				"\t\t\t]\n" +
 				"\t\t}";
 
-		ciao.setDatas(datas);
-		ciao.setTableName("test");
+				ci.setDatas(datas);
+				ci.setTableName("test");
 //		insertDatas(ciao);
 	}
 
-	public String selectFields(ConnectionInfoAndOthers connectionInfoAndOthers) throws SQLException {
+	public String selectFields(ConnectionInfo connectionInfoAndOthers) throws SQLException {
 		Connection conn = getConnection(connectionInfoAndOthers);
 		String sql = "SELECT * FROM " + connectionInfoAndOthers.getTableName()+" LIMIT  0";
 		conn.setCatalog(connectionInfoAndOthers.getDatabaseName());
@@ -410,7 +410,7 @@ public class OracleDao extends BaseDao<OracleDBConfig> {
 		}
 	}
 
-	public Map<String,Object> selectDatas(ConnectionInfoAndOthers connectionInfoAndOthers) {
+	public Map<String,Object> selectDatas(ConnectionInfo connectionInfoAndOthers) {
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -462,6 +462,6 @@ public class OracleDao extends BaseDao<OracleDBConfig> {
 
 	static void close(Connection conn, PreparedStatement pst, ResultSet rs) {
 		Map<String, Object> result;
-		PostgresDao.close(conn, pst, rs);
+		PostgreSQLDao.close(conn, pst, rs);
 	}
 }
