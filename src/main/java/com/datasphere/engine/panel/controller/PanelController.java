@@ -11,20 +11,17 @@ import com.datasphere.engine.shaker.workflow.panel.domain.Panel;
 import com.datasphere.engine.shaker.workflow.panel.domain.PanelType;
 import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
 
-import io.micronaut.context.annotation.Parameter;
-import io.micronaut.http.HttpRequest;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.validation.Validated;
 import io.reactivex.Single;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import io.micronaut.http.annotation.Post;
 
-import javax.inject.Inject;
 
-@Validated
+@Controller
 public class PanelController extends BaseController {
-	@Inject PanelServiceImpl panelServiceImpl;
+	@Autowired PanelServiceImpl panelServiceImpl;
 //	@Inject  ProjectServiceImpl projectServiceImpl;
 	public static final String BASE_PATH = "/panel";
 
@@ -33,7 +30,7 @@ public class PanelController extends BaseController {
 	 * 传入一个项目id，删除这个项目下的所有面板。先检查面板是否能够删除（面板运行中则不能删除），不能删除则返回原因，且设置一个状态值，
 	 * 区别删除过程的其他错误原因。
 	 */
-	@Post(BASE_PATH + "/deletePanelByProjectId")
+	@PostMapping(value = BASE_PATH + "/deletePanelByProjectId")
 	public Single<Map<String,Object>> deletePanelByProjectId(@Parameter String projectId) {
 		return Single.fromCallable(() -> {
 			int status = panelServiceImpl.deleteById(projectId);
@@ -49,7 +46,7 @@ public class PanelController extends BaseController {
 	/**1
 	 * 创建面板
 	 */
-	@Post(BASE_PATH + "/createPanel")
+	@PostMapping(value = BASE_PATH + "/createPanel")
 	public Single<Map<String,Object>> createPanel(@Body Panel panel, HttpRequest request) {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -68,7 +65,7 @@ public class PanelController extends BaseController {
 	/**
 	 * 创建面板
 	 */
-	@Post(BASE_PATH + "/createcyl")
+	@PostMapping(value = BASE_PATH + "/createcyl")
 	public Single<Map<String,Object>> createcyl(@Body Panel panel) {
 		return Single.fromCallable(() -> {
 			List<Panel> list = new ArrayList<>();
@@ -80,7 +77,7 @@ public class PanelController extends BaseController {
 	/**
 	 * 查询最后一次访问的面板
 	 */
-	@Post(BASE_PATH + "/last")
+	@PostMapping(value = BASE_PATH + "/last")
 	public Single<Map<String,Object>> getLast(@Body Panel panel1) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(panelServiceImpl.getLast(panel1.getCreator()));
@@ -90,7 +87,7 @@ public class PanelController extends BaseController {
 	/**
 	 * 查询最后一次访问的面板
 	 */
-	@Post(BASE_PATH + "/lastcyl")
+	@PostMapping(value = BASE_PATH + "/lastcyl")
 	public Single<Map<String,Object>> getLastcyl(@Parameter String creator) {
 		return Single.fromCallable(() -> {
 			List<Panel> list = new ArrayList<>();
@@ -104,7 +101,7 @@ public class PanelController extends BaseController {
 	 * 按钮：另存为
 	 * @return
 	 */
-	@Post(BASE_PATH + "/saveAs")
+	@PostMapping(value = BASE_PATH + "/saveAs")
 	public Single<Map<String,Object>> saveAs(@Body Panel panel) {
 		return Single.fromCallable(() -> {
 //			if (!StringUtils.isBlank(panel.getId()) && !StringUtils.isBlank(panel.getPanelName())) {
@@ -133,7 +130,7 @@ public class PanelController extends BaseController {
 		});
 	}
 
-	@Post(BASE_PATH + "/saveAsCyl")
+	@PostMapping(value = BASE_PATH + "/saveAsCyl")
 	public Single<Map<String,Object>> saveAsCyl(@Body Panel panel) {
 		return Single.fromCallable(() -> {
 			if (!StringUtils.isBlank(panel.getPanelName()) && !StringUtils.isBlank(panel.getProjectId())) {
@@ -155,7 +152,7 @@ public class PanelController extends BaseController {
 	/**2
 	 * 更新面板
 	 */
-	@Post(BASE_PATH + "/update")
+	@PostMapping(value = BASE_PATH + "/update")
 	public Single<Map<String,Object>> update(@Body Panel panel) {
 		return Single.fromCallable(() -> {
 			if (!StringUtils.isBlank(panel.getPanelName()) && !StringUtils.isBlank(panel.getCreator())) {
@@ -180,7 +177,7 @@ public class PanelController extends BaseController {
 	 * @param id 面板id
 	 * @return
 	 */
-	@Post(BASE_PATH + "/delete")
+	@PostMapping(value = BASE_PATH + "/delete")
 	public Single<Map<String,Object>> delete(@Parameter String id) {
 		return Single.fromCallable(() -> {
 			int status = panelServiceImpl.delete(id);
@@ -199,7 +196,7 @@ public class PanelController extends BaseController {
 	 * @param id 面板id
 	 * @return
 	 */
-	@Post(BASE_PATH + "/getPanels")
+	@PostMapping(value = BASE_PATH + "/getPanels")
 	public Single<Map<String,Object>> getPanel(@Parameter String id, @Parameter String creator) {
 		return Single.fromCallable(() -> {
 			if (StringUtils.isBlank(id) || StringUtils.isBlank(creator)) {
@@ -213,7 +210,7 @@ public class PanelController extends BaseController {
 	 * 模糊查询
 	 * @return
 	 */
-	@Post(BASE_PATH + "/listBy")
+	@PostMapping(value = BASE_PATH + "/listBy")
 	public Single<Map<String,Object>> listBy(@Body Panel panel) {
 		return Single.fromCallable(() -> {
 			panel.setType(PanelType.DEFAULT);
@@ -227,7 +224,7 @@ public class PanelController extends BaseController {
 	 * @param panel 项目id
 	 * @return
 	 */
-	@Post(BASE_PATH + "/getByProjectId")
+	@PostMapping(value = BASE_PATH + "/getByProjectId")
 	public Single<Map<String,Object>> getByProjectId(@Body Panel panel) {
 		return Single.fromCallable(() -> {
 			panel.setType(PanelType.DEFAULT);
@@ -240,7 +237,7 @@ public class PanelController extends BaseController {
 	 * @param panel
 	 * @return
 	 */
-	@Post(BASE_PATH + "/getByProjectIdList")
+	@PostMapping(value = BASE_PATH + "/getByProjectIdList")
 	public Single<Map<String,Object>> getByProjectIdList(@Body Panel panel) {
 		return Single.fromCallable(() -> {
 			panel.setType(PanelType.DEFAULT);
@@ -252,7 +249,7 @@ public class PanelController extends BaseController {
 	 * 获取面板详细信息。如果id为null，那么获取最后一次访问的面板ID。如果用户没有面板，那么会使用默认项目创建一个新的面板。
 	 * 实际是获取面板的流程信息
 	 */
-	@Post(BASE_PATH + "/panelPageDetail")
+	@PostMapping(value = BASE_PATH + "/panelPageDetail")
 	public Single<Map<String,Object>> panelDetail(@Parameter String projectId, @Parameter String panelId, HttpRequest request) {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -264,7 +261,7 @@ public class PanelController extends BaseController {
 	/**
 	 * 获取面板详细信息。如果id为null，那么获取最后一次访问的面板ID。如果用户没有面板，那么会使用默认项目创建一个新的面板。
 	 */
-	@Post(BASE_PATH + "/panelDetail")
+	@PostMapping(value = BASE_PATH + "/panelDetail")
 	public Single<Map<String,Object>> panelPageDetail(@Parameter String id, @Parameter String panelId, HttpRequest request) {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -276,7 +273,7 @@ public class PanelController extends BaseController {
 	/**
 	 * 获取面板详细信息。如果id为null，那么获取最后一次访问的面板ID。如果用户没有面板，那么会使用默认项目创建一个新的面板
 	 */
-	@Post(BASE_PATH + "/panelDetailCyl")
+	@PostMapping(value = BASE_PATH + "/panelDetailCyl")
 	public Single<Map<String,Object>> panelPageDetailCyl(@Parameter String id, @Parameter String panelId) {
 		return Single.fromCallable(() -> {
 //			PanelWithAll all = panelServiceImpl.panelPageDetail(id, panelId);
@@ -292,7 +289,7 @@ public class PanelController extends BaseController {
 	 * @param creator
 	 * @return
 	 */
-	@Post(BASE_PATH + "/sourceTrace")
+	@PostMapping(value = BASE_PATH + "/sourceTrace")
 	public Single<Map<String,Object>> sourceTrace(@Parameter String id, @Parameter String creator) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(panelServiceImpl.sourceTrace(id, creator));
@@ -305,7 +302,7 @@ public class PanelController extends BaseController {
 	 * @param creator
 	 * @return
 	 */
-	@Post(BASE_PATH + "/someSourceTrace")
+	@PostMapping(value = BASE_PATH + "/someSourceTrace")
 	public Single<Map<String,Object>> someSourceTrace(@Parameter String id, @Parameter String creator) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(panelServiceImpl.someSourceTrace(id, creator));
@@ -316,7 +313,7 @@ public class PanelController extends BaseController {
 	 * 验证名称，不允许重命名
 	 * @return
 	 */
-	@Post(BASE_PATH + "/veriftyName")
+	@PostMapping(value = BASE_PATH + "/veriftyName")
 	public Single<Map<String,Object>> veriftyName(@Parameter String panelName, @Parameter String projectId, @Parameter String creator) {
 		return Single.fromCallable(() -> {
 			if (!StringUtils.isBlank(panelName) && !StringUtils.isBlank(projectId)) {
@@ -338,7 +335,7 @@ public class PanelController extends BaseController {
 	 * @param panel
 	 * @return
 	 */
-	@Post(BASE_PATH + "/getAllPanelList")
+	@PostMapping(value = BASE_PATH + "/getAllPanelList")
 	public Single<Map<String,Object>> getAllPanelList(@Body Panel panel,HttpRequest request) {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -353,7 +350,7 @@ public class PanelController extends BaseController {
 	 * @param id 项目id
 	 * @return
 	 */
-	@Post(BASE_PATH + "/getPanel")
+	@PostMapping(value = BASE_PATH + "/getPanel")
 	public Single<Map<String,Object>> getPanel(@Parameter String id) {
 		return Single.fromCallable(() -> {
 			if (StringUtils.isBlank(id)) {
