@@ -16,6 +16,7 @@ import com.datasphere.engine.manager.resource.provider.elastic.model.DremioDataS
 import com.datasphere.engine.manager.resource.provider.elastic.model.JSONInfo;
 import com.datasphere.engine.manager.resource.provider.elastic.model.QueryDBDataParams;
 import com.datasphere.engine.manager.resource.provider.model.*;
+import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
 import com.datasphere.engine.shaker.processor.definition.dao.ComponentDefinitionDao;
 import com.datasphere.engine.shaker.processor.instance.dao.ComponentInstanceDao;
@@ -26,15 +27,10 @@ import com.datasphere.engine.shaker.processor.instance.service.ComponentInstance
 import com.datasphere.server.connections.dao.DataSetInstanceDao;
 import com.datasphere.server.connections.model.DataSetInstance;
 import com.datasphere.server.connections.utils.StringUtils;
-import com.datasphere.server.manager.common.constant.GlobalDefine;
-import com.datasphere.server.manager.common.utils.O;
-import com.datasphere.server.manager.module.component.buscommon.constant.ComponentClassification;
 import com.datasphere.server.sso.service.DSSUserTokenService;
 import com.google.common.base.Splitter;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import io.micronaut.http.client.HttpClient;
-import io.micronaut.http.multipart.CompletedFileUpload;
 import okhttp3.*;
 import org.apache.ibatis.session.SqlSession;
 import org.mozilla.intl.chardet.nsDetector;
@@ -42,9 +38,9 @@ import org.mozilla.intl.chardet.nsICharsetDetectionObserver;
 import org.mozilla.intl.chardet.nsPSMDetector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -56,12 +52,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-import static io.micronaut.http.HttpRequest.POST;
 
 /**
  * 数据源管理
  */
-@Singleton
+@Service
 public class DaasService extends BaseService {
 	private static final Logger log = LoggerFactory.getLogger(DaasService.class);
 	private static final OkHttpClient httpClient = new OkHttpClient.Builder()
@@ -70,16 +65,16 @@ public class DaasService extends BaseService {
 			.writeTimeout(10, TimeUnit.SECONDS).build();
 	private static final MediaType ESJSON = MediaType.parse("application/json; charset=utf-8");
 	private static final String AUTO = "auto_";
-	@Inject
+	@Autowired
 	ExchangeSSOService exchangeSSOService;
 
-	@Inject
+	@Autowired
 	ComponentInstanceService ciService;
-	@Inject
+	@Autowired
 	ComponentInstanceRelationService cirService;
-	@Inject
+	@Autowired
 	DataQueryService dataQueryService;
-	@Inject
+	@Autowired
 	DSSUserTokenService dSSUserTokenService;
 
 	/**

@@ -5,7 +5,7 @@ import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.manager.resource.provider.hive.model.HiveConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.hive.model.HiveDataSourceInfo;
 import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
-import com.datasphere.engine.manager.resource.provider.service.DataSourceService;
+import com.datasphere.engine.manager.resource.provider.service.UDSMService;
 
 import io.reactivex.Single;
 import org.apache.commons.lang3.StringUtils;
@@ -30,7 +30,7 @@ public class HiveDataSourceController extends BaseController {
     public static final String BASE_PATH = "/datasource/hive";
 
     @Autowired
-    DataSourceService dataSourceService;
+    UDSMService uDSMService;
 
     /**
      * test connection  hive
@@ -40,7 +40,7 @@ public class HiveDataSourceController extends BaseController {
 	@RequestMapping(value = BASE_PATH + "/testHive", method = RequestMethod.POST) 
     public Single<Map<String,Object>> testHive(@Body HiveConnectionInfo hiveConnectionInfo) {
         return Single.fromCallable(() -> {
-            int result = dataSourceService.testHive(hiveConnectionInfo);
+            int result = uDSMService.testHive(hiveConnectionInfo);
             if(result == 0){
                 return JsonWrapper.failureWrapper("测试失败");
             }
@@ -56,7 +56,7 @@ public class HiveDataSourceController extends BaseController {
 	@RequestMapping(value = BASE_PATH + "/HiveListTable", method = RequestMethod.POST) 
     public Object HiveListTable(@Body HiveConnectionInfo hiveConnectionInfo){
         return Single.fromCallable(() -> {
-            List<DBTableInfodmp> dbTableInfodmps = dataSourceService.HiveListTable(hiveConnectionInfo);
+            List<DBTableInfodmp> dbTableInfodmps = uDSMService.HiveListTable(hiveConnectionInfo);
             if(dbTableInfodmps == null){
                 return JsonWrapper.failureWrapper("获取失败");
             }
@@ -72,7 +72,7 @@ public class HiveDataSourceController extends BaseController {
 	@RequestMapping(value = BASE_PATH + "/queryHiveTableData", method = RequestMethod.POST) 
     public Object queryHiveTableData(@Body HiveConnectionInfo hiveConnectionInfo){
         return Single.fromCallable(() -> {
-            return JsonWrapper.successWrapper(dataSourceService.queryHiveTableData(hiveConnectionInfo));
+            return JsonWrapper.successWrapper(uDSMService.queryHiveTableData(hiveConnectionInfo));
         });
     }
 
@@ -86,7 +86,7 @@ public class HiveDataSourceController extends BaseController {
         return Single.fromCallable(() -> {
             String token = request.getParameters().get("token");
             if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
-            int result = dataSourceService.createHive(hiveDataSourceInfo,token);
+            int result = uDSMService.createHive(hiveDataSourceInfo,token);
             if (result == 0){
                 return JsonWrapper.failureWrapper("插入失败");
             }
@@ -109,7 +109,7 @@ public class HiveDataSourceController extends BaseController {
             //TODO 查询数据库中有无数据源  验证名称是否重复
             String token = request.getParameters().get("token");
             if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
-            int rsult = dataSourceService.updateHiveById(hiveDataSourceInfo,token);
+            int rsult = uDSMService.updateHiveById(hiveDataSourceInfo,token);
             if(rsult == 0){
                 return JsonWrapper.failureWrapper("更新失败！");
             }

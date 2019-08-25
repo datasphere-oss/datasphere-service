@@ -7,7 +7,7 @@ import com.datasphere.engine.manager.resource.provider.database.model.DBCommonIn
 import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.hive.model.HiveConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.model.*;
-import com.datasphere.engine.manager.resource.provider.service.DataSourceService;
+import com.datasphere.engine.manager.resource.provider.service.UDSMService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import io.reactivex.Single;
@@ -35,7 +35,7 @@ public class DaasController extends BaseController {
 	public static final String BASE_PATH = "/datasource1";
 
 	@Autowired
-	DataSourceService dataSourceService;
+	UDSMService uDSMService;
 
 	/**
 	 * 获得全部数据源信息
@@ -47,7 +47,7 @@ public class DaasController extends BaseController {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
-			return JsonWrapper.successWrapper(dataSourceService.listAll(pageIndex,pageSize,name,token));
+			return JsonWrapper.successWrapper(uDSMService.listAll(pageIndex,pageSize,name,token));
 		});
 	}
 
@@ -63,7 +63,7 @@ public class DaasController extends BaseController {
 				return JsonWrapper.failureWrapper("名称不能为空!");
 			}
 
-			List<String> result = dataSourceService.verifyDatasourceName(name);
+			List<String> result = uDSMService.verifyDatasourceName(name);
 
 			if(result == null || result.size() == 0){
 				return JsonWrapper.successWrapper("验证成功！");
@@ -86,7 +86,7 @@ public class DaasController extends BaseController {
 				return JsonWrapper.failureWrapper("id和数据源名称不能为空！");
 			}
 			//查询数据源信息ById
-			DataSource dataSourceinfo = dataSourceService.findDataSourceById(dataSource.getId());
+			DataSource dataSourceinfo = uDSMService.findDataSourceById(dataSource.getId());
 			if(dataSourceinfo == null){
 				return JsonWrapper.failureWrapper("数据源不存在！");
 			}
@@ -95,7 +95,7 @@ public class DaasController extends BaseController {
 				return JsonWrapper.failureWrapper("数据源名称已经存在！");
 			}
 
-			int result = dataSourceService.update(dataSource);
+			int result = uDSMService.update(dataSource);
 			if(result == 1){
 				return  JsonWrapper.successWrapper("更新成功");
 			}else{
@@ -116,7 +116,7 @@ public class DaasController extends BaseController {
 	@RequestMapping(value = BASE_PATH+"/listTable", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> listTableInfo(@Body DBCommonInfo info){
 		return Single.fromCallable(() -> {
-			List<DBTableInfodmp> dbTableInfodmps = dataSourceService.listTableInfo(info);
+			List<DBTableInfodmp> dbTableInfodmps = uDSMService.listTableInfo(info);
 			if (dbTableInfodmps == null){
 				return  JsonWrapper.failureWrapper("连接失败");
 			}
@@ -134,7 +134,7 @@ public class DaasController extends BaseController {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
-            int result = dataSourceService.create(dataSourceInfo,token);
+            int result = uDSMService.create(dataSourceInfo,token);
             if (result == 0){
                 return JsonWrapper.failureWrapper("插入失败");
             }
@@ -150,7 +150,7 @@ public class DaasController extends BaseController {
 	@RequestMapping(value = BASE_PATH+"/testDatabase", method = RequestMethod.POST) 
     public Single<Map<String,Object>> testDatabase(@Body DBConnectionInfo connectionInfo) {
 		return Single.fromCallable(() -> {
-            int result = dataSourceService.testDatabase(connectionInfo);
+            int result = uDSMService.testDatabase(connectionInfo);
             if(result == 0){
                 return JsonWrapper.failureWrapper("测试失败");
             }
@@ -166,7 +166,7 @@ public class DaasController extends BaseController {
 	@RequestMapping(value = BASE_PATH+"/queryTableData", method = RequestMethod.POST) 
 	public Object queryTableData(@Body DBConnectionInfo connectionInfo){
 		return Single.fromCallable(() -> {
-			return JsonWrapper.successWrapper(dataSourceService.queryTableData(connectionInfo));
+			return JsonWrapper.successWrapper(uDSMService.queryTableData(connectionInfo));
 		});
 	}
 
@@ -189,7 +189,7 @@ public class DaasController extends BaseController {
 			//根据不同的组件类型（数据源/组件）查询数据
 			if(GlobalDefine.COMPONENT_CLASSIFICATION.MY_DATASOURCE.equals(dbQuery.getClassification())){
 				//查询数据源信息ById
-				DataSource dataSource = dataSourceService.findDataSourceById(dbQuery.getId());
+				DataSource dataSource = uDSMService.findDataSourceById(dbQuery.getId());
 				if(dataSource == null){
 					return JsonWrapper.failureWrapper("数据源不存在！");
 				}
@@ -201,11 +201,11 @@ public class DaasController extends BaseController {
 				DBConnectionInfo dbConnectionInfo= new Gson().fromJson(dataConfig, listType);
 				dbConnectionInfo.setTypeName(dataSource.getDataDSType());
 				//测试连接信息是否可用
-				if(dataSourceService.testDatabase(dbConnectionInfo) == 0){
+				if(uDSMService.testDatabase(dbConnectionInfo) == 0){
 					return JsonWrapper.failureWrapper("数据库连接信息有变动，查询失败请更新！");
 				}
 				dbConnectionInfo.setQuery(dbQuery.getQuery());
-				Map<String, Object> result = dataSourceService.queryTableData(dbConnectionInfo);
+				Map<String, Object> result = uDSMService.queryTableData(dbConnectionInfo);
 				if(result != null){
 					return JsonWrapper.successWrapper(result);
 				}
@@ -250,7 +250,7 @@ public class DaasController extends BaseController {
 	public Single<Map<String,Object>> findConnectionById(@Parameter String id){
 		return Single.fromCallable(() -> {
 			//查询数据源信息ById
-			DataSource dataSource = dataSourceService.findDataSourceById(id);
+			DataSource dataSource = uDSMService.findDataSourceById(id);
 			if(dataSource == null){
 				return JsonWrapper.failureWrapper("数据不存在");
 			}
@@ -309,7 +309,7 @@ public class DaasController extends BaseController {
 			//TODO 查询数据库中有无数据源  验证名称是否重复
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
-			int rsult = dataSourceService.updateDatasourceById(dataSourceInfo,token);
+			int rsult = uDSMService.updateDatasourceById(dataSourceInfo,token);
 			if(rsult == 0){
 				return JsonWrapper.failureWrapper("更新失败！");
 			}
@@ -326,7 +326,7 @@ public class DaasController extends BaseController {
 	public Single<Map<String,Object>> findDatasourceById(@Parameter String id){
 		return Single.fromCallable(() -> {
 			//查询数据源信息ById
-			DataSource dataSource = dataSourceService.findDataSourceById(id);
+			DataSource dataSource = uDSMService.findDataSourceById(id);
 			dataSource.setDataConfig(null);
 			return JsonWrapper.successWrapper(dataSource);
 		});
@@ -343,7 +343,7 @@ public class DaasController extends BaseController {
 	public Single<Map<String,Object>> deleteDatasourceById(@Parameter String ids){
 		return Single.fromCallable(() -> {
 			//查询数据源信息ById
-			int result = dataSourceService.deleteDatasourceById(ids);
+			int result = uDSMService.deleteDatasourceById(ids);
 			if(result == 0){
 				return JsonWrapper.failureWrapper("删除失败");
 			}
@@ -359,7 +359,7 @@ public class DaasController extends BaseController {
 	@RequestMapping(value = BASE_PATH+"/subscribeDatasource", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> getSubscribeDatasource(@Body RequestParams requestParams){
 		return Single.fromCallable(() -> {
-			return JsonWrapper.successWrapper(dataSourceService.getSubscribeDatasource(requestParams));
+			return JsonWrapper.successWrapper(uDSMService.getSubscribeDatasource(requestParams));
 		});
 	}
 
@@ -385,11 +385,11 @@ public class DaasController extends BaseController {
 				if (!StringUtils.isBlank(code) && !StringUtils.isBlank(classification) && classification.startsWith("001") && code.equals("SimpleDataSource")) {
 					String token = request.getParameters().get("token");
 					if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
-					return JsonWrapper.successWrapper(dataSourceService.findDataSourceDetail(id,token));//数据源Tree
+					return JsonWrapper.successWrapper(uDSMService.findDataSourceDetail(id,token));//数据源Tree
 				} else if (!StringUtils.isBlank(code) && !StringUtils.isBlank(classification) && classification.startsWith("002") && code.equals("DataPreProcess")) { //
-					return JsonWrapper.successWrapper(dataSourceService.dataPreProcess(id));//数据预处理组件
+					return JsonWrapper.successWrapper(uDSMService.dataPreProcess(id));//数据预处理组件
 				} else {
-					return JsonWrapper.successWrapper(dataSourceService.getInstance(id));//其他，暂时不做
+					return JsonWrapper.successWrapper(uDSMService.getInstance(id));//其他，暂时不做
 				}
 			} else {
 				return JsonWrapper.failureWrapper("id参数不能为空");
@@ -408,7 +408,7 @@ public class DaasController extends BaseController {
 			if(!StringUtils.isBlank(id)) {
 				String token = request.getParameters().get("token");
 				if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
-				DataSourceWithAll dataSource = dataSourceService.getWithPanel(id,token);
+				DataSourceWithAll dataSource = uDSMService.getWithPanel(id,token);
 				if(dataSource!=null){
 					return JsonWrapper.successWrapper(dataSource);
 				} else {

@@ -3,7 +3,6 @@ package com.datasphere.engine.manager.resource.provider.service;
 import com.alibaba.fastjson.JSON;
 import com.datasphere.common.data.Column;
 import com.datasphere.common.data.Dataset;
-import com.datasphere.common.dmpbase.utils.O;
 import com.datasphere.common.utils.PageUtil;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.common.exception.JIllegalOperationException;
@@ -21,7 +20,6 @@ import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseDataSour
 import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseTableInfo;
 import com.datasphere.engine.manager.resource.provider.hive.model.HiveConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.hive.model.HiveDataSourceInfo;
-import com.datasphere.engine.manager.resource.provider.hive.model.HiveTableInfo;
 import com.datasphere.engine.manager.resource.provider.model.*;
 import com.datasphere.engine.manager.resource.provider.webhdfs.model.WebHDFSConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.webhdfs.model.WebHDFSDataSourceInfo;
@@ -36,49 +34,42 @@ import com.datasphere.engine.shaker.processor.prep.service.ProgramService;
 import com.datasphere.server.connections.dao.DataSetInstanceDao;
 import com.datasphere.server.connections.model.DataSetInstance;
 import com.datasphere.server.connections.service.DataAccessor;
-import com.datasphere.server.manager.common.constant.GlobalDefine;
-import com.datasphere.server.manager.module.component.buscommon.constant.ComponentClassification;
 import com.datasphere.server.sso.service.DSSUserTokenService;
 import com.google.common.base.Splitter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import io.micronaut.http.client.HttpClient;
 import okhttp3.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static io.micronaut.http.HttpRequest.POST;
 
 /**
- * 数据源管理
+ * United Data Sources Management
  */
-@Singleton
-public class DataSourceService extends BaseService {
-    private static final Logger log = LoggerFactory.getLogger(DataSourceService.class);
-
+@Service
+public class UDSMService extends BaseService {
+    private static final Logger log = LoggerFactory.getLogger(UDSMService.class);
     private static final OkHttpClient httpClient = new OkHttpClient();
-
     private static  final MediaType ESJSON  = MediaType.parse("application/json; charset=utf-8");
     private static final String AUTO = "auto_";
-//    private static final String ROOT_URL = "http://117.107.241.79:7780";
-    @Inject
+    @Autowired
     ComponentInstanceService ciService;
-    @Inject
+    @Autowired
     ComponentInstanceRelationService cirService;
-    @Inject
+    @Autowired
     private ProgramService programService;
-    @Inject
+    @Autowired
     DSSUserTokenService dSSUserTokenService;
-    @Inject
+    @Autowired
     ExchangeSSOService exchangeSSOService;
 
     /**
@@ -1196,7 +1187,7 @@ public class DataSourceService extends BaseService {
     }
 
 //**********DAAS查询：ES、hive、hbase、json、csv*****************************************
-    @Inject
+    @Autowired
     DataQueryService dataQueryService;
 
     public Map<String, Object> queryDaas(DBQuery dbQuery) {

@@ -5,7 +5,7 @@ import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseDataSourceInfo;
 import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
-import com.datasphere.engine.manager.resource.provider.service.DataSourceService;
+import com.datasphere.engine.manager.resource.provider.service.UDSMService;
 
 import io.reactivex.Single;
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +27,7 @@ public class HbaseDatasourceController extends BaseController {
     public static final String BASE_PATH = "/datasource/hbase";
 
     @Autowired
-    DataSourceService dataSourceService;
+    UDSMService uDSMService;
 
     /**
      * test connection  hbase
@@ -37,7 +37,7 @@ public class HbaseDatasourceController extends BaseController {
 	@RequestMapping(value = BASE_PATH + "/testHBase", method = RequestMethod.POST) 
     public Single<Map<String,Object>> testHBase(@Body HbaseConnectionInfo hbaseConnectionInfo) {
         return Single.fromCallable(() -> {
-            int result = dataSourceService.testHBase(hbaseConnectionInfo);
+            int result = uDSMService.testHBase(hbaseConnectionInfo);
             if(result == 0){
                 return JsonWrapper.failureWrapper("测试失败");
             }
@@ -53,7 +53,7 @@ public class HbaseDatasourceController extends BaseController {
 	@RequestMapping(value = BASE_PATH + "/hBaseListTable", method = RequestMethod.POST) 
     public Object hBaseListTable(@Body HbaseConnectionInfo hbaseConnectionInfo){
         return Single.fromCallable(() -> {
-            List<DBTableInfodmp> dbTableInfodmps = dataSourceService.hBaseListTable(hbaseConnectionInfo);
+            List<DBTableInfodmp> dbTableInfodmps = uDSMService.hBaseListTable(hbaseConnectionInfo);
             if(dbTableInfodmps == null){
                 return JsonWrapper.failureWrapper("获取失败");
             }
@@ -69,7 +69,7 @@ public class HbaseDatasourceController extends BaseController {
 	@RequestMapping(value = BASE_PATH + "/queryHBaseTableData", method = RequestMethod.POST) 
     public Object queryHBaseTableData(@Body HbaseConnectionInfo hbaseConnectionInfo){
         return Single.fromCallable(() -> {
-            return JsonWrapper.successWrapper(dataSourceService.queryHBaseTableData(hbaseConnectionInfo));
+            return JsonWrapper.successWrapper(uDSMService.queryHBaseTableData(hbaseConnectionInfo));
         });
     }
 
@@ -86,7 +86,7 @@ public class HbaseDatasourceController extends BaseController {
             }
             String token = request.getParameters().get("token");
             if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
-            int result = dataSourceService.createHBase(hbaseDataSourceInfo,token);
+            int result = uDSMService.createHBase(hbaseDataSourceInfo,token);
             if (result == 0){
                 return JsonWrapper.failureWrapper("插入失败");
             }
@@ -109,7 +109,7 @@ public class HbaseDatasourceController extends BaseController {
             //TODO 查询数据库中有无数据源  验证名称是否重复
             String token = request.getParameters().get("token");
             if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
-            int rsult = dataSourceService.updateHBaseById(hbaseDataSourceInfo,token);
+            int rsult = uDSMService.updateHBaseById(hbaseDataSourceInfo,token);
             if(rsult == 0){
                 return JsonWrapper.failureWrapper("更新失败！");
             }

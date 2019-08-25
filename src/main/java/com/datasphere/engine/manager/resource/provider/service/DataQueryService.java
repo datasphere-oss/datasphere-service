@@ -2,10 +2,10 @@ package com.datasphere.engine.manager.resource.provider.service;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Service;
 
 import com.datasphere.core.common.BaseService;
 
-import javax.inject.Singleton;
 import java.io.UnsupportedEncodingException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Singleton
+@Service
 public class DataQueryService extends BaseService {
     private final static Log log = LogFactory.getLog(DataQueryService.class);
     /**
