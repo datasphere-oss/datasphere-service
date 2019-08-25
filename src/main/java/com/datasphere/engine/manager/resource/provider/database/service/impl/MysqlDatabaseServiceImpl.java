@@ -1,6 +1,7 @@
 package com.datasphere.engine.manager.resource.provider.database.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 
 import com.datasphere.engine.manager.resource.provider.database.dao.MySQLDao;
 import com.datasphere.engine.manager.resource.provider.database.exception.JSQLException;
@@ -11,7 +12,6 @@ import com.datasphere.engine.manager.resource.provider.database.service.DataSour
 import com.datasphere.engine.manager.resource.provider.database.util.DALTypeUtil;
 import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
 
-import javax.inject.Singleton;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-@Singleton
-public class MysqlDatabaseServiceImpl extends AbstractDatabaseService<MySQLDao> implements DataSourceDatabaseService {
+@Service
+public class MySQLDatabaseServiceImpl extends AbstractDatabaseService<MySQLDao> implements DataSourceDatabaseService {
 
 	public boolean tableExsit(DBQuery query) {
 		try {
