@@ -360,7 +360,7 @@ public class ApiResourceConfig extends WebMvcConfigurerAdapter {
     return builder;
   }
 
-  // TODO: 향후 Spring data rest 관련 설정 파일 분리
+  // TODO: 将Spring data rest相关配置文件分离
   @Bean
   public SpelAwareProxyProjectionFactory projectionFactory() {
     return new SpelAwareProxyProjectionFactory();
@@ -376,7 +376,7 @@ public class ApiResourceConfig extends WebMvcConfigurerAdapter {
         config.setBasePath(API_PREFIX);
         config.setMaxPageSize(5000);
 
-        // 리턴되는 결과 값내 ID 항목을 표시할 Entity 정보 기록
+        // 显示新旧ID项的Entity信息反馈记录
         config.exposeIdsFor(Workspace.class, WorkBook.class, DashBoard.class, Widget.class,
                             DataSource.class, Field.class, DataSourceAlias.class, IngestionHistory.class,
                             DataConnection.class,
@@ -393,8 +393,8 @@ public class ApiResourceConfig extends WebMvcConfigurerAdapter {
       }
 
       /**
-       *  Spring Data Rest 호출시 사용하는 ObjectMapper 설정 수행
-       *  기본설정은 RepositoryRestMvcConfiguration.basicObjectMapper() 참조
+       *  执行Spring Data Rest调用的ObjectMapper配置
+       *  repositoryrestmvcconfiguration设定基本basicobjectmapper(参照)。
        * @param objectMapper
        */
       @Override
