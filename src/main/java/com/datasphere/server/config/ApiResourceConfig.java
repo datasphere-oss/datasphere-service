@@ -360,7 +360,9 @@ public class ApiResourceConfig extends WebMvcConfigurerAdapter {
     return builder;
   }
 
-  // TODO: 将Spring data rest相关配置文件分离
+  /**
+   * 将Spring data rest相关配置文件分离
+   */
   @Bean
   public SpelAwareProxyProjectionFactory projectionFactory() {
     return new SpelAwareProxyProjectionFactory();
