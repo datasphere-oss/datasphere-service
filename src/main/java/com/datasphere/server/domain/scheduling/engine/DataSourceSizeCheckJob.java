@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.scheduling.engine;
+package com.datasphere.server.domain.scheduling.engine;
 
 import org.joda.time.DateTime;
 import org.quartz.DisallowConcurrentExecution;
@@ -31,11 +31,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.datasource.DataSourceSizeHistory;
-import app.metatron.discovery.domain.datasource.DataSourceSizeHistoryRepository;
-import app.metatron.discovery.domain.engine.DruidEngineMetaRepository;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.datasource.DataSourceSizeHistory;
+import com.datasphere.server.domain.datasource.DataSourceSizeHistoryRepository;
+import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
 
 /**
  * Created by kyungtaak on 2016. 6. 20..

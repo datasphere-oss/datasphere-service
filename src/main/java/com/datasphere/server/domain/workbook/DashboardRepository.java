@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook;
+package com.datasphere.server.domain.workbook;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +24,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSource;
 
 /**
  * Created by kyungtaak on 2016. 1. 26..

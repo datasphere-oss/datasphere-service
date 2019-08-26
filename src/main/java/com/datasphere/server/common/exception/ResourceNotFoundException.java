@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.exception;
+package com.datasphere.server.common.exception;
 
 import com.google.common.base.Preconditions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import static app.metatron.discovery.common.exception.GlobalErrorCodes.NOT_FOUND_CODE;
+import static com.datasphere.server.common.exception.GlobalErrorCodes.NOT_FOUND_CODE;
 
 /**
  * API 또는 Resource 가 존재하지 않을 경우 활용

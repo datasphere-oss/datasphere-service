@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.admin;
+package com.datasphere.server.domain.admin;
 
 import com.google.common.collect.Lists;
 
@@ -29,9 +29,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.user.User;
-import app.metatron.discovery.domain.user.role.Role;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.user.User;
+import com.datasphere.server.domain.user.role.Role;
 
 /**
  * Created by kyungtaak on 2017. 2. 2..

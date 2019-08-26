@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.accessor;
+package com.datasphere.server.domain.dataconnection.accessor;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -29,9 +29,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.extension.dataconnection.jdbc.accessor.AbstractJdbcDataAccessor;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.extension.dataconnection.jdbc.accessor.AbstractJdbcDataAccessor;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 
 import static java.util.stream.Collectors.toList;
 

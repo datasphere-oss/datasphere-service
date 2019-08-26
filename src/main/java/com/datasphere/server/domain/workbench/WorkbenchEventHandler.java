@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench;
+package com.datasphere.server.domain.workbench;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.core.annotation.HandleAfterCreate;
@@ -22,7 +22,7 @@ import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import app.metatron.discovery.domain.workspace.BookTreeService;
+import com.datasphere.server.domain.workspace.BookTreeService;
 
 @RepositoryEventHandler(Workbench.class)
 public class WorkbenchEventHandler {

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import com.google.common.collect.Maps;
 
@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
-import app.metatron.discovery.util.ProjectionUtils;
+import com.datasphere.server.util.ProjectionUtils;
 
 /**
  * Created by kyungtaak on 2016. 7. 22..

@@ -1,4 +1,4 @@
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 /**
  *

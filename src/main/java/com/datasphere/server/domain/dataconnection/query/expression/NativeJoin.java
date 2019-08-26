@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.query.expression;
+package com.datasphere.server.domain.dataconnection.query.expression;
 
 import com.google.common.base.Preconditions;
 
 import org.apache.commons.lang3.StringUtils;
 
-import app.metatron.discovery.domain.dataconnection.query.NativeCriteria;
+import com.datasphere.server.domain.dataconnection.query.NativeCriteria;
 
 public class NativeJoin implements NativeExp {
   /**

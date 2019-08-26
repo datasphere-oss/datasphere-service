@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook;
+package com.datasphere.server.domain.workbook;
 
 import com.querydsl.core.BooleanBuilder;
 
@@ -39,23 +39,23 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import app.metatron.discovery.common.exception.MetatronException;
-import app.metatron.discovery.domain.datasource.data.DataSourceValidator;
-import app.metatron.discovery.domain.datasource.data.SearchQueryRequest;
-import app.metatron.discovery.domain.datasource.data.result.ObjectResultFormat;
-import app.metatron.discovery.domain.engine.EngineQueryService;
-import app.metatron.discovery.domain.workbook.configurations.BoardConfiguration;
-import app.metatron.discovery.domain.workbook.configurations.Limit;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.MultiDataSource;
-import app.metatron.discovery.domain.workbook.widget.QWidget;
-import app.metatron.discovery.domain.workbook.widget.Widget;
-import app.metatron.discovery.domain.workbook.widget.WidgetRepository;
-import app.metatron.discovery.util.AuthUtils;
+import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.domain.datasource.data.DataSourceValidator;
+import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
+import com.datasphere.server.domain.datasource.data.result.ObjectResultFormat;
+import com.datasphere.server.domain.engine.EngineQueryService;
+import com.datasphere.server.domain.workbook.configurations.BoardConfiguration;
+import com.datasphere.server.domain.workbook.configurations.Limit;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.MultiDataSource;
+import com.datasphere.server.domain.workbook.widget.QWidget;
+import com.datasphere.server.domain.workbook.widget.Widget;
+import com.datasphere.server.domain.workbook.widget.WidgetRepository;
+import com.datasphere.server.util.AuthUtils;
 
 import java.util.ArrayList;
 
-import static app.metatron.discovery.config.ApiResourceConfig.REDIRECT_PATH_URL;
+import static com.datasphere.server.config.ApiResourceConfig.REDIRECT_PATH_URL;
 
 @RepositoryRestController
 public class DashBoardController {

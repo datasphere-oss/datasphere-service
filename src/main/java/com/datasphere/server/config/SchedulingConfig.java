@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.config;
+package com.datasphere.server.config;
 
 import org.quartz.spi.JobFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,16 +28,16 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 
-import app.metatron.discovery.common.scheduling.AutowiringSpringBeanJobFactory;
-import app.metatron.discovery.domain.scheduling.common.TemporaryCSVFileCleanJob;
-import app.metatron.discovery.domain.scheduling.engine.DataSourceCheckJob;
-import app.metatron.discovery.domain.scheduling.engine.DataSourceIngestionCheckJob;
-import app.metatron.discovery.domain.scheduling.engine.DataSourceSizeCheckJob;
-import app.metatron.discovery.domain.scheduling.engine.TemporaryCleanJob;
-import app.metatron.discovery.domain.scheduling.ingestion.IncrementalIngestionJob;
-import app.metatron.discovery.domain.scheduling.mdm.CalculatePopularityJob;
-import app.metatron.discovery.domain.scheduling.notebook.KillNotebookKernelJob;
-import app.metatron.discovery.domain.scheduling.workbench.TimeoutConnectionCloseJob;
+import com.datasphere.server.common.scheduling.AutowiringSpringBeanJobFactory;
+import com.datasphere.server.domain.scheduling.common.TemporaryCSVFileCleanJob;
+import com.datasphere.server.domain.scheduling.engine.DataSourceCheckJob;
+import com.datasphere.server.domain.scheduling.engine.DataSourceIngestionCheckJob;
+import com.datasphere.server.domain.scheduling.engine.DataSourceSizeCheckJob;
+import com.datasphere.server.domain.scheduling.engine.TemporaryCleanJob;
+import com.datasphere.server.domain.scheduling.ingestion.IncrementalIngestionJob;
+import com.datasphere.server.domain.scheduling.mdm.CalculatePopularityJob;
+import com.datasphere.server.domain.scheduling.notebook.KillNotebookKernelJob;
+import com.datasphere.server.domain.scheduling.workbench.TimeoutConnectionCloseJob;
 
 /**
  * Created by kyungtaak on 2016. 6. 21..

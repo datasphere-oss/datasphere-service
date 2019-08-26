@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench;
+package com.datasphere.server.domain.workbench;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,19 +31,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
-import app.metatron.discovery.domain.dataconnection.accessor.HiveDataAccessor;
-import app.metatron.discovery.domain.dataconnection.dialect.HiveDialect;
-import app.metatron.discovery.domain.workbench.dto.ImportFile;
-import app.metatron.discovery.domain.workbench.hive.WorkbenchHiveService;
-import app.metatron.discovery.domain.workbench.util.WorkbenchDataSource;
-import app.metatron.discovery.domain.workbench.util.WorkbenchDataSourceManager;
-import app.metatron.discovery.domain.workspace.Workspace;
-import app.metatron.discovery.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import app.metatron.discovery.util.HibernateUtils;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessor;
+import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
+import com.datasphere.server.domain.workbench.dto.ImportFile;
+import com.datasphere.server.domain.workbench.hive.WorkbenchHiveService;
+import com.datasphere.server.domain.workbench.util.WorkbenchDataSource;
+import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
+import com.datasphere.server.domain.workspace.Workspace;
+import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.util.HibernateUtils;
 
 @RepositoryRestController
 public class WorkbenchController {

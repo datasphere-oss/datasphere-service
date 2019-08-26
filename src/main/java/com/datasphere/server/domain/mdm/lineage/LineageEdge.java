@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.lineage;
+package com.datasphere.server.domain.mdm.lineage;
 
-import app.metatron.discovery.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.AbstractHistoryEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

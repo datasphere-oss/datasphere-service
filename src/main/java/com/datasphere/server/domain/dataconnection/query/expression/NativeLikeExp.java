@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.query.expression;
+package com.datasphere.server.domain.dataconnection.query.expression;
 
 public class NativeLikeExp implements NativeExp{
   private String columnName;

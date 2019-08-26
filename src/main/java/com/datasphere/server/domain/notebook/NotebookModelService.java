@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook;
+package com.datasphere.server.domain.notebook;
 
 import org.springframework.stereotype.Component;
 
-import app.metatron.discovery.domain.notebook.connector.JupyterBuilder;
+import com.datasphere.server.domain.notebook.connector.JupyterBuilder;
 
 /**
  * Created by james on 2017. 7. 16..

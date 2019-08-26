@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.virtualcolumns;
+package com.datasphere.server.query.druid.virtualcolumns;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.List;
 
-import app.metatron.discovery.query.druid.Filter;
+import com.datasphere.server.query.druid.Filter;
 
 /**
  * Created by hsp on 2016. 8. 9..

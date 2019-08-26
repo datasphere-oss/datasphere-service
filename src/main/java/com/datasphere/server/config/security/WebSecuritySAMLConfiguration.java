@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.config.security;
+package com.datasphere.server.config.security;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
@@ -90,10 +90,10 @@ import java.util.Timer;
 
 import javax.annotation.PreDestroy;
 
-import app.metatron.discovery.common.saml.CustomSecurityContextLogoutHandler;
-import app.metatron.discovery.common.saml.SAMLAuthenticationSuccessHandler;
-import app.metatron.discovery.common.saml.SAMLProperties;
-import app.metatron.discovery.common.saml.SAMLUserDetailsServiceImpl;
+import com.datasphere.server.common.saml.CustomSecurityContextLogoutHandler;
+import com.datasphere.server.common.saml.SAMLAuthenticationSuccessHandler;
+import com.datasphere.server.common.saml.SAMLProperties;
+import com.datasphere.server.common.saml.SAMLUserDetailsServiceImpl;
 
 public class WebSecuritySAMLConfiguration extends WebSecurityDefaultConfiguration {
 

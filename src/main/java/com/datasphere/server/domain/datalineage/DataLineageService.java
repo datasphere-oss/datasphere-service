@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datalineage;
+package com.datasphere.server.domain.datalineage;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -28,11 +28,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.util.ListUtils;
+import com.datasphere.server.util.ListUtils;
 
-import static app.metatron.discovery.domain.datalineage.DataLineageLink.Direction.BACKWARD;
-import static app.metatron.discovery.domain.datalineage.DataLineageLink.Direction.BOTH;
-import static app.metatron.discovery.domain.datalineage.DataLineageLink.Direction.FORWARD;
+import static com.datasphere.server.domain.datalineage.DataLineageLink.Direction.BACKWARD;
+import static com.datasphere.server.domain.datalineage.DataLineageLink.Direction.BOTH;
+import static com.datasphere.server.domain.datalineage.DataLineageLink.Direction.FORWARD;
 
 @Service
 public class DataLineageService {

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook;
+package com.datasphere.server.domain.workbook;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +21,7 @@ import org.springframework.data.rest.core.config.Projection;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.user.UserProfile;
+import com.datasphere.server.domain.user.UserProfile;
 
 /**
  * Created by kyungtaak on 2016. 11. 3..
@@ -69,14 +69,14 @@ public class WorkBookProjections {
 
     String getFolderId();
 
-    //@Value("#{T(app.metatron.discovery.util.ProjectionUtils).toListResource(@projectionFactory, T(app.metatron.discovery.domain.datasource.DataSourceProjections$ForSimpleViewProjection), @dashboardRepository.findAllDataSourceInDashboard(target.id))}")
-    @Value("#{T(app.metatron.discovery.util.ProjectionUtils).toListResource(@projectionFactory, T(app.metatron.discovery.domain.datasource.DataSourceProjections$ForSimpleViewProjection), @dashBoardService.backingDataSource(target))}")
+    //@Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.datasource.DataSourceProjections$ForSimpleViewProjection), @dashboardRepository.findAllDataSourceInDashboard(target.id))}")
+    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.datasource.DataSourceProjections$ForSimpleViewProjection), @dashBoardService.backingDataSource(target))}")
     Object getDataSource();
 
-    @Value("#{T(app.metatron.discovery.util.ProjectionUtils).toListResource(@projectionFactory, T(app.metatron.discovery.domain.workbook.DashboardProjections$ForLeftListViewProjection), target.dashBoards)}")
+    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.workbook.DashboardProjections$ForLeftListViewProjection), target.dashBoards)}")
     Object getDashBoards();
 
-    @Value("#{@commentRepository.countByDomainTypeAndDomainId(T(app.metatron.discovery.common.entity.DomainType).WORKBOOK, target.id)}")
+    @Value("#{@commentRepository.countByDomainTypeAndDomainId(T(com.datasphere.server.common.entity.DomainType).WORKBOOK, target.id)}")
     Long getCountOfComments();
 
     DateTime getCreatedTime();
@@ -108,7 +108,7 @@ public class WorkBookProjections {
     @Value("#{@bookTreeService.findBookHierarchies(target.id)}")
     List<Map<String, String>> getHierarchies();
 
-    @Value("#{T(app.metatron.discovery.util.ProjectionUtils).toListResource(@projectionFactory, T(app.metatron.discovery.domain.workbook.DashboardProjections$ForLeftListViewProjection), target.dashBoards)}")
+    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.workbook.DashboardProjections$ForLeftListViewProjection), target.dashBoards)}")
     Object getDashBoards();
 
   }

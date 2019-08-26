@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.searches;
+package com.datasphere.server.query.druid.searches;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.query.druid.SearchQuerySpec;
+import com.datasphere.server.query.druid.SearchQuerySpec;
 
 @JsonTypeName("insensitive_contains")
 public class InsensitiveContainsSearchQuerySpec implements SearchQuerySpec {

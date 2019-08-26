@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion.job;
+package com.datasphere.server.domain.datasource.ingestion.job;
 
 import com.google.common.collect.Maps;
 
@@ -39,48 +39,48 @@ import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.ProgressResponse;
-import app.metatron.discovery.common.fileloader.FileLoaderFactory;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceErrorCodes;
-import app.metatron.discovery.domain.datasource.DataSourceIngestionException;
-import app.metatron.discovery.domain.datasource.DataSourceService;
-import app.metatron.discovery.domain.datasource.DataSourceSummary;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcConnectionService;
-import app.metatron.discovery.domain.datasource.ingestion.HdfsIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.HiveIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistory;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistoryRepository;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionOptionService;
-import app.metatron.discovery.domain.datasource.ingestion.LocalFileIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
-import app.metatron.discovery.domain.engine.DruidEngineMetaRepository;
-import app.metatron.discovery.domain.engine.DruidEngineRepository;
-import app.metatron.discovery.domain.engine.EngineIngestionService;
-import app.metatron.discovery.domain.engine.EngineProperties;
-import app.metatron.discovery.domain.engine.EngineQueryService;
-import app.metatron.discovery.domain.engine.model.IngestionStatusResponse;
-import app.metatron.discovery.domain.engine.model.SegmentMetaDataResponse;
-import app.metatron.discovery.domain.mdm.MetadataService;
-import app.metatron.discovery.domain.storage.StorageProperties;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.ProgressResponse;
+import com.datasphere.server.common.fileloader.FileLoaderFactory;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceErrorCodes;
+import com.datasphere.server.domain.datasource.DataSourceIngestionException;
+import com.datasphere.server.domain.datasource.DataSourceService;
+import com.datasphere.server.domain.datasource.DataSourceSummary;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.domain.datasource.ingestion.HdfsIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.HiveIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.IngestionOptionService;
+import com.datasphere.server.domain.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
+import com.datasphere.server.domain.engine.DruidEngineRepository;
+import com.datasphere.server.domain.engine.EngineIngestionService;
+import com.datasphere.server.domain.engine.EngineProperties;
+import com.datasphere.server.domain.engine.EngineQueryService;
+import com.datasphere.server.domain.engine.model.IngestionStatusResponse;
+import com.datasphere.server.domain.engine.model.SegmentMetaDataResponse;
+import com.datasphere.server.domain.mdm.MetadataService;
+import com.datasphere.server.domain.storage.StorageProperties;
+import com.datasphere.server.util.PolarisUtils;
 
-import static app.metatron.discovery.domain.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
-import static app.metatron.discovery.domain.datasource.DataSourceErrorCodes.INGESTION_ENGINE_REGISTRATION_ERROR;
-import static app.metatron.discovery.domain.datasource.DataSourceErrorCodes.INGESTION_ENGINE_TASK_ERROR;
-import static app.metatron.discovery.domain.datasource.ingestion.IngestionHistory.IngestionStatus.FAILED;
-import static app.metatron.discovery.domain.datasource.ingestion.IngestionHistory.IngestionStatus.SUCCESS;
-import static app.metatron.discovery.domain.datasource.ingestion.job.IngestionProgress.END_INGESTION_JOB;
-import static app.metatron.discovery.domain.datasource.ingestion.job.IngestionProgress.ENGINE_INIT_TASK;
-import static app.metatron.discovery.domain.datasource.ingestion.job.IngestionProgress.ENGINE_REGISTER_DATASOURCE;
-import static app.metatron.discovery.domain.datasource.ingestion.job.IngestionProgress.ENGINE_RUNNING_TASK;
-import static app.metatron.discovery.domain.datasource.ingestion.job.IngestionProgress.FAIL_INGESTION_JOB;
-import static app.metatron.discovery.domain.datasource.ingestion.job.IngestionProgress.PREPARATION_HANDLE_LOCAL_FILE;
-import static app.metatron.discovery.domain.datasource.ingestion.job.IngestionProgress.PREPARATION_LOAD_FILE_TO_ENGINE;
-import static app.metatron.discovery.domain.datasource.ingestion.job.IngestionProgress.START_INGESTION_JOB;
+import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
+import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_ENGINE_REGISTRATION_ERROR;
+import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_ENGINE_TASK_ERROR;
+import static com.datasphere.server.domain.datasource.ingestion.IngestionHistory.IngestionStatus.FAILED;
+import static com.datasphere.server.domain.datasource.ingestion.IngestionHistory.IngestionStatus.SUCCESS;
+import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.END_INGESTION_JOB;
+import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.ENGINE_INIT_TASK;
+import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.ENGINE_REGISTER_DATASOURCE;
+import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.ENGINE_RUNNING_TASK;
+import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.FAIL_INGESTION_JOB;
+import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.PREPARATION_HANDLE_LOCAL_FILE;
+import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.PREPARATION_LOAD_FILE_TO_ENGINE;
+import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.START_INGESTION_JOB;
 
 @Component
 public class IngestionJobRunner {

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.polaris;
+package com.datasphere.server.query.polaris;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -34,22 +34,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.datasource.data.InvalidExpressionException;
-import app.metatron.discovery.query.druid.Aggregation;
-import app.metatron.discovery.query.druid.PostAggregation;
-import app.metatron.discovery.query.druid.aggregations.CardinalityAggregation;
-import app.metatron.discovery.query.druid.aggregations.CountAggregation;
-import app.metatron.discovery.query.druid.aggregations.DistinctSketchAggregation;
-import app.metatron.discovery.query.druid.aggregations.GenericMaxAggregation;
-import app.metatron.discovery.query.druid.aggregations.GenericMinAggregation;
-import app.metatron.discovery.query.druid.aggregations.GenericSumAggregation;
-import app.metatron.discovery.query.druid.aggregations.VarianceAggregation;
-import app.metatron.discovery.query.druid.limits.WindowingSpec;
-import app.metatron.discovery.query.druid.postaggregations.MathPostAggregator;
-import app.metatron.discovery.query.polaris.ExprParser.FunctionExprContext;
+import com.datasphere.server.domain.datasource.data.InvalidExpressionException;
+import com.datasphere.server.query.druid.Aggregation;
+import com.datasphere.server.query.druid.PostAggregation;
+import com.datasphere.server.query.druid.aggregations.CardinalityAggregation;
+import com.datasphere.server.query.druid.aggregations.CountAggregation;
+import com.datasphere.server.query.druid.aggregations.DistinctSketchAggregation;
+import com.datasphere.server.query.druid.aggregations.GenericMaxAggregation;
+import com.datasphere.server.query.druid.aggregations.GenericMinAggregation;
+import com.datasphere.server.query.druid.aggregations.GenericSumAggregation;
+import com.datasphere.server.query.druid.aggregations.VarianceAggregation;
+import com.datasphere.server.query.druid.limits.WindowingSpec;
+import com.datasphere.server.query.druid.postaggregations.MathPostAggregator;
+import com.datasphere.server.query.polaris.ExprParser.FunctionExprContext;
 
-import static app.metatron.discovery.query.polaris.ExprParser.IDENTIFIER;
-import static app.metatron.discovery.query.polaris.ExprParser.IdentifierExprContext;
+import static com.datasphere.server.query.polaris.ExprParser.IDENTIFIER;
+import static com.datasphere.server.query.polaris.ExprParser.IdentifierExprContext;
 
 /**
  * Created by hsp on 2016. 4. 22..
@@ -403,9 +403,9 @@ public class ComputationalField {
   public static CheckType checkComputationalField(String computationalField) {
 
     List<String> aggregationFunctions = new ArrayList<String>();
-    app.metatron.discovery.query.polaris.ExprLexer lexer = new app.metatron.discovery.query.polaris.ExprLexer(new ANTLRInputStream(computationalField));
+    com.datasphere.server.query.polaris.ExprLexer lexer = new com.datasphere.server.query.polaris.ExprLexer(new ANTLRInputStream(computationalField));
     CommonTokenStream tokens = new CommonTokenStream(lexer);
-    app.metatron.discovery.query.polaris.ExprParser parser = new app.metatron.discovery.query.polaris.ExprParser(tokens);
+    com.datasphere.server.query.polaris.ExprParser parser = new com.datasphere.server.query.polaris.ExprParser(tokens);
     ParseTree tree = parser.expr();
 
     StringBuilder errorInfo = new StringBuilder();
@@ -447,9 +447,9 @@ public class ComputationalField {
 
   public static ParseTree getParseTree( String expression ){
 
-    app.metatron.discovery.query.polaris.ExprLexer lexer = new app.metatron.discovery.query.polaris.ExprLexer(new ANTLRInputStream(expression));
+    com.datasphere.server.query.polaris.ExprLexer lexer = new com.datasphere.server.query.polaris.ExprLexer(new ANTLRInputStream(expression));
     CommonTokenStream tokens = new CommonTokenStream(lexer);
-    app.metatron.discovery.query.polaris.ExprParser parser = new app.metatron.discovery.query.polaris.ExprParser(tokens);
+    com.datasphere.server.query.polaris.ExprParser parser = new com.datasphere.server.query.polaris.ExprParser(tokens);
     ParseTree tree = parser.expr();
 
     return tree;
@@ -506,9 +506,9 @@ public class ComputationalField {
 //  public static boolean makeAggregationFunctions(String fieldName, String computationalField, List<Aggregation> aggregations, List<PostAggregation> postAggregations) {
 //
 //    List<FunctionExprContext> aggregationFunctions = new ArrayList<FunctionExprContext>();
-//    app.metatron.discovery.query.polaris.ExprLexer lexer = new app.metatron.discovery.query.polaris.ExprLexer(new ANTLRInputStream(computationalField));
+//    com.datasphere.server.query.polaris.ExprLexer lexer = new com.datasphere.server.query.polaris.ExprLexer(new ANTLRInputStream(computationalField));
 //    CommonTokenStream tokens = new CommonTokenStream(lexer);
-//    app.metatron.discovery.query.polaris.ExprParser parser = new app.metatron.discovery.query.polaris.ExprParser(tokens);
+//    com.datasphere.server.query.polaris.ExprParser parser = new com.datasphere.server.query.polaris.ExprParser(tokens);
 //    ParseTree tree = parser.expr();
 //
 //    getAggregations(tree, aggregationFunctions);
@@ -786,9 +786,9 @@ public class ComputationalField {
 
         String curComputationalField = mapField.get(curFieldName);
 
-        app.metatron.discovery.query.polaris.ExprLexer lexer = new app.metatron.discovery.query.polaris.ExprLexer(new ANTLRInputStream(curComputationalField));
+        com.datasphere.server.query.polaris.ExprLexer lexer = new com.datasphere.server.query.polaris.ExprLexer(new ANTLRInputStream(curComputationalField));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        app.metatron.discovery.query.polaris.ExprParser parser = new app.metatron.discovery.query.polaris.ExprParser(tokens);
+        com.datasphere.server.query.polaris.ExprParser parser = new com.datasphere.server.query.polaris.ExprParser(tokens);
         ParseTree tree = parser.expr();
 
         getAllFieldNames(tree, newFieldNames);
@@ -810,7 +810,7 @@ public class ComputationalField {
 
   private static int getAllFieldNames(ParseTree node, List<String> newFieldNames) {
 
-    if (node instanceof app.metatron.discovery.query.polaris.ExprParser.IdfieldContext) {
+    if (node instanceof com.datasphere.server.query.polaris.ExprParser.IdfieldContext) {
 
 //      TerminalNode terminalNode = new TerminalNodeImpl( new CommonToken( IDENTIFIER, "test"));
 //      ((IdentifierExprContext) node).removeLastChild();

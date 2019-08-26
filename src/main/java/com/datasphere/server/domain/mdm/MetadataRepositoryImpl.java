@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import com.google.common.collect.Lists;
 
@@ -31,8 +31,8 @@ import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport
 
 import java.util.List;
 
-import app.metatron.discovery.domain.mdm.source.QMetadataSource;
-import app.metatron.discovery.domain.tag.QTagDomain;
+import com.datasphere.server.domain.mdm.source.QMetadataSource;
+import com.datasphere.server.domain.tag.QTagDomain;
 
 public class MetadataRepositoryImpl extends QueryDslRepositorySupport implements MetadataRepositoryExtends {
 

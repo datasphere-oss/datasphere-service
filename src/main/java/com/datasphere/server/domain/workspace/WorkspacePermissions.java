@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -20,10 +20,10 @@ import com.google.common.collect.Sets;
 import java.util.List;
 import java.util.Set;
 
-import app.metatron.discovery.domain.notebook.Notebook;
-import app.metatron.discovery.domain.workbench.Workbench;
-import app.metatron.discovery.domain.workbook.WorkBook;
-import app.metatron.discovery.domain.workspace.folder.Folder;
+import com.datasphere.server.domain.notebook.Notebook;
+import com.datasphere.server.domain.workbench.Workbench;
+import com.datasphere.server.domain.workbook.WorkBook;
+import com.datasphere.server.domain.workspace.folder.Folder;
 
 public class WorkspacePermissions {
 

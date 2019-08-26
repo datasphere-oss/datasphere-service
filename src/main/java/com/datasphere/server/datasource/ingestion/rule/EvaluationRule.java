@@ -1,6 +1,6 @@
-package app.metatron.discovery.domain.datasource.ingestion.rule;
+package com.datasphere.server.domain.datasource.ingestion.rule;
 
-import app.metatron.discovery.spec.druid.ingestion.Evaluation;
+import com.datasphere.server.spec.druid.ingestion.Evaluation;
 
 public abstract class EvaluationRule {
 

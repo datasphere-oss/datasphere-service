@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import org.joda.time.DateTime;
 import org.springframework.data.domain.Page;

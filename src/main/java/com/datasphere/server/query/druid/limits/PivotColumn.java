@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.limits;
+package com.datasphere.server.query.druid.limits;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import app.metatron.discovery.domain.workbook.configurations.field.DimensionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.TimestampField;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.query.druid.funtions.TimeFormatFunc;
+import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.TimestampField;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.query.druid.funtions.TimeFormatFunc;
 
 public class PivotColumn {
 

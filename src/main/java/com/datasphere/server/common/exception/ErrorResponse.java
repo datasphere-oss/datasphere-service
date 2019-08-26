@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.exception;
+package com.datasphere.server.common.exception;
 
 import com.google.common.base.Preconditions;
 

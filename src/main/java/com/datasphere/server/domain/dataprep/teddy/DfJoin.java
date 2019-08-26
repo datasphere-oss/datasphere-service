@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy;
+package com.datasphere.server.domain.dataprep.teddy;
 
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.InvalidJoinTypeException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.JoinTypeNotSupportedException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.LeftPredicateNotFoundException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.PredicateTypeMismatchException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.RightPredicateNotFoundException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.TeddyException;
-import app.metatron.discovery.prep.parser.preparation.rule.Join;
-import app.metatron.discovery.prep.parser.preparation.rule.Join.JOIN_TYPE;
-import app.metatron.discovery.prep.parser.preparation.rule.Rule;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Expr;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Expression;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Identifier;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.InvalidJoinTypeException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.JoinTypeNotSupportedException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.LeftPredicateNotFoundException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.PredicateTypeMismatchException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.RightPredicateNotFoundException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.TeddyException;
+import com.datasphere.server.prep.parser.preparation.rule.Join;
+import com.datasphere.server.prep.parser.preparation.rule.Join.JOIN_TYPE;
+import com.datasphere.server.prep.parser.preparation.rule.Rule;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Expr;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Expression;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Identifier;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;

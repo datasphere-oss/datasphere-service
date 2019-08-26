@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.field;
+package com.datasphere.server.domain.workbook.configurations.field;
 
 /**
  * Created by kyungtaak on 2016. 4. 20..

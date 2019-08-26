@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.filters;
+package com.datasphere.server.query.druid.filters;
 
 import com.google.common.base.Preconditions;
 
-import app.metatron.discovery.domain.workbook.configurations.filter.SpatialBboxFilter;
-import app.metatron.discovery.domain.workbook.configurations.filter.SpatialPointFilter;
-import app.metatron.discovery.query.druid.Filter;
+import com.datasphere.server.domain.workbook.configurations.filter.SpatialBboxFilter;
+import com.datasphere.server.domain.workbook.configurations.filter.SpatialPointFilter;
+import com.datasphere.server.query.druid.Filter;
 
 public class LucenePointFilter implements Filter {
 

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.connection.jdbc;
+package com.datasphere.server.domain.datasource.connection.jdbc;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -33,10 +33,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 
 public class JdbcCSVWriter extends CsvResultSetWriter implements ICsvResultSetWriter {
 

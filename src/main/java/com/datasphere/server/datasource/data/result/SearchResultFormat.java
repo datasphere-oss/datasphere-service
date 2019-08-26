@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data.result;
+package com.datasphere.server.domain.datasource.data.result;
 
 import com.google.common.collect.Lists;
 
@@ -31,13 +31,13 @@ import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.QueryHistoryTeller;
-import app.metatron.discovery.domain.datasource.data.QueryTimeExcetpion;
-import app.metatron.discovery.domain.datasource.data.SearchQueryRequest;
-import app.metatron.discovery.domain.engine.EngineProperties;
-import app.metatron.discovery.domain.engine.EngineQueryProperties;
-import app.metatron.discovery.util.SshUtils;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.QueryHistoryTeller;
+import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
+import com.datasphere.server.domain.engine.EngineProperties;
+import com.datasphere.server.domain.engine.EngineQueryProperties;
+import com.datasphere.server.util.SshUtils;
 
 /**
  *

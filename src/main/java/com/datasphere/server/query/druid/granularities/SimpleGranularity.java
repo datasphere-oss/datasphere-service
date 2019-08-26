@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.granularities;
+package com.datasphere.server.query.druid.granularities;
 
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.query.druid.Granularity;
+import com.datasphere.server.query.druid.Granularity;
 
 @JsonTypeName("simple")
 public class SimpleGranularity implements Granularity {

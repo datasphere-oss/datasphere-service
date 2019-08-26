@@ -1,11 +1,11 @@
-package app.metatron.discovery.domain.dataprep.json;
+package com.datasphere.server.domain.dataprep.json;
 
-import static app.metatron.discovery.domain.dataprep.PrepProperties.HADOOP_CONF_DIR;
+import static com.datasphere.server.domain.dataprep.PrepProperties.HADOOP_CONF_DIR;
 
-import app.metatron.discovery.domain.dataprep.PrepUtil;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepErrorCodes;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepException;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepMessageKey;
+import com.datasphere.server.domain.dataprep.PrepUtil;
+import com.datasphere.server.domain.dataprep.exceptions.PrepErrorCodes;
+import com.datasphere.server.domain.dataprep.exceptions.PrepException;
+import com.datasphere.server.domain.dataprep.exceptions.PrepMessageKey;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

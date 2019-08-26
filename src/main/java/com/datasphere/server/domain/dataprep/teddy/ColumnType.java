@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy;
+package com.datasphere.server.domain.dataprep.teddy;
 
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.UnknownTypeException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.UnknownTypeException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Date;

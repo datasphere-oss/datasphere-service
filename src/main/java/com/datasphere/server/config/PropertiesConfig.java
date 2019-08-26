@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.config;
+package com.datasphere.server.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -23,7 +23,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import app.metatron.discovery.domain.CollectionPatch;
+import com.datasphere.server.domain.CollectionPatch;
 
 @Entity
 @Table(name = "mdm_code_value_pair")

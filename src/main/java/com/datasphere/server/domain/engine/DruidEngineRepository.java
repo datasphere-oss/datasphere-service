@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine;
+package com.datasphere.server.domain.engine;
 
 import com.google.common.collect.Maps;
 
@@ -32,13 +32,13 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
-import app.metatron.discovery.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
 
-import static app.metatron.discovery.domain.engine.EngineProperties.BULK_LOAD;
-import static app.metatron.discovery.domain.engine.EngineProperties.GET_DATASOURCE_LIST;
-import static app.metatron.discovery.domain.engine.EngineProperties.INGESTION_DATASOUCE;
-import static app.metatron.discovery.domain.engine.EngineProperties.SEARCH_QUERY;
-import static app.metatron.discovery.domain.engine.EngineProperties.SUPERVISOR_INGESTION;
+import static com.datasphere.server.domain.engine.EngineProperties.BULK_LOAD;
+import static com.datasphere.server.domain.engine.EngineProperties.GET_DATASOURCE_LIST;
+import static com.datasphere.server.domain.engine.EngineProperties.INGESTION_DATASOUCE;
+import static com.datasphere.server.domain.engine.EngineProperties.SEARCH_QUERY;
+import static com.datasphere.server.domain.engine.EngineProperties.SUPERVISOR_INGESTION;
 
 /**
  * Created by kyungtaak on 2016. 8. 22..

@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.context;
+package com.datasphere.server.domain.context;
 
 import org.springframework.data.rest.core.config.Projection;
 
-import app.metatron.discovery.common.entity.DomainType;
+import com.datasphere.server.common.entity.DomainType;
 
 /**
  * Created by kyungtaak on 2017. 1. 18..

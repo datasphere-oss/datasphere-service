@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.field;
+package com.datasphere.server.domain.workbook.configurations.field;
 
 import com.google.common.base.Preconditions;
 
@@ -29,7 +29,7 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
 /**
  * 차원값들의 그룹 필드 (Custom Field)

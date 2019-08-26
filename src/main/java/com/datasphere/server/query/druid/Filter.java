@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid;
+package com.datasphere.server.query.druid;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import app.metatron.discovery.query.druid.filters.*;
+import com.datasphere.server.query.druid.filters.*;
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include= JsonTypeInfo.As.EXTERNAL_PROPERTY, property="type")
 @JsonSubTypes({

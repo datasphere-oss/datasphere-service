@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.activities;
+package com.datasphere.server.domain.activities;
 
 import org.joda.time.DateTime;
 
 import java.util.Map;
 
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 
 /**
  *

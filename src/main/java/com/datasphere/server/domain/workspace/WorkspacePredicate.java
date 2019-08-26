@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import com.google.common.collect.Lists;
 
@@ -27,8 +27,8 @@ import org.joda.time.DateTime;
 
 import java.util.List;
 
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.domain.user.role.RoleSet;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.domain.user.role.RoleSet;
 
 public class WorkspacePredicate {
 

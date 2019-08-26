@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.config;
+package com.datasphere.server.config;
 
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler;
 
-import app.metatron.discovery.common.oauth.BasePermissionEvaluator;
+import com.datasphere.server.common.oauth.BasePermissionEvaluator;
 
 /**
  * Pre/PostAuthorize Annotation 지원용도 설정

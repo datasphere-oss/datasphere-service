@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.context;
+package com.datasphere.server.domain.context;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -26,7 +26,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import app.metatron.discovery.common.entity.DomainType;
+import com.datasphere.server.common.entity.DomainType;
 
 @Entity
 @Table(name = "context")

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import com.google.common.collect.Lists;
 
@@ -31,9 +31,9 @@ import java.util.Map;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.workspace.folder.Folder;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.workspace.folder.Folder;
 
 /**
  * Created by kyungtaak on 2016. 12. 20..

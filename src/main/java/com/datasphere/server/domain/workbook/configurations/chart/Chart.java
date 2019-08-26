@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.chart;
+package com.datasphere.server.domain.workbook.configurations.chart;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -20,9 +20,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.io.Serializable;
 import java.util.List;
 
-import app.metatron.discovery.domain.workbook.configurations.chart.properties.FontSize;
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.domain.workbook.configurations.chart.properties.FontSize;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.util.EnumUtils;
 
 /**
  * Chart 스타일 정의 (색상, 크기는 공통 정의)

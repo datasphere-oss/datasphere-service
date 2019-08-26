@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.scheduling.engine;
+package com.datasphere.server.domain.scheduling.engine;
 
 /**
  * Created by kyungtaak on 2016. 6. 21..

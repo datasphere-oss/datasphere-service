@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,8 +20,8 @@ import org.springframework.data.rest.core.config.Projection;
 
 import java.util.List;
 
-import app.metatron.discovery.common.BaseProjections;
-import app.metatron.discovery.domain.user.UserProfile;
+import com.datasphere.server.common.BaseProjections;
+import com.datasphere.server.domain.user.UserProfile;
 
 public class MetadataProjections extends BaseProjections {
 
@@ -49,7 +49,7 @@ public class MetadataProjections extends BaseProjections {
     @Value("#{@metadataPopularityService.getPopularityValue(target.id)}")
     Double getPopularity();
 
-    @Value("#{@tagService.findByTagsInDomainItem(T(app.metatron.discovery.domain.tag.Tag$Scope).DOMAIN, T(app.metatron.discovery.common.entity.DomainType).METADATA, target.id, 'default')}")
+    @Value("#{@tagService.findByTagsInDomainItem(T(com.datasphere.server.domain.tag.Tag$Scope).DOMAIN, T(com.datasphere.server.common.entity.DomainType).METADATA, target.id, 'default')}")
     Object getTags();
 
     @Value("#{@cachedUserService.findUserProfile(target.createdBy)}")
@@ -79,13 +79,13 @@ public class MetadataProjections extends BaseProjections {
     @Value("#{@metadataPopularityService.getPopularityValue(target.id)}")
     Double getPopularity();
 
-    @Value("#{T(app.metatron.discovery.util.ProjectionUtils).toResource(@projectionFactory, T(app.metatron.discovery.domain.mdm.source.MetadataSourceProjections$ForDetailViewProjection), target.source)}")
+    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toResource(@projectionFactory, T(com.datasphere.server.domain.mdm.source.MetadataSourceProjections$ForDetailViewProjection), target.source)}")
     Object getSource();
 
-    @Value("#{T(app.metatron.discovery.util.ProjectionUtils).toListResource(@projectionFactory, T(app.metatron.discovery.domain.mdm.catalog.CatalogProjections$HierarchyViewProjection), target.catalogs)}")
+    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.mdm.catalog.CatalogProjections$HierarchyViewProjection), target.catalogs)}")
     Object getCatalogs();
 
-    @Value("#{@tagService.findByTagsInDomainItem(T(app.metatron.discovery.domain.tag.Tag$Scope).DOMAIN, T(app.metatron.discovery.common.entity.DomainType).METADATA, target.id, 'default')}")
+    @Value("#{@tagService.findByTagsInDomainItem(T(com.datasphere.server.domain.tag.Tag$Scope).DOMAIN, T(com.datasphere.server.common.entity.DomainType).METADATA, target.id, 'default')}")
     Object getTags();
 
     @Value("#{@cachedUserService.findUserProfile(target.createdBy)}")
@@ -137,7 +137,7 @@ public class MetadataProjections extends BaseProjections {
     @Value("#{target.source.table}")
     String getTable();
 
-    @Value("#{T(app.metatron.discovery.util.ProjectionUtils).toListResource(@projectionFactory, T(app.metatron.discovery.domain.mdm.MetadataColumnProjections$ForListViewProjection), target.columns)}")
+    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.mdm.MetadataColumnProjections$ForListViewProjection), target.columns)}")
     Object getColumns();
   }
 

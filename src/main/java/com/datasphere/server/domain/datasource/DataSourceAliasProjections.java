@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
-import app.metatron.discovery.domain.user.UserProfile;
+import com.datasphere.server.domain.user.UserProfile;
 
 /**
  *

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.fileloader;
+package com.datasphere.server.common.fileloader;
 
 import com.google.common.collect.Lists;
 
@@ -26,8 +26,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.engine.EngineProperties;
-import app.metatron.discovery.util.SshUtils;
+import com.datasphere.server.domain.engine.EngineProperties;
+import com.datasphere.server.util.SshUtils;
 
 import static java.util.stream.Collectors.toList;
 

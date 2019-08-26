@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.exception;
+package com.datasphere.server.common.exception;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -37,11 +37,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.io.IOException;
 
-import app.metatron.discovery.common.CommonLocalVariable;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepException;
-import app.metatron.discovery.domain.engine.DruidEngineMetaRepository;
+import com.datasphere.server.common.CommonLocalVariable;
+import com.datasphere.server.domain.dataprep.exceptions.PrepException;
+import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
 
-@RestControllerAdvice(basePackages = {"app.metatron.discovery", "org.springframework.security"})
+@RestControllerAdvice(basePackages = {"com.datasphere.server", "org.springframework.security"})
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
@@ -126,12 +126,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(value = {AccessDeniedException.class})
   protected ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {
-    return handleMetatronException(new app.metatron.discovery.common.exception.AccessDeniedException(ex), request);
+    return handleMetatronException(new com.datasphere.server.common.exception.AccessDeniedException(ex), request);
   }
 
   @ExceptionHandler(value = {InvalidTokenException.class})
   protected ResponseEntity<Object> handleInvalidTokenException(InvalidTokenException ex, WebRequest request) {
-    return handleMetatronException(new app.metatron.discovery.common.exception.InvalidTokenException(ex), request);
+    return handleMetatronException(new com.datasphere.server.common.exception.InvalidTokenException(ex), request);
   }
 
   @ExceptionHandler(value = {InvalidGrantException.class})

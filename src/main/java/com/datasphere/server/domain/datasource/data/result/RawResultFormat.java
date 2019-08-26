@@ -1,11 +1,11 @@
-package app.metatron.discovery.domain.datasource.data.result;
+package com.datasphere.server.domain.datasource.data.result;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import app.metatron.discovery.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSource;
 
 public class RawResultFormat extends SearchResultFormat {
 

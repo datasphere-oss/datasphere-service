@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.repository;
+package com.datasphere.server.domain.dataprep.repository;
 
-import app.metatron.discovery.domain.dataprep.entity.PrDataset;
+import com.datasphere.server.domain.dataprep.entity.PrDataset;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.hibernate.Hibernate;

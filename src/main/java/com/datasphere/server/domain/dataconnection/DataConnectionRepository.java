@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection;
+package com.datasphere.server.domain.dataconnection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,7 +24,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import java.util.List;
 import java.util.Set;
 
-import app.metatron.discovery.domain.workspace.Workspace;
+import com.datasphere.server.domain.workspace.Workspace;
 
 /**
  * DataConnectionRepository

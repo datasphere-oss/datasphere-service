@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -27,23 +27,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
-import app.metatron.discovery.domain.dataconnection.accessor.HiveDataAccessor;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceService;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.connection.jdbc.HiveTableInformation;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcConnectionService;
-import app.metatron.discovery.domain.engine.EngineProperties;
-import app.metatron.discovery.domain.mdm.source.MetaSourceService;
-import app.metatron.discovery.domain.mdm.source.MetadataSource;
-import app.metatron.discovery.domain.storage.StorageProperties;
-import app.metatron.discovery.extension.dataconnection.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessor;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceService;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.connection.jdbc.HiveTableInformation;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.domain.engine.EngineProperties;
+import com.datasphere.server.domain.mdm.source.MetaSourceService;
+import com.datasphere.server.domain.mdm.source.MetadataSource;
+import com.datasphere.server.domain.storage.StorageProperties;
+import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
 
 /**
  * Created by kyungtaak on 2016. 5. 13..

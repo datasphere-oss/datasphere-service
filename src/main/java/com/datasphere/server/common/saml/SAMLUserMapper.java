@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.saml;
+package com.datasphere.server.common.saml;
 
 import org.opensaml.saml2.core.Attribute;
 import org.springframework.security.saml.SAMLCredential;
 
 import java.util.Optional;
 
-import app.metatron.discovery.domain.user.User;
+import com.datasphere.server.domain.user.User;
 
 public abstract class SAMLUserMapper {
   public abstract User createUser(SAMLCredential credential);

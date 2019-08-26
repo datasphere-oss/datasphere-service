@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion;
+package com.datasphere.server.domain.datasource.ingestion;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -20,10 +20,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.datasource.ingestion.file.FileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.LinkIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.SingleIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.file.FileFormat;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.LinkIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.SingleIngestionInfo;
 
 /**
  * Created by kyungtaak on 2016. 7. 15..

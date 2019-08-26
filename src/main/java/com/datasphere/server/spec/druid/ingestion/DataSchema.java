@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion;
+package com.datasphere.server.spec.druid.ingestion;
 
 import com.google.common.collect.Lists;
 
@@ -20,9 +20,9 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.query.druid.Aggregation;
-import app.metatron.discovery.spec.druid.ingestion.granularity.GranularitySpec;
-import app.metatron.discovery.spec.druid.ingestion.parser.Parser;
+import com.datasphere.server.query.druid.Aggregation;
+import com.datasphere.server.spec.druid.ingestion.granularity.GranularitySpec;
+import com.datasphere.server.spec.druid.ingestion.parser.Parser;
 
 /**
  * Created by kyungtaak on 2016. 6. 17..

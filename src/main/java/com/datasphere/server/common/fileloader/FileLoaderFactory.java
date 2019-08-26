@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.fileloader;
+package com.datasphere.server.common.fileloader;
 
 import com.google.common.collect.Lists;
 
@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static app.metatron.discovery.common.fileloader.FileLoaderProperties.RemoteType.SSH;
+import static com.datasphere.server.common.fileloader.FileLoaderProperties.RemoteType.SSH;
 
 @Component
 public class FileLoaderFactory {

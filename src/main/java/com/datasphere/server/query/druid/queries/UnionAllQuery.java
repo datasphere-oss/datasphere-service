@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import java.util.Map;
 
-import app.metatron.discovery.query.druid.Query;
+import com.datasphere.server.query.druid.Query;
 
 public class UnionAllQuery extends Query {
 

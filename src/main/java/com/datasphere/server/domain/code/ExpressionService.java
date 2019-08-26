@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.code;
+package com.datasphere.server.domain.code;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,9 +24,9 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionDataResultResponse;
-import app.metatron.discovery.util.CommonsCsvProcessor;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.domain.datasource.ingestion.IngestionDataResultResponse;
+import com.datasphere.server.util.CommonsCsvProcessor;
 
 @Component
 public class ExpressionService {

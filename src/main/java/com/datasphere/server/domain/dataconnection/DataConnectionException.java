@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection;
+package com.datasphere.server.domain.dataconnection;
 
-import app.metatron.discovery.common.exception.MetatronException;
+import com.datasphere.server.common.exception.MetatronException;
 
 /**
  * Created by kyungtaak on 2016. 7. 2..

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy;
+package com.datasphere.server.domain.dataprep.teddy;
 
 import java.sql.Timestamp;
 import java.util.List;

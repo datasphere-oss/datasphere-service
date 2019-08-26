@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -40,30 +40,30 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.MatrixResponse;
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.CollectionPatch;
-import app.metatron.discovery.domain.activities.ActivityStreamService;
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.datasource.QDataSource;
-import app.metatron.discovery.domain.user.CachedUserService;
-import app.metatron.discovery.domain.user.DirectoryProfile;
-import app.metatron.discovery.domain.user.User;
-import app.metatron.discovery.domain.user.group.Group;
-import app.metatron.discovery.domain.user.group.GroupRepository;
-import app.metatron.discovery.domain.user.group.GroupService;
-import app.metatron.discovery.domain.user.role.Role;
-import app.metatron.discovery.domain.user.role.RoleRepository;
-import app.metatron.discovery.domain.user.role.RoleService;
-import app.metatron.discovery.domain.user.role.RoleSet;
-import app.metatron.discovery.domain.user.role.RoleSetRepository;
-import app.metatron.discovery.domain.user.role.RoleSetService;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.util.AuthUtils;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.common.MatrixResponse;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.CollectionPatch;
+import com.datasphere.server.domain.activities.ActivityStreamService;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.datasource.QDataSource;
+import com.datasphere.server.domain.user.CachedUserService;
+import com.datasphere.server.domain.user.DirectoryProfile;
+import com.datasphere.server.domain.user.User;
+import com.datasphere.server.domain.user.group.Group;
+import com.datasphere.server.domain.user.group.GroupRepository;
+import com.datasphere.server.domain.user.group.GroupService;
+import com.datasphere.server.domain.user.role.Role;
+import com.datasphere.server.domain.user.role.RoleRepository;
+import com.datasphere.server.domain.user.role.RoleService;
+import com.datasphere.server.domain.user.role.RoleSet;
+import com.datasphere.server.domain.user.role.RoleSetRepository;
+import com.datasphere.server.domain.user.role.RoleSetService;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.util.AuthUtils;
+import com.datasphere.server.util.EnumUtils;
 
-import static app.metatron.discovery.domain.workspace.Workspace.PublicType.SHARED;
+import static com.datasphere.server.domain.workspace.Workspace.PublicType.SHARED;
 
 /**
  * Created by kyungtaak on 2017. 7. 23..

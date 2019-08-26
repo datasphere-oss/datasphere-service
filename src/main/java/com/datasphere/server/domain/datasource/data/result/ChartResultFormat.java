@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data.result;
+package com.datasphere.server.domain.datasource.data.result;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -43,24 +43,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.MatrixResponse;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.Pivot;
-import app.metatron.discovery.domain.workbook.configurations.analysis.Analysis;
-import app.metatron.discovery.domain.workbook.configurations.analysis.ClusterAnalysis;
-import app.metatron.discovery.domain.workbook.configurations.analysis.PredictionAnalysis;
-import app.metatron.discovery.domain.workbook.configurations.analysis.TrendAnalysis;
-import app.metatron.discovery.domain.workbook.configurations.field.DimensionField;
-import app.metatron.discovery.domain.workbook.configurations.field.ExpressionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.field.TimestampField;
-import app.metatron.discovery.domain.workbook.configurations.format.ContinuousTimeFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.query.druid.funtions.RunningSumFunc;
-import app.metatron.discovery.query.druid.limits.PivotSpec;
+import com.datasphere.server.common.MatrixResponse;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.Pivot;
+import com.datasphere.server.domain.workbook.configurations.analysis.Analysis;
+import com.datasphere.server.domain.workbook.configurations.analysis.ClusterAnalysis;
+import com.datasphere.server.domain.workbook.configurations.analysis.PredictionAnalysis;
+import com.datasphere.server.domain.workbook.configurations.analysis.TrendAnalysis;
+import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
+import com.datasphere.server.domain.workbook.configurations.field.ExpressionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.TimestampField;
+import com.datasphere.server.domain.workbook.configurations.format.ContinuousTimeFormat;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.query.druid.funtions.RunningSumFunc;
+import com.datasphere.server.query.druid.limits.PivotSpec;
 
-import static app.metatron.discovery.domain.datasource.data.result.SearchResultFormat.ResultType.MATRIX;
+import static com.datasphere.server.domain.datasource.data.result.SearchResultFormat.ResultType.MATRIX;
 
 /**
  * Created by kyungtaak on 2016. 7. 4..
@@ -636,7 +636,7 @@ public class ChartResultFormat extends SearchResultFormat {
     if (CollectionUtils.isNotEmpty(aggrs)) {
       for (Field field : aggrs) {
         if (field instanceof MeasureField ||
-            (field instanceof ExpressionField && ((ExpressionField) field).getRole() == app.metatron.discovery.domain.datasource.Field.FieldRole.MEASURE)) {
+            (field instanceof ExpressionField && ((ExpressionField) field).getRole() == com.datasphere.server.domain.datasource.Field.FieldRole.MEASURE)) {
           aggregation.add(
               new PivotResultFormat.Aggregation(field.getAlias())
           );

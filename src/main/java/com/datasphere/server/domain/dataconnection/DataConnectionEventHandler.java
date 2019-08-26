@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection;
+package com.datasphere.server.domain.dataconnection;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
@@ -28,11 +28,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.Set;
 
-import app.metatron.discovery.domain.activities.ActivityStreamService;
-import app.metatron.discovery.domain.activities.spec.ActivityGenerator;
-import app.metatron.discovery.domain.activities.spec.ActivityObject;
-import app.metatron.discovery.domain.activities.spec.ActivityStreamV2;
-import app.metatron.discovery.domain.workspace.Workspace;
+import com.datasphere.server.domain.activities.ActivityStreamService;
+import com.datasphere.server.domain.activities.spec.ActivityGenerator;
+import com.datasphere.server.domain.activities.spec.ActivityObject;
+import com.datasphere.server.domain.activities.spec.ActivityStreamV2;
+import com.datasphere.server.domain.workspace.Workspace;
 
 @RepositoryEventHandler(DataConnection.class)
 public class DataConnectionEventHandler {

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.filter;
+package com.datasphere.server.domain.workbook.configurations.filter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,8 +20,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.util.EnumUtils;
 
 /**
  * 측정값(+집계)에 대한 부등식 필터링 수행 (for candidate)

@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.context;
+package com.datasphere.server.domain.context;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.metatron.discovery.common.entity.DomainType;
-import app.metatron.discovery.common.exception.MetatronException;
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.notebook.NotebookRepository;
-import app.metatron.discovery.domain.user.role.RoleRepository;
-import app.metatron.discovery.domain.workbench.WorkbenchRepository;
-import app.metatron.discovery.domain.workbook.DashboardRepository;
-import app.metatron.discovery.domain.workbook.WorkBookRepository;
-import app.metatron.discovery.domain.workspace.WorkspaceRepository;
+import com.datasphere.server.common.entity.DomainType;
+import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.notebook.NotebookRepository;
+import com.datasphere.server.domain.user.role.RoleRepository;
+import com.datasphere.server.domain.workbench.WorkbenchRepository;
+import com.datasphere.server.domain.workbook.DashboardRepository;
+import com.datasphere.server.domain.workbook.WorkBookRepository;
+import com.datasphere.server.domain.workspace.WorkspaceRepository;
 
 @Component
 public class ContextDomainRepositoryFactory {

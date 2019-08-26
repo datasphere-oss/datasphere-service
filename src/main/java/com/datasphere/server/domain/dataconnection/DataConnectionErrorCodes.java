@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection;
+package com.datasphere.server.domain.dataconnection;
 
-import app.metatron.discovery.common.exception.ErrorCodes;
+import com.datasphere.server.common.exception.ErrorCodes;
 
 public enum DataConnectionErrorCodes implements ErrorCodes {
 

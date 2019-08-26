@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid;
+package com.datasphere.server.query.druid;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.query.druid.dimensions.DefaultDimension;
-import app.metatron.discovery.query.druid.dimensions.ExpressionDimension;
-import app.metatron.discovery.query.druid.dimensions.ExtractionDimension;
-import app.metatron.discovery.query.druid.dimensions.LookupDimension;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.query.druid.dimensions.DefaultDimension;
+import com.datasphere.server.query.druid.dimensions.ExpressionDimension;
+import com.datasphere.server.query.druid.dimensions.ExtractionDimension;
+import com.datasphere.server.query.druid.dimensions.LookupDimension;
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include= JsonTypeInfo.As.EXTERNAL_PROPERTY, property="type")
 @JsonSubTypes({

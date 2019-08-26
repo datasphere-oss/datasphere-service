@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.source;
+package com.datasphere.server.domain.mdm.source;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
-import app.metatron.discovery.common.BaseProjections;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.user.UserProfile;
+import com.datasphere.server.common.BaseProjections;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.user.UserProfile;
 
 public class MetadataSourceProjections extends BaseProjections {
 

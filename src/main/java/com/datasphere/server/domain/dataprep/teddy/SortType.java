@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy;
+package com.datasphere.server.domain.dataprep.teddy;
 
 public enum SortType {
   ASCENDING(1),

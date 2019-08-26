@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.parser;
+package com.datasphere.server.spec.druid.ingestion.parser;
 
 import com.google.common.collect.Lists;
 
@@ -20,7 +20,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.datasource.ingestion.file.JsonFileFormat;
+import com.datasphere.server.domain.datasource.ingestion.file.JsonFileFormat;
 
 /**
  * Druid: JsonParseSpec

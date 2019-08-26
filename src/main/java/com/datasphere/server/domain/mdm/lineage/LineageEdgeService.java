@@ -12,29 +12,29 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.lineage;
+package com.datasphere.server.domain.mdm.lineage;
 
-import static app.metatron.discovery.domain.mdm.MetadataErrorCodes.LINEAGE_COLUMN_MISSING;
-import static app.metatron.discovery.domain.mdm.MetadataErrorCodes.LINEAGE_DATASET_ERROR;
-import static app.metatron.discovery.domain.mdm.lineage.LineageNode.FR_COL_NAME;
-import static app.metatron.discovery.domain.mdm.lineage.LineageNode.FR_META_ID;
-import static app.metatron.discovery.domain.mdm.lineage.LineageNode.FR_META_NAME;
-import static app.metatron.discovery.domain.mdm.lineage.LineageNode.TO_COL_NAME;
-import static app.metatron.discovery.domain.mdm.lineage.LineageNode.TO_META_ID;
-import static app.metatron.discovery.domain.mdm.lineage.LineageNode.TO_META_NAME;
+import static com.datasphere.server.domain.mdm.MetadataErrorCodes.LINEAGE_COLUMN_MISSING;
+import static com.datasphere.server.domain.mdm.MetadataErrorCodes.LINEAGE_DATASET_ERROR;
+import static com.datasphere.server.domain.mdm.lineage.LineageNode.FR_COL_NAME;
+import static com.datasphere.server.domain.mdm.lineage.LineageNode.FR_META_ID;
+import static com.datasphere.server.domain.mdm.lineage.LineageNode.FR_META_NAME;
+import static com.datasphere.server.domain.mdm.lineage.LineageNode.TO_COL_NAME;
+import static com.datasphere.server.domain.mdm.lineage.LineageNode.TO_META_ID;
+import static com.datasphere.server.domain.mdm.lineage.LineageNode.TO_META_NAME;
 
-import app.metatron.discovery.domain.dataprep.entity.PrDataset;
-import app.metatron.discovery.domain.dataprep.entity.PrDataset.DS_TYPE;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepErrorCodes;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepException;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepMessageKey;
-import app.metatron.discovery.domain.dataprep.repository.PrDatasetRepository;
-import app.metatron.discovery.domain.dataprep.teddy.DataFrame;
-import app.metatron.discovery.domain.dataprep.teddy.Row;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.CannotSerializeIntoJsonException;
-import app.metatron.discovery.domain.dataprep.transform.PrepTransformService;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.MetadataRepository;
+import com.datasphere.server.domain.dataprep.entity.PrDataset;
+import com.datasphere.server.domain.dataprep.entity.PrDataset.DS_TYPE;
+import com.datasphere.server.domain.dataprep.exceptions.PrepErrorCodes;
+import com.datasphere.server.domain.dataprep.exceptions.PrepException;
+import com.datasphere.server.domain.dataprep.exceptions.PrepMessageKey;
+import com.datasphere.server.domain.dataprep.repository.PrDatasetRepository;
+import com.datasphere.server.domain.dataprep.teddy.DataFrame;
+import com.datasphere.server.domain.dataprep.teddy.Row;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.CannotSerializeIntoJsonException;
+import com.datasphere.server.domain.dataprep.transform.PrepTransformService;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.MetadataRepository;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

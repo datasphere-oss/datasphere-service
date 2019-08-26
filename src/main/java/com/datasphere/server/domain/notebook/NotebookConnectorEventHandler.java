@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook;
+package com.datasphere.server.domain.notebook;
 
 import com.google.common.base.Preconditions;
 
@@ -23,7 +23,7 @@ import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 
 import java.net.URL;
 
-import app.metatron.discovery.common.exception.MetatronException;
+import com.datasphere.server.common.exception.MetatronException;
 
 /**
  * Created by james on 2017. 8. 4..

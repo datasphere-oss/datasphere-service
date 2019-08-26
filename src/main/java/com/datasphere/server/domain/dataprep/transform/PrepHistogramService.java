@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.transform;
+package com.datasphere.server.domain.dataprep.transform;
 
-import app.metatron.discovery.domain.dataprep.teddy.ColumnType;
-import app.metatron.discovery.domain.dataprep.teddy.Row;
+import com.datasphere.server.domain.dataprep.teddy.ColumnType;
+import com.datasphere.server.domain.dataprep.teddy.Row;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;

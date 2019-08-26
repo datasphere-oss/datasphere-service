@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench;
+package com.datasphere.server.domain.workbench;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

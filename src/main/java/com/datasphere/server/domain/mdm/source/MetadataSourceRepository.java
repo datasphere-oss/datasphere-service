@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.source;
+package com.datasphere.server.domain.mdm.source;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
@@ -20,8 +20,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.Set;
 
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.MetadataProjections;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.MetadataProjections;
 
 /**
  * Created by kyungtaak on 2016. 8. 30..

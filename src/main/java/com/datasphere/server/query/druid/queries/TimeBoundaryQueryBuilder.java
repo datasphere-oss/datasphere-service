@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DefaultDataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.MappingDataSource;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
-import app.metatron.discovery.query.druid.Query;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.DefaultDataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.MappingDataSource;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.query.druid.Query;
 
 /**
  * Created by kyungtaak on 2016. 10. 24..

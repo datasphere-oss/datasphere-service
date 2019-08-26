@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.dialect;
+package com.datasphere.server.domain.dataconnection.dialect;
 
 import org.springframework.stereotype.Component;
 

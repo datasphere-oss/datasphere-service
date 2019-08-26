@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.widget;
+package com.datasphere.server.domain.workbook.widget;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 
-import app.metatron.discovery.domain.workbook.DashBoard;
+import com.datasphere.server.domain.workbook.DashBoard;
 
 @Component
 public class WidgetService {

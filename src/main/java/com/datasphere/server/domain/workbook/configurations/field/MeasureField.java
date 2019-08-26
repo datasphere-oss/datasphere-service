@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.field;
+package com.datasphere.server.domain.workbook.configurations.field;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
@@ -40,12 +40,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
-import app.metatron.discovery.util.EnumUtils;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.util.EnumUtils;
+import com.datasphere.server.util.PolarisUtils;
 
-import static app.metatron.discovery.domain.workbook.configurations.field.MeasureField.AggregationType.NONE;
-import static app.metatron.discovery.domain.workbook.configurations.field.MeasureField.AggregationType.SUM;
+import static com.datasphere.server.domain.workbook.configurations.field.MeasureField.AggregationType.NONE;
+import static com.datasphere.server.domain.workbook.configurations.field.MeasureField.AggregationType.SUM;
 
 /**
  * 측정값 필드

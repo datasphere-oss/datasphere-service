@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.parser;
+package com.datasphere.server.spec.druid.ingestion.parser;
 
 import org.apache.commons.lang3.BooleanUtils;
 

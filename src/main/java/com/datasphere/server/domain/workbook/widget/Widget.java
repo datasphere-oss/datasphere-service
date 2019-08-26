@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.widget;
+package com.datasphere.server.domain.workbook.widget;
 
 import com.google.common.collect.Lists;
 
@@ -28,12 +28,12 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.common.entity.Spec;
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.workbook.DashBoard;
-import app.metatron.discovery.domain.workbook.configurations.WidgetConfiguration;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.common.entity.Spec;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.workbook.DashBoard;
+import com.datasphere.server.domain.workbook.configurations.WidgetConfiguration;
 
 /**
  * Created by kyungtaak on 2017. 7. 18..

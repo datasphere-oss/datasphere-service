@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datalineage;
+package com.datasphere.server.domain.datalineage;
 
 
 import com.querydsl.core.annotations.QueryProjection;

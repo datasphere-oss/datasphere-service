@@ -1,9 +1,9 @@
-package app.metatron.discovery.spec.druid.ingestion.index;
+package com.datasphere.server.spec.druid.ingestion.index;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import app.metatron.discovery.query.druid.ShapeFormat;
+import com.datasphere.server.query.druid.ShapeFormat;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXTERNAL_PROPERTY, property = "type")
 @JsonSubTypes({

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.format;
+package com.datasphere.server.domain.workbook.configurations.format;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,8 +21,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import app.metatron.discovery.query.druid.limits.PivotColumn;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.query.druid.limits.PivotColumn;
+import com.datasphere.server.util.EnumUtils;
 
 public class ContinuousTimeFormat extends TimeFieldFormat implements FieldFormat {
 

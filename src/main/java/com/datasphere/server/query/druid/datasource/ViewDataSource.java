@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.datasource;
+package com.datasphere.server.query.druid.datasource;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
@@ -22,8 +22,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.List;
 
-import app.metatron.discovery.query.druid.Filter;
-import app.metatron.discovery.query.druid.virtualcolumns.VirtualColumn;
+import com.datasphere.server.query.druid.Filter;
+import com.datasphere.server.query.druid.virtualcolumns.VirtualColumn;
 
 /**
  * Created by kyungtaak on 2017. 5. 22..

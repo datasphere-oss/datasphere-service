@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -49,17 +49,17 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 
-import app.metatron.discovery.common.data.projection.DataGrid;
-import app.metatron.discovery.common.entity.DomainType;
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.CollectionPatch;
-import app.metatron.discovery.domain.datasource.DataSourceService;
-import app.metatron.discovery.domain.tag.Tag;
-import app.metatron.discovery.domain.tag.TagProjections;
-import app.metatron.discovery.domain.tag.TagService;
-import app.metatron.discovery.util.HttpUtils;
-import app.metatron.discovery.util.ProjectionUtils;
+import com.datasphere.server.common.data.projection.DataGrid;
+import com.datasphere.server.common.entity.DomainType;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.CollectionPatch;
+import com.datasphere.server.domain.datasource.DataSourceService;
+import com.datasphere.server.domain.tag.Tag;
+import com.datasphere.server.domain.tag.TagProjections;
+import com.datasphere.server.domain.tag.TagService;
+import com.datasphere.server.util.HttpUtils;
+import com.datasphere.server.util.ProjectionUtils;
 
 @RepositoryRestController
 public class MetadataController {

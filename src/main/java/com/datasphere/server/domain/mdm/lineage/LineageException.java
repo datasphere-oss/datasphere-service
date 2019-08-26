@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.lineage;
+package com.datasphere.server.domain.mdm.lineage;
 
-import app.metatron.discovery.common.exception.MetatronException;
-import app.metatron.discovery.domain.mdm.MetadataErrorCodes;
+import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.domain.mdm.MetadataErrorCodes;
 
 public class LineageException extends MetatronException {
 

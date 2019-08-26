@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -45,9 +45,9 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.source.QMetadataSource;
-import app.metatron.discovery.domain.workbook.QDashBoard;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.source.QMetadataSource;
+import com.datasphere.server.domain.workbook.QDashBoard;
 
 /**
  * Created by kyungtaak on 2016. 12. 28..

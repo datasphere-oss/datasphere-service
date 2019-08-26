@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench;
+package com.datasphere.server.domain.workbench;
 
 import com.google.common.collect.Maps;
 
@@ -30,9 +30,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.workspace.Book;
-import app.metatron.discovery.domain.workspace.Workspace;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.workspace.Book;
+import com.datasphere.server.domain.workspace.Workspace;
 
 @Entity
 @Table(name = "book_workbench")

@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy;
+package com.datasphere.server.domain.dataprep.teddy;
 
-import app.metatron.discovery.domain.dataprep.PrepProperties;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.TeddyException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.TransformExecutionFailedException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.TransformExecutionInterrupteddException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.TransformTimeoutException;
-import app.metatron.discovery.prep.parser.exceptions.RuleException;
-import app.metatron.discovery.prep.parser.preparation.RuleVisitorParser;
-import app.metatron.discovery.prep.parser.preparation.rule.Join;
-import app.metatron.discovery.prep.parser.preparation.rule.Rule;
-import app.metatron.discovery.prep.parser.preparation.rule.Union;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Constant;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Expression;
+import com.datasphere.server.domain.dataprep.PrepProperties;
+import com.datasphere.server.domain.dataprep.exceptions.PrepException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.TeddyException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.TransformExecutionFailedException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.TransformExecutionInterrupteddException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.TransformTimeoutException;
+import com.datasphere.server.prep.parser.exceptions.RuleException;
+import com.datasphere.server.prep.parser.preparation.RuleVisitorParser;
+import com.datasphere.server.prep.parser.preparation.rule.Join;
+import com.datasphere.server.prep.parser.preparation.rule.Rule;
+import com.datasphere.server.prep.parser.preparation.rule.Union;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Constant;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Expression;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

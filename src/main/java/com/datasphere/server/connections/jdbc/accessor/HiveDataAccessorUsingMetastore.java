@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.accessor;
+package com.datasphere.server.domain.dataconnection.accessor;
 
 import org.pf4j.Extension;
 import org.slf4j.Logger;
@@ -37,11 +37,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.dataconnection.dialect.HiveDialect;
-import app.metatron.discovery.domain.datasource.connection.jdbc.HiveMetaStoreJdbcClient;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
+import com.datasphere.server.domain.datasource.connection.jdbc.HiveMetaStoreJdbcClient;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.util.PolarisUtils;
 
 import static java.util.stream.Collectors.toList;
 

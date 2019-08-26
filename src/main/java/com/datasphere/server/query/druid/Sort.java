@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid;
+package com.datasphere.server.query.druid;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import app.metatron.discovery.query.druid.sorts.GenericSort;
-import app.metatron.discovery.query.druid.sorts.Lexicographic;
-import app.metatron.discovery.query.druid.sorts.Strlen;
+import com.datasphere.server.query.druid.sorts.GenericSort;
+import com.datasphere.server.query.druid.sorts.Lexicographic;
+import com.datasphere.server.query.druid.sorts.Strlen;
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include= JsonTypeInfo.As.EXTERNAL_PROPERTY, property="type")
 @JsonSubTypes({

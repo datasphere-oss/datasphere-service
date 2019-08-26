@@ -12,21 +12,21 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.transform;
+package com.datasphere.server.domain.dataprep.transform;
 
-import static app.metatron.discovery.domain.dataprep.transform.Histogram.Granule.DAY;
-import static app.metatron.discovery.domain.dataprep.transform.Histogram.Granule.HOUR;
-import static app.metatron.discovery.domain.dataprep.transform.Histogram.Granule.MILLIS;
-import static app.metatron.discovery.domain.dataprep.transform.Histogram.Granule.MINUTE;
-import static app.metatron.discovery.domain.dataprep.transform.Histogram.Granule.MONTH;
-import static app.metatron.discovery.domain.dataprep.transform.Histogram.Granule.NOT_USED;
-import static app.metatron.discovery.domain.dataprep.transform.Histogram.Granule.SECOND;
-import static app.metatron.discovery.domain.dataprep.transform.Histogram.Granule.YEAR;
+import static com.datasphere.server.domain.dataprep.transform.Histogram.Granule.DAY;
+import static com.datasphere.server.domain.dataprep.transform.Histogram.Granule.HOUR;
+import static com.datasphere.server.domain.dataprep.transform.Histogram.Granule.MILLIS;
+import static com.datasphere.server.domain.dataprep.transform.Histogram.Granule.MINUTE;
+import static com.datasphere.server.domain.dataprep.transform.Histogram.Granule.MONTH;
+import static com.datasphere.server.domain.dataprep.transform.Histogram.Granule.NOT_USED;
+import static com.datasphere.server.domain.dataprep.transform.Histogram.Granule.SECOND;
+import static com.datasphere.server.domain.dataprep.transform.Histogram.Granule.YEAR;
 
-import app.metatron.discovery.domain.dataprep.PrepUtil;
-import app.metatron.discovery.domain.dataprep.teddy.ColumnType;
-import app.metatron.discovery.domain.dataprep.teddy.DataFrame;
-import app.metatron.discovery.domain.dataprep.teddy.Row;
+import com.datasphere.server.domain.dataprep.PrepUtil;
+import com.datasphere.server.domain.dataprep.teddy.ColumnType;
+import com.datasphere.server.domain.dataprep.teddy.DataFrame;
+import com.datasphere.server.domain.dataprep.teddy.Row;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;

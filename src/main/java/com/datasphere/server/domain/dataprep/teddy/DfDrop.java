@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy;
+package com.datasphere.server.domain.dataprep.teddy;
 
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.ColumnNotFoundException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.TeddyException;
-import app.metatron.discovery.prep.parser.preparation.rule.Drop;
-import app.metatron.discovery.prep.parser.preparation.rule.Rule;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Expr;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Identifier;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.ColumnNotFoundException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.TeddyException;
+import com.datasphere.server.prep.parser.preparation.rule.Drop;
+import com.datasphere.server.prep.parser.preparation.rule.Rule;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Expr;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

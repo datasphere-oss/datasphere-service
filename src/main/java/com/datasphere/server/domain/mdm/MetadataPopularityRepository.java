@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

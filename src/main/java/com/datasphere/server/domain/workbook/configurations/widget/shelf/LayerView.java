@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.widget.shelf;
+package com.datasphere.server.domain.workbook.configurations.widget.shelf;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -28,14 +28,14 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.Serializable;
 import java.util.List;
 
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.query.druid.Aggregation;
-import app.metatron.discovery.query.druid.PostAggregation;
-import app.metatron.discovery.query.druid.aggregations.CountAggregation;
-import app.metatron.discovery.query.druid.aggregations.GenericSumAggregation;
-import app.metatron.discovery.query.druid.aggregations.RelayAggregation;
-import app.metatron.discovery.query.druid.postaggregations.ExprPostAggregator;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.query.druid.Aggregation;
+import com.datasphere.server.query.druid.PostAggregation;
+import com.datasphere.server.query.druid.aggregations.CountAggregation;
+import com.datasphere.server.query.druid.aggregations.GenericSumAggregation;
+import com.datasphere.server.query.druid.aggregations.RelayAggregation;
+import com.datasphere.server.query.druid.postaggregations.ExprPostAggregator;
+import com.datasphere.server.util.EnumUtils;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.EXTERNAL_PROPERTY,

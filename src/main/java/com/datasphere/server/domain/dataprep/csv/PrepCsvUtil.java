@@ -1,10 +1,10 @@
-package app.metatron.discovery.domain.dataprep.csv;
+package com.datasphere.server.domain.dataprep.csv;
 
-import static app.metatron.discovery.domain.dataprep.PrepProperties.HADOOP_CONF_DIR;
+import static com.datasphere.server.domain.dataprep.PrepProperties.HADOOP_CONF_DIR;
 
-import app.metatron.discovery.domain.dataprep.exceptions.PrepErrorCodes;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepException;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepMessageKey;
+import com.datasphere.server.domain.dataprep.exceptions.PrepErrorCodes;
+import com.datasphere.server.domain.dataprep.exceptions.PrepException;
+import com.datasphere.server.domain.dataprep.exceptions.PrepMessageKey;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

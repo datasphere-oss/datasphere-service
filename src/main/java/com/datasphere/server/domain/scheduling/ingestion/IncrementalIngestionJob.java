@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.scheduling.ingestion;
+package com.datasphere.server.domain.scheduling.ingestion;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -30,12 +30,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistory;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistoryRepository;
-import app.metatron.discovery.domain.datasource.ingestion.job.IngestionJobRunner;
-import app.metatron.discovery.domain.engine.EngineIngestionService;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.server.domain.datasource.ingestion.job.IngestionJobRunner;
+import com.datasphere.server.domain.engine.EngineIngestionService;
 
 /**
  * Created by kyungtaak on 2016. 8. 12..

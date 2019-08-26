@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.tag;
+package com.datasphere.server.domain.tag;
 
 import org.springframework.data.rest.core.config.Projection;
 
-import app.metatron.discovery.common.BaseProjections;
+import com.datasphere.server.common.BaseProjections;
 
 public class TagProjections extends BaseProjections {
 

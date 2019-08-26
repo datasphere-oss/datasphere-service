@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.scheduling.engine;
+package com.datasphere.server.domain.scheduling.engine;
 
 import com.google.common.collect.Lists;
 
@@ -34,10 +34,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.datasource.DataSourceTemporary;
-import app.metatron.discovery.domain.datasource.DataSourceTemporaryRepository;
-import app.metatron.discovery.domain.engine.EngineLoadService;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.datasource.DataSourceTemporary;
+import com.datasphere.server.domain.datasource.DataSourceTemporaryRepository;
+import com.datasphere.server.domain.engine.EngineLoadService;
 
 /**
  * Created by kyungtaak on 2016. 6. 20..

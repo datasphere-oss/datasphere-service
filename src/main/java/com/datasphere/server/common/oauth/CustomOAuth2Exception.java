@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.oauth;
+package com.datasphere.server.common.oauth;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 
-import app.metatron.discovery.common.exception.ErrorResponse;
+import com.datasphere.server.common.exception.ErrorResponse;
 
 @JsonSerialize(using = CustomOAuth2ExceptionSerializer.class)
 public class CustomOAuth2Exception extends OAuth2Exception {

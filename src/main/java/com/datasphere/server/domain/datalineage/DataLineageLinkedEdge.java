@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datalineage;
+package com.datasphere.server.domain.datalineage;
 
 public class DataLineageLinkedEdge {
 

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.source;
+package com.datasphere.server.domain.mdm.source;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,14 +23,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.dataconnection.DataConnectionRepository;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceProjections;
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.MetadataController;
-import app.metatron.discovery.domain.workbook.DashboardRepository;
-import app.metatron.discovery.util.ProjectionUtils;
+import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceProjections;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.MetadataController;
+import com.datasphere.server.domain.workbook.DashboardRepository;
+import com.datasphere.server.util.ProjectionUtils;
 
 @Component
 @Transactional(readOnly = true)

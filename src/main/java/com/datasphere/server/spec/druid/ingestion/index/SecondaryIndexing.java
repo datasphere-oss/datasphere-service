@@ -1,4 +1,4 @@
-package app.metatron.discovery.spec.druid.ingestion.index;
+package com.datasphere.server.spec.druid.ingestion.index;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

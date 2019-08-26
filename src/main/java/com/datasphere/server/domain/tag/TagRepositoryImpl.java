@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.tag;
+package com.datasphere.server.domain.tag;
 
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
@@ -24,7 +24,7 @@ import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport
 
 import java.util.List;
 
-import app.metatron.discovery.common.entity.DomainType;
+import com.datasphere.server.common.entity.DomainType;
 
 public class TagRepositoryImpl extends QueryDslRepositorySupport implements TagRepositoryExtends {
 

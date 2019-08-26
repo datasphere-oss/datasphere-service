@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.analysis;
+package com.datasphere.server.domain.workbook.configurations.analysis;
 
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.io.Serializable;
 
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXTERNAL_PROPERTY, property = "type")
 @JsonSubTypes({

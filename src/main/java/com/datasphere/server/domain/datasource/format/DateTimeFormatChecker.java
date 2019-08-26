@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.format;
+package com.datasphere.server.domain.datasource.format;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
@@ -33,10 +33,10 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
-import app.metatron.discovery.common.MetatronProperties;
-import app.metatron.discovery.domain.datasource.DataSourceErrorCodes;
-import app.metatron.discovery.domain.datasource.DataSourceException;
-import app.metatron.discovery.domain.datasource.TimeFormatCheckRequest;
+import com.datasphere.server.common.MetatronProperties;
+import com.datasphere.server.domain.datasource.DataSourceErrorCodes;
+import com.datasphere.server.domain.datasource.DataSourceException;
+import com.datasphere.server.domain.datasource.TimeFormatCheckRequest;
 
 @Component
 public class DateTimeFormatChecker {

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.filter;
+package com.datasphere.server.domain.workbook.configurations.filter;
 
 import com.google.common.collect.Lists;
 
@@ -27,12 +27,12 @@ import org.joda.time.Period;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.query.druid.funtions.DateTimeMillisFunc;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.query.druid.funtions.DateTimeMillisFunc;
+import com.datasphere.server.util.EnumUtils;
 
-import static app.metatron.discovery.domain.datasource.Field.FieldRole.TIMESTAMP;
+import static com.datasphere.server.domain.datasource.Field.FieldRole.TIMESTAMP;
 
 @JsonTypeName("time_relative")
 public class TimeRelativeFilter extends TimeFilter {

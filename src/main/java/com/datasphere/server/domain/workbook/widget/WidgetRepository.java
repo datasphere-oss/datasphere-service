@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.widget;
+package com.datasphere.server.domain.workbook.widget;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +21,7 @@ import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-import app.metatron.discovery.domain.workbook.DashBoard;
+import com.datasphere.server.domain.workbook.DashBoard;
 
 /**
  * Created by kyungtaak on 2016. 1. 7..

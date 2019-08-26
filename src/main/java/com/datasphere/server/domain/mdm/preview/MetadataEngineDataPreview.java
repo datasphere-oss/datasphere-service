@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.preview;
+package com.datasphere.server.domain.mdm.preview;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,15 +25,15 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Map;
 
-import app.metatron.discovery.common.data.projection.ColumnDescription;
-import app.metatron.discovery.common.data.projection.Row;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.data.SearchQueryRequest;
-import app.metatron.discovery.domain.datasource.data.result.ObjectResultFormat;
-import app.metatron.discovery.domain.engine.EngineQueryService;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.workbook.configurations.Limit;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DefaultDataSource;
+import com.datasphere.server.common.data.projection.ColumnDescription;
+import com.datasphere.server.common.data.projection.Row;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
+import com.datasphere.server.domain.datasource.data.result.ObjectResultFormat;
+import com.datasphere.server.domain.engine.EngineQueryService;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.workbook.configurations.Limit;
+import com.datasphere.server.domain.workbook.configurations.datasource.DefaultDataSource;
 
 /**
  * The type Metadata engine data preview.

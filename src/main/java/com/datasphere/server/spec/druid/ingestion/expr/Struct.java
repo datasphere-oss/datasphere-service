@@ -1,4 +1,4 @@
-package app.metatron.discovery.spec.druid.ingestion.expr;
+package com.datasphere.server.spec.druid.ingestion.expr;
 
 import com.google.common.collect.Lists;
 

@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy;
+package com.datasphere.server.domain.dataprep.teddy;
 
-import app.metatron.discovery.domain.dataprep.csv.PrepCsvParseResult;
-import app.metatron.discovery.domain.dataprep.json.PrepJsonParseResult;
-import app.metatron.discovery.domain.dataprep.transform.Histogram;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.*;
-import app.metatron.discovery.domain.dataprep.transform.TimestampTemplate;
-import app.metatron.discovery.prep.parser.exceptions.RuleException;
-import app.metatron.discovery.prep.parser.preparation.rule.Rule;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.*;
+import com.datasphere.server.domain.dataprep.csv.PrepCsvParseResult;
+import com.datasphere.server.domain.dataprep.json.PrepJsonParseResult;
+import com.datasphere.server.domain.dataprep.transform.Histogram;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.*;
+import com.datasphere.server.domain.dataprep.transform.TimestampTemplate;
+import com.datasphere.server.prep.parser.exceptions.RuleException;
+import com.datasphere.server.prep.parser.preparation.rule.Rule;
+import com.datasphere.server.prep.parser.preparation.rule.expr.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;

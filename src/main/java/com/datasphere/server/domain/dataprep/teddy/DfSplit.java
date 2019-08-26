@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy;
+package com.datasphere.server.domain.dataprep.teddy;
 
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.*;
-import app.metatron.discovery.prep.parser.preparation.rule.Rule;
-import app.metatron.discovery.prep.parser.preparation.rule.Split;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Constant;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Expression;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Identifier;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.RegularExpr;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.*;
+import com.datasphere.server.prep.parser.preparation.rule.Rule;
+import com.datasphere.server.prep.parser.preparation.rule.Split;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Constant;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Expression;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Identifier;
+import com.datasphere.server.prep.parser.preparation.rule.expr.RegularExpr;
 import org.apache.commons.lang.StringUtils;
 import org.opensaml.xml.signature.P;
 import org.slf4j.Logger;

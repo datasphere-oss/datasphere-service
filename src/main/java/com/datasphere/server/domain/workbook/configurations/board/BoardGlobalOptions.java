@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.board;
+package com.datasphere.server.domain.workbook.configurations.board;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.util.EnumUtils;
 
 /**
  * 대시보드 공통 설정

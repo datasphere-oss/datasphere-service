@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.funtions;
+package com.datasphere.server.query.druid.funtions;
 
 import java.util.Map;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
+import com.datasphere.server.common.GlobalObjectMapper;
 
 /**
  * Created by kyungtaak on 2017. 4. 27..

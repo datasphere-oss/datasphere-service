@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.lookup;
+package com.datasphere.server.query.druid.lookup;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.query.druid.lookup.namespace.ExtractionNamespace;
+import com.datasphere.server.query.druid.lookup.namespace.ExtractionNamespace;
 
 /**
  * Created by kyungtaak on 2017. 4. 20..

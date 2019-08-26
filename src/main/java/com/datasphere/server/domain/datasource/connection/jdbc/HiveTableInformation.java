@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.connection.jdbc;
+package com.datasphere.server.domain.datasource.connection.jdbc;
 
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.ingestion.file.CsvFileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.file.FileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.file.OrcFileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.SelectQueryBuilder;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.ingestion.file.CsvFileFormat;
+import com.datasphere.server.domain.datasource.ingestion.file.FileFormat;
+import com.datasphere.server.domain.datasource.ingestion.file.OrcFileFormat;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.SelectQueryBuilder;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 

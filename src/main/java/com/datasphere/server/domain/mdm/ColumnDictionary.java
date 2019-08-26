@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import com.google.common.collect.Lists;
 
@@ -30,13 +30,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.common.entity.Spec;
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.common.entity.Spec;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
 @Entity
 @Table(name = "mdm_column_dictionary")

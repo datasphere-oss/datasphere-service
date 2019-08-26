@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.oauth;
+package com.datasphere.server.common.oauth;
 
 import com.google.common.base.Preconditions;
 
@@ -26,21 +26,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.notebook.Notebook;
-import app.metatron.discovery.domain.notebook.NotebookConnector;
-import app.metatron.discovery.domain.notebook.NotebookModel;
-import app.metatron.discovery.domain.user.role.PermissionRepository;
-import app.metatron.discovery.domain.user.role.Role;
-import app.metatron.discovery.domain.user.role.RoleRepository;
-import app.metatron.discovery.domain.user.role.RoleSet;
-import app.metatron.discovery.domain.workbench.Workbench;
-import app.metatron.discovery.domain.workbook.DashBoard;
-import app.metatron.discovery.domain.workbook.WorkBook;
-import app.metatron.discovery.domain.workbook.widget.Widget;
-import app.metatron.discovery.domain.workspace.Workspace;
-import app.metatron.discovery.domain.workspace.WorkspaceService;
-import app.metatron.discovery.domain.workspace.folder.Folder;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.notebook.Notebook;
+import com.datasphere.server.domain.notebook.NotebookConnector;
+import com.datasphere.server.domain.notebook.NotebookModel;
+import com.datasphere.server.domain.user.role.PermissionRepository;
+import com.datasphere.server.domain.user.role.Role;
+import com.datasphere.server.domain.user.role.RoleRepository;
+import com.datasphere.server.domain.user.role.RoleSet;
+import com.datasphere.server.domain.workbench.Workbench;
+import com.datasphere.server.domain.workbook.DashBoard;
+import com.datasphere.server.domain.workbook.WorkBook;
+import com.datasphere.server.domain.workbook.widget.Widget;
+import com.datasphere.server.domain.workspace.Workspace;
+import com.datasphere.server.domain.workspace.WorkspaceService;
+import com.datasphere.server.domain.workspace.folder.Folder;
 
 /**
  * Workspace 관련 Custom 권한 처리

@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.field;
+package com.datasphere.server.domain.workbook.configurations.field;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
 @JsonTypeName("dimension")
 public class DimensionField extends Field {

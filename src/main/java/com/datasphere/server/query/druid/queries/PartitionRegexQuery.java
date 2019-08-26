@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.List;
 import java.util.StringJoiner;
 
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.query.druid.Query;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.query.druid.Query;
 
 /**
  * Created by kyungtaak on 2016. 10. 21..

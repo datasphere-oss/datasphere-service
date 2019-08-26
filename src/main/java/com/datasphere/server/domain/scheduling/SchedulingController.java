@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.scheduling;
+package com.datasphere.server.domain.scheduling;
 
 import com.google.common.collect.Lists;
 

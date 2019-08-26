@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.chart.properties;
+package com.datasphere.server.domain.workbook.configurations.chart.properties;
 
 public enum LineStyle {
   SOLID, DASHED, DOTTED

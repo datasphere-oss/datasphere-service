@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.scheduling.mdm;
+package com.datasphere.server.domain.scheduling.mdm;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -39,26 +39,26 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.data.DataSourceValidator;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.MetadataColumn;
-import app.metatron.discovery.domain.mdm.MetadataPopularity;
-import app.metatron.discovery.domain.mdm.MetadataPopularityRepository;
-import app.metatron.discovery.domain.mdm.MetadataRepository;
-import app.metatron.discovery.domain.workbench.WorkbenchRepository;
-import app.metatron.discovery.domain.workbook.DashBoard;
-import app.metatron.discovery.domain.workbook.DashboardRepository;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DefaultDataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.MappingDataSource;
-import app.metatron.discovery.domain.workbook.configurations.widget.FilterWidgetConfiguration;
-import app.metatron.discovery.domain.workbook.configurations.widget.PageWidgetConfiguration;
-import app.metatron.discovery.domain.workbook.widget.FilterWidget;
-import app.metatron.discovery.domain.workbook.widget.PageWidget;
-import app.metatron.discovery.domain.workbook.widget.TextWidget;
-import app.metatron.discovery.domain.workbook.widget.Widget;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.data.DataSourceValidator;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.MetadataColumn;
+import com.datasphere.server.domain.mdm.MetadataPopularity;
+import com.datasphere.server.domain.mdm.MetadataPopularityRepository;
+import com.datasphere.server.domain.mdm.MetadataRepository;
+import com.datasphere.server.domain.workbench.WorkbenchRepository;
+import com.datasphere.server.domain.workbook.DashBoard;
+import com.datasphere.server.domain.workbook.DashboardRepository;
+import com.datasphere.server.domain.workbook.configurations.datasource.DefaultDataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.MappingDataSource;
+import com.datasphere.server.domain.workbook.configurations.widget.FilterWidgetConfiguration;
+import com.datasphere.server.domain.workbook.configurations.widget.PageWidgetConfiguration;
+import com.datasphere.server.domain.workbook.widget.FilterWidget;
+import com.datasphere.server.domain.workbook.widget.PageWidget;
+import com.datasphere.server.domain.workbook.widget.TextWidget;
+import com.datasphere.server.domain.workbook.widget.Widget;
 
 @Component
 @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)
@@ -231,7 +231,7 @@ public class CalculatePopularityJob extends QuartzJobBean {
         PageWidgetConfiguration configuration = (PageWidgetConfiguration) widget.convertConfiguration();
         dataSourceValidator.validateQuery(configuration.getDataSource());
 
-        for (app.metatron.discovery.domain.workbook.configurations.field.Field field : configuration.getPivot().getAllFields()) {
+        for (com.datasphere.server.domain.workbook.configurations.field.Field field : configuration.getPivot().getAllFields()) {
           DataSource dataSource = getDataSourceByRef(configuration.getDataSource(), field.getRef());
           if(dataSource == null) {
             continue;
@@ -245,7 +245,7 @@ public class CalculatePopularityJob extends QuartzJobBean {
     popularityRepository.save(metadataPopularityMap.values());
   }
 
-  private DataSource getDataSourceByRef(app.metatron.discovery.domain.workbook.configurations.datasource.DataSource dataSource, String ref) {
+  private DataSource getDataSourceByRef(com.datasphere.server.domain.workbook.configurations.datasource.DataSource dataSource, String ref) {
     if(dataSource instanceof DefaultDataSource || StringUtils.isEmpty(ref)) {
       return dataSource.getMetaDataSource();
     } else if (dataSource instanceof MappingDataSource){

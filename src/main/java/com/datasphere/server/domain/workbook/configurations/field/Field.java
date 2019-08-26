@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.field;
+package com.datasphere.server.domain.workbook.configurations.field;
 
 import com.google.common.base.Preconditions;
 
@@ -25,7 +25,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.Serializable;
 import java.util.Map;
 
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include= JsonTypeInfo.As.EXTERNAL_PROPERTY, property="type")
 @JsonSubTypes({

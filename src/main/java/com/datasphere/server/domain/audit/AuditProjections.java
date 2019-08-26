@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.audit;
+package com.datasphere.server.domain.audit;
 
 import org.joda.time.DateTime;
 import org.springframework.data.rest.core.config.Projection;
 
 import java.util.List;
 
-import app.metatron.discovery.common.BaseProjections;
+import com.datasphere.server.common.BaseProjections;
 
 /**
  * Created by kyungtaak on 2016. 11. 29..

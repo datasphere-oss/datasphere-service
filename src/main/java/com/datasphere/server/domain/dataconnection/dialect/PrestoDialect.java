@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.dialect;
+package com.datasphere.server.domain.dataconnection.dialect;
 
 import com.facebook.presto.jdbc.PrestoArray;
 
@@ -26,9 +26,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.exception.FunctionWithException;
-import app.metatron.discovery.extension.dataconnection.jdbc.JdbcConnectInformation;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.common.exception.FunctionWithException;
+import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 
 /**
  *
@@ -109,7 +109,7 @@ public class PrestoDialect implements JdbcDialect {
 
   @Override
   public String getDataAccessorClass(JdbcConnectInformation connectInfo) {
-    return "app.metatron.discovery.domain.dataconnection.accessor.PrestoDataAccessor";
+    return "com.datasphere.server.domain.dataconnection.accessor.PrestoDataAccessor";
   }
 
   @Override

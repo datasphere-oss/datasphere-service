@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data;
+package com.datasphere.server.domain.datasource.data;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import app.metatron.discovery.common.exception.ErrorCodes;
-import app.metatron.discovery.common.exception.MetatronException;
+import com.datasphere.server.common.exception.ErrorCodes;
+import com.datasphere.server.common.exception.MetatronException;
 
-import static app.metatron.discovery.domain.datasource.DataSourceErrorCodes.QUERY_ERROR_CODE;
+import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.QUERY_ERROR_CODE;
 
 /**
  * Created by kyungtaak on 2016. 6. 13..

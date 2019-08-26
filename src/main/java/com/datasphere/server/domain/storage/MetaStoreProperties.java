@@ -1,11 +1,11 @@
-package app.metatron.discovery.domain.storage;
+package com.datasphere.server.domain.storage;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 
-import app.metatron.discovery.domain.dataconnection.dialect.HiveDialect;
-import app.metatron.discovery.domain.dataconnection.dialect.MySQLDialect;
+import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
+import com.datasphere.server.domain.dataconnection.dialect.MySQLDialect;
 
 public class MetaStoreProperties implements Serializable {
 

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.filter;
+package com.datasphere.server.domain.workbook.configurations.filter;
 
 import com.google.common.base.Preconditions;
 
@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.util.EnumUtils;
 
 /**
  * WildCard 필터 조건 수행 (for candidate)

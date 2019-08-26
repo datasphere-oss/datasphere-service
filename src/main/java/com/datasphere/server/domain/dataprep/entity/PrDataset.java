@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.entity;
+package com.datasphere.server.domain.dataprep.entity;
 
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.dataprep.teddy.DataFrame;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.dataprep.teddy.DataFrame;
 import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.slf4j.Logger;

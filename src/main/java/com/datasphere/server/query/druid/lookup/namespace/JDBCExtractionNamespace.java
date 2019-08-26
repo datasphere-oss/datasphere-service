@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.lookup.namespace;
+package com.datasphere.server.query.druid.lookup.namespace;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 

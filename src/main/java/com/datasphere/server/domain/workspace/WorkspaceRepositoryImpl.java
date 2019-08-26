@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import com.google.common.base.Preconditions;
 
@@ -29,9 +29,9 @@ import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.user.role.QRoleSet;
-import app.metatron.discovery.domain.workbook.QDashBoard;
-import app.metatron.discovery.domain.workbook.QWorkBook;
+import com.datasphere.server.domain.user.role.QRoleSet;
+import com.datasphere.server.domain.workbook.QDashBoard;
+import com.datasphere.server.domain.workbook.QWorkBook;
 
 public class WorkspaceRepositoryImpl extends QueryDslRepositorySupport implements WorkspaceRepositoryExtends {
 

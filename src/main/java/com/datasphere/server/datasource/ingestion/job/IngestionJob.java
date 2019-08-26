@@ -40,7 +40,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion.job;
+package com.datasphere.server.domain.datasource.ingestion.job;
 
 public interface IngestionJob {
 

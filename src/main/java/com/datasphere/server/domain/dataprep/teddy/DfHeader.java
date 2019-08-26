@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy;
+package com.datasphere.server.domain.dataprep.teddy;
 
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.NoRowException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.TeddyException;
-import app.metatron.discovery.prep.parser.preparation.rule.Header;
-import app.metatron.discovery.prep.parser.preparation.rule.Rule;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.NoRowException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.TeddyException;
+import com.datasphere.server.prep.parser.preparation.rule.Header;
+import com.datasphere.server.prep.parser.preparation.rule.Rule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

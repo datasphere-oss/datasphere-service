@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import com.google.common.collect.Lists;
 
@@ -31,12 +31,12 @@ import java.util.stream.Collectors;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.mdm.catalog.Catalog;
-import app.metatron.discovery.domain.mdm.source.MetadataSource;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.mdm.catalog.Catalog;
+import com.datasphere.server.domain.mdm.source.MetadataSource;
 
 @Entity
 @Table(name="mdm_metadata")

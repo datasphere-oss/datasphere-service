@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook;
+package com.datasphere.server.domain.workbook;
 
 import org.joda.time.DateTime;
 
 import java.util.Set;
 
-import app.metatron.discovery.domain.workbook.configurations.WorkBookConfiguration;
-import app.metatron.discovery.domain.workspace.Book;
+import com.datasphere.server.domain.workbook.configurations.WorkBookConfiguration;
+import com.datasphere.server.domain.workspace.Book;
 
 /**
  * WorkBook 요약 정보 모델

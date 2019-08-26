@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data.result;
+package com.datasphere.server.domain.datasource.data.result;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -29,9 +29,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.workbook.configurations.field.DimensionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
 
 /**
  * Created by kyungtaak on 2016. 7. 4..

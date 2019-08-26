@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.funtions;
+package com.datasphere.server.query.druid.funtions;
 
 import org.apache.commons.lang3.StringUtils;
 
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.util.PolarisUtils;
 
 public class TimestampFunc {
 

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.filter;
+package com.datasphere.server.domain.workbook.configurations.filter;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -22,7 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 
-import static app.metatron.discovery.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
+import static com.datasphere.server.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
 
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXTERNAL_PROPERTY, property = "type")

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.funtions;
+package com.datasphere.server.query.druid.funtions;
 
 import com.google.common.base.Preconditions;
 
@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.apache.commons.lang3.StringUtils;
 
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.util.PolarisUtils;
 
 /**
  * Timestamp 타입 변환용 Function,

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.tuning;
+package com.datasphere.server.spec.druid.ingestion.tuning;
 
 import com.google.common.collect.Maps;
 
@@ -21,10 +21,10 @@ import org.apache.commons.collections4.MapUtils;
 
 import java.util.Map;
 
-import app.metatron.discovery.spec.druid.ingestion.index.IndexSpec;
-import app.metatron.discovery.spec.druid.ingestion.partition.HashBasedPartition;
-import app.metatron.discovery.spec.druid.ingestion.partition.PartitionSpec;
-import app.metatron.discovery.spec.druid.ingestion.partition.SizedPartition;
+import com.datasphere.server.spec.druid.ingestion.index.IndexSpec;
+import com.datasphere.server.spec.druid.ingestion.partition.HashBasedPartition;
+import com.datasphere.server.spec.druid.ingestion.partition.PartitionSpec;
+import com.datasphere.server.spec.druid.ingestion.partition.SizedPartition;
 
 /**
  * Created by kyungtaak on 2017. 3. 20..

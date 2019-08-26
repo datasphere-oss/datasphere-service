@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.context.ContextDomainRepository;
+import com.datasphere.server.domain.context.ContextDomainRepository;
 
 /**
  * The interface Workspace repository.

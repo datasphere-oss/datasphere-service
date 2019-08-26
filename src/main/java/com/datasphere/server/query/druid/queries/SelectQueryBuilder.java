@@ -40,7 +40,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -52,35 +52,35 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 import java.util.Set;
 
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.domain.datasource.data.QueryTimeExcetpion;
-import app.metatron.discovery.domain.datasource.data.forward.ResultForward;
-import app.metatron.discovery.domain.workbook.configurations.Limit;
-import app.metatron.discovery.domain.workbook.configurations.Sort;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.MappingDataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.DimensionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.field.TimestampField;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.domain.workbook.configurations.format.DefaultFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
-import app.metatron.discovery.query.druid.Dimension;
-import app.metatron.discovery.query.druid.dimensions.DefaultDimension;
-import app.metatron.discovery.query.druid.dimensions.ExpressionDimension;
-import app.metatron.discovery.query.druid.dimensions.ExtractionDimension;
-import app.metatron.discovery.query.druid.dimensions.LookupDimension;
-import app.metatron.discovery.query.druid.extractionfns.ExpressionFunction;
-import app.metatron.discovery.query.druid.filters.AndFilter;
-import app.metatron.discovery.query.druid.funtions.TimeFormatFunc;
-import app.metatron.discovery.query.druid.granularities.SimpleGranularity;
-import app.metatron.discovery.query.druid.lookup.MapLookupExtractor;
-import app.metatron.discovery.query.druid.virtualcolumns.ExprVirtualColumn;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.domain.workbook.configurations.Limit;
+import com.datasphere.server.domain.workbook.configurations.Sort;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.MappingDataSource;
+import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.TimestampField;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.domain.workbook.configurations.format.DefaultFormat;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.query.druid.Dimension;
+import com.datasphere.server.query.druid.dimensions.DefaultDimension;
+import com.datasphere.server.query.druid.dimensions.ExpressionDimension;
+import com.datasphere.server.query.druid.dimensions.ExtractionDimension;
+import com.datasphere.server.query.druid.dimensions.LookupDimension;
+import com.datasphere.server.query.druid.extractionfns.ExpressionFunction;
+import com.datasphere.server.query.druid.filters.AndFilter;
+import com.datasphere.server.query.druid.funtions.TimeFormatFunc;
+import com.datasphere.server.query.druid.granularities.SimpleGranularity;
+import com.datasphere.server.query.druid.lookup.MapLookupExtractor;
+import com.datasphere.server.query.druid.virtualcolumns.ExprVirtualColumn;
 
-import static app.metatron.discovery.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
+import static com.datasphere.server.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
 
 /**
  * Builder for select query specification
@@ -150,7 +150,7 @@ public class SelectQueryBuilder extends AbstractQueryBuilder {
       if (reqField instanceof DimensionField) {
 
         DimensionField dimensionField = (DimensionField) reqField;
-        app.metatron.discovery.domain.datasource.Field datasourceField = metaFieldMap.get(fieldName);
+        com.datasphere.server.domain.datasource.Field datasourceField = metaFieldMap.get(fieldName);
 
         FieldFormat originalFormat = datasourceField.getFormatObject();
         FieldFormat format = dimensionField.getFormat();
@@ -220,7 +220,7 @@ public class SelectQueryBuilder extends AbstractQueryBuilder {
           continue;
         }
 
-        app.metatron.discovery.domain.datasource.Field datasourceField = metaFieldMap.get(fieldName);
+        com.datasphere.server.domain.datasource.Field datasourceField = metaFieldMap.get(fieldName);
         TimeFieldFormat originalTimeFormat = (TimeFieldFormat) datasourceField.getFormatObject();
 
         TimestampField timestampField = (TimestampField) reqField;
@@ -245,7 +245,7 @@ public class SelectQueryBuilder extends AbstractQueryBuilder {
     return this;
   }
 
-  public SelectQueryBuilder filters(List<app.metatron.discovery.domain.workbook.configurations.filter.Filter> reqfilters) {
+  public SelectQueryBuilder filters(List<com.datasphere.server.domain.workbook.configurations.filter.Filter> reqfilters) {
 
     extractPartitions(reqfilters);
 
@@ -261,8 +261,8 @@ public class SelectQueryBuilder extends AbstractQueryBuilder {
 
       for (Sort sort : reqLimit.getSort()) {
         if (this.metaFieldMap.containsKey(sort.getField())) {
-          app.metatron.discovery.domain.datasource.Field field = this.metaFieldMap.get(sort.getField());
-          if (field.getRole() == app.metatron.discovery.domain.datasource.Field.FieldRole.TIMESTAMP) {
+          com.datasphere.server.domain.datasource.Field field = this.metaFieldMap.get(sort.getField());
+          if (field.getRole() == com.datasphere.server.domain.datasource.Field.FieldRole.TIMESTAMP) {
             descending = sort.getDirection() == Sort.Direction.DESC ? true : false;
           } // Ignore any sorting on the rest of the field of timestamp role
         }

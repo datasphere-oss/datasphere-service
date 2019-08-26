@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.dialect;
+package com.datasphere.server.domain.dataconnection.dialect;
 
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -29,9 +29,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.exception.FunctionWithException;
-import app.metatron.discovery.extension.dataconnection.jdbc.JdbcConnectInformation;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.common.exception.FunctionWithException;
+import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 
 /**
  *
@@ -133,15 +133,15 @@ public class HiveDialect implements JdbcDialect {
 
   @Override
   public String getConnectorClass(JdbcConnectInformation connectInfo) {
-    return "app.metatron.discovery.domain.dataconnection.connector.KerberosJdbcConnector";
+    return "com.datasphere.server.domain.dataconnection.connector.KerberosJdbcConnector";
   }
 
   @Override
   public String getDataAccessorClass(JdbcConnectInformation connectInfo) {
     if(HiveDialect.includeMetastoreInfo(connectInfo)){
-      return "app.metatron.discovery.domain.dataconnection.accessor.HiveDataAccessorUsingMetastore";
+      return "com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessorUsingMetastore";
     }
-    return "app.metatron.discovery.domain.dataconnection.accessor.HiveDataAccessor";
+    return "com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessor";
   }
 
   @Override

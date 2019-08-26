@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.comment;
+package com.datasphere.server.domain.comment;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +20,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import app.metatron.discovery.common.entity.DomainType;
+import com.datasphere.server.common.entity.DomainType;
 
 /**
  * Created by kyungtaak on 2016. 12. 28..

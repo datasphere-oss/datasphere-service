@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.storage;
+package com.datasphere.server.domain.storage;
 
-import app.metatron.discovery.util.CaseInsensitiveConverter;
+import com.datasphere.server.util.CaseInsensitiveConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

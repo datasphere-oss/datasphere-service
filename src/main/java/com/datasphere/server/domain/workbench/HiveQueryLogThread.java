@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench;
+package com.datasphere.server.domain.workbench;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hive.jdbc.HiveStatement;
@@ -28,8 +28,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.common.ProgressResponse;
-import app.metatron.discovery.util.WebSocketUtils;
+import com.datasphere.server.common.ProgressResponse;
+import com.datasphere.server.util.WebSocketUtils;
 
 /**
  *

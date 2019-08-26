@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.virtualcolumns;
+package com.datasphere.server.query.druid.virtualcolumns;
 
 /**
  * Created by kyungtaak on 2016. 7. 2..

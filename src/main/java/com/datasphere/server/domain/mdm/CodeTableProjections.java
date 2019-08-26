@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,8 +20,8 @@ import org.springframework.data.rest.core.config.Projection;
 
 import java.util.List;
 
-import app.metatron.discovery.common.BaseProjections;
-import app.metatron.discovery.domain.user.UserProfile;
+import com.datasphere.server.common.BaseProjections;
+import com.datasphere.server.domain.user.UserProfile;
 
 public class CodeTableProjections extends BaseProjections {
 

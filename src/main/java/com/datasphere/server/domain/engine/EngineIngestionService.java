@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine;
+package com.datasphere.server.domain.engine;
 
 import com.google.common.base.Preconditions;
 
@@ -44,22 +44,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.fileloader.FileLoaderFactory;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceIngestionException;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcConnectionService;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistory;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistoryRepository;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionOptionService;
-import app.metatron.discovery.domain.datasource.ingestion.RealtimeIngestionInfo;
-import app.metatron.discovery.domain.datasource.realtime.RealTimeProperties;
-import app.metatron.discovery.domain.engine.model.IngestionStatusResponse;
-import app.metatron.discovery.spec.druid.ingestion.KafkaRealTimeIndexBuilder;
-import app.metatron.discovery.spec.druid.ingestion.SupervisorIndex;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.fileloader.FileLoaderFactory;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceIngestionException;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.IngestionOptionService;
+import com.datasphere.server.domain.datasource.ingestion.RealtimeIngestionInfo;
+import com.datasphere.server.domain.datasource.realtime.RealTimeProperties;
+import com.datasphere.server.domain.engine.model.IngestionStatusResponse;
+import com.datasphere.server.spec.druid.ingestion.KafkaRealTimeIndexBuilder;
+import com.datasphere.server.spec.druid.ingestion.SupervisorIndex;
 
-import static app.metatron.discovery.domain.datasource.ingestion.IngestionHistory.IngestionStatus.RUNNING;
+import static com.datasphere.server.domain.datasource.ingestion.IngestionHistory.IngestionStatus.RUNNING;
 
 /**
  *

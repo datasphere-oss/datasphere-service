@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.web;
+package com.datasphere.server.common.web;
 
-import app.metatron.discovery.common.CommonLocalVariable;
+import com.datasphere.server.common.CommonLocalVariable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

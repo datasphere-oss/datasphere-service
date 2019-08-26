@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.widget.shelf;
+package com.datasphere.server.domain.workbook.configurations.widget.shelf;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -28,8 +28,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
 
 public class GeoShelf implements Shelf {
 

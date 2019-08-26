@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.query.druid.Query;
-import app.metatron.discovery.query.druid.meta.AnalysisType;
-import app.metatron.discovery.query.druid.meta.ToInclude;
-import app.metatron.discovery.query.druid.virtualcolumns.VirtualColumn;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.query.druid.Query;
+import com.datasphere.server.query.druid.meta.AnalysisType;
+import com.datasphere.server.query.druid.meta.ToInclude;
+import com.datasphere.server.query.druid.virtualcolumns.VirtualColumn;
 
 @JsonTypeName("segmentMetadata")
 public class SegmentMetaDataQuery extends Query {

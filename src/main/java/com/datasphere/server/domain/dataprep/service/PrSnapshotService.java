@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.service;
+package com.datasphere.server.domain.dataprep.service;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.domain.dataprep.PrepDatasetStagingDbService;
-import app.metatron.discovery.domain.dataprep.PrepProperties;
-import app.metatron.discovery.domain.dataprep.PrepUtil;
-import app.metatron.discovery.domain.dataprep.entity.PrSnapshot;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepErrorCodes;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepException;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepMessageKey;
-import app.metatron.discovery.domain.dataprep.repository.PrDataflowRepository;
-import app.metatron.discovery.domain.dataprep.repository.PrSnapshotRepository;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.domain.dataprep.PrepDatasetStagingDbService;
+import com.datasphere.server.domain.dataprep.PrepProperties;
+import com.datasphere.server.domain.dataprep.PrepUtil;
+import com.datasphere.server.domain.dataprep.entity.PrSnapshot;
+import com.datasphere.server.domain.dataprep.exceptions.PrepErrorCodes;
+import com.datasphere.server.domain.dataprep.exceptions.PrepException;
+import com.datasphere.server.domain.dataprep.exceptions.PrepMessageKey;
+import com.datasphere.server.domain.dataprep.repository.PrDataflowRepository;
+import com.datasphere.server.domain.dataprep.repository.PrSnapshotRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import java.io.File;

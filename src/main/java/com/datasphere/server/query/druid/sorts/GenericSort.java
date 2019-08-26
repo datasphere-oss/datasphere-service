@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.sorts;
+package com.datasphere.server.query.druid.sorts;
 
 import com.google.common.collect.Lists;
 
@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.List;
 
-import app.metatron.discovery.query.druid.Sort;
+import com.datasphere.server.query.druid.Sort;
 
 /**
  * Search Query 내에서 명시적으로 count 기준 정렬을 위해 활용

@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.oauth;
+package com.datasphere.server.common.oauth;
 
-import app.metatron.discovery.common.exception.ErrorResponse;
-import app.metatron.discovery.common.exception.GlobalErrorCodes;
+import com.datasphere.server.common.exception.ErrorResponse;
+import com.datasphere.server.common.exception.GlobalErrorCodes;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;

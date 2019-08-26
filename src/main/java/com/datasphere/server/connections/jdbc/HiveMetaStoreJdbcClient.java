@@ -26,8 +26,8 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 
 
 public class HiveMetaStoreJdbcClient {

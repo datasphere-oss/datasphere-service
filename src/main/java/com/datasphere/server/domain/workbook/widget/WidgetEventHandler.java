@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.widget;
+package com.datasphere.server.domain.workbook.widget;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -25,8 +25,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.images.Image;
-import app.metatron.discovery.domain.images.ImageRepository;
+import com.datasphere.server.domain.images.Image;
+import com.datasphere.server.domain.images.ImageRepository;
 
 /**
  * Created by kyungtaak on 2016. 5. 13..

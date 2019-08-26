@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.widget;
+package com.datasphere.server.domain.workbook.configurations.widget;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.domain.workbook.configurations.WidgetConfiguration;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.domain.workbook.configurations.WidgetConfiguration;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
 
 /**
  * Created by kyungtaak on 2016. 5. 20..

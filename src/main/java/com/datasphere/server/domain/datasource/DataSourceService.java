@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import com.google.common.collect.Lists;
 
@@ -38,36 +38,36 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.criteria.ListCriterion;
-import app.metatron.discovery.common.criteria.ListCriterionType;
-import app.metatron.discovery.common.criteria.ListFilter;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.engine.DruidEngineMetaRepository;
-import app.metatron.discovery.domain.engine.EngineQueryService;
-import app.metatron.discovery.domain.engine.model.SegmentMetaDataResponse;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.MetadataService;
-import app.metatron.discovery.domain.storage.StorageProperties;
-import app.metatron.discovery.domain.user.DirectoryProfile;
-import app.metatron.discovery.domain.user.User;
-import app.metatron.discovery.domain.user.UserRepository;
-import app.metatron.discovery.domain.user.group.GroupMember;
-import app.metatron.discovery.domain.user.group.GroupMemberRepository;
-import app.metatron.discovery.domain.user.group.GroupService;
-import app.metatron.discovery.domain.user.role.RoleDirectory;
-import app.metatron.discovery.domain.user.role.RoleDirectoryRepository;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.domain.workspace.Workspace;
-import app.metatron.discovery.domain.workspace.WorkspaceRepository;
-import app.metatron.discovery.domain.workspace.WorkspaceService;
-import app.metatron.discovery.query.druid.Granularity;
-import app.metatron.discovery.query.druid.granularities.DurationGranularity;
-import app.metatron.discovery.query.druid.granularities.PeriodGranularity;
-import app.metatron.discovery.query.druid.granularities.SimpleGranularity;
-import app.metatron.discovery.util.AuthUtils;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.common.criteria.ListCriterion;
+import com.datasphere.server.common.criteria.ListCriterionType;
+import com.datasphere.server.common.criteria.ListFilter;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
+import com.datasphere.server.domain.engine.EngineQueryService;
+import com.datasphere.server.domain.engine.model.SegmentMetaDataResponse;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.MetadataService;
+import com.datasphere.server.domain.storage.StorageProperties;
+import com.datasphere.server.domain.user.DirectoryProfile;
+import com.datasphere.server.domain.user.User;
+import com.datasphere.server.domain.user.UserRepository;
+import com.datasphere.server.domain.user.group.GroupMember;
+import com.datasphere.server.domain.user.group.GroupMemberRepository;
+import com.datasphere.server.domain.user.group.GroupService;
+import com.datasphere.server.domain.user.role.RoleDirectory;
+import com.datasphere.server.domain.user.role.RoleDirectoryRepository;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.domain.workspace.Workspace;
+import com.datasphere.server.domain.workspace.WorkspaceRepository;
+import com.datasphere.server.domain.workspace.WorkspaceService;
+import com.datasphere.server.query.druid.Granularity;
+import com.datasphere.server.query.druid.granularities.DurationGranularity;
+import com.datasphere.server.query.druid.granularities.PeriodGranularity;
+import com.datasphere.server.query.druid.granularities.SimpleGranularity;
+import com.datasphere.server.util.AuthUtils;
+import com.datasphere.server.util.PolarisUtils;
 
-import static app.metatron.discovery.domain.datasource.DataSourceTemporary.ID_PREFIX;
+import static com.datasphere.server.domain.datasource.DataSourceTemporary.ID_PREFIX;
 
 /**
  * Created by kyungtaak on 2017. 5. 12..

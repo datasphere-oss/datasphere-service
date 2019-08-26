@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.postaggregations;
+package com.datasphere.server.query.druid.postaggregations;
 
 /**
  * Created by hsp on 2016. 3. 24..

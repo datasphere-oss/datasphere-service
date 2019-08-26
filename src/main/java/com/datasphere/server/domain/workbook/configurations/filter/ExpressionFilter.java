@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.filter;
+package com.datasphere.server.domain.workbook.configurations.filter;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 

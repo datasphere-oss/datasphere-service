@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain;
+package com.datasphere.server.domain;
 
 import com.google.common.collect.Maps;
 
@@ -30,8 +30,8 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.domain.workbook.WorkbookController;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.domain.workbook.WorkbookController;
 
 /**
  * 도메인내 Collection 타입의 업데이트(PATCH)가 필요시 표준 모델 정의

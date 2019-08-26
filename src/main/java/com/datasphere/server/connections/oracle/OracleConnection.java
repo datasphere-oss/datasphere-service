@@ -99,7 +99,7 @@ public class OracleConnection {
 
     @Override
     public String getDataAccessorClass(JdbcConnectInformation connectInfo) {
-      return "app.metatron.discovery.OracleConnectionExtension$OracleDataAccessor";
+      return "com.datasphere.server.OracleConnectionExtension$OracleDataAccessor";
     }
 
     @Override

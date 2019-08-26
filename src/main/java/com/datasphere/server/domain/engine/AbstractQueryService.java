@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine;
+package com.datasphere.server.domain.engine;
 
 import com.google.common.collect.Lists;
 
@@ -26,29 +26,29 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.ExpressionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.field.TimestampField;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.domain.workbook.configurations.filter.InclusionFilter;
-import app.metatron.discovery.domain.workbook.configurations.filter.IntervalFilter;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.field.ExpressionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.TimestampField;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.domain.workbook.configurations.filter.InclusionFilter;
+import com.datasphere.server.domain.workbook.configurations.filter.IntervalFilter;
 
-import static app.metatron.discovery.domain.workbook.configurations.field.MeasureField.AggregationType.NONE;
+import static com.datasphere.server.domain.workbook.configurations.field.MeasureField.AggregationType.NONE;
 
 /**
  * Created by kyungtaak on 2016. 8. 25..
  */
 public abstract class AbstractQueryService implements QueryService {
 
-  protected void checkRequriedFilter(app.metatron.discovery.domain.datasource.DataSource mainDataSource,
+  protected void checkRequriedFilter(com.datasphere.server.domain.datasource.DataSource mainDataSource,
                                      List<Filter> filters, List<Field> projections) {
 
-    Map<String, app.metatron.discovery.domain.datasource.Field> metaFields = mainDataSource.getMetaFieldMap(false, "");
-    Map<String, app.metatron.discovery.domain.datasource.Field> requiredFields = mainDataSource.getRequiredFilterFieldMap();
-    Map<String, app.metatron.discovery.domain.datasource.Field> partitionedFields = mainDataSource.getPartitionedFieldMap();
+    Map<String, com.datasphere.server.domain.datasource.Field> metaFields = mainDataSource.getMetaFieldMap(false, "");
+    Map<String, com.datasphere.server.domain.datasource.Field> requiredFields = mainDataSource.getRequiredFilterFieldMap();
+    Map<String, com.datasphere.server.domain.datasource.Field> partitionedFields = mainDataSource.getPartitionedFieldMap();
 
     // 필수 필터가 지정되지 않았다면 Pass.
     if (requiredFields.size() == 0) {
@@ -113,7 +113,7 @@ public abstract class AbstractQueryService implements QueryService {
                                                            .collect(Collectors.toMap(UserDefinedField::getName, f -> f));
 
     // check aggregation type
-    for (app.metatron.discovery.domain.workbook.configurations.field.Field projection : projections) {
+    for (com.datasphere.server.domain.workbook.configurations.field.Field projection : projections) {
       if (!(projection instanceof MeasureField)) {
         continue;
       }
@@ -142,7 +142,7 @@ public abstract class AbstractQueryService implements QueryService {
   protected int getPartitionedIndex(DataSource dataSource, List<Filter> filters, Field targetField) {
 
     // 데이터 소스내 Partitioned Field 가 있는지 확인
-    Map<String, app.metatron.discovery.domain.datasource.Field> metaPartitionedMap = dataSource.getPartitionedFieldMap();
+    Map<String, com.datasphere.server.domain.datasource.Field> metaPartitionedMap = dataSource.getPartitionedFieldMap();
     List<String> orderedFieldNames = Lists.newArrayList(metaPartitionedMap.keySet());
     if (metaPartitionedMap.isEmpty()) {
       return 0;

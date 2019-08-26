@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.widget;
+package com.datasphere.server.domain.workbook.widget;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -64,33 +64,33 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.domain.datasource.DataSourceAlias;
-import app.metatron.discovery.domain.datasource.DataSourceAliasRepository;
-import app.metatron.discovery.domain.datasource.data.DataSourceValidator;
-import app.metatron.discovery.domain.datasource.data.SearchQueryRequest;
-import app.metatron.discovery.domain.datasource.data.forward.CsvResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.ExcelResultForward;
-import app.metatron.discovery.domain.datasource.data.result.FileResultFormat;
-import app.metatron.discovery.domain.datasource.data.result.SearchResultFormat;
-import app.metatron.discovery.domain.engine.EngineQueryService;
-import app.metatron.discovery.domain.notebook.NotebookModelRepository;
-import app.metatron.discovery.domain.workbook.configurations.BoardConfiguration;
-import app.metatron.discovery.domain.workbook.configurations.Limit;
-import app.metatron.discovery.domain.workbook.configurations.Pivot;
-import app.metatron.discovery.domain.workbook.configurations.WidgetConfiguration;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.MultiDataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.DimensionField;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.domain.workbook.configurations.filter.InclusionFilter;
-import app.metatron.discovery.domain.workbook.configurations.widget.PageWidgetConfiguration;
-import app.metatron.discovery.util.AuthUtils;
-import app.metatron.discovery.util.HttpUtils;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.domain.datasource.DataSourceAlias;
+import com.datasphere.server.domain.datasource.DataSourceAliasRepository;
+import com.datasphere.server.domain.datasource.data.DataSourceValidator;
+import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
+import com.datasphere.server.domain.datasource.data.forward.CsvResultForward;
+import com.datasphere.server.domain.datasource.data.forward.ExcelResultForward;
+import com.datasphere.server.domain.datasource.data.result.FileResultFormat;
+import com.datasphere.server.domain.datasource.data.result.SearchResultFormat;
+import com.datasphere.server.domain.engine.EngineQueryService;
+import com.datasphere.server.domain.notebook.NotebookModelRepository;
+import com.datasphere.server.domain.workbook.configurations.BoardConfiguration;
+import com.datasphere.server.domain.workbook.configurations.Limit;
+import com.datasphere.server.domain.workbook.configurations.Pivot;
+import com.datasphere.server.domain.workbook.configurations.WidgetConfiguration;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.MultiDataSource;
+import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.domain.workbook.configurations.filter.InclusionFilter;
+import com.datasphere.server.domain.workbook.configurations.widget.PageWidgetConfiguration;
+import com.datasphere.server.util.AuthUtils;
+import com.datasphere.server.util.HttpUtils;
 
-import static app.metatron.discovery.config.ApiResourceConfig.REDIRECT_PATH_URL;
+import static com.datasphere.server.config.ApiResourceConfig.REDIRECT_PATH_URL;
 import static java.util.stream.Collectors.toList;
 
 /**d
@@ -477,7 +477,7 @@ public class WidgetController {
     //if(pageConfiguration.getFields() != null) userDefinedFields.addAll(pageConfiguration.getFields());
 
     // Set field alias
-    for(app.metatron.discovery.domain.workbook.configurations.field.Field field : pivot.getAllFields()) {
+    for(com.datasphere.server.domain.workbook.configurations.field.Field field : pivot.getAllFields()) {
       if(!(field instanceof DimensionField)) continue;
       if(MapUtils.isEmpty(aliasMap) || !aliasMap.containsKey(field.getName())) continue;
 

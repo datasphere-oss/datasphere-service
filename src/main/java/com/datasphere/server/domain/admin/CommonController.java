@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.admin;
+package com.datasphere.server.domain.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
@@ -30,8 +30,8 @@ import java.net.URI;
 
 import javax.servlet.http.HttpServletResponse;
 
-import app.metatron.discovery.common.CommonProperties;
-import app.metatron.discovery.common.exception.MetatronException;
+import com.datasphere.server.common.CommonProperties;
+import com.datasphere.server.common.exception.MetatronException;
 
 @RestController
 @RequestMapping("/api/common")

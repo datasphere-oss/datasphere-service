@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.entity;
+package com.datasphere.server.common.entity;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.util.EnumUtils;
 
 public class SearchParamValidator {
 

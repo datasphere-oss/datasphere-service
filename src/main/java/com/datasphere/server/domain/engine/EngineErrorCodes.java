@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine;
+package com.datasphere.server.domain.engine;
 
-import app.metatron.discovery.common.exception.ErrorCodes;
+import com.datasphere.server.common.exception.ErrorCodes;
 
 public enum EngineErrorCodes implements ErrorCodes {
 

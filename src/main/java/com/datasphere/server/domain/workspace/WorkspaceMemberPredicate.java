@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;

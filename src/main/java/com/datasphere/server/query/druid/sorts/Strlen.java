@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.sorts;
+package com.datasphere.server.query.druid.sorts;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.query.druid.Sort;
+import com.datasphere.server.query.druid.Sort;
 
 @JsonTypeName("strlen")
 public class Strlen implements Sort {

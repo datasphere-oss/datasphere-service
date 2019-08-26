@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data;
+package com.datasphere.server.domain.datasource.data;
 
 import com.google.common.collect.Lists;
 
@@ -34,17 +34,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.config.ApiResourceConfig;
-import app.metatron.discovery.domain.datasource.DataSourceQueryHistory;
-import app.metatron.discovery.domain.datasource.DataSourceQueryHistoryPredicate;
-import app.metatron.discovery.domain.datasource.DataSourceQueryHistoryProjections;
-import app.metatron.discovery.domain.datasource.DataSourceQueryHistoryRepository;
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.datasource.DataSourceSizeHistoryRepository;
-import app.metatron.discovery.util.ProjectionUtils;
-import app.metatron.discovery.util.TimeUtils;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.config.ApiResourceConfig;
+import com.datasphere.server.domain.datasource.DataSourceQueryHistory;
+import com.datasphere.server.domain.datasource.DataSourceQueryHistoryPredicate;
+import com.datasphere.server.domain.datasource.DataSourceQueryHistoryProjections;
+import com.datasphere.server.domain.datasource.DataSourceQueryHistoryRepository;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.datasource.DataSourceSizeHistoryRepository;
+import com.datasphere.server.util.ProjectionUtils;
+import com.datasphere.server.util.TimeUtils;
 
 /**
  * Created by kyungtaak on 2016. 8. 31..

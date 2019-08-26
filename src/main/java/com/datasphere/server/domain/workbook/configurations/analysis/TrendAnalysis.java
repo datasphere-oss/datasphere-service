@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.analysis;
+package com.datasphere.server.domain.workbook.configurations.analysis;
 
 import java.io.Serializable;
 import java.util.List;

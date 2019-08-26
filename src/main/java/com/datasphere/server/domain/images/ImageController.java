@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.images;
+package com.datasphere.server.domain.images;
 
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.util.PolarisUtils;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

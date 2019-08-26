@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data.result;
+package com.datasphere.server.domain.datasource.data.result;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.domain.datasource.data.SearchQueryRequest;
+import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
 
 /**
  * Created by kyungtaak on 2016. 7. 18..

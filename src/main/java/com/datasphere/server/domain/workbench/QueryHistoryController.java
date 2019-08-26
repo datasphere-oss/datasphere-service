@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench;
+package com.datasphere.server.domain.workbench;
 
 import com.google.common.collect.Lists;
 
@@ -42,8 +42,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.util.TimeUtils;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.util.TimeUtils;
 
 @RepositoryRestController
 public class QueryHistoryController {

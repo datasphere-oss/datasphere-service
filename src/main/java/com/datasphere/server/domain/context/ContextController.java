@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.context;
+package com.datasphere.server.domain.context;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import app.metatron.discovery.common.entity.DomainType;
-import app.metatron.discovery.common.entity.SearchParamValidator;
+import com.datasphere.server.common.entity.DomainType;
+import com.datasphere.server.common.entity.SearchParamValidator;
 
 @RepositoryRestController
 public class ContextController {

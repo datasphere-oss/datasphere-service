@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.google.common.collect.Lists;
 
@@ -22,13 +22,13 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.field.TimestampField;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
-import app.metatron.discovery.query.druid.Query;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.TimestampField;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.query.druid.Query;
 
 /**
  * Created by kyungtaak on 2017. 5. 18..

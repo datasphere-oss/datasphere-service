@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection;
+package com.datasphere.server.domain.dataconnection;
 
 import java.util.List;
 
-import app.metatron.discovery.common.criteria.ListFilterRequest;
+import com.datasphere.server.common.criteria.ListFilterRequest;
 
 /**
  *

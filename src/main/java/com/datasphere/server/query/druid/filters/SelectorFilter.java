@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.filters;
+package com.datasphere.server.query.druid.filters;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.query.druid.ExtractionFunction;
-import app.metatron.discovery.query.druid.Filter;
+import com.datasphere.server.query.druid.ExtractionFunction;
+import com.datasphere.server.query.druid.Filter;
 
 @JsonTypeName("selector")
 public class SelectorFilter implements Filter {

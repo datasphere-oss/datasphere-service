@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.context;
+package com.datasphere.server.domain.context;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
@@ -20,7 +20,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-import app.metatron.discovery.common.entity.DomainType;
+import com.datasphere.server.common.entity.DomainType;
 
 /**
  * Created by kyungtaak on 2016. 12. 28..

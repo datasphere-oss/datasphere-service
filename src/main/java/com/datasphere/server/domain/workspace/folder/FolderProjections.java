@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace.folder;
+package com.datasphere.server.domain.workspace.folder;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,8 +21,8 @@ import org.springframework.data.rest.core.config.Projection;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.user.UserProfile;
-import app.metatron.discovery.domain.workspace.Book;
+import com.datasphere.server.domain.user.UserProfile;
+import com.datasphere.server.domain.workspace.Book;
 
 /**
  * Created by kyungtaak on 2016. 11. 3..

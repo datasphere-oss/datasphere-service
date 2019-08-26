@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook;
+package com.datasphere.server.domain.notebook;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +22,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import app.metatron.discovery.domain.MetatronDomain;
+import com.datasphere.server.domain.MetatronDomain;
 
 /**
  * Created by james on 2017. 9. 21..

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.entity;
+package com.datasphere.server.common.entity;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

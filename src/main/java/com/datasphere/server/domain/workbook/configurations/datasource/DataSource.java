@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.datasource;
+package com.datasphere.server.domain.workbook.configurations.datasource;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -42,7 +42,7 @@ public abstract class DataSource implements Serializable {
    * Biz. Logic 용 객체(스펙과 관련 없음)
    */
   @JsonIgnore
-  app.metatron.discovery.domain.datasource.DataSource metaDataSource;
+  com.datasphere.server.domain.datasource.DataSource metaDataSource;
 
   public DataSource() {
     // Empty Constructor
@@ -68,11 +68,11 @@ public abstract class DataSource implements Serializable {
     this.temporary = temporary;
   }
 
-  public app.metatron.discovery.domain.datasource.DataSource getMetaDataSource() {
+  public com.datasphere.server.domain.datasource.DataSource getMetaDataSource() {
     return metaDataSource;
   }
 
-  public void setMetaDataSource(app.metatron.discovery.domain.datasource.DataSource metaDataSource) {
+  public void setMetaDataSource(com.datasphere.server.domain.datasource.DataSource metaDataSource) {
     this.metaDataSource = metaDataSource;
   }
 }

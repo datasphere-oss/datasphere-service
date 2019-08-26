@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.scheduling.engine;
+package com.datasphere.server.domain.scheduling.engine;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.quartz.DisallowConcurrentExecution;
@@ -31,17 +31,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistory;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistoryRepository;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
-import app.metatron.discovery.domain.engine.DruidEngineMetaRepository;
-import app.metatron.discovery.domain.engine.EngineIngestionService;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
+import com.datasphere.server.domain.engine.EngineIngestionService;
 
-import static app.metatron.discovery.domain.datasource.ingestion.IngestionHistory.IngestionStatus.FAILED;
-import static app.metatron.discovery.domain.datasource.ingestion.IngestionHistory.IngestionStatus.RUNNING;
-import static app.metatron.discovery.domain.datasource.ingestion.IngestionHistory.IngestionStatus.SUCCESS;
+import static com.datasphere.server.domain.datasource.ingestion.IngestionHistory.IngestionStatus.FAILED;
+import static com.datasphere.server.domain.datasource.ingestion.IngestionHistory.IngestionStatus.RUNNING;
+import static com.datasphere.server.domain.datasource.ingestion.IngestionHistory.IngestionStatus.SUCCESS;
 
 /**
  * Created by kyungtaak on 2016. 12. 5..

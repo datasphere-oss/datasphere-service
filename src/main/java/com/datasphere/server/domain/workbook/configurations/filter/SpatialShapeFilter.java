@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.filter;
+package com.datasphere.server.domain.workbook.configurations.filter;
 
 import com.google.common.base.Preconditions;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import app.metatron.discovery.query.druid.ShapeFormat;
-import app.metatron.discovery.query.druid.SpatialOperations;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.query.druid.ShapeFormat;
+import com.datasphere.server.query.druid.SpatialOperations;
+import com.datasphere.server.util.EnumUtils;
 
 public class SpatialShapeFilter extends SpatialFilter {
 

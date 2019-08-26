@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.funtions;
+package com.datasphere.server.query.druid.funtions;
 
 public class StructFunc {
 

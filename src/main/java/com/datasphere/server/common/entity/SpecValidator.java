@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.entity;
+package com.datasphere.server.common.entity;
 
 import com.fasterxml.jackson.databind.type.CollectionType;
 
@@ -27,7 +27,7 @@ import java.util.List;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
+import com.datasphere.server.common.GlobalObjectMapper;
 
 /**
  * Created by kyungtaak on 2017. 7. 18..

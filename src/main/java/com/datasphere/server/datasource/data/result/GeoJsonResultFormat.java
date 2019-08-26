@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data.result;
+package com.datasphere.server.domain.datasource.data.result;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
-import app.metatron.discovery.common.geospatial.geojson.GeoJsonWriter;
+import com.datasphere.server.common.geospatial.geojson.GeoJsonWriter;
 
 /**
  *

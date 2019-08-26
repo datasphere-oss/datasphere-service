@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data.forward;
+package com.datasphere.server.domain.datasource.data.forward;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 

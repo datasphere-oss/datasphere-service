@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.datasource;
+package com.datasphere.server.domain.workbook.configurations.datasource;
 
 import com.google.common.base.Preconditions;
 
@@ -26,13 +26,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import app.metatron.discovery.domain.datasource.data.QueryRequest;
-import app.metatron.discovery.domain.datasource.data.SearchQueryRequest;
-import app.metatron.discovery.domain.workbook.configurations.analysis.Analysis;
-import app.metatron.discovery.domain.workbook.configurations.analysis.GeoSpatialAnalysis;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.GeoShelf;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.MapViewLayer;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.Shelf;
+import com.datasphere.server.domain.datasource.data.QueryRequest;
+import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
+import com.datasphere.server.domain.workbook.configurations.analysis.Analysis;
+import com.datasphere.server.domain.workbook.configurations.analysis.GeoSpatialAnalysis;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.GeoShelf;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.MapViewLayer;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.Shelf;
 
 /**
  *
@@ -115,7 +115,7 @@ public class MultiDataSource extends DataSource {
         .orElseThrow(() -> new IllegalArgumentException("Invalid datasource name in layer"));
   }
 
-  public app.metatron.discovery.domain.datasource.DataSource getMetaDataSource() {
+  public com.datasphere.server.domain.datasource.DataSource getMetaDataSource() {
     if (mainDataSource == null) {
       return dataSources.get(0).getMetaDataSource();
     }

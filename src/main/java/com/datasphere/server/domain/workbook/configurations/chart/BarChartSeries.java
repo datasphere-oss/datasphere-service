@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.chart;
+package com.datasphere.server.domain.workbook.configurations.chart;
 
 /**
  * Bar Chart 시리즈 표현 방식 정의

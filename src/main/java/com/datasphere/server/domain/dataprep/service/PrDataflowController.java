@@ -12,23 +12,23 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.service;
+package com.datasphere.server.domain.dataprep.service;
 
-import app.metatron.discovery.domain.dataprep.PrepParamDatasetIdList;
-import app.metatron.discovery.domain.dataprep.PrepSwapRequest;
-import app.metatron.discovery.domain.dataprep.PrepUpstream;
-import app.metatron.discovery.domain.dataprep.entity.PrDataflow;
-import app.metatron.discovery.domain.dataprep.entity.PrDataflowProjections;
-import app.metatron.discovery.domain.dataprep.entity.PrDataset;
-import app.metatron.discovery.domain.dataprep.entity.PrTransformRule;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepErrorCodes;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepException;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepMessageKey;
-import app.metatron.discovery.domain.dataprep.repository.PrDataflowRepository;
-import app.metatron.discovery.domain.dataprep.repository.PrDatasetRepository;
-import app.metatron.discovery.domain.dataprep.repository.PrTransformRuleRepository;
-import app.metatron.discovery.domain.dataprep.transform.PrepTransformResponse;
-import app.metatron.discovery.domain.dataprep.transform.PrepTransformService;
+import com.datasphere.server.domain.dataprep.PrepParamDatasetIdList;
+import com.datasphere.server.domain.dataprep.PrepSwapRequest;
+import com.datasphere.server.domain.dataprep.PrepUpstream;
+import com.datasphere.server.domain.dataprep.entity.PrDataflow;
+import com.datasphere.server.domain.dataprep.entity.PrDataflowProjections;
+import com.datasphere.server.domain.dataprep.entity.PrDataset;
+import com.datasphere.server.domain.dataprep.entity.PrTransformRule;
+import com.datasphere.server.domain.dataprep.exceptions.PrepErrorCodes;
+import com.datasphere.server.domain.dataprep.exceptions.PrepException;
+import com.datasphere.server.domain.dataprep.exceptions.PrepMessageKey;
+import com.datasphere.server.domain.dataprep.repository.PrDataflowRepository;
+import com.datasphere.server.domain.dataprep.repository.PrDatasetRepository;
+import com.datasphere.server.domain.dataprep.repository.PrTransformRuleRepository;
+import com.datasphere.server.domain.dataprep.transform.PrepTransformResponse;
+import com.datasphere.server.domain.dataprep.transform.PrepTransformService;
 import com.google.common.collect.Lists;
 import org.apache.http.HttpStatus;
 import org.slf4j.Logger;

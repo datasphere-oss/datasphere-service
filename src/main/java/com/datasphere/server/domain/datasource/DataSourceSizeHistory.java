@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -22,8 +22,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
 
 /**
  * Created by kyungtaak on 2016. 9. 3..

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.transform;
+package com.datasphere.server.domain.dataprep.transform;
 
 public enum TimestampTemplate {
     DATE_TIME_01("yyyy-MM-dd HH:mm:ss"),

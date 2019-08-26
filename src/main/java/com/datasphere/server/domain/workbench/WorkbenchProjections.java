@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench;
+package com.datasphere.server.domain.workbench;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,10 +21,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
-import app.metatron.discovery.common.BaseProjections;
-import app.metatron.discovery.domain.dataconnection.DataConnectionProjections;
-import app.metatron.discovery.domain.user.UserProfile;
-import app.metatron.discovery.domain.workspace.WorkspaceProjections;
+import com.datasphere.server.common.BaseProjections;
+import com.datasphere.server.domain.dataconnection.DataConnectionProjections;
+import com.datasphere.server.domain.user.UserProfile;
+import com.datasphere.server.domain.workspace.WorkspaceProjections;
 
 /**
  * Created by kyungtaak on 2016. 11. 29..
@@ -73,10 +73,10 @@ public class WorkbenchProjections extends BaseProjections{
 
     String getGlobalVar();
 
-    @Value("#{T(app.metatron.discovery.util.HibernateUtils).unproxy(target.workspace)}")
+    @Value("#{T(com.datasphere.server.util.HibernateUtils).unproxy(target.workspace)}")
     WorkspaceProjections.HeaderViewProjection getWorkspace();
 
-    @Value("#{T(app.metatron.discovery.util.HibernateUtils).unproxy(target.dataConnection)}")
+    @Value("#{T(com.datasphere.server.util.HibernateUtils).unproxy(target.dataConnection)}")
     DataConnectionProjections.defaultProjection getDataConnection();
 
     Set<QueryEditor> getQueryEditors();

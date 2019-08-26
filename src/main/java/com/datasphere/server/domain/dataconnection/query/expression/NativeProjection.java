@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.query.expression;
+package com.datasphere.server.domain.dataconnection.query.expression;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -28,11 +28,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
-import app.metatron.discovery.domain.dataconnection.query.NativeCriteria;
-import app.metatron.discovery.domain.dataconnection.query.utils.VarGenerator;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.dataconnection.query.NativeCriteria;
+import com.datasphere.server.domain.dataconnection.query.utils.VarGenerator;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 
 public class NativeProjection {
   private static final Logger LOGGER = LoggerFactory.getLogger(NativeProjection.class);

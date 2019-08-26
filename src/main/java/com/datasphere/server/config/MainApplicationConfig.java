@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.config;
+package com.datasphere.server.config;
 
-import app.metatron.discovery.common.web.CommonLocalVariableFilter;
-import app.metatron.discovery.common.web.LogbackMdcFilter;
+import com.datasphere.server.common.web.CommonLocalVariableFilter;
+import com.datasphere.server.common.web.LogbackMdcFilter;
 import de.codecentric.boot.admin.config.EnableAdminServer;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -35,10 +35,10 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableAspectJAutoProxy
-@EnableJpaRepositories(basePackages = {"app.metatron.discovery.domain"})
+@EnableJpaRepositories(basePackages = {"com.datasphere.server.domain"})
 @EnableEntityLinks
 @EnableAdminServer
-@ComponentScan(basePackages = {"app.metatron.discovery"})
+@ComponentScan(basePackages = {"com.datasphere.server"})
 public class MainApplicationConfig {
 
   @Bean(name="dataSource")
@@ -57,7 +57,7 @@ public class MainApplicationConfig {
       DataSource dataSource) {
     return builder
         .dataSource(dataSource)
-        .packages("app.metatron.discovery.domain")
+        .packages("com.datasphere.server.domain")
         .build();
   }
 

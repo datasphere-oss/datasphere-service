@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.audit;
+package com.datasphere.server.domain.audit;
 
 import com.google.common.collect.Lists;
 
@@ -55,11 +55,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.util.BeanUtils;
-import app.metatron.discovery.util.CsvProcessor;
-import app.metatron.discovery.util.HttpUtils;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.util.BeanUtils;
+import com.datasphere.server.util.CsvProcessor;
+import com.datasphere.server.util.HttpUtils;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 

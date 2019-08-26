@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection;
+package com.datasphere.server.domain.dataconnection;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -31,14 +31,14 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.workbench.Workbench;
-import app.metatron.discovery.domain.workspace.Workspace;
-import app.metatron.discovery.extension.dataconnection.jdbc.JdbcConnectInformation;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.workbench.Workbench;
+import com.datasphere.server.domain.workspace.Workspace;
+import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
 
 @Entity
 @Table(name = "dataconnection")

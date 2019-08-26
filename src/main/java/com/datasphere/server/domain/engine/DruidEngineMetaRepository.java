@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine;
+package com.datasphere.server.domain.engine;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -48,13 +48,13 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.domain.engine.model.IngestionStatusResponse;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DefaultDataSource;
-import app.metatron.discovery.query.druid.Query;
-import app.metatron.discovery.query.druid.queries.SegmentMetaDataQuery;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.domain.engine.model.IngestionStatusResponse;
+import com.datasphere.server.domain.workbook.configurations.datasource.DefaultDataSource;
+import com.datasphere.server.query.druid.Query;
+import com.datasphere.server.query.druid.queries.SegmentMetaDataQuery;
 
-import static app.metatron.discovery.domain.engine.EngineProperties.*;
+import static com.datasphere.server.domain.engine.EngineProperties.*;
 
 /**
  * Created by kyungtaak on 2016. 11. 20..

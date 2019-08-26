@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.activities;
+package com.datasphere.server.domain.activities;
 
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -25,12 +25,12 @@ import java.security.Principal;
 
 import javax.persistence.*;
 
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.activities.spec.ActivityStreamV2;
-import app.metatron.discovery.domain.activities.spec.ActivityType;
-import app.metatron.discovery.domain.activities.spec.Actor;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.activities.spec.ActivityStreamV2;
+import com.datasphere.server.domain.activities.spec.ActivityType;
+import com.datasphere.server.domain.activities.spec.Actor;
+import com.datasphere.server.util.EnumUtils;
 
 @Entity
 @Table(name = "activity_stream")

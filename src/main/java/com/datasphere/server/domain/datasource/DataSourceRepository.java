@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
-import app.metatron.discovery.domain.context.ContextDomainRepository;
-import app.metatron.discovery.domain.workspace.Workspace;
+import com.datasphere.server.domain.context.ContextDomainRepository;
+import com.datasphere.server.domain.workspace.Workspace;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

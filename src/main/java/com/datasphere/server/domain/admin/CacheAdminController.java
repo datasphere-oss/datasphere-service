@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.admin;
+package com.datasphere.server.domain.admin;
 
 import com.google.common.collect.Maps;
 

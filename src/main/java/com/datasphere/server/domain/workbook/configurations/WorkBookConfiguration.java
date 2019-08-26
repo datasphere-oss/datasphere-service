@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations;
+package com.datasphere.server.domain.workbook.configurations;
 
 /**
  * A class for workbook specification

@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.accessor;
+package com.datasphere.server.domain.dataconnection.accessor;
 
 import org.pf4j.Extension;
 import org.slf4j.Logger;

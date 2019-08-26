@@ -1,4 +1,4 @@
-package app.metatron.discovery.domain.workbook.configurations.format;
+package com.datasphere.server.domain.workbook.configurations.format;
 
 import com.google.common.collect.Maps;
 

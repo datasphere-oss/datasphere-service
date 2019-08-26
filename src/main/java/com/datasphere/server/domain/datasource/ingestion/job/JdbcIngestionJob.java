@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion.job;
+package com.datasphere.server.domain.datasource.ingestion.job;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -38,28 +38,28 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.util.List;
 
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceIngestionException;
-import app.metatron.discovery.domain.datasource.DataSourceSummary;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcConnectionService;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistory;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionOption;
-import app.metatron.discovery.domain.datasource.ingestion.file.CsvFileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
-import app.metatron.discovery.spec.druid.ingestion.BatchIndex;
-import app.metatron.discovery.spec.druid.ingestion.Index;
-import app.metatron.discovery.spec.druid.ingestion.IngestionSpec;
-import app.metatron.discovery.spec.druid.ingestion.IngestionSpecBuilder;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceIngestionException;
+import com.datasphere.server.domain.datasource.DataSourceSummary;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.domain.datasource.ingestion.IngestionOption;
+import com.datasphere.server.domain.datasource.ingestion.file.CsvFileFormat;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.spec.druid.ingestion.BatchIndex;
+import com.datasphere.server.spec.druid.ingestion.Index;
+import com.datasphere.server.spec.druid.ingestion.IngestionSpec;
+import com.datasphere.server.spec.druid.ingestion.IngestionSpecBuilder;
 
-import static app.metatron.discovery.domain.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
-import static app.metatron.discovery.domain.datasource.DataSourceErrorCodes.INGESTION_JDBC_EMPTY_RESULT_ERROR;
-import static app.metatron.discovery.domain.datasource.DataSourceErrorCodes.INGESTION_JDBC_FETCH_RESULT_ERROR;
-import static app.metatron.discovery.domain.datasource.DataSourceErrorCodes.INGESTION_JDBC_QUERY_EXECUTION_ERROR;
-import static app.metatron.discovery.domain.datasource.ingestion.jdbc.BatchIngestionInfo.IngestionScope.INCREMENTAL;
+import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
+import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_JDBC_EMPTY_RESULT_ERROR;
+import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_JDBC_FETCH_RESULT_ERROR;
+import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_JDBC_QUERY_EXECUTION_ERROR;
+import static com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo.IngestionScope.INCREMENTAL;
 
 public class JdbcIngestionJob extends AbstractIngestionJob implements IngestionJob {
 

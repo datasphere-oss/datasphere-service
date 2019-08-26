@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.io;
+package com.datasphere.server.spec.druid.ingestion.io;
 
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.spec.druid.ingestion.firehose.Firehose;
+import com.datasphere.server.spec.druid.ingestion.firehose.Firehose;
 
 /**
  * Created by kyungtaak on 2016. 6. 18..

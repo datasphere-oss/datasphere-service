@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.filters;
+package com.datasphere.server.query.druid.filters;
 
 import com.google.common.collect.Lists;
 
@@ -22,7 +22,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
 
-import app.metatron.discovery.query.druid.Filter;
+import com.datasphere.server.query.druid.Filter;
 
 /**
  * Created by kyungtaak on 2017. 4. 28..

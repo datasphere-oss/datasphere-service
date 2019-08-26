@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.postprocessor;
+package com.datasphere.server.query.druid.postprocessor;
 
 import com.google.common.collect.Lists;
 
@@ -22,8 +22,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.List;
 
-import app.metatron.discovery.query.druid.PostAggregation;
-import app.metatron.discovery.query.druid.PostProcessor;
+import com.datasphere.server.query.druid.PostAggregation;
+import com.datasphere.server.query.druid.PostProcessor;
 
 @JsonTypeName("postAggregations")
 public class PostAggregationProcessor implements PostProcessor {

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.connector;
+package com.datasphere.server.domain.dataconnection.connector;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.conf.Configuration;
@@ -25,9 +25,9 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.sql.Connection;
 
-import app.metatron.discovery.domain.dataconnection.dialect.HiveDialect;
-import app.metatron.discovery.extension.dataconnection.jdbc.JdbcConnectInformation;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
+import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 
 /**
  *

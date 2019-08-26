@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data;
+package com.datasphere.server.domain.datasource.data;
 
 
 import com.google.common.collect.Lists;
@@ -20,8 +20,8 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.datasource.data.alias.Alias;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.datasource.data.alias.Alias;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
 
 public abstract class AbstractQueryRequest implements QueryRequest {
 

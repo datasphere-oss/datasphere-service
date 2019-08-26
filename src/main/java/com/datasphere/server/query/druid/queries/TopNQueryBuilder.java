@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.google.common.collect.Lists;
 
@@ -21,25 +21,25 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.domain.workbook.configurations.Limit;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.DimensionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
-import app.metatron.discovery.query.druid.Aggregation;
-import app.metatron.discovery.query.druid.Dimension;
-import app.metatron.discovery.query.druid.Granularity;
-import app.metatron.discovery.query.druid.aggregations.LongSumAggregation;
-import app.metatron.discovery.query.druid.dimensions.DefaultDimension;
-import app.metatron.discovery.query.druid.filters.AndFilter;
-import app.metatron.discovery.query.druid.granularities.SimpleGranularity;
-import app.metatron.discovery.query.druid.limits.OrderByColumn;
-import app.metatron.discovery.query.druid.virtualcolumns.ExprVirtualColumn;
-import app.metatron.discovery.query.druid.virtualcolumns.IndexVirtualColumn;
-import app.metatron.discovery.query.druid.virtualcolumns.VirtualColumn;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.domain.workbook.configurations.Limit;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.query.druid.Aggregation;
+import com.datasphere.server.query.druid.Dimension;
+import com.datasphere.server.query.druid.Granularity;
+import com.datasphere.server.query.druid.aggregations.LongSumAggregation;
+import com.datasphere.server.query.druid.dimensions.DefaultDimension;
+import com.datasphere.server.query.druid.filters.AndFilter;
+import com.datasphere.server.query.druid.granularities.SimpleGranularity;
+import com.datasphere.server.query.druid.limits.OrderByColumn;
+import com.datasphere.server.query.druid.virtualcolumns.ExprVirtualColumn;
+import com.datasphere.server.query.druid.virtualcolumns.IndexVirtualColumn;
+import com.datasphere.server.query.druid.virtualcolumns.VirtualColumn;
 
 /**
  * Created by hsp on 2016. 7. 5..
@@ -52,7 +52,7 @@ public class TopNQueryBuilder extends AbstractQueryBuilder {
 
   private Granularity granularity;
 
-  private app.metatron.discovery.query.druid.Limit limitSpec;
+  private com.datasphere.server.query.druid.Limit limitSpec;
 
   private List<OrderByColumn> orderByColumns = Lists.newArrayList();
 
@@ -93,13 +93,13 @@ public class TopNQueryBuilder extends AbstractQueryBuilder {
     }
     else if (reqField instanceof MeasureField) {
 
-      app.metatron.discovery.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+      com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
 
       if( datasourceField.getType() == DataType.MAP ){
 
         String keyFieldName = "";
-        for( app.metatron.discovery.domain.datasource.Field curField : datasourceField.getMappedField() ){
-          if( curField.getRole() == app.metatron.discovery.domain.datasource.Field.FieldRole.DIMENSION ){
+        for( com.datasphere.server.domain.datasource.Field curField : datasourceField.getMappedField() ){
+          if( curField.getRole() == com.datasphere.server.domain.datasource.Field.FieldRole.DIMENSION ){
             keyFieldName = curField.getName();
             break;
           }
@@ -115,7 +115,7 @@ public class TopNQueryBuilder extends AbstractQueryBuilder {
     return this;
   }
 
-  public TopNQueryBuilder filters(List<app.metatron.discovery.domain.workbook.configurations.filter.Filter> reqFilters) {
+  public TopNQueryBuilder filters(List<com.datasphere.server.domain.workbook.configurations.filter.Filter> reqFilters) {
 
     extractPartitions(reqFilters);
 

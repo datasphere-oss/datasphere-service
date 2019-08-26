@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -28,10 +28,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.domain.workspace.folder.Folder;
-import app.metatron.discovery.domain.workspace.folder.FolderRepository;
+import com.datasphere.server.domain.workspace.folder.Folder;
+import com.datasphere.server.domain.workspace.folder.FolderRepository;
 
-import static app.metatron.discovery.domain.workspace.BookProjections.BookProjectionType.LIST;
+import static com.datasphere.server.domain.workspace.BookProjections.BookProjectionType.LIST;
 
 /**
  * Created by kyungtaak on 2016. 12. 21..

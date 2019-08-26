@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion;
+package com.datasphere.server.spec.druid.ingestion;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -26,41 +26,41 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceIngestionException;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.ingestion.HdfsIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.HiveIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.LocalFileIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.file.CsvFileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.file.ExcelFileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.file.FileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.file.JsonFileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.file.OrcFileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.file.ParquetFileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.rule.EvaluationRule;
-import app.metatron.discovery.domain.datasource.ingestion.rule.IngestionRule;
-import app.metatron.discovery.domain.datasource.ingestion.rule.ReplaceNullRule;
-import app.metatron.discovery.domain.datasource.ingestion.rule.ValidationRule;
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.GeoFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.GeoPointFormat;
-import app.metatron.discovery.query.druid.ShapeFormat;
-import app.metatron.discovery.query.druid.aggregations.CountAggregation;
-import app.metatron.discovery.query.druid.aggregations.RelayAggregation;
-import app.metatron.discovery.query.druid.funtions.ShapeCentroidYXFunc;
-import app.metatron.discovery.query.druid.funtions.ShapeFromWktFunc;
-import app.metatron.discovery.query.druid.funtions.StructFunc;
-import app.metatron.discovery.spec.druid.ingestion.granularity.UniformGranularitySpec;
-import app.metatron.discovery.spec.druid.ingestion.index.LuceneIndexStrategy;
-import app.metatron.discovery.spec.druid.ingestion.index.LuceneIndexing;
-import app.metatron.discovery.spec.druid.ingestion.index.SecondaryIndexing;
-import app.metatron.discovery.spec.druid.ingestion.parser.*;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceIngestionException;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.ingestion.HdfsIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.HiveIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.file.CsvFileFormat;
+import com.datasphere.server.domain.datasource.ingestion.file.ExcelFileFormat;
+import com.datasphere.server.domain.datasource.ingestion.file.FileFormat;
+import com.datasphere.server.domain.datasource.ingestion.file.JsonFileFormat;
+import com.datasphere.server.domain.datasource.ingestion.file.OrcFileFormat;
+import com.datasphere.server.domain.datasource.ingestion.file.ParquetFileFormat;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.rule.EvaluationRule;
+import com.datasphere.server.domain.datasource.ingestion.rule.IngestionRule;
+import com.datasphere.server.domain.datasource.ingestion.rule.ReplaceNullRule;
+import com.datasphere.server.domain.datasource.ingestion.rule.ValidationRule;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.GeoFormat;
+import com.datasphere.server.domain.workbook.configurations.format.GeoPointFormat;
+import com.datasphere.server.query.druid.ShapeFormat;
+import com.datasphere.server.query.druid.aggregations.CountAggregation;
+import com.datasphere.server.query.druid.aggregations.RelayAggregation;
+import com.datasphere.server.query.druid.funtions.ShapeCentroidYXFunc;
+import com.datasphere.server.query.druid.funtions.ShapeFromWktFunc;
+import com.datasphere.server.query.druid.funtions.StructFunc;
+import com.datasphere.server.spec.druid.ingestion.granularity.UniformGranularitySpec;
+import com.datasphere.server.spec.druid.ingestion.index.LuceneIndexStrategy;
+import com.datasphere.server.spec.druid.ingestion.index.LuceneIndexing;
+import com.datasphere.server.spec.druid.ingestion.index.SecondaryIndexing;
+import com.datasphere.server.spec.druid.ingestion.parser.*;
 
-import static app.metatron.discovery.domain.datasource.ingestion.jdbc.BatchIngestionInfo.IngestionScope.ALL;
+import static com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo.IngestionScope.ALL;
 
 public class AbstractSpecBuilder {
 

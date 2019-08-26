@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,15 +31,15 @@ import java.util.Map;
 
 import javax.persistence.*;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.common.entity.Spec;
-import app.metatron.discovery.domain.CollectionPatch;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.entity.Spec;
+import com.datasphere.server.domain.CollectionPatch;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
 @Entity
 @Table(name = "mdm_metadata_column")

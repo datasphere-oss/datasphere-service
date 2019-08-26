@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook;
+package com.datasphere.server.domain.notebook;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.notebook.connector.HttpRepository;
+import com.datasphere.server.domain.notebook.connector.HttpRepository;
 
 /**
  * Created by james on 2017. 8. 4..

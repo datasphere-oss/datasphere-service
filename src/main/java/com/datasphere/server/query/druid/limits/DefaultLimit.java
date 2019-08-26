@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.limits;
+package com.datasphere.server.query.druid.limits;
 
 
 import com.google.common.collect.Lists;
@@ -23,7 +23,7 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.query.druid.Limit;
+import com.datasphere.server.query.druid.Limit;
 
 @JsonTypeName("default")
 public class DefaultLimit implements Limit {

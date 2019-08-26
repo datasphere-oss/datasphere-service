@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.firehose;
+package com.datasphere.server.spec.druid.ingestion.firehose;
 
 import com.google.common.collect.Lists;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
 
 /**
  * Created by kyungtaak on 2016. 6. 18..

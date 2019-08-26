@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.lineage;
+package com.datasphere.server.domain.mdm.lineage;
 
-import static app.metatron.discovery.domain.mdm.MetadataErrorCodes.LINEAGE_NODE_COUNT_DONE;
+import static com.datasphere.server.domain.mdm.MetadataErrorCodes.LINEAGE_NODE_COUNT_DONE;
 
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.MetadataRepository;
-import app.metatron.discovery.domain.mdm.lineage.LineageMap.ALIGNMENT;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.MetadataRepository;
+import com.datasphere.server.domain.mdm.lineage.LineageMap.ALIGNMENT;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

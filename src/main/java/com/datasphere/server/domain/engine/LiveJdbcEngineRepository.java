@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine;
+package com.datasphere.server.domain.engine;
 
 import com.google.common.base.Preconditions;
 
@@ -40,15 +40,15 @@ import java.util.UUID;
 
 import javax.sql.DataSource;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
-import app.metatron.discovery.domain.datasource.data.QueryTimeExcetpion;
-import app.metatron.discovery.domain.datasource.data.forward.CsvResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.JsonResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.ResultForward;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import app.metatron.discovery.util.CustomCsvResultSetWriter;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.domain.datasource.data.forward.CsvResultForward;
+import com.datasphere.server.domain.datasource.data.forward.JsonResultForward;
+import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.util.CustomCsvResultSetWriter;
 
 /**
  * Created by kyungtaak on 2016. 9. 8..

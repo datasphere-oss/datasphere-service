@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data.forward;
+package com.datasphere.server.domain.datasource.data.forward;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -24,7 +24,7 @@ import java.io.File;
 import java.net.URI;
 import java.util.UUID;
 
-import app.metatron.discovery.domain.engine.EngineQueryProperties;
+import com.datasphere.server.domain.engine.EngineQueryProperties;
 
 /**
  * Created by kyungtaak on 2016. 8. 24..

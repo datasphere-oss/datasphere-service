@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,11 +23,11 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.domain.CollectionPatch;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.user.CachedUserService;
-import app.metatron.discovery.domain.user.User;
-import app.metatron.discovery.domain.user.group.Group;
+import com.datasphere.server.domain.CollectionPatch;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.user.CachedUserService;
+import com.datasphere.server.domain.user.User;
+import com.datasphere.server.domain.user.group.Group;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;

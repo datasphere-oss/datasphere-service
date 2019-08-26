@@ -95,7 +95,7 @@ public class MSSQLConnection {
 
     @Override
     public String getDataAccessorClass(JdbcConnectInformation connectInfo) {
-      return "app.metatron.discovery.MssqlConnectionExtension$MssqlDataAccessor";
+      return "com.datasphere.server.MssqlConnectionExtension$MssqlDataAccessor";
     }
 
     @Override

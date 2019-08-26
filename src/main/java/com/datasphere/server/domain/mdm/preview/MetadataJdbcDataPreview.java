@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.preview;
+package com.datasphere.server.domain.mdm.preview;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,15 +25,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Map;
 
-import app.metatron.discovery.common.data.projection.ColumnDescription;
-import app.metatron.discovery.common.data.projection.Row;
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.extension.dataconnection.jdbc.JdbcConnectInformation;
-import app.metatron.discovery.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.common.data.projection.ColumnDescription;
+import com.datasphere.server.common.data.projection.Row;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
+import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 
 /**
  * The type Metadata jdbc data preview.

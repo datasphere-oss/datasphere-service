@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook.connector;
+package com.datasphere.server.domain.notebook.connector;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import app.metatron.discovery.domain.notebook.Notebook;
+import com.datasphere.server.domain.notebook.Notebook;
 
 /**
  * Created by james on 2017. 7. 31..

@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.funtions;
+package com.datasphere.server.query.druid.funtions;
 
-import app.metatron.discovery.common.datasource.LogicalType;
+import com.datasphere.server.common.datasource.LogicalType;
 
 public class ShapeFromLatLonFunc {
 

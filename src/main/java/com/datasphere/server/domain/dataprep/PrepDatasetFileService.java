@@ -12,30 +12,30 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep;
+package com.datasphere.server.domain.dataprep;
 
 
-import static app.metatron.discovery.domain.dataprep.PrepProperties.HADOOP_CONF_DIR;
-import static app.metatron.discovery.domain.dataprep.exceptions.PrepMessageKey.MSG_DP_ALERT_HADOOP_HDFS_FAILED_TO_CONNECT;
+import static com.datasphere.server.domain.dataprep.PrepProperties.HADOOP_CONF_DIR;
+import static com.datasphere.server.domain.dataprep.exceptions.PrepMessageKey.MSG_DP_ALERT_HADOOP_HDFS_FAILED_TO_CONNECT;
 
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.domain.dataprep.csv.PrepCsvUtil;
-import app.metatron.discovery.domain.dataprep.entity.PrDataset;
-import app.metatron.discovery.domain.dataprep.entity.PrUploadFile;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepErrorCodes;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepException;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepMessageKey;
-import app.metatron.discovery.domain.dataprep.json.PrepJsonUtil;
-import app.metatron.discovery.domain.dataprep.repository.PrDatasetRepository;
-import app.metatron.discovery.domain.dataprep.teddy.ColumnType;
-import app.metatron.discovery.domain.dataprep.teddy.DataFrame;
-import app.metatron.discovery.domain.dataprep.teddy.DataFrameService;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.TeddyException;
-import app.metatron.discovery.domain.dataprep.transform.TeddyImpl;
-import app.metatron.discovery.domain.dataprep.transform.TimestampTemplate;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.storage.StorageProperties;
-import app.metatron.discovery.util.ExcelProcessor;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.domain.dataprep.csv.PrepCsvUtil;
+import com.datasphere.server.domain.dataprep.entity.PrDataset;
+import com.datasphere.server.domain.dataprep.entity.PrUploadFile;
+import com.datasphere.server.domain.dataprep.exceptions.PrepErrorCodes;
+import com.datasphere.server.domain.dataprep.exceptions.PrepException;
+import com.datasphere.server.domain.dataprep.exceptions.PrepMessageKey;
+import com.datasphere.server.domain.dataprep.json.PrepJsonUtil;
+import com.datasphere.server.domain.dataprep.repository.PrDatasetRepository;
+import com.datasphere.server.domain.dataprep.teddy.ColumnType;
+import com.datasphere.server.domain.dataprep.teddy.DataFrame;
+import com.datasphere.server.domain.dataprep.teddy.DataFrameService;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.TeddyException;
+import com.datasphere.server.domain.dataprep.transform.TeddyImpl;
+import com.datasphere.server.domain.dataprep.transform.TimestampTemplate;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.storage.StorageProperties;
+import com.datasphere.server.util.ExcelProcessor;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;

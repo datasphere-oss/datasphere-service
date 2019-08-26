@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.aggregations;
+package com.datasphere.server.query.druid.aggregations;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.query.druid.Aggregation;
-import app.metatron.discovery.query.druid.Filter;
+import com.datasphere.server.query.druid.Aggregation;
+import com.datasphere.server.query.druid.Filter;
 
 @JsonTypeName("filtered")
 public class FilteredAggregation implements Aggregation{

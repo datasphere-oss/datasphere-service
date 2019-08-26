@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.preview;
+package com.datasphere.server.domain.mdm.preview;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -26,18 +26,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.data.projection.ColumnDescription;
-import app.metatron.discovery.common.data.projection.ColumnHistogram;
-import app.metatron.discovery.common.data.projection.DataGrid;
-import app.metatron.discovery.common.data.projection.DataHistogram;
-import app.metatron.discovery.common.data.projection.Row;
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.MetadataColumn;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.data.projection.ColumnDescription;
+import com.datasphere.server.common.data.projection.ColumnHistogram;
+import com.datasphere.server.common.data.projection.DataGrid;
+import com.datasphere.server.common.data.projection.DataHistogram;
+import com.datasphere.server.common.data.projection.Row;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.MetadataColumn;
 
-import static app.metatron.discovery.domain.datasource.Field.COLUMN_NAME_CURRENT_DATETIME;
+import static com.datasphere.server.domain.datasource.Field.COLUMN_NAME_CURRENT_DATETIME;
 
 /**
  * The type Metadata data preview.

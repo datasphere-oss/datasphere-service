@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.scheduling.common;
+package com.datasphere.server.domain.scheduling.common;
 
-import app.metatron.discovery.domain.engine.EngineProperties;
-import app.metatron.discovery.domain.workbench.WorkbenchProperties;
+import com.datasphere.server.domain.engine.EngineProperties;
+import com.datasphere.server.domain.workbench.WorkbenchProperties;
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.joda.time.Period;

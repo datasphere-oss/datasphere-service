@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 
 import org.hibernate.annotations.GenericGenerator;
@@ -26,7 +26,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import app.metatron.discovery.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.Field;
 
 @Entity
 @Table(name = "mdm_metadata_popularity")

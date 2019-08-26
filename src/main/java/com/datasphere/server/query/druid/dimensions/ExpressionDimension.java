@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.dimensions;
+package com.datasphere.server.query.druid.dimensions;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.query.druid.Dimension;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.query.druid.Dimension;
 
 @JsonTypeName("expression")
 public class ExpressionDimension implements Dimension {

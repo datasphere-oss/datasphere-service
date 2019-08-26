@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook.content;
+package com.datasphere.server.domain.notebook.content;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

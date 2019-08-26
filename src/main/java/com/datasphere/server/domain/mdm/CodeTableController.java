@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import com.google.common.collect.Maps;
 
@@ -42,9 +42,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.CollectionPatch;
-import app.metatron.discovery.util.ProjectionUtils;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.CollectionPatch;
+import com.datasphere.server.util.ProjectionUtils;
 
 @RepositoryRestController
 public class CodeTableController {

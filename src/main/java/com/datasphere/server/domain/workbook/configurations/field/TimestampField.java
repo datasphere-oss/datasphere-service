@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.field;
+package com.datasphere.server.domain.workbook.configurations.field;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,10 +21,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import org.apache.commons.lang3.StringUtils;
 
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.domain.workbook.configurations.format.CustomDateTimeFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.domain.workbook.configurations.format.CustomDateTimeFormat;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 
 /**
  *

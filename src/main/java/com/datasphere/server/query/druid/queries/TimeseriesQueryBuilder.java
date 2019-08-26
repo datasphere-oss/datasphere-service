@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -23,21 +23,21 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 import java.util.Set;
 
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
-import app.metatron.discovery.query.druid.Granularity;
-import app.metatron.discovery.query.druid.aggregations.DoubleMaxAggregation;
-import app.metatron.discovery.query.druid.aggregations.DoubleMinAggregation;
-import app.metatron.discovery.query.druid.aggregations.EnvelopeAggregation;
-import app.metatron.discovery.query.druid.filters.AndFilter;
-import app.metatron.discovery.query.druid.funtions.ShapeFromWktFunc;
-import app.metatron.discovery.query.druid.granularities.SimpleGranularity;
-import app.metatron.discovery.query.druid.postaggregations.ExprPostAggregator;
-import app.metatron.discovery.query.druid.virtualcolumns.ExprVirtualColumn;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.query.druid.Granularity;
+import com.datasphere.server.query.druid.aggregations.DoubleMaxAggregation;
+import com.datasphere.server.query.druid.aggregations.DoubleMinAggregation;
+import com.datasphere.server.query.druid.aggregations.EnvelopeAggregation;
+import com.datasphere.server.query.druid.filters.AndFilter;
+import com.datasphere.server.query.druid.funtions.ShapeFromWktFunc;
+import com.datasphere.server.query.druid.granularities.SimpleGranularity;
+import com.datasphere.server.query.druid.postaggregations.ExprPostAggregator;
+import com.datasphere.server.query.druid.virtualcolumns.ExprVirtualColumn;
 
 /**
  * Created by hsp on 2016. 7. 5..

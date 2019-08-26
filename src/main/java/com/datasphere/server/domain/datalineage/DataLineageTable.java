@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datalineage;
+package com.datasphere.server.domain.datalineage;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -26,7 +26,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-import app.metatron.discovery.domain.MetatronDomain;
+import com.datasphere.server.domain.MetatronDomain;
 
 @Entity
 @Table(name="data_lineage_table")

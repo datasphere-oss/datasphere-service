@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Ordering;
@@ -58,38 +58,38 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.common.entity.Spec;
-import app.metatron.discovery.domain.CollectionPatch;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.datasource.ingestion.rule.IngestionRule;
-import app.metatron.discovery.domain.mdm.MetadataColumn;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.filter.InclusionFilter;
-import app.metatron.discovery.domain.workbook.configurations.filter.TimeFilter;
-import app.metatron.discovery.domain.workbook.configurations.format.ContinuousTimeFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.CustomDateTimeFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.UnixTimeFormat;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import app.metatron.discovery.query.druid.Aggregation;
-import app.metatron.discovery.query.druid.aggregations.ApproxHistogramFoldAggregation;
-import app.metatron.discovery.query.druid.aggregations.AreaAggregation;
-import app.metatron.discovery.query.druid.aggregations.GenericMaxAggregation;
-import app.metatron.discovery.query.druid.aggregations.GenericMinAggregation;
-import app.metatron.discovery.query.druid.aggregations.GenericSumAggregation;
-import app.metatron.discovery.query.druid.aggregations.RangeAggregation;
-import app.metatron.discovery.query.druid.aggregations.RelayAggregation;
-import app.metatron.discovery.query.druid.aggregations.VarianceAggregation;
-import app.metatron.discovery.spec.druid.ingestion.parser.TimestampSpec;
-import app.metatron.discovery.util.TimeUnits;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.entity.Spec;
+import com.datasphere.server.domain.CollectionPatch;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.datasource.ingestion.rule.IngestionRule;
+import com.datasphere.server.domain.mdm.MetadataColumn;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.filter.InclusionFilter;
+import com.datasphere.server.domain.workbook.configurations.filter.TimeFilter;
+import com.datasphere.server.domain.workbook.configurations.format.ContinuousTimeFormat;
+import com.datasphere.server.domain.workbook.configurations.format.CustomDateTimeFormat;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.UnixTimeFormat;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.query.druid.Aggregation;
+import com.datasphere.server.query.druid.aggregations.ApproxHistogramFoldAggregation;
+import com.datasphere.server.query.druid.aggregations.AreaAggregation;
+import com.datasphere.server.query.druid.aggregations.GenericMaxAggregation;
+import com.datasphere.server.query.druid.aggregations.GenericMinAggregation;
+import com.datasphere.server.query.druid.aggregations.GenericSumAggregation;
+import com.datasphere.server.query.druid.aggregations.RangeAggregation;
+import com.datasphere.server.query.druid.aggregations.RelayAggregation;
+import com.datasphere.server.query.druid.aggregations.VarianceAggregation;
+import com.datasphere.server.spec.druid.ingestion.parser.TimestampSpec;
+import com.datasphere.server.util.TimeUnits;
 
-import static app.metatron.discovery.domain.workbook.configurations.field.MeasureField.AggregationType.NONE;
+import static com.datasphere.server.domain.workbook.configurations.field.MeasureField.AggregationType.NONE;
 
 /**
  * Created by kyungtaak on 2015. 12. 8..

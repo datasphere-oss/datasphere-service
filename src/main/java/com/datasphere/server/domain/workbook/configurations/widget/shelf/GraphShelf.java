@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.widget.shelf;
+package com.datasphere.server.domain.workbook.configurations.widget.shelf;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,7 +22,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.util.Collections;
 import java.util.List;
 
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
 
 public class GraphShelf implements Shelf {
 

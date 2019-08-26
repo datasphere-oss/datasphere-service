@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.saml;
+package com.datasphere.server.common.saml;
 
-import app.metatron.discovery.domain.user.UserRepository;
-import app.metatron.discovery.domain.user.UserService;
-import app.metatron.discovery.domain.user.group.Group;
-import app.metatron.discovery.domain.user.group.GroupMember;
-import app.metatron.discovery.domain.user.group.GroupService;
-import app.metatron.discovery.domain.user.role.RoleService;
-import app.metatron.discovery.domain.user.role.RoleSet;
-import app.metatron.discovery.domain.user.role.RoleSetRepository;
-import app.metatron.discovery.domain.user.role.RoleSetService;
-import app.metatron.discovery.domain.workspace.Workspace;
-import app.metatron.discovery.domain.workspace.WorkspaceRepository;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.domain.user.UserRepository;
+import com.datasphere.server.domain.user.UserService;
+import com.datasphere.server.domain.user.group.Group;
+import com.datasphere.server.domain.user.group.GroupMember;
+import com.datasphere.server.domain.user.group.GroupService;
+import com.datasphere.server.domain.user.role.RoleService;
+import com.datasphere.server.domain.user.role.RoleSet;
+import com.datasphere.server.domain.user.role.RoleSetRepository;
+import com.datasphere.server.domain.user.role.RoleSetService;
+import com.datasphere.server.domain.workspace.Workspace;
+import com.datasphere.server.domain.workspace.WorkspaceRepository;
+import com.datasphere.server.util.PolarisUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Session;
 import org.opensaml.saml2.core.Attribute;
@@ -101,7 +101,7 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService{
       LOGGER.debug("{} is metatron user.", nameID);
     }
 
-    ((app.metatron.discovery.domain.user.User) metatronUser).setRoleService(roleService);
+    ((com.datasphere.server.domain.user.User) metatronUser).setRoleService(roleService);
 
     // 권한 정보 미리 로드
     metatronUser.getAuthorities();
@@ -110,13 +110,13 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService{
 	}
 
   @Transactional
-	public app.metatron.discovery.domain.user.User createMetatronUser(SAMLCredential credential, SAMLUserMapper samlUserMapper){
+	public com.datasphere.server.domain.user.User createMetatronUser(SAMLCredential credential, SAMLUserMapper samlUserMapper){
     LOGGER.debug("create metatron user for {}", credential.getNameID().getValue());
 
-	  app.metatron.discovery.domain.user.User metatronUser;
+	  com.datasphere.server.domain.user.User metatronUser;
 
 		if(samlUserMapper == null){
-      metatronUser = new app.metatron.discovery.domain.user.User();
+      metatronUser = new com.datasphere.server.domain.user.User();
     } else {
 		  metatronUser = samlUserMapper.createUser(credential);
     }
@@ -142,7 +142,7 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService{
 		metatronUser.setPassword(PolarisUtils.createTemporaryPassword(8));
 
     //기본은 deactivated
-		metatronUser.setStatus(app.metatron.discovery.domain.user.User.Status.ACTIVATED);
+		metatronUser.setStatus(com.datasphere.server.domain.user.User.Status.ACTIVATED);
 
 		// Group 정보가 없을 경우 기본그룹 지정
 		Group defaultGroup = groupService.getDefaultGroup();
@@ -180,7 +180,7 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService{
     LOGGER.debug("search user mapper for remoteEntity {}", samlCredential.getRemoteEntityID());
 
     //need add property userMapperClass
-		//ex) polaris.saml.userMapperClass=app.metatron.discovery.common.saml.SAMLBhartiUserMapper
+		//ex) polaris.saml.userMapperClass=com.datasphere.server.common.saml.SAMLBhartiUserMapper
 		String userMapperClassName = samlProperties.userMapperClass;
 		LOGGER.debug("found userMapperClassName : {}", userMapperClassName);
 		

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.filter;
+package com.datasphere.server.domain.workbook.configurations.filter;
 
 
 import com.google.common.collect.Lists;
@@ -35,12 +35,12 @@ import java.util.Locale;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
-import app.metatron.discovery.query.druid.funtions.DateTimeMillisFunc;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.query.druid.funtions.DateTimeMillisFunc;
 
-import static app.metatron.discovery.domain.datasource.Field.FieldRole.TIMESTAMP;
+import static com.datasphere.server.domain.datasource.Field.FieldRole.TIMESTAMP;
 
 @JsonTypeName("time_range")
 public class TimeRangeFilter extends TimeFilter {

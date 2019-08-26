@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook.connector;
+package com.datasphere.server.domain.notebook.connector;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -42,10 +42,10 @@ import java.util.regex.Pattern;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import app.metatron.discovery.common.JupyterCommandBuilder;
-import app.metatron.discovery.domain.notebook.Notebook;
-import app.metatron.discovery.domain.notebook.NotebookAPI;
-import app.metatron.discovery.domain.notebook.NotebookConnector;
+import com.datasphere.server.common.JupyterCommandBuilder;
+import com.datasphere.server.domain.notebook.Notebook;
+import com.datasphere.server.domain.notebook.NotebookAPI;
+import com.datasphere.server.domain.notebook.NotebookConnector;
 
 /**
  * Created by kyungtaak on 2016. 10. 22..

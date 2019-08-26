@@ -14,7 +14,7 @@
  *
  */
 
-package app.metatron.discovery.spec.druid.ingestion.parser;
+package com.datasphere.server.spec.druid.ingestion.parser;
 
 public class ParquetParser extends StringParser implements Parser {
 

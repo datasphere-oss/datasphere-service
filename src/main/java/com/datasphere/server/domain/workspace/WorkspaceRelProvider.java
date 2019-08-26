@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import org.apache.commons.lang3.ClassUtils;
 import org.springframework.core.Ordered;

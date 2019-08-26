@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.serializers;
+package com.datasphere.server.query.druid.serializers;
 
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -22,8 +22,8 @@ import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 
 import java.io.IOException;
 
-import app.metatron.discovery.query.druid.Granularity;
-import app.metatron.discovery.query.druid.granularities.SimpleGranularity;
+import com.datasphere.server.query.druid.Granularity;
+import com.datasphere.server.query.druid.granularities.SimpleGranularity;
 
 public class GranularitySerializer extends JsonSerializer<Granularity> {
   @Override

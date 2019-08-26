@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -21,20 +21,20 @@ import com.google.common.collect.Maps;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.workbook.configurations.Limit;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.JoinMapping;
-import app.metatron.discovery.domain.workbook.configurations.datasource.MappingDataSource;
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
-import app.metatron.discovery.query.druid.datasource.QueryDataSource;
-import app.metatron.discovery.query.druid.datasource.TableDataSource;
+import com.datasphere.server.domain.workbook.configurations.Limit;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.JoinMapping;
+import com.datasphere.server.domain.workbook.configurations.datasource.MappingDataSource;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.query.druid.datasource.QueryDataSource;
+import com.datasphere.server.query.druid.datasource.TableDataSource;
 
-import static app.metatron.discovery.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
+import static com.datasphere.server.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
 import static java.util.stream.Collectors.toList;
 
 public class JoinQueryBuilder extends AbstractQueryBuilder {
 
-  Map<String, app.metatron.discovery.query.druid.datasource.DataSource> joinDataSources = Maps.newLinkedHashMap();
+  Map<String, com.datasphere.server.query.druid.datasource.DataSource> joinDataSources = Maps.newLinkedHashMap();
 
   List<JoinElement> elements = Lists.newArrayList();
 

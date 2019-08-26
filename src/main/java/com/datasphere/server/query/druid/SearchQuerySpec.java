@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid;
+package com.datasphere.server.query.druid;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import app.metatron.discovery.query.druid.searches.AllSearchQuerySpec;
-import app.metatron.discovery.query.druid.searches.FragmentSearchQuerySpec;
-import app.metatron.discovery.query.druid.searches.InsensitiveContainsSearchQuerySpec;
-import app.metatron.discovery.query.druid.searches.RegexSearchQuerySpec;
+import com.datasphere.server.query.druid.searches.AllSearchQuerySpec;
+import com.datasphere.server.query.druid.searches.FragmentSearchQuerySpec;
+import com.datasphere.server.query.druid.searches.InsensitiveContainsSearchQuerySpec;
+import com.datasphere.server.query.druid.searches.RegexSearchQuerySpec;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXTERNAL_PROPERTY, property = "type")
 @JsonSubTypes({

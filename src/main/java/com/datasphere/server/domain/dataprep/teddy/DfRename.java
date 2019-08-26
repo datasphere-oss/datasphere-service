@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy;
+package com.datasphere.server.domain.dataprep.teddy;
 
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.IllegalColumnNameExpressionException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.TeddyException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.WrongTargetColumnExpressionException;
-import app.metatron.discovery.prep.parser.preparation.rule.Rename;
-import app.metatron.discovery.prep.parser.preparation.rule.Rule;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Constant;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Expression;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Identifier;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.IllegalColumnNameExpressionException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.TeddyException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.WrongTargetColumnExpressionException;
+import com.datasphere.server.prep.parser.preparation.rule.Rename;
+import com.datasphere.server.prep.parser.preparation.rule.Rule;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Constant;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Expression;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

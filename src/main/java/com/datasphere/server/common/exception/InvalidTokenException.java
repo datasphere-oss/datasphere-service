@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.exception;
+package com.datasphere.server.common.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import static app.metatron.discovery.common.exception.GlobalErrorCodes.INVALID_TOKEN_CODE;
+import static com.datasphere.server.common.exception.GlobalErrorCodes.INVALID_TOKEN_CODE;
 
 /**
  * 접근 거부 오류시 발생 (Role처리 오류)

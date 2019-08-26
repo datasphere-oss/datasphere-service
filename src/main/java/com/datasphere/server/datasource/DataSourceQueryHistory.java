@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -26,23 +26,23 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.datasource.data.CandidateQueryRequest;
-import app.metatron.discovery.domain.datasource.data.CovarianceQueryRequest;
-import app.metatron.discovery.domain.datasource.data.MetaQueryRequest;
-import app.metatron.discovery.domain.datasource.data.QueryRequest;
-import app.metatron.discovery.domain.datasource.data.SearchQueryRequest;
-import app.metatron.discovery.domain.datasource.data.SummaryQueryRequest;
-import app.metatron.discovery.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.datasource.data.CandidateQueryRequest;
+import com.datasphere.server.domain.datasource.data.CovarianceQueryRequest;
+import com.datasphere.server.domain.datasource.data.MetaQueryRequest;
+import com.datasphere.server.domain.datasource.data.QueryRequest;
+import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
+import com.datasphere.server.domain.datasource.data.SummaryQueryRequest;
+import com.datasphere.server.domain.datasource.data.forward.ResultForward;
 
-import static app.metatron.discovery.domain.datasource.DataSourceQueryHistory.QueryType.CANDIDATE;
-import static app.metatron.discovery.domain.datasource.DataSourceQueryHistory.QueryType.COVARIANCE;
-import static app.metatron.discovery.domain.datasource.DataSourceQueryHistory.QueryType.META;
-import static app.metatron.discovery.domain.datasource.DataSourceQueryHistory.QueryType.SEARCH;
-import static app.metatron.discovery.domain.datasource.DataSourceQueryHistory.QueryType.SIMILARITY;
-import static app.metatron.discovery.domain.datasource.DataSourceQueryHistory.QueryType.SUMMARY;
+import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.QueryType.CANDIDATE;
+import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.QueryType.COVARIANCE;
+import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.QueryType.META;
+import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.QueryType.SEARCH;
+import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.QueryType.SIMILARITY;
+import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.QueryType.SUMMARY;
 
 /**
  * Created by kyungtaak on 2016. 8. 30..

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.scheduling.notebook;
+package com.datasphere.server.domain.scheduling.notebook;
 
 import org.quartz.DisallowConcurrentExecution;
 import org.quartz.JobExecutionContext;
@@ -28,9 +28,9 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import app.metatron.discovery.domain.notebook.NotebookConnector;
-import app.metatron.discovery.domain.notebook.NotebookConnectorRepository;
-import app.metatron.discovery.domain.notebook.connector.HttpRepository;
+import com.datasphere.server.domain.notebook.NotebookConnector;
+import com.datasphere.server.domain.notebook.NotebookConnectorRepository;
+import com.datasphere.server.domain.notebook.connector.HttpRepository;
 
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 

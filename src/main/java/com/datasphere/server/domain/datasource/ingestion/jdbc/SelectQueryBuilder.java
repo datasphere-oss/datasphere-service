@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion.jdbc;
+package com.datasphere.server.domain.datasource.ingestion.jdbc;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -20,15 +20,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.workbook.configurations.format.UnixTimeFormat;
-import app.metatron.discovery.extension.dataconnection.jdbc.JdbcConnectInformation;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import app.metatron.discovery.util.TimeUnits;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.workbook.configurations.format.UnixTimeFormat;
+import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.util.TimeUnits;
 
-import static app.metatron.discovery.domain.datasource.ingestion.jdbc.JdbcIngestionInfo.DataType.TABLE;
+import static com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo.DataType.TABLE;
 
 /**
  * Build "SELECT" SQL for datasource ingestion

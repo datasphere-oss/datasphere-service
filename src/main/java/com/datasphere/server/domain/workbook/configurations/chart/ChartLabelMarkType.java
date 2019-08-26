@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.chart;
+package com.datasphere.server.domain.workbook.configurations.chart;
 
 /**
  * Created by kyungtaak on 2016. 4. 16..

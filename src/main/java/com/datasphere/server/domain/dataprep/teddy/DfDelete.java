@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy;
+package com.datasphere.server.domain.dataprep.teddy;
 
-import app.metatron.discovery.prep.parser.preparation.rule.Delete;
-import app.metatron.discovery.prep.parser.preparation.rule.Rule;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Expression;
+import com.datasphere.server.prep.parser.preparation.rule.Delete;
+import com.datasphere.server.prep.parser.preparation.rule.Rule;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Expression;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.TeddyException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.TeddyException;
 
 public class DfDelete extends DataFrame {
   private static Logger LOGGER = LoggerFactory.getLogger(DfDelete.class);

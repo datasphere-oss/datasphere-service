@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.saml;
+package com.datasphere.server.common.saml;
 
 import org.opensaml.ws.message.encoder.MessageEncodingException;
 import org.slf4j.Logger;
@@ -40,7 +40,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import app.metatron.discovery.util.AuthUtils;
+import com.datasphere.server.util.AuthUtils;
 
 public class SAMLAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 

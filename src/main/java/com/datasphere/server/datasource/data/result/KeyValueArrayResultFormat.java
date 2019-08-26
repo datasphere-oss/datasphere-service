@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data.result;
+package com.datasphere.server.domain.datasource.data.result;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -43,14 +43,14 @@ import java.util.Map;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.domain.datasource.data.QueryTimeExcetpion;
-import app.metatron.discovery.domain.datasource.data.forward.CsvResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.JsonResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.ParquetResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.ResultForward;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.domain.datasource.data.forward.CsvResultForward;
+import com.datasphere.server.domain.datasource.data.forward.JsonResultForward;
+import com.datasphere.server.domain.datasource.data.forward.ParquetResultForward;
+import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
 
 /**
  * Created by kyungtaak on 2016. 7. 18..

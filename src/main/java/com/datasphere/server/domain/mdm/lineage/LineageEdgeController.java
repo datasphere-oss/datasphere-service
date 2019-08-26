@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.lineage;
+package com.datasphere.server.domain.mdm.lineage;
 
-import app.metatron.discovery.domain.dataprep.csv.PrepCsvUtil;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.MetadataRepository;
-import app.metatron.discovery.domain.mdm.lineage.LineageMap.ALIGNMENT;
+import com.datasphere.server.domain.dataprep.csv.PrepCsvUtil;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.MetadataRepository;
+import com.datasphere.server.domain.mdm.lineage.LineageMap.ALIGNMENT;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import java.io.IOException;

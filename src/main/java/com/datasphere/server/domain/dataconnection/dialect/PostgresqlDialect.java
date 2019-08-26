@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.dialect;
+package com.datasphere.server.domain.dataconnection.dialect;
 
 import org.apache.commons.lang3.StringUtils;
 import org.postgresql.jdbc.PgArray;
@@ -24,9 +24,9 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
-import app.metatron.discovery.common.exception.FunctionWithException;
-import app.metatron.discovery.extension.dataconnection.jdbc.JdbcConnectInformation;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.common.exception.FunctionWithException;
+import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 
 /**
  *
@@ -105,7 +105,7 @@ public class PostgresqlDialect implements JdbcDialect {
 
   @Override
   public String getDataAccessorClass(JdbcConnectInformation connectInfo) {
-    return "app.metatron.discovery.domain.dataconnection.accessor.PostgresqlDataAccessor";
+    return "com.datasphere.server.domain.dataconnection.accessor.PostgresqlDataAccessor";
   }
 
   @Override

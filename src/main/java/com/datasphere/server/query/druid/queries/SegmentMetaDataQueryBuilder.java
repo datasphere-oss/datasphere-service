@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.google.common.collect.Lists;
 
@@ -20,17 +20,17 @@ import org.apache.commons.collections.CollectionUtils;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DefaultDataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.MappingDataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.domain.workbook.configurations.filter.IntervalFilter;
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
-import app.metatron.discovery.query.druid.meta.AnalysisType;
-import app.metatron.discovery.query.druid.meta.ListToInclude;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.DefaultDataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.MappingDataSource;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.domain.workbook.configurations.filter.IntervalFilter;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.query.druid.meta.AnalysisType;
+import com.datasphere.server.query.druid.meta.ListToInclude;
+import com.datasphere.server.util.EnumUtils;
 
 /**
  * Created by hsp on 2016. 12. 1..
@@ -103,12 +103,12 @@ public class SegmentMetaDataQueryBuilder extends AbstractQueryBuilder {
 
   public SegmentMetaDataQueryBuilder filters(List<Filter> reqfilters) {
 
-    for (app.metatron.discovery.domain.workbook.configurations.filter.Filter reqFilter : reqfilters) {
+    for (com.datasphere.server.domain.workbook.configurations.filter.Filter reqFilter : reqfilters) {
       if (reqFilter instanceof IntervalFilter) {
         IntervalFilter intervalFilter = (IntervalFilter) reqFilter;
 
         if (metaFieldMap.containsKey(intervalFilter.getField())
-            && metaFieldMap.get(intervalFilter.getField()).getRole() == app.metatron.discovery.domain.datasource.Field.FieldRole.TIMESTAMP) {
+            && metaFieldMap.get(intervalFilter.getField()).getRole() == com.datasphere.server.domain.datasource.Field.FieldRole.TIMESTAMP) {
           intervals.addAll(intervalFilter.getEngineIntervals());
         }
       }

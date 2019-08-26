@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,8 +21,8 @@ import org.springframework.data.rest.core.config.Projection;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.common.BaseProjections;
-import app.metatron.discovery.domain.user.UserProfile;
+import com.datasphere.server.common.BaseProjections;
+import com.datasphere.server.domain.user.UserProfile;
 
 /**
  * Created by kyungtaak on 2016. 12. 20..
@@ -102,7 +102,7 @@ public class BookProjections extends BaseProjections {
     @Value("#{@bookTreeService.findSubBooksInfoForView(target.id, false, 'LIST', target.bookType)}")
     List<Map<String, Object>> getBooks();
 
-    @Value("#{T(app.metatron.discovery.util.HibernateUtils).unproxy(target.workspace)}")
+    @Value("#{T(com.datasphere.server.util.HibernateUtils).unproxy(target.workspace)}")
     WorkspaceProjections.HeaderViewProjection getWorkspace();
 
     DateTime getCreatedTime();

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.catalog;
+package com.datasphere.server.domain.mdm.catalog;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.core.annotation.HandleAfterCreate;
@@ -21,7 +21,7 @@ import org.springframework.data.rest.core.annotation.HandleBeforeDelete;
 import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 
-import static app.metatron.discovery.domain.mdm.MetadataErrorCodes.DUPLICATED_CATALOG_NAME;
+import static com.datasphere.server.domain.mdm.MetadataErrorCodes.DUPLICATED_CATALOG_NAME;
 
 /**
  * Catalog event handler

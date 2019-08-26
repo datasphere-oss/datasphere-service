@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.service;
+package com.datasphere.server.domain.dataprep.service;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.domain.dataprep.entity.PrDataflow;
-import app.metatron.discovery.domain.dataprep.entity.PrDataset;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepErrorCodes;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepException;
-import app.metatron.discovery.domain.dataprep.transform.PrepTransformResponse;
-import app.metatron.discovery.domain.dataprep.transform.PrepTransformService;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.domain.dataprep.entity.PrDataflow;
+import com.datasphere.server.domain.dataprep.entity.PrDataset;
+import com.datasphere.server.domain.dataprep.exceptions.PrepErrorCodes;
+import com.datasphere.server.domain.dataprep.exceptions.PrepException;
+import com.datasphere.server.domain.dataprep.transform.PrepTransformResponse;
+import com.datasphere.server.domain.dataprep.transform.PrepTransformService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;

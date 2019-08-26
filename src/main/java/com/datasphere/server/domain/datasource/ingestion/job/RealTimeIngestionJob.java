@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion.job;
+package com.datasphere.server.domain.datasource.ingestion.job;
 
 import org.apache.commons.collections.MapUtils;
 import org.slf4j.Logger;
@@ -34,14 +34,14 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.ingestion.HdfsIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistory;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionOption;
-import app.metatron.discovery.spec.druid.ingestion.HadoopIndex;
-import app.metatron.discovery.spec.druid.ingestion.Index;
-import app.metatron.discovery.spec.druid.ingestion.IngestionSpec;
-import app.metatron.discovery.spec.druid.ingestion.IngestionSpecBuilder;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.ingestion.HdfsIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.domain.datasource.ingestion.IngestionOption;
+import com.datasphere.server.spec.druid.ingestion.HadoopIndex;
+import com.datasphere.server.spec.druid.ingestion.Index;
+import com.datasphere.server.spec.druid.ingestion.IngestionSpec;
+import com.datasphere.server.spec.druid.ingestion.IngestionSpecBuilder;
 
 public class RealTimeIngestionJob extends AbstractIngestionJob implements IngestionJob {
 

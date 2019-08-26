@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.etl;
+package com.datasphere.server.domain.dataprep.etl;
 
-import app.metatron.discovery.domain.dataprep.entity.PrSnapshot;
-import app.metatron.discovery.domain.dataprep.entity.PrSnapshot.HIVE_FILE_COMPRESSION;
-import app.metatron.discovery.domain.dataprep.teddy.ColumnDescription;
-import app.metatron.discovery.domain.dataprep.teddy.ColumnType;
-import app.metatron.discovery.domain.dataprep.teddy.DataFrame;
-import app.metatron.discovery.domain.dataprep.teddy.Row;
+import com.datasphere.server.domain.dataprep.entity.PrSnapshot;
+import com.datasphere.server.domain.dataprep.entity.PrSnapshot.HIVE_FILE_COMPRESSION;
+import com.datasphere.server.domain.dataprep.teddy.ColumnDescription;
+import com.datasphere.server.domain.dataprep.teddy.ColumnType;
+import com.datasphere.server.domain.dataprep.teddy.DataFrame;
+import com.datasphere.server.domain.dataprep.teddy.Row;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;

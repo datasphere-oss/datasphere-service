@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.exception;
+package com.datasphere.server.common.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import static app.metatron.discovery.common.exception.GlobalErrorCodes.BAD_REQUEST_CODE;
+import static com.datasphere.server.common.exception.GlobalErrorCodes.BAD_REQUEST_CODE;
 
 @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Bad Request")
 public class BadRequestException extends MetatronException {

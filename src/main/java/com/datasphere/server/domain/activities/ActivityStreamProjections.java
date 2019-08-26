@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.activities;
+package com.datasphere.server.domain.activities;
 
 import org.springframework.data.rest.core.config.Projection;
 

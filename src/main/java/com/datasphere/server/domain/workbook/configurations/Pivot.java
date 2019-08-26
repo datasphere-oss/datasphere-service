@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations;
+package com.datasphere.server.domain.workbook.configurations;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -25,10 +25,10 @@ import org.apache.commons.lang3.BooleanUtils;
 import java.io.Serializable;
 import java.util.List;
 
-import app.metatron.discovery.domain.workbook.configurations.field.DimensionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.GraphShelf;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.PivotShelf;
+import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.GraphShelf;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.PivotShelf;
 
 /**
  * Page 내 선반 정보

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.source;
+package com.datasphere.server.domain.mdm.source;
 
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -29,9 +29,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.mdm.Metadata;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.mdm.Metadata;
 
 @Entity
 @Table(name = "mdm_metadata_source")

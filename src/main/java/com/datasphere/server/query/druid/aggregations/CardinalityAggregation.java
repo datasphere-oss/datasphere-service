@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.aggregations;
+package com.datasphere.server.query.druid.aggregations;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,7 +22,7 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.query.druid.Aggregation;
+import com.datasphere.server.query.druid.Aggregation;
 
 @JsonTypeName("cardinality")
 public class CardinalityAggregation implements Aggregation {

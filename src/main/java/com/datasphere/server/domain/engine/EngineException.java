@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine;
+package com.datasphere.server.domain.engine;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import app.metatron.discovery.common.exception.MetatronException;
+import com.datasphere.server.common.exception.MetatronException;
 
-import static app.metatron.discovery.domain.engine.EngineErrorCodes.ENGINE_ACCESS_ERROR_CODE;
+import static com.datasphere.server.domain.engine.EngineErrorCodes.ENGINE_ACCESS_ERROR_CODE;
 
 /**
  * Created by kyungtaak on 2016. 6. 13..

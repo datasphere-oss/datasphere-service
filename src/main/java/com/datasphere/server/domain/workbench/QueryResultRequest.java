@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench;
+package com.datasphere.server.domain.workbench;
 
-import app.metatron.discovery.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.Field;
 
 import java.util.List;
 

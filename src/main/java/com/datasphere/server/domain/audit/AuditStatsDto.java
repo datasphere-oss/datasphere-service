@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.audit;
+package com.datasphere.server.domain.audit;
 
 
 import com.querydsl.core.annotations.QueryProjection;

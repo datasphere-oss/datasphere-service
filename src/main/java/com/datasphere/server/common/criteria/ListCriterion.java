@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.criteria;
+package com.datasphere.server.common.criteria;
 
 import java.util.ArrayList;
 import java.util.List;

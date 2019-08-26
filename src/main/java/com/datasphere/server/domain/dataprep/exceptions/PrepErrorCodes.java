@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.exceptions;
+package com.datasphere.server.domain.dataprep.exceptions;
 
-import app.metatron.discovery.common.exception.ErrorCodes;
+import com.datasphere.server.common.exception.ErrorCodes;
 
 public enum PrepErrorCodes implements ErrorCodes {
 

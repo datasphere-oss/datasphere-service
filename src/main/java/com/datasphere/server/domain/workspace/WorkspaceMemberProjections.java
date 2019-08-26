@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
-import app.metatron.discovery.domain.user.DirectoryProfile;
+import com.datasphere.server.domain.user.DirectoryProfile;
 
 /**
  * Created by kyungtaak on 2017. 1. 22..

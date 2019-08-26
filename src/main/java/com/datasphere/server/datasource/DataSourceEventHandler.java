@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import com.google.common.base.Preconditions;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
@@ -70,38 +70,38 @@ import java.util.concurrent.ThreadFactory;
 
 import javax.annotation.PostConstruct;
 
-import app.metatron.discovery.domain.activities.ActivityStreamService;
-import app.metatron.discovery.domain.activities.spec.ActivityGenerator;
-import app.metatron.discovery.domain.activities.spec.ActivityObject;
-import app.metatron.discovery.domain.activities.spec.ActivityStreamV2;
-import app.metatron.discovery.domain.context.ContextService;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.DataConnectionRepository;
-import app.metatron.discovery.domain.datasource.ingestion.HiveIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistory;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistoryRepository;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.RealtimeIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.LinkIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.job.IngestionJobRunner;
-import app.metatron.discovery.domain.engine.DruidEngineMetaRepository;
-import app.metatron.discovery.domain.engine.EngineIngestionService;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.MetadataService;
-import app.metatron.discovery.domain.workspace.Workspace;
-import app.metatron.discovery.util.AuthUtils;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.domain.activities.ActivityStreamService;
+import com.datasphere.server.domain.activities.spec.ActivityGenerator;
+import com.datasphere.server.domain.activities.spec.ActivityObject;
+import com.datasphere.server.domain.activities.spec.ActivityStreamV2;
+import com.datasphere.server.domain.context.ContextService;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
+import com.datasphere.server.domain.datasource.ingestion.HiveIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.RealtimeIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.LinkIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.job.IngestionJobRunner;
+import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
+import com.datasphere.server.domain.engine.EngineIngestionService;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.MetadataService;
+import com.datasphere.server.domain.workspace.Workspace;
+import com.datasphere.server.util.AuthUtils;
+import com.datasphere.server.util.PolarisUtils;
 
-import static app.metatron.discovery.domain.datasource.DataSource.ConnectionType.ENGINE;
-import static app.metatron.discovery.domain.datasource.DataSource.ConnectionType.LINK;
-import static app.metatron.discovery.domain.datasource.DataSource.SourceType.IMPORT;
-import static app.metatron.discovery.domain.datasource.DataSource.SourceType.JDBC;
-import static app.metatron.discovery.domain.datasource.DataSource.SourceType.NONE;
-import static app.metatron.discovery.domain.datasource.DataSource.Status.ENABLED;
-import static app.metatron.discovery.domain.datasource.DataSource.Status.FAILED;
-import static app.metatron.discovery.domain.datasource.DataSource.Status.PREPARING;
+import static com.datasphere.server.domain.datasource.DataSource.ConnectionType.ENGINE;
+import static com.datasphere.server.domain.datasource.DataSource.ConnectionType.LINK;
+import static com.datasphere.server.domain.datasource.DataSource.SourceType.IMPORT;
+import static com.datasphere.server.domain.datasource.DataSource.SourceType.JDBC;
+import static com.datasphere.server.domain.datasource.DataSource.SourceType.NONE;
+import static com.datasphere.server.domain.datasource.DataSource.Status.ENABLED;
+import static com.datasphere.server.domain.datasource.DataSource.Status.FAILED;
+import static com.datasphere.server.domain.datasource.DataSource.Status.PREPARING;
 
 /**
  * Created by kyungtaak on 2016. 4. 1..

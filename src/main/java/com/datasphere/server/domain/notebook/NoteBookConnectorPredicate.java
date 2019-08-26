@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook;
+package com.datasphere.server.domain.notebook;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 
 import org.apache.commons.lang3.StringUtils;
 
-import app.metatron.discovery.domain.workspace.Workspace;
+import com.datasphere.server.domain.workspace.Workspace;
 
 public class NoteBookConnectorPredicate {
 

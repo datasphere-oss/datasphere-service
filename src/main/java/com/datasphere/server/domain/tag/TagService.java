@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.tag;
+package com.datasphere.server.domain.tag;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +23,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import app.metatron.discovery.common.entity.DomainType;
-import app.metatron.discovery.domain.user.UserController;
-import app.metatron.discovery.util.ProjectionUtils;
+import com.datasphere.server.common.entity.DomainType;
+import com.datasphere.server.domain.user.UserController;
+import com.datasphere.server.util.ProjectionUtils;
 
 @Component
 @Transactional(readOnly = true)

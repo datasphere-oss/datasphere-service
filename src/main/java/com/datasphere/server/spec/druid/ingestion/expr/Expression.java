@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.expr;
+package com.datasphere.server.spec.druid.ingestion.expr;
 
 /**
  * Created by kyungtaak on 2017. 2. 17..

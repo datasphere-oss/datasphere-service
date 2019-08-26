@@ -1,4 +1,4 @@
-package app.metatron.discovery.domain.dataprep.rule;
+package com.datasphere.server.domain.dataprep.rule;
 
 public class ExprFunction {
     public ExprFunctionCategory category;

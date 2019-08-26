@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import com.google.common.collect.Lists;
 
@@ -37,12 +37,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.common.entity.Spec;
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.common.entity.Spec;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
 
 /**
  * Linked Datasource 를 통해 생성된 임시 데이터 소스 정보

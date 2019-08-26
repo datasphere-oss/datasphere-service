@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.connector;
+package com.datasphere.server.domain.dataconnection.connector;
 
 import org.pf4j.PluginManager;
 import org.pf4j.PluginWrapper;
@@ -28,9 +28,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import app.metatron.discovery.extension.dataconnection.jdbc.connector.AbstractJdbcConnector;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.extension.dataconnection.jdbc.connector.AbstractJdbcConnector;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 
 /**
  *

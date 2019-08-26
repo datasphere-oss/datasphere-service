@@ -12,17 +12,17 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion;
+package com.datasphere.server.spec.druid.ingestion;
 
 import org.apache.commons.collections.MapUtils;
 
 import java.util.Map;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.spec.druid.ingestion.io.IoConfig;
-import app.metatron.discovery.spec.druid.ingestion.io.KafkaIoConfig;
-import app.metatron.discovery.spec.druid.ingestion.tuning.KafkaTuningConfig;
-import app.metatron.discovery.spec.druid.ingestion.tuning.TuningConfig;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.spec.druid.ingestion.io.IoConfig;
+import com.datasphere.server.spec.druid.ingestion.io.KafkaIoConfig;
+import com.datasphere.server.spec.druid.ingestion.tuning.KafkaTuningConfig;
+import com.datasphere.server.spec.druid.ingestion.tuning.TuningConfig;
 
 /**
  * Kafka RealTime Spec

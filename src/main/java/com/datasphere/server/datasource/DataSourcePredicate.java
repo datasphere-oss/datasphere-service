@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
@@ -26,7 +26,7 @@ import org.joda.time.DateTime;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.workspace.Workspace;
+import com.datasphere.server.domain.workspace.Workspace;
 
 public class DataSourcePredicate {
 

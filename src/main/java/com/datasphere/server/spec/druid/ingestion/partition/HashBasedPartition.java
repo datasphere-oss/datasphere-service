@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.partition;
+package com.datasphere.server.spec.druid.ingestion.partition;
 
 import com.google.common.collect.Lists;
 

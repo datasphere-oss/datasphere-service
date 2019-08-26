@@ -1,8 +1,8 @@
-package app.metatron.discovery.domain.workbench;
+package com.datasphere.server.domain.workbench;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.domain.datasource.Field;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.domain.datasource.Field;
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 

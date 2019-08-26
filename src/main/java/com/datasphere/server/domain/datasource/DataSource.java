@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -72,42 +72,42 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.common.CustomCollectors;
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.common.entity.Spec;
-import app.metatron.discovery.common.exception.MetatronException;
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.context.ContextEntity;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataprep.entity.PrSnapshot;
-import app.metatron.discovery.domain.datasource.ingestion.HdfsIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.HiveIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistory;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.LocalFileIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.RealtimeIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.SingleIngestionInfo;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.MetadataColumn;
-import app.metatron.discovery.domain.workbook.DashBoard;
-import app.metatron.discovery.domain.workbook.configurations.field.DimensionField;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.field.TimestampField;
-import app.metatron.discovery.domain.workspace.Workspace;
-import app.metatron.discovery.util.AuthUtils;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.common.CustomCollectors;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.common.entity.Spec;
+import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.context.ContextEntity;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataprep.entity.PrSnapshot;
+import com.datasphere.server.domain.datasource.ingestion.HdfsIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.HiveIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.RealtimeIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.SingleIngestionInfo;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.MetadataColumn;
+import com.datasphere.server.domain.workbook.DashBoard;
+import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.TimestampField;
+import com.datasphere.server.domain.workspace.Workspace;
+import com.datasphere.server.util.AuthUtils;
+import com.datasphere.server.util.PolarisUtils;
 
-import static app.metatron.discovery.domain.datasource.DataSource.SourceType.FILE;
-import static app.metatron.discovery.domain.datasource.DataSource.SourceType.HDFS;
-import static app.metatron.discovery.domain.datasource.DataSource.SourceType.HIVE;
-import static app.metatron.discovery.domain.datasource.DataSource.SourceType.JDBC;
-import static app.metatron.discovery.domain.datasource.DataSource.SourceType.REALTIME;
-import static app.metatron.discovery.domain.datasource.DataSource.SourceType.SNAPSHOT;
-import static app.metatron.discovery.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
+import static com.datasphere.server.domain.datasource.DataSource.SourceType.FILE;
+import static com.datasphere.server.domain.datasource.DataSource.SourceType.HDFS;
+import static com.datasphere.server.domain.datasource.DataSource.SourceType.HIVE;
+import static com.datasphere.server.domain.datasource.DataSource.SourceType.JDBC;
+import static com.datasphere.server.domain.datasource.DataSource.SourceType.REALTIME;
+import static com.datasphere.server.domain.datasource.DataSource.SourceType.SNAPSHOT;
+import static com.datasphere.server.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
 import static org.hibernate.search.annotations.Index.NO;
 
 @Entity
@@ -478,9 +478,9 @@ public class DataSource extends AbstractHistoryEntity implements MetatronDomain<
    * Select Query 생성시 Projection 이 아무것도 없을 경우, DataSource 내 Field 데이터를 기반으로 전달
    */
   @JsonIgnore
-  public List<app.metatron.discovery.domain.workbook.configurations.field.Field> getAllSpecFields(boolean joinQuery, String joinAlias) {
+  public List<com.datasphere.server.domain.workbook.configurations.field.Field> getAllSpecFields(boolean joinQuery, String joinAlias) {
 
-    List<app.metatron.discovery.domain.workbook.configurations.field.Field> resultFields = Lists.newArrayList();
+    List<com.datasphere.server.domain.workbook.configurations.field.Field> resultFields = Lists.newArrayList();
 
     for (Field field : fields) {
 

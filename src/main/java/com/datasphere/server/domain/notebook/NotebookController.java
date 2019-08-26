@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook;
+package com.datasphere.server.domain.notebook;
 
-import app.metatron.discovery.domain.notebook.connector.HttpRepository;
-import app.metatron.discovery.domain.notebook.content.NotebookContent;
-import app.metatron.discovery.domain.workspace.BookTreeService;
+import com.datasphere.server.domain.notebook.connector.HttpRepository;
+import com.datasphere.server.domain.notebook.content.NotebookContent;
+import com.datasphere.server.domain.workspace.BookTreeService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

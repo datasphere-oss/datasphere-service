@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.chart;
+package com.datasphere.server.domain.workbook.configurations.chart;
 
 import com.google.common.collect.Lists;
 
@@ -23,11 +23,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.io.Serializable;
 import java.util.List;
 
-import app.metatron.discovery.domain.workbook.configurations.chart.properties.FontSize;
-import app.metatron.discovery.domain.workbook.configurations.chart.properties.HAlign;
-import app.metatron.discovery.domain.workbook.configurations.chart.properties.VAlign;
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.domain.workbook.configurations.chart.properties.FontSize;
+import com.datasphere.server.domain.workbook.configurations.chart.properties.HAlign;
+import com.datasphere.server.domain.workbook.configurations.chart.properties.VAlign;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.util.EnumUtils;
 
 /**
  * Grid 스타일 정의

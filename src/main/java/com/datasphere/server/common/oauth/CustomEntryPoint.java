@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.oauth;
+package com.datasphere.server.common.oauth;
 
 import com.google.common.collect.Lists;
 

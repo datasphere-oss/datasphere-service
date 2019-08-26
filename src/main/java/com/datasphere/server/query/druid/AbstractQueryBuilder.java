@@ -40,7 +40,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid;
+package com.datasphere.server.query.druid;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -58,65 +58,65 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.CommonLocalVariable;
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.domain.datasource.QueryHistoryTeller;
-import app.metatron.discovery.domain.datasource.data.QueryTimeExcetpion;
-import app.metatron.discovery.domain.datasource.data.forward.CsvResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.ExcelResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.JsonResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.OrcResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.ParquetResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.ResultForward;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DefaultDataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.JoinMapping;
-import app.metatron.discovery.domain.workbook.configurations.datasource.MappingDataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.MultiDataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.ExpressionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.MapField;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.domain.workbook.configurations.filter.BoundFilter;
-import app.metatron.discovery.domain.workbook.configurations.filter.*;
-import app.metatron.discovery.domain.workbook.configurations.format.ContinuousTimeFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.UnixTimeFormat;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.LayerView;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.MapViewLayer;
-import app.metatron.discovery.query.druid.aggregations.*;
-import app.metatron.discovery.query.druid.datasource.QueryDataSource;
-import app.metatron.discovery.query.druid.datasource.TableDataSource;
-import app.metatron.discovery.query.druid.extractionfns.LookupFunction;
-import app.metatron.discovery.query.druid.filters.*;
-import app.metatron.discovery.query.druid.funtions.CastFunc;
-import app.metatron.discovery.query.druid.funtions.DateTimeMillisFunc;
-import app.metatron.discovery.query.druid.funtions.InFunc;
-import app.metatron.discovery.query.druid.funtions.TimeFormatFunc;
-import app.metatron.discovery.query.druid.limits.WindowingSpec;
-import app.metatron.discovery.query.druid.lookup.MapLookupExtractor;
-import app.metatron.discovery.query.druid.postaggregations.ArithmeticPostAggregation;
-import app.metatron.discovery.query.druid.postaggregations.FieldAccessorPostAggregator;
-import app.metatron.discovery.query.druid.postaggregations.SketchQuantilePostAggregator;
-import app.metatron.discovery.query.druid.postaggregations.StddevPostAggregator;
-import app.metatron.discovery.query.druid.queries.JoinQuery;
-import app.metatron.discovery.query.druid.virtualcolumns.ExprVirtualColumn;
-import app.metatron.discovery.query.druid.virtualcolumns.IndexVirtualColumn;
-import app.metatron.discovery.query.druid.virtualcolumns.VirtualColumn;
-import app.metatron.discovery.query.polaris.ComputationalField;
-import app.metatron.discovery.util.PolarisUtils;
-import app.metatron.discovery.util.TimeUnits;
+import com.datasphere.server.common.CommonLocalVariable;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.domain.datasource.QueryHistoryTeller;
+import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.domain.datasource.data.forward.CsvResultForward;
+import com.datasphere.server.domain.datasource.data.forward.ExcelResultForward;
+import com.datasphere.server.domain.datasource.data.forward.JsonResultForward;
+import com.datasphere.server.domain.datasource.data.forward.OrcResultForward;
+import com.datasphere.server.domain.datasource.data.forward.ParquetResultForward;
+import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.DefaultDataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.JoinMapping;
+import com.datasphere.server.domain.workbook.configurations.datasource.MappingDataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.MultiDataSource;
+import com.datasphere.server.domain.workbook.configurations.field.ExpressionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.MapField;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.domain.workbook.configurations.filter.BoundFilter;
+import com.datasphere.server.domain.workbook.configurations.filter.*;
+import com.datasphere.server.domain.workbook.configurations.format.ContinuousTimeFormat;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.UnixTimeFormat;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.LayerView;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.MapViewLayer;
+import com.datasphere.server.query.druid.aggregations.*;
+import com.datasphere.server.query.druid.datasource.QueryDataSource;
+import com.datasphere.server.query.druid.datasource.TableDataSource;
+import com.datasphere.server.query.druid.extractionfns.LookupFunction;
+import com.datasphere.server.query.druid.filters.*;
+import com.datasphere.server.query.druid.funtions.CastFunc;
+import com.datasphere.server.query.druid.funtions.DateTimeMillisFunc;
+import com.datasphere.server.query.druid.funtions.InFunc;
+import com.datasphere.server.query.druid.funtions.TimeFormatFunc;
+import com.datasphere.server.query.druid.limits.WindowingSpec;
+import com.datasphere.server.query.druid.lookup.MapLookupExtractor;
+import com.datasphere.server.query.druid.postaggregations.ArithmeticPostAggregation;
+import com.datasphere.server.query.druid.postaggregations.FieldAccessorPostAggregator;
+import com.datasphere.server.query.druid.postaggregations.SketchQuantilePostAggregator;
+import com.datasphere.server.query.druid.postaggregations.StddevPostAggregator;
+import com.datasphere.server.query.druid.queries.JoinQuery;
+import com.datasphere.server.query.druid.virtualcolumns.ExprVirtualColumn;
+import com.datasphere.server.query.druid.virtualcolumns.IndexVirtualColumn;
+import com.datasphere.server.query.druid.virtualcolumns.VirtualColumn;
+import com.datasphere.server.query.polaris.ComputationalField;
+import com.datasphere.server.util.PolarisUtils;
+import com.datasphere.server.util.TimeUnits;
 
-import static app.metatron.discovery.domain.datasource.DataSourceErrorCodes.CONFUSING_FIELD_CODE;
-import static app.metatron.discovery.domain.datasource.Field.FieldRole.DIMENSION;
-import static app.metatron.discovery.domain.datasource.Field.FieldRole.TIMESTAMP;
-import static app.metatron.discovery.domain.datasource.data.forward.ResultForward.ForwardType.CSV;
-import static app.metatron.discovery.domain.datasource.data.forward.ResultForward.ForwardType.EXCEL;
-import static app.metatron.discovery.domain.datasource.data.forward.ResultForward.ForwardType.JSON;
-import static app.metatron.discovery.domain.datasource.data.forward.ResultForward.ForwardType.NONE;
-import static app.metatron.discovery.domain.datasource.data.forward.ResultForward.ForwardType.PARQUET;
-import static app.metatron.discovery.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
+import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.CONFUSING_FIELD_CODE;
+import static com.datasphere.server.domain.datasource.Field.FieldRole.DIMENSION;
+import static com.datasphere.server.domain.datasource.Field.FieldRole.TIMESTAMP;
+import static com.datasphere.server.domain.datasource.data.forward.ResultForward.ForwardType.CSV;
+import static com.datasphere.server.domain.datasource.data.forward.ResultForward.ForwardType.EXCEL;
+import static com.datasphere.server.domain.datasource.data.forward.ResultForward.ForwardType.JSON;
+import static com.datasphere.server.domain.datasource.data.forward.ResultForward.ForwardType.NONE;
+import static com.datasphere.server.domain.datasource.data.forward.ResultForward.ForwardType.PARQUET;
+import static com.datasphere.server.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
 
 /**
  * Abstarct Query Builder
@@ -153,22 +153,22 @@ public abstract class AbstractQueryBuilder {
   /**
    * Meta-info for main datasource.
    */
-  protected app.metatron.discovery.domain.datasource.DataSource mainMetaDataSource;
+  protected com.datasphere.server.domain.datasource.DataSource mainMetaDataSource;
 
   /**
    * Meta-info for join datasources
    */
-  protected List<app.metatron.discovery.domain.datasource.DataSource> joinMetaDataSources = Lists.newArrayList();
+  protected List<com.datasphere.server.domain.datasource.DataSource> joinMetaDataSources = Lists.newArrayList();
 
   /**
    * Meta-info Map (for multi-datasource)
    */
-  protected Map<String, app.metatron.discovery.domain.datasource.DataSource> metaDataSourceMap = Maps.newHashMap();
+  protected Map<String, com.datasphere.server.domain.datasource.DataSource> metaDataSourceMap = Maps.newHashMap();
 
   /**
    * Meta field map in meta-datasources
    */
-  protected Map<String, app.metatron.discovery.domain.datasource.Field> metaFieldMap = Maps.newLinkedHashMap();
+  protected Map<String, com.datasphere.server.domain.datasource.Field> metaFieldMap = Maps.newLinkedHashMap();
 
   /**
    * 추가적인 검토 필요
@@ -227,7 +227,7 @@ public abstract class AbstractQueryBuilder {
   /**
    * Geometry Field
    */
-  protected app.metatron.discovery.domain.datasource.Field geometry;
+  protected com.datasphere.server.domain.datasource.Field geometry;
 
   /**
    * need to geojson format
@@ -316,7 +316,7 @@ public abstract class AbstractQueryBuilder {
     visitJoinMapping(joinMapping.getJoin());
   }
 
-  protected app.metatron.discovery.query.druid.datasource.DataSource getDataSourceSpec(DataSource dataSource) {
+  protected com.datasphere.server.query.druid.datasource.DataSource getDataSourceSpec(DataSource dataSource) {
     if (dataSource instanceof DefaultDataSource) {
       return new TableDataSource(dataSource.getName());
     } else if (dataSource instanceof MultiDataSource) {
@@ -326,7 +326,7 @@ public abstract class AbstractQueryBuilder {
     }
   }
 
-  protected void extractPartitions(List<app.metatron.discovery.domain.workbook.configurations.filter.Filter> reqfilters) {
+  protected void extractPartitions(List<com.datasphere.server.domain.workbook.configurations.filter.Filter> reqfilters) {
 
     String partitionKeys = mainMetaDataSource.getPartitionKeys();
     if (StringUtils.isEmpty(partitionKeys)) {
@@ -339,7 +339,7 @@ public abstract class AbstractQueryBuilder {
       partitionMap.put(key, Sets.newHashSet());
     }
 
-    for (app.metatron.discovery.domain.workbook.configurations.filter.Filter reqFilter : reqfilters) {
+    for (com.datasphere.server.domain.workbook.configurations.filter.Filter reqFilter : reqfilters) {
 
       if (reqFilter instanceof InclusionFilter) {
         InclusionFilter inclusionFilter = (InclusionFilter) reqFilter;
@@ -504,14 +504,14 @@ public abstract class AbstractQueryBuilder {
   }
 
   protected void setFilters(AndFilter filter,
-                            List<app.metatron.discovery.domain.workbook.configurations.filter.Filter> reqFilters,
+                            List<com.datasphere.server.domain.workbook.configurations.filter.Filter> reqFilters,
                             List<String> intervals) {
 
     if (CollectionUtils.isEmpty(reqFilters)) {
       return;
     }
 
-    for (app.metatron.discovery.domain.workbook.configurations.filter.Filter reqFilter : reqFilters) {
+    for (com.datasphere.server.domain.workbook.configurations.filter.Filter reqFilter : reqFilters) {
 
       if (isNotMainDataSourceColumn(reqFilter)) {
         continue;
@@ -588,7 +588,7 @@ public abstract class AbstractQueryBuilder {
           continue;
         }
 
-        app.metatron.discovery.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+        com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
 
         if (datasourceField.getRole() == TIMESTAMP) {
           intervals.addAll(intervalFilter.getEngineIntervals());
@@ -613,7 +613,7 @@ public abstract class AbstractQueryBuilder {
           continue;
         }
 
-        app.metatron.discovery.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+        com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
 
         String field;
         if (datasourceField.getRole() == TIMESTAMP) {
@@ -636,7 +636,7 @@ public abstract class AbstractQueryBuilder {
         filter.addField(new ExprFilter(inFunc.toExpression()));
       } else if (reqFilter instanceof SpatialFilter) {
 
-        app.metatron.discovery.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+        com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
         if (!datasourceField.getLogicalType().isGeoType()) {
           return;
         }
@@ -650,7 +650,7 @@ public abstract class AbstractQueryBuilder {
 
   }
 
-  public void addSpatialFilter(AndFilter filter, SpatialFilter reqFilter, app.metatron.discovery.domain.datasource.Field datasourceField) {
+  public void addSpatialFilter(AndFilter filter, SpatialFilter reqFilter, com.datasphere.server.domain.datasource.Field datasourceField) {
 
     Filter spatialFilter = null;
 
@@ -685,7 +685,7 @@ public abstract class AbstractQueryBuilder {
 
     String fieldName = timeFilter.getColumn();
     String engineColumnName = engineColumnName(fieldName);
-    app.metatron.discovery.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+    com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
 
     if (datasourceField.getRole() == TIMESTAMP && !(timeFilter instanceof TimeListFilter)) {
       intervals.addAll(timeFilter.getEngineIntervals(datasourceField));
@@ -698,7 +698,7 @@ public abstract class AbstractQueryBuilder {
 
   }
 
-  private boolean isNotMainDataSourceColumn(app.metatron.discovery.domain.workbook.configurations.filter.Filter filter) {
+  private boolean isNotMainDataSourceColumn(com.datasphere.server.domain.workbook.configurations.filter.Filter filter) {
 
     if (dataSource instanceof MultiDataSource) {
       if (!mainMetaDataSource.getEngineName().equals(filter.getDataSource())) {

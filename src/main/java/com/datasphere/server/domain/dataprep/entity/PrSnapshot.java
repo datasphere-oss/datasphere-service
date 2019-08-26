@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.entity;
+package com.datasphere.server.domain.dataprep.entity;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -48,10 +48,10 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.bridge.JodaTimeSplitBridge;
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.bridge.JodaTimeSplitBridge;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.dataconnection.DataConnection;
 
 @Entity
 @Table(name = "pr_snapshot")

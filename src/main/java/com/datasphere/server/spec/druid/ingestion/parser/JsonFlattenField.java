@@ -1,4 +1,4 @@
-package app.metatron.discovery.spec.druid.ingestion.parser;
+package com.datasphere.server.spec.druid.ingestion.parser;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

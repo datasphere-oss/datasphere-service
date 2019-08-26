@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -21,14 +21,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.query.druid.Aggregation;
-import app.metatron.discovery.query.druid.Filter;
-import app.metatron.discovery.query.druid.Granularity;
-import app.metatron.discovery.query.druid.PostAggregation;
-import app.metatron.discovery.query.druid.Query;
-import app.metatron.discovery.query.druid.serializers.GranularitySerializer;
-import app.metatron.discovery.query.druid.virtualcolumns.VirtualColumn;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.query.druid.Aggregation;
+import com.datasphere.server.query.druid.Filter;
+import com.datasphere.server.query.druid.Granularity;
+import com.datasphere.server.query.druid.PostAggregation;
+import com.datasphere.server.query.druid.Query;
+import com.datasphere.server.query.druid.serializers.GranularitySerializer;
+import com.datasphere.server.query.druid.virtualcolumns.VirtualColumn;
 
 @JsonTypeName("timeseries")
 public class TimeseriesQuery extends Query {

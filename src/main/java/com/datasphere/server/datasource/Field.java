@@ -1,44 +1,42 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specic language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+package com.datasphere.server.datasource;
 
-package app.metatron.discovery.domain.datasource;
+import static com.datasphere.server.domain.workbook.configurations.field.MeasureField.AggregationType.NONE;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Ordering;
-import com.google.common.collect.Sets;
-import com.google.common.primitives.Longs;
+import java.io.Serializable;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRawValue;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
@@ -48,48 +46,46 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 
-import java.io.Serializable;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.common.entity.Spec;
-import app.metatron.discovery.domain.CollectionPatch;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.datasource.ingestion.rule.IngestionRule;
-import app.metatron.discovery.domain.mdm.MetadataColumn;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.filter.InclusionFilter;
-import app.metatron.discovery.domain.workbook.configurations.filter.TimeFilter;
-import app.metatron.discovery.domain.workbook.configurations.format.ContinuousTimeFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.CustomDateTimeFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.UnixTimeFormat;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import app.metatron.discovery.query.druid.Aggregation;
-import app.metatron.discovery.query.druid.aggregations.ApproxHistogramFoldAggregation;
-import app.metatron.discovery.query.druid.aggregations.AreaAggregation;
-import app.metatron.discovery.query.druid.aggregations.GenericMaxAggregation;
-import app.metatron.discovery.query.druid.aggregations.GenericMinAggregation;
-import app.metatron.discovery.query.druid.aggregations.GenericSumAggregation;
-import app.metatron.discovery.query.druid.aggregations.RangeAggregation;
-import app.metatron.discovery.query.druid.aggregations.RelayAggregation;
-import app.metatron.discovery.query.druid.aggregations.VarianceAggregation;
-import app.metatron.discovery.spec.druid.ingestion.parser.TimestampSpec;
-import app.metatron.discovery.util.TimeUnits;
-
-import static app.metatron.discovery.domain.workbook.configurations.field.MeasureField.AggregationType.NONE;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.entity.Spec;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.datasource.data.result.PivotResultFormat.Aggregation;
+import com.datasphere.server.datasource.ingestion.rule.IngestionRule;
+import com.datasphere.server.domain.CollectionPatch;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.mdm.MetadataColumn;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.filter.InclusionFilter;
+import com.datasphere.server.domain.workbook.configurations.filter.TimeFilter;
+import com.datasphere.server.domain.workbook.configurations.format.ContinuousTimeFormat;
+import com.datasphere.server.domain.workbook.configurations.format.CustomDateTimeFormat;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.UnixTimeFormat;
+import com.datasphere.server.query.druid.aggregations.ApproxHistogramFoldAggregation;
+import com.datasphere.server.query.druid.aggregations.AreaAggregation;
+import com.datasphere.server.query.druid.aggregations.GenericMaxAggregation;
+import com.datasphere.server.query.druid.aggregations.GenericMinAggregation;
+import com.datasphere.server.query.druid.aggregations.GenericSumAggregation;
+import com.datasphere.server.query.druid.aggregations.RangeAggregation;
+import com.datasphere.server.query.druid.aggregations.RelayAggregation;
+import com.datasphere.server.query.druid.aggregations.VarianceAggregation;
+import com.datasphere.server.spec.druid.ingestion.parser.TimestampSpec;
+import com.datasphere.server.util.TimeUnits;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Ordering;
+import com.google.common.collect.Sets;
+import com.google.common.primitives.Longs;
 
 /**
  * Created by kyungtaak on 2015. 12. 8..

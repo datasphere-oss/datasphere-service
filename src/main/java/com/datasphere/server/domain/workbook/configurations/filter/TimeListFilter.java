@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.filter;
+package com.datasphere.server.domain.workbook.configurations.filter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,13 +25,13 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.query.druid.funtions.DateTimeMillisFunc;
-import app.metatron.discovery.query.druid.funtions.InFunc;
-import app.metatron.discovery.query.druid.funtions.TimeFormatFunc;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.query.druid.funtions.DateTimeMillisFunc;
+import com.datasphere.server.query.druid.funtions.InFunc;
+import com.datasphere.server.query.druid.funtions.TimeFormatFunc;
 
-import static app.metatron.discovery.domain.datasource.Field.FieldRole.TIMESTAMP;
+import static com.datasphere.server.domain.datasource.Field.FieldRole.TIMESTAMP;
 
 @JsonTypeName("time_list")
 public class TimeListFilter extends TimeFilter {

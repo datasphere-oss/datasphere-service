@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.tuning;
+package com.datasphere.server.spec.druid.ingestion.tuning;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections4.MapUtils;
 
 import java.util.Map;
 
-import app.metatron.discovery.spec.druid.ingestion.index.IndexSpec;
+import com.datasphere.server.spec.druid.ingestion.index.IndexSpec;
 
 /**
  *

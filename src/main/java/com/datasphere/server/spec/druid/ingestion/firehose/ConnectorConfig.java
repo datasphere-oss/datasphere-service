@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.firehose;
+package com.datasphere.server.spec.druid.ingestion.firehose;
 
 
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 
 /**
  * Created by kyungtaak on 2016. 6. 18..

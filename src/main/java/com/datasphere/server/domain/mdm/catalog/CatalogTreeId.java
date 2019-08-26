@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.catalog;
+package com.datasphere.server.domain.mdm.catalog;
 
 import java.io.Serializable;
 

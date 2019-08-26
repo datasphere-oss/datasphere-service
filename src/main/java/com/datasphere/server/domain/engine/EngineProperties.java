@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine;
+package com.datasphere.server.domain.engine;
 
 import com.google.common.collect.Maps;
 
@@ -42,7 +42,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.common.fileloader.FileLoaderProperties;
+import com.datasphere.server.common.fileloader.FileLoaderProperties;
 
 @Component
 @ConfigurationProperties(prefix = "polaris.engine")

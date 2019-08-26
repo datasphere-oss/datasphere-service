@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.board;
+package com.datasphere.server.domain.workbook.configurations.board;
 
 import com.google.common.collect.Lists;
 

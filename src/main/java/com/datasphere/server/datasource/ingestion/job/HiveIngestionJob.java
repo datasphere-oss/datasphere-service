@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion.job;
+package com.datasphere.server.domain.datasource.ingestion.job;
 
 import com.google.common.collect.Lists;
 
@@ -38,23 +38,23 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
-import app.metatron.discovery.domain.dataconnection.accessor.HiveDataAccessor;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.connection.jdbc.HiveTableInformation;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcConnectionService;
-import app.metatron.discovery.domain.datasource.ingestion.HiveIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistory;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionOption;
-import app.metatron.discovery.domain.datasource.ingestion.file.OrcFileFormat;
-import app.metatron.discovery.domain.storage.StorageProperties;
-import app.metatron.discovery.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import app.metatron.discovery.spec.druid.ingestion.HadoopIndex;
-import app.metatron.discovery.spec.druid.ingestion.Index;
-import app.metatron.discovery.spec.druid.ingestion.IngestionSpec;
-import app.metatron.discovery.spec.druid.ingestion.IngestionSpecBuilder;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessor;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.connection.jdbc.HiveTableInformation;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.domain.datasource.ingestion.HiveIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.domain.datasource.ingestion.IngestionOption;
+import com.datasphere.server.domain.datasource.ingestion.file.OrcFileFormat;
+import com.datasphere.server.domain.storage.StorageProperties;
+import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.spec.druid.ingestion.HadoopIndex;
+import com.datasphere.server.spec.druid.ingestion.Index;
+import com.datasphere.server.spec.druid.ingestion.IngestionSpec;
+import com.datasphere.server.spec.druid.ingestion.IngestionSpecBuilder;
 
 public class HiveIngestionJob extends AbstractIngestionJob implements IngestionJob {
 

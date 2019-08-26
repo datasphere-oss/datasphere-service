@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench;
+package com.datasphere.server.domain.workbench;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,9 +27,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import app.metatron.discovery.common.exception.MetatronException;
-import app.metatron.discovery.domain.workbench.util.WorkbenchDataSourceManager;
-import app.metatron.discovery.util.WebSocketUtils;
+import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
+import com.datasphere.server.util.WebSocketUtils;
 
 @Controller
 public class WorkbenchWebSocketController {

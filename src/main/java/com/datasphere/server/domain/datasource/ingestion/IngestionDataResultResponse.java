@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion;
+package com.datasphere.server.domain.datasource.ingestion;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.FileValidationResponse;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.FileValidationResponse;
 
 /**
  * Created by kyungtaak on 2016. 6. 16..

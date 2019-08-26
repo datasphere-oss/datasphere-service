@@ -1,4 +1,4 @@
-package app.metatron.discovery.domain.workbook.configurations.filter;
+package com.datasphere.server.domain.workbook.configurations.filter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.apache.commons.lang3.StringUtils;
 
-import app.metatron.discovery.query.druid.SpatialOperations;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.query.druid.SpatialOperations;
+import com.datasphere.server.util.EnumUtils;
 
 public class SpatialBboxFilter extends SpatialFilter {
 

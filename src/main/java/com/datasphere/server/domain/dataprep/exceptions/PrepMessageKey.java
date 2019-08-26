@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.exceptions;
+package com.datasphere.server.domain.dataprep.exceptions;
 
 public enum PrepMessageKey {
     MSG_DP_ALERT_REQUIRED_PROPERTY_MISSING(                      "msg.dp.alert.required.property.missing"),

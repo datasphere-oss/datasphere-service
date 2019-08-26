@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench.hive;
+package com.datasphere.server.domain.workbench.hive;
 
 import com.google.common.collect.Maps;
 
@@ -31,21 +31,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.MetatronProperties;
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.common.exception.GlobalErrorCodes;
-import app.metatron.discovery.common.exception.MetatronException;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.dialect.HiveDialect;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcConnectionService;
-import app.metatron.discovery.domain.workbench.WorkbenchErrorCodes;
-import app.metatron.discovery.domain.workbench.WorkbenchException;
-import app.metatron.discovery.domain.workbench.WorkbenchProperties;
-import app.metatron.discovery.domain.workbench.dto.ImportCsvFile;
-import app.metatron.discovery.domain.workbench.dto.ImportFile;
-import app.metatron.discovery.domain.workbench.util.WorkbenchDataSource;
-import app.metatron.discovery.domain.workbench.util.WorkbenchDataSourceManager;
-import app.metatron.discovery.util.csv.CsvTemplate;
+import com.datasphere.server.common.MetatronProperties;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.common.exception.GlobalErrorCodes;
+import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.domain.workbench.WorkbenchErrorCodes;
+import com.datasphere.server.domain.workbench.WorkbenchException;
+import com.datasphere.server.domain.workbench.WorkbenchProperties;
+import com.datasphere.server.domain.workbench.dto.ImportCsvFile;
+import com.datasphere.server.domain.workbench.dto.ImportFile;
+import com.datasphere.server.domain.workbench.util.WorkbenchDataSource;
+import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
+import com.datasphere.server.util.csv.CsvTemplate;
 
 @Service
 public class WorkbenchHiveService {

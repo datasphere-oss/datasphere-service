@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.config;
+package com.datasphere.server.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,13 +50,13 @@ import org.springframework.security.web.FilterInvocation;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
-import app.metatron.discovery.common.oauth.CustomAccessDeniedHandler;
-import app.metatron.discovery.common.oauth.CustomEntryPoint;
-import app.metatron.discovery.common.oauth.CustomJdbcClientDetailsServiceBuilder;
-import app.metatron.discovery.common.oauth.CustomWebResponseExceptionTranslator;
-import app.metatron.discovery.common.oauth.OauthProperties;
-import app.metatron.discovery.common.saml.SAMLTokenConverter;
-import app.metatron.discovery.common.web.OauthFilter;
+import com.datasphere.server.common.oauth.CustomAccessDeniedHandler;
+import com.datasphere.server.common.oauth.CustomEntryPoint;
+import com.datasphere.server.common.oauth.CustomJdbcClientDetailsServiceBuilder;
+import com.datasphere.server.common.oauth.CustomWebResponseExceptionTranslator;
+import com.datasphere.server.common.oauth.OauthProperties;
+import com.datasphere.server.common.saml.SAMLTokenConverter;
+import com.datasphere.server.common.web.OauthFilter;
 
 /**
  * Created by kyungtaak on 2016. 5. 2..

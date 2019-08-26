@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.saml;
+package com.datasphere.server.common.saml;
 
 import org.springframework.security.saml.SAMLCredential;
 
-import app.metatron.discovery.domain.user.User;
+import com.datasphere.server.domain.user.User;
 
 public class SAMLSSOCircleUserMapper extends SAMLUserMapper{
 

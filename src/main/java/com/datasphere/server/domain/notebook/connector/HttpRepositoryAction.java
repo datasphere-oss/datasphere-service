@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook.connector;
+package com.datasphere.server.domain.notebook.connector;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;

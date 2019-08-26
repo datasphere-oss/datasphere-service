@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench;
+package com.datasphere.server.domain.workbench;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import app.metatron.discovery.common.exception.ErrorCodes;
-import app.metatron.discovery.common.exception.MetatronException;
+import com.datasphere.server.common.exception.ErrorCodes;
+import com.datasphere.server.common.exception.MetatronException;
 
 /**
  * Created by kyungtaak on 2016. 6. 18..

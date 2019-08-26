@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import java.util.List;
 import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.query.druid.Query;
-import app.metatron.discovery.query.druid.datasource.DataSource;
+import com.datasphere.server.query.druid.Query;
+import com.datasphere.server.query.druid.datasource.DataSource;
 
 /**
  *
@@ -121,7 +121,7 @@ public class JoinQuery extends Query {
     this.context = context;
   }
 
-  public static JoinQueryBuilder builder(app.metatron.discovery.domain.workbook.configurations.datasource.DataSource dataSource) {
+  public static JoinQueryBuilder builder(com.datasphere.server.domain.workbook.configurations.datasource.DataSource dataSource) {
     return new JoinQueryBuilder(dataSource);
   }
 }

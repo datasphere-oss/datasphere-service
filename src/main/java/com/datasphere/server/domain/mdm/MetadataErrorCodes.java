@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
-import app.metatron.discovery.common.exception.ErrorCodes;
+import com.datasphere.server.common.exception.ErrorCodes;
 
 public enum MetadataErrorCodes implements ErrorCodes {
 

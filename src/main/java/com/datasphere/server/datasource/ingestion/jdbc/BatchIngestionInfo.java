@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion.jdbc;
+package com.datasphere.server.domain.datasource.ingestion.jdbc;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.domain.datasource.ingestion.BatchPeriod;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.BatchPeriod;
+import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
 
 /**
  * 배치 수집 방식 정의

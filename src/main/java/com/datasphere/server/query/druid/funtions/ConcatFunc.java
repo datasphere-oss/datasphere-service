@@ -11,7 +11,7 @@
  * See the License for the specic language governing permissions and
  * limitations under the License.
  */
-package app.metatron.discovery.query.druid.funtions;
+package com.datasphere.server.query.druid.funtions;
 
 import com.google.common.collect.Lists;
 

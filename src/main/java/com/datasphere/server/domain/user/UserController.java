@@ -1,18 +1,16 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
-package app.metatron.discovery.domain.user;
+package com.datasphere.server.domain.user;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -50,27 +48,27 @@ import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.common.Mailer;
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.images.Image;
-import app.metatron.discovery.domain.images.ImageService;
-import app.metatron.discovery.domain.user.group.Group;
-import app.metatron.discovery.domain.user.group.GroupMember;
-import app.metatron.discovery.domain.user.group.GroupService;
-import app.metatron.discovery.domain.user.role.RoleRepository;
-import app.metatron.discovery.domain.user.role.RoleService;
-import app.metatron.discovery.domain.user.role.RoleSetRepository;
-import app.metatron.discovery.domain.user.role.RoleSetService;
-import app.metatron.discovery.domain.workspace.Workspace;
-import app.metatron.discovery.domain.workspace.WorkspaceMemberRepository;
-import app.metatron.discovery.domain.workspace.WorkspaceService;
-import app.metatron.discovery.util.AuthUtils;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.common.Mailer;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.images.Image;
+import com.datasphere.server.domain.images.ImageService;
+import com.datasphere.server.domain.user.group.Group;
+import com.datasphere.server.domain.user.group.GroupMember;
+import com.datasphere.server.domain.user.group.GroupService;
+import com.datasphere.server.domain.user.role.RoleRepository;
+import com.datasphere.server.domain.user.role.RoleService;
+import com.datasphere.server.domain.user.role.RoleSetRepository;
+import com.datasphere.server.domain.user.role.RoleSetService;
+import com.datasphere.server.domain.workspace.Workspace;
+import com.datasphere.server.domain.workspace.WorkspaceMemberRepository;
+import com.datasphere.server.domain.workspace.WorkspaceService;
+import com.datasphere.server.util.AuthUtils;
+import com.datasphere.server.util.PolarisUtils;
 
-import static app.metatron.discovery.domain.user.UserService.DuplicatedTarget.EMAIL;
-import static app.metatron.discovery.domain.user.UserService.DuplicatedTarget.USERNAME;
+import static com.datasphere.server.domain.user.UserService.DuplicatedTarget.EMAIL;
+import static com.datasphere.server.domain.user.UserService.DuplicatedTarget.USERNAME;
 
 /**
  * Created by kyungtaak on 2016. 7. 21..

@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.connection.jdbc;
+package com.datasphere.server.domain.datasource.connection.jdbc;
 
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionDataResultResponse;
-import app.metatron.discovery.domain.datasource.ingestion.file.FileFormat;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.ingestion.IngestionDataResultResponse;
+import com.datasphere.server.domain.datasource.ingestion.file.FileFormat;
 
 /**
  * Created by kyungtaak on 2016. 6. 16..

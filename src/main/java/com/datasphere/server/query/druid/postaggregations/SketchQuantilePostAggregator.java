@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.postaggregations;
+package com.datasphere.server.query.druid.postaggregations;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.query.druid.PostAggregation;
+import com.datasphere.server.query.druid.PostAggregation;
 
 /**
  * Created by hsp on 2016. 3. 24..

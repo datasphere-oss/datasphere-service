@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.lineage;
+package com.datasphere.server.domain.mdm.lineage;
 
-import static app.metatron.discovery.domain.mdm.lineage.LineageMap.ALIGNMENT.CENTER;
-import static app.metatron.discovery.domain.mdm.lineage.LineageMap.ALIGNMENT.LEFT;
-import static app.metatron.discovery.domain.mdm.lineage.LineageMap.ALIGNMENT.RIGHT;
+import static com.datasphere.server.domain.mdm.lineage.LineageMap.ALIGNMENT.CENTER;
+import static com.datasphere.server.domain.mdm.lineage.LineageMap.ALIGNMENT.LEFT;
+import static com.datasphere.server.domain.mdm.lineage.LineageMap.ALIGNMENT.RIGHT;
 
-import app.metatron.discovery.domain.mdm.MetadataErrorCodes;
+import com.datasphere.server.domain.mdm.MetadataErrorCodes;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;

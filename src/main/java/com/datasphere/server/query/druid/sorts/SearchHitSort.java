@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.sorts;
+package com.datasphere.server.query.druid.sorts;
 
 import com.google.common.collect.Lists;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.datasource.data.CandidateQueryRequest;
+import com.datasphere.server.domain.datasource.data.CandidateQueryRequest;
 
 /**
  * Created by kyungtaak on 2017. 5. 12..

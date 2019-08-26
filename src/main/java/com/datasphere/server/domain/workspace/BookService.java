@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import com.google.common.collect.Lists;
 
@@ -24,12 +24,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-import app.metatron.discovery.common.exception.MetatronException;
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.workbook.DashBoard;
-import app.metatron.discovery.domain.workbook.DashBoardService;
-import app.metatron.discovery.domain.workbook.WorkBook;
-import app.metatron.discovery.domain.workbook.WorkBookRepository;
+import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.workbook.DashBoard;
+import com.datasphere.server.domain.workbook.DashBoardService;
+import com.datasphere.server.domain.workbook.WorkBook;
+import com.datasphere.server.domain.workbook.WorkBookRepository;
 
 
 @Component

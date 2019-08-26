@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.granularity;
+package com.datasphere.server.spec.druid.ingestion.granularity;
 
 import java.util.List;
 

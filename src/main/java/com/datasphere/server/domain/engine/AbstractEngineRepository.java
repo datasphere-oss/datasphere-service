@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine;
+package com.datasphere.server.domain.engine;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -40,8 +40,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.util.PolarisUtils;
 
 /**
  * Created by kyungtaak on 2017. 4. 16..

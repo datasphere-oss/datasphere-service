@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep;
+package com.datasphere.server.domain.dataprep;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
+import com.datasphere.server.common.GlobalObjectMapper;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

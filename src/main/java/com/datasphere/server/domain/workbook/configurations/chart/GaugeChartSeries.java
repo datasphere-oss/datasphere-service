@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.chart;
+package com.datasphere.server.domain.workbook.configurations.chart;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import app.metatron.discovery.common.entity.SearchParamValidator;
+import com.datasphere.server.common.entity.SearchParamValidator;
 
 /**
  * Gauge Chart 시리즈 표현 방식 정의

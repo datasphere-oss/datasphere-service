@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep;
+package com.datasphere.server.domain.dataprep;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

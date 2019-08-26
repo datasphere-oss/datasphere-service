@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.activities;
+package com.datasphere.server.domain.activities;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.security.Principal;
 import java.util.Map;
 
-import app.metatron.discovery.domain.activities.spec.ActivityStreamV2;
-import app.metatron.discovery.domain.activities.spec.ActivityType;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.domain.workspace.WorkspaceService;
-import app.metatron.discovery.util.AuthUtils;
+import com.datasphere.server.domain.activities.spec.ActivityStreamV2;
+import com.datasphere.server.domain.activities.spec.ActivityType;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.domain.workspace.WorkspaceService;
+import com.datasphere.server.util.AuthUtils;
 
 @Service
 @Transactional(readOnly = true)

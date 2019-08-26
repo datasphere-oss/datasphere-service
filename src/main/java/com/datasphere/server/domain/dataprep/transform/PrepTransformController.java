@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.transform;
+package com.datasphere.server.domain.dataprep.transform;
 
-import app.metatron.discovery.domain.dataprep.PrepSnapshotRequestPost;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepErrorCodes;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepException;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepMessageKey;
-import app.metatron.discovery.domain.dataprep.rule.ExprFunction;
-import app.metatron.discovery.domain.dataprep.teddy.DataFrame;
-import app.metatron.discovery.prep.parser.preparation.PrepRuleVisitorParser;
-import app.metatron.discovery.prep.parser.preparation.RuleVisitorParser;
-import app.metatron.discovery.prep.parser.preparation.rule.Keep;
-import app.metatron.discovery.prep.parser.preparation.rule.Rule;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Expression;
-import app.metatron.discovery.prep.parser.preparation.spec.SuggestToken;
+import com.datasphere.server.domain.dataprep.PrepSnapshotRequestPost;
+import com.datasphere.server.domain.dataprep.exceptions.PrepErrorCodes;
+import com.datasphere.server.domain.dataprep.exceptions.PrepException;
+import com.datasphere.server.domain.dataprep.exceptions.PrepMessageKey;
+import com.datasphere.server.domain.dataprep.rule.ExprFunction;
+import com.datasphere.server.domain.dataprep.teddy.DataFrame;
+import com.datasphere.server.prep.parser.preparation.PrepRuleVisitorParser;
+import com.datasphere.server.prep.parser.preparation.RuleVisitorParser;
+import com.datasphere.server.prep.parser.preparation.rule.Keep;
+import com.datasphere.server.prep.parser.preparation.rule.Rule;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Expression;
+import com.datasphere.server.prep.parser.preparation.spec.SuggestToken;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.slf4j.Logger;

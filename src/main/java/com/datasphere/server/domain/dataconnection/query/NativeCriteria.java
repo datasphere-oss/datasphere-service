@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.query;
+package com.datasphere.server.domain.dataconnection.query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,10 +22,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.dataconnection.query.expression.NativeExp;
-import app.metatron.discovery.domain.dataconnection.query.expression.NativeJoin;
-import app.metatron.discovery.domain.dataconnection.query.expression.NativeProjection;
-import app.metatron.discovery.domain.dataconnection.query.utils.VarGenerator;
+import com.datasphere.server.domain.dataconnection.query.expression.NativeExp;
+import com.datasphere.server.domain.dataconnection.query.expression.NativeJoin;
+import com.datasphere.server.domain.dataconnection.query.expression.NativeProjection;
+import com.datasphere.server.domain.dataconnection.query.utils.VarGenerator;
 
 public class NativeCriteria {
 

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.tag;
+package com.datasphere.server.domain.tag;
 
 import com.google.common.collect.Lists;
 
@@ -25,9 +25,9 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.common.entity.DomainType;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.util.AuthUtils;
+import com.datasphere.server.common.entity.DomainType;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.util.AuthUtils;
 
 @Entity
 @Table(name="tag")

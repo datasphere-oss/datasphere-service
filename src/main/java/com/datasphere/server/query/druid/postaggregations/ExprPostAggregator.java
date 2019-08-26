@@ -1,6 +1,6 @@
-package app.metatron.discovery.query.druid.postaggregations;
+package com.datasphere.server.query.druid.postaggregations;
 
-import app.metatron.discovery.query.druid.PostAggregation;
+import com.datasphere.server.query.druid.PostAggregation;
 
 public class ExprPostAggregator implements PostAggregation {
 

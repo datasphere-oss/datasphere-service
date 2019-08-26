@@ -12,22 +12,22 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep;
+package com.datasphere.server.domain.dataprep;
 
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
-import app.metatron.discovery.domain.dataconnection.DataConnectionRepository;
-import app.metatron.discovery.domain.dataprep.entity.PrDataset;
-import app.metatron.discovery.domain.dataprep.entity.PrDataset.RS_TYPE;
-import app.metatron.discovery.domain.dataprep.jdbc.PrepJdbcService;
-import app.metatron.discovery.domain.dataprep.repository.PrDatasetRepository;
-import app.metatron.discovery.domain.dataprep.service.PrDatasetService;
-import app.metatron.discovery.domain.dataprep.teddy.ColumnType;
-import app.metatron.discovery.domain.dataprep.teddy.DataFrame;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.IllegalColumnNameExpressionException;
-import app.metatron.discovery.domain.dataprep.transform.TeddyImpl;
-import app.metatron.discovery.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
+import com.datasphere.server.domain.dataprep.entity.PrDataset;
+import com.datasphere.server.domain.dataprep.entity.PrDataset.RS_TYPE;
+import com.datasphere.server.domain.dataprep.jdbc.PrepJdbcService;
+import com.datasphere.server.domain.dataprep.repository.PrDatasetRepository;
+import com.datasphere.server.domain.dataprep.service.PrDatasetService;
+import com.datasphere.server.domain.dataprep.teddy.ColumnType;
+import com.datasphere.server.domain.dataprep.teddy.DataFrame;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.IllegalColumnNameExpressionException;
+import com.datasphere.server.domain.dataprep.transform.TeddyImpl;
+import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 import com.google.common.collect.Sets;
 import java.sql.Connection;
 import java.sql.DriverManager;

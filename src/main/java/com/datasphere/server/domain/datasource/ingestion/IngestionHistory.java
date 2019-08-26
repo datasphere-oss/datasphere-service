@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion;
+package com.datasphere.server.domain.datasource.ingestion;
 
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -22,13 +22,13 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.common.exception.MetatronException;
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.datasource.ingestion.job.IngestionProgress;
-import app.metatron.discovery.domain.engine.model.IngestionStatusResponse;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress;
+import com.datasphere.server.domain.engine.model.IngestionStatusResponse;
 
 /**
  * Created by kyungtaak on 2016. 8. 13..

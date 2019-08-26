@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.exception;
+package com.datasphere.server.common.exception;
 
 import com.google.common.base.Preconditions;
 
@@ -68,7 +68,7 @@ public class RestExceptionHandler extends AbstractExceptionHandler {
     String resource = ((ServletWebRequest)webRequest).getRequest().getRequestURI();
 
     return notFound(new HttpHeaders(),
-                    new app.metatron.discovery.common.exception.ResourceNotFoundException(resource, o_O),
+                    new com.datasphere.server.common.exception.ResourceNotFoundException(resource, o_O),
                     webRequest);
   }
 

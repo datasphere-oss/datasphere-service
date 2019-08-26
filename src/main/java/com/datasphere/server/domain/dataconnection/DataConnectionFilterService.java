@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection;
+package com.datasphere.server.domain.dataconnection;
 
 import com.querydsl.core.types.Predicate;
 
@@ -26,23 +26,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.common.criteria.ListCriterion;
-import app.metatron.discovery.common.criteria.ListCriterionType;
-import app.metatron.discovery.common.criteria.ListFilter;
-import app.metatron.discovery.domain.datasource.DataSourceListCriterionKey;
-import app.metatron.discovery.domain.user.DirectoryProfile;
-import app.metatron.discovery.domain.user.User;
-import app.metatron.discovery.domain.user.UserRepository;
-import app.metatron.discovery.domain.user.group.GroupMember;
-import app.metatron.discovery.domain.user.group.GroupMemberRepository;
-import app.metatron.discovery.domain.user.group.GroupService;
-import app.metatron.discovery.domain.user.role.RoleDirectory;
-import app.metatron.discovery.domain.user.role.RoleDirectoryRepository;
-import app.metatron.discovery.domain.workspace.Workspace;
-import app.metatron.discovery.domain.workspace.WorkspaceRepository;
-import app.metatron.discovery.domain.workspace.WorkspaceService;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import app.metatron.discovery.util.AuthUtils;
+import com.datasphere.server.common.criteria.ListCriterion;
+import com.datasphere.server.common.criteria.ListCriterionType;
+import com.datasphere.server.common.criteria.ListFilter;
+import com.datasphere.server.domain.datasource.DataSourceListCriterionKey;
+import com.datasphere.server.domain.user.DirectoryProfile;
+import com.datasphere.server.domain.user.User;
+import com.datasphere.server.domain.user.UserRepository;
+import com.datasphere.server.domain.user.group.GroupMember;
+import com.datasphere.server.domain.user.group.GroupMemberRepository;
+import com.datasphere.server.domain.user.group.GroupService;
+import com.datasphere.server.domain.user.role.RoleDirectory;
+import com.datasphere.server.domain.user.role.RoleDirectoryRepository;
+import com.datasphere.server.domain.workspace.Workspace;
+import com.datasphere.server.domain.workspace.WorkspaceRepository;
+import com.datasphere.server.domain.workspace.WorkspaceService;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.util.AuthUtils;
 
 /**
  *

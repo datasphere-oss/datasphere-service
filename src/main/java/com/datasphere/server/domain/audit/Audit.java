@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.audit;
+package com.datasphere.server.domain.audit;
 
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
 import com.univocity.parsers.annotations.Parsed;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;

@@ -12,8 +12,8 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy.exceptions;
-import app.metatron.discovery.prep.parser.exceptions.*;
+package com.datasphere.server.domain.dataprep.teddy.exceptions;
+import com.datasphere.server.prep.parser.exceptions.*;
 
 public class TeddyException extends Exception {
   public TeddyException(String message) {

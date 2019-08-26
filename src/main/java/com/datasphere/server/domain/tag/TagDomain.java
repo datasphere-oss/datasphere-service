@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.tag;
+package com.datasphere.server.domain.tag;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -24,8 +24,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import app.metatron.discovery.common.entity.DomainType;
-import app.metatron.discovery.util.AuthUtils;
+import com.datasphere.server.common.entity.DomainType;
+import com.datasphere.server.util.AuthUtils;
 
 @Entity
 @Table(name="tag_domain")

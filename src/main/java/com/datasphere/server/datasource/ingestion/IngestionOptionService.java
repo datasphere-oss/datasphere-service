@@ -1,4 +1,4 @@
-package app.metatron.discovery.domain.datasource.ingestion;
+package com.datasphere.server.domain.datasource.ingestion;
 
 import com.google.common.collect.Lists;
 

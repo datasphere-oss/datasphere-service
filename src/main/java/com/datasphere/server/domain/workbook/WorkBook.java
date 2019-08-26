@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook;
+package com.datasphere.server.domain.workbook;
 
 import com.google.common.collect.Maps;
 
@@ -33,10 +33,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.workspace.Book;
-import app.metatron.discovery.domain.workspace.Workspace;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.workspace.Book;
+import com.datasphere.server.domain.workspace.Workspace;
+import com.datasphere.server.util.PolarisUtils;
 
 
 /**

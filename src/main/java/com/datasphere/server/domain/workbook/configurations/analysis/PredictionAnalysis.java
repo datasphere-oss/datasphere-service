@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.analysis;
+package com.datasphere.server.domain.workbook.configurations.analysis;
 
 import com.google.common.collect.Lists;
 
@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.io.Serializable;
 import java.util.List;
 
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 
 /**
  * Created by kyungtaak on 2017. 2. 8..

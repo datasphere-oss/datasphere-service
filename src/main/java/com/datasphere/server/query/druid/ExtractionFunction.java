@@ -12,19 +12,19 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid;
+package com.datasphere.server.query.druid;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import app.metatron.discovery.query.druid.extractionfns.ExpressionFunction;
-import app.metatron.discovery.query.druid.extractionfns.JavaScriptFunction;
-import app.metatron.discovery.query.druid.extractionfns.LookupFunction;
-import app.metatron.discovery.query.druid.extractionfns.PartialFunction;
-import app.metatron.discovery.query.druid.extractionfns.RegExFunction;
-import app.metatron.discovery.query.druid.extractionfns.SearchQueryFunction;
-import app.metatron.discovery.query.druid.extractionfns.TimeFormatFunction;
-import app.metatron.discovery.query.druid.extractionfns.TimeParsingFunction;
+import com.datasphere.server.query.druid.extractionfns.ExpressionFunction;
+import com.datasphere.server.query.druid.extractionfns.JavaScriptFunction;
+import com.datasphere.server.query.druid.extractionfns.LookupFunction;
+import com.datasphere.server.query.druid.extractionfns.PartialFunction;
+import com.datasphere.server.query.druid.extractionfns.RegExFunction;
+import com.datasphere.server.query.druid.extractionfns.SearchQueryFunction;
+import com.datasphere.server.query.druid.extractionfns.TimeFormatFunction;
+import com.datasphere.server.query.druid.extractionfns.TimeParsingFunction;
 
 /**
  * Created by i1befree on 2016. 1. 12..

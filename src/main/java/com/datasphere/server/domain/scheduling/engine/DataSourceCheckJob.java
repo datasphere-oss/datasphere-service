@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.scheduling.engine;
+package com.datasphere.server.domain.scheduling.engine;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -39,21 +39,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.datasource.DataSourceSummary;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistoryRepository;
-import app.metatron.discovery.domain.engine.DruidEngineMetaRepository;
-import app.metatron.discovery.domain.engine.DruidEngineRepository;
-import app.metatron.discovery.domain.engine.EngineQueryService;
-import app.metatron.discovery.domain.engine.model.SegmentMetaDataResponse;
-import app.metatron.discovery.query.druid.meta.AnalysisType;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.datasource.DataSourceSummary;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
+import com.datasphere.server.domain.engine.DruidEngineRepository;
+import com.datasphere.server.domain.engine.EngineQueryService;
+import com.datasphere.server.domain.engine.model.SegmentMetaDataResponse;
+import com.datasphere.server.query.druid.meta.AnalysisType;
 
-import static app.metatron.discovery.domain.datasource.DataSource.Status.DISABLED;
-import static app.metatron.discovery.domain.datasource.DataSource.Status.ENABLED;
-import static app.metatron.discovery.domain.datasource.DataSource.Status.FAILED;
-import static app.metatron.discovery.domain.datasource.DataSource.Status.PREPARING;
+import static com.datasphere.server.domain.datasource.DataSource.Status.DISABLED;
+import static com.datasphere.server.domain.datasource.DataSource.Status.ENABLED;
+import static com.datasphere.server.domain.datasource.DataSource.Status.FAILED;
+import static com.datasphere.server.domain.datasource.DataSource.Status.PREPARING;
 
 
 /**

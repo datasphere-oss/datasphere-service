@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook;
+package com.datasphere.server.domain.notebook;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,11 +26,11 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.notebook.connector.HttpRepository;
-import app.metatron.discovery.domain.notebook.connector.NotebookAction;
-import app.metatron.discovery.domain.workspace.Workspace;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.notebook.connector.HttpRepository;
+import com.datasphere.server.domain.notebook.connector.NotebookAction;
+import com.datasphere.server.domain.workspace.Workspace;
 
 /**
  * Created by kyungtaak on 2016. 10. 21..

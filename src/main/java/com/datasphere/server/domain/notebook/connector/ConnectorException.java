@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook.connector;
+package com.datasphere.server.domain.notebook.connector;
 
 /**
  * Created by kyungtaak on 2016. 10. 22..

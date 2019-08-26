@@ -1,9 +1,9 @@
-package app.metatron.discovery.domain.datasource.ingestion;
+package com.datasphere.server.domain.datasource.ingestion;
 
 import java.io.Serializable;
 import java.util.List;
 
-import app.metatron.discovery.domain.CollectionPatch;
+import com.datasphere.server.domain.CollectionPatch;
 
 public class ReingestionRequest implements Serializable {
 

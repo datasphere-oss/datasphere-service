@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.csv.CSVFormat;
@@ -41,24 +41,24 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
-import app.metatron.discovery.common.data.projection.DataGrid;
-import app.metatron.discovery.common.data.projection.Row;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcCSVWriter;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcConnectionService;
-import app.metatron.discovery.domain.datasource.data.DataSourceValidator;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
-import app.metatron.discovery.domain.engine.EngineProperties;
-import app.metatron.discovery.domain.engine.EngineQueryService;
-import app.metatron.discovery.domain.mdm.preview.MetadataEngineDataPreview;
-import app.metatron.discovery.domain.mdm.preview.MetadataJdbcDataPreview;
-import app.metatron.discovery.domain.mdm.source.MetaSourceService;
-import app.metatron.discovery.domain.mdm.source.MetadataSource;
-import app.metatron.discovery.domain.storage.StorageProperties;
-import app.metatron.discovery.extension.dataconnection.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.common.data.projection.DataGrid;
+import com.datasphere.server.common.data.projection.Row;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcCSVWriter;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.domain.datasource.data.DataSourceValidator;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.domain.engine.EngineProperties;
+import com.datasphere.server.domain.engine.EngineQueryService;
+import com.datasphere.server.domain.mdm.preview.MetadataEngineDataPreview;
+import com.datasphere.server.domain.mdm.preview.MetadataJdbcDataPreview;
+import com.datasphere.server.domain.mdm.source.MetaSourceService;
+import com.datasphere.server.domain.mdm.source.MetadataSource;
+import com.datasphere.server.domain.storage.StorageProperties;
+import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
 
 
 @Component

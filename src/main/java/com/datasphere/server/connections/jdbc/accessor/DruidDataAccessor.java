@@ -1,4 +1,4 @@
-package app.metatron.discovery.domain.dataconnection.accessor;
+package com.datasphere.server.domain.dataconnection.accessor;
 
 import org.pf4j.Extension;
 import org.slf4j.Logger;
@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.extension.dataconnection.jdbc.accessor.AbstractJdbcDataAccessor;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.extension.dataconnection.jdbc.accessor.AbstractJdbcDataAccessor;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 
 @Extension
 public class DruidDataAccessor extends AbstractJdbcDataAccessor {

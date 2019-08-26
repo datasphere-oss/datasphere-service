@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.query.druid.Query;
+import com.datasphere.server.query.druid.Query;
 
 @JsonTypeName("dataSourceMetadata")
 public class DataSourceMetadataQuery extends Query {

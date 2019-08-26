@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.context;
+package com.datasphere.server.domain.context;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -30,8 +30,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.entity.DomainType;
-import app.metatron.discovery.domain.MetatronDomain;
+import com.datasphere.server.common.entity.DomainType;
+import com.datasphere.server.domain.MetatronDomain;
 
 @Component
 @Transactional

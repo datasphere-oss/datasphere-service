@@ -12,24 +12,24 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.service;
+package com.datasphere.server.domain.dataprep.service;
 
-import app.metatron.discovery.domain.dataprep.PrepDatasetStagingDbService;
-import app.metatron.discovery.domain.dataprep.PrepProperties;
-import app.metatron.discovery.domain.dataprep.PrepUtil;
-import app.metatron.discovery.domain.dataprep.csv.PrepCsvParseResult;
-import app.metatron.discovery.domain.dataprep.csv.PrepCsvUtil;
-import app.metatron.discovery.domain.dataprep.entity.PrSnapshot;
-import app.metatron.discovery.domain.dataprep.entity.PrSnapshotProjections;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepErrorCodes;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepException;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepMessageKey;
-import app.metatron.discovery.domain.dataprep.json.PrepJsonParseResult;
-import app.metatron.discovery.domain.dataprep.json.PrepJsonUtil;
-import app.metatron.discovery.domain.dataprep.repository.PrDataflowRepository;
-import app.metatron.discovery.domain.dataprep.repository.PrDatasetRepository;
-import app.metatron.discovery.domain.dataprep.repository.PrSnapshotRepository;
-import app.metatron.discovery.domain.dataprep.teddy.DataFrame;
+import com.datasphere.server.domain.dataprep.PrepDatasetStagingDbService;
+import com.datasphere.server.domain.dataprep.PrepProperties;
+import com.datasphere.server.domain.dataprep.PrepUtil;
+import com.datasphere.server.domain.dataprep.csv.PrepCsvParseResult;
+import com.datasphere.server.domain.dataprep.csv.PrepCsvUtil;
+import com.datasphere.server.domain.dataprep.entity.PrSnapshot;
+import com.datasphere.server.domain.dataprep.entity.PrSnapshotProjections;
+import com.datasphere.server.domain.dataprep.exceptions.PrepErrorCodes;
+import com.datasphere.server.domain.dataprep.exceptions.PrepException;
+import com.datasphere.server.domain.dataprep.exceptions.PrepMessageKey;
+import com.datasphere.server.domain.dataprep.json.PrepJsonParseResult;
+import com.datasphere.server.domain.dataprep.json.PrepJsonUtil;
+import com.datasphere.server.domain.dataprep.repository.PrDataflowRepository;
+import com.datasphere.server.domain.dataprep.repository.PrDatasetRepository;
+import com.datasphere.server.domain.dataprep.repository.PrSnapshotRepository;
+import com.datasphere.server.domain.dataprep.teddy.DataFrame;
 import com.google.common.collect.Maps;
 import java.util.HashMap;
 import java.util.List;

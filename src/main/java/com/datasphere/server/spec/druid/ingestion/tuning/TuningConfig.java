@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.tuning;
+package com.datasphere.server.spec.druid.ingestion.tuning;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import app.metatron.discovery.spec.druid.ingestion.index.IndexSpec;
+import com.datasphere.server.spec.druid.ingestion.index.IndexSpec;
 
 /**
  * Created by kyungtaak on 2016. 6. 18..

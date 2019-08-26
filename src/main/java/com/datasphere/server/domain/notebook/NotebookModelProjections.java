@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook;
+package com.datasphere.server.domain.notebook;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +20,7 @@ import org.springframework.data.rest.core.config.Projection;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.user.UserProfile;
+import com.datasphere.server.domain.user.UserProfile;
 
 /**
  * Created by james on 2017. 7. 13..

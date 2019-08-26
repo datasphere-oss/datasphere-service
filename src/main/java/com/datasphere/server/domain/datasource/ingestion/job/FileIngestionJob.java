@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion.job;
+package com.datasphere.server.domain.datasource.ingestion.job;
 
 import com.google.common.collect.Lists;
 
@@ -39,23 +39,23 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceIngestionException;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistory;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionOption;
-import app.metatron.discovery.domain.datasource.ingestion.LocalFileIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.file.CsvFileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.file.ExcelFileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.file.FileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.file.JsonFileFormat;
-import app.metatron.discovery.domain.engine.EngineProperties;
-import app.metatron.discovery.spec.druid.ingestion.BatchIndex;
-import app.metatron.discovery.spec.druid.ingestion.Index;
-import app.metatron.discovery.spec.druid.ingestion.IngestionSpec;
-import app.metatron.discovery.spec.druid.ingestion.IngestionSpecBuilder;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceIngestionException;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.domain.datasource.ingestion.IngestionOption;
+import com.datasphere.server.domain.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.file.CsvFileFormat;
+import com.datasphere.server.domain.datasource.ingestion.file.ExcelFileFormat;
+import com.datasphere.server.domain.datasource.ingestion.file.FileFormat;
+import com.datasphere.server.domain.datasource.ingestion.file.JsonFileFormat;
+import com.datasphere.server.domain.engine.EngineProperties;
+import com.datasphere.server.spec.druid.ingestion.BatchIndex;
+import com.datasphere.server.spec.druid.ingestion.Index;
+import com.datasphere.server.spec.druid.ingestion.IngestionSpec;
+import com.datasphere.server.spec.druid.ingestion.IngestionSpecBuilder;
+import com.datasphere.server.util.PolarisUtils;
 
-import static app.metatron.discovery.domain.datasource.DataSourceErrorCodes.INGESTION_FILE_EXCEL_CONVERSION_ERROR;
+import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_FILE_EXCEL_CONVERSION_ERROR;
 
 public class FileIngestionJob extends AbstractIngestionJob implements IngestionJob {
 

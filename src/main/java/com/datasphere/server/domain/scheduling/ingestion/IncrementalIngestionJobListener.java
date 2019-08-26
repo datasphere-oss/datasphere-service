@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.scheduling.ingestion;
+package com.datasphere.server.domain.scheduling.ingestion;
 
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;

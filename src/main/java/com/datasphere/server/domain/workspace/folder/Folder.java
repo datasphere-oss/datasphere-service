@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace.folder;
+package com.datasphere.server.domain.workspace.folder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -28,8 +28,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import app.metatron.discovery.domain.workspace.Book;
-import app.metatron.discovery.domain.workspace.Workspace;
+import com.datasphere.server.domain.workspace.Book;
+import com.datasphere.server.domain.workspace.Workspace;
 
 /**
  * Created by kyungtaak on 2016. 12. 20..

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.geospatial.geojson;
+package com.datasphere.server.common.geospatial.geojson;
 
 import com.google.common.collect.Maps;
 

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook;
+package com.datasphere.server.domain.workbook;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,10 +21,10 @@ import org.springframework.data.rest.core.config.Projection;
 import java.util.List;
 import java.util.Set;
 
-import app.metatron.discovery.common.BaseProjections;
-import app.metatron.discovery.domain.datasource.DataSourceAlias;
-import app.metatron.discovery.domain.user.UserProfile;
-import app.metatron.discovery.domain.workbook.widget.Widget;
+import com.datasphere.server.common.BaseProjections;
+import com.datasphere.server.domain.datasource.DataSourceAlias;
+import com.datasphere.server.domain.user.UserProfile;
+import com.datasphere.server.domain.workbook.widget.Widget;
 
 /**
  * Created by kyungtaak on 2016. 11. 3..
@@ -85,7 +85,7 @@ public class DashboardProjections extends BaseProjections {
 
     DateTime getModifiedTime();
 
-    @Value("#{T(app.metatron.discovery.util.ProjectionUtils).toListResource(@projectionFactory, T(app.metatron.discovery.domain.datasource.DataSourceProjections$ForDetailProjection), @dashBoardService.backingDataSource(target.dataSources, target.workBook))}")
+    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.datasource.DataSourceProjections$ForDetailProjection), @dashBoardService.backingDataSource(target.dataSources, target.workBook))}")
     Object getDataSources();
   }
 
@@ -145,11 +145,11 @@ public class DashboardProjections extends BaseProjections {
 
     String getTemporaryId();
 
-    //@Value("#{T(app.metatron.discovery.util.ProjectionUtils).toListResource(@projectionFactory, T(app.metatron.discovery.domain.datasource.DataSourceProjections$ForDetailProjection), target.dataSources)}")
-    @Value("#{T(app.metatron.discovery.util.ProjectionUtils).toListResource(@projectionFactory, T(app.metatron.discovery.domain.datasource.DataSourceProjections$ForDetailProjection), @dashBoardService.backingDataSource(target.dataSources, target.workBook))}")
+    //@Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.datasource.DataSourceProjections$ForDetailProjection), target.dataSources)}")
+    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.datasource.DataSourceProjections$ForDetailProjection), @dashBoardService.backingDataSource(target.dataSources, target.workBook))}")
     Object getDataSources();
 
-//    @Value("#{T(app.metatron.discovery.util.ProjectionUtils).toListResource(@projectionFactory, T(app.metatron.discovery.domain.workbook.widget.WidgetProjections$ForDetailViewProjection), target.widgets)}")
+//    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.workbook.widget.WidgetProjections$ForDetailViewProjection), target.widgets)}")
     Set<Widget> getWidgets();
 
     @Value("#{@dataSourceAliasRepository.findByDashBoardId(target.id)}")

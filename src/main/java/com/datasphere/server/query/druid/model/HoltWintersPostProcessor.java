@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.model;
+package com.datasphere.server.query.druid.model;
 
 import com.google.common.collect.Lists;
 
@@ -25,15 +25,15 @@ import org.apache.commons.lang3.BooleanUtils;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.workbook.configurations.analysis.PredictionAnalysis;
-import app.metatron.discovery.domain.workbook.configurations.field.DimensionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.format.ContinuousTimeFormat;
-import app.metatron.discovery.query.druid.PostAggregation;
-import app.metatron.discovery.query.druid.PostProcessor;
-import app.metatron.discovery.query.druid.funtions.TimeFormatFunc;
-import app.metatron.discovery.query.druid.funtions.TimestampFunc;
-import app.metatron.discovery.query.druid.postaggregations.MathPostAggregator;
+import com.datasphere.server.domain.workbook.configurations.analysis.PredictionAnalysis;
+import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.format.ContinuousTimeFormat;
+import com.datasphere.server.query.druid.PostAggregation;
+import com.datasphere.server.query.druid.PostProcessor;
+import com.datasphere.server.query.druid.funtions.TimeFormatFunc;
+import com.datasphere.server.query.druid.funtions.TimestampFunc;
+import com.datasphere.server.query.druid.postaggregations.MathPostAggregator;
 
 @JsonTypeName("holtWinters")
 public class HoltWintersPostProcessor implements PostProcessor {

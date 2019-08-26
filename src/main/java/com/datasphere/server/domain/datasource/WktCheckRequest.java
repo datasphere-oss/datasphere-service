@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,9 +22,9 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.io.Serializable;
 import java.util.List;
 
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.common.exception.BadRequestException;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.BadRequestException;
 
 /**
  *

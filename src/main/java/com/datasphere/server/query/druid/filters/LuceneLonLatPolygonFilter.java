@@ -11,12 +11,12 @@
  * See the License for the specic language governing permissions and
  * limitations under the License.
  */
-package app.metatron.discovery.query.druid.filters;
+package com.datasphere.server.query.druid.filters;
 
-import app.metatron.discovery.domain.workbook.configurations.filter.SpatialShapeFilter;
-import app.metatron.discovery.query.druid.Filter;
-import app.metatron.discovery.query.druid.ShapeFormat;
-import app.metatron.discovery.query.druid.SpatialOperations;
+import com.datasphere.server.domain.workbook.configurations.filter.SpatialShapeFilter;
+import com.datasphere.server.query.druid.Filter;
+import com.datasphere.server.query.druid.ShapeFormat;
+import com.datasphere.server.query.druid.SpatialOperations;
 
 public class LuceneLonLatPolygonFilter extends LuceneSpatialFilter implements Filter {
 

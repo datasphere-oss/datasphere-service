@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook;
+package com.datasphere.server.domain.workbook;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,15 +28,15 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.common.entity.Spec;
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.BoardConfiguration;
-import app.metatron.discovery.domain.workbook.widget.Widget;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.common.entity.Spec;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.BoardConfiguration;
+import com.datasphere.server.domain.workbook.widget.Widget;
+import com.datasphere.server.util.PolarisUtils;
 
 /**
  * Dash board

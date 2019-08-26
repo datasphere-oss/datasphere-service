@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.Map;
 
-import app.metatron.discovery.query.druid.Query;
-import app.metatron.discovery.query.druid.SpatialOperations;
+import com.datasphere.server.query.druid.Query;
+import com.datasphere.server.query.druid.SpatialOperations;
 
 @JsonTypeName("choropleth")
 public class ChoroplethMapQuery extends Query {

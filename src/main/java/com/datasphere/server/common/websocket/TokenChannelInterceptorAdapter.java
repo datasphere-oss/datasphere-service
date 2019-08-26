@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.websocket;
+package com.datasphere.server.common.websocket;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

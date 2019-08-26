@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.granularity;
+package com.datasphere.server.spec.druid.ingestion.granularity;
 
 
 import com.google.common.collect.Lists;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.workbook.configurations.filter.TimeFilter;
+import com.datasphere.server.domain.workbook.configurations.filter.TimeFilter;
 
 /**
  *

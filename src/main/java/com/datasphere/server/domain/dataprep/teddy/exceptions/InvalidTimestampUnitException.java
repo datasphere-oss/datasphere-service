@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy.exceptions;
+package com.datasphere.server.domain.dataprep.teddy.exceptions;
 
 public class InvalidTimestampUnitException extends TeddyException {
   public InvalidTimestampUnitException(String message) {

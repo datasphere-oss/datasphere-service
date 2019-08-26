@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench.dto;
+package com.datasphere.server.domain.workbench.dto;
 
 public class ImportCsvFile extends ImportFile {
   private String lineSep = "\n";

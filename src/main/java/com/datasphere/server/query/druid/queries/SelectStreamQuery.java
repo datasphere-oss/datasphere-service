@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.query.druid.Filter;
-import app.metatron.discovery.query.druid.Query;
-import app.metatron.discovery.query.druid.limits.OrderByColumn;
-import app.metatron.discovery.query.druid.virtualcolumns.VirtualColumn;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.query.druid.Filter;
+import com.datasphere.server.query.druid.Query;
+import com.datasphere.server.query.druid.limits.OrderByColumn;
+import com.datasphere.server.query.druid.virtualcolumns.VirtualColumn;
 
 /**
  * Created by kyungtaak on 2017. 3. 6..

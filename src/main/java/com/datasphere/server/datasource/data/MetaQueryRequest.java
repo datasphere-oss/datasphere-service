@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data;
+package com.datasphere.server.domain.datasource.data;
 
 import java.io.Serializable;
 

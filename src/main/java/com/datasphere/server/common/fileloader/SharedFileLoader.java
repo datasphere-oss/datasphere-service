@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.fileloader;
+package com.datasphere.server.common.fileloader;
 
 import com.google.common.collect.Lists;
 

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.fileloader;
+package com.datasphere.server.common.fileloader;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
@@ -24,7 +24,7 @@ import java.io.Serializable;
 import java.net.URI;
 import java.util.Map;
 
-import app.metatron.discovery.domain.engine.EngineProperties;
+import com.datasphere.server.domain.engine.EngineProperties;
 
 public class FileLoaderProperties implements Serializable {
 

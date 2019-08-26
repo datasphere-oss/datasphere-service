@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,10 +23,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import app.metatron.discovery.common.BaseProjections;
-import app.metatron.discovery.domain.notebook.NotebookConnector;
-import app.metatron.discovery.domain.user.UserProfile;
-import app.metatron.discovery.domain.user.role.RoleSet;
+import com.datasphere.server.common.BaseProjections;
+import com.datasphere.server.domain.notebook.NotebookConnector;
+import com.datasphere.server.domain.user.UserProfile;
+import com.datasphere.server.domain.user.role.RoleSet;
 
 /**
  * Created by kyungtaak on 2016. 12. 22..
@@ -220,7 +220,7 @@ public class WorkspaceProjections extends BaseProjections {
 
     Workspace.PublicType getPublicType();
 
-    @Value("#{target.favorite == null ? @workspaceFavoriteRepository.isFavoritWorkspace(target.id, T(app.metatron.discovery.util.AuthUtils).getAuthUserName()) : target.favorite}")
+    @Value("#{target.favorite == null ? @workspaceFavoriteRepository.isFavoritWorkspace(target.id, T(com.datasphere.server.util.AuthUtils).getAuthUserName()) : target.favorite}")
     Boolean getFavorite();
 
     @Value("#{@workspaceService.countAvailableWorkspaces(target.id)}")
@@ -286,7 +286,7 @@ public class WorkspaceProjections extends BaseProjections {
 
     Workspace.PublicType getPublicType();
 
-    @Value("#{target.favorite == null ? @workspaceFavoriteRepository.isFavoritWorkspace(target.id, T(app.metatron.discovery.util.AuthUtils).getAuthUserName()) : target.favorite}")
+    @Value("#{target.favorite == null ? @workspaceFavoriteRepository.isFavoritWorkspace(target.id, T(com.datasphere.server.util.AuthUtils).getAuthUserName()) : target.favorite}")
     Boolean getFavorite();
 
     @Value("#{@workspaceService.countAvailableWorkspaces(target.id)}")

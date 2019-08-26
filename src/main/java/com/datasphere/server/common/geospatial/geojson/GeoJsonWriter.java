@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.geospatial.geojson;
+package com.datasphere.server.common.geospatial.geojson;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -38,7 +38,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static app.metatron.discovery.query.druid.AbstractQueryBuilder.GEOMETRY_COLUMN_NAME;
+import static com.datasphere.server.query.druid.AbstractQueryBuilder.GEOMETRY_COLUMN_NAME;
 
 public class GeoJsonWriter {
 

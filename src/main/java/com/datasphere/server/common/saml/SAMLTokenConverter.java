@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.saml;
+package com.datasphere.server.common.saml;
 
 import org.opensaml.saml2.core.AuthnStatement;
 import org.opensaml.ws.message.encoder.MessageEncodingException;

@@ -40,7 +40,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data;
+package com.datasphere.server.domain.datasource.data;
 
 import com.google.common.collect.Lists;
 
@@ -61,21 +61,21 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.CommonLocalVariable;
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.domain.datasource.data.forward.ResultForward;
-import app.metatron.discovery.domain.datasource.data.result.ChartResultFormat;
-import app.metatron.discovery.domain.datasource.data.result.SearchResultFormat;
-import app.metatron.discovery.domain.workbook.configurations.Limit;
-import app.metatron.discovery.domain.workbook.configurations.Pivot;
-import app.metatron.discovery.domain.workbook.configurations.analysis.Analysis;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.ExpressionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.Shelf;
+import com.datasphere.server.common.CommonLocalVariable;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.domain.datasource.data.result.ChartResultFormat;
+import com.datasphere.server.domain.datasource.data.result.SearchResultFormat;
+import com.datasphere.server.domain.workbook.configurations.Limit;
+import com.datasphere.server.domain.workbook.configurations.Pivot;
+import com.datasphere.server.domain.workbook.configurations.analysis.Analysis;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.field.ExpressionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.Shelf;
 
 /**
  * Request model for search query

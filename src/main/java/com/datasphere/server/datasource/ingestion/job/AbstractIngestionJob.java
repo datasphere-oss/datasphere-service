@@ -40,7 +40,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion.job;
+package com.datasphere.server.domain.datasource.ingestion.job;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -51,20 +51,20 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.fileloader.FileLoaderFactory;
-import app.metatron.discovery.common.fileloader.FileLoaderProperties;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceErrorCodes;
-import app.metatron.discovery.domain.datasource.DataSourceIngestionException;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistory;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionHistoryRepository;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionOptionService;
-import app.metatron.discovery.domain.engine.DruidEngineMetaRepository;
-import app.metatron.discovery.domain.engine.DruidEngineRepository;
-import app.metatron.discovery.domain.engine.EngineProperties;
-import app.metatron.discovery.domain.storage.StorageProperties;
-import app.metatron.discovery.spec.druid.ingestion.Index;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.fileloader.FileLoaderFactory;
+import com.datasphere.server.common.fileloader.FileLoaderProperties;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceErrorCodes;
+import com.datasphere.server.domain.datasource.DataSourceIngestionException;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.domain.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.server.domain.datasource.ingestion.IngestionOptionService;
+import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
+import com.datasphere.server.domain.engine.DruidEngineRepository;
+import com.datasphere.server.domain.engine.EngineProperties;
+import com.datasphere.server.domain.storage.StorageProperties;
+import com.datasphere.server.spec.druid.ingestion.Index;
 
 public abstract class AbstractIngestionJob {
 

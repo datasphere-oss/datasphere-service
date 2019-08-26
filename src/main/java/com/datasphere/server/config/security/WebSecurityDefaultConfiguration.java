@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.config.security;
+package com.datasphere.server.config.security;
 
 import com.google.common.collect.ImmutableList;
 
@@ -42,9 +42,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import app.metatron.discovery.common.oauth.BasePermissionEvaluator;
-import app.metatron.discovery.common.oauth.CustomDaoAuthenticationProvider;
-import app.metatron.discovery.common.oauth.CustomUserStatusChecker;
+import com.datasphere.server.common.oauth.BasePermissionEvaluator;
+import com.datasphere.server.common.oauth.CustomDaoAuthenticationProvider;
+import com.datasphere.server.common.oauth.CustomUserStatusChecker;
 
 
 /**

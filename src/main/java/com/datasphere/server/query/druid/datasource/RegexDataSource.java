@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.datasource;
+package com.datasphere.server.query.druid.datasource;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 

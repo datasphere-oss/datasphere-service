@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion;
+package com.datasphere.server.domain.datasource.ingestion;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
-import app.metatron.discovery.common.BaseProjections;
-import app.metatron.discovery.common.datasource.DataType;
+import com.datasphere.server.common.BaseProjections;
+import com.datasphere.server.common.datasource.DataType;
 
 /**
  *

@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook;
+package com.datasphere.server.domain.notebook;
 
-import app.metatron.discovery.common.exception.ErrorCodes;
+import com.datasphere.server.common.exception.ErrorCodes;
 
 public enum NotebookErrorCodes implements ErrorCodes {
 

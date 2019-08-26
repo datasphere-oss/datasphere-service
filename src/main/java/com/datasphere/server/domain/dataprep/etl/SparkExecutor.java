@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.etl;
+package com.datasphere.server.domain.dataprep.etl;
 
-import static app.metatron.discovery.domain.dataprep.PrepProperties.ETL_SPARK_PORT;
+import static com.datasphere.server.domain.dataprep.PrepProperties.ETL_SPARK_PORT;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
+import com.datasphere.server.common.GlobalObjectMapper;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;

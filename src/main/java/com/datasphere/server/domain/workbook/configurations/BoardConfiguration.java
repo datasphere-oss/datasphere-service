@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations;
+package com.datasphere.server.domain.workbook.configurations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,12 +22,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.io.Serializable;
 import java.util.List;
 
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.domain.workbook.configurations.board.BoardGlobalOptions;
-import app.metatron.discovery.domain.workbook.configurations.board.WidgetRelation;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.domain.workbook.configurations.board.BoardGlobalOptions;
+import com.datasphere.server.domain.workbook.configurations.board.WidgetRelation;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
 
 /**
  * Dashboard Configuration Spec.

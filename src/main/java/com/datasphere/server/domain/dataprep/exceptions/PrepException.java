@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.exceptions;
+package com.datasphere.server.domain.dataprep.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import app.metatron.discovery.common.exception.ErrorCodes;
-import app.metatron.discovery.common.exception.MetatronException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.*;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.UnknownError;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.common.exception.ErrorCodes;
+import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.*;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.UnknownError;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Preparation Error")
 public class PrepException extends MetatronException {

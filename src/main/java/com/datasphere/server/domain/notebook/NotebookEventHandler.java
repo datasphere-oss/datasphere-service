@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook;
+package com.datasphere.server.domain.notebook;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.servlet.http.HttpServletRequest;
 
-import app.metatron.discovery.domain.notebook.connector.HttpRepository;
-import app.metatron.discovery.domain.workspace.BookTreeService;
+import com.datasphere.server.domain.notebook.connector.HttpRepository;
+import com.datasphere.server.domain.workspace.BookTreeService;
 
 /**
  * Created by kyungtaak on 2016. 10. 21..

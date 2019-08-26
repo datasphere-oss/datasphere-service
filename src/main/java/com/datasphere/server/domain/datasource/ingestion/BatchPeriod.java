@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion;
+package com.datasphere.server.domain.datasource.ingestion;
 
 import com.google.common.collect.Lists;
 
@@ -28,9 +28,9 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.util.EnumUtils;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.util.EnumUtils;
+import com.datasphere.server.util.PolarisUtils;
 
 /**
  * Created by kyungtaak on 2016. 8. 12..

@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.repository;
+package com.datasphere.server.domain.dataprep.repository;
 
-import app.metatron.discovery.domain.dataprep.entity.PrSnapshot;
-import app.metatron.discovery.domain.dataprep.entity.PrSnapshotProjections;
+import com.datasphere.server.domain.dataprep.entity.PrSnapshot;
+import com.datasphere.server.domain.dataprep.entity.PrSnapshotProjections;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

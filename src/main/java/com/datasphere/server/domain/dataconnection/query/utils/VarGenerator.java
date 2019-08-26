@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection.query.utils;
+package com.datasphere.server.domain.dataconnection.query.utils;
 
 import org.hibernate.annotations.common.util.StringHelper;
 

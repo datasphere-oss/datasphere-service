@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.havings;
+package com.datasphere.server.query.druid.havings;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.List;
 
-import app.metatron.discovery.query.druid.Having;
+import com.datasphere.server.query.druid.Having;
 
 @JsonTypeName("and")
 public class And extends Logical{

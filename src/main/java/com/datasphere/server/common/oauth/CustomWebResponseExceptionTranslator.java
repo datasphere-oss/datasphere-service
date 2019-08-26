@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.oauth;
+package com.datasphere.server.common.oauth;
 
-import app.metatron.discovery.common.exception.ErrorResponse;
+import com.datasphere.server.common.exception.ErrorResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.security.oauth2.provider.error.DefaultWebResponseExceptionTranslator;
 
-import app.metatron.discovery.common.exception.GlobalErrorCodes;
+import com.datasphere.server.common.exception.GlobalErrorCodes;
 
 import static org.springframework.security.oauth2.common.exceptions.OAuth2Exception.INVALID_GRANT;
 import static org.springframework.security.oauth2.common.exceptions.OAuth2Exception.INVALID_TOKEN;

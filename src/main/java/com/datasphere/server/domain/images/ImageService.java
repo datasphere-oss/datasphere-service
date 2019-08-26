@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.images;
+package com.datasphere.server.domain.images;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.net.URI;
 import java.util.List;
 
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
 
 @Service
 @Transactional(readOnly = true)

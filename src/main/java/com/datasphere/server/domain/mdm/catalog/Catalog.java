@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.catalog;
+package com.datasphere.server.domain.mdm.catalog;
 
 import com.google.common.collect.Maps;
 
@@ -38,8 +38,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.mdm.Metadata;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.mdm.Metadata;
 
 /**
  * Catalog of metadata

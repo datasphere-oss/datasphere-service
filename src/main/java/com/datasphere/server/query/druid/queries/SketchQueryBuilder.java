@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.google.common.collect.Lists;
 
@@ -20,9 +20,9 @@ import org.apache.commons.collections.CollectionUtils;
 
 import java.util.List;
 
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
-import app.metatron.discovery.query.druid.datasource.DataSource;
-import app.metatron.discovery.query.druid.datasource.UnionDataSource;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.query.druid.datasource.DataSource;
+import com.datasphere.server.query.druid.datasource.UnionDataSource;
 
 /**
  *

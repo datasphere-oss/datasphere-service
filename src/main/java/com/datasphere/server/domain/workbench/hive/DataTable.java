@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench.hive;
+package com.datasphere.server.domain.workbench.hive;
 
 import java.util.List;
 import java.util.Map;

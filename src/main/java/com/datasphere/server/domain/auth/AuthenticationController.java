@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.auth;
+package com.datasphere.server.domain.auth;
 
 import com.google.common.collect.Maps;
 
@@ -62,12 +62,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import app.metatron.discovery.common.exception.MetatronException;
-import app.metatron.discovery.common.saml.SAMLAuthenticationInfo;
-import app.metatron.discovery.domain.user.CachedUserService;
-import app.metatron.discovery.domain.user.User;
-import app.metatron.discovery.domain.user.role.Permission;
-import app.metatron.discovery.util.AuthUtils;
+import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.saml.SAMLAuthenticationInfo;
+import com.datasphere.server.domain.user.CachedUserService;
+import com.datasphere.server.domain.user.User;
+import com.datasphere.server.domain.user.role.Permission;
+import com.datasphere.server.util.AuthUtils;
 
 /**
  * Created by kyungtaak on 2017. 6. 20..

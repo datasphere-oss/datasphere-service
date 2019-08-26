@@ -1,6 +1,6 @@
-package app.metatron.discovery.domain.mdm.lineage;
+package com.datasphere.server.domain.mdm.lineage;
 
-import app.metatron.discovery.common.BaseProjections;
+import com.datasphere.server.common.BaseProjections;
 import org.springframework.data.rest.core.config.Projection;
 
 public class LineageEdgeProjections extends BaseProjections {

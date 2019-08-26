@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.ingestion.rule;
+package com.datasphere.server.domain.datasource.ingestion.rule;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.spec.druid.ingestion.Validation;
+import com.datasphere.server.spec.druid.ingestion.Validation;
 
 @JsonTypeName("discard")
 public class DiscardNullRule extends ValidationRule implements IngestionRule {

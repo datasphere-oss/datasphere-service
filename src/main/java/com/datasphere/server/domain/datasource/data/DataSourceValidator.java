@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data;
+package com.datasphere.server.domain.datasource.data;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
@@ -26,18 +26,18 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.datasource.DataSourceTemporary;
-import app.metatron.discovery.domain.datasource.DataSourceTemporaryRepository;
-import app.metatron.discovery.domain.datasource.data.alias.ValueRefAlias;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DefaultDataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.JoinMapping;
-import app.metatron.discovery.domain.workbook.configurations.datasource.MappingDataSource;
-import app.metatron.discovery.domain.workbook.configurations.datasource.MultiDataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.domain.workbook.configurations.filter.InclusionFilter;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.datasource.DataSourceTemporary;
+import com.datasphere.server.domain.datasource.DataSourceTemporaryRepository;
+import com.datasphere.server.domain.datasource.data.alias.ValueRefAlias;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.DefaultDataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.JoinMapping;
+import com.datasphere.server.domain.workbook.configurations.datasource.MappingDataSource;
+import com.datasphere.server.domain.workbook.configurations.datasource.MultiDataSource;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.domain.workbook.configurations.filter.InclusionFilter;
 
 /**
  * Created by kyungtaak on 2016. 8. 29..
@@ -122,7 +122,7 @@ public class DataSourceValidator {
       return;
     }
 
-    app.metatron.discovery.domain.datasource.DataSource metaDataSource = null;
+    com.datasphere.server.domain.datasource.DataSource metaDataSource = null;
 
     if (BooleanUtils.isTrue(dataSource.getTemporary())) {
       DataSourceTemporary temporaryDataSource = temporaryRepository.findByName(dataSource.getName());
@@ -156,7 +156,7 @@ public class DataSourceValidator {
       return;
     }
 
-    app.metatron.discovery.domain.datasource.DataSource metaDataSource =
+    com.datasphere.server.domain.datasource.DataSource metaDataSource =
         dataSourceRepository.findByEngineName(joinMapping.getName());
 
     if (metaDataSource == null) {

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package app.metatron.discovery.domain.workbook.configurations.format;
+package com.datasphere.server.domain.workbook.configurations.format;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

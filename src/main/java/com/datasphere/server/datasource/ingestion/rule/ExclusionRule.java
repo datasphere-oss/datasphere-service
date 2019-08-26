@@ -1,9 +1,9 @@
-package app.metatron.discovery.domain.datasource.ingestion.rule;
+package com.datasphere.server.domain.datasource.ingestion.rule;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import app.metatron.discovery.spec.druid.ingestion.Validation;
+import com.datasphere.server.spec.druid.ingestion.Validation;
 
 public class ExclusionRule extends ValidationRule implements IngestionRule {
 

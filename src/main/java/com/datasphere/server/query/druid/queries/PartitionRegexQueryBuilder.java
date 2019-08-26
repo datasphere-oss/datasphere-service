@@ -12,19 +12,19 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
 
 /**
  * Created by kyungtaak on 2016. 10. 21..
  */
 public class PartitionRegexQueryBuilder extends AbstractQueryBuilder {
 
-  protected PartitionRegexQueryBuilder(app.metatron.discovery.domain.workbook.configurations.datasource.DataSource dataSource) {
+  protected PartitionRegexQueryBuilder(com.datasphere.server.domain.workbook.configurations.datasource.DataSource dataSource) {
     super(dataSource);
   }
 

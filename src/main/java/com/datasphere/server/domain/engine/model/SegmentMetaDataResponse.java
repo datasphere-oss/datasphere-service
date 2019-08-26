@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine.model;
+package com.datasphere.server.domain.engine.model;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -31,9 +31,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.query.druid.Granularity;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.query.druid.Granularity;
 
 public class SegmentMetaDataResponse implements Serializable {
 

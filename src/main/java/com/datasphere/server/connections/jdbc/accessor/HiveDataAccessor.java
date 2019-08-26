@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.domain.dataconnection.dialect.HiveDialect;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.connection.jdbc.HiveTableInformation;
-import app.metatron.discovery.domain.workbench.hive.HiveNamingRule;
-import app.metatron.discovery.util.AuthUtils;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.connection.jdbc.HiveTableInformation;
+import com.datasphere.server.domain.workbench.hive.HiveNamingRule;
+import com.datasphere.server.util.AuthUtils;
 
 import static java.util.stream.Collectors.toList;
 

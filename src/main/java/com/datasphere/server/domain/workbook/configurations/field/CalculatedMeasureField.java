@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.field;
+package com.datasphere.server.domain.workbook.configurations.field;
 
 import com.google.common.base.Preconditions;
 
@@ -25,9 +25,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
-import static app.metatron.discovery.domain.workbook.configurations.field.MeasureField.AggregationType.NONE;
+import static com.datasphere.server.domain.workbook.configurations.field.MeasureField.AggregationType.NONE;
 
 /**
  * 계산된 필드 (Custom Field)

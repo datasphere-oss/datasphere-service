@@ -26,24 +26,24 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion;
+package com.datasphere.server.spec.druid.ingestion;
 
 import org.apache.commons.collections.MapUtils;
 
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.spec.druid.ingestion.firehose.LocalFirehose;
-import app.metatron.discovery.spec.druid.ingestion.index.IndexSpec;
-import app.metatron.discovery.spec.druid.ingestion.input.HadoopInputSpec;
-import app.metatron.discovery.spec.druid.ingestion.input.HiveInputSpec;
-import app.metatron.discovery.spec.druid.ingestion.io.BatchIoConfig;
-import app.metatron.discovery.spec.druid.ingestion.io.HadoopIoConfig;
-import app.metatron.discovery.spec.druid.ingestion.io.IoConfig;
-import app.metatron.discovery.spec.druid.ingestion.tuning.BatchTuningConfig;
-import app.metatron.discovery.spec.druid.ingestion.tuning.HadoopTuningConfig;
-import app.metatron.discovery.spec.druid.ingestion.tuning.TuningConfig;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.spec.druid.ingestion.firehose.LocalFirehose;
+import com.datasphere.server.spec.druid.ingestion.index.IndexSpec;
+import com.datasphere.server.spec.druid.ingestion.input.HadoopInputSpec;
+import com.datasphere.server.spec.druid.ingestion.input.HiveInputSpec;
+import com.datasphere.server.spec.druid.ingestion.io.BatchIoConfig;
+import com.datasphere.server.spec.druid.ingestion.io.HadoopIoConfig;
+import com.datasphere.server.spec.druid.ingestion.io.IoConfig;
+import com.datasphere.server.spec.druid.ingestion.tuning.BatchTuningConfig;
+import com.datasphere.server.spec.druid.ingestion.tuning.HadoopTuningConfig;
+import com.datasphere.server.spec.druid.ingestion.tuning.TuningConfig;
 
 /**
  *

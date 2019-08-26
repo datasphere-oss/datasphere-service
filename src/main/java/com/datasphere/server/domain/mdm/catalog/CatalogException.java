@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.catalog;
+package com.datasphere.server.domain.mdm.catalog;
 
-import app.metatron.discovery.common.exception.MetatronException;
-import app.metatron.discovery.domain.mdm.MetadataErrorCodes;
+import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.domain.mdm.MetadataErrorCodes;
 
 public class CatalogException extends MetatronException {
 

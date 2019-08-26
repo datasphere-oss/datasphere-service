@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.funtions;
+package com.datasphere.server.query.druid.funtions;
 
-import static app.metatron.discovery.query.druid.funtions.ShapeBufferFunc.EndCapStyle.FLAT;
+import static com.datasphere.server.query.druid.funtions.ShapeBufferFunc.EndCapStyle.FLAT;
 
 public class ShapeBufferFunc {
 

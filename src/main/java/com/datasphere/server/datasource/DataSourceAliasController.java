@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -31,10 +31,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.net.URI;
 import java.util.Map;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.workbook.DashBoard;
-import app.metatron.discovery.domain.workbook.DashboardRepository;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.workbook.DashBoard;
+import com.datasphere.server.domain.workbook.DashboardRepository;
 
 /**
  * Created by kyungtaak on 2016. 7. 22..

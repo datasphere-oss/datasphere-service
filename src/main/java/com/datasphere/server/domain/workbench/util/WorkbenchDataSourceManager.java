@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench.util;
+package com.datasphere.server.domain.workbench.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -24,17 +24,17 @@ import org.springframework.util.Assert;
 import java.util.HashMap;
 import java.util.Map;
 
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
-import app.metatron.discovery.domain.dataconnection.DataConnectionRepository;
-import app.metatron.discovery.domain.user.CachedUserService;
-import app.metatron.discovery.domain.user.User;
-import app.metatron.discovery.extension.dataconnection.jdbc.connector.JdbcConnector;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
-import app.metatron.discovery.util.AuthUtils;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
+import com.datasphere.server.domain.user.CachedUserService;
+import com.datasphere.server.domain.user.User;
+import com.datasphere.server.extension.dataconnection.jdbc.connector.JdbcConnector;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.util.AuthUtils;
 
 /**
  * The type Work bench data source utils.

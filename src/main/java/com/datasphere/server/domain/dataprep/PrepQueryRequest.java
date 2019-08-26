@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep;
+package com.datasphere.server.domain.dataprep;
 
-import app.metatron.discovery.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnection;
 
 public class PrepQueryRequest {
     DataConnection connection;

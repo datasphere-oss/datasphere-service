@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datalineage;
+package com.datasphere.server.domain.datalineage;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -35,7 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.common.entity.SearchParamValidator;
+import com.datasphere.server.common.entity.SearchParamValidator;
 
 @RepositoryRestController
 public class DataLineageController {

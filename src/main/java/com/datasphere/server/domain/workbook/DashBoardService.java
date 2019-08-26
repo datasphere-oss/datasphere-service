@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook;
+package com.datasphere.server.domain.workbook;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -30,14 +30,14 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.images.Image;
-import app.metatron.discovery.domain.images.ImageService;
-import app.metatron.discovery.domain.workbook.configurations.BoardConfiguration;
-import app.metatron.discovery.domain.workbook.configurations.board.WidgetRelation;
-import app.metatron.discovery.domain.workbook.widget.Widget;
-import app.metatron.discovery.domain.workbook.widget.WidgetService;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.images.Image;
+import com.datasphere.server.domain.images.ImageService;
+import com.datasphere.server.domain.workbook.configurations.BoardConfiguration;
+import com.datasphere.server.domain.workbook.configurations.board.WidgetRelation;
+import com.datasphere.server.domain.workbook.widget.Widget;
+import com.datasphere.server.domain.workbook.widget.WidgetService;
 
 @Component
 public class DashBoardService {

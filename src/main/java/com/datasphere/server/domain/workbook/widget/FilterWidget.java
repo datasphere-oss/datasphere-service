@@ -12,18 +12,18 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.widget;
+package com.datasphere.server.domain.workbook.widget;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.domain.workbook.DashBoard;
-import app.metatron.discovery.domain.workbook.configurations.WidgetConfiguration;
-import app.metatron.discovery.domain.workbook.configurations.widget.FilterWidgetConfiguration;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.domain.workbook.DashBoard;
+import com.datasphere.server.domain.workbook.configurations.WidgetConfiguration;
+import com.datasphere.server.domain.workbook.configurations.widget.FilterWidgetConfiguration;
+import com.datasphere.server.util.PolarisUtils;
 
 /**
  * Created by kyungtaak on 2017. 7. 18..

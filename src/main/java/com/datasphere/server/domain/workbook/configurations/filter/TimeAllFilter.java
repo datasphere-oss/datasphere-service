@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.filter;
+package com.datasphere.server.domain.workbook.configurations.filter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,7 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.Field;
 
 @JsonTypeName("time_all")
 public class TimeAllFilter extends TimeFilter {

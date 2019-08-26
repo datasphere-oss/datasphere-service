@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection;
+package com.datasphere.server.domain.dataconnection;
 
 import org.apache.commons.lang3.StringUtils;
 import org.pf4j.PluginManager;
@@ -42,13 +42,13 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import app.metatron.discovery.domain.dataconnection.connector.CachedUserJdbcConnector;
-import app.metatron.discovery.extension.dataconnection.jdbc.JdbcConnectInformation;
-import app.metatron.discovery.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import app.metatron.discovery.extension.dataconnection.jdbc.connector.JdbcConnector;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.domain.dataconnection.connector.CachedUserJdbcConnector;
+import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
+import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.extension.dataconnection.jdbc.connector.JdbcConnector;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 
 /**
  *

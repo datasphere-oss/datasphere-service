@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.filter;
+package com.datasphere.server.domain.workbook.configurations.filter;
 
 
 import com.google.common.base.Preconditions;
@@ -36,9 +36,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.domain.datasource.data.QueryTimeExcetpion;
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.util.EnumUtils;
 
 @JsonTypeName("interval")
 public class IntervalFilter extends Filter {

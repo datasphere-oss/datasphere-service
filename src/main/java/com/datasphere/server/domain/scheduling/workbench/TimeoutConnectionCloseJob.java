@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.scheduling.workbench;
+package com.datasphere.server.domain.scheduling.workbench;
 
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.JobExecutionContext;
@@ -35,8 +35,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.domain.workbench.util.WorkbenchDataSource;
-import app.metatron.discovery.domain.workbench.util.WorkbenchDataSourceManager;
+import com.datasphere.server.domain.workbench.util.WorkbenchDataSource;
+import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
 
 @Component
 @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.config;
+package com.datasphere.server.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -20,8 +20,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-import app.metatron.discovery.config.security.WebSecurityDefaultConfiguration;
-import app.metatron.discovery.config.security.WebSecuritySAMLConfiguration;
+import com.datasphere.server.config.security.WebSecurityDefaultConfiguration;
+import com.datasphere.server.config.security.WebSecuritySAMLConfiguration;
 
 @Configuration
 class WebSecurityConfiguration {

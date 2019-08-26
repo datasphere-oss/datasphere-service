@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.chart;
+package com.datasphere.server.domain.workbook.configurations.chart;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.util.EnumUtils;
 
 /**
  * Created by kyungtaak on 2016. 4. 16..

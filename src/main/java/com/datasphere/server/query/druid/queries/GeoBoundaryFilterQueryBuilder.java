@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.google.common.collect.Maps;
 
@@ -20,12 +20,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 
-import app.metatron.discovery.common.CommonLocalVariable;
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.workbook.configurations.analysis.GeoSpatialOperation;
-import app.metatron.discovery.query.druid.Query;
-import app.metatron.discovery.query.druid.SpatialOperations;
+import com.datasphere.server.common.CommonLocalVariable;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.workbook.configurations.analysis.GeoSpatialOperation;
+import com.datasphere.server.query.druid.Query;
+import com.datasphere.server.query.druid.SpatialOperations;
 
 public class GeoBoundaryFilterQueryBuilder {
 

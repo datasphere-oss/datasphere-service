@@ -12,10 +12,10 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.repository;
+package com.datasphere.server.domain.dataprep.repository;
 
-import app.metatron.discovery.domain.dataprep.entity.PrTransformRule;
-import app.metatron.discovery.domain.dataprep.entity.PrTransformRuleId;
+import com.datasphere.server.domain.dataprep.entity.PrTransformRule;
+import com.datasphere.server.domain.dataprep.entity.PrTransformRuleId;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

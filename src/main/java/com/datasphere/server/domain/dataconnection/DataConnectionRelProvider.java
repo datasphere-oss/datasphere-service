@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection;
+package com.datasphere.server.domain.dataconnection;
 
 import org.apache.commons.lang.ClassUtils;
 import org.springframework.core.Ordered;

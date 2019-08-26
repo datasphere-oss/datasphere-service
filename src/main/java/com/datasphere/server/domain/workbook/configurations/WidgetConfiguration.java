@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations;
+package com.datasphere.server.domain.workbook.configurations;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.io.Serializable;
 
-import app.metatron.discovery.domain.workbook.configurations.widget.FilterWidgetConfiguration;
-import app.metatron.discovery.domain.workbook.configurations.widget.PageWidgetConfiguration;
-import app.metatron.discovery.domain.workbook.configurations.widget.TextWidgetConfiguration;
+import com.datasphere.server.domain.workbook.configurations.widget.FilterWidgetConfiguration;
+import com.datasphere.server.domain.workbook.configurations.widget.PageWidgetConfiguration;
+import com.datasphere.server.domain.workbook.configurations.widget.TextWidgetConfiguration;
 
 /**
  * Created by kyungtaak on 2016. 3. 14..

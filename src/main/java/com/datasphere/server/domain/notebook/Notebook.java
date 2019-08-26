@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook;
+package com.datasphere.server.domain.notebook;
 
 import com.google.common.collect.Maps;
 
@@ -24,9 +24,9 @@ import java.util.Map;
 
 import javax.persistence.*;
 
-import app.metatron.discovery.domain.notebook.content.NotebookContent;
-import app.metatron.discovery.domain.workspace.Book;
-import app.metatron.discovery.domain.workspace.Workspace;
+import com.datasphere.server.domain.notebook.content.NotebookContent;
+import com.datasphere.server.domain.workspace.Book;
+import com.datasphere.server.domain.workspace.Workspace;
 
 /**
  * Created by kyungtaak on 2016. 10. 21..

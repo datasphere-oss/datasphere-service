@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep;
+package com.datasphere.server.domain.dataprep;
 
-import static app.metatron.discovery.domain.dataprep.entity.PrDataset.RS_TYPE.QUERY;
+import static com.datasphere.server.domain.dataprep.entity.PrDataset.RS_TYPE.QUERY;
 
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
-import app.metatron.discovery.domain.dataconnection.DataConnectionRepository;
-import app.metatron.discovery.domain.dataprep.csv.PrepCsvUtil;
-import app.metatron.discovery.domain.dataprep.entity.PrDataset;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepErrorCodes;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepException;
-import app.metatron.discovery.domain.dataprep.json.PrepJsonUtil;
-import app.metatron.discovery.domain.dataprep.repository.PrDatasetRepository;
-import app.metatron.discovery.domain.dataprep.teddy.ColumnType;
-import app.metatron.discovery.domain.dataprep.teddy.DataFrame;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcConnectionService;
-import app.metatron.discovery.domain.storage.StorageProperties;
-import app.metatron.discovery.domain.storage.StorageProperties.StageDBConnection;
-import app.metatron.discovery.extension.dataconnection.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
+import com.datasphere.server.domain.dataprep.csv.PrepCsvUtil;
+import com.datasphere.server.domain.dataprep.entity.PrDataset;
+import com.datasphere.server.domain.dataprep.exceptions.PrepErrorCodes;
+import com.datasphere.server.domain.dataprep.exceptions.PrepException;
+import com.datasphere.server.domain.dataprep.json.PrepJsonUtil;
+import com.datasphere.server.domain.dataprep.repository.PrDatasetRepository;
+import com.datasphere.server.domain.dataprep.teddy.ColumnType;
+import com.datasphere.server.domain.dataprep.teddy.DataFrame;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.domain.storage.StorageProperties;
+import com.datasphere.server.domain.storage.StorageProperties.StageDBConnection;
+import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -392,7 +392,7 @@ public class PrepDatasetStagingDbService {
 
                 int readRows = 0;
                 while (rs.next()) {
-                    app.metatron.discovery.domain.dataprep.teddy.Row row = new app.metatron.discovery.domain.dataprep.teddy.Row();
+                    com.datasphere.server.domain.dataprep.teddy.Row row = new com.datasphere.server.domain.dataprep.teddy.Row();
                     for (int i=0;i<numberOfColumns;i++) {
                         Object value = rs.getObject(i+1);
                         // 현재 모두 String 처리중
@@ -481,7 +481,7 @@ public class PrepDatasetStagingDbService {
 
                 int readRows = 0;
                 while (rs.next()) {
-                    app.metatron.discovery.domain.dataprep.teddy.Row row = new app.metatron.discovery.domain.dataprep.teddy.Row();
+                    com.datasphere.server.domain.dataprep.teddy.Row row = new com.datasphere.server.domain.dataprep.teddy.Row();
                     for (int i=0;i<numberOfColumns;i++) {
                         Object value = rs.getObject(i+1);
 

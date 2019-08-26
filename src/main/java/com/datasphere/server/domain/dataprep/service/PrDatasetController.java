@@ -12,27 +12,27 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.service;
+package com.datasphere.server.domain.dataprep.service;
 
-import app.metatron.discovery.domain.dataprep.PrepDatasetDatabaseService;
-import app.metatron.discovery.domain.dataprep.PrepDatasetFileService;
-import app.metatron.discovery.domain.dataprep.PrepDatasetStagingDbService;
-import app.metatron.discovery.domain.dataprep.PrepPreviewLineService;
-import app.metatron.discovery.domain.dataprep.PrepProperties;
-import app.metatron.discovery.domain.dataprep.PrepQueryRequest;
-import app.metatron.discovery.domain.dataprep.PrepUpstream;
-import app.metatron.discovery.domain.dataprep.entity.PrDataflow;
-import app.metatron.discovery.domain.dataprep.entity.PrDataset;
-import app.metatron.discovery.domain.dataprep.entity.PrDatasetProjections;
-import app.metatron.discovery.domain.dataprep.entity.PrUploadFile;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepErrorCodes;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepException;
-import app.metatron.discovery.domain.dataprep.exceptions.PrepMessageKey;
-import app.metatron.discovery.domain.dataprep.repository.PrDatasetRepository;
-import app.metatron.discovery.domain.dataprep.repository.PrUploadFileRepository;
-import app.metatron.discovery.domain.dataprep.teddy.DataFrame;
-import app.metatron.discovery.domain.dataprep.transform.PrepTransformService;
-import app.metatron.discovery.domain.storage.StorageProperties;
+import com.datasphere.server.domain.dataprep.PrepDatasetDatabaseService;
+import com.datasphere.server.domain.dataprep.PrepDatasetFileService;
+import com.datasphere.server.domain.dataprep.PrepDatasetStagingDbService;
+import com.datasphere.server.domain.dataprep.PrepPreviewLineService;
+import com.datasphere.server.domain.dataprep.PrepProperties;
+import com.datasphere.server.domain.dataprep.PrepQueryRequest;
+import com.datasphere.server.domain.dataprep.PrepUpstream;
+import com.datasphere.server.domain.dataprep.entity.PrDataflow;
+import com.datasphere.server.domain.dataprep.entity.PrDataset;
+import com.datasphere.server.domain.dataprep.entity.PrDatasetProjections;
+import com.datasphere.server.domain.dataprep.entity.PrUploadFile;
+import com.datasphere.server.domain.dataprep.exceptions.PrepErrorCodes;
+import com.datasphere.server.domain.dataprep.exceptions.PrepException;
+import com.datasphere.server.domain.dataprep.exceptions.PrepMessageKey;
+import com.datasphere.server.domain.dataprep.repository.PrDatasetRepository;
+import com.datasphere.server.domain.dataprep.repository.PrUploadFileRepository;
+import com.datasphere.server.domain.dataprep.teddy.DataFrame;
+import com.datasphere.server.domain.dataprep.transform.PrepTransformService;
+import com.datasphere.server.domain.storage.StorageProperties;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import java.io.InputStream;

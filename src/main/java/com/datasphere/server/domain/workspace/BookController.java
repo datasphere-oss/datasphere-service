@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,17 +32,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 import java.util.Optional;
 
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.notebook.Notebook;
-import app.metatron.discovery.domain.notebook.NotebookConnector;
-import app.metatron.discovery.domain.notebook.NotebookRepository;
-import app.metatron.discovery.domain.notebook.connector.HttpRepository;
-import app.metatron.discovery.domain.workbook.DashBoard;
-import app.metatron.discovery.domain.workbook.DashBoardPredicate;
-import app.metatron.discovery.domain.workbook.DashboardRepository;
-import app.metatron.discovery.domain.workbook.WorkBook;
-import app.metatron.discovery.domain.workspace.folder.Folder;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.notebook.Notebook;
+import com.datasphere.server.domain.notebook.NotebookConnector;
+import com.datasphere.server.domain.notebook.NotebookRepository;
+import com.datasphere.server.domain.notebook.connector.HttpRepository;
+import com.datasphere.server.domain.workbook.DashBoard;
+import com.datasphere.server.domain.workbook.DashBoardPredicate;
+import com.datasphere.server.domain.workbook.DashboardRepository;
+import com.datasphere.server.domain.workbook.WorkBook;
+import com.datasphere.server.domain.workspace.folder.Folder;
 
 /**
  * Created by kyungtaak on 2016. 12. 21..

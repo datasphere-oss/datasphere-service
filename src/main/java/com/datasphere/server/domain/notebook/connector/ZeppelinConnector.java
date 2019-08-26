@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook.connector;
+package com.datasphere.server.domain.notebook.connector;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -39,12 +39,12 @@ import java.util.Optional;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import app.metatron.discovery.domain.notebook.Notebook;
-import app.metatron.discovery.domain.notebook.NotebookConnector;
-import app.metatron.discovery.domain.notebook.content.NotebookContent;
-import app.metatron.discovery.domain.notebook.content.PyNotebookContent;
-import app.metatron.discovery.domain.notebook.content.RNotebookContent;
-import app.metatron.discovery.domain.notebook.content.ScalaNotebookContent;
+import com.datasphere.server.domain.notebook.Notebook;
+import com.datasphere.server.domain.notebook.NotebookConnector;
+import com.datasphere.server.domain.notebook.content.NotebookContent;
+import com.datasphere.server.domain.notebook.content.PyNotebookContent;
+import com.datasphere.server.domain.notebook.content.RNotebookContent;
+import com.datasphere.server.domain.notebook.content.ScalaNotebookContent;
 
 /**
  * Created by kyungtaak on 2016. 10. 21..
@@ -99,7 +99,7 @@ public class ZeppelinConnector extends NotebookConnector implements NotebookActi
                 List<Paragraph> paragraphList = Lists.newArrayList();
                 paragraphList.add(new Paragraph("1. load dataset",
                         "// 1. load dataset" + System.lineSeparator() +
-                                "import app.metatron.discovery.connector._;" + System.lineSeparator() +
+                                "import com.datasphere.server.connector._;" + System.lineSeparator() +
                                 "val conf = new MetisClientSetting();" + System.lineSeparator() +
                                 "conf.setting(\"host\", \"" + cUrl.getHost() + "\").setting(\"port\", \"" + cPort + "\");" + System.lineSeparator() +
                                 "val client = new MetisClient(conf);" + System.lineSeparator() +

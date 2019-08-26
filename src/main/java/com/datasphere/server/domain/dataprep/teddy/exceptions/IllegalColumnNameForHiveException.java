@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy.exceptions;
+package com.datasphere.server.domain.dataprep.teddy.exceptions;
 
 public class IllegalColumnNameForHiveException extends TeddyException {
   public IllegalColumnNameForHiveException(String message) {

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import com.google.common.collect.Lists;
 
@@ -42,20 +42,20 @@ import java.util.stream.Collectors;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.KeepAsJsonDeserialzier;
-import app.metatron.discovery.common.exception.MetatronException;
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.context.ContextEntity;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.notebook.NotebookConnector;
-import app.metatron.discovery.domain.user.User;
-import app.metatron.discovery.domain.user.UserProfile;
-import app.metatron.discovery.domain.user.role.Role;
-import app.metatron.discovery.domain.user.role.RoleSet;
-import app.metatron.discovery.domain.workbook.WorkBookSummary;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.context.ContextEntity;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.notebook.NotebookConnector;
+import com.datasphere.server.domain.user.User;
+import com.datasphere.server.domain.user.UserProfile;
+import com.datasphere.server.domain.user.role.Role;
+import com.datasphere.server.domain.user.role.RoleSet;
+import com.datasphere.server.domain.workbook.WorkBookSummary;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.limits;
+package com.datasphere.server.query.druid.limits;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

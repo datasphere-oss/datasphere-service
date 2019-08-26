@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine;
+package com.datasphere.server.domain.engine;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -59,53 +59,53 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.CommonLocalVariable;
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.RawJsonString;
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.QueryHistoryTeller;
-import app.metatron.discovery.domain.datasource.SimilarityQueryRequest;
-import app.metatron.discovery.domain.datasource.SimilarityResponse;
-import app.metatron.discovery.domain.datasource.data.CandidateQueryRequest;
-import app.metatron.discovery.domain.datasource.data.CovarianceQueryRequest;
-import app.metatron.discovery.domain.datasource.data.DataQueryController;
-import app.metatron.discovery.domain.datasource.data.QueryTimeExcetpion;
-import app.metatron.discovery.domain.datasource.data.SearchQueryRequest;
-import app.metatron.discovery.domain.datasource.data.SummaryQueryRequest;
-import app.metatron.discovery.domain.datasource.data.result.ChartResultFormat;
-import app.metatron.discovery.domain.datasource.data.result.GeoJsonResultFormat;
-import app.metatron.discovery.domain.datasource.data.result.GraphResultFormat;
-import app.metatron.discovery.domain.datasource.data.result.ObjectResultFormat;
-import app.metatron.discovery.domain.engine.model.SegmentMetaDataResponse;
-import app.metatron.discovery.domain.workbook.configurations.Limit;
-import app.metatron.discovery.domain.workbook.configurations.Sort;
-import app.metatron.discovery.domain.workbook.configurations.analysis.GeoSpatialAnalysis;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DefaultDataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.DimensionField;
-import app.metatron.discovery.domain.workbook.configurations.field.ExpressionField;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.domain.workbook.configurations.filter.AdvancedFilter;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.GeoShelf;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.MapViewLayer;
-import app.metatron.discovery.query.druid.Query;
-import app.metatron.discovery.query.druid.meta.AnalysisType;
-import app.metatron.discovery.query.druid.queries.*;
+import com.datasphere.server.common.CommonLocalVariable;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.RawJsonString;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.QueryHistoryTeller;
+import com.datasphere.server.domain.datasource.SimilarityQueryRequest;
+import com.datasphere.server.domain.datasource.SimilarityResponse;
+import com.datasphere.server.domain.datasource.data.CandidateQueryRequest;
+import com.datasphere.server.domain.datasource.data.CovarianceQueryRequest;
+import com.datasphere.server.domain.datasource.data.DataQueryController;
+import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
+import com.datasphere.server.domain.datasource.data.SummaryQueryRequest;
+import com.datasphere.server.domain.datasource.data.result.ChartResultFormat;
+import com.datasphere.server.domain.datasource.data.result.GeoJsonResultFormat;
+import com.datasphere.server.domain.datasource.data.result.GraphResultFormat;
+import com.datasphere.server.domain.datasource.data.result.ObjectResultFormat;
+import com.datasphere.server.domain.engine.model.SegmentMetaDataResponse;
+import com.datasphere.server.domain.workbook.configurations.Limit;
+import com.datasphere.server.domain.workbook.configurations.Sort;
+import com.datasphere.server.domain.workbook.configurations.analysis.GeoSpatialAnalysis;
+import com.datasphere.server.domain.workbook.configurations.datasource.DefaultDataSource;
+import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
+import com.datasphere.server.domain.workbook.configurations.field.ExpressionField;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.domain.workbook.configurations.filter.AdvancedFilter;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.GeoShelf;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.MapViewLayer;
+import com.datasphere.server.query.druid.Query;
+import com.datasphere.server.query.druid.meta.AnalysisType;
+import com.datasphere.server.query.druid.queries.*;
 
-import static app.metatron.discovery.domain.datasource.DataSource.ConnectionType.ENGINE;
-import static app.metatron.discovery.domain.datasource.DataSourceQueryHistory.EngineQueryType.*;
-import static app.metatron.discovery.query.druid.AbstractQueryBuilder.GEOMETRY_BOUNDARY_COLUMN_NAME;
-import static app.metatron.discovery.query.druid.AbstractQueryBuilder.GEOMETRY_COLUMN_NAME;
-import static app.metatron.discovery.query.druid.meta.AnalysisType.CARDINALITY;
-import static app.metatron.discovery.query.druid.meta.AnalysisType.INGESTED_NUMROW;
-import static app.metatron.discovery.query.druid.meta.AnalysisType.QUERYGRANULARITY;
-import static app.metatron.discovery.query.druid.meta.AnalysisType.SERIALIZED_SIZE;
+import static com.datasphere.server.domain.datasource.DataSource.ConnectionType.ENGINE;
+import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.EngineQueryType.*;
+import static com.datasphere.server.query.druid.AbstractQueryBuilder.GEOMETRY_BOUNDARY_COLUMN_NAME;
+import static com.datasphere.server.query.druid.AbstractQueryBuilder.GEOMETRY_COLUMN_NAME;
+import static com.datasphere.server.query.druid.meta.AnalysisType.CARDINALITY;
+import static com.datasphere.server.query.druid.meta.AnalysisType.INGESTED_NUMROW;
+import static com.datasphere.server.query.druid.meta.AnalysisType.QUERYGRANULARITY;
+import static com.datasphere.server.query.druid.meta.AnalysisType.SERIALIZED_SIZE;
 
 /**
  * Created by kyungtaak on 2016. 8. 25..
@@ -428,10 +428,10 @@ public class EngineQueryService extends AbstractQueryService implements QuerySer
 
     ObjectNode objectNode = GlobalObjectMapper.getDefaultMapper().createObjectNode();
 
-    List<app.metatron.discovery.domain.workbook.configurations.field.Field> fields = request.getProjections();
+    List<com.datasphere.server.domain.workbook.configurations.field.Field> fields = request.getProjections();
 
     // 차원값 추출
-    List<app.metatron.discovery.domain.workbook.configurations.field.Field> dimFields =
+    List<com.datasphere.server.domain.workbook.configurations.field.Field> dimFields =
         fields.stream()
               .filter(field -> field instanceof DimensionField)
               .collect(Collectors.toList());
@@ -460,10 +460,10 @@ public class EngineQueryService extends AbstractQueryService implements QuerySer
       // 신규 쿼리 요청 작성, Deep Copy
       SearchQueryRequest newRequest = SerializationUtils.clone(request);
 
-      List<app.metatron.discovery.domain.workbook.configurations.field.Field> newProjection = Lists.newArrayList();
+      List<com.datasphere.server.domain.workbook.configurations.field.Field> newProjection = Lists.newArrayList();
 
       // source 필드 지정
-      app.metatron.discovery.domain.workbook.configurations.field.Field source = SerializationUtils.clone(fields.get(i));
+      com.datasphere.server.domain.workbook.configurations.field.Field source = SerializationUtils.clone(fields.get(i));
       String originalFieldName = source.getAlias();
       source.setAlias("source");
       newProjection.add(source);
@@ -472,7 +472,7 @@ public class EngineQueryService extends AbstractQueryService implements QuerySer
       newProjection.add(new DimensionField("sourceField", "sourceField", UserDefinedField.REF_NAME, null));
 
       // target 필드 지정
-      app.metatron.discovery.domain.workbook.configurations.field.Field target = SerializationUtils.clone(fields.get(i + 1));
+      com.datasphere.server.domain.workbook.configurations.field.Field target = SerializationUtils.clone(fields.get(i + 1));
       originalFieldName = target.getAlias();
       target.setAlias("target");
       newProjection.add(target);
@@ -578,8 +578,8 @@ public class EngineQueryService extends AbstractQueryService implements QuerySer
 
     } else {
 
-      app.metatron.discovery.domain.workbook.configurations.field.Field targetField = request.getTargetField();
-      app.metatron.discovery.domain.datasource.Field metaField = metaDataSource.getMetaFieldMap(false, "")
+      com.datasphere.server.domain.workbook.configurations.field.Field targetField = request.getTargetField();
+      com.datasphere.server.domain.datasource.Field metaField = metaDataSource.getMetaFieldMap(false, "")
                                                                                .get(targetField.getName());
 
       Field.FieldRole fieldRole = metaField == null ? null : metaField.getRole();

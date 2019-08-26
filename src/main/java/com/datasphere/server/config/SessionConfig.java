@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.config;
+package com.datasphere.server.config;
 
 import com.google.common.collect.Lists;
 
@@ -26,7 +26,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSessionListener;
 
-import app.metatron.discovery.common.oauth.SessionStatusListener;
+import com.datasphere.server.common.oauth.SessionStatusListener;
 
 /**
  * Created by kyungtaak on 2017. 3. 14..

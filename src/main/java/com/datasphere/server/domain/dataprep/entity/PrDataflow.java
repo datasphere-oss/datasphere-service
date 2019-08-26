@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.entity;
+package com.datasphere.server.domain.dataprep.entity;
 
-import app.metatron.discovery.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;

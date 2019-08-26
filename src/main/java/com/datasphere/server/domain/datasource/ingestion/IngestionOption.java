@@ -1,4 +1,4 @@
-package app.metatron.discovery.domain.datasource.ingestion;
+package com.datasphere.server.domain.datasource.ingestion;
 
 import org.datanucleus.util.StringUtils;
 
@@ -9,7 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import app.metatron.discovery.common.datasource.DataType;
+import com.datasphere.server.common.datasource.DataType;
 
 /**
  * Ingestion Advanced Options

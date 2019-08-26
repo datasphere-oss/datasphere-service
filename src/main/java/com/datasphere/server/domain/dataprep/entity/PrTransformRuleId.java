@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.entity;
+package com.datasphere.server.domain.dataprep.entity;
 
 import java.io.Serializable;
 

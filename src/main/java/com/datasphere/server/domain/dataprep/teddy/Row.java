@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy;
+package com.datasphere.server.domain.dataprep.teddy;
 
-import app.metatron.discovery.prep.parser.preparation.rule.expr.Expr;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Expr;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;

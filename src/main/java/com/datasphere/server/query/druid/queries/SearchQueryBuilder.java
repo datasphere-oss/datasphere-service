@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -25,28 +25,28 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.datasource.data.CandidateQueryRequest;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.DimensionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
-import app.metatron.discovery.query.druid.Dimension;
-import app.metatron.discovery.query.druid.Granularity;
-import app.metatron.discovery.query.druid.SearchQuerySpec;
-import app.metatron.discovery.query.druid.dimensions.DefaultDimension;
-import app.metatron.discovery.query.druid.dimensions.LookupDimension;
-import app.metatron.discovery.query.druid.filters.AndFilter;
-import app.metatron.discovery.query.druid.granularities.SimpleGranularity;
-import app.metatron.discovery.query.druid.lookup.MapLookupExtractor;
-import app.metatron.discovery.query.druid.searches.AllSearchQuerySpec;
-import app.metatron.discovery.query.druid.searches.FragmentSearchQuerySpec;
-import app.metatron.discovery.query.druid.searches.InsensitiveContainsSearchQuerySpec;
-import app.metatron.discovery.query.druid.sorts.SearchHitSort;
-import app.metatron.discovery.query.druid.virtualcolumns.IndexVirtualColumn;
-import app.metatron.discovery.query.druid.virtualcolumns.VirtualColumn;
+import com.datasphere.server.domain.datasource.data.CandidateQueryRequest;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.query.druid.Dimension;
+import com.datasphere.server.query.druid.Granularity;
+import com.datasphere.server.query.druid.SearchQuerySpec;
+import com.datasphere.server.query.druid.dimensions.DefaultDimension;
+import com.datasphere.server.query.druid.dimensions.LookupDimension;
+import com.datasphere.server.query.druid.filters.AndFilter;
+import com.datasphere.server.query.druid.granularities.SimpleGranularity;
+import com.datasphere.server.query.druid.lookup.MapLookupExtractor;
+import com.datasphere.server.query.druid.searches.AllSearchQuerySpec;
+import com.datasphere.server.query.druid.searches.FragmentSearchQuerySpec;
+import com.datasphere.server.query.druid.searches.InsensitiveContainsSearchQuerySpec;
+import com.datasphere.server.query.druid.sorts.SearchHitSort;
+import com.datasphere.server.query.druid.virtualcolumns.IndexVirtualColumn;
+import com.datasphere.server.query.druid.virtualcolumns.VirtualColumn;
 
-import static app.metatron.discovery.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
+import static com.datasphere.server.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
 
 /**
  *
@@ -123,7 +123,7 @@ public class SearchQueryBuilder extends AbstractQueryBuilder {
     return this;
   }
 
-  public SearchQueryBuilder filters(List<app.metatron.discovery.domain.workbook.configurations.filter.Filter> reqFilters) {
+  public SearchQueryBuilder filters(List<com.datasphere.server.domain.workbook.configurations.filter.Filter> reqFilters) {
 
     extractPartitions(reqFilters);
 

@@ -1,4 +1,4 @@
-package app.metatron.discovery.domain.dataprep.json;
+package com.datasphere.server.domain.dataprep.json;
 
 import java.util.ArrayList;
 import java.util.List;

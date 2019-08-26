@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data;
+package com.datasphere.server.domain.datasource.data;
 
 import com.google.common.collect.Maps;
 
@@ -24,13 +24,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.domain.datasource.DataSourceAlias;
-import app.metatron.discovery.domain.datasource.DataSourceAliasRepository;
-import app.metatron.discovery.domain.datasource.data.alias.Alias;
-import app.metatron.discovery.domain.datasource.data.alias.CodeTableAlias;
-import app.metatron.discovery.domain.datasource.data.alias.MapAlias;
-import app.metatron.discovery.domain.datasource.data.alias.ValueRefAlias;
-import app.metatron.discovery.domain.mdm.CodeTableService;
+import com.datasphere.server.domain.datasource.DataSourceAlias;
+import com.datasphere.server.domain.datasource.DataSourceAliasRepository;
+import com.datasphere.server.domain.datasource.data.alias.Alias;
+import com.datasphere.server.domain.datasource.data.alias.CodeTableAlias;
+import com.datasphere.server.domain.datasource.data.alias.MapAlias;
+import com.datasphere.server.domain.datasource.data.alias.ValueRefAlias;
+import com.datasphere.server.domain.mdm.CodeTableService;
 
 @Component
 public class AliasFactory {

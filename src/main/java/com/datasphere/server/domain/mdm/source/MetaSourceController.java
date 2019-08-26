@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.source;
+package com.datasphere.server.domain.mdm.source;
 
 import com.querydsl.core.types.Predicate;
 
@@ -34,9 +34,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.MetadataController;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.MetadataController;
 
 @RepositoryRestController
 public class MetaSourceController {

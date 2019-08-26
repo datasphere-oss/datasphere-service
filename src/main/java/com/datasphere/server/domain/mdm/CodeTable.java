@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm;
+package com.datasphere.server.domain.mdm;
 
 import com.google.common.collect.Lists;
 
@@ -29,8 +29,8 @@ import java.util.stream.Collectors;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-import app.metatron.discovery.domain.AbstractHistoryEntity;
-import app.metatron.discovery.domain.MetatronDomain;
+import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.MetatronDomain;
 
 @Entity
 @Table(name = "mdm_code_table")

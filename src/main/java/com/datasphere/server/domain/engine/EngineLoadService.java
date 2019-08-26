@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine;
+package com.datasphere.server.domain.engine;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -39,34 +39,34 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.ProgressResponse;
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.common.fileloader.FileLoaderFactory;
-import app.metatron.discovery.common.fileloader.FileLoaderProperties;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceIngestionException;
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.datasource.DataSourceTemporary;
-import app.metatron.discovery.domain.datasource.DataSourceTemporaryRepository;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcConnectionService;
-import app.metatron.discovery.domain.datasource.ingestion.IngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.LocalFileIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.LinkIngestionInfo;
-import app.metatron.discovery.domain.engine.model.SegmentMetaDataResponse;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.domain.workbook.configurations.format.TemporaryTimeFormat;
-import app.metatron.discovery.spec.druid.ingestion.BulkLoadSpec;
-import app.metatron.discovery.spec.druid.ingestion.BulkLoadSpecBuilder;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.ProgressResponse;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.common.fileloader.FileLoaderFactory;
+import com.datasphere.server.common.fileloader.FileLoaderProperties;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceIngestionException;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.datasource.DataSourceTemporary;
+import com.datasphere.server.domain.datasource.DataSourceTemporaryRepository;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.LinkIngestionInfo;
+import com.datasphere.server.domain.engine.model.SegmentMetaDataResponse;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.domain.workbook.configurations.format.TemporaryTimeFormat;
+import com.datasphere.server.spec.druid.ingestion.BulkLoadSpec;
+import com.datasphere.server.spec.druid.ingestion.BulkLoadSpecBuilder;
+import com.datasphere.server.util.PolarisUtils;
 
-import static app.metatron.discovery.domain.datasource.DataSource.DataSourceType.VOLATILITY;
-import static app.metatron.discovery.domain.datasource.DataSourceTemporary.LoadStatus.ENABLE;
-import static app.metatron.discovery.domain.datasource.DataSourceTemporary.LoadStatus.FAIL;
-import static app.metatron.discovery.domain.datasource.Field.FIELD_NAME_CURRENT_TIMESTAMP;
+import static com.datasphere.server.domain.datasource.DataSource.DataSourceType.VOLATILITY;
+import static com.datasphere.server.domain.datasource.DataSourceTemporary.LoadStatus.ENABLE;
+import static com.datasphere.server.domain.datasource.DataSourceTemporary.LoadStatus.FAIL;
+import static com.datasphere.server.domain.datasource.Field.FIELD_NAME_CURRENT_TIMESTAMP;
 
 @Component
 public class EngineLoadService {

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -23,22 +23,22 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 import java.util.Set;
 
-import app.metatron.discovery.domain.datasource.data.forward.ResultForward;
-import app.metatron.discovery.domain.workbook.configurations.Limit;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.DimensionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.field.TimestampField;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
-import app.metatron.discovery.query.druid.Dimension;
-import app.metatron.discovery.query.druid.Granularity;
-import app.metatron.discovery.query.druid.dimensions.DefaultDimension;
-import app.metatron.discovery.query.druid.filters.AndFilter;
-import app.metatron.discovery.query.druid.granularities.SimpleGranularity;
+import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.domain.workbook.configurations.Limit;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.TimestampField;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.query.druid.Dimension;
+import com.datasphere.server.query.druid.Granularity;
+import com.datasphere.server.query.druid.dimensions.DefaultDimension;
+import com.datasphere.server.query.druid.filters.AndFilter;
+import com.datasphere.server.query.druid.granularities.SimpleGranularity;
 
-import static app.metatron.discovery.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
+import static com.datasphere.server.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
 
 /**
  * Created by kyungtaak on 2016. 7. 2..
@@ -110,7 +110,7 @@ public class SelectMetaQueryBuilder extends AbstractQueryBuilder {
     return this;
   }
 
-  public SelectMetaQueryBuilder filters(List<app.metatron.discovery.domain.workbook.configurations.filter.Filter> reqFilters) {
+  public SelectMetaQueryBuilder filters(List<com.datasphere.server.domain.workbook.configurations.filter.Filter> reqFilters) {
 
     extractPartitions(reqFilters);
 

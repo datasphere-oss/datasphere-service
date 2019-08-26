@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.datasource;
+package com.datasphere.server.common.datasource;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.sql.Types;
 
-import app.metatron.discovery.domain.dataprep.teddy.ColumnType;
-import app.metatron.discovery.domain.datasource.Field;
+import com.datasphere.server.domain.dataprep.teddy.ColumnType;
+import com.datasphere.server.domain.datasource.Field;
 
 /**
  * Created by kyungtaak on 2017. 6. 11..

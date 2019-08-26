@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.datasource;
+package com.datasphere.server.common.datasource;
 
 import com.google.common.collect.Lists;
 

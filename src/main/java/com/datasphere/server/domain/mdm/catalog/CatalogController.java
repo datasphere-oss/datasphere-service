@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.catalog;
+package com.datasphere.server.domain.mdm.catalog;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -38,12 +38,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.MetadataPredicate;
-import app.metatron.discovery.domain.mdm.MetadataProjections;
-import app.metatron.discovery.domain.mdm.MetadataRepository;
-import app.metatron.discovery.util.ProjectionUtils;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.MetadataPredicate;
+import com.datasphere.server.domain.mdm.MetadataProjections;
+import com.datasphere.server.domain.mdm.MetadataRepository;
+import com.datasphere.server.util.ProjectionUtils;
 
 /**
  * Created by kyungtaak on 2016. 12. 21..

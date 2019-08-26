@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataprep.teddy;
+package com.datasphere.server.domain.dataprep.teddy;
 
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.IllegalPatternTypeException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.TeddyException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.WorksOnlyOnStringException;
-import app.metatron.discovery.domain.dataprep.teddy.exceptions.WrongTargetColumnExpressionException;
-import app.metatron.discovery.prep.parser.preparation.RuleVisitorParser;
-import app.metatron.discovery.prep.parser.preparation.rule.Replace;
-import app.metatron.discovery.prep.parser.preparation.rule.Rule;
-import app.metatron.discovery.prep.parser.preparation.rule.expr.*;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.IllegalPatternTypeException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.TeddyException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.WorksOnlyOnStringException;
+import com.datasphere.server.domain.dataprep.teddy.exceptions.WrongTargetColumnExpressionException;
+import com.datasphere.server.prep.parser.preparation.RuleVisitorParser;
+import com.datasphere.server.prep.parser.preparation.rule.Replace;
+import com.datasphere.server.prep.parser.preparation.rule.Rule;
+import com.datasphere.server.prep.parser.preparation.rule.expr.*;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

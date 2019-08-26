@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine;
+package com.datasphere.server.domain.engine;
 
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -28,12 +28,12 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 
-import app.metatron.discovery.common.CommonLocalVariable;
-import app.metatron.discovery.common.IdGenerator;
-import app.metatron.discovery.domain.datasource.DataSourceQueryHistory;
-import app.metatron.discovery.domain.datasource.DataSourceQueryHistoryRepository;
-import app.metatron.discovery.domain.datasource.QueryHistoryTeller;
-import app.metatron.discovery.domain.datasource.data.QueryRequest;
+import com.datasphere.server.common.CommonLocalVariable;
+import com.datasphere.server.common.IdGenerator;
+import com.datasphere.server.domain.datasource.DataSourceQueryHistory;
+import com.datasphere.server.domain.datasource.DataSourceQueryHistoryRepository;
+import com.datasphere.server.domain.datasource.QueryHistoryTeller;
+import com.datasphere.server.domain.datasource.data.QueryRequest;
 
 /**
  * Created by kyungtaak on 2016. 8. 30..
@@ -49,7 +49,7 @@ public class QueryServiceAspect {
   @Autowired
   DataSourceQueryHistoryRepository repository;
 
-  @Pointcut("within(app.metatron.discovery.domain.engine.QueryService+)")
+  @Pointcut("within(com.datasphere.server.domain.engine.QueryService+)")
   public void service() {
   }
 
@@ -57,7 +57,7 @@ public class QueryServiceAspect {
   public void serviceArgs(QueryRequest queryRequest) {
   }
 
-  @Pointcut("execution(public * app.metatron.discovery.domain.engine.DruidEngineRepository.*(..))")
+  @Pointcut("execution(public * com.datasphere.server.domain.engine.DruidEngineRepository.*(..))")
   public void repository() {
   }
 

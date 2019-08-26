@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.parser;
+package com.datasphere.server.spec.druid.ingestion.parser;
 
 import com.google.common.base.Preconditions;
 
@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import app.metatron.discovery.common.datasource.DataType;
+import com.datasphere.server.common.datasource.DataType;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = StringDimensionSchema.class)
 @JsonSubTypes(value = {

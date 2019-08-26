@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench;
+package com.datasphere.server.domain.workbench;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hive.jdbc.HiveStatement;
@@ -55,23 +55,23 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.audit.Audit;
-import app.metatron.discovery.domain.audit.AuditRepository;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcConnectionService;
-import app.metatron.discovery.domain.workbench.util.WorkbenchDataSource;
-import app.metatron.discovery.domain.workbench.util.WorkbenchDataSourceManager;
-import app.metatron.discovery.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import app.metatron.discovery.util.AuthUtils;
-import app.metatron.discovery.util.WebSocketUtils;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.audit.Audit;
+import com.datasphere.server.domain.audit.AuditRepository;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.domain.workbench.util.WorkbenchDataSource;
+import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
+import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.util.AuthUtils;
+import com.datasphere.server.util.WebSocketUtils;
 
-import static app.metatron.discovery.domain.workbench.WorkbenchErrorCodes.CSV_FILE_NOT_FOUND;
+import static com.datasphere.server.domain.workbench.WorkbenchErrorCodes.CSV_FILE_NOT_FOUND;
 
 @Service
 public class QueryEditorService {

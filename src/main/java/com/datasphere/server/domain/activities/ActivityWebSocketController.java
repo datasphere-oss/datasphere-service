@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.activities;
+package com.datasphere.server.domain.activities;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
-import app.metatron.discovery.domain.activities.spec.ActivityStreamV2;
+import com.datasphere.server.domain.activities.spec.ActivityStreamV2;
 
 @Controller
 public class ActivityWebSocketController {

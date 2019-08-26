@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace.folder;
+package com.datasphere.server.domain.workspace.folder;
 
 /**
  * Created by kyungtaak on 2016. 12. 20..

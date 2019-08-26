@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data.result;
+package com.datasphere.server.domain.datasource.data.result;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -39,26 +39,26 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.MatrixResponse;
-import app.metatron.discovery.domain.datasource.data.QueryTimeExcetpion;
-import app.metatron.discovery.domain.datasource.data.forward.CsvResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.JsonResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.ParquetResultForward;
-import app.metatron.discovery.domain.datasource.data.forward.ResultForward;
-import app.metatron.discovery.domain.workbook.configurations.Sort;
-import app.metatron.discovery.domain.workbook.configurations.analysis.Analysis;
-import app.metatron.discovery.domain.workbook.configurations.analysis.ClusterAnalysis;
-import app.metatron.discovery.domain.workbook.configurations.analysis.PredictionAnalysis;
-import app.metatron.discovery.domain.workbook.configurations.analysis.TrendAnalysis;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.format.ContinuousTimeFormat;
-import app.metatron.discovery.query.druid.limits.PivotColumn;
-import app.metatron.discovery.query.druid.limits.PivotSpec;
-import app.metatron.discovery.query.druid.limits.PivotWindowingSpec;
-import app.metatron.discovery.query.druid.queries.GroupingSet;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.MatrixResponse;
+import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.domain.datasource.data.forward.CsvResultForward;
+import com.datasphere.server.domain.datasource.data.forward.JsonResultForward;
+import com.datasphere.server.domain.datasource.data.forward.ParquetResultForward;
+import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.domain.workbook.configurations.Sort;
+import com.datasphere.server.domain.workbook.configurations.analysis.Analysis;
+import com.datasphere.server.domain.workbook.configurations.analysis.ClusterAnalysis;
+import com.datasphere.server.domain.workbook.configurations.analysis.PredictionAnalysis;
+import com.datasphere.server.domain.workbook.configurations.analysis.TrendAnalysis;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.format.ContinuousTimeFormat;
+import com.datasphere.server.query.druid.limits.PivotColumn;
+import com.datasphere.server.query.druid.limits.PivotSpec;
+import com.datasphere.server.query.druid.limits.PivotWindowingSpec;
+import com.datasphere.server.query.druid.queries.GroupingSet;
+import com.datasphere.server.util.EnumUtils;
 
 /**
  * Created by kyungtaak on 2016. 8. 21..

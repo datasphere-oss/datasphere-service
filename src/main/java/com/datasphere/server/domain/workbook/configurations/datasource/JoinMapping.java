@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.datasource;
+package com.datasphere.server.domain.workbook.configurations.datasource;
 
 import com.google.common.base.Preconditions;
 
@@ -26,7 +26,7 @@ import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSource;
 
 public class JoinMapping implements Serializable {
 
@@ -60,7 +60,7 @@ public class JoinMapping implements Serializable {
    * Biz. Logic 용 객체(스펙과 관련 없음)
    */
   @JsonIgnore
-  app.metatron.discovery.domain.datasource.DataSource metaDataSource;
+  com.datasphere.server.domain.datasource.DataSource metaDataSource;
 
   public JoinMapping(
       @JsonProperty("name") String name,

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook.connector;
+package com.datasphere.server.domain.notebook.connector;
 
 import com.google.common.collect.Lists;
 
@@ -40,10 +40,10 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.domain.engine.EngineException;
-import app.metatron.discovery.domain.notebook.NotebookErrorCodes;
-import app.metatron.discovery.domain.notebook.NotebookException;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.domain.engine.EngineException;
+import com.datasphere.server.domain.notebook.NotebookErrorCodes;
+import com.datasphere.server.domain.notebook.NotebookException;
 
 /**
  * Created by kyungtaak on 2016. 8. 22..

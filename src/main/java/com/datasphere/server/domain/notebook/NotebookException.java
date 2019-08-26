@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook;
+package com.datasphere.server.domain.notebook;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import app.metatron.discovery.common.exception.ErrorCodes;
-import app.metatron.discovery.common.exception.MetatronException;
+import com.datasphere.server.common.exception.ErrorCodes;
+import com.datasphere.server.common.exception.MetatronException;
 
 @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR, reason="Notebook Error")
 public class NotebookException extends MetatronException {

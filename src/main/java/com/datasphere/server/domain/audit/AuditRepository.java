@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.audit;
+package com.datasphere.server.domain.audit;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

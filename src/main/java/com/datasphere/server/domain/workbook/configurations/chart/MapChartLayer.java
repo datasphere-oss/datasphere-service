@@ -12,16 +12,16 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.chart;
+package com.datasphere.server.domain.workbook.configurations.chart;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import app.metatron.discovery.domain.workbook.configurations.chart.properties.LineStyle;
-import app.metatron.discovery.domain.workbook.configurations.chart.properties.LineThickness;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.domain.workbook.configurations.chart.properties.LineStyle;
+import com.datasphere.server.domain.workbook.configurations.chart.properties.LineThickness;
+import com.datasphere.server.util.EnumUtils;
 
 /**
  *

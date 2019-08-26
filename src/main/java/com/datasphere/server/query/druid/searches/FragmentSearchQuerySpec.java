@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.searches;
+package com.datasphere.server.query.druid.searches;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,7 +22,7 @@ import org.apache.commons.lang3.BooleanUtils;
 
 import java.util.List;
 
-import app.metatron.discovery.query.druid.SearchQuerySpec;
+import com.datasphere.server.query.druid.SearchQuerySpec;
 
 @JsonTypeName("fragment")
 public class FragmentSearchQuerySpec implements SearchQuerySpec {

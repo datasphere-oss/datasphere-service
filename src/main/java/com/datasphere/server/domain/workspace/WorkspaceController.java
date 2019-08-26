@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import com.google.common.collect.Lists;
 
@@ -56,42 +56,42 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.CollectionPatch;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.DataConnectionPredicate;
-import app.metatron.discovery.domain.dataconnection.DataConnectionRepository;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSource.ConnectionType;
-import app.metatron.discovery.domain.datasource.DataSource.DataSourceType;
-import app.metatron.discovery.domain.datasource.DataSourcePredicate;
-import app.metatron.discovery.domain.datasource.DataSourceRepository;
-import app.metatron.discovery.domain.notebook.NoteBookConnectorPredicate;
-import app.metatron.discovery.domain.notebook.NotebookConnector;
-import app.metatron.discovery.domain.notebook.NotebookConnectorRepository;
-import app.metatron.discovery.domain.notebook.NotebookModel;
-import app.metatron.discovery.domain.notebook.NotebookModelRepository;
-import app.metatron.discovery.domain.notebook.QNotebook;
-import app.metatron.discovery.domain.notebook.QNotebookModel;
-import app.metatron.discovery.domain.notebook.connector.HttpRepository;
-import app.metatron.discovery.domain.user.CachedUserService;
-import app.metatron.discovery.domain.user.User;
-import app.metatron.discovery.domain.user.group.Group;
-import app.metatron.discovery.domain.user.group.GroupRepository;
-import app.metatron.discovery.domain.user.role.RoleService;
-import app.metatron.discovery.domain.user.role.RoleSet;
-import app.metatron.discovery.domain.user.role.RoleSetService;
-import app.metatron.discovery.domain.workbook.DashBoard;
-import app.metatron.discovery.domain.workbook.DashBoardPredicate;
-import app.metatron.discovery.domain.workbook.DashboardRepository;
-import app.metatron.discovery.domain.workbook.WorkBook;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.util.AuthUtils;
-import app.metatron.discovery.util.ProjectionUtils;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.CollectionPatch;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionPredicate;
+import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSource.ConnectionType;
+import com.datasphere.server.domain.datasource.DataSource.DataSourceType;
+import com.datasphere.server.domain.datasource.DataSourcePredicate;
+import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.domain.notebook.NoteBookConnectorPredicate;
+import com.datasphere.server.domain.notebook.NotebookConnector;
+import com.datasphere.server.domain.notebook.NotebookConnectorRepository;
+import com.datasphere.server.domain.notebook.NotebookModel;
+import com.datasphere.server.domain.notebook.NotebookModelRepository;
+import com.datasphere.server.domain.notebook.QNotebook;
+import com.datasphere.server.domain.notebook.QNotebookModel;
+import com.datasphere.server.domain.notebook.connector.HttpRepository;
+import com.datasphere.server.domain.user.CachedUserService;
+import com.datasphere.server.domain.user.User;
+import com.datasphere.server.domain.user.group.Group;
+import com.datasphere.server.domain.user.group.GroupRepository;
+import com.datasphere.server.domain.user.role.RoleService;
+import com.datasphere.server.domain.user.role.RoleSet;
+import com.datasphere.server.domain.user.role.RoleSetService;
+import com.datasphere.server.domain.workbook.DashBoard;
+import com.datasphere.server.domain.workbook.DashBoardPredicate;
+import com.datasphere.server.domain.workbook.DashboardRepository;
+import com.datasphere.server.domain.workbook.WorkBook;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.util.AuthUtils;
+import com.datasphere.server.util.ProjectionUtils;
 
-import static app.metatron.discovery.domain.workspace.Workspace.PublicType.PRIVATE;
+import static com.datasphere.server.domain.workspace.Workspace.PublicType.PRIVATE;
 import static java.util.stream.Collectors.toList;
 
 

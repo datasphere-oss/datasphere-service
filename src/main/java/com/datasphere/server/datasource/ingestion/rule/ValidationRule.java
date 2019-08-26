@@ -1,6 +1,6 @@
-package app.metatron.discovery.domain.datasource.ingestion.rule;
+package com.datasphere.server.domain.datasource.ingestion.rule;
 
-import app.metatron.discovery.spec.druid.ingestion.Validation;
+import com.datasphere.server.spec.druid.ingestion.Validation;
 
 public abstract class ValidationRule {
   public abstract Validation toValidation(String name);

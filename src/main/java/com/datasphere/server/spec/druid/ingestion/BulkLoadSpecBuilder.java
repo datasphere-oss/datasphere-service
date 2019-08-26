@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion;
+package com.datasphere.server.spec.druid.ingestion;
 
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSource;
 
 /**
  * Created by kyungtaak on 2016. 7. 30..

@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.extractionfns;
+package com.datasphere.server.query.druid.extractionfns;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.domain.datasource.data.QueryTimeExcetpion;
-import app.metatron.discovery.query.druid.ExtractionFunction;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.query.druid.ExtractionFunction;
+import com.datasphere.server.util.PolarisUtils;
 
 /**
  * Created by kyungtaak on 2016. 6. 13..

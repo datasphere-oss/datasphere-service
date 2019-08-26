@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.widget;
+package com.datasphere.server.domain.workbook.configurations.widget;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,19 +20,19 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.workbook.configurations.Limit;
-import app.metatron.discovery.domain.workbook.configurations.Pivot;
-import app.metatron.discovery.domain.workbook.configurations.WidgetConfiguration;
-import app.metatron.discovery.domain.workbook.configurations.analysis.Analysis;
-import app.metatron.discovery.domain.workbook.configurations.chart.Chart;
-import app.metatron.discovery.domain.workbook.configurations.chart.MapChart;
-import app.metatron.discovery.domain.workbook.configurations.chart.NetworkChart;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.PivotShelf;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.Shelf;
+import com.datasphere.server.domain.workbook.configurations.Limit;
+import com.datasphere.server.domain.workbook.configurations.Pivot;
+import com.datasphere.server.domain.workbook.configurations.WidgetConfiguration;
+import com.datasphere.server.domain.workbook.configurations.analysis.Analysis;
+import com.datasphere.server.domain.workbook.configurations.chart.Chart;
+import com.datasphere.server.domain.workbook.configurations.chart.MapChart;
+import com.datasphere.server.domain.workbook.configurations.chart.NetworkChart;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.PivotShelf;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.Shelf;
 
 /**
  * Page widget specification

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource;
+package com.datasphere.server.domain.datasource;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,10 +21,10 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.domain.datasource.data.AbstractQueryRequest;
-import app.metatron.discovery.domain.datasource.data.QueryRequest;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.domain.datasource.data.AbstractQueryRequest;
+import com.datasphere.server.domain.datasource.data.QueryRequest;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
 
 /**
  * "Similarity" 쿼리용 Request 객체

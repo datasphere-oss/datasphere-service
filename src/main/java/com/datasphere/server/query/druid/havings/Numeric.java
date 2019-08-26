@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.havings;
+package com.datasphere.server.query.druid.havings;
 
-import app.metatron.discovery.query.druid.Having;
+import com.datasphere.server.query.druid.Having;
 
 public abstract class Numeric implements Having {
   String aggregation;

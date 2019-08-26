@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook;
+package com.datasphere.server.domain.workbook;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
@@ -39,12 +39,12 @@ import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.CollectionPatch;
-import app.metatron.discovery.domain.comment.Comment;
-import app.metatron.discovery.domain.comment.CommentRepository;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.CollectionPatch;
+import com.datasphere.server.domain.comment.Comment;
+import com.datasphere.server.domain.comment.CommentRepository;
 
-import static app.metatron.discovery.common.entity.DomainType.WORKBOOK;
+import static com.datasphere.server.common.entity.DomainType.WORKBOOK;
 
 @RepositoryRestController
 public class WorkbookController {

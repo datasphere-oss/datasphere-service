@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.config;
+package com.datasphere.server.config;
 
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.context.annotation.Bean;
@@ -30,8 +30,8 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.messaging.DefaultSimpUserRegistry;
 
-import app.metatron.discovery.common.websocket.BizChannelInterceptorAdapter;
-import app.metatron.discovery.common.websocket.TokenChannelInterceptorAdapter;
+import com.datasphere.server.common.websocket.BizChannelInterceptorAdapter;
+import com.datasphere.server.common.websocket.TokenChannelInterceptorAdapter;
 
 /**
  * Websocket + STOMP Configuration

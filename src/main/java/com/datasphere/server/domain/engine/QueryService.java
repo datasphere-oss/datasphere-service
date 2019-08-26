@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.engine;
+package com.datasphere.server.domain.engine;
 
-import app.metatron.discovery.domain.datasource.data.CandidateQueryRequest;
-import app.metatron.discovery.domain.datasource.data.CovarianceQueryRequest;
-import app.metatron.discovery.domain.datasource.data.SearchQueryRequest;
-import app.metatron.discovery.domain.datasource.data.SummaryQueryRequest;
+import com.datasphere.server.domain.datasource.data.CandidateQueryRequest;
+import com.datasphere.server.domain.datasource.data.CovarianceQueryRequest;
+import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
+import com.datasphere.server.domain.datasource.data.SummaryQueryRequest;
 
 /**
  * Created by kyungtaak on 2016. 9. 22..

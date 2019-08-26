@@ -12,13 +12,13 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid;
+package com.datasphere.server.query.druid;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import app.metatron.discovery.query.druid.model.HoltWintersPostProcessor;
-import app.metatron.discovery.query.druid.postprocessor.PostAggregationProcessor;
+import com.datasphere.server.query.druid.model.HoltWintersPostProcessor;
+import com.datasphere.server.query.druid.postprocessor.PostAggregationProcessor;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include= JsonTypeInfo.As.EXTERNAL_PROPERTY, property = "type")
 @JsonSubTypes(value = {

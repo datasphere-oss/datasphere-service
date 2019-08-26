@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.extractionfns;
+package com.datasphere.server.query.druid.extractionfns;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.query.druid.ExtractionFunction;
+import com.datasphere.server.query.druid.ExtractionFunction;
 
 @JsonTypeName("timeFormat")
 public class TimeFormatFunction implements ExtractionFunction {

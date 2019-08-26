@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid;
+package com.datasphere.server.query.druid;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import app.metatron.discovery.query.druid.postaggregations.ArithmeticPostAggregation;
-import app.metatron.discovery.query.druid.postaggregations.ConstantPostAggregator;
-import app.metatron.discovery.query.druid.postaggregations.ExprPostAggregator;
-import app.metatron.discovery.query.druid.postaggregations.FieldAccessorPostAggregator;
-import app.metatron.discovery.query.druid.postaggregations.HyperUniqueCardinalityPostAggregator;
-import app.metatron.discovery.query.druid.postaggregations.JavaScriptPostAggregator;
-import app.metatron.discovery.query.druid.postaggregations.MathPostAggregator;
-import app.metatron.discovery.query.druid.postaggregations.MedianPostAggregator;
-import app.metatron.discovery.query.druid.postaggregations.SketchQuantilePostAggregator;
+import com.datasphere.server.query.druid.postaggregations.ArithmeticPostAggregation;
+import com.datasphere.server.query.druid.postaggregations.ConstantPostAggregator;
+import com.datasphere.server.query.druid.postaggregations.ExprPostAggregator;
+import com.datasphere.server.query.druid.postaggregations.FieldAccessorPostAggregator;
+import com.datasphere.server.query.druid.postaggregations.HyperUniqueCardinalityPostAggregator;
+import com.datasphere.server.query.druid.postaggregations.JavaScriptPostAggregator;
+import com.datasphere.server.query.druid.postaggregations.MathPostAggregator;
+import com.datasphere.server.query.druid.postaggregations.MedianPostAggregator;
+import com.datasphere.server.query.druid.postaggregations.SketchQuantilePostAggregator;
 
 /**
  * Created by i1befree on 2016. 1. 11..

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.mdm.catalog;
+package com.datasphere.server.domain.mdm.catalog;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
@@ -20,7 +20,7 @@ import com.querydsl.core.types.Predicate;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 
-import app.metatron.discovery.domain.mdm.QCodeTable;
+import com.datasphere.server.domain.mdm.QCodeTable;
 
 public class CatalogPredicate {
 

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.activities;
+package com.datasphere.server.domain.activities;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -37,8 +37,8 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
-import app.metatron.discovery.domain.activities.spec.ActivityType;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.domain.activities.spec.ActivityType;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 
 /**
  * Created by kyungtaak on 2017. 1. 23..

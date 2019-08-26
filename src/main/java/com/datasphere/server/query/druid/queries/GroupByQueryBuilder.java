@@ -40,7 +40,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -62,79 +62,79 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.domain.datasource.data.forward.ResultForward;
-import app.metatron.discovery.domain.datasource.data.result.ChartResultFormat;
-import app.metatron.discovery.domain.datasource.data.result.PivotResultFormat;
-import app.metatron.discovery.domain.datasource.data.result.SearchResultFormat;
-import app.metatron.discovery.domain.workbook.configurations.Limit;
-import app.metatron.discovery.domain.workbook.configurations.Sort;
-import app.metatron.discovery.domain.workbook.configurations.analysis.Analysis;
-import app.metatron.discovery.domain.workbook.configurations.analysis.GeoSpatialOperation;
-import app.metatron.discovery.domain.workbook.configurations.analysis.PredictionAnalysis;
-import app.metatron.discovery.domain.workbook.configurations.datasource.MappingDataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.DimensionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.MeasureField;
-import app.metatron.discovery.domain.workbook.configurations.field.TimestampField;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.domain.workbook.configurations.filter.LikeFilter;
-import app.metatron.discovery.domain.workbook.configurations.filter.MeasureInequalityFilter;
-import app.metatron.discovery.domain.workbook.configurations.filter.MeasurePositionFilter;
-import app.metatron.discovery.domain.workbook.configurations.filter.RegExprFilter;
-import app.metatron.discovery.domain.workbook.configurations.filter.WildCardFilter;
-import app.metatron.discovery.domain.workbook.configurations.format.ContinuousTimeFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.DefaultFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.FieldFormat;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.LayerView;
-import app.metatron.discovery.domain.workbook.configurations.widget.shelf.MapViewLayer;
-import app.metatron.discovery.query.druid.AbstractQueryBuilder;
-import app.metatron.discovery.query.druid.Aggregation;
-import app.metatron.discovery.query.druid.Dimension;
-import app.metatron.discovery.query.druid.Granularity;
-import app.metatron.discovery.query.druid.Having;
-import app.metatron.discovery.query.druid.PostAggregation;
-import app.metatron.discovery.query.druid.PostProcessor;
-import app.metatron.discovery.query.druid.Query;
-import app.metatron.discovery.query.druid.aggregations.CountAggregation;
-import app.metatron.discovery.query.druid.aggregations.RelayAggregation;
-import app.metatron.discovery.query.druid.dimensions.DefaultDimension;
-import app.metatron.discovery.query.druid.dimensions.ExtractionDimension;
-import app.metatron.discovery.query.druid.extractionfns.ExpressionFunction;
-import app.metatron.discovery.query.druid.filters.AndFilter;
-import app.metatron.discovery.query.druid.funtions.CaseFunc;
-import app.metatron.discovery.query.druid.funtions.CastFunc;
-import app.metatron.discovery.query.druid.funtions.LookupMapFunc;
-import app.metatron.discovery.query.druid.funtions.RunningSumFunc;
-import app.metatron.discovery.query.druid.funtions.TimeFormatFunc;
-import app.metatron.discovery.query.druid.granularities.SimpleGranularity;
-import app.metatron.discovery.query.druid.havings.EqualTo;
-import app.metatron.discovery.query.druid.havings.GreaterThan;
-import app.metatron.discovery.query.druid.havings.GreaterThanOrEqual;
-import app.metatron.discovery.query.druid.havings.LessThan;
-import app.metatron.discovery.query.druid.havings.LessThanOrEqual;
-import app.metatron.discovery.query.druid.limits.DefaultLimit;
-import app.metatron.discovery.query.druid.limits.OrderByColumn;
-import app.metatron.discovery.query.druid.limits.PivotWindowingSpec;
-import app.metatron.discovery.query.druid.model.HoltWintersPostProcessor;
-import app.metatron.discovery.query.druid.postaggregations.ExprPostAggregator;
-import app.metatron.discovery.query.druid.postaggregations.MathPostAggregator;
-import app.metatron.discovery.query.druid.postprocessor.PostAggregationProcessor;
-import app.metatron.discovery.query.druid.virtualcolumns.ExprVirtualColumn;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.domain.datasource.data.result.ChartResultFormat;
+import com.datasphere.server.domain.datasource.data.result.PivotResultFormat;
+import com.datasphere.server.domain.datasource.data.result.SearchResultFormat;
+import com.datasphere.server.domain.workbook.configurations.Limit;
+import com.datasphere.server.domain.workbook.configurations.Sort;
+import com.datasphere.server.domain.workbook.configurations.analysis.Analysis;
+import com.datasphere.server.domain.workbook.configurations.analysis.GeoSpatialOperation;
+import com.datasphere.server.domain.workbook.configurations.analysis.PredictionAnalysis;
+import com.datasphere.server.domain.workbook.configurations.datasource.MappingDataSource;
+import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.TimestampField;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.domain.workbook.configurations.filter.LikeFilter;
+import com.datasphere.server.domain.workbook.configurations.filter.MeasureInequalityFilter;
+import com.datasphere.server.domain.workbook.configurations.filter.MeasurePositionFilter;
+import com.datasphere.server.domain.workbook.configurations.filter.RegExprFilter;
+import com.datasphere.server.domain.workbook.configurations.filter.WildCardFilter;
+import com.datasphere.server.domain.workbook.configurations.format.ContinuousTimeFormat;
+import com.datasphere.server.domain.workbook.configurations.format.DefaultFormat;
+import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.LayerView;
+import com.datasphere.server.domain.workbook.configurations.widget.shelf.MapViewLayer;
+import com.datasphere.server.query.druid.AbstractQueryBuilder;
+import com.datasphere.server.query.druid.Aggregation;
+import com.datasphere.server.query.druid.Dimension;
+import com.datasphere.server.query.druid.Granularity;
+import com.datasphere.server.query.druid.Having;
+import com.datasphere.server.query.druid.PostAggregation;
+import com.datasphere.server.query.druid.PostProcessor;
+import com.datasphere.server.query.druid.Query;
+import com.datasphere.server.query.druid.aggregations.CountAggregation;
+import com.datasphere.server.query.druid.aggregations.RelayAggregation;
+import com.datasphere.server.query.druid.dimensions.DefaultDimension;
+import com.datasphere.server.query.druid.dimensions.ExtractionDimension;
+import com.datasphere.server.query.druid.extractionfns.ExpressionFunction;
+import com.datasphere.server.query.druid.filters.AndFilter;
+import com.datasphere.server.query.druid.funtions.CaseFunc;
+import com.datasphere.server.query.druid.funtions.CastFunc;
+import com.datasphere.server.query.druid.funtions.LookupMapFunc;
+import com.datasphere.server.query.druid.funtions.RunningSumFunc;
+import com.datasphere.server.query.druid.funtions.TimeFormatFunc;
+import com.datasphere.server.query.druid.granularities.SimpleGranularity;
+import com.datasphere.server.query.druid.havings.EqualTo;
+import com.datasphere.server.query.druid.havings.GreaterThan;
+import com.datasphere.server.query.druid.havings.GreaterThanOrEqual;
+import com.datasphere.server.query.druid.havings.LessThan;
+import com.datasphere.server.query.druid.havings.LessThanOrEqual;
+import com.datasphere.server.query.druid.limits.DefaultLimit;
+import com.datasphere.server.query.druid.limits.OrderByColumn;
+import com.datasphere.server.query.druid.limits.PivotWindowingSpec;
+import com.datasphere.server.query.druid.model.HoltWintersPostProcessor;
+import com.datasphere.server.query.druid.postaggregations.ExprPostAggregator;
+import com.datasphere.server.query.druid.postaggregations.MathPostAggregator;
+import com.datasphere.server.query.druid.postprocessor.PostAggregationProcessor;
+import com.datasphere.server.query.druid.virtualcolumns.ExprVirtualColumn;
 
-import static app.metatron.discovery.domain.datasource.data.CandidateQueryRequest.RESULT_VALUE_NAME_PREFIX;
-import static app.metatron.discovery.domain.workbook.configurations.Sort.Direction.ASC;
-import static app.metatron.discovery.domain.workbook.configurations.Sort.Direction.DESC;
-import static app.metatron.discovery.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
-import static app.metatron.discovery.domain.workbook.configurations.filter.MeasurePositionFilter.PositionType.BOTTOM;
-import static app.metatron.discovery.domain.workbook.configurations.filter.WildCardFilter.ContainsType.AFTER;
-import static app.metatron.discovery.domain.workbook.configurations.filter.WildCardFilter.ContainsType.BEFORE;
-import static app.metatron.discovery.domain.workbook.configurations.filter.WildCardFilter.ContainsType.BOTH;
-import static app.metatron.discovery.query.druid.Query.RESERVED_WORD_COUNT;
+import static com.datasphere.server.domain.datasource.data.CandidateQueryRequest.RESULT_VALUE_NAME_PREFIX;
+import static com.datasphere.server.domain.workbook.configurations.Sort.Direction.ASC;
+import static com.datasphere.server.domain.workbook.configurations.Sort.Direction.DESC;
+import static com.datasphere.server.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
+import static com.datasphere.server.domain.workbook.configurations.filter.MeasurePositionFilter.PositionType.BOTTOM;
+import static com.datasphere.server.domain.workbook.configurations.filter.WildCardFilter.ContainsType.AFTER;
+import static com.datasphere.server.domain.workbook.configurations.filter.WildCardFilter.ContainsType.BEFORE;
+import static com.datasphere.server.domain.workbook.configurations.filter.WildCardFilter.ContainsType.BOTH;
+import static com.datasphere.server.query.druid.Query.RESERVED_WORD_COUNT;
 
 /**
  *
@@ -153,7 +153,7 @@ public class GroupByQueryBuilder extends AbstractQueryBuilder {
 
   private Granularity granularity;
 
-  private app.metatron.discovery.query.druid.Limit limitSpec;
+  private com.datasphere.server.query.druid.Limit limitSpec;
 
   private List<OrderByColumn> orderByColumns = Lists.newArrayList();
 
@@ -177,7 +177,7 @@ public class GroupByQueryBuilder extends AbstractQueryBuilder {
                          new CastFunc("_", CastFunc.CastType.DOUBLE).toExpression() + " / #_ * 100").toExpression()
   );
 
-  public GroupByQueryBuilder(app.metatron.discovery.domain.workbook.configurations.datasource.DataSource dataSource) {
+  public GroupByQueryBuilder(com.datasphere.server.domain.workbook.configurations.datasource.DataSource dataSource) {
     super(dataSource);
   }
 
@@ -237,7 +237,7 @@ public class GroupByQueryBuilder extends AbstractQueryBuilder {
         }
 
         // for base data source
-        app.metatron.discovery.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+        com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
         DimensionField dimensionField = (DimensionField) field;
         FieldFormat format = dimensionField.getFormat();
 
@@ -351,7 +351,7 @@ public class GroupByQueryBuilder extends AbstractQueryBuilder {
 
       } else if (field instanceof TimestampField) {
 
-        app.metatron.discovery.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+        com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
         TimeFieldFormat originalTimeFormat = (TimeFieldFormat) datasourceField.getFormatObject();
 
         TimestampField timestampField = (TimestampField) field;
@@ -485,7 +485,7 @@ public class GroupByQueryBuilder extends AbstractQueryBuilder {
     return this;
   }
 
-  public GroupByQueryBuilder advancedFilters(List<app.metatron.discovery.domain.workbook.configurations.filter.Filter> filters) {
+  public GroupByQueryBuilder advancedFilters(List<com.datasphere.server.domain.workbook.configurations.filter.Filter> filters) {
 
     for (Filter filter : filters) {
       if (filter instanceof MeasurePositionFilter) {    // Convert limit
@@ -547,7 +547,7 @@ public class GroupByQueryBuilder extends AbstractQueryBuilder {
     return this;
   }
 
-  public GroupByQueryBuilder filters(List<app.metatron.discovery.domain.workbook.configurations.filter.Filter> reqFilters) {
+  public GroupByQueryBuilder filters(List<com.datasphere.server.domain.workbook.configurations.filter.Filter> reqFilters) {
 
     extractPartitions(reqFilters);
 

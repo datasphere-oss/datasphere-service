@@ -12,24 +12,24 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.entity;
+package com.datasphere.server.common.entity;
 
-import app.metatron.discovery.common.BaseProjections;
-import app.metatron.discovery.domain.MetatronDomain;
-import app.metatron.discovery.domain.context.ContextEntity;
-import app.metatron.discovery.domain.datasource.DataSource;
-import app.metatron.discovery.domain.datasource.DataSourceProjections;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.notebook.Notebook;
-import app.metatron.discovery.domain.user.role.Role;
-import app.metatron.discovery.domain.user.role.RoleProjections;
-import app.metatron.discovery.domain.workbench.Workbench;
-import app.metatron.discovery.domain.workbook.DashBoard;
-import app.metatron.discovery.domain.workbook.DashboardProjections;
-import app.metatron.discovery.domain.workbook.WorkBook;
-import app.metatron.discovery.domain.workspace.BookProjections;
-import app.metatron.discovery.domain.workspace.Workspace;
-import app.metatron.discovery.domain.workspace.WorkspaceProjections;
+import com.datasphere.server.common.BaseProjections;
+import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.context.ContextEntity;
+import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.domain.datasource.DataSourceProjections;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.notebook.Notebook;
+import com.datasphere.server.domain.user.role.Role;
+import com.datasphere.server.domain.user.role.RoleProjections;
+import com.datasphere.server.domain.workbench.Workbench;
+import com.datasphere.server.domain.workbook.DashBoard;
+import com.datasphere.server.domain.workbook.DashboardProjections;
+import com.datasphere.server.domain.workbook.WorkBook;
+import com.datasphere.server.domain.workspace.BookProjections;
+import com.datasphere.server.domain.workspace.Workspace;
+import com.datasphere.server.domain.workspace.WorkspaceProjections;
 
 /**
  * Metatron 내 도메인 타입 정의

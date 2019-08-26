@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data.result;
+package com.datasphere.server.domain.datasource.data.result;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -23,9 +23,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.UUID;
 
-import app.metatron.discovery.common.GlobalObjectMapper;
-import app.metatron.discovery.domain.datasource.data.QueryTimeExcetpion;
-import app.metatron.discovery.domain.engine.EngineQueryProperties;
+import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.domain.engine.EngineQueryProperties;
 
 /**
  * Created by kyungtaak on 2016. 10. 3..

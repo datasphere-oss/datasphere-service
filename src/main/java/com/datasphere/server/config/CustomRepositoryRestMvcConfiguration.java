@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package app.metatron.discovery.config;
+package com.datasphere.server.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -19,8 +19,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 
-import app.metatron.discovery.domain.workspace.Workspace;
-import app.metatron.discovery.domain.workspace.WorkspacePagedResourcesAssembler;
+import com.datasphere.server.domain.workspace.Workspace;
+import com.datasphere.server.domain.workspace.WorkspacePagedResourcesAssembler;
 
 /**
  * Custom Configuration

@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook.connector;
+package com.datasphere.server.domain.notebook.connector;
 
-import app.metatron.discovery.domain.notebook.Notebook;
+import com.datasphere.server.domain.notebook.Notebook;
 
 /**
  * Created by kyungtaak on 2016. 10. 21..

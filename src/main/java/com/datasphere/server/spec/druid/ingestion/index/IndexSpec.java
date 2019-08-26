@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.spec.druid.ingestion.index;
+package com.datasphere.server.spec.druid.ingestion.index;
 
 import com.google.common.collect.Maps;
 

@@ -12,20 +12,20 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid;
+package com.datasphere.server.query.druid;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import app.metatron.discovery.query.druid.havings.And;
-import app.metatron.discovery.query.druid.havings.DimSelector;
-import app.metatron.discovery.query.druid.havings.EqualTo;
-import app.metatron.discovery.query.druid.havings.GreaterThan;
-import app.metatron.discovery.query.druid.havings.GreaterThanOrEqual;
-import app.metatron.discovery.query.druid.havings.LessThan;
-import app.metatron.discovery.query.druid.havings.LessThanOrEqual;
-import app.metatron.discovery.query.druid.havings.Not;
-import app.metatron.discovery.query.druid.havings.Or;
+import com.datasphere.server.query.druid.havings.And;
+import com.datasphere.server.query.druid.havings.DimSelector;
+import com.datasphere.server.query.druid.havings.EqualTo;
+import com.datasphere.server.query.druid.havings.GreaterThan;
+import com.datasphere.server.query.druid.havings.GreaterThanOrEqual;
+import com.datasphere.server.query.druid.havings.LessThan;
+import com.datasphere.server.query.druid.havings.LessThanOrEqual;
+import com.datasphere.server.query.druid.havings.Not;
+import com.datasphere.server.query.druid.havings.Or;
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include= JsonTypeInfo.As.EXTERNAL_PROPERTY, property="type")
 @JsonSubTypes({

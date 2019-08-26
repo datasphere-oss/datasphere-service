@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbench.util;
+package com.datasphere.server.domain.workbench.util;
 
 import org.springframework.jdbc.datasource.ConnectionProxy;
 import org.springframework.jdbc.support.JdbcUtils;
@@ -26,12 +26,12 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
-import app.metatron.discovery.domain.dataconnection.dialect.HiveDialect;
-import app.metatron.discovery.domain.workbench.QueryStatus;
-import app.metatron.discovery.extension.dataconnection.jdbc.JdbcConnectInformation;
-import app.metatron.discovery.extension.dataconnection.jdbc.connector.JdbcConnector;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
+import com.datasphere.server.domain.workbench.QueryStatus;
+import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
+import com.datasphere.server.extension.dataconnection.jdbc.connector.JdbcConnector;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 
 public class WorkbenchDataSource {
 

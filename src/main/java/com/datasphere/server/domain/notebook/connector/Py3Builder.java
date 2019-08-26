@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.notebook.connector;
+package com.datasphere.server.domain.notebook.connector;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -34,8 +34,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import app.metatron.discovery.common.SparkSubmitCommandBuilder;
-import app.metatron.discovery.domain.notebook.Notebook;
+import com.datasphere.server.common.SparkSubmitCommandBuilder;
+import com.datasphere.server.domain.notebook.Notebook;
 
 /**
  * Created by james on 2017. 7. 31..

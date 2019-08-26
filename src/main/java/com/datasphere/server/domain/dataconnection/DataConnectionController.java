@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.dataconnection;
+package com.datasphere.server.domain.dataconnection;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -46,31 +46,31 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.criteria.ListCriterion;
-import app.metatron.discovery.common.criteria.ListFilter;
-import app.metatron.discovery.common.entity.SearchParamValidator;
-import app.metatron.discovery.common.exception.ResourceNotFoundException;
-import app.metatron.discovery.domain.dataconnection.accessor.HiveDataAccessor;
-import app.metatron.discovery.domain.dataconnection.accessor.HiveDataAccessorUsingMetastore;
-import app.metatron.discovery.domain.dataconnection.dialect.HiveDialect;
-import app.metatron.discovery.domain.datasource.DataSourceProperties;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.connection.jdbc.HiveTableInformation;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcConnectionService;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcQueryResultResponse;
-import app.metatron.discovery.domain.datasource.ingestion.file.FileFormat;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
-import app.metatron.discovery.domain.engine.EngineProperties;
-import app.metatron.discovery.domain.mdm.Metadata;
-import app.metatron.discovery.domain.mdm.source.MetadataSource;
-import app.metatron.discovery.domain.mdm.source.MetadataSourceRepository;
-import app.metatron.discovery.domain.storage.StorageProperties;
-import app.metatron.discovery.domain.workbench.Workbench;
-import app.metatron.discovery.domain.workbench.WorkbenchRepository;
-import app.metatron.discovery.domain.workbench.util.WorkbenchDataSourceManager;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
-import app.metatron.discovery.util.PolarisUtils;
+import com.datasphere.server.common.criteria.ListCriterion;
+import com.datasphere.server.common.criteria.ListFilter;
+import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessor;
+import com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessorUsingMetastore;
+import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
+import com.datasphere.server.domain.datasource.DataSourceProperties;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.connection.jdbc.HiveTableInformation;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcQueryResultResponse;
+import com.datasphere.server.domain.datasource.ingestion.file.FileFormat;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.domain.engine.EngineProperties;
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.source.MetadataSource;
+import com.datasphere.server.domain.mdm.source.MetadataSourceRepository;
+import com.datasphere.server.domain.storage.StorageProperties;
+import com.datasphere.server.domain.workbench.Workbench;
+import com.datasphere.server.domain.workbench.WorkbenchRepository;
+import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.util.PolarisUtils;
 
 /**
  * Created by kyungtaak on 2016. 6. 10..

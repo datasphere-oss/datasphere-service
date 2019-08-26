@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.config;
+package com.datasphere.server.config;
 
 import org.infinispan.configuration.cache.CacheMode;
 import org.infinispan.configuration.cache.ConfigurationBuilder;
@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.TimeUnit;
 
-import app.metatron.discovery.common.cache.InfinispanClusterListener;
+import com.datasphere.server.common.cache.InfinispanClusterListener;
 
 /**
  * Created by kyungtaak on 2017. 3. 13..

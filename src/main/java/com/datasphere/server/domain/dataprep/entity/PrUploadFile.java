@@ -1,6 +1,6 @@
-package app.metatron.discovery.domain.dataprep.entity;
+package com.datasphere.server.domain.dataprep.entity;
 
-import app.metatron.discovery.domain.AbstractHistoryEntity;
+import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.apache.commons.io.FilenameUtils;

@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.queries;
+package com.datasphere.server.query.druid.queries;
 
 import java.util.List;
 import java.util.Map;
 
-import app.metatron.discovery.query.druid.Query;
+import com.datasphere.server.query.druid.Query;
 
 public class SketchQuery extends Query {
 

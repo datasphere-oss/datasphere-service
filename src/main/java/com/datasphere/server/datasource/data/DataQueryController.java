@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.data;
+package com.datasphere.server.domain.datasource.data;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -48,27 +48,27 @@ import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
-import app.metatron.discovery.common.MatrixResponse;
-import app.metatron.discovery.common.RawJsonString;
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.domain.datasource.SimilarityQueryRequest;
-import app.metatron.discovery.domain.datasource.connection.jdbc.JdbcConnectionService;
-import app.metatron.discovery.domain.datasource.data.result.ChartResultFormat;
-import app.metatron.discovery.domain.engine.DruidEngineMetaRepository;
-import app.metatron.discovery.domain.engine.EngineQueryService;
-import app.metatron.discovery.domain.workbook.configurations.Limit;
-import app.metatron.discovery.domain.workbook.configurations.datasource.DataSource;
-import app.metatron.discovery.domain.workbook.configurations.field.ExpressionField;
-import app.metatron.discovery.domain.workbook.configurations.field.Field;
-import app.metatron.discovery.domain.workbook.configurations.field.UserDefinedField;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.domain.workbook.configurations.filter.TimeListFilter;
-import app.metatron.discovery.domain.workbook.configurations.format.TimeFieldFormat;
-import app.metatron.discovery.query.polaris.ComputationalField;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.common.MatrixResponse;
+import com.datasphere.server.common.RawJsonString;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.domain.datasource.SimilarityQueryRequest;
+import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.domain.datasource.data.result.ChartResultFormat;
+import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
+import com.datasphere.server.domain.engine.EngineQueryService;
+import com.datasphere.server.domain.workbook.configurations.Limit;
+import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
+import com.datasphere.server.domain.workbook.configurations.field.ExpressionField;
+import com.datasphere.server.domain.workbook.configurations.field.Field;
+import com.datasphere.server.domain.workbook.configurations.field.UserDefinedField;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.domain.workbook.configurations.filter.TimeListFilter;
+import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.datasphere.server.query.polaris.ComputationalField;
+import com.datasphere.server.util.EnumUtils;
 
-import static app.metatron.discovery.domain.datasource.DataSource.ConnectionType.LINK;
-import static app.metatron.discovery.query.polaris.ComputationalField.checkComputationalFieldIn;
+import static com.datasphere.server.domain.datasource.DataSource.ConnectionType.LINK;
+import static com.datasphere.server.query.polaris.ComputationalField.checkComputationalFieldIn;
 
 /**
  * 데이터 관련 질의 담당 API

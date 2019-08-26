@@ -40,7 +40,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.datasource.connection.jdbc;
+package com.datasphere.server.domain.datasource.connection.jdbc;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -71,36 +71,36 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import app.metatron.discovery.common.datasource.DataType;
-import app.metatron.discovery.common.datasource.LogicalType;
-import app.metatron.discovery.common.exception.FunctionWithException;
-import app.metatron.discovery.domain.dataconnection.DataConnection;
-import app.metatron.discovery.domain.dataconnection.DataConnectionHelper;
-import app.metatron.discovery.domain.dataconnection.dialect.HiveDialect;
-import app.metatron.discovery.domain.dataconnection.query.NativeCriteria;
-import app.metatron.discovery.domain.dataconnection.query.expression.NativeBetweenExp;
-import app.metatron.discovery.domain.dataconnection.query.expression.NativeCurrentDatetimeExp;
-import app.metatron.discovery.domain.dataconnection.query.expression.NativeDateFormatExp;
-import app.metatron.discovery.domain.dataconnection.query.expression.NativeDisjunctionExp;
-import app.metatron.discovery.domain.dataconnection.query.expression.NativeEqExp;
-import app.metatron.discovery.domain.dataconnection.query.expression.NativeOrderExp;
-import app.metatron.discovery.domain.dataconnection.query.expression.NativeProjection;
-import app.metatron.discovery.domain.dataconnection.query.utils.VarGenerator;
-import app.metatron.discovery.domain.datasource.Field;
-import app.metatron.discovery.domain.datasource.data.CandidateQueryRequest;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.LinkIngestionInfo;
-import app.metatron.discovery.domain.datasource.ingestion.jdbc.SelectQueryBuilder;
-import app.metatron.discovery.domain.engine.EngineProperties;
-import app.metatron.discovery.domain.workbook.configurations.filter.Filter;
-import app.metatron.discovery.domain.workbook.configurations.filter.InclusionFilter;
-import app.metatron.discovery.domain.workbook.configurations.filter.IntervalFilter;
-import app.metatron.discovery.extension.dataconnection.jdbc.JdbcConnectInformation;
-import app.metatron.discovery.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import app.metatron.discovery.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import app.metatron.discovery.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.common.datasource.LogicalType;
+import com.datasphere.server.common.exception.FunctionWithException;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
+import com.datasphere.server.domain.dataconnection.query.NativeCriteria;
+import com.datasphere.server.domain.dataconnection.query.expression.NativeBetweenExp;
+import com.datasphere.server.domain.dataconnection.query.expression.NativeCurrentDatetimeExp;
+import com.datasphere.server.domain.dataconnection.query.expression.NativeDateFormatExp;
+import com.datasphere.server.domain.dataconnection.query.expression.NativeDisjunctionExp;
+import com.datasphere.server.domain.dataconnection.query.expression.NativeEqExp;
+import com.datasphere.server.domain.dataconnection.query.expression.NativeOrderExp;
+import com.datasphere.server.domain.dataconnection.query.expression.NativeProjection;
+import com.datasphere.server.domain.dataconnection.query.utils.VarGenerator;
+import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.domain.datasource.data.CandidateQueryRequest;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.LinkIngestionInfo;
+import com.datasphere.server.domain.datasource.ingestion.jdbc.SelectQueryBuilder;
+import com.datasphere.server.domain.engine.EngineProperties;
+import com.datasphere.server.domain.workbook.configurations.filter.Filter;
+import com.datasphere.server.domain.workbook.configurations.filter.InclusionFilter;
+import com.datasphere.server.domain.workbook.configurations.filter.IntervalFilter;
+import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
+import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 
 /**
  *
@@ -544,14 +544,14 @@ public class JdbcConnectionService {
 
   public List<Map<String, Object>> selectCandidateQuery(CandidateQueryRequest queryRequest) {
 
-    app.metatron.discovery.domain.workbook.configurations.field.Field targetField = queryRequest.getTargetField();
+    com.datasphere.server.domain.workbook.configurations.field.Field targetField = queryRequest.getTargetField();
 
     //필수값 체크 target field
     Preconditions.checkNotNull(targetField, "target field. required.");
 
     //MetaDataSource
-    app.metatron.discovery.domain.datasource.DataSource metaDataSource = queryRequest.getDataSource().getMetaDataSource();
-    app.metatron.discovery.domain.datasource.Field metaField = metaDataSource.getMetaFieldMap(false, "")
+    com.datasphere.server.domain.datasource.DataSource metaDataSource = queryRequest.getDataSource().getMetaDataSource();
+    com.datasphere.server.domain.datasource.Field metaField = metaDataSource.getMetaFieldMap(false, "")
                                                                              .get(targetField.getName());
 
     //Jdbc Connection

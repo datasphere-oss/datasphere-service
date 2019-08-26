@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.query.druid.filters;
+package com.datasphere.server.query.druid.filters;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import app.metatron.discovery.query.druid.Filter;
+import com.datasphere.server.query.druid.Filter;
 
 @JsonTypeName("and")
 public class AndFilter extends AbstractCollectionFilter implements Filter {

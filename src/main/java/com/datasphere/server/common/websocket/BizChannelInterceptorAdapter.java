@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.common.websocket;
+package com.datasphere.server.common.websocket;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +25,7 @@ import org.springframework.messaging.support.MessageHeaderAccessor;
 
 import java.util.List;
 
-import app.metatron.discovery.domain.workbench.util.WorkbenchDataSourceManager;
+import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
 
 import static org.springframework.messaging.simp.stomp.StompCommand.CONNECT;
 import static org.springframework.messaging.simp.stomp.StompCommand.DISCONNECT;

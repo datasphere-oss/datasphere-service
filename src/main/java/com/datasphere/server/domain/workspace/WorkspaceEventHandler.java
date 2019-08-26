@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workspace;
+package com.datasphere.server.domain.workspace;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -24,12 +24,12 @@ import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import app.metatron.discovery.domain.context.ContextService;
-import app.metatron.discovery.domain.user.role.RoleSet;
-import app.metatron.discovery.domain.user.role.RoleSetService;
-import app.metatron.discovery.util.AuthUtils;
+import com.datasphere.server.domain.context.ContextService;
+import com.datasphere.server.domain.user.role.RoleSet;
+import com.datasphere.server.domain.user.role.RoleSetService;
+import com.datasphere.server.util.AuthUtils;
 
-import static app.metatron.discovery.domain.workspace.Workspace.PublicType.SHARED;
+import static com.datasphere.server.domain.workspace.Workspace.PublicType.SHARED;
 
 /**
  * Created by kyungtaak on 2016. 5. 10..

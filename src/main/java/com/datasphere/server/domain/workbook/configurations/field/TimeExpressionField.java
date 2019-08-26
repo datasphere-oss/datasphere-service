@@ -12,15 +12,15 @@
  * limitations under the License.
  */
 
-package app.metatron.discovery.domain.workbook.configurations.field;
+package com.datasphere.server.domain.workbook.configurations.field;
 
 import org.joda.time.DateTimeZone;
 
 import java.util.Locale;
 
-import app.metatron.discovery.common.exception.BadRequestException;
-import app.metatron.discovery.domain.engine.EngineQueryProperties;
-import app.metatron.discovery.util.EnumUtils;
+import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.domain.engine.EngineQueryProperties;
+import com.datasphere.server.util.EnumUtils;
 
 public abstract class TimeExpressionField extends Field {
 
