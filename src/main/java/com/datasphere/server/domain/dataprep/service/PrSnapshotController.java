@@ -86,7 +86,7 @@ public class PrSnapshotController {
     public ResponseEntity<?> getSnapshot(
             @PathVariable("ssId") String ssId,
             PersistentEntityResourceAssembler persistentEntityResourceAssembler
-    ) {
+    ) throws PrepException {
         PrSnapshot snapshot = null;
         Resource<PrSnapshotProjections.DefaultProjection> projectedSnapshot = null;
         try {
@@ -111,7 +111,7 @@ public class PrSnapshotController {
     PersistentEntityResource postSnapshot(
             @RequestBody Resource<PrSnapshot> snapshotResource,
             PersistentEntityResourceAssembler resourceAssembler
-    ) {
+    ) throws PrepException {
         throw PrepException.create(PrepErrorCodes.PREP_SNAPSHOT_ERROR_CODE, PrepMessageKey.MSG_DP_ALERT_SNAPSHOT_SHOULD_BE_MADE_BY_TRANSFORM, "go to edit-rule");
         // Snapshot is not made by API
         /*
@@ -139,7 +139,7 @@ public class PrSnapshotController {
             @PathVariable("ssId") String ssId,
             @RequestBody Resource<PrSnapshot> snapshotResource,
             PersistentEntityResourceAssembler persistentEntityResourceAssembler
-    ) {
+    ) throws PrepException {
 
         PrSnapshot snapshot = null;
         PrSnapshot patchSnapshot = null;
@@ -171,7 +171,7 @@ public class PrSnapshotController {
     ResponseEntity<?> checkHiveTable(
             @PathVariable("schema") String schema,
             @PathVariable("table") String table
-    ) {
+    ) throws PrepException {
         Map<String,Object> responseMap = new HashMap<String,Object>();
         try {
             responseMap.put("isExist",false);
@@ -189,7 +189,7 @@ public class PrSnapshotController {
             @PathVariable("ssId") String ssId,
             @RequestParam(value = "offset", required = false, defaultValue = "0") Integer offset,
             @RequestParam(value = "target", required = false, defaultValue = "1") Integer target
-    ) {
+    ) throws PrepException {
         Map<String,Object> responseMap = new HashMap<String,Object>();
         try {
             PrSnapshot snapshot = this.snapshotRepository.findOne(ssId);
@@ -275,7 +275,7 @@ public class PrSnapshotController {
             HttpServletResponse response,
             @PathVariable("ssId") String ssId,
             @RequestParam(value = "fileType", required = false, defaultValue = "0") String fileType
-    ) {
+    ) throws PrepException {
         try {
             String downloadFileName = this.snapshotService.downloadSnapshotFile(ssId, response, fileType);
             response.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", downloadFileName));
@@ -291,7 +291,7 @@ public class PrSnapshotController {
     public @ResponseBody
     ResponseEntity<?> workList(
             @PathVariable("dsId") String dsId,
-            @RequestParam(value = "option", required = false, defaultValue = "NOT_ALL") String option) {
+            @RequestParam(value = "option", required = false, defaultValue = "NOT_ALL") String option) throws PrepException {
         Map<String, Object> response = Maps.newHashMap();
         try {
             List<PrSnapshot> snapshots = this.snapshotService.getWorkList(dsId, option);

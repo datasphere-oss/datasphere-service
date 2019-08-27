@@ -14,21 +14,21 @@
 
 package com.datasphere.server.common.oauth;
 
-import com.datasphere.server.common.exception.ErrorResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.web.access.AccessDeniedHandler;
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.web.access.AccessDeniedHandler;
+
+import com.datasphere.engine.common.exception.GlobalErrorCodes;
 import com.datasphere.server.common.GlobalObjectMapper;
-import com.datasphere.server.common.exception.GlobalErrorCodes;
+import com.datasphere.server.common.exception.ErrorResponse;
 import com.datasphere.server.util.AuthUtils;
 
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {

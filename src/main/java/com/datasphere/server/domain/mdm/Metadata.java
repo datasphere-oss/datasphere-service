@@ -33,8 +33,8 @@ import javax.validation.constraints.Size;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.MetatronDomain;
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.mdm.catalog.Catalog;
 import com.datasphere.server.domain.mdm.source.MetadataSource;
 

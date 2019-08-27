@@ -91,7 +91,7 @@ public class PrepProperties {
     return localBaseDir;
   }
 
-  public String getHadoopConfDir(boolean mandatory) {
+  public String getHadoopConfDir(boolean mandatory) throws PrepException {
     if (mandatory && hadoopConfDir == null) {
       throw PrepException.create(PrepErrorCodes.PREP_INVALID_CONFIG_CODE,
           PrepMessageKey.MSG_DP_ALERT_HADOOP_NOT_CONFIGURED, "Hadoop not configured");
@@ -99,7 +99,7 @@ public class PrepProperties {
     return hadoopConfDir;
   }
 
-  public String getStagingBaseDir(boolean mandatory) {
+  public String getStagingBaseDir(boolean mandatory) throws PrepException {
     if (mandatory && stagingBaseDir == null) {
       throw PrepException.create(PrepErrorCodes.PREP_INVALID_CONFIG_CODE,
           PrepMessageKey.MSG_DP_ALERT_STAGING_BASE_DIR_NOT_CONFIGURED, "StagingDir not configured");
@@ -107,7 +107,7 @@ public class PrepProperties {
     return stagingBaseDir;
   }
 
-  public String getS3BaseDir(boolean mandatory) {
+  public String getS3BaseDir(boolean mandatory) throws PrepException {
     if (mandatory && s3BaseDir == null) {
       throw PrepException.create(PrepErrorCodes.PREP_INVALID_CONFIG_CODE,
           PrepMessageKey.MSG_DP_ALERT_STAGING_BASE_DIR_NOT_CONFIGURED, "S3Dir not configured");
@@ -190,7 +190,7 @@ public class PrepProperties {
   }
 
   // Everything for ETL
-  public Map<String, Object> getEveryForEtl() {
+  public Map<String, Object> getEveryForEtl() throws PrepException {
     Map<String, Object> map = new HashMap();
 
     map.put(HADOOP_CONF_DIR, getHadoopConfDir(false));

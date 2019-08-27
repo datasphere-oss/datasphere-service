@@ -1,17 +1,16 @@
-package com.datasphere.server.domain.dataconnection.accessor;
-
-import org.pf4j.Extension;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.datasphere.server.connections.jdbc.accessor;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.AbstractJdbcDataAccessor;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import org.pf4j.Extension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 
 @Extension
 public class DruidDataAccessor extends AbstractJdbcDataAccessor {
@@ -35,8 +34,8 @@ public class DruidDataAccessor extends AbstractJdbcDataAccessor {
       databaseNames = executeQueryForList(this.getConnection(), schemaListQuery, (resultSet, rowNum) -> resultSet.getString(1));
     } catch (Exception e) {
       LOGGER.error("Fail to get list of database : {}", e.getMessage());
-      throw new JdbcDataConnectionException(JdbcDataConnectionErrorCodes.INVALID_QUERY_ERROR_CODE,
-                                            "Fail to get list of database : " + e.getMessage());
+//      throw new JdbcDataConnectionException(JdbcDataConnectionErrorCodes.INVALID_QUERY_ERROR_CODE,
+//                                            "Fail to get list of database : " + e.getMessage());
     }
 
     List<String> excludeSchemas = getExcludeSchemas();

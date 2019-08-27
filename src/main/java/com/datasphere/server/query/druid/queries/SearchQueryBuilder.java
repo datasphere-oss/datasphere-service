@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-import com.datasphere.server.domain.datasource.data.CandidateQueryRequest;
+import com.datasphere.server.datasource.data.CandidateQueryRequest;
 import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
 import com.datasphere.server.domain.workbook.configurations.field.DimensionField;
 import com.datasphere.server.domain.workbook.configurations.field.Field;

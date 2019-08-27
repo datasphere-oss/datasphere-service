@@ -24,7 +24,7 @@ import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
 import com.datasphere.server.query.druid.Aggregation;
 import com.datasphere.server.query.druid.Dimension;

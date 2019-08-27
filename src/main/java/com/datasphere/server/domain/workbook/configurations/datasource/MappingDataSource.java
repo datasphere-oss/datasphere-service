@@ -42,7 +42,7 @@ public class MappingDataSource extends DataSource {
     this.joins = joins;
   }
 
-  public com.datasphere.server.domain.datasource.DataSource findMetaDataSourceByRef(String ref) {
+  public com.datasphere.server.datasource.DataSource findMetaDataSourceByRef(String ref) {
     if (StringUtils.isEmpty(ref)) {
       return getMetaDataSource();
     }
@@ -51,7 +51,7 @@ public class MappingDataSource extends DataSource {
       return getMetaDataSource();
     }
 
-    com.datasphere.server.domain.datasource.DataSource dataSource = null;
+    com.datasphere.server.datasource.DataSource dataSource = null;
     for (JoinMapping join : joins) {
       dataSource = findInJoinMapping(join, ref);
       if(dataSource != null) {
@@ -62,7 +62,7 @@ public class MappingDataSource extends DataSource {
     return dataSource;
   }
 
-  public com.datasphere.server.domain.datasource.DataSource findInJoinMapping(JoinMapping joinMapping, String ref) {
+  public com.datasphere.server.datasource.DataSource findInJoinMapping(JoinMapping joinMapping, String ref) {
 
     StringBuilder joinRef = new StringBuilder();
     if (StringUtils.isNotEmpty(joinMapping.getJoinAlias())) {

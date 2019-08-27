@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion;
+package com.datasphere.server.datasource.ingestion;
 
 import com.google.common.collect.Lists;
 
@@ -29,12 +29,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.util.EnumUtils;
 import com.datasphere.server.util.PolarisUtils;
 
-/**
- * Created by kyungtaak on 2016. 8. 12..
- */
 public class BatchPeriod implements Serializable {
 
   Frequency frequency;
@@ -53,7 +51,7 @@ public class BatchPeriod implements Serializable {
   public BatchPeriod(@JsonProperty("frequency") String frequency,
                      @JsonProperty("value") Object value,
                      @JsonProperty("time") String time,
-                     @JsonProperty("weekDays") List<String> weekDays) {
+                     @JsonProperty("weekDays") List<String> weekDays) throws BadRequestException {
 
     this.frequency = SearchParamValidator.enumUpperValue(Frequency.class, frequency, "frequency");
     this.value = value;

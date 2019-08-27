@@ -65,10 +65,10 @@ import java.util.stream.Collectors;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.exception.BadRequestException;
-import com.datasphere.server.domain.datasource.data.forward.ResultForward;
-import com.datasphere.server.domain.datasource.data.result.ChartResultFormat;
-import com.datasphere.server.domain.datasource.data.result.PivotResultFormat;
-import com.datasphere.server.domain.datasource.data.result.SearchResultFormat;
+import com.datasphere.server.datasource.data.forward.ResultForward;
+import com.datasphere.server.datasource.data.result.ChartResultFormat;
+import com.datasphere.server.datasource.data.result.PivotResultFormat;
+import com.datasphere.server.datasource.data.result.SearchResultFormat;
 import com.datasphere.server.domain.workbook.configurations.Limit;
 import com.datasphere.server.domain.workbook.configurations.Sort;
 import com.datasphere.server.domain.workbook.configurations.analysis.Analysis;
@@ -126,7 +126,7 @@ import com.datasphere.server.query.druid.postaggregations.MathPostAggregator;
 import com.datasphere.server.query.druid.postprocessor.PostAggregationProcessor;
 import com.datasphere.server.query.druid.virtualcolumns.ExprVirtualColumn;
 
-import static com.datasphere.server.domain.datasource.data.CandidateQueryRequest.RESULT_VALUE_NAME_PREFIX;
+import static com.datasphere.server.datasource.data.CandidateQueryRequest.RESULT_VALUE_NAME_PREFIX;
 import static com.datasphere.server.domain.workbook.configurations.Sort.Direction.ASC;
 import static com.datasphere.server.domain.workbook.configurations.Sort.Direction.DESC;
 import static com.datasphere.server.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
@@ -237,7 +237,7 @@ public class GroupByQueryBuilder extends AbstractQueryBuilder {
         }
 
         // for base data source
-        com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+        com.datasphere.server.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
         DimensionField dimensionField = (DimensionField) field;
         FieldFormat format = dimensionField.getFormat();
 
@@ -351,7 +351,7 @@ public class GroupByQueryBuilder extends AbstractQueryBuilder {
 
       } else if (field instanceof TimestampField) {
 
-        com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+        com.datasphere.server.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
         TimeFieldFormat originalTimeFormat = (TimeFieldFormat) datasourceField.getFormatObject();
 
         TimestampField timestampField = (TimestampField) field;

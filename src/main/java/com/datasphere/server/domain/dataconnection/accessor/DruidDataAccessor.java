@@ -1,17 +1,18 @@
 package com.datasphere.server.domain.dataconnection.accessor;
 
-import org.pf4j.Extension;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.AbstractJdbcDataAccessor;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import org.pf4j.Extension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.datasphere.server.connections.jdbc.accessor.AbstractJdbcDataAccessor;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
+
 
 @Extension
 public class DruidDataAccessor extends AbstractJdbcDataAccessor {
@@ -24,7 +25,7 @@ public class DruidDataAccessor extends AbstractJdbcDataAccessor {
   }
 
   @Override
-  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) {
+  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) throws JdbcDataConnectionException {
     Map<String, Object> databaseMap = new LinkedHashMap<>();
     List<String> databaseNames = null;
 

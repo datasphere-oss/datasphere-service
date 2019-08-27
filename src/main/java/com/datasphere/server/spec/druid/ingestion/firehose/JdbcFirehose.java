@@ -19,7 +19,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 import com.datasphere.server.domain.dataconnection.DataConnection;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo;
 
 /**
  * Created by kyungtaak on 2016. 6. 18..

@@ -25,6 +25,7 @@ import org.springframework.messaging.support.MessageHeaderAccessor;
 
 import java.util.List;
 
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
 
 import static org.springframework.messaging.simp.stomp.StompCommand.CONNECT;
@@ -73,7 +74,12 @@ public class BizChannelInterceptorAdapter extends ChannelInterceptorAdapter {
       // Session Id 및 채널명을 통해 관련 된 워크 벤치 커넥션 해제
       LOGGER.debug("Do Action for disconnection!!!");
       // Session Id 를 통해 관련된 워크벤치 해제
-      workbenchDataSourceManager.destroyDataSource(accessor.getSessionId());
+      try {
+		workbenchDataSourceManager.destroyDataSource(accessor.getSessionId());
+	} catch (JdbcDataConnectionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     }
   }
 

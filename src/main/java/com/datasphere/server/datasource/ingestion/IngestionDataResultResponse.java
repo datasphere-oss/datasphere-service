@@ -12,18 +12,15 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion;
+package com.datasphere.server.datasource.ingestion;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.domain.datasource.FileValidationResponse;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.FileValidationResponse;
 
-/**
- * Created by kyungtaak on 2016. 6. 16..
- */
 public class IngestionDataResultResponse implements Serializable {
 
   protected List<Field> fields;

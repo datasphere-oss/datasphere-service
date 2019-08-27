@@ -17,9 +17,9 @@ package com.datasphere.server.connections.jdbc;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.domain.datasource.ingestion.IngestionDataResultResponse;
-import com.datasphere.server.domain.datasource.ingestion.file.FileFormat;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.ingestion.IngestionDataResultResponse;
+import com.datasphere.server.datasource.ingestion.file.FileFormat;
 
 /**
  * Created by kyungtaak on 2016. 6. 16..

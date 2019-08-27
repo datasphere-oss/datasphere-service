@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.format;
+package com.datasphere.server.datasource.format;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
@@ -34,9 +34,9 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 
 import com.datasphere.server.common.MetatronProperties;
-import com.datasphere.server.domain.datasource.DataSourceErrorCodes;
-import com.datasphere.server.domain.datasource.DataSourceException;
-import com.datasphere.server.domain.datasource.TimeFormatCheckRequest;
+import com.datasphere.server.datasource.DataSourceErrorCodes;
+import com.datasphere.server.datasource.DataSourceException;
+import com.datasphere.server.datasource.TimeFormatCheckRequest;
 
 @Component
 public class DateTimeFormatChecker {

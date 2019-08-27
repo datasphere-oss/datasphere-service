@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.rule;
+package com.datasphere.server.datasource.ingestion.rule;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

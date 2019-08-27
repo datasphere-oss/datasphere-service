@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data;
+package com.datasphere.server.datasource.data;
 
 import com.google.common.collect.Lists;
 
@@ -45,7 +45,7 @@ import com.datasphere.server.domain.workbook.configurations.filter.Filter;
 import com.datasphere.server.util.EnumUtils;
 import com.datasphere.server.util.TimeUtils;
 
-import static com.datasphere.server.domain.datasource.data.CandidateQueryRequest.SortCreteria.COUNT;
+import static com.datasphere.server.datasource.data.CandidateQueryRequest.SortCreteria.COUNT;
 
 /**
  * "Candidate" 쿼리용 Reqeust 객체
@@ -182,7 +182,7 @@ public class CandidateQueryRequest extends AbstractQueryRequest implements Query
     this.limit = limit;
   }
 
-  public JsonNode makeResult(JsonNode root) {
+  public JsonNode makeResult(JsonNode root) throws QueryTimeExcetpion {
 
     if (root == null || root.size() == 0) {
       return root;
@@ -208,7 +208,7 @@ public class CandidateQueryRequest extends AbstractQueryRequest implements Query
       if (root.get(0).has("columns")) {  // SegmentMetaQuery Case
         JsonNode node = root.get(0).get("columns");
 
-        com.datasphere.server.domain.datasource.Field field = dataSource.getMetaDataSource().getFieldByName(targetField.getName());
+        com.datasphere.server.datasource.Field field = dataSource.getMetaDataSource().getFieldByName(targetField.getName());
 
         ObjectNode targetNode = (ObjectNode) node.get(targetField.getName());
 

@@ -12,21 +12,22 @@
 
 package com.datasphere.server.connections.jdbc.accessor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static java.util.stream.Collectors.toList;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-import static java.util.stream.Collectors.toList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
-public class StageDataAccessor extends DSSDataAccessor {
+public class StageDataAccessor extends AbstractJdbcDataAccessor {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(StageDataAccessor.class);
 
   @Override
-  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) {
+  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) throws SQLException {
     Map<String, Object> databaseMap = super.getDatabases(catalog, schemaPattern, pageSize, pageNumber);
 
     List<String> databaseNames = (List) databaseMap.get("databases");

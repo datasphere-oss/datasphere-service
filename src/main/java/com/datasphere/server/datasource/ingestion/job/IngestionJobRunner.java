@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.job;
+package com.datasphere.server.datasource.ingestion.job;
 
 import com.google.common.collect.Maps;
 
@@ -42,21 +42,21 @@ import javax.annotation.PostConstruct;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.ProgressResponse;
 import com.datasphere.server.common.fileloader.FileLoaderFactory;
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.DataSourceErrorCodes;
-import com.datasphere.server.domain.datasource.DataSourceIngestionException;
-import com.datasphere.server.domain.datasource.DataSourceService;
-import com.datasphere.server.domain.datasource.DataSourceSummary;
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
-import com.datasphere.server.domain.datasource.ingestion.HdfsIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.HiveIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistoryRepository;
-import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.IngestionOptionService;
-import com.datasphere.server.domain.datasource.ingestion.LocalFileIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceErrorCodes;
+import com.datasphere.server.datasource.DataSourceIngestionException;
+import com.datasphere.server.datasource.DataSourceService;
+import com.datasphere.server.datasource.DataSourceSummary;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.datasource.ingestion.HdfsIngestionInfo;
+import com.datasphere.server.datasource.ingestion.HiveIngestionInfo;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.server.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.datasource.ingestion.IngestionOptionService;
+import com.datasphere.server.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo;
 import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
 import com.datasphere.server.domain.engine.DruidEngineRepository;
 import com.datasphere.server.domain.engine.EngineIngestionService;
@@ -68,19 +68,19 @@ import com.datasphere.server.domain.mdm.MetadataService;
 import com.datasphere.server.domain.storage.StorageProperties;
 import com.datasphere.server.util.PolarisUtils;
 
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_ENGINE_REGISTRATION_ERROR;
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_ENGINE_TASK_ERROR;
-import static com.datasphere.server.domain.datasource.ingestion.IngestionHistory.IngestionStatus.FAILED;
-import static com.datasphere.server.domain.datasource.ingestion.IngestionHistory.IngestionStatus.SUCCESS;
-import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.END_INGESTION_JOB;
-import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.ENGINE_INIT_TASK;
-import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.ENGINE_REGISTER_DATASOURCE;
-import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.ENGINE_RUNNING_TASK;
-import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.FAIL_INGESTION_JOB;
-import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.PREPARATION_HANDLE_LOCAL_FILE;
-import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.PREPARATION_LOAD_FILE_TO_ENGINE;
-import static com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress.START_INGESTION_JOB;
+import static com.datasphere.server.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
+import static com.datasphere.server.datasource.DataSourceErrorCodes.INGESTION_ENGINE_REGISTRATION_ERROR;
+import static com.datasphere.server.datasource.DataSourceErrorCodes.INGESTION_ENGINE_TASK_ERROR;
+import static com.datasphere.server.datasource.ingestion.IngestionHistory.IngestionStatus.FAILED;
+import static com.datasphere.server.datasource.ingestion.IngestionHistory.IngestionStatus.SUCCESS;
+import static com.datasphere.server.datasource.ingestion.job.IngestionProgress.END_INGESTION_JOB;
+import static com.datasphere.server.datasource.ingestion.job.IngestionProgress.ENGINE_INIT_TASK;
+import static com.datasphere.server.datasource.ingestion.job.IngestionProgress.ENGINE_REGISTER_DATASOURCE;
+import static com.datasphere.server.datasource.ingestion.job.IngestionProgress.ENGINE_RUNNING_TASK;
+import static com.datasphere.server.datasource.ingestion.job.IngestionProgress.FAIL_INGESTION_JOB;
+import static com.datasphere.server.datasource.ingestion.job.IngestionProgress.PREPARATION_HANDLE_LOCAL_FILE;
+import static com.datasphere.server.datasource.ingestion.job.IngestionProgress.PREPARATION_LOAD_FILE_TO_ENGINE;
+import static com.datasphere.server.datasource.ingestion.job.IngestionProgress.START_INGESTION_JOB;
 
 @Component
 public class IngestionJobRunner {
@@ -177,15 +177,7 @@ public class IngestionJobRunner {
       sendTopic(sendTopicUri, new ProgressResponse(20, PREPARATION_HANDLE_LOCAL_FILE));
       history = updateHistoryProgress(history.getId(), PREPARATION_HANDLE_LOCAL_FILE);
 
-      try{
-        ingestionJob.preparation();
-      } catch(DataSourceIngestionException e){
-        //if Result is Empty, complete ingestion.
-        if(e.getCode() == DataSourceErrorCodes.INGESTION_JDBC_EMPTY_RESULT_ERROR){
-          LOGGER.debug("Jdbc result is empty. : {}", dataSource.getId());
-          isResultEmpty = true;
-        } else { throw e; }
-      }
+      ingestionJob.preparation();
 
       if(!isResultEmpty){
         sendTopic(sendTopicUri, new ProgressResponse(40, PREPARATION_LOAD_FILE_TO_ENGINE));
@@ -311,7 +303,7 @@ public class IngestionJobRunner {
   public IngestionHistory setFailProgress(final Long historyId, final DataSourceIngestionException ie) {
     return transactionTemplate.execute(transactionStatus -> {
       IngestionHistory history = historyRepository.findOne(historyId);
-      history.setStatus(FAILED, ie);
+      history.setStatus(FAILED, ie.getMessage());
 
       dataSourceService.setDataSourceStatus(history.getDataSourceId(), DataSource.Status.FAILED,
                                             null,

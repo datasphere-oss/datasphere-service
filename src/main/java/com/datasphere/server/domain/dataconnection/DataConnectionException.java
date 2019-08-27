@@ -14,22 +14,21 @@
 
 package com.datasphere.server.domain.dataconnection;
 
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.engine.common.exception.ErrorCodes;
+import com.datasphere.engine.common.exception.MetatronException;
 
-/**
- * Created by kyungtaak on 2016. 7. 2..
- */
+
 public class DataConnectionException extends MetatronException {
 
-  public DataConnectionException(DataConnectionErrorCodes code, String message) {
+  public DataConnectionException(ErrorCodes code, String message) {
     super(code, message);
   }
 
-  public DataConnectionException(DataConnectionErrorCodes code, String message, Throwable cause) {
+  public DataConnectionException(ErrorCodes code, String message, Throwable cause) {
     super(code, message, cause);
   }
 
-  public DataConnectionException(DataConnectionErrorCodes code, Throwable cause) {
+  public DataConnectionException(ErrorCodes code, Throwable cause) {
     super(code, cause);
   }
 }

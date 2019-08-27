@@ -46,16 +46,16 @@ import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.fileloader.FileLoaderFactory;
 import com.datasphere.server.common.fileloader.FileLoaderProperties;
 import com.datasphere.server.domain.dataconnection.DataConnection;
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.DataSourceIngestionException;
-import com.datasphere.server.domain.datasource.DataSourceRepository;
-import com.datasphere.server.domain.datasource.DataSourceTemporary;
-import com.datasphere.server.domain.datasource.DataSourceTemporaryRepository;
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
-import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.LocalFileIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.LinkIngestionInfo;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceIngestionException;
+import com.datasphere.server.datasource.DataSourceRepository;
+import com.datasphere.server.datasource.DataSourceTemporary;
+import com.datasphere.server.datasource.DataSourceTemporaryRepository;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.LinkIngestionInfo;
 import com.datasphere.server.domain.engine.model.SegmentMetaDataResponse;
 import com.datasphere.server.domain.workbook.configurations.filter.Filter;
 import com.datasphere.server.domain.workbook.configurations.format.TemporaryTimeFormat;
@@ -63,10 +63,10 @@ import com.datasphere.server.spec.druid.ingestion.BulkLoadSpec;
 import com.datasphere.server.spec.druid.ingestion.BulkLoadSpecBuilder;
 import com.datasphere.server.util.PolarisUtils;
 
-import static com.datasphere.server.domain.datasource.DataSource.DataSourceType.VOLATILITY;
-import static com.datasphere.server.domain.datasource.DataSourceTemporary.LoadStatus.ENABLE;
-import static com.datasphere.server.domain.datasource.DataSourceTemporary.LoadStatus.FAIL;
-import static com.datasphere.server.domain.datasource.Field.FIELD_NAME_CURRENT_TIMESTAMP;
+import static com.datasphere.server.datasource.DataSource.DataSourceType.VOLATILITY;
+import static com.datasphere.server.datasource.DataSourceTemporary.LoadStatus.ENABLE;
+import static com.datasphere.server.datasource.DataSourceTemporary.LoadStatus.FAIL;
+import static com.datasphere.server.datasource.Field.FIELD_NAME_CURRENT_TIMESTAMP;
 
 @Component
 public class EngineLoadService {

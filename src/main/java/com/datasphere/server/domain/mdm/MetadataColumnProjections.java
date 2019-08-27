@@ -21,7 +21,7 @@ import java.util.Map;
 
 import com.datasphere.server.common.BaseProjections;
 import com.datasphere.server.common.datasource.LogicalType;
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.mdm.source.MetadataSource;
 import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 

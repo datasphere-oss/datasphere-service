@@ -40,31 +40,30 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.job;
+package com.datasphere.server.datasource.ingestion.job;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-import java.util.Map;
-
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.fileloader.FileLoaderFactory;
 import com.datasphere.server.common.fileloader.FileLoaderProperties;
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.DataSourceErrorCodes;
-import com.datasphere.server.domain.datasource.DataSourceIngestionException;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistoryRepository;
-import com.datasphere.server.domain.datasource.ingestion.IngestionOptionService;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceErrorCodes;
+import com.datasphere.server.datasource.DataSourceIngestionException;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.server.datasource.ingestion.IngestionOptionService;
 import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
 import com.datasphere.server.domain.engine.DruidEngineRepository;
 import com.datasphere.server.domain.engine.EngineProperties;
 import com.datasphere.server.domain.storage.StorageProperties;
 import com.datasphere.server.spec.druid.ingestion.Index;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 public abstract class AbstractIngestionJob {
 
@@ -139,8 +138,9 @@ public abstract class AbstractIngestionJob {
    * load file to engine(Ingestion Worker)
    *
    * @return Dedicated worker host, if success.
+ * @throws DataSourceIngestionException 
    */
-  protected void loadFileToEngine(List<String> fileNames, List<String> targetNames) {
+  protected void loadFileToEngine(List<String> fileNames, List<String> targetNames)  {
 
     setDedicatedWoker();
 
@@ -152,14 +152,20 @@ public abstract class AbstractIngestionJob {
       loadedFilePaths = fileLoaderFactory.put(targetHost, loaderProperties, fileNames, targetNames, true);
     } catch (Exception e) {
       // Fail to load file to engine(middle manager)
-      throw new DataSourceIngestionException(DataSourceErrorCodes.INGESTION_FILE_LOAD_ERROR, "Failed to load the file into the engine", e);
+      try {
+		throw new DataSourceIngestionException(DataSourceErrorCodes.INGESTION_FILE_LOAD_ERROR, "Failed to load the file into the engine", e);
+	} catch (DataSourceIngestionException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
     }
   }
 
   /**
    * Send Ingestion Task to engine(overlord) by Spec.
+ * @throws DataSourceIngestionException 
    */
-  protected String doIngestion(Index spec) {
+  protected String doIngestion(Index spec) throws DataSourceIngestionException {
 
     String ingestionSpec = null;
     try {

@@ -13,5 +13,5 @@
 package com.datasphere.engine.common.exception;
 
 public interface ErrorCodes {
-  String getCode();
+	String getCode();
 }

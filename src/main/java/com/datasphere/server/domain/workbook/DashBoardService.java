@@ -31,7 +31,7 @@ import java.util.Set;
 import javax.transaction.Transactional;
 
 import com.datasphere.server.common.GlobalObjectMapper;
-import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.images.Image;
 import com.datasphere.server.domain.images.ImageService;
 import com.datasphere.server.domain.workbook.configurations.BoardConfiguration;

@@ -18,7 +18,7 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-import com.datasphere.server.domain.datasource.data.CandidateQueryRequest;
+import com.datasphere.server.datasource.data.CandidateQueryRequest;
 
 /**
  * Created by kyungtaak on 2017. 5. 12..

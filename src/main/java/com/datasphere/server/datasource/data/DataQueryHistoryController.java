@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data;
+package com.datasphere.server.datasource.data;
 
 import com.google.common.collect.Lists;
 
@@ -37,18 +37,15 @@ import java.util.List;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
 import com.datasphere.server.config.ApiResourceConfig;
-import com.datasphere.server.domain.datasource.DataSourceQueryHistory;
-import com.datasphere.server.domain.datasource.DataSourceQueryHistoryPredicate;
-import com.datasphere.server.domain.datasource.DataSourceQueryHistoryProjections;
-import com.datasphere.server.domain.datasource.DataSourceQueryHistoryRepository;
-import com.datasphere.server.domain.datasource.DataSourceRepository;
-import com.datasphere.server.domain.datasource.DataSourceSizeHistoryRepository;
+import com.datasphere.server.datasource.DataSourceQueryHistory;
+import com.datasphere.server.datasource.DataSourceQueryHistoryPredicate;
+import com.datasphere.server.datasource.DataSourceQueryHistoryProjections;
+import com.datasphere.server.datasource.DataSourceQueryHistoryRepository;
+import com.datasphere.server.datasource.DataSourceRepository;
+import com.datasphere.server.datasource.DataSourceSizeHistoryRepository;
 import com.datasphere.server.util.ProjectionUtils;
 import com.datasphere.server.util.TimeUtils;
 
-/**
- * Created by kyungtaak on 2016. 8. 31..
- */
 @RestController
 @RequestMapping(value = ApiResourceConfig.API_PREFIX)
 public class DataQueryHistoryController {
@@ -104,7 +101,7 @@ public class DataQueryHistoryController {
   @RequestMapping(value = "/datasources/{id}/query/histories/{historyId}", method = RequestMethod.GET)
   public ResponseEntity<?> findQueryHistories(@PathVariable("id") String dataSourceId,
                                               @PathVariable("historyId") String historyId,
-                                              @RequestParam(value = "projection", required = false, defaultValue = "default") String projection) {
+                                              @RequestParam(value = "projection", required = false, defaultValue = "default") String projection) throws ResourceNotFoundException {
 
     if (dataSourceRepository.findOne(dataSourceId) == null) {
       throw new ResourceNotFoundException(dataSourceId);

@@ -74,7 +74,7 @@ public class PrDataflowController {
     public ResponseEntity<?> getDataflow(
             @PathVariable("dfId") String dfId,
             PersistentEntityResourceAssembler persistentEntityResourceAssembler
-    ) {
+    ) throws PrepException {
         PrDataflow dataflow = null;
         Resource<PrDataflowProjections.DefaultProjection> projectedDataflow = null;
         try {
@@ -99,7 +99,7 @@ public class PrDataflowController {
     PersistentEntityResource postDataflow(
             @RequestBody Resource<PrDataflow> dataflowResource,
             PersistentEntityResourceAssembler resourceAssembler
-    ) {
+    ) throws PrepException {
         PrDataflow dataflow = null;
         PrDataflow savedDataflow = null;
 
@@ -125,7 +125,7 @@ public class PrDataflowController {
             @PathVariable("dfId") String dfId,
             @RequestBody Resource<PrDataflow> dataflowResource,
             PersistentEntityResourceAssembler persistentEntityResourceAssembler
-    ) {
+    ) throws PrepException {
 
         PrDataflow dataflow = null;
         PrDataflow patchDataflow = null;
@@ -156,7 +156,7 @@ public class PrDataflowController {
     @ResponseBody
     public ResponseEntity<?> deleteDataflow(
             @PathVariable("dfId") String dfId
-    ) {
+    ) throws PrepException {
         try {
             PrDataflow dataflow = this.dataflowRepository.findOne(dfId);
             if (null != dataflow) {
@@ -193,7 +193,7 @@ public class PrDataflowController {
     public ResponseEntity<?> deleteChain(
             @PathVariable("dfId") String dfId,
             @PathVariable("dsId") String dsId
-    ) {
+    ) throws PrepException {
 
         List<String> deleteDsIds = Lists.newArrayList();
         try {
@@ -262,7 +262,7 @@ public class PrDataflowController {
     public @ResponseBody ResponseEntity<?> getStreams (
             @PathVariable("dfId") String dfId,
             @RequestParam(value = "forUpdate", required = false, defaultValue = "false") String forUpdate
-    ) {
+    ) throws PrepException {
         List<PrepUpstream> upstreams = Lists.newArrayList();
         try {
             PrDataflow dataflow = dataflowRepository.findOne(dfId);
@@ -303,7 +303,7 @@ public class PrDataflowController {
     public @ResponseBody ResponseEntity<?> addDataset (
             @PathVariable("dfId") String dfId,
             @PathVariable("dsId") String dsId
-    ) {
+    ) throws PrepException {
         PrDataflow dataflow = dataflowRepository.findOne(dfId);
         try {
             if( dataflow!=null ) {
@@ -333,7 +333,7 @@ public class PrDataflowController {
     public @ResponseBody ResponseEntity<?> updateDatasets (
             @PathVariable("dfId") String dfId,
             @RequestBody PrepParamDatasetIdList dsIds
-    ) {
+    ) throws PrepException {
         // If an I.DS is new to the dataflow, we create a corresponding W.DS, except the case of dataset swapping.
         boolean autoCreate = (dsIds.getForSwap() != null && dsIds.getForSwap() == true) ? false : true;
 
@@ -392,7 +392,7 @@ public class PrDataflowController {
     public @ResponseBody ResponseEntity<?> addDatasets (
             @PathVariable("dfId") String dfId,
             @RequestBody PrepParamDatasetIdList dsIds
-    ) {
+    ) throws PrepException {
         PrDataflow dataflow = dataflowRepository.findOne(dfId);
         try {
             if( dataflow!=null ) {
@@ -423,7 +423,7 @@ public class PrDataflowController {
     public @ResponseBody ResponseEntity<?> removeDataset (
             @PathVariable("dfId") String dfId,
             @PathVariable("dsId") String dsId
-    ) {
+    ) throws PrepException {
         PrDataflow dataflow = dataflowRepository.findOne(dfId);
         try {
             if( dataflow!=null ) {
@@ -453,7 +453,7 @@ public class PrDataflowController {
     public @ResponseBody ResponseEntity<?> removeDatasets (
             @PathVariable("dfId") String dfId,
             @RequestBody PrepParamDatasetIdList dsIds
-    ) {
+    ) throws PrepException {
         PrDataflow dataflow = dataflowRepository.findOne(dfId);
         try {
             if( dataflow!=null ) {
@@ -488,7 +488,7 @@ public class PrDataflowController {
     public @ResponseBody ResponseEntity<?> swapUpstream (
             @PathVariable("dfId") String dfId,
             @RequestBody PrepSwapRequest swapRequest
-    ) {
+    ) throws PrepException {
         PrDataflow dataflow = dataflowRepository.findOne(dfId);
 
         try {

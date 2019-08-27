@@ -12,19 +12,16 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data;
+package com.datasphere.server.datasource.data;
+
+import static com.datasphere.server.datasource.DataSourceErrorCodes.QUERY_ERROR_CODE;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.datasphere.server.common.exception.ErrorCodes;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.engine.common.exception.ErrorCodes;
+import com.datasphere.engine.common.exception.MetatronException;
 
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.QUERY_ERROR_CODE;
-
-/**
- * Created by kyungtaak on 2016. 6. 13..
- */
 @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR, reason="Query time error")
 public class QueryTimeExcetpion extends MetatronException {
 

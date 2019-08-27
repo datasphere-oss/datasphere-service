@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -29,20 +29,20 @@ import javax.validation.constraints.Size;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.MetatronDomain;
-import com.datasphere.server.domain.datasource.data.CandidateQueryRequest;
-import com.datasphere.server.domain.datasource.data.CovarianceQueryRequest;
-import com.datasphere.server.domain.datasource.data.MetaQueryRequest;
-import com.datasphere.server.domain.datasource.data.QueryRequest;
-import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
-import com.datasphere.server.domain.datasource.data.SummaryQueryRequest;
-import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.datasource.data.CandidateQueryRequest;
+import com.datasphere.server.datasource.data.CovarianceQueryRequest;
+import com.datasphere.server.datasource.data.MetaQueryRequest;
+import com.datasphere.server.datasource.data.QueryRequest;
+import com.datasphere.server.datasource.data.SearchQueryRequest;
+import com.datasphere.server.datasource.data.SummaryQueryRequest;
+import com.datasphere.server.datasource.data.forward.ResultForward;
 
-import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.QueryType.CANDIDATE;
-import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.QueryType.COVARIANCE;
-import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.QueryType.META;
-import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.QueryType.SEARCH;
-import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.QueryType.SIMILARITY;
-import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.QueryType.SUMMARY;
+import static com.datasphere.server.datasource.DataSourceQueryHistory.QueryType.CANDIDATE;
+import static com.datasphere.server.datasource.DataSourceQueryHistory.QueryType.COVARIANCE;
+import static com.datasphere.server.datasource.DataSourceQueryHistory.QueryType.META;
+import static com.datasphere.server.datasource.DataSourceQueryHistory.QueryType.SEARCH;
+import static com.datasphere.server.datasource.DataSourceQueryHistory.QueryType.SIMILARITY;
+import static com.datasphere.server.datasource.DataSourceQueryHistory.QueryType.SUMMARY;
 
 /**
  * Created by kyungtaak on 2016. 8. 30..

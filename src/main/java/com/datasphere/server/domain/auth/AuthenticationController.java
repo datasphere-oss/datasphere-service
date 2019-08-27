@@ -14,7 +14,18 @@
 
 package com.datasphere.server.domain.auth;
 
-import com.google.common.collect.Maps;
+import java.io.IOException;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -49,29 +60,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.saml.SAMLAuthenticationInfo;
 import com.datasphere.server.domain.user.CachedUserService;
 import com.datasphere.server.domain.user.User;
 import com.datasphere.server.domain.user.role.Permission;
 import com.datasphere.server.util.AuthUtils;
+import com.google.common.collect.Maps;
 
-/**
- * Created by kyungtaak on 2017. 6. 20..
- */
 @RestController
 @RequestMapping("/api")
 public class AuthenticationController {
@@ -287,7 +283,8 @@ public class AuthenticationController {
       LOGGER.info("basicHeader {}", basicHeader);
       mav.addObject("basicHeader", "Basic "+basicHeader);
     } catch (Exception e) {
-      throw new MetatronException(e);
+    		e.printStackTrace();
+//      throw new MetatronException(e);
     }
 
     return mav;
@@ -336,7 +333,8 @@ public class AuthenticationController {
       }
 
     } catch (Exception e) {
-      throw new MetatronException(e);
+    		e.printStackTrace();
+//      throw new MetatronException(e);
     }
 
   }

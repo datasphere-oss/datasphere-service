@@ -14,9 +14,6 @@
 
 package com.datasphere.server.domain.workbench.util;
 
-import org.springframework.jdbc.datasource.ConnectionProxy;
-import org.springframework.jdbc.support.JdbcUtils;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -26,12 +23,16 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.jdbc.datasource.ConnectionProxy;
+import org.springframework.jdbc.support.JdbcUtils;
+
+import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
+import com.datasphere.server.connections.jdbc.connector.JdbcConnector;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
 import com.datasphere.server.domain.workbench.QueryStatus;
-import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
-import com.datasphere.server.extension.dataconnection.jdbc.connector.JdbcConnector;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 
 public class WorkbenchDataSource {
 
@@ -148,14 +149,14 @@ public class WorkbenchDataSource {
     this.queryList = queryList;
   }
 
-  public Connection getPrimaryConnection() {
+  public Connection getPrimaryConnection() throws JdbcDataConnectionException {
     if(primaryConnection == null){
       primaryConnection = createConnection();
     }
     return primaryConnection;
   }
 
-  public Connection getSecondaryConnection() {
+  public Connection getSecondaryConnection() throws JdbcDataConnectionException {
     if(secondaryConnection == null){
       secondaryConnection = createSecondaryConnection();
     }
@@ -194,13 +195,13 @@ public class WorkbenchDataSource {
     this.password = password;
   }
 
-  private Connection createConnection(){
+  private Connection createConnection() throws JdbcDataConnectionException{
     JdbcDialect jdbcDialect = DataConnectionHelper.lookupDialect(connectionInfo);
     originalPrimaryConnection = jdbcConnector.getConnection(connectionInfo, jdbcDialect, connectionInfo.getDatabase(), true, username, password);
     return getCloseSuppressingConnectionProxy(originalPrimaryConnection);
   }
 
-  private Connection createSecondaryConnection(){
+  private Connection createSecondaryConnection() throws JdbcDataConnectionException{
     JdbcDialect jdbcDialect = DataConnectionHelper.lookupDialect(connectionInfo);
 
     Map<String, String> propMap = connectionInfo.getPropertiesMap();

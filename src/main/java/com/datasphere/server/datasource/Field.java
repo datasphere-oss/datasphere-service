@@ -12,7 +12,6 @@
 
 package com.datasphere.server.datasource;
 
-import static com.datasphere.server.domain.workbook.configurations.field.MeasureField.AggregationType.NONE;
 
 import java.io.Serializable;
 import java.util.Comparator;
@@ -52,13 +51,14 @@ import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.entity.Spec;
+import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
-import com.datasphere.server.datasource.data.result.PivotResultFormat.Aggregation;
 import com.datasphere.server.datasource.ingestion.rule.IngestionRule;
 import com.datasphere.server.domain.CollectionPatch;
 import com.datasphere.server.domain.MetatronDomain;
 import com.datasphere.server.domain.mdm.MetadataColumn;
 import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
+import com.datasphere.server.domain.workbook.configurations.field.MeasureField.AggregationType;
 import com.datasphere.server.domain.workbook.configurations.filter.InclusionFilter;
 import com.datasphere.server.domain.workbook.configurations.filter.TimeFilter;
 import com.datasphere.server.domain.workbook.configurations.format.ContinuousTimeFormat;
@@ -66,6 +66,7 @@ import com.datasphere.server.domain.workbook.configurations.format.CustomDateTim
 import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 import com.datasphere.server.domain.workbook.configurations.format.UnixTimeFormat;
+import com.datasphere.server.query.druid.Aggregation;
 import com.datasphere.server.query.druid.aggregations.ApproxHistogramFoldAggregation;
 import com.datasphere.server.query.druid.aggregations.AreaAggregation;
 import com.datasphere.server.query.druid.aggregations.GenericMaxAggregation;
@@ -87,9 +88,6 @@ import com.google.common.collect.Ordering;
 import com.google.common.collect.Sets;
 import com.google.common.primitives.Longs;
 
-/**
- * Created by kyungtaak on 2015. 12. 8..
- */
 @Entity
 @Table(name = "field")
 public class Field implements MetatronDomain<Long> {
@@ -196,7 +194,7 @@ public class Field implements MetatronDomain<Long> {
    */
   @Column(name = "pre_aggr_type")
   @Enumerated(EnumType.STRING)
-  private MeasureField.AggregationType aggrType = NONE;
+  private MeasureField.AggregationType aggrType = AggregationType.NONE;
 
   /**
    * Whether to exclude what to load to engine
@@ -284,7 +282,7 @@ public class Field implements MetatronDomain<Long> {
     this.seq = seq;
   }
 
-  public Field(CollectionPatch patch) {
+  public Field(CollectionPatch patch) throws BadRequestException {
     this.name = patch.getValue("name");
     this.logicalName = patch.getValue("logicalName");
     this.description = patch.getValue("description");
@@ -338,7 +336,7 @@ public class Field implements MetatronDomain<Long> {
 
   }
 
-  public void updateField(CollectionPatch patch) {
+  public void updateField(CollectionPatch patch) throws BadRequestException {
     // if(patch.hasProperty("name")) this.name = patch.getValue("name");
     if (patch.hasProperty("logicalName")) this.logicalName = patch.getValue("logicalName");
 
@@ -880,7 +878,7 @@ public class Field implements MetatronDomain<Long> {
     public FilterOption(
         @JsonProperty("type") String type,
         @JsonProperty("defaultSelector") String defaultSelector,
-        @JsonProperty("allowSelectors") List<String> allowSelectors) {
+        @JsonProperty("allowSelectors") List<String> allowSelectors) throws BadRequestException {
 
       this.type = SearchParamValidator.enumUpperValue(AllowFilterOptionType.class,
                                                       type, "type");

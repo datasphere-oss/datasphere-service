@@ -29,7 +29,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.user.User;
 import com.datasphere.server.domain.user.role.Role;
 

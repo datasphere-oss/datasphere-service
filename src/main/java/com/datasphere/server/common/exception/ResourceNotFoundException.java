@@ -14,12 +14,12 @@
 
 package com.datasphere.server.common.exception;
 
-import com.google.common.base.Preconditions;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import static com.datasphere.server.common.exception.GlobalErrorCodes.NOT_FOUND_CODE;
+import com.datasphere.engine.common.exception.GlobalErrorCodes;
+import com.datasphere.engine.common.exception.MetatronException;
+import com.google.common.base.Preconditions;
 
 /**
  * API 또는 Resource 가 존재하지 않을 경우 활용
@@ -36,10 +36,10 @@ public class ResourceNotFoundException extends MetatronException {
   }
 
   public ResourceNotFoundException(Object resource, Throwable cause) {
-    super(NOT_FOUND_CODE, String.format("Resource(%s) not Found", Preconditions.checkNotNull(resource)), cause);
+    super(GlobalErrorCodes.NOT_FOUND_CODE, String.format("Resource(%s) not Found", Preconditions.checkNotNull(resource)), cause);
   }
 
   public ResourceNotFoundException(Throwable cause) {
-    super(NOT_FOUND_CODE, cause);
+    super(GlobalErrorCodes.NOT_FOUND_CODE, cause);
   }
 }

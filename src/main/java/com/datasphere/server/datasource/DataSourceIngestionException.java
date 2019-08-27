@@ -12,39 +12,42 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
+
+import static com.datasphere.server.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.datasphere.server.common.exception.ErrorCodes;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.engine.common.exception.ErrorCodes;
+import com.datasphere.engine.common.exception.MetatronException;
 
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
-
-/**
- * Created by kyungtaak on 2016. 6. 18..
- */
 @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR, reason="DataSource Ingestion Error")
-public class DataSourceIngestionException extends MetatronException {
+public class DataSourceIngestionException extends Exception{
 
+	ErrorCodes codes;
   public DataSourceIngestionException(String message) {
-    super(INGESTION_COMMON_ERROR, message);
+    this(INGESTION_COMMON_ERROR, message);
   }
 
   public DataSourceIngestionException(String message, Throwable cause) {
-    super(INGESTION_COMMON_ERROR, message, cause);
+	  this(INGESTION_COMMON_ERROR, message, cause);
   }
 
-  public DataSourceIngestionException(ErrorCodes code, Throwable cause) {
-    super(code, cause);
+  public DataSourceIngestionException(ErrorCodes codes, Throwable cause) {
+	  this.codes = codes;
   }
 
-  public DataSourceIngestionException(ErrorCodes code, String message) {
-    super(code, message);
+  public DataSourceIngestionException(ErrorCodes codes, String message) {
+	  this.codes = codes;
   }
 
-  public DataSourceIngestionException(ErrorCodes code, String message, Throwable cause) {
-    super(code, message, cause);
+  public DataSourceIngestionException(ErrorCodes codes, String message, Throwable cause) {
+	  this.codes = codes;
   }
+  
+  public ErrorCodes getCode() {
+	return this.codes;
+  }
+  
 }

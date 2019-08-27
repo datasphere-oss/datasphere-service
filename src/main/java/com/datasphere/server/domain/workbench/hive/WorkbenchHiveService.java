@@ -37,7 +37,7 @@ import com.datasphere.server.common.exception.GlobalErrorCodes;
 import com.datasphere.server.common.exception.MetatronException;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
-import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.domain.workbench.WorkbenchErrorCodes;
 import com.datasphere.server.domain.workbench.WorkbenchException;
 import com.datasphere.server.domain.workbench.WorkbenchProperties;

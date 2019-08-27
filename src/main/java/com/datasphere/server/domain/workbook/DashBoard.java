@@ -33,7 +33,7 @@ import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.entity.Spec;
 import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.MetatronDomain;
-import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.workbook.configurations.BoardConfiguration;
 import com.datasphere.server.domain.workbook.widget.Widget;
 import com.datasphere.server.util.PolarisUtils;

@@ -22,7 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 
 @JsonTypeName("time_all")
 public class TimeAllFilter extends TimeFilter {

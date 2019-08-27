@@ -12,19 +12,18 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import org.apache.commons.collections4.CollectionUtils;
+package com.datasphere.server.datasource;
 
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.exception.BadRequestException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  *

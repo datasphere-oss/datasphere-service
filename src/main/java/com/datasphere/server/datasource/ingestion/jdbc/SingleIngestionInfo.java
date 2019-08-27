@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.jdbc;
+package com.datasphere.server.datasource.ingestion.jdbc;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.datasource.ingestion.IngestionInfo;
 
 /**
  * Ad-hoc 성격의 단일 수집 방식 정의

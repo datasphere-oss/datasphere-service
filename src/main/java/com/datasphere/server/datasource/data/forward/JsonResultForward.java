@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data.forward;
+package com.datasphere.server.datasource.data.forward;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 

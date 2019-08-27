@@ -1,4 +1,4 @@
-package com.datasphere.server.domain.datasource.ingestion.rule;
+package com.datasphere.server.datasource.ingestion.rule;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

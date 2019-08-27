@@ -14,20 +14,20 @@
 
 package com.datasphere.server.connections.jdbc;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
 import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
 
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 
 
 public class HiveMetaStoreJdbcClient {
@@ -47,7 +47,7 @@ public class HiveMetaStoreJdbcClient {
   private String connectionUserName;
   private String connectionPassword;
 
-  private String getValueFromPropertyMap(Map<String, Object> propertyMap, String property){
+  private String getValueFromPropertyMap(Map<String, Object> propertyMap, String property) throws JdbcDataConnectionException{
     String valueStr = (String) propertyMap.get("set");
     if(StringUtils.containsIgnoreCase(valueStr, property + "=")){
       return valueStr.replaceAll(property + "=", "");

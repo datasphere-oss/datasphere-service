@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.jdbc;
+package com.datasphere.server.datasource.ingestion.jdbc;
 
 import java.util.List;
 import java.util.Map;
 
 import com.datasphere.server.domain.dataconnection.DataConnection;
-import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.file.FileFormat;
+import com.datasphere.server.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.datasource.ingestion.file.FileFormat;
 
 /**
  * Created by kyungtaak on 2017. 4. 30..

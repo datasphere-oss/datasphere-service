@@ -31,6 +31,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.domain.workbook.WorkbookController;
 
 /**
@@ -117,7 +118,7 @@ public class CollectionPatch implements Serializable {
   }
 
   @JsonSetter
-  public void setOp(String op) {
+  public void setOp(String op) throws BadRequestException {
     this.op = SearchParamValidator.enumUpperValue(CollectionAction.class, op, "op");
   }
 

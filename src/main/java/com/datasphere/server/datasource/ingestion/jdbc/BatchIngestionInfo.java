@@ -12,12 +12,12 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.jdbc;
+package com.datasphere.server.datasource.ingestion.jdbc;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import com.datasphere.server.domain.datasource.ingestion.BatchPeriod;
-import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.datasource.ingestion.BatchPeriod;
+import com.datasphere.server.datasource.ingestion.IngestionInfo;
 
 /**
  * 배치 수집 방식 정의

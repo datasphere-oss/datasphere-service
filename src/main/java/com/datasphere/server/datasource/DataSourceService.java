@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import com.google.common.collect.Lists;
 
@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.criteria.ListCriterion;
 import com.datasphere.server.common.criteria.ListCriterionType;
 import com.datasphere.server.common.criteria.ListFilter;
@@ -67,11 +68,8 @@ import com.datasphere.server.query.druid.granularities.SimpleGranularity;
 import com.datasphere.server.util.AuthUtils;
 import com.datasphere.server.util.PolarisUtils;
 
-import static com.datasphere.server.domain.datasource.DataSourceTemporary.ID_PREFIX;
+import static com.datasphere.server.datasource.DataSourceTemporary.ID_PREFIX;
 
-/**
- * Created by kyungtaak on 2017. 5. 12..
- */
 @Component
 @Transactional
 public class DataSourceService {
@@ -119,8 +117,9 @@ public class DataSourceService {
 
   /**
    * 데이터 소스 엔진 적재시 name 을 기반으로 engin 내 데이터 소스 지정
+ * @throws MetatronException 
    */
-  public DataSource importEngineDataSource(String engineName, DataSource reqDataSource) {
+  public DataSource importEngineDataSource(String engineName, DataSource reqDataSource) throws MetatronException {
 
     SegmentMetaDataResponse segmentMetaData = queryService.segmentMetadata(engineName);
 
@@ -158,7 +157,7 @@ public class DataSourceService {
     }
   }
 
-  public DataSource.GranularityType getGranularityType(Granularity granularity) {
+  public DataSource.GranularityType getGranularityType(Granularity granularity) throws MetatronException {
 
     if (granularity instanceof PeriodGranularity) {
       Period period = Period.parse(((PeriodGranularity) granularity).getPeriod());
@@ -260,9 +259,10 @@ public class DataSourceService {
 
   /**
    * 데이터 소스 상세 조회 (임시 데이터 소스도 함께 조회 가능)
+ * @throws Exception 
    */
   @Transactional(readOnly = true)
-  public DataSource findDataSourceIncludeTemporary(String dataSourceId, Boolean includeUnloadedField) {
+  public DataSource findDataSourceIncludeTemporary(String dataSourceId, Boolean includeUnloadedField) throws Exception {
 
     DataSource dataSource;
     if (dataSourceId.indexOf(ID_PREFIX) == 0) {
@@ -298,9 +298,10 @@ public class DataSourceService {
 
   /**
    * 데이터 소스 다건 상세 조회 (임시 데이터 소스도 함께 조회 가능)
+ * @throws Exception 
    */
   @Transactional(readOnly = true)
-  public List<DataSource> findMultipleDataSourceIncludeTemporary(List<String> dataSourceIds, Boolean includeUnloadedField) {
+  public List<DataSource> findMultipleDataSourceIncludeTemporary(List<String> dataSourceIds, Boolean includeUnloadedField) throws Exception {
 
     List<String> temporaryIds = dataSourceIds.stream()
                                              .filter(s -> s.indexOf(ID_PREFIX) == 0)

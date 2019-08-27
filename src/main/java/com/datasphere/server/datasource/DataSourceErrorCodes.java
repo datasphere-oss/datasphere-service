@@ -12,11 +12,11 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
-import com.datasphere.server.common.exception.ErrorCodes;
+import com.datasphere.engine.common.exception.ErrorCodes;
 
-public enum DataSourceErrorCodes implements ErrorCodes {
+public enum DataSourceErrorCodes implements ErrorCodes{
 
   QUERY_ERROR_CODE("DS0001"),
   INVALID_EXPR_CODE("DS0002"),
@@ -44,7 +44,6 @@ public enum DataSourceErrorCodes implements ErrorCodes {
     this.errorCode = errorCode;
   }
 
-  @Override
   public String getCode() {
     return errorCode;
   }

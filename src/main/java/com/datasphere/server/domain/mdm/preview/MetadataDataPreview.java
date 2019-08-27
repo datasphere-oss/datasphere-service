@@ -33,11 +33,11 @@ import com.datasphere.server.common.data.projection.DataGrid;
 import com.datasphere.server.common.data.projection.DataHistogram;
 import com.datasphere.server.common.data.projection.Row;
 import com.datasphere.server.common.datasource.DataType;
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.mdm.Metadata;
 import com.datasphere.server.domain.mdm.MetadataColumn;
 
-import static com.datasphere.server.domain.datasource.Field.COLUMN_NAME_CURRENT_DATETIME;
+import static com.datasphere.server.datasource.Field.COLUMN_NAME_CURRENT_DATETIME;
 
 /**
  * The type Metadata data preview.

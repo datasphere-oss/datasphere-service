@@ -27,9 +27,9 @@ import java.util.Map;
 
 import com.datasphere.server.common.data.projection.ColumnDescription;
 import com.datasphere.server.common.data.projection.Row;
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
-import com.datasphere.server.domain.datasource.data.result.ObjectResultFormat;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.data.SearchQueryRequest;
+import com.datasphere.server.datasource.data.result.ObjectResultFormat;
 import com.datasphere.server.domain.engine.EngineQueryService;
 import com.datasphere.server.domain.mdm.Metadata;
 import com.datasphere.server.domain.workbook.configurations.Limit;

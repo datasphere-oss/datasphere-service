@@ -69,8 +69,8 @@ public class WorkBookProjections {
 
     String getFolderId();
 
-    //@Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.datasource.DataSourceProjections$ForSimpleViewProjection), @dashboardRepository.findAllDataSourceInDashboard(target.id))}")
-    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.datasource.DataSourceProjections$ForSimpleViewProjection), @dashBoardService.backingDataSource(target))}")
+    //@Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.datasource.DataSourceProjections$ForSimpleViewProjection), @dashboardRepository.findAllDataSourceInDashboard(target.id))}")
+    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.datasource.DataSourceProjections$ForSimpleViewProjection), @dashBoardService.backingDataSource(target))}")
     Object getDataSource();
 
     @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.workbook.DashboardProjections$ForLeftListViewProjection), target.dashBoards)}")

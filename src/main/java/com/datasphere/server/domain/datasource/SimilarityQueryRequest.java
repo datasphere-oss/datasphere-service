@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.datasphere.server.common.exception.BadRequestException;
-import com.datasphere.server.domain.datasource.data.AbstractQueryRequest;
-import com.datasphere.server.domain.datasource.data.QueryRequest;
+import com.datasphere.server.datasource.data.AbstractQueryRequest;
+import com.datasphere.server.datasource.data.QueryRequest;
 import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
 
 /**

@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.job;
+package com.datasphere.server.datasource.ingestion.job;
 
 import org.apache.commons.collections.MapUtils;
 import org.slf4j.Logger;
@@ -34,10 +34,11 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.ingestion.HdfsIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.domain.datasource.ingestion.IngestionOption;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceIngestionException;
+import com.datasphere.server.datasource.ingestion.HdfsIngestionInfo;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.ingestion.IngestionOption;
 import com.datasphere.server.spec.druid.ingestion.HadoopIndex;
 import com.datasphere.server.spec.druid.ingestion.Index;
 import com.datasphere.server.spec.druid.ingestion.IngestionSpec;
@@ -93,7 +94,13 @@ public class HdfsIngestionJob extends AbstractIngestionJob implements IngestionJ
 
   @Override
   public String process() {
-    String taskId = doIngestion(indexSpec);
+    String taskId = null;
+	try {
+		taskId = doIngestion(indexSpec);
+	} catch (DataSourceIngestionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     LOGGER.info("Successfully creating task : {}", ingestionHistory);
     return taskId;
   }

@@ -26,7 +26,7 @@ import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
-import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.datasource.DataSource;
 
 public class JoinMapping implements Serializable {
 
@@ -60,7 +60,7 @@ public class JoinMapping implements Serializable {
    * Biz. Logic 용 객체(스펙과 관련 없음)
    */
   @JsonIgnore
-  com.datasphere.server.domain.datasource.DataSource metaDataSource;
+  com.datasphere.server.datasource.DataSource metaDataSource;
 
   public JoinMapping(
       @JsonProperty("name") String name,

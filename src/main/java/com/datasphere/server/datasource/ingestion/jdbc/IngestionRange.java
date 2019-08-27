@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.jdbc;
+package com.datasphere.server.datasource.ingestion.jdbc;
 
 /**
  * 수집 범위

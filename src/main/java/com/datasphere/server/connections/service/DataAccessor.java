@@ -25,9 +25,13 @@ import java.util.Map;
 import javax.inject.Singleton;
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.datasphere.common.data.Column;
 import com.datasphere.common.data.Dataset;
 import com.datasphere.core.common.utils.UUIDUtils;
+import com.datasphere.server.connections.BusinessDataType;
 import com.datasphere.server.connections.constant.KeyWord;
 import com.datasphere.server.connections.dao.DatasetDAO;
 import com.datasphere.server.connections.dao.TableDAO;
@@ -43,9 +47,6 @@ import com.datasphere.server.connections.model.TableMetaData;
 import com.datasphere.server.connections.model.TableQuery;
 import com.datasphere.server.connections.utils.Assert;
 import com.datasphere.server.connections.utils.StringUtils;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 1. KEY的生成（应该是由数据访问层生成）

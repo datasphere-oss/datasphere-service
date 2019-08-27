@@ -23,7 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 import java.util.Set;
 
-import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.datasource.data.forward.ResultForward;
 import com.datasphere.server.domain.workbook.configurations.Limit;
 import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
 import com.datasphere.server.domain.workbook.configurations.field.DimensionField;

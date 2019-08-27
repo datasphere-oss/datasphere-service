@@ -56,6 +56,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
 import com.datasphere.server.util.BeanUtils;
 import com.datasphere.server.util.CsvProcessor;
@@ -121,7 +122,7 @@ public class AuditController {
 
   @RequestMapping(path = "/audits/queryIds/{queryId}", method = {RequestMethod.PATCH, RequestMethod.POST})
   @ResponseBody
-  public ResponseEntity<?> auditUpdateByQueryId(@PathVariable String queryId, @RequestBody Audit requestBody) {
+  public ResponseEntity<?> auditUpdateByQueryId(@PathVariable String queryId, @RequestBody Audit requestBody) throws ResourceNotFoundException {
 
     LOGGER.debug("queryId : {}", queryId);
     LOGGER.debug("requestBody : {}", requestBody);
@@ -184,7 +185,7 @@ public class AuditController {
           @RequestParam(value = "from", required = false)
           @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime from,
           @RequestParam(value = "to", required = false)
-          @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime to) {
+          @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime to) throws BadRequestException {
 
     LOGGER.debug("type : {}", auditType);
     LOGGER.debug("user : {}", user);
@@ -234,7 +235,7 @@ public class AuditController {
           @RequestParam(value = "from", required = false)
           @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime from,
           @RequestParam(value = "to", required = false)
-          @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime to) {
+          @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime to) throws BadRequestException {
 
     LOGGER.debug("type : {}", auditType);
     LOGGER.debug("from : {}", from);
@@ -266,7 +267,7 @@ public class AuditController {
           @RequestParam(value = "to", required = false)
           @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime to,
           @RequestParam(value = "auditStatus") String auditStatus,
-          Pageable pageable) {
+          Pageable pageable) throws BadRequestException {
 
     LOGGER.debug("auditStatus : {}", auditStatus);
     LOGGER.debug("type : {}", auditType);
@@ -301,7 +302,7 @@ public class AuditController {
           @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime from,
           @RequestParam(value = "to", required = false)
           @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime to,
-          Pageable pageable) {
+          Pageable pageable) throws BadRequestException {
 
     LOGGER.debug("type : {}", auditType);
     LOGGER.debug("user : {}", user);

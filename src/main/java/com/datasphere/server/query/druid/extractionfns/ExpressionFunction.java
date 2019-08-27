@@ -16,7 +16,7 @@ package com.datasphere.server.query.druid.extractionfns;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.datasource.data.QueryTimeExcetpion;
 import com.datasphere.server.query.druid.ExtractionFunction;
 import com.datasphere.server.util.PolarisUtils;
 

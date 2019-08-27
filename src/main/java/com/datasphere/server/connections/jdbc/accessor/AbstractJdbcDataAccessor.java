@@ -241,7 +241,7 @@ public abstract class AbstractJdbcDataAccessor implements JdbcAccessor {
   }
 
   @Override
-  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) {
+  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) throws SQLException{
     List<String> dataBaseNames = Lists.newArrayList();
     Map<String, Object> databaseMap = Maps.newHashMap();
     Connection conn = null;
@@ -281,7 +281,7 @@ public abstract class AbstractJdbcDataAccessor implements JdbcAccessor {
   }
 
   @Override
-  public Map<String, Object> getTables(String catalog, String schemaPattern, String tableNamePattern, Integer pageSize, Integer pageNumber) {
+  public Map<String, Object> getTables(String catalog, String schemaPattern, String tableNamePattern, Integer pageSize, Integer pageNumber) throws SQLException{
     String tableNamePatternForQuery = null;
     if (!StringUtils.isEmpty(tableNamePattern)) {
       tableNamePatternForQuery = "%" + tableNamePattern + "%";
@@ -474,7 +474,7 @@ public abstract class AbstractJdbcDataAccessor implements JdbcAccessor {
   }
 
   @Override
-  public Map<String, Object> showTableDescription(String catalog, String schema, String tableName) {
+  public Map<String, Object> showTableDescription(String catalog, String schema, String tableName) throws SQLException{
     try {
       String tableDescQuery = dialect.getTableDescQuery(connectionInfo, catalog, schema, tableName);
       if(StringUtils.isNotEmpty(tableDescQuery)){

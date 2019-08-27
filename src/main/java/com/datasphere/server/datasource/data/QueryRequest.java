@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data;
+package com.datasphere.server.datasource.data;
 
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.data.alias.Alias;
+import com.datasphere.server.datasource.data.alias.Alias;
 import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
 
 public interface QueryRequest extends Serializable {

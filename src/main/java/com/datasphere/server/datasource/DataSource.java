@@ -12,15 +12,46 @@
 
 package com.datasphere.server.datasource;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
+import static com.datasphere.server.datasource.DataSource.SourceType.FILE;
+import static com.datasphere.server.datasource.DataSource.SourceType.HDFS;
+import static com.datasphere.server.datasource.DataSource.SourceType.HIVE;
+import static com.datasphere.server.datasource.DataSource.SourceType.JDBC;
+import static com.datasphere.server.datasource.DataSource.SourceType.REALTIME;
+import static com.datasphere.server.datasource.DataSource.SourceType.SNAPSHOT;
+import static com.datasphere.server.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
+import static org.hibernate.search.annotations.Index.NO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRawValue;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.io.IOException;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
+
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
+import javax.persistence.PreUpdate;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
@@ -44,37 +75,25 @@ import org.joda.time.Interval;
 import org.joda.time.Period;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-import java.io.IOException;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.StringJoiner;
-import java.util.stream.Collectors;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.CustomCollectors;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.entity.Spec;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.datasource.ingestion.HdfsIngestionInfo;
+import com.datasphere.server.datasource.ingestion.HiveIngestionInfo;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.server.datasource.ingestion.RealtimeIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.SingleIngestionInfo;
 import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.MetatronDomain;
 import com.datasphere.server.domain.context.ContextEntity;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataprep.entity.PrSnapshot;
-import com.datasphere.server.domain.datasource.ingestion.HdfsIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.HiveIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.LocalFileIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.RealtimeIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.SingleIngestionInfo;
 import com.datasphere.server.domain.mdm.Metadata;
 import com.datasphere.server.domain.mdm.MetadataColumn;
 import com.datasphere.server.domain.workbook.DashBoard;
@@ -84,15 +103,14 @@ import com.datasphere.server.domain.workbook.configurations.field.TimestampField
 import com.datasphere.server.domain.workspace.Workspace;
 import com.datasphere.server.util.AuthUtils;
 import com.datasphere.server.util.PolarisUtils;
-
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.FILE;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.HDFS;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.HIVE;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.JDBC;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.REALTIME;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.SNAPSHOT;
-import static com.datasphere.server.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
-import static org.hibernate.search.annotations.Index.NO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
 @Entity
 @Table(name = "datasource",
@@ -1157,7 +1175,7 @@ public class DataSource extends AbstractHistoryEntity implements MetatronDomain<
       return type.getTimeUnitFormat();
     }
 
-    public static GranularityType fromPeriod(Period period) {
+    public static GranularityType fromPeriod(Period period) throws MetatronException {
       int[] vals = period.getValues();
       int index = -1;
       for (int i = 0; i < vals.length; i++) {

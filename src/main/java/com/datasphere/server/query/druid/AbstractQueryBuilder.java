@@ -60,14 +60,14 @@ import java.util.stream.Collectors;
 
 import com.datasphere.server.common.CommonLocalVariable;
 import com.datasphere.server.common.datasource.LogicalType;
-import com.datasphere.server.domain.datasource.QueryHistoryTeller;
-import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
-import com.datasphere.server.domain.datasource.data.forward.CsvResultForward;
-import com.datasphere.server.domain.datasource.data.forward.ExcelResultForward;
-import com.datasphere.server.domain.datasource.data.forward.JsonResultForward;
-import com.datasphere.server.domain.datasource.data.forward.OrcResultForward;
-import com.datasphere.server.domain.datasource.data.forward.ParquetResultForward;
-import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.datasource.QueryHistoryTeller;
+import com.datasphere.server.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.datasource.data.forward.CsvResultForward;
+import com.datasphere.server.datasource.data.forward.ExcelResultForward;
+import com.datasphere.server.datasource.data.forward.JsonResultForward;
+import com.datasphere.server.datasource.data.forward.OrcResultForward;
+import com.datasphere.server.datasource.data.forward.ParquetResultForward;
+import com.datasphere.server.datasource.data.forward.ResultForward;
 import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
 import com.datasphere.server.domain.workbook.configurations.datasource.DefaultDataSource;
 import com.datasphere.server.domain.workbook.configurations.datasource.JoinMapping;
@@ -108,14 +108,14 @@ import com.datasphere.server.query.polaris.ComputationalField;
 import com.datasphere.server.util.PolarisUtils;
 import com.datasphere.server.util.TimeUnits;
 
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.CONFUSING_FIELD_CODE;
-import static com.datasphere.server.domain.datasource.Field.FieldRole.DIMENSION;
-import static com.datasphere.server.domain.datasource.Field.FieldRole.TIMESTAMP;
-import static com.datasphere.server.domain.datasource.data.forward.ResultForward.ForwardType.CSV;
-import static com.datasphere.server.domain.datasource.data.forward.ResultForward.ForwardType.EXCEL;
-import static com.datasphere.server.domain.datasource.data.forward.ResultForward.ForwardType.JSON;
-import static com.datasphere.server.domain.datasource.data.forward.ResultForward.ForwardType.NONE;
-import static com.datasphere.server.domain.datasource.data.forward.ResultForward.ForwardType.PARQUET;
+import static com.datasphere.server.datasource.DataSourceErrorCodes.CONFUSING_FIELD_CODE;
+import static com.datasphere.server.datasource.Field.FieldRole.DIMENSION;
+import static com.datasphere.server.datasource.Field.FieldRole.TIMESTAMP;
+import static com.datasphere.server.datasource.data.forward.ResultForward.ForwardType.CSV;
+import static com.datasphere.server.datasource.data.forward.ResultForward.ForwardType.EXCEL;
+import static com.datasphere.server.datasource.data.forward.ResultForward.ForwardType.JSON;
+import static com.datasphere.server.datasource.data.forward.ResultForward.ForwardType.NONE;
+import static com.datasphere.server.datasource.data.forward.ResultForward.ForwardType.PARQUET;
 import static com.datasphere.server.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
 
 /**
@@ -153,22 +153,22 @@ public abstract class AbstractQueryBuilder {
   /**
    * Meta-info for main datasource.
    */
-  protected com.datasphere.server.domain.datasource.DataSource mainMetaDataSource;
+  protected com.datasphere.server.datasource.DataSource mainMetaDataSource;
 
   /**
    * Meta-info for join datasources
    */
-  protected List<com.datasphere.server.domain.datasource.DataSource> joinMetaDataSources = Lists.newArrayList();
+  protected List<com.datasphere.server.datasource.DataSource> joinMetaDataSources = Lists.newArrayList();
 
   /**
    * Meta-info Map (for multi-datasource)
    */
-  protected Map<String, com.datasphere.server.domain.datasource.DataSource> metaDataSourceMap = Maps.newHashMap();
+  protected Map<String, com.datasphere.server.datasource.DataSource> metaDataSourceMap = Maps.newHashMap();
 
   /**
    * Meta field map in meta-datasources
    */
-  protected Map<String, com.datasphere.server.domain.datasource.Field> metaFieldMap = Maps.newLinkedHashMap();
+  protected Map<String, com.datasphere.server.datasource.Field> metaFieldMap = Maps.newLinkedHashMap();
 
   /**
    * 추가적인 검토 필요
@@ -227,7 +227,7 @@ public abstract class AbstractQueryBuilder {
   /**
    * Geometry Field
    */
-  protected com.datasphere.server.domain.datasource.Field geometry;
+  protected com.datasphere.server.datasource.Field geometry;
 
   /**
    * need to geojson format
@@ -588,7 +588,7 @@ public abstract class AbstractQueryBuilder {
           continue;
         }
 
-        com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+        com.datasphere.server.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
 
         if (datasourceField.getRole() == TIMESTAMP) {
           intervals.addAll(intervalFilter.getEngineIntervals());
@@ -613,7 +613,7 @@ public abstract class AbstractQueryBuilder {
           continue;
         }
 
-        com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+        com.datasphere.server.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
 
         String field;
         if (datasourceField.getRole() == TIMESTAMP) {
@@ -636,7 +636,7 @@ public abstract class AbstractQueryBuilder {
         filter.addField(new ExprFilter(inFunc.toExpression()));
       } else if (reqFilter instanceof SpatialFilter) {
 
-        com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+        com.datasphere.server.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
         if (!datasourceField.getLogicalType().isGeoType()) {
           return;
         }
@@ -650,7 +650,7 @@ public abstract class AbstractQueryBuilder {
 
   }
 
-  public void addSpatialFilter(AndFilter filter, SpatialFilter reqFilter, com.datasphere.server.domain.datasource.Field datasourceField) {
+  public void addSpatialFilter(AndFilter filter, SpatialFilter reqFilter, com.datasphere.server.datasource.Field datasourceField) {
 
     Filter spatialFilter = null;
 
@@ -685,7 +685,7 @@ public abstract class AbstractQueryBuilder {
 
     String fieldName = timeFilter.getColumn();
     String engineColumnName = engineColumnName(fieldName);
-    com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+    com.datasphere.server.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
 
     if (datasourceField.getRole() == TIMESTAMP && !(timeFilter instanceof TimeListFilter)) {
       intervals.addAll(timeFilter.getEngineIntervals(datasourceField));

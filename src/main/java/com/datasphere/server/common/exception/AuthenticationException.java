@@ -17,6 +17,9 @@ package com.datasphere.server.common.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.datasphere.engine.common.exception.GlobalErrorCodes;
+import com.datasphere.engine.common.exception.MetatronException;
+
 /**
  * 인증 오류시 발생 (Role처리 오류)
  */
@@ -31,7 +34,7 @@ public class AuthenticationException extends MetatronException {
     super(GlobalErrorCodes.AUTH_ERROR_CODE, cause);
   }
 
-  public AuthenticationException(ErrorCodes code, String message, Throwable cause) {
+  public AuthenticationException(GlobalErrorCodes code, String message, Throwable cause) {
     super(code, message, cause);
   }
 }

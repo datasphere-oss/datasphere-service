@@ -26,40 +26,39 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.job;
+package com.datasphere.server.datasource.ingestion.job;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
+import static com.datasphere.server.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
+import static com.datasphere.server.datasource.DataSourceErrorCodes.INGESTION_JDBC_EMPTY_RESULT_ERROR;
+import static com.datasphere.server.datasource.DataSourceErrorCodes.INGESTION_JDBC_FETCH_RESULT_ERROR;
+import static com.datasphere.server.datasource.DataSourceErrorCodes.INGESTION_JDBC_QUERY_EXECUTION_ERROR;
+import static com.datasphere.server.datasource.ingestion.jdbc.BatchIngestionInfo.IngestionScope.INCREMENTAL;
+
+import java.io.File;
+import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.util.List;
-
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceIngestionException;
+import com.datasphere.server.datasource.DataSourceSummary;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.ingestion.IngestionOption;
+import com.datasphere.server.datasource.ingestion.file.CsvFileFormat;
+import com.datasphere.server.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo;
 import com.datasphere.server.domain.dataconnection.DataConnection;
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.DataSourceIngestionException;
-import com.datasphere.server.domain.datasource.DataSourceSummary;
-import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.domain.datasource.ingestion.IngestionOption;
-import com.datasphere.server.domain.datasource.ingestion.file.CsvFileFormat;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.spec.druid.ingestion.BatchIndex;
 import com.datasphere.server.spec.druid.ingestion.Index;
 import com.datasphere.server.spec.druid.ingestion.IngestionSpec;
 import com.datasphere.server.spec.druid.ingestion.IngestionSpecBuilder;
-
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_JDBC_EMPTY_RESULT_ERROR;
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_JDBC_FETCH_RESULT_ERROR;
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_JDBC_QUERY_EXECUTION_ERROR;
-import static com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo.IngestionScope.INCREMENTAL;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 
 public class JdbcIngestionJob extends AbstractIngestionJob implements IngestionJob {
 
@@ -125,23 +124,52 @@ public class JdbcIngestionJob extends AbstractIngestionJob implements IngestionJ
       }
     } catch (JdbcDataConnectionException ce) {
       if (ce.getCode() == JdbcDataConnectionErrorCodes.INVALID_QUERY_ERROR_CODE) {
-        throw new DataSourceIngestionException(INGESTION_JDBC_QUERY_EXECUTION_ERROR, ce);
+        try {
+			throw new DataSourceIngestionException(INGESTION_JDBC_QUERY_EXECUTION_ERROR, ce);
+		} catch (DataSourceIngestionException e) {
+			e.printStackTrace();
+		}
       } else if (ce.getCode() == JdbcDataConnectionErrorCodes.CSV_IO_ERROR_CODE) {
-        throw new DataSourceIngestionException(INGESTION_JDBC_FETCH_RESULT_ERROR, ce);
+        try {
+			throw new DataSourceIngestionException(INGESTION_JDBC_FETCH_RESULT_ERROR, ce);
+		} catch (DataSourceIngestionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
       } else {
-        throw new DataSourceIngestionException(INGESTION_COMMON_ERROR, ce);
+        try {
+			throw new DataSourceIngestionException(INGESTION_COMMON_ERROR, ce);
+		} catch (DataSourceIngestionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
       }
     } catch (Exception e) {
-      throw new DataSourceIngestionException(INGESTION_COMMON_ERROR, e);
+      try {
+		throw new DataSourceIngestionException(INGESTION_COMMON_ERROR, e);
+	} catch (DataSourceIngestionException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
     }
 
     if (CollectionUtils.isEmpty(csvFiles)) {
-      throw new DataSourceIngestionException(INGESTION_JDBC_EMPTY_RESULT_ERROR, "Empty result of query.");
+      try {
+		throw new DataSourceIngestionException(INGESTION_JDBC_EMPTY_RESULT_ERROR, "Empty result of query.");
+	} catch (DataSourceIngestionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     }
 
     File tempFile = new File(csvFiles.get(0));
     if (!tempFile.canRead()) {
-      throw new DataSourceIngestionException(INGESTION_JDBC_FETCH_RESULT_ERROR, "Temporary file for ingestion are not available.");
+      try {
+		throw new DataSourceIngestionException(INGESTION_JDBC_FETCH_RESULT_ERROR, "Temporary file for ingestion are not available.");
+	} catch (DataSourceIngestionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     }
 
     srcFilePath = tempFile.getAbsolutePath();
@@ -167,7 +195,13 @@ public class JdbcIngestionJob extends AbstractIngestionJob implements IngestionJ
 
   @Override
   public String process() {
-    String taskId = doIngestion(indexSpec);
+    String taskId = null;
+	try {
+		taskId = doIngestion(indexSpec);
+	} catch (DataSourceIngestionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     LOGGER.info("Successfully creating task : {}", ingestionHistory);
     return taskId;
   }

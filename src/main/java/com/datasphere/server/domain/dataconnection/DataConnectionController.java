@@ -14,10 +14,13 @@
 
 package com.datasphere.server.domain.dataconnection;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
-import com.querydsl.core.types.Predicate;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -39,27 +42,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.sql.Connection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.datasphere.server.common.criteria.ListCriterion;
 import com.datasphere.server.common.criteria.ListFilter;
 import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.datasource.DataSourceProperties;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.connection.jdbc.HiveTableInformation;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.datasource.connection.jdbc.JdbcQueryResultResponse;
+import com.datasphere.server.datasource.ingestion.file.FileFormat;
+import com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo;
 import com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessor;
 import com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessorUsingMetastore;
 import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
-import com.datasphere.server.domain.datasource.DataSourceProperties;
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.domain.datasource.connection.jdbc.HiveTableInformation;
-import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
-import com.datasphere.server.domain.datasource.connection.jdbc.JdbcQueryResultResponse;
-import com.datasphere.server.domain.datasource.ingestion.file.FileFormat;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
 import com.datasphere.server.domain.engine.EngineProperties;
 import com.datasphere.server.domain.mdm.Metadata;
 import com.datasphere.server.domain.mdm.source.MetadataSource;
@@ -68,9 +67,10 @@ import com.datasphere.server.domain.storage.StorageProperties;
 import com.datasphere.server.domain.workbench.Workbench;
 import com.datasphere.server.domain.workbench.WorkbenchRepository;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.util.PolarisUtils;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.querydsl.core.types.Predicate;
 
 /**
  * Created by kyungtaak on 2016. 6. 10..
@@ -176,7 +176,7 @@ public class DataConnectionController {
   }
 
   @RequestMapping(value = "/connections/query/check", method = RequestMethod.POST)
-  public @ResponseBody ResponseEntity<?> queryForConnection(@RequestBody ConnectionRequest checkRequest) {
+  public @ResponseBody ResponseEntity<?> queryForConnection(@RequestBody ConnectionRequest checkRequest) throws JdbcDataConnectionException {
 
     // 추가 유효성 체크
     Map<String, Object> resultMap = connectionService.checkConnection(checkRequest.getConnection());
@@ -186,14 +186,14 @@ public class DataConnectionController {
 
   @RequestMapping(value = "/connections/query/databases", method = RequestMethod.POST)
   public @ResponseBody ResponseEntity<?> queryForListOfDatabases(@RequestBody ConnectionRequest checkRequest,
-                                                                 Pageable pageable) {
+                                                                 Pageable pageable) throws SQLException {
     return ResponseEntity.ok(
         connectionService.getDatabases(checkRequest.getConnection(), null, pageable)
     );
   }
 
   @RequestMapping(value = "/connections/query/hive/databases", method = RequestMethod.POST)
-  public @ResponseBody ResponseEntity<?> queryForListOfHiveDatabases(Pageable pageable) {
+  public @ResponseBody ResponseEntity<?> queryForListOfHiveDatabases(Pageable pageable) throws SQLException, ResourceNotFoundException {
 
     StorageProperties.StageDBConnection stageDBConnection = getStageDBConnection(storageProperties);
 
@@ -206,7 +206,7 @@ public class DataConnectionController {
 
   @RequestMapping(value = "/connections/query/tables", method = RequestMethod.POST)
   public @ResponseBody ResponseEntity<?> queryForListOfTables(@RequestBody ConnectionRequest checkRequest,
-                                                              Pageable pageable) {
+                                                              Pageable pageable) throws SQLException {
 
     return ResponseEntity.ok(
         connectionService.getTableNames(checkRequest.getConnection(), checkRequest.getDatabase(), checkRequest.getTable(), pageable)
@@ -215,7 +215,7 @@ public class DataConnectionController {
 
   @RequestMapping(value = "/connections/query/hive/tables", method = RequestMethod.POST)
   public @ResponseBody ResponseEntity<?> queryForListOfHiveTables(@RequestBody ConnectionRequest checkRequest,
-                                                              Pageable pageable) {
+                                                              Pageable pageable) throws BadRequestException, SQLException, ResourceNotFoundException {
 
     //유효성 체크
     SearchParamValidator.checkNull(checkRequest.getDatabase(), "database");
@@ -232,7 +232,7 @@ public class DataConnectionController {
   @RequestMapping(value = "/connections/query/data", method = RequestMethod.POST)
   public @ResponseBody ResponseEntity<?> queryBySelect(@RequestBody ConnectionRequest checkRequest,
                                                        @RequestParam(required = false, defaultValue = "50") int limit,
-                                                       @RequestParam(required = false) boolean extractColumnName) {
+                                                       @RequestParam(required = false) boolean extractColumnName) throws BadRequestException, JdbcDataConnectionException {
 
     // 추가 유효성 체크
     SearchParamValidator.checkNull(checkRequest.getType(), "type");
@@ -248,7 +248,7 @@ public class DataConnectionController {
   @RequestMapping(value = "/connections/query/hive/data", method = RequestMethod.POST)
   public @ResponseBody ResponseEntity<?> queryBySelectForHiveIngestion(@RequestBody ConnectionRequest checkRequest,
                                                                        @RequestParam(required = false, defaultValue = "50") int limit,
-                                                                       @RequestParam(required = false) boolean extractColumnName) {
+                                                                       @RequestParam(required = false) boolean extractColumnName) throws BadRequestException, JdbcDataConnectionException, ResourceNotFoundException {
 
     // 추가 유효성 체크
     SearchParamValidator.checkNull(checkRequest.getType(), "type");
@@ -319,7 +319,7 @@ public class DataConnectionController {
   }
 
   @RequestMapping(value = "/connections/query/information", method = RequestMethod.POST)
-  public @ResponseBody ResponseEntity<?> queryForTableInfo(@RequestBody ConnectionRequest checkRequest) {
+  public @ResponseBody ResponseEntity<?> queryForTableInfo(@RequestBody ConnectionRequest checkRequest) throws BadRequestException, SQLException {
 
     // 추가 유효성 체크
     SearchParamValidator.checkNull(checkRequest.getTable(), "table");
@@ -339,7 +339,7 @@ public class DataConnectionController {
           @RequestParam(required = false) String databaseName,
           @RequestParam(required = false) String webSocketId,
           @RequestParam(required = false) String loginUserId,
-          Pageable pageable) {
+          Pageable pageable) throws ResourceNotFoundException, BadRequestException, SQLException {
 
     DataConnection connectionInfo = connectionRepository.findOne(connectionId);
 
@@ -370,7 +370,7 @@ public class DataConnectionController {
           @PathVariable("databaseName") String databaseName,
           @RequestParam(required = false) String tableName,
           @RequestParam(required = false) String webSocketId,
-          Pageable pageable) {
+          Pageable pageable) throws ResourceNotFoundException, BadRequestException, SQLException {
 
     DataConnection dataConnection = connectionRepository.findOne(connectionId);
     if(dataConnection == null) {
@@ -400,7 +400,7 @@ public class DataConnectionController {
           @PathVariable("tableName") String tableName,
           @RequestParam(required = false) String webSocketId,
           @RequestParam(required = false) String columnNamePattern,
-          Pageable pageable) {
+          Pageable pageable) throws ResourceNotFoundException, BadRequestException, JdbcDataConnectionException {
 
     DataConnection dataConnection = connectionRepository.findOne(connectionId);
     if(dataConnection == null) {
@@ -429,7 +429,7 @@ public class DataConnectionController {
           @PathVariable("connectionId") String connectionId,
           @PathVariable("databaseName") String databaseName,
           @PathVariable("tableName") String tableName,
-          @RequestParam(required = false) String webSocketId) {
+          @RequestParam(required = false) String webSocketId) throws ResourceNotFoundException, BadRequestException, SQLException {
 
     DataConnection dataConnection = connectionRepository.findOne(connectionId);
     if(dataConnection == null) {
@@ -457,7 +457,7 @@ public class DataConnectionController {
   public @ResponseBody ResponseEntity<?> changeDatabase(
           @PathVariable("connectionId") String connectionId,
           @PathVariable("databaseName") String databaseName,
-          @RequestBody Map<String, String> requestBodyMap) {
+          @RequestBody Map<String, String> requestBodyMap) throws ResourceNotFoundException, JdbcDataConnectionException {
 
     DataConnection dataConnection = connectionRepository.findOne(connectionId);
     if(dataConnection == null) {
@@ -490,7 +490,7 @@ public class DataConnectionController {
           method = RequestMethod.POST,  produces = "application/json")
   public @ResponseBody ResponseEntity<?> createDataSource(
           @PathVariable("connectionId") String connectionId,
-          @RequestBody Map<String, String> requestBodyMap) {
+          @RequestBody Map<String, String> requestBodyMap) throws ResourceNotFoundException, JdbcDataConnectionException {
 
     DataConnection dataConnection = connectionRepository.findOne(connectionId);
     if(dataConnection == null) {
@@ -503,7 +503,7 @@ public class DataConnectionController {
   }
 
   @RequestMapping(value = "/connections/metadata/tables/jdbc", method = RequestMethod.POST)
-  public @ResponseBody ResponseEntity<?> listOfTablesForMdm(@RequestBody ConnectionRequest checkRequest) {
+  public @ResponseBody ResponseEntity<?> listOfTablesForMdm(@RequestBody ConnectionRequest checkRequest) throws SQLException {
     //Whole Table Name List
     Map<String, Object> tables = connectionService.getTableNames(checkRequest.getConnection(), checkRequest.getDatabase(), null);
     List<String> tableNameList = (List) tables.get("tables");
@@ -531,7 +531,7 @@ public class DataConnectionController {
   }
 
   @RequestMapping(value = "/connections/metadata/tables/stage", method = RequestMethod.POST)
-  public @ResponseBody ResponseEntity<?> listOfHiveTablesForMdm(@RequestBody ConnectionRequest checkRequest) {
+  public @ResponseBody ResponseEntity<?> listOfHiveTablesForMdm(@RequestBody ConnectionRequest checkRequest) throws BadRequestException, SQLException, ResourceNotFoundException {
 
     //유효성 체크
     SearchParamValidator.checkNull(checkRequest.getDatabase(), "database");
@@ -551,7 +551,7 @@ public class DataConnectionController {
     return ResponseEntity.ok(returnMap);
   }
 
-  private static StorageProperties.StageDBConnection getStageDBConnection(StorageProperties storageProperties) {
+  private static StorageProperties.StageDBConnection getStageDBConnection(StorageProperties storageProperties) throws ResourceNotFoundException {
     if (storageProperties == null || storageProperties.getStagedb() == null) {
       throw new ResourceNotFoundException("StorageProperties.StageDBConnection");
     }
@@ -601,19 +601,19 @@ public class DataConnectionController {
 
   @Deprecated
   @RequestMapping(value = "/connections/query/hive/strict", method = RequestMethod.GET)
-  public @ResponseBody ResponseEntity<?> strictModeForHiveIngestion() {
+  public @ResponseBody ResponseEntity<?> strictModeForHiveIngestion() throws ResourceNotFoundException {
     StorageProperties.StageDBConnection stageDBConnection = getStageDBConnection(storageProperties);
     return ResponseEntity.ok(stageDBConnection.isStrictMode());
   }
 
   @RequestMapping(value = "/connections/query/hive/partitions/enable", method = RequestMethod.GET)
-  public @ResponseBody ResponseEntity<?> enablePartitionForHiveIngestion() {
+  public @ResponseBody ResponseEntity<?> enablePartitionForHiveIngestion() throws ResourceNotFoundException {
     StorageProperties.StageDBConnection stageDBConnection = getStageDBConnection(storageProperties);
     return ResponseEntity.ok(stageDBConnection.getMetastore().includeJdbc());
   }
 
   @RequestMapping(value = "/connections/query/hive/partitions", method = RequestMethod.POST)
-  public @ResponseBody ResponseEntity<?> partitionInforForHiveIngestion(@RequestBody ConnectionRequest checkRequest) {
+  public @ResponseBody ResponseEntity<?> partitionInforForHiveIngestion(@RequestBody ConnectionRequest checkRequest) throws ResourceNotFoundException, BadRequestException, JdbcDataConnectionException, DataConnectionException {
 
     // validation checkØ
     SearchParamValidator.checkNull(checkRequest.getType(), "type");
@@ -642,7 +642,7 @@ public class DataConnectionController {
   }
 
   @RequestMapping(value = "/connections/query/hive/partitions/validate", method = RequestMethod.POST)
-  public @ResponseBody ResponseEntity<?> validatePartitionInforForHiveIngestion(@RequestBody ConnectionRequest checkRequest) {
+  public @ResponseBody ResponseEntity<?> validatePartitionInforForHiveIngestion(@RequestBody ConnectionRequest checkRequest) throws BadRequestException, ResourceNotFoundException, JdbcDataConnectionException {
 
     // validation check
     SearchParamValidator.checkNull(checkRequest.getType(), "type");
@@ -685,7 +685,7 @@ public class DataConnectionController {
   }
 
   @RequestMapping(value = "/connections/criteria/{criterionKey}", method = RequestMethod.GET)
-  public ResponseEntity<?> getCriterionDetail(@PathVariable(value = "criterionKey") String criterionKey) {
+  public ResponseEntity<?> getCriterionDetail(@PathVariable(value = "criterionKey") String criterionKey) throws ResourceNotFoundException {
 
     DataConnectionListCriterionKey criterionKeyEnum = DataConnectionListCriterionKey.valueOf(criterionKey);
 
@@ -700,7 +700,7 @@ public class DataConnectionController {
   @RequestMapping(value = "/connections/filter", method = RequestMethod.POST)
   public @ResponseBody ResponseEntity<?> filterDataConnection(@RequestBody DataConnectionFilterRequest request,
                                                            Pageable pageable,
-                                                           PersistentEntityResourceAssembler resourceAssembler) {
+                                                           PersistentEntityResourceAssembler resourceAssembler) throws BadRequestException {
 
     List<String> workspaces = request == null ? null : request.getWorkspace();
     List<String> createdBys = request == null ? null : request.getCreatedBy();

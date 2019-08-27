@@ -12,9 +12,9 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
-import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.datasource.data.forward.ResultForward;
 
 /**
  * Created by kyungtaak on 2016. 8. 30..

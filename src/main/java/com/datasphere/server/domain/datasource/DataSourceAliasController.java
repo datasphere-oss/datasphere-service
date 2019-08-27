@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

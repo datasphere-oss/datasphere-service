@@ -14,6 +14,8 @@
 
 package com.datasphere.server.common.exception;
 
+import java.io.IOException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
@@ -35,8 +37,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.io.IOException;
-
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.CommonLocalVariable;
 import com.datasphere.server.domain.dataprep.exceptions.PrepException;
 import com.datasphere.server.domain.engine.DruidEngineMetaRepository;

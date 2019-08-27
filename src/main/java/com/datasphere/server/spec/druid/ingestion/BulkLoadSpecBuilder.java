@@ -17,7 +17,7 @@ package com.datasphere.server.spec.druid.ingestion;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.datasource.DataSource;
 
 /**
  * Created by kyungtaak on 2016. 7. 30..

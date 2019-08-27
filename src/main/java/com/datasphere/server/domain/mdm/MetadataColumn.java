@@ -38,7 +38,7 @@ import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.entity.Spec;
 import com.datasphere.server.domain.CollectionPatch;
 import com.datasphere.server.domain.MetatronDomain;
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
 @Entity

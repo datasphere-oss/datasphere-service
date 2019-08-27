@@ -33,7 +33,7 @@ import org.apache.commons.collections.MapUtils;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.spec.druid.ingestion.firehose.LocalFirehose;
 import com.datasphere.server.spec.druid.ingestion.index.IndexSpec;
 import com.datasphere.server.spec.druid.ingestion.input.HadoopInputSpec;

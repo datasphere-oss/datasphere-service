@@ -19,9 +19,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.entity.DomainType;
-import com.datasphere.server.common.exception.MetatronException;
-import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.datasource.DataSourceRepository;
 import com.datasphere.server.domain.notebook.NotebookRepository;
 import com.datasphere.server.domain.user.role.RoleRepository;
 import com.datasphere.server.domain.workbench.WorkbenchRepository;
@@ -58,7 +58,7 @@ public class ContextDomainRepositoryFactory {
   @Autowired
   ContextRepository contextRepository;
 
-  public ContextDomainRepository getDomainRepository(DomainType type) {
+  public ContextDomainRepository getDomainRepository(DomainType type) throws MetatronException {
     switch (type) {
       case DATASOURCE:
         return dataSourceRepository;

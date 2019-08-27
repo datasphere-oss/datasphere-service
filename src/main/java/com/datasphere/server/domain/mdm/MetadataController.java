@@ -54,7 +54,7 @@ import com.datasphere.server.common.entity.DomainType;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
 import com.datasphere.server.domain.CollectionPatch;
-import com.datasphere.server.domain.datasource.DataSourceService;
+import com.datasphere.server.datasource.DataSourceService;
 import com.datasphere.server.domain.tag.Tag;
 import com.datasphere.server.domain.tag.TagProjections;
 import com.datasphere.server.domain.tag.TagService;

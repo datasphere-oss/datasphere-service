@@ -12,27 +12,32 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion;
+package com.datasphere.server.datasource.ingestion;
 
-import com.fasterxml.jackson.annotation.JsonRawValue;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
-
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.datasource.ingestion.job.IngestionProgress;
 import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.MetatronDomain;
-import com.datasphere.server.domain.datasource.ingestion.job.IngestionProgress;
 import com.datasphere.server.domain.engine.model.IngestionStatusResponse;
+import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-/**
- * Created by kyungtaak on 2016. 8. 13..
- */
 @Entity
 @Table(name = "ingestion_history")
 public class IngestionHistory extends AbstractHistoryEntity implements MetatronDomain<Long> {
@@ -114,7 +119,7 @@ public class IngestionHistory extends AbstractHistoryEntity implements MetatronD
 
   public void setStatus(IngestionStatus status, MetatronException e) {
     this.status = status;
-    this.errorCode = e.getCode().toString();
+    this.errorCode = String.valueOf(e.getCode());
     this.cause = ExceptionUtils.getRootCauseMessage(e);
   }
 

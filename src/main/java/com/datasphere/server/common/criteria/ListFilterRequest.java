@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.BadRequestException;
 
 /**
  *
@@ -89,7 +90,7 @@ public abstract class ListFilterRequest {
     this.containsText = containsText;
   }
 
-  public <E extends Enum<E>> List<E> getEnumList(List<String> enumStrList, Class<E> enumClass, String propName){
+  public <E extends Enum<E>> List<E> getEnumList(List<String> enumStrList, Class<E> enumClass, String propName) throws BadRequestException{
     List<E> enumList = null;
     if(enumStrList != null && !enumStrList.isEmpty()){
       enumList = new ArrayList<>();

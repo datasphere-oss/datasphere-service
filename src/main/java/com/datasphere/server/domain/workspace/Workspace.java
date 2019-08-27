@@ -49,7 +49,7 @@ import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.MetatronDomain;
 import com.datasphere.server.domain.context.ContextEntity;
 import com.datasphere.server.domain.dataconnection.DataConnection;
-import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.notebook.NotebookConnector;
 import com.datasphere.server.domain.user.User;
 import com.datasphere.server.domain.user.UserProfile;

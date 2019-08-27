@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import com.google.common.base.Preconditions;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
@@ -77,15 +77,15 @@ import com.datasphere.server.domain.activities.spec.ActivityStreamV2;
 import com.datasphere.server.domain.context.ContextService;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
-import com.datasphere.server.domain.datasource.ingestion.HiveIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistoryRepository;
-import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.RealtimeIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.LinkIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.job.IngestionJobRunner;
+import com.datasphere.server.datasource.ingestion.HiveIngestionInfo;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.server.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.datasource.ingestion.RealtimeIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.LinkIngestionInfo;
+import com.datasphere.server.datasource.ingestion.job.IngestionJobRunner;
 import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
 import com.datasphere.server.domain.engine.EngineIngestionService;
 import com.datasphere.server.domain.mdm.Metadata;
@@ -94,14 +94,14 @@ import com.datasphere.server.domain.workspace.Workspace;
 import com.datasphere.server.util.AuthUtils;
 import com.datasphere.server.util.PolarisUtils;
 
-import static com.datasphere.server.domain.datasource.DataSource.ConnectionType.ENGINE;
-import static com.datasphere.server.domain.datasource.DataSource.ConnectionType.LINK;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.IMPORT;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.JDBC;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.NONE;
-import static com.datasphere.server.domain.datasource.DataSource.Status.ENABLED;
-import static com.datasphere.server.domain.datasource.DataSource.Status.FAILED;
-import static com.datasphere.server.domain.datasource.DataSource.Status.PREPARING;
+import static com.datasphere.server.datasource.DataSource.ConnectionType.ENGINE;
+import static com.datasphere.server.datasource.DataSource.ConnectionType.LINK;
+import static com.datasphere.server.datasource.DataSource.SourceType.IMPORT;
+import static com.datasphere.server.datasource.DataSource.SourceType.JDBC;
+import static com.datasphere.server.datasource.DataSource.SourceType.NONE;
+import static com.datasphere.server.datasource.DataSource.Status.ENABLED;
+import static com.datasphere.server.datasource.DataSource.Status.FAILED;
+import static com.datasphere.server.datasource.DataSource.Status.PREPARING;
 
 /**
  * Created by kyungtaak on 2016. 4. 1..

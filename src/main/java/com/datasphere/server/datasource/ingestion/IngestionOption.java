@@ -1,4 +1,4 @@
-package com.datasphere.server.domain.datasource.ingestion;
+package com.datasphere.server.datasource.ingestion;
 
 import org.datanucleus.util.StringUtils;
 

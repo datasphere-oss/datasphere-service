@@ -28,22 +28,22 @@
 
 package com.datasphere.server.domain.dataconnection.accessor;
 
-import org.pf4j.Extension;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
-import com.datasphere.server.domain.datasource.connection.jdbc.HiveMetaStoreJdbcClient;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
-import com.datasphere.server.util.PolarisUtils;
+import org.pf4j.Extension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import static java.util.stream.Collectors.toList;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.datasource.connection.jdbc.HiveMetaStoreJdbcClient;
+import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
+import com.datasphere.server.util.PolarisUtils;
 
 @Extension
 public class HiveDataAccessorUsingMetastore extends HiveDataAccessor {
@@ -98,7 +98,7 @@ public class HiveDataAccessorUsingMetastore extends HiveDataAccessor {
     return partitionInfoList;
   }
 
-  public List<Map<String, Object>> validatePartition(String database, String table, List<Map<String, Object>> partitions) {
+  public List<Map<String, Object>> validatePartition(String database, String table, List<Map<String, Object>> partitions) throws JdbcDataConnectionException {
     HiveMetaStoreJdbcClient hiveMetaStoreJdbcClient = this.getHiveMetaStoreJdbcClient();
 
     List<String> partitionNameList = new ArrayList<>();

@@ -40,7 +40,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data;
+package com.datasphere.server.datasource.data;
 
 import com.google.common.collect.Lists;
 
@@ -63,9 +63,9 @@ import java.util.stream.Collectors;
 
 import com.datasphere.server.common.CommonLocalVariable;
 import com.datasphere.server.common.GlobalObjectMapper;
-import com.datasphere.server.domain.datasource.data.forward.ResultForward;
-import com.datasphere.server.domain.datasource.data.result.ChartResultFormat;
-import com.datasphere.server.domain.datasource.data.result.SearchResultFormat;
+import com.datasphere.server.datasource.data.forward.ResultForward;
+import com.datasphere.server.datasource.data.result.ChartResultFormat;
+import com.datasphere.server.datasource.data.result.SearchResultFormat;
 import com.datasphere.server.domain.workbook.configurations.Limit;
 import com.datasphere.server.domain.workbook.configurations.Pivot;
 import com.datasphere.server.domain.workbook.configurations.analysis.Analysis;
@@ -313,7 +313,7 @@ public class SearchQueryRequest extends AbstractQueryRequest implements QueryReq
     this.projections = projections;
   }
 
-  public void setProjections(Pivot pivot, boolean original) {
+  public void setProjections(Pivot pivot, boolean original) throws QueryTimeExcetpion {
 
     if (projections == null) {
       projections = Lists.newArrayList();

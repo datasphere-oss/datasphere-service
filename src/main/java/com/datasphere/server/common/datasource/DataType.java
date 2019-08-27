@@ -19,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.sql.Types;
 
 import com.datasphere.server.domain.dataprep.teddy.ColumnType;
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 
 /**
  * Created by kyungtaak on 2017. 6. 11..

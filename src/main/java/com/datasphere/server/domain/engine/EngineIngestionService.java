@@ -46,20 +46,20 @@ import java.util.Optional;
 
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.fileloader.FileLoaderFactory;
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.DataSourceIngestionException;
-import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistoryRepository;
-import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.IngestionOptionService;
-import com.datasphere.server.domain.datasource.ingestion.RealtimeIngestionInfo;
-import com.datasphere.server.domain.datasource.realtime.RealTimeProperties;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceIngestionException;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.server.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.datasource.ingestion.IngestionOptionService;
+import com.datasphere.server.datasource.ingestion.RealtimeIngestionInfo;
+import com.datasphere.server.datasource.realtime.RealTimeProperties;
 import com.datasphere.server.domain.engine.model.IngestionStatusResponse;
 import com.datasphere.server.spec.druid.ingestion.KafkaRealTimeIndexBuilder;
 import com.datasphere.server.spec.druid.ingestion.SupervisorIndex;
 
-import static com.datasphere.server.domain.datasource.ingestion.IngestionHistory.IngestionStatus.RUNNING;
+import static com.datasphere.server.datasource.ingestion.IngestionHistory.IngestionStatus.RUNNING;
 
 /**
  *

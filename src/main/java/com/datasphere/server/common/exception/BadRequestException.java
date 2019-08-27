@@ -14,23 +14,25 @@
 
 package com.datasphere.server.common.exception;
 
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import static com.datasphere.server.common.exception.GlobalErrorCodes.BAD_REQUEST_CODE;
+import com.datasphere.engine.common.exception.GlobalErrorCodes;
+import com.datasphere.engine.common.exception.MetatronException;
 
 @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Bad Request")
 public class BadRequestException extends MetatronException {
 
   public BadRequestException(String message) {
-    super(BAD_REQUEST_CODE, message);
+    super(GlobalErrorCodes.BAD_REQUEST_CODE, message);
   }
 
   public BadRequestException(Throwable cause) {
-    super(BAD_REQUEST_CODE, cause);
+    super(GlobalErrorCodes.BAD_REQUEST_CODE, cause);
   }
 
   public BadRequestException(String message, Throwable cause) {
-    super(BAD_REQUEST_CODE, message, cause);
+    super(GlobalErrorCodes.BAD_REQUEST_CODE, message, cause);
   }
 }

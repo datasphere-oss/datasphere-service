@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Ordering;
@@ -66,7 +66,7 @@ import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.entity.Spec;
 import com.datasphere.server.domain.CollectionPatch;
 import com.datasphere.server.domain.MetatronDomain;
-import com.datasphere.server.domain.datasource.ingestion.rule.IngestionRule;
+import com.datasphere.server.datasource.ingestion.rule.IngestionRule;
 import com.datasphere.server.domain.mdm.MetadataColumn;
 import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
 import com.datasphere.server.domain.workbook.configurations.filter.InclusionFilter;

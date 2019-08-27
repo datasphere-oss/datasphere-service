@@ -12,14 +12,29 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import static com.datasphere.server.datasource.DataSource.ConnectionType.ENGINE;
+import static com.datasphere.server.datasource.DataSource.SourceType.FILE;
+import static com.datasphere.server.datasource.DataSource.Status.PREPARING;
+import static com.datasphere.server.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
+import static com.datasphere.server.datasource.DataSourceErrorCodes.INGESTION_ENGINE_GET_TASK_LOG_ERROR;
+import static com.datasphere.server.datasource.DataSourceTemporary.ID_PREFIX;
 
-import com.univocity.parsers.common.TextParsingException;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -57,21 +72,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
-import java.util.stream.Collectors;
-
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.CommonLocalVariable;
 import com.datasphere.server.common.MetatronProperties;
 import com.datasphere.server.common.criteria.ListCriterion;
@@ -80,25 +81,24 @@ import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.exception.BadRequestException;
-import com.datasphere.server.common.exception.MetatronException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.datasource.data.DataSourceValidator;
+import com.datasphere.server.datasource.data.SearchQueryRequest;
+import com.datasphere.server.datasource.data.result.ObjectResultFormat;
+import com.datasphere.server.datasource.format.DateTimeFormatChecker;
+import com.datasphere.server.datasource.ingestion.IngestionDataResultResponse;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.server.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.datasource.ingestion.IngestionOption;
+import com.datasphere.server.datasource.ingestion.IngestionOptionProjections;
+import com.datasphere.server.datasource.ingestion.IngestionOptionService;
+import com.datasphere.server.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.server.datasource.ingestion.ReingestionRequest;
+import com.datasphere.server.datasource.ingestion.job.IngestionJobRunner;
 import com.datasphere.server.domain.CollectionPatch;
 import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
-import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
-import com.datasphere.server.domain.datasource.data.DataSourceValidator;
-import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
-import com.datasphere.server.domain.datasource.data.result.ObjectResultFormat;
-import com.datasphere.server.domain.datasource.format.DateTimeFormatChecker;
-import com.datasphere.server.domain.datasource.ingestion.IngestionDataResultResponse;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistoryRepository;
-import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.IngestionOption;
-import com.datasphere.server.domain.datasource.ingestion.IngestionOptionProjections;
-import com.datasphere.server.domain.datasource.ingestion.IngestionOptionService;
-import com.datasphere.server.domain.datasource.ingestion.LocalFileIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.ReingestionRequest;
-import com.datasphere.server.domain.datasource.ingestion.job.IngestionJobRunner;
 import com.datasphere.server.domain.engine.EngineIngestionService;
 import com.datasphere.server.domain.engine.EngineLoadService;
 import com.datasphere.server.domain.engine.EngineQueryService;
@@ -114,13 +114,11 @@ import com.datasphere.server.util.CommonsCsvProcessor;
 import com.datasphere.server.util.ExcelProcessor;
 import com.datasphere.server.util.PolarisUtils;
 import com.datasphere.server.util.ProjectionUtils;
-
-import static com.datasphere.server.domain.datasource.DataSource.ConnectionType.ENGINE;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.FILE;
-import static com.datasphere.server.domain.datasource.DataSource.Status.PREPARING;
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_ENGINE_GET_TASK_LOG_ERROR;
-import static com.datasphere.server.domain.datasource.DataSourceTemporary.ID_PREFIX;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import com.univocity.parsers.common.TextParsingException;
 
 /**
  *

@@ -14,22 +14,6 @@
 
 package com.datasphere.server.domain.activities;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
-import com.querydsl.core.Tuple;
-import com.querydsl.core.types.Expression;
-import com.querydsl.core.types.OrderSpecifier;
-import com.querydsl.core.types.dsl.NumberExpression;
-
-import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
-
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -37,13 +21,24 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+
 import com.datasphere.server.domain.activities.spec.ActivityType;
 import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Expression;
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.dsl.NumberExpression;
 
-/**
- * Created by kyungtaak on 2017. 1. 23..
- */
-public class ActivityStreamRepositoryImpl extends QueryDslRepositorySupport implements ActivityStreamRepositoryExtends {
+public class ActivityStreamRepositoryImpl extends QuerydslRepositorySupport implements ActivityStreamRepositoryExtends {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ActivityStreamRepositoryImpl.class);
 

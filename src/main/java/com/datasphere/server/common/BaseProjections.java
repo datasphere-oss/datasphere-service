@@ -19,9 +19,6 @@ import org.springframework.data.rest.core.config.Projection;
 import java.util.Map;
 
 
-/**
- * Created by kyungtaak on 2017. 7. 16..
- */
 public class BaseProjections {
 
   private final Map<String, Class> projectionsMap = Maps.newHashMap();

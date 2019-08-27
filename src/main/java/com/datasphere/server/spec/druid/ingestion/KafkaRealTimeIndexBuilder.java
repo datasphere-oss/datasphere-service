@@ -18,7 +18,7 @@ import org.apache.commons.collections.MapUtils;
 
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.spec.druid.ingestion.io.IoConfig;
 import com.datasphere.server.spec.druid.ingestion.io.KafkaIoConfig;
 import com.datasphere.server.spec.druid.ingestion.tuning.KafkaTuningConfig;

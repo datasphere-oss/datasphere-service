@@ -14,14 +14,6 @@
 
 package com.datasphere.server.connections.jdbc;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.support.JdbcUtils;
-import org.supercsv.io.CsvResultSetWriter;
-import org.supercsv.io.ICsvResultSetWriter;
-import org.supercsv.prefs.CsvPreference;
-
 import java.io.IOException;
 import java.io.Writer;
 import java.sql.Connection;
@@ -33,10 +25,18 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.support.JdbcUtils;
+import org.supercsv.io.CsvResultSetWriter;
+import org.supercsv.io.ICsvResultSetWriter;
+import org.supercsv.prefs.CsvPreference;
+
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.datasource.Field;
 
 public class JdbcCSVWriter extends CsvResultSetWriter implements ICsvResultSetWriter {
 
@@ -197,7 +197,7 @@ public class JdbcCSVWriter extends CsvResultSetWriter implements ICsvResultSetWr
     LOGGER.debug("writeContents write completed");
   }
 
-  public String write() {
+  public String write() throws JdbcDataConnectionException {
 
     Statement stmt = null;
     ResultSet rs = null;

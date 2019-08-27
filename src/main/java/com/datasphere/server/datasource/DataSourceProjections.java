@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +24,7 @@ import java.util.Map;
 import com.datasphere.server.common.BaseProjections;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataprep.entity.PrSnapshot;
-import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.datasource.ingestion.IngestionInfo;
 import com.datasphere.server.domain.user.UserProfile;
 
 /**

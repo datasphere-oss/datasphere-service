@@ -17,7 +17,8 @@ package com.datasphere.server.common.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import static com.datasphere.server.common.exception.GlobalErrorCodes.INVALID_TOKEN_CODE;
+import com.datasphere.engine.common.exception.GlobalErrorCodes;
+import com.datasphere.engine.common.exception.MetatronException;
 
 /**
  * 접근 거부 오류시 발생 (Role처리 오류)
@@ -26,14 +27,14 @@ import static com.datasphere.server.common.exception.GlobalErrorCodes.INVALID_TO
 public class InvalidTokenException extends MetatronException {
 
   public InvalidTokenException(String message) {
-    super(INVALID_TOKEN_CODE, message);
+    super(GlobalErrorCodes.INVALID_TOKEN_CODE, message);
   }
 
   public InvalidTokenException(Throwable cause) {
-    super(INVALID_TOKEN_CODE, cause);
+    super(GlobalErrorCodes.INVALID_TOKEN_CODE, cause);
   }
 
   public InvalidTokenException(String message, Throwable cause) {
-    super(INVALID_TOKEN_CODE, message, cause);
+    super(GlobalErrorCodes.INVALID_TOKEN_CODE, message, cause);
   }
 }

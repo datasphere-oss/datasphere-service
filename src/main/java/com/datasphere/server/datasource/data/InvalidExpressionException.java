@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data;
+package com.datasphere.server.datasource.data;
+
+import static com.datasphere.server.datasource.DataSourceErrorCodes.INVALID_EXPR_CODE;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.datasphere.server.common.exception.MetatronException;
-
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INVALID_EXPR_CODE;
+import com.datasphere.engine.common.exception.MetatronException;
 
 /**
  * 유효하지 않은 표현식 오류

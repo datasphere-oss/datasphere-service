@@ -40,7 +40,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.job;
+package com.datasphere.server.datasource.ingestion.job;
 
 public enum IngestionProgress {
   START_INGESTION_JOB,              // Start Ingestion

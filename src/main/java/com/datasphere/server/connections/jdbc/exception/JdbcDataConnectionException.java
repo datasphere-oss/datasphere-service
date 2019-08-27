@@ -12,15 +12,26 @@
 
 package com.datasphere.server.connections.jdbc.exception;
 
+import java.sql.SQLException;
 
-public class JdbcDataConnectionException {
+public class JdbcDataConnectionException extends SQLException{
 
-  public JdbcDataConnectionException(JdbcDataConnectionErrorCodes codes, String message, Throwable cause) {
-  }
+	JdbcDataConnectionErrorCodes codes;
 
-  public JdbcDataConnectionException(JdbcDataConnectionErrorCodes codes, Throwable cause) {
-  }
+	public JdbcDataConnectionException(JdbcDataConnectionErrorCodes codes, String message, Throwable cause) {
+		this.codes = codes;
+	}
 
-  public JdbcDataConnectionException(JdbcDataConnectionErrorCodes codes, String message) {
-  }
+	public JdbcDataConnectionException(JdbcDataConnectionErrorCodes codes, Throwable cause) {
+		this.codes = codes;
+	}
+
+	public JdbcDataConnectionException(JdbcDataConnectionErrorCodes codes, String message) {
+		this.codes = codes;
+	}
+
+	public JdbcDataConnectionErrorCodes getCode() {
+		return this.codes;
+	}
+
 }

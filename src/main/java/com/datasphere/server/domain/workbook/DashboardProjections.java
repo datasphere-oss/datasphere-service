@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.datasphere.server.common.BaseProjections;
-import com.datasphere.server.domain.datasource.DataSourceAlias;
+import com.datasphere.server.datasource.DataSourceAlias;
 import com.datasphere.server.domain.user.UserProfile;
 import com.datasphere.server.domain.workbook.widget.Widget;
 
@@ -85,7 +85,7 @@ public class DashboardProjections extends BaseProjections {
 
     DateTime getModifiedTime();
 
-    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.datasource.DataSourceProjections$ForDetailProjection), @dashBoardService.backingDataSource(target.dataSources, target.workBook))}")
+    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.datasource.DataSourceProjections$ForDetailProjection), @dashBoardService.backingDataSource(target.dataSources, target.workBook))}")
     Object getDataSources();
   }
 
@@ -145,8 +145,8 @@ public class DashboardProjections extends BaseProjections {
 
     String getTemporaryId();
 
-    //@Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.datasource.DataSourceProjections$ForDetailProjection), target.dataSources)}")
-    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.datasource.DataSourceProjections$ForDetailProjection), @dashBoardService.backingDataSource(target.dataSources, target.workBook))}")
+    //@Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.datasource.DataSourceProjections$ForDetailProjection), target.dataSources)}")
+    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.datasource.DataSourceProjections$ForDetailProjection), @dashBoardService.backingDataSource(target.dataSources, target.workBook))}")
     Object getDataSources();
 
 //    @Value("#{T(com.datasphere.server.util.ProjectionUtils).toListResource(@projectionFactory, T(com.datasphere.server.domain.workbook.widget.WidgetProjections$ForDetailViewProjection), target.widgets)}")

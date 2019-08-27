@@ -14,18 +14,18 @@
 
 package com.datasphere.server.domain.dataconnection.accessor;
 
-import org.pf4j.Extension;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.AbstractJdbcDataAccessor;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import org.pf4j.Extension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.datasphere.server.connections.jdbc.accessor.AbstractJdbcDataAccessor;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 
 @Extension
 public class PostgresqlDataAccessor extends AbstractJdbcDataAccessor {
@@ -33,7 +33,7 @@ public class PostgresqlDataAccessor extends AbstractJdbcDataAccessor {
   private static final Logger LOGGER = LoggerFactory.getLogger(PostgresqlDataAccessor.class);
 
   @Override
-  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) {
+  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) throws JdbcDataConnectionException {
     Map<String, Object> databaseMap = new LinkedHashMap<>();
 
     String schemaListQuery = dialect.getDataBaseQuery(connectionInfo, catalog, schemaPattern, getExcludeSchemas(), pageSize, pageNumber);
@@ -66,7 +66,7 @@ public class PostgresqlDataAccessor extends AbstractJdbcDataAccessor {
   }
 
   @Override
-  public Map<String, Object> getTables(String catalog, String schemaPattern, String tableNamePattern, Integer pageSize, Integer pageNumber) {
+  public Map<String, Object> getTables(String catalog, String schemaPattern, String tableNamePattern, Integer pageSize, Integer pageNumber) throws JdbcDataConnectionException {
     int size = pageSize == null ? 20 : pageSize;
     int page = pageNumber == null ? 0 : pageNumber;
 

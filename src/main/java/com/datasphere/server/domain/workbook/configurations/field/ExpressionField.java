@@ -26,7 +26,7 @@ import org.apache.commons.lang3.StringUtils;
 import javax.validation.constraints.NotNull;
 
 import com.datasphere.server.common.datasource.DataType;
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 import com.datasphere.server.util.EnumUtils;
 

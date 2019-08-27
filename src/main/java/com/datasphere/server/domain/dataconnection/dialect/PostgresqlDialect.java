@@ -14,19 +14,22 @@
 
 package com.datasphere.server.domain.dataconnection.dialect;
 
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.postgresql.jdbc.PgArray;
 import org.postgresql.util.PGobject;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.List;
-
-import com.datasphere.server.common.exception.FunctionWithException;
-import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.engine.common.exception.FunctionWithException;
+import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect.InputMandatory;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect.InputSpec;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect.Scope;
 
 /**
  *
@@ -49,22 +52,22 @@ public class PostgresqlDialect implements JdbcDialect {
     return Scope.EMBEDDED;
   }
 
-  @Override
+//  @Override
   public String getIconResource1() {
     return null;
   }
 
-  @Override
+//  @Override
   public String getIconResource2() {
     return null;
   }
 
-  @Override
+//  @Override
   public String getIconResource3() {
     return null;
   }
 
-  @Override
+//  @Override
   public String getIconResource4() {
     return null;
   }

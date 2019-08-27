@@ -20,13 +20,13 @@ import com.querydsl.jpa.impl.JPADeleteClause;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
 
 import com.datasphere.server.common.entity.DomainType;
 
-public class TagRepositoryImpl extends QueryDslRepositorySupport implements TagRepositoryExtends {
+public class TagRepositoryImpl extends QuerydslRepositorySupport implements TagRepositoryExtends {
 
   public TagRepositoryImpl() {
     super(Tag.class);

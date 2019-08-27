@@ -14,7 +14,9 @@
 
 package com.datasphere.server.domain.dataconnection;
 
-import com.querydsl.core.types.Predicate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +24,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import com.datasphere.server.common.criteria.ListCriterion;
 import com.datasphere.server.common.criteria.ListCriterionType;
 import com.datasphere.server.common.criteria.ListFilter;
-import com.datasphere.server.domain.datasource.DataSourceListCriterionKey;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.datasource.DataSourceListCriterionKey;
 import com.datasphere.server.domain.user.DirectoryProfile;
 import com.datasphere.server.domain.user.User;
 import com.datasphere.server.domain.user.UserRepository;
@@ -41,8 +40,8 @@ import com.datasphere.server.domain.user.role.RoleDirectoryRepository;
 import com.datasphere.server.domain.workspace.Workspace;
 import com.datasphere.server.domain.workspace.WorkspaceRepository;
 import com.datasphere.server.domain.workspace.WorkspaceService;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.util.AuthUtils;
+import com.querydsl.core.types.Predicate;
 
 /**
  *

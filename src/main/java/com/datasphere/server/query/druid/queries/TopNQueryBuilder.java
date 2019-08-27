@@ -93,13 +93,13 @@ public class TopNQueryBuilder extends AbstractQueryBuilder {
     }
     else if (reqField instanceof MeasureField) {
 
-      com.datasphere.server.domain.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
+      com.datasphere.server.datasource.Field datasourceField = this.metaFieldMap.get(fieldName);
 
       if( datasourceField.getType() == DataType.MAP ){
 
         String keyFieldName = "";
-        for( com.datasphere.server.domain.datasource.Field curField : datasourceField.getMappedField() ){
-          if( curField.getRole() == com.datasphere.server.domain.datasource.Field.FieldRole.DIMENSION ){
+        for( com.datasphere.server.datasource.Field curField : datasourceField.getMappedField() ){
+          if( curField.getRole() == com.datasphere.server.datasource.Field.FieldRole.DIMENSION ){
             keyFieldName = curField.getName();
             break;
           }

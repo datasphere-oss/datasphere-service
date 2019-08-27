@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.datasphere.server.common.exception.ErrorCodes;
 import com.datasphere.server.common.exception.MetatronException;
 
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
+import static com.datasphere.server.datasource.DataSourceErrorCodes.INGESTION_COMMON_ERROR;
 
 /**
  * Created by kyungtaak on 2016. 6. 18..

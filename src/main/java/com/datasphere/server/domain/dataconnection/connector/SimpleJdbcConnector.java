@@ -14,6 +14,12 @@
 
 package com.datasphere.server.domain.dataconnection.connector;
 
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import org.pf4j.PluginManager;
 import org.pf4j.PluginWrapper;
 import org.slf4j.Logger;
@@ -22,15 +28,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import com.datasphere.server.extension.dataconnection.jdbc.connector.AbstractJdbcConnector;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.connections.jdbc.connector.AbstractJdbcConnector;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 
 /**
  *

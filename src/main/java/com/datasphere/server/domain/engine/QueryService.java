@@ -14,10 +14,10 @@
 
 package com.datasphere.server.domain.engine;
 
-import com.datasphere.server.domain.datasource.data.CandidateQueryRequest;
-import com.datasphere.server.domain.datasource.data.CovarianceQueryRequest;
-import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
-import com.datasphere.server.domain.datasource.data.SummaryQueryRequest;
+import com.datasphere.server.datasource.data.CandidateQueryRequest;
+import com.datasphere.server.datasource.data.CovarianceQueryRequest;
+import com.datasphere.server.datasource.data.SearchQueryRequest;
+import com.datasphere.server.datasource.data.SummaryQueryRequest;
 
 /**
  * Created by kyungtaak on 2016. 9. 22..

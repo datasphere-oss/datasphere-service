@@ -19,7 +19,7 @@ import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
-import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo;
 
 /**
  * Created by kyungtaak on 2016. 6. 20..

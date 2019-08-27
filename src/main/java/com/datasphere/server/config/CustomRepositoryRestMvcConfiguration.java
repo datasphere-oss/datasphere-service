@@ -14,9 +14,12 @@ package com.datasphere.server.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 
 import com.datasphere.server.domain.workspace.Workspace;
@@ -29,7 +32,13 @@ import com.datasphere.server.domain.workspace.WorkspacePagedResourcesAssembler;
 @Configuration
 public class CustomRepositoryRestMvcConfiguration extends RepositoryRestMvcConfiguration {
 
-  /**
+  public CustomRepositoryRestMvcConfiguration(ApplicationContext context,
+			ObjectFactory<ConversionService> conversionService) {
+		super(context, conversionService);
+		// TODO Auto-generated constructor stub
+	}
+
+/**
    * Spring Data Rest 에서 사용하는 ObjectMapper 정의 (타 Framework 충돌방지를 위하여 @Primary 사용)
    *
    * Spring Data Rest 관리 외적 부분에서 json+hal 타입의 정보 처리시,

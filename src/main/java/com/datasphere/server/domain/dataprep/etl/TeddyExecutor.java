@@ -49,12 +49,9 @@ import com.datasphere.server.domain.dataprep.teddy.exceptions.IllegalColumnNameF
 import com.datasphere.server.domain.dataprep.teddy.exceptions.JdbcQueryFailedException;
 import com.datasphere.server.domain.dataprep.teddy.exceptions.JdbcTypeNotSupportedException;
 import com.datasphere.server.domain.dataprep.teddy.exceptions.TeddyException;
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import com.datasphere.server.prep.parser.exceptions.RuleException;
-import com.datasphere.server.prep.parser.preparation.RuleVisitorParser;
-import com.datasphere.server.prep.parser.preparation.rule.Join;
-import com.datasphere.server.prep.parser.preparation.rule.Rule;
+import com.datasphere.server.domain.user.role.Role;
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Maps;
 import java.io.File;
@@ -144,7 +141,7 @@ public class TeddyExecutor {
     return cnt;
   }
 
-  private void setPrepPropertiesInfo(Map<String, Object> prepPropertiesInfo) {
+  private void setPrepPropertiesInfo(Map<String, Object> prepPropertiesInfo) throws PrepException {
     hadoopConfDir = (String) prepPropertiesInfo.get(HADOOP_CONF_DIR);
 
     hiveHostname = (String) prepPropertiesInfo.get(STAGEDB_HOSTNAME);
@@ -226,7 +223,7 @@ public class TeddyExecutor {
     return result;
   }
 
-  private int writeCsv(String strUri, DataFrame df, String ssId) {
+  private int writeCsv(String strUri, DataFrame df, String ssId) throws PrepException {
     CSVPrinter printer = PrepCsvUtil.getPrinter(strUri, hadoopConf);
     String errmsg = null;
 
@@ -262,7 +259,7 @@ public class TeddyExecutor {
     return df.rows.size();
   }
 
-  private int writeJson(String strUri, DataFrame df, String ssId) {
+  private int writeJson(String strUri, DataFrame df, String ssId) throws PrepException {
     LOGGER.debug("TeddyExecutor.wirteJSON(): strUri={} hadoopConfDir={}", strUri, hadoopConfDir);
     PrintWriter printWriter = PrepJsonUtil.getJsonPrinter(strUri, hadoopConf);
     ObjectMapper mapper = new ObjectMapper();
@@ -485,7 +482,7 @@ public class TeddyExecutor {
       List<Future<List<Row>>> futures = new ArrayList<>();
       List<DataFrame> slaveDfs = new ArrayList<>();
 
-      Rule rule = new RuleVisitorParser().parse(ruleString);
+      Role rule = new RuleVisitorParser().parse(ruleString);
 
       // FIXME: use 'rule'. avoid redundant parsing
       List<String> slaveDsIds = DataFrameService.getSlaveDsIds(ruleString);

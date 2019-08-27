@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import com.google.common.collect.Lists;
 
@@ -67,7 +67,7 @@ import com.datasphere.server.query.druid.granularities.SimpleGranularity;
 import com.datasphere.server.util.AuthUtils;
 import com.datasphere.server.util.PolarisUtils;
 
-import static com.datasphere.server.domain.datasource.DataSourceTemporary.ID_PREFIX;
+import static com.datasphere.server.datasource.DataSourceTemporary.ID_PREFIX;
 
 /**
  * Created by kyungtaak on 2017. 5. 12..

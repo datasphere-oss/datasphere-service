@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.datasphere.server.common.datasource.DataType;
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 import com.datasphere.server.query.druid.Granularity;
 
 public class SegmentMetaDataResponse implements Serializable {

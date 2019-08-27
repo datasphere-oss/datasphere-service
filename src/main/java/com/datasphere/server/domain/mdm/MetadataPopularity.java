@@ -26,7 +26,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 
 @Entity
 @Table(name = "mdm_metadata_popularity")

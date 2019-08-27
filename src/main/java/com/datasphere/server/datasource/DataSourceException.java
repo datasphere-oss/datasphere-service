@@ -12,17 +12,14 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.datasphere.server.common.exception.ErrorCodes;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.engine.common.exception.ErrorCodes;
+import com.datasphere.engine.common.exception.MetatronException;
 
-/**
- * Created by kyungtaak on 2016. 6. 18..
- */
 @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR, reason="DataSource Error")
 public class DataSourceException extends MetatronException {
 

@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 
-import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.notebook.Notebook;
 import com.datasphere.server.domain.notebook.NotebookConnector;
 import com.datasphere.server.domain.notebook.NotebookModel;

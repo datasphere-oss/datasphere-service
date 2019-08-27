@@ -26,35 +26,36 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.job;
+package com.datasphere.server.datasource.ingestion.job;
 
-import com.google.common.collect.Lists;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
-import java.util.Map;
-
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceIngestionException;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.connection.jdbc.HiveTableInformation;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.datasource.ingestion.HiveIngestionInfo;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.ingestion.IngestionOption;
+import com.datasphere.server.datasource.ingestion.file.OrcFileFormat;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessor;
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.domain.datasource.connection.jdbc.HiveTableInformation;
-import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
-import com.datasphere.server.domain.datasource.ingestion.HiveIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.domain.datasource.ingestion.IngestionOption;
-import com.datasphere.server.domain.datasource.ingestion.file.OrcFileFormat;
 import com.datasphere.server.domain.storage.StorageProperties;
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
 import com.datasphere.server.spec.druid.ingestion.HadoopIndex;
 import com.datasphere.server.spec.druid.ingestion.Index;
 import com.datasphere.server.spec.druid.ingestion.IngestionSpec;
 import com.datasphere.server.spec.druid.ingestion.IngestionSpecBuilder;
+import com.google.common.collect.Lists;
 
 public class HiveIngestionJob extends AbstractIngestionJob implements IngestionJob {
 
@@ -132,7 +133,13 @@ public class HiveIngestionJob extends AbstractIngestionJob implements IngestionJ
 
   @Override
   public String process() {
-    String taskId = doIngestion(indexSpec);
+    String taskId = null;
+	try {
+		taskId = doIngestion(indexSpec);
+	} catch (DataSourceIngestionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     LOGGER.info("Successfully creating task : {}", ingestionHistory);
     return taskId;
   }
@@ -149,18 +156,25 @@ public class HiveIngestionJob extends AbstractIngestionJob implements IngestionJ
     String[] splited = StringUtils.split(source, ".");
     String schema = splited.length == 1 ? "default" : splited[0];
 
-    JdbcAccessor jdbcDataAccessor = DataConnectionHelper.getAccessor(connection);
-    HiveTableInformation hiveTableInformation
+    List<String> columnPairs = Lists.newArrayList();
+    JdbcAccessor jdbcDataAccessor;
+	try {
+		jdbcDataAccessor = DataConnectionHelper.getAccessor(connection);
+		HiveTableInformation hiveTableInformation
         = ((HiveDataAccessor) jdbcDataAccessor).showHiveTableDescription(connection,
                                                                          null,
                                                                          schema,
                                                                          splited[1],
                                                                          false);
 
-    List<String> columnPairs = Lists.newArrayList();
     for (Field field : hiveTableInformation.getFields()) {
       columnPairs.add(field.getName() + ":" + field.getOriginalType());
     }
+	} catch (JdbcDataConnectionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+    
 
     return "struct<" + StringUtils.join(columnPairs, ",") + ">";
   }

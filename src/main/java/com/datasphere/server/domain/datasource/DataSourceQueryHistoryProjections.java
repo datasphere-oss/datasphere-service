@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
 import com.datasphere.server.common.BaseProjections;
-import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.datasource.data.forward.ResultForward;
 import com.datasphere.server.domain.user.UserProfile;
 
 /**

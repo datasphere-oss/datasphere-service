@@ -33,7 +33,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
-import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.workspace.Book;
 import com.datasphere.server.domain.workspace.Workspace;
 import com.datasphere.server.util.PolarisUtils;

@@ -12,14 +12,14 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.jdbc;
+package com.datasphere.server.datasource.ingestion.jdbc;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.List;
 
-import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.datasource.ingestion.IngestionInfo;
 
 /**
  *

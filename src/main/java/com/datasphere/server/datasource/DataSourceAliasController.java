@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -61,9 +61,10 @@ public class DataSourceAliasController {
    *
    * @param dataSourceAlias
    * @return
+ * @throws ResourceNotFoundException 
    */
   @RequestMapping(value = "/datasources/aliases", method = RequestMethod.POST)
-  public ResponseEntity<?> createDataSourceAlias(@RequestBody DataSourceAlias dataSourceAlias) {
+  public ResponseEntity<?> createDataSourceAlias(@RequestBody DataSourceAlias dataSourceAlias) throws ResourceNotFoundException {
 
     // 데이터 소스가 존재하는지 체크
     DataSource dataSource = dataSourceRepository.findOne(dataSourceAlias.getDataSourceId());
@@ -97,11 +98,12 @@ public class DataSourceAliasController {
    * @param aliasId
    * @param paramMap
    * @return
+ * @throws ResourceNotFoundException 
    */
   @RequestMapping(path = "/datasources/aliases/{aliasId}", method = { RequestMethod.PATCH })
   public @ResponseBody
   ResponseEntity<?> appendDataSource(@PathVariable("aliasId") Long aliasId,
-                                     @RequestBody Map<String, Object> paramMap) {
+                                     @RequestBody Map<String, Object> paramMap) throws ResourceNotFoundException {
 
     DataSourceAlias alias = dataSourceAliasRepository.findOne(aliasId);
     if (alias == null) {
@@ -128,9 +130,10 @@ public class DataSourceAliasController {
    *
    * @param aliasId
    * @return
+ * @throws ResourceNotFoundException 
    */
   @RequestMapping(value = "/datasources/aliases/{aliasId}", method = RequestMethod.DELETE)
-  public ResponseEntity<?> findDataSources(@PathVariable("aliasId") Long aliasId) {
+  public ResponseEntity<?> findDataSources(@PathVariable("aliasId") Long aliasId) throws ResourceNotFoundException {
 
     DataSourceAlias alias = dataSourceAliasRepository.findOne(aliasId);
     if (alias == null) {
@@ -148,11 +151,12 @@ public class DataSourceAliasController {
    * @param aliasId
    * @param resourceAssembler
    * @return
+ * @throws ResourceNotFoundException 
    */
   @Transactional(readOnly = true)
   @RequestMapping(value = "/datasources/aliases/{aliasId}", method = RequestMethod.GET)
   public ResponseEntity<?> findDataSources(@PathVariable("aliasId") Long aliasId,
-                                           PersistentEntityResourceAssembler resourceAssembler) {
+                                           PersistentEntityResourceAssembler resourceAssembler) throws ResourceNotFoundException {
 
     DataSourceAlias alias = dataSourceAliasRepository.findOne(aliasId);
     if (alias == null) {

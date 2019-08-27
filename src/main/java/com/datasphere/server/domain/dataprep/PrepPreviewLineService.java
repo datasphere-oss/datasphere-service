@@ -82,7 +82,7 @@ public class PrepPreviewLineService {
         return pathStr;
     }
 
-    public int putPreviewLines(String dsId, DataFrame gridResponse) {
+    public int putPreviewLines(String dsId, DataFrame gridResponse) throws PrepException {
         int size = 0;
 
         LOGGER.trace("putPreviewLines(): start");
@@ -122,7 +122,7 @@ public class PrepPreviewLineService {
         return size;
     }
 
-    public DataFrame getPreviewLines(String dsId) {
+    public DataFrame getPreviewLines(String dsId) throws PrepException {
         DataFrame dataFrame;
 
         try {
@@ -184,7 +184,7 @@ public class PrepPreviewLineService {
         return dataFrame;
     }
 
-    public DataFrame remakePreviewLines(String dsId) throws IOException, SQLException, TeddyException {
+    public DataFrame remakePreviewLines(String dsId) throws IOException, SQLException, TeddyException, PrepException {
         DataFrame dataFrame = null;
 
         PrDataset dataset = this.datasetRepository.findRealOne(this.datasetRepository.findOne(dsId));

@@ -12,7 +12,9 @@
 
 package com.datasphere.server.common;
 
-import com.google.common.collect.Lists;
+import java.util.List;
+
+import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.lang3.CharEncoding;
 import org.slf4j.Logger;
@@ -27,12 +29,8 @@ import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import java.util.List;
-import java.util.Locale;
-
-import javax.mail.internet.MimeMessage;
-
-import domain.user.User;
+import com.datasphere.server.domain.user.User;
+import com.google.common.collect.Lists;
 
 /**
  * Created by kyungtaak on 2017. 1. 26..

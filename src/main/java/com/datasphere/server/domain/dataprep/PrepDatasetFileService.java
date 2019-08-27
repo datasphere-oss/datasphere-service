@@ -33,7 +33,7 @@ import com.datasphere.server.domain.dataprep.teddy.DataFrameService;
 import com.datasphere.server.domain.dataprep.teddy.exceptions.TeddyException;
 import com.datasphere.server.domain.dataprep.transform.TeddyImpl;
 import com.datasphere.server.domain.dataprep.transform.TimestampTemplate;
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.storage.StorageProperties;
 import com.datasphere.server.util.ExcelProcessor;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -183,7 +183,7 @@ public class PrepDatasetFileService {
 
     private String prefixColumnName = "column";
 
-    private void mkdirsIfNotExist(String dirUri) {
+    private void mkdirsIfNotExist(String dirUri) throws PrepException {
         boolean result = false;
 
         URI uri = null;
@@ -227,7 +227,7 @@ public class PrepDatasetFileService {
         }
     }
 
-    private String getPathS3Base(String filename) {
+    private String getPathS3Base(String filename) throws PrepException {
         if(null==fileDatasetUploadS3Path) {
             fileDatasetUploadS3Path = prepProperties.getS3BaseDir(true) + File.separator + PrepProperties.dirUpload;
             mkdirsIfNotExist(fileDatasetUploadS3Path);
@@ -237,7 +237,7 @@ public class PrepDatasetFileService {
         return pathStr;
     }
 
-    private String getPathStagingBase(String filename) {
+    private String getPathStagingBase(String filename) throws PrepException {
         if(null==fileDatasetUploadStagingPath) {
             fileDatasetUploadStagingPath = prepProperties.getStagingBaseDir(true) + File.separator + PrepProperties.dirUpload;
         }
@@ -247,7 +247,7 @@ public class PrepDatasetFileService {
         return pathStr;
     }
 
-    public String getPathLocalBase(String filename) {
+    public String getPathLocalBase(String filename) throws PrepException {
         if(null==fileDatasetUploadLocalPath) {
             fileDatasetUploadLocalPath = prepProperties.getLocalBaseDir() + File.separator + PrepProperties.dirUpload;
             if(fileDatasetUploadLocalPath.startsWith("file://")==false) {
@@ -379,7 +379,7 @@ public class PrepDatasetFileService {
         return grid;
     }
 
-    private Map<String, Object> getResponseMapFromExcel(String storedUri, String extensionType, int limitRows, Integer columnCount, boolean autoTyping) throws IOException, TeddyException {
+    private Map<String, Object> getResponseMapFromExcel(String storedUri, String extensionType, int limitRows, Integer columnCount, boolean autoTyping) throws IOException, TeddyException, PrepException {
         Map<String, Object> responseMap = Maps.newHashMap();
         List<String> sheetNames = Lists.newArrayList();
         List<DataFrame> gridResponses = Lists.newArrayList();
@@ -467,7 +467,7 @@ public class PrepDatasetFileService {
         return responseMap;
     }
 
-    private Map<String, Object> getResponseMapFromJson(String storedUri, int limitRows, Integer columnCount, boolean autoTyping) throws TeddyException {
+    private Map<String, Object> getResponseMapFromJson(String storedUri, int limitRows, Integer columnCount, boolean autoTyping) throws TeddyException, PrepException {
         Map<String, Object> responseMap = Maps.newHashMap();
         List<DataFrame> gridResponses = Lists.newArrayList();
         Configuration hadoopConf = PrepUtil.getHadoopConf(prepProperties.getHadoopConfDir(false));
@@ -485,7 +485,7 @@ public class PrepDatasetFileService {
         return responseMap;
     }
 
-    private Map<String, Object> getResponseMapFromCsv(String storedUri, int limitRows, String delimiterCol, Integer columnCount, boolean autoTyping) throws TeddyException {
+    private Map<String, Object> getResponseMapFromCsv(String storedUri, int limitRows, String delimiterCol, Integer columnCount, boolean autoTyping) throws TeddyException, PrepException {
         Map<String, Object> responseMap = Maps.newHashMap();
         List<DataFrame> gridResponses = Lists.newArrayList();
         Configuration hadoopConf = PrepUtil.getHadoopConf(prepProperties.getHadoopConfDir(false));
@@ -516,7 +516,7 @@ public class PrepDatasetFileService {
 //        return df;
 //    }
 
-    public void checkStoredUri(String storedUri) {
+    public void checkStoredUri(String storedUri) throws PrepException {
 
         URI uri = null;
         try {
@@ -558,7 +558,7 @@ public class PrepDatasetFileService {
      *     sheetName    (Excel only)
      *   totalBytes     FIXME: is this needed?
      */
-    public Map<String, Object> makeFileGrid(String storedUri, Integer size, String delimiterCol, Integer columnCount, boolean autoTyping) {
+    public Map<String, Object> makeFileGrid(String storedUri, Integer size, String delimiterCol, Integer columnCount, boolean autoTyping) throws PrepException {
 
         Map<String, Object> responseMap;
         String extensionType = FilenameUtils.getExtension(storedUri);
@@ -587,7 +587,7 @@ public class PrepDatasetFileService {
         return responseMap;
     }
 
-    public DataFrame getPreviewLinesFromFileForDataFrame(PrDataset dataset, String sheetindex, String size) throws IOException, TeddyException {
+    public DataFrame getPreviewLinesFromFileForDataFrame(PrDataset dataset, String sheetindex, String size) throws IOException, TeddyException, PrepException {
         DataFrame dataFrame = null;
 
         if (dataset == null) {
@@ -643,7 +643,7 @@ public class PrepDatasetFileService {
         return dataFrame;
     }
 
-    public String getStoredUri( PrUploadFile uploadFile ) {
+    public String getStoredUri( PrUploadFile uploadFile ) throws PrepException {
         String storedUri = null;
 
         String fileName = uploadFile.getFilename();
@@ -740,7 +740,7 @@ public class PrepDatasetFileService {
         return  responseMap;
     }
 
-    public void copyLocalToStaging(PrUploadFile uploadFile) {
+    public void copyLocalToStaging(PrUploadFile uploadFile) throws PrepException {
         String storedUri = uploadFile.getFileUri();
         String localUri = uploadFile.getLocalUri();
 
@@ -778,7 +778,7 @@ public class PrepDatasetFileService {
     public Map<String, Object> uploadFileChunk_local( String originalFilename, String uploadId,
                   Integer chunkIdx, Integer chunkTotal, Integer chunkSize, Integer totalSize,
                   PrDataset.STORAGE_TYPE storageType,
-                  MultipartFile file) {
+                  MultipartFile file) throws PrepException {
 
         Map<String, Object> responseMap = Maps.newHashMap();
 
@@ -1035,7 +1035,7 @@ public class PrepDatasetFileService {
         return csvStrUri;
     }
 
-    public InputStream getStream(String storedUri) {
+    public InputStream getStream(String storedUri) throws PrepException {
         InputStream is = null;
         URI uri;
 
@@ -1094,7 +1094,7 @@ public class PrepDatasetFileService {
         return is;
     }
 
-    public Writer getWriter(String storedUri) {
+    public Writer getWriter(String storedUri) throws PrepException {
         OutputStreamWriter osw = null;
         OutputStream os = null;
         URI uri;

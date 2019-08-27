@@ -21,8 +21,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 
-import de.codecentric.boot.admin.jackson.ApplicationDeserializer;
-import de.codecentric.boot.admin.model.Application;
+import de.codecentric.boot.admin.client.registration.Application;
 
 import org.pf4j.PluginManager;
 import org.pf4j.PluginWrapper;
@@ -87,11 +86,11 @@ import com.datasphere.server.domain.dataprep.entity.PrDataset;
 import com.datasphere.server.domain.dataprep.entity.PrTransformRule;
 import com.datasphere.server.domain.dataprep.service.PrDataflowEventHandler;
 import com.datasphere.server.domain.dataprep.service.PrDatasetEventHandler;
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.DataSourceAlias;
-import com.datasphere.server.domain.datasource.DataSourceEventHandler;
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceAlias;
+import com.datasphere.server.datasource.DataSourceEventHandler;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
 import com.datasphere.server.domain.mdm.CodeTable;
 import com.datasphere.server.domain.mdm.CodeValuePair;
 import com.datasphere.server.domain.mdm.ColumnDictionary;

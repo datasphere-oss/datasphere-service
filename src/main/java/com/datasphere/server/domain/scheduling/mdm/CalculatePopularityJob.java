@@ -39,10 +39,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.DataSourceRepository;
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.domain.datasource.data.DataSourceValidator;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceRepository;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.data.DataSourceValidator;
 import com.datasphere.server.domain.mdm.Metadata;
 import com.datasphere.server.domain.mdm.MetadataColumn;
 import com.datasphere.server.domain.mdm.MetadataPopularity;

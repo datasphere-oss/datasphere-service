@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data.result;
+package com.datasphere.server.datasource.data.result;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

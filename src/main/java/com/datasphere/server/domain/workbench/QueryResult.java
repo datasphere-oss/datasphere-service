@@ -14,7 +14,7 @@
 
 package com.datasphere.server.domain.workbench;
 
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 import org.joda.time.DateTime;
 
 import java.io.Serializable;

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,14 +22,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.datasphere.server.common.exception.BadRequestException;
-import com.datasphere.server.domain.datasource.data.AbstractQueryRequest;
-import com.datasphere.server.domain.datasource.data.QueryRequest;
+import com.datasphere.server.datasource.data.AbstractQueryRequest;
+import com.datasphere.server.datasource.data.QueryRequest;
 import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
 
 /**
  * "Similarity" 쿼리용 Request 객체
  *
- * @author Kyungtaak Noh
  * @since 1.1
  */
 public class SimilarityQueryRequest extends AbstractQueryRequest implements QueryRequest, Serializable {
@@ -46,7 +45,7 @@ public class SimilarityQueryRequest extends AbstractQueryRequest implements Quer
 
   @JsonCreator
   public SimilarityQueryRequest(@JsonProperty("dataSources") List<String> dataSources,
-                                @JsonProperty("context") Map<String, Object> context) {
+                                @JsonProperty("context") Map<String, Object> context) throws BadRequestException {
 
     if(dataSources == null || dataSources.size() != 2) {
       throw new BadRequestException("2 datasource names are required.");

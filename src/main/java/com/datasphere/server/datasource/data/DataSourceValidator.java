@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data;
+package com.datasphere.server.datasource.data;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
@@ -26,10 +26,10 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.DataSourceRepository;
-import com.datasphere.server.domain.datasource.DataSourceTemporary;
-import com.datasphere.server.domain.datasource.DataSourceTemporaryRepository;
-import com.datasphere.server.domain.datasource.data.alias.ValueRefAlias;
+import com.datasphere.server.datasource.DataSourceRepository;
+import com.datasphere.server.datasource.DataSourceTemporary;
+import com.datasphere.server.datasource.DataSourceTemporaryRepository;
+import com.datasphere.server.datasource.data.alias.ValueRefAlias;
 import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
 import com.datasphere.server.domain.workbook.configurations.datasource.DefaultDataSource;
 import com.datasphere.server.domain.workbook.configurations.datasource.JoinMapping;
@@ -122,7 +122,7 @@ public class DataSourceValidator {
       return;
     }
 
-    com.datasphere.server.domain.datasource.DataSource metaDataSource = null;
+    com.datasphere.server.datasource.DataSource metaDataSource = null;
 
     if (BooleanUtils.isTrue(dataSource.getTemporary())) {
       DataSourceTemporary temporaryDataSource = temporaryRepository.findByName(dataSource.getName());
@@ -156,7 +156,7 @@ public class DataSourceValidator {
       return;
     }
 
-    com.datasphere.server.domain.datasource.DataSource metaDataSource =
+    com.datasphere.server.datasource.DataSource metaDataSource =
         dataSourceRepository.findByEngineName(joinMapping.getName());
 
     if (metaDataSource == null) {

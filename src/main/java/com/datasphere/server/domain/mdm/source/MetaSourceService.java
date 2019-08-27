@@ -24,9 +24,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.DataSourceProjections;
-import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceProjections;
+import com.datasphere.server.datasource.DataSourceRepository;
 import com.datasphere.server.domain.mdm.Metadata;
 import com.datasphere.server.domain.mdm.MetadataController;
 import com.datasphere.server.domain.workbook.DashboardRepository;

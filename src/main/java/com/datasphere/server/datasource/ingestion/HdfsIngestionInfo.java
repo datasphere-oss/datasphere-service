@@ -12,20 +12,16 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeName;
+package com.datasphere.server.datasource.ingestion;
 
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.ingestion.file.FileFormat;
+import com.datasphere.server.datasource.ingestion.file.FileFormat;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/**
- * Created by kyungtaak on 2017. 4. 30..
- */
 @JsonTypeName("hdfs")
 public class HdfsIngestionInfo implements IngestionInfo {
 

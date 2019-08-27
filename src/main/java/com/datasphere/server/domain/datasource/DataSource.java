@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -82,15 +82,15 @@ import com.datasphere.server.domain.MetatronDomain;
 import com.datasphere.server.domain.context.ContextEntity;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataprep.entity.PrSnapshot;
-import com.datasphere.server.domain.datasource.ingestion.HdfsIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.HiveIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.domain.datasource.ingestion.IngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.LocalFileIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.RealtimeIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.SingleIngestionInfo;
+import com.datasphere.server.datasource.ingestion.HdfsIngestionInfo;
+import com.datasphere.server.datasource.ingestion.HiveIngestionInfo;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.ingestion.IngestionInfo;
+import com.datasphere.server.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.server.datasource.ingestion.RealtimeIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.SingleIngestionInfo;
 import com.datasphere.server.domain.mdm.Metadata;
 import com.datasphere.server.domain.mdm.MetadataColumn;
 import com.datasphere.server.domain.workbook.DashBoard;
@@ -101,12 +101,12 @@ import com.datasphere.server.domain.workspace.Workspace;
 import com.datasphere.server.util.AuthUtils;
 import com.datasphere.server.util.PolarisUtils;
 
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.FILE;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.HDFS;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.HIVE;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.JDBC;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.REALTIME;
-import static com.datasphere.server.domain.datasource.DataSource.SourceType.SNAPSHOT;
+import static com.datasphere.server.datasource.DataSource.SourceType.FILE;
+import static com.datasphere.server.datasource.DataSource.SourceType.HDFS;
+import static com.datasphere.server.datasource.DataSource.SourceType.HIVE;
+import static com.datasphere.server.datasource.DataSource.SourceType.JDBC;
+import static com.datasphere.server.datasource.DataSource.SourceType.REALTIME;
+import static com.datasphere.server.datasource.DataSource.SourceType.SNAPSHOT;
 import static com.datasphere.server.domain.workbook.configurations.field.Field.FIELD_NAMESPACE_SEP;
 import static org.hibernate.search.annotations.Index.NO;
 

@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.datasphere.server.common.exception.BadRequestException;
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 import com.datasphere.server.util.EnumUtils;
 

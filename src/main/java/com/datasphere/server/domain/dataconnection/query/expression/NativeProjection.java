@@ -14,25 +14,24 @@
 
 package com.datasphere.server.domain.dataconnection.query.expression;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataconnection.query.NativeCriteria;
 import com.datasphere.server.domain.dataconnection.query.utils.VarGenerator;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 public class NativeProjection {
   private static final Logger LOGGER = LoggerFactory.getLogger(NativeProjection.class);

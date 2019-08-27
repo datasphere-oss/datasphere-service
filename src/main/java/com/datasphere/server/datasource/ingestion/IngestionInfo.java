@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion;
+package com.datasphere.server.datasource.ingestion;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -20,14 +20,11 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.ingestion.file.FileFormat;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.LinkIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.SingleIngestionInfo;
+import com.datasphere.server.datasource.ingestion.file.FileFormat;
+import com.datasphere.server.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.LinkIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.SingleIngestionInfo;
 
-/**
- * Created by kyungtaak on 2016. 7. 15..
- */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXTERNAL_PROPERTY, property = "type")
 @JsonSubTypes({
     @JsonSubTypes.Type(value = LinkIngestionInfo.class, name = "link"),

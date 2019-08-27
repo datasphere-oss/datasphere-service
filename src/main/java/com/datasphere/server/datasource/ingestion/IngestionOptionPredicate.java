@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion;
+package com.datasphere.server.datasource.ingestion;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;

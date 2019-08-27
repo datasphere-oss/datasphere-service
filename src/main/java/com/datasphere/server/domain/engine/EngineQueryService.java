@@ -65,21 +65,21 @@ import com.datasphere.server.common.RawJsonString;
 import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.domain.datasource.QueryHistoryTeller;
-import com.datasphere.server.domain.datasource.SimilarityQueryRequest;
-import com.datasphere.server.domain.datasource.SimilarityResponse;
-import com.datasphere.server.domain.datasource.data.CandidateQueryRequest;
-import com.datasphere.server.domain.datasource.data.CovarianceQueryRequest;
-import com.datasphere.server.domain.datasource.data.DataQueryController;
-import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
-import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
-import com.datasphere.server.domain.datasource.data.SummaryQueryRequest;
-import com.datasphere.server.domain.datasource.data.result.ChartResultFormat;
-import com.datasphere.server.domain.datasource.data.result.GeoJsonResultFormat;
-import com.datasphere.server.domain.datasource.data.result.GraphResultFormat;
-import com.datasphere.server.domain.datasource.data.result.ObjectResultFormat;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.QueryHistoryTeller;
+import com.datasphere.server.datasource.SimilarityQueryRequest;
+import com.datasphere.server.datasource.SimilarityResponse;
+import com.datasphere.server.datasource.data.CandidateQueryRequest;
+import com.datasphere.server.datasource.data.CovarianceQueryRequest;
+import com.datasphere.server.datasource.data.DataQueryController;
+import com.datasphere.server.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.datasource.data.SearchQueryRequest;
+import com.datasphere.server.datasource.data.SummaryQueryRequest;
+import com.datasphere.server.datasource.data.result.ChartResultFormat;
+import com.datasphere.server.datasource.data.result.GeoJsonResultFormat;
+import com.datasphere.server.datasource.data.result.GraphResultFormat;
+import com.datasphere.server.datasource.data.result.ObjectResultFormat;
 import com.datasphere.server.domain.engine.model.SegmentMetaDataResponse;
 import com.datasphere.server.domain.workbook.configurations.Limit;
 import com.datasphere.server.domain.workbook.configurations.Sort;
@@ -98,8 +98,8 @@ import com.datasphere.server.query.druid.Query;
 import com.datasphere.server.query.druid.meta.AnalysisType;
 import com.datasphere.server.query.druid.queries.*;
 
-import static com.datasphere.server.domain.datasource.DataSource.ConnectionType.ENGINE;
-import static com.datasphere.server.domain.datasource.DataSourceQueryHistory.EngineQueryType.*;
+import static com.datasphere.server.datasource.DataSource.ConnectionType.ENGINE;
+import static com.datasphere.server.datasource.DataSourceQueryHistory.EngineQueryType.*;
 import static com.datasphere.server.query.druid.AbstractQueryBuilder.GEOMETRY_BOUNDARY_COLUMN_NAME;
 import static com.datasphere.server.query.druid.AbstractQueryBuilder.GEOMETRY_COLUMN_NAME;
 import static com.datasphere.server.query.druid.meta.AnalysisType.CARDINALITY;
@@ -579,7 +579,7 @@ public class EngineQueryService extends AbstractQueryService implements QuerySer
     } else {
 
       com.datasphere.server.domain.workbook.configurations.field.Field targetField = request.getTargetField();
-      com.datasphere.server.domain.datasource.Field metaField = metaDataSource.getMetaFieldMap(false, "")
+      com.datasphere.server.datasource.Field metaField = metaDataSource.getMetaFieldMap(false, "")
                                                                                .get(targetField.getName());
 
       Field.FieldRole fieldRole = metaField == null ? null : metaField.getRole();

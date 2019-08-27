@@ -32,7 +32,7 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
-import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.datasource.data.QueryTimeExcetpion;
 
 import static com.datasphere.server.domain.engine.EngineProperties.BULK_LOAD;
 import static com.datasphere.server.domain.engine.EngineProperties.GET_DATASOURCE_LIST;

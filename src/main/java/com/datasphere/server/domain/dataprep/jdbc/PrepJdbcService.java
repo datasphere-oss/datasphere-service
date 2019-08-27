@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.dataprep.jdbc;
 
 import com.datasphere.server.domain.dataconnection.DataConnection;
-import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 
 public class PrepJdbcService extends JdbcConnectionService {
     public PrepJdbcService() { super();}

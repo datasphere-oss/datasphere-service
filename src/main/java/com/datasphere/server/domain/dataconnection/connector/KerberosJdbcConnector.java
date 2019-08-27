@@ -14,6 +14,9 @@
 
 package com.datasphere.server.domain.dataconnection.connector;
 
+import java.io.IOException;
+import java.sql.Connection;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.security.UserGroupInformation;
@@ -22,12 +25,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.sql.Connection;
-
+import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
-import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 
 /**
  *

@@ -131,7 +131,7 @@ public class PrDatasetController {
             @RequestParam(value="storageType", required=false, defaultValue="") String storageType,
             @RequestBody Resource<PrDataset> datasetResource,
             PersistentEntityResourceAssembler resourceAssembler
-    ) {
+    ) throws PrepException {
         PrDataset dataset = null;
         PrDataset savedDataset = null;
 
@@ -162,7 +162,7 @@ public class PrDatasetController {
             @PathVariable("dsId") String dsId,
             @RequestParam(value="preview", required=false, defaultValue="false") Boolean preview,
             PersistentEntityResourceAssembler persistentEntityResourceAssembler
-    ) {
+    ) throws PrepException {
         PrDataset dataset = null;
         Resource<PrDatasetProjections.DefaultProjection> projectedDataset = null;
         try {
@@ -192,7 +192,7 @@ public class PrDatasetController {
             @PathVariable("dsId") String dsId,
             @RequestBody Resource<PrDataset> datasetResource,
             PersistentEntityResourceAssembler persistentEntityResourceAssembler
-    ) {
+    ) throws PrepException {
 
         PrDataset dataset = null;
         PrDataset patchDataset = null;
@@ -223,7 +223,7 @@ public class PrDatasetController {
     @ResponseBody
     public ResponseEntity<?> deleteDataset(
             @PathVariable("dsId") String dsId
-    ) {
+    ) throws PrepException {
         try {
             PrDataset dataset =  this.datasetRepository.findOne(dsId);
             if(dataset!=null) {
@@ -255,7 +255,7 @@ public class PrDatasetController {
     @ResponseBody
     public ResponseEntity<?> deleteChain(
             @PathVariable("dsId") String dsId
-    ) {
+    ) throws PrepException {
 
         List<String> deleteDsIds = Lists.newArrayList();
         try {
@@ -330,7 +330,7 @@ public class PrDatasetController {
     @ResponseBody
     public ResponseEntity<?> deleteDatasets(
             @RequestBody List<String> dsIds
-    ) {
+    ) throws PrepException {
         List<String> deletedDsIds = Lists.newArrayList();
         try {
             List<PrDataset> datasets = Lists.newArrayList();
@@ -383,7 +383,7 @@ public class PrDatasetController {
             @RequestParam(value = "sql", required = false, defaultValue = "") String sql,
             @RequestParam(value = "dbname", required = false, defaultValue = "") String dbname,
             @RequestParam(value = "tblname", required = false, defaultValue = "") String tblname,
-            @RequestParam(value = "size", required = false, defaultValue = "50") String size ) {
+            @RequestParam(value = "size", required = false, defaultValue = "50") String size ) throws PrepException {
         Map<String, Object> response = null;
         try {
             response = this.datasetStagingDbService.getPreviewStagedb(sql,dbname,tblname,size);
@@ -396,7 +396,7 @@ public class PrDatasetController {
 
     @RequestMapping(value = "/query/schemas", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<?> querySchemas(
-            @RequestBody PrepQueryRequest queryRequest ) {
+            @RequestBody PrepQueryRequest queryRequest ) throws PrepException {
 
         List<String> response;
 
@@ -411,7 +411,7 @@ public class PrDatasetController {
 
     @RequestMapping(value = "/query/tables", method = RequestMethod.POST)
     public @ResponseBody ResponseEntity<?> queryTables(
-            @RequestBody PrepQueryRequest queryRequest ) {
+            @RequestBody PrepQueryRequest queryRequest ) throws PrepException {
 
         List<String> response = null;
 
@@ -431,7 +431,7 @@ public class PrDatasetController {
                                                           @RequestParam(value = "delimiterRow", required = false, defaultValue = "\n") String delimiterRow,
                                                           @RequestParam(value = "delimiterCol", required = false, defaultValue = ",") String delimiterCol,
                                                           @RequestParam(value = "manualColumnCount", required = false) Integer manualColumnCount,
-                                                          @RequestParam(value = "autoTyping", required = false, defaultValue = "true") String autoTyping) {
+                                                          @RequestParam(value = "autoTyping", required = false, defaultValue = "true") String autoTyping) throws PrepException {
         Map<String, Object> response;
         try {
             this.datasetFileService.checkStoredUri(storedUri);
@@ -444,7 +444,7 @@ public class PrDatasetController {
     }
 
     @RequestMapping(value = "/file_upload", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody ResponseEntity<?> file_upload() {
+    public @ResponseBody ResponseEntity<?> file_upload() throws PrepException {
         Map<String, Object> response = null;
         try {
             response = Maps.newHashMap();
@@ -488,7 +488,7 @@ public class PrDatasetController {
             @RequestParam(value = "chunk_size") String chunk_size,
             @RequestParam(value = "total_size") String total_size,
             @RequestPart("file") MultipartFile file
-    ) {
+    ) throws PrepException {
         Map<String, Object> response = null;
         try {
             String uploadId = upload_id;
@@ -553,7 +553,7 @@ public class PrDatasetController {
             HttpServletResponse response,
             @PathVariable("dsId") String dsId,
             @RequestParam(value = "fileType", required = false, defaultValue = "0") String fileType
-    ) {
+    ) throws PrepException {
         PrDataset dataset = null;
         Resource<PrDatasetProjections.DefaultProjection> projectedDataset = null;
         try {

@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.datasource.data.QueryTimeExcetpion;
 import com.datasphere.server.query.druid.AbstractQueryBuilder;
 import com.datasphere.server.util.EnumUtils;
 

@@ -108,7 +108,7 @@ public class SegmentMetaDataQueryBuilder extends AbstractQueryBuilder {
         IntervalFilter intervalFilter = (IntervalFilter) reqFilter;
 
         if (metaFieldMap.containsKey(intervalFilter.getField())
-            && metaFieldMap.get(intervalFilter.getField()).getRole() == com.datasphere.server.domain.datasource.Field.FieldRole.TIMESTAMP) {
+            && metaFieldMap.get(intervalFilter.getField()).getRole() == com.datasphere.server.datasource.Field.FieldRole.TIMESTAMP) {
           intervals.addAll(intervalFilter.getEngineIntervals());
         }
       }

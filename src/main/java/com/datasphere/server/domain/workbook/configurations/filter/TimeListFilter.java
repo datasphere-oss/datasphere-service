@@ -25,13 +25,13 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 import com.datasphere.server.query.druid.funtions.DateTimeMillisFunc;
 import com.datasphere.server.query.druid.funtions.InFunc;
 import com.datasphere.server.query.druid.funtions.TimeFormatFunc;
 
-import static com.datasphere.server.domain.datasource.Field.FieldRole.TIMESTAMP;
+import static com.datasphere.server.datasource.Field.FieldRole.TIMESTAMP;
 
 @JsonTypeName("time_list")
 public class TimeListFilter extends TimeFilter {

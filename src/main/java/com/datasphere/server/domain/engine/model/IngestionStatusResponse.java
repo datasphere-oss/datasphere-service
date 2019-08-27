@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
 
 public class IngestionStatusResponse implements Serializable {
 

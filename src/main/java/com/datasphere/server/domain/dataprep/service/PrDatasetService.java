@@ -15,6 +15,7 @@
 package com.datasphere.server.domain.dataprep.service;
 
 import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.common.exception.ResourceNotFoundException;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
 import com.datasphere.server.domain.dataprep.PrepDatasetDatabaseService;
@@ -65,7 +66,7 @@ public class PrDatasetService {
     private String hivePreviewSize = "50";
     private String jdbcPreviewSize = "50";
 
-    public DataFrame getImportedPreview(PrDataset dataset) throws IOException, SQLException, TeddyException {
+    public DataFrame getImportedPreview(PrDataset dataset) throws IOException, SQLException, TeddyException, PrepException, ResourceNotFoundException {
         DataFrame dataFrame;
 
         assert dataset.getDsType() == PrDataset.DS_TYPE.IMPORTED : dataset.getDsType();

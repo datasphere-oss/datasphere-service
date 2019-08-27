@@ -17,6 +17,9 @@ package com.datasphere.server.common.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.datasphere.engine.common.exception.GlobalErrorCodes;
+import com.datasphere.engine.common.exception.MetatronException;
+
 /**
  * API 로직 처리중 예상하지 못한 오류 발생시 활용
  */

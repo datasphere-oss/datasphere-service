@@ -40,9 +40,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.datasphere.server.common.exception.MetatronException;
-import com.datasphere.server.domain.datasource.data.DataSourceValidator;
-import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
-import com.datasphere.server.domain.datasource.data.result.ObjectResultFormat;
+import com.datasphere.server.datasource.data.DataSourceValidator;
+import com.datasphere.server.datasource.data.SearchQueryRequest;
+import com.datasphere.server.datasource.data.result.ObjectResultFormat;
 import com.datasphere.server.domain.engine.EngineQueryService;
 import com.datasphere.server.domain.workbook.configurations.BoardConfiguration;
 import com.datasphere.server.domain.workbook.configurations.Limit;

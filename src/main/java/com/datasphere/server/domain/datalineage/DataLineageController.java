@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.BadRequestException;
 
 @RepositoryRestController
 public class DataLineageController {
@@ -63,7 +64,7 @@ public class DataLineageController {
           @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime from,
           @RequestParam(value = "to", required = false)
           @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime to,
-          Pageable pageable) {
+          Pageable pageable) throws BadRequestException {
 
     LOGGER.debug("keyword : {}", keyword);
     LOGGER.debug("scopes : {}", scope);
@@ -106,7 +107,7 @@ public class DataLineageController {
           @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime from,
           @RequestParam(value = "to", required = false)
           @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime to,
-          @RequestParam(value = "direction", required = true) String direction) {
+          @RequestParam(value = "direction", required = true) String direction) throws BadRequestException {
     LOGGER.debug("dbName : {}", dbName);
     LOGGER.debug("tableName : {}", tableName);
     LOGGER.debug("from : {}", from);
@@ -179,7 +180,7 @@ public class DataLineageController {
           @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime from,
           @RequestParam(value = "to", required = false)
           @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime to,
-          @RequestParam(value = "direction") String direction) {
+          @RequestParam(value = "direction") String direction) throws BadRequestException {
     LOGGER.debug("datalineageId : {}", datalineageId);
     LOGGER.debug("direction : {}", direction);
 

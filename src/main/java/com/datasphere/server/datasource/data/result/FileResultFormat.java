@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data.result;
+package com.datasphere.server.datasource.data.result;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -24,7 +24,7 @@ import java.net.URI;
 import java.util.UUID;
 
 import com.datasphere.server.common.GlobalObjectMapper;
-import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.datasource.data.QueryTimeExcetpion;
 import com.datasphere.server.domain.engine.EngineQueryProperties;
 
 /**
@@ -59,7 +59,12 @@ public class FileResultFormat extends SearchResultFormat {
       try {
         GlobalObjectMapper.getDefaultMapper().writeValue(targetFile, root);
       } catch (IOException e) {
-        throw new QueryTimeExcetpion("Fail to write result to file : " + e.getMessage());
+        try {
+			throw new QueryTimeExcetpion("Fail to write result to file : " + e.getMessage());
+		} catch (QueryTimeExcetpion e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
       }
 
       return targetFile.getAbsolutePath();

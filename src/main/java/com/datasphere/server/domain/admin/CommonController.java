@@ -14,13 +14,6 @@
 
 package com.datasphere.server.domain.admin;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,8 +23,15 @@ import java.net.URI;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.CommonProperties;
-import com.datasphere.server.common.exception.MetatronException;
 
 @RestController
 @RequestMapping("/api/common")
@@ -47,10 +47,11 @@ public class CommonController {
    *
    * @param response
    * @throws IOException
+ * @throws MetatronException 
    */
   @RequestMapping(path ="/manual/download", method = RequestMethod.GET, produces = { "application/pdf" })
   public void downloadDataFromWidget(@RequestParam(value = "lang", required = false, defaultValue = "en") String lang,
-                                     HttpServletResponse response) throws IOException {
+                                     HttpServletResponse response) throws IOException, MetatronException {
 
     URI manualLink = commonProperties.getLinkByLang(lang)
                                 .orElseThrow(() -> new MetatronException("Manual Link not found."));
@@ -68,7 +69,7 @@ public class CommonController {
     }
   }
 
-  private void downloadFile(String path, HttpServletResponse response) throws IOException {
+  private void downloadFile(String path, HttpServletResponse response) throws IOException, MetatronException {
 
     File downloadFile = new File(path);
 

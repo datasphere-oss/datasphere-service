@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -40,7 +40,7 @@ public class WktCheckRequest implements Serializable {
 
     @JsonCreator
     public WktCheckRequest(@JsonProperty("geoType") String geoType,
-                           @JsonProperty("values") List<String> values) {
+                           @JsonProperty("values") List<String> values) throws BadRequestException {
         LogicalType type = SearchParamValidator.enumUpperValue(LogicalType.class, geoType, "geoType");
         if (!type.isGeoType()) {
             throw new BadRequestException("Invalid type for geo : " + geoType);

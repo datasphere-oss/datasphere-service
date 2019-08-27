@@ -47,8 +47,8 @@ public class PrepCsvUtil {
   private static Logger LOGGER = LoggerFactory.getLogger(PrepCsvUtil.class);
 
   // public for tests
-  public static InputStreamReader getReaderAfterDetectingCharset(InputStream is, String strUri) {   // strUri is only for debugging
-    InputStreamReader reader;
+  public static InputStreamReader getReaderAfterDetectingCharset(InputStream is, String strUri) throws PrepException {   // strUri is only for debugging
+    InputStreamReader reader = null;
     String charset = null;
 
     BOMInputStream bis = new BOMInputStream(is, false, ByteOrderMark.UTF_8, ByteOrderMark.UTF_16LE, ByteOrderMark.UTF_16BE, ByteOrderMark.UTF_32LE, ByteOrderMark.UTF_32BE);
@@ -65,21 +65,36 @@ public class PrepCsvUtil {
       reader = new InputStreamReader(bis, charset);
     } catch (UnsupportedEncodingException e) {
       e.printStackTrace();
-      throw PrepException.create(PrepErrorCodes.PREP_DATASET_ERROR_CODE, PrepMessageKey.MSG_DP_ALERT_UNSUPPORTED_CHARSET, charset);
+      try {
+		throw PrepException.create(PrepErrorCodes.PREP_DATASET_ERROR_CODE, PrepMessageKey.MSG_DP_ALERT_UNSUPPORTED_CHARSET, charset);
+	} catch (Exception e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
     } catch (NullPointerException e) {
       e.printStackTrace();
-      throw PrepException.create(PrepErrorCodes.PREP_DATASET_ERROR_CODE, PrepMessageKey.MSG_DP_ALERT_UNKNOWN_BOM);
+      try {
+		throw PrepException.create(PrepErrorCodes.PREP_DATASET_ERROR_CODE, PrepMessageKey.MSG_DP_ALERT_UNKNOWN_BOM);
+	} catch (Exception e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
     } catch (IOException e) {
       e.printStackTrace();
-      throw PrepException.create(PrepErrorCodes.PREP_DATASET_ERROR_CODE, PrepMessageKey.MSG_DP_ALERT_FAILED_TO_READ_CSV,
-                                 String.format("%s (charset: %s)", strUri, charset));
+      try {
+		throw PrepException.create(PrepErrorCodes.PREP_DATASET_ERROR_CODE, PrepMessageKey.MSG_DP_ALERT_FAILED_TO_READ_CSV,
+		                             String.format("%s (charset: %s)", strUri, charset));
+	} catch (Exception e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
     }
 
     return reader;
   }
 
 
-  private static char getUnescapedDelimiter(String strDelim) {
+  private static char getUnescapedDelimiter(String strDelim) throws PrepException {
     assert strDelim.length() != 0;
 
     if (strDelim.length() == 1) {
@@ -106,8 +121,9 @@ public class PrepCsvUtil {
    * @return PrepCsvParseResult: grid, header, maxColCnt
    *
    *  Sorry for so many try-catches. Sacrificed readability for end-users' usability.
+ * @throws PrepException 
    */
-  public static PrepCsvParseResult parse(String strUri, String strDelim, int limitRows, Integer columnCount, Configuration conf, boolean header, boolean onlyCount) {
+  public static PrepCsvParseResult parse(String strUri, String strDelim, int limitRows, Integer columnCount, Configuration conf, boolean header, boolean onlyCount) throws PrepException {
     PrepCsvParseResult result = new PrepCsvParseResult();
     Reader reader;
     URI uri;
@@ -246,23 +262,23 @@ public class PrepCsvUtil {
     return result;
   }
 
-  public static PrepCsvParseResult parse(String strUri, String strDelim, int limitRows, Configuration conf) {
+  public static PrepCsvParseResult parse(String strUri, String strDelim, int limitRows, Configuration conf) throws PrepException {
     return parse(strUri, strDelim, limitRows, null, conf, false, false);
   }
 
-  public static PrepCsvParseResult parse(String strUri, String strDelim, int limitRows, Configuration conf, boolean header) {
+  public static PrepCsvParseResult parse(String strUri, String strDelim, int limitRows, Configuration conf, boolean header) throws PrepException {
     return parse(strUri, strDelim, limitRows, null, conf, header, false);
   }
 
-  public static PrepCsvParseResult parse(String strUri, String strDelim, int limitRows, Integer columnCount, Configuration conf) {
+  public static PrepCsvParseResult parse(String strUri, String strDelim, int limitRows, Integer columnCount, Configuration conf) throws PrepException {
     return parse(strUri, strDelim, limitRows, columnCount, conf, false, false);
   }
 
-  public static PrepCsvParseResult parse(String strUri, String strDelim, int limitRows, Integer columnCount, Configuration conf, boolean header) {
+  public static PrepCsvParseResult parse(String strUri, String strDelim, int limitRows, Integer columnCount, Configuration conf, boolean header) throws PrepException {
     return parse(strUri, strDelim, limitRows, columnCount, conf, header, false);
   }
 
-  public static Map<String,Long> countCsv(String strUri, String strDelim, int limitRows, Configuration conf) {
+  public static Map<String,Long> countCsv(String strUri, String strDelim, int limitRows, Configuration conf) throws PrepException {
     Map<String, Long> mapTotal = new HashMap();
     PrepCsvParseResult result = parse(strUri, strDelim, limitRows, null, conf, false, true);
     mapTotal.put("totalRows", result.totalRows);
@@ -271,7 +287,7 @@ public class PrepCsvUtil {
   }
 
   // public for tests
-  public static OutputStreamWriter getWriter(OutputStream os) {
+  public static OutputStreamWriter getWriter(OutputStream os) throws PrepException {
     OutputStreamWriter writer;
     String charset = "UTF-8";
 
@@ -290,8 +306,9 @@ public class PrepCsvUtil {
    * @param conf        Hadoop configuration which is mandatory when the url's protocol is hdfs
    *
    *  header will be false for table-type snapshots.
+ * @throws PrepException 
    */
-  public static CSVPrinter getPrinter(String strUri, Configuration conf) {
+  public static CSVPrinter getPrinter(String strUri, Configuration conf) throws PrepException {
     Writer writer;
     URI uri;
 
@@ -367,7 +384,7 @@ public class PrepCsvUtil {
     return printer;
   }
 
-  public static void writeHiveTableAsCSV(ResultSet rs, ServletOutputStream outputStream, String dbName) {
+  public static void writeHiveTableAsCSV(ResultSet rs, ServletOutputStream outputStream, String dbName) throws PrepException {
     try {
       ResultSetMetaData rsmd = rs.getMetaData();
       int columnCount = rsmd.getColumnCount();

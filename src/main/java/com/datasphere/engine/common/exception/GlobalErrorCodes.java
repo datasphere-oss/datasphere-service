@@ -12,7 +12,7 @@
 
 package com.datasphere.engine.common.exception;
 
-public enum GlobalErrorCodes implements ErrorCodes {
+public enum GlobalErrorCodes implements ErrorCodes{
 
   DEFAULT_GLOBAL_ERROR_CODE("GB0000"),      // status 500
   UNKNOWN_SERVER_ERROR_CODE("GB0001"),      // status 500
@@ -31,7 +31,6 @@ public enum GlobalErrorCodes implements ErrorCodes {
     this.errorCode = errorCode;
   }
 
-  @Override
   public String getCode() {
     return errorCode;
   }

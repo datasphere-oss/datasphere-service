@@ -14,6 +14,26 @@
 
 package com.datasphere.server.domain.dataprep;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.support.JdbcUtils;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
+import org.springframework.stereotype.Service;
+
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
@@ -22,33 +42,9 @@ import com.datasphere.server.domain.dataprep.entity.PrDataset.RS_TYPE;
 import com.datasphere.server.domain.dataprep.jdbc.PrepJdbcService;
 import com.datasphere.server.domain.dataprep.repository.PrDatasetRepository;
 import com.datasphere.server.domain.dataprep.service.PrDatasetService;
-import com.datasphere.server.domain.dataprep.teddy.ColumnType;
 import com.datasphere.server.domain.dataprep.teddy.DataFrame;
-import com.datasphere.server.domain.dataprep.teddy.exceptions.IllegalColumnNameExpressionException;
 import com.datasphere.server.domain.dataprep.transform.TeddyImpl;
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 import com.google.common.collect.Sets;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Set;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.support.JdbcUtils;
-import org.springframework.orm.ObjectOptimisticLockingFailureException;
-import org.springframework.stereotype.Service;
 
 @Service
 public class PrepDatasetDatabaseService {
@@ -134,7 +130,7 @@ public class PrepDatasetDatabaseService {
   @Autowired(required = false)
   DataConnectionRepository connectionRepository;
 
-  private void countTotalLines(PrDataset dataset, DataConnection dataConnection) {
+  private void countTotalLines(PrDataset dataset, DataConnection dataConnection) throws JdbcDataConnectionException {
     JdbcAccessor jdbcDataAccessor = DataConnectionHelper.getAccessor(dataConnection);
     JdbcDialect dialect = jdbcDataAccessor.getDialect();
 
@@ -154,7 +150,7 @@ public class PrepDatasetDatabaseService {
     this.futures.add(poolExecutorService.submit(callable));
   }
 
-  public DataFrame getPreviewLinesFromJdbcForDataFrame(PrDataset dataset, String size) {
+  public DataFrame getPreviewLinesFromJdbcForDataFrame(PrDataset dataset, String size) throws JdbcDataConnectionException {
     DataFrame dataFrame;
     String dcId = dataset.getDcId();
     DataConnection dataConnection = this.datasetService.findRealDataConnection(this.connectionRepository.findOne(dcId));

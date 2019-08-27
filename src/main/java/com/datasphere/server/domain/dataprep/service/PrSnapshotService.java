@@ -298,7 +298,7 @@ public class PrSnapshotService {
         }
     }
 
-    public List<PrSnapshot> getWorkList(String dsId, String option) {
+    public List<PrSnapshot> getWorkList(String dsId, String option) throws PrepException {
         List<PrSnapshot> snapshots = Lists.newArrayList();
 
         try {
@@ -321,7 +321,7 @@ public class PrSnapshotService {
         return snapshots;
     }
 
-    public PrSnapshot.STATUS getSnapshotStatus(String ssId) {
+    public PrSnapshot.STATUS getSnapshotStatus(String ssId) throws PrepException {
         try {
             Sort sort = new Sort(Sort.Direction.DESC, "launchTime");
             List<PrSnapshot> listAll = this.snapshotRepository.findAll(sort);
@@ -337,7 +337,7 @@ public class PrSnapshotService {
         return null;
     }
 
-    public void updateSnapshotStatus(String ssId, PrSnapshot.STATUS status) {
+    public void updateSnapshotStatus(String ssId, PrSnapshot.STATUS status) throws PrepException {
         try {
             Sort sort = new Sort(Sort.Direction.DESC, "launchTime");
             List<PrSnapshot> listAll = this.snapshotRepository.findAll(sort);
@@ -353,7 +353,7 @@ public class PrSnapshotService {
         }
     }
 
-    public Map<String,Object> getSnapshotLineageInfo(String ssId) {
+    public Map<String,Object> getSnapshotLineageInfo(String ssId) throws PrepException {
         try {
             Sort sort = new Sort(Sort.Direction.DESC, "launchTime");
             List<PrSnapshot> listAll = this.snapshotRepository.findAll(sort);

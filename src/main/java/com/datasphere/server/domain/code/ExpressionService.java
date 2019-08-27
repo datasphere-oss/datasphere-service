@@ -25,7 +25,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import com.datasphere.server.common.GlobalObjectMapper;
-import com.datasphere.server.domain.datasource.ingestion.IngestionDataResultResponse;
+import com.datasphere.server.datasource.ingestion.IngestionDataResultResponse;
 import com.datasphere.server.util.CommonsCsvProcessor;
 
 @Component

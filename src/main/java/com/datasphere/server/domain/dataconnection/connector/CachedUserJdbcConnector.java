@@ -21,10 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.domain.user.CachedUserService;
 import com.datasphere.server.domain.user.User;
-import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.util.AuthUtils;
 
 /**
@@ -54,7 +54,13 @@ public class CachedUserJdbcConnector extends SimpleJdbcConnector {
       String username = getUsername(connectionInfo, dialect);
       User user = cachedUserService.findUser(username);
       if (user == null) {
-        throw new ResourceNotFoundException("User(" + username + ")");
+        try {
+			throw new ResourceNotFoundException("User(" + username + ")");
+		} catch (ResourceNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
       }
       return user.getPassword();
     }

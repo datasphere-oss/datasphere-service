@@ -15,11 +15,11 @@
 package com.datasphere.server.connections.jdbc;
 
 import com.datasphere.server.common.datasource.DataType;
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.domain.datasource.ingestion.file.CsvFileFormat;
-import com.datasphere.server.domain.datasource.ingestion.file.FileFormat;
-import com.datasphere.server.domain.datasource.ingestion.file.OrcFileFormat;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.SelectQueryBuilder;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.ingestion.file.CsvFileFormat;
+import com.datasphere.server.datasource.ingestion.file.FileFormat;
+import com.datasphere.server.datasource.ingestion.file.OrcFileFormat;
+import com.datasphere.server.datasource.ingestion.jdbc.SelectQueryBuilder;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 

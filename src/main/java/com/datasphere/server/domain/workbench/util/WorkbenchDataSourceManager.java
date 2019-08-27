@@ -14,6 +14,9 @@
 
 package com.datasphere.server.domain.workbench.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,19 +24,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.connections.jdbc.connector.JdbcConnector;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
 import com.datasphere.server.domain.user.CachedUserService;
 import com.datasphere.server.domain.user.User;
-import com.datasphere.server.extension.dataconnection.jdbc.connector.JdbcConnector;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.util.AuthUtils;
 
 /**
@@ -113,7 +113,7 @@ public class WorkbenchDataSourceManager {
     return pooledDataSourceList;
   }
 
-  public WorkbenchDataSource getWorkbenchDataSource(String dataConnectionId, String webSocketId, String username, String password) {
+  public WorkbenchDataSource getWorkbenchDataSource(String dataConnectionId, String webSocketId, String username, String password) throws ResourceNotFoundException, BadRequestException, JdbcDataConnectionException {
     WorkbenchDataSource dataSource = this.findDataSourceInfo(webSocketId);
     if(dataSource == null){
       DataConnection dataConnection = dataConnectionRepository.findOne(dataConnectionId);
@@ -126,7 +126,7 @@ public class WorkbenchDataSourceManager {
     return dataSource;
   }
 
-  public WorkbenchDataSource getWorkbenchDataSource(DataConnection jdbcDataConnection, String webSocketId, String username, String password){
+  public WorkbenchDataSource getWorkbenchDataSource(DataConnection jdbcDataConnection, String webSocketId, String username, String password) throws ResourceNotFoundException, BadRequestException, JdbcDataConnectionException{
     WorkbenchDataSource dataSource = this.findDataSourceInfo(webSocketId);
     if(dataSource == null){
       String connectionUsername;

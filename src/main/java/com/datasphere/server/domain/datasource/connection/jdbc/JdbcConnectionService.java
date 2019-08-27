@@ -40,22 +40,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.connection.jdbc;
-
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.jdbc.support.JdbcUtils;
-import org.springframework.stereotype.Component;
-import org.supercsv.prefs.CsvPreference;
+package com.datasphere.server.datasource.connection.jdbc;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -71,9 +56,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.jdbc.support.JdbcUtils;
+import org.springframework.stereotype.Component;
+import org.supercsv.prefs.CsvPreference;
+
+import com.datasphere.engine.common.exception.FunctionWithException;
 import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.datasource.LogicalType;
-import com.datasphere.server.common.exception.FunctionWithException;
+import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
@@ -86,21 +87,19 @@ import com.datasphere.server.domain.dataconnection.query.expression.NativeEqExp;
 import com.datasphere.server.domain.dataconnection.query.expression.NativeOrderExp;
 import com.datasphere.server.domain.dataconnection.query.expression.NativeProjection;
 import com.datasphere.server.domain.dataconnection.query.utils.VarGenerator;
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.domain.datasource.data.CandidateQueryRequest;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.LinkIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.SelectQueryBuilder;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.data.CandidateQueryRequest;
+import com.datasphere.server.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.LinkIngestionInfo;
+import com.datasphere.server.datasource.ingestion.jdbc.SelectQueryBuilder;
 import com.datasphere.server.domain.engine.EngineProperties;
 import com.datasphere.server.domain.workbook.configurations.filter.Filter;
 import com.datasphere.server.domain.workbook.configurations.filter.InclusionFilter;
 import com.datasphere.server.domain.workbook.configurations.filter.IntervalFilter;
-import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 /**
  *
@@ -118,22 +117,24 @@ public class JdbcConnectionService {
 
   /**
    * Check JDBC connection.
+ * @throws JdbcDataConnectionException 
    */
-  public Map<String, Object> checkConnection(JdbcConnectInformation connectInformation) {
+  public Map<String, Object> checkConnection(JdbcConnectInformation connectInformation) throws JdbcDataConnectionException {
     return DataConnectionHelper.getAccessor(connectInformation).checkConnection();
   }
 
   /**
    * Find list of JDBC database from connection
+ * @throws JdbcDataConnectionException 
    */
-  public Map<String, Object> getDatabases(JdbcConnectInformation connectInformation, String databaseNamePattern, Pageable pageable) {
+  public Map<String, Object> getDatabases(JdbcConnectInformation connectInformation, String databaseNamePattern, Pageable pageable) throws JdbcDataConnectionException {
     return getDatabases(connectInformation, null, databaseNamePattern, pageable);
   }
 
   public Map<String, Object> getDatabases(JdbcConnectInformation connectInformation,
                                           Connection connection,
                                           String databaseNamePattern,
-                                          Pageable pageable) {
+                                          Pageable pageable) throws JdbcDataConnectionException {
     JdbcAccessor jdbcDataAccessor = DataConnectionHelper.getAccessor(connectInformation);
     jdbcDataAccessor.setConnection(connection);
     return jdbcDataAccessor.getDatabases(connectInformation.getCatalog(), databaseNamePattern,
@@ -141,11 +142,11 @@ public class JdbcConnectionService {
                                          pageable == null ? null : pageable.getPageNumber());
   }
 
-  public void changeDatabase(JdbcConnectInformation connectInformation, String databaseName) {
+  public void changeDatabase(JdbcConnectInformation connectInformation, String databaseName) throws JdbcDataConnectionException {
     changeDatabase(connectInformation, databaseName, null);
   }
 
-  public void changeDatabase(JdbcConnectInformation connectInformation, String databaseName, Connection connection) {
+  public void changeDatabase(JdbcConnectInformation connectInformation, String databaseName, Connection connection) throws JdbcDataConnectionException {
     JdbcAccessor jdbcDataAccessor = DataConnectionHelper.getAccessor(connectInformation);
     jdbcDataAccessor.setConnection(connection);
     jdbcDataAccessor.useDatabase(connectInformation.getCatalog(), databaseName);
@@ -153,25 +154,28 @@ public class JdbcConnectionService {
 
   /**
    * Find list of table names from database
+ * @throws JdbcDataConnectionException 
    */
   public Map<String, Object> getTables(JdbcConnectInformation connectInformation, String databaseName,
-                                       Pageable pageable) {
+                                       Pageable pageable) throws JdbcDataConnectionException {
     return getTables(connectInformation, databaseName, null, null, pageable);
   }
 
   /**
    * Find list of table names from database
+ * @throws JdbcDataConnectionException 
    */
   public Map<String, Object> getTables(JdbcConnectInformation connectInformation, String databaseName,
-                                       String tableNamePattern, Pageable pageable) {
+                                       String tableNamePattern, Pageable pageable) throws JdbcDataConnectionException {
     return getTables(connectInformation, databaseName, tableNamePattern, null, pageable);
   }
 
   /**
    * Find list of table names from database
+ * @throws JdbcDataConnectionException 
    */
   public Map<String, Object> getTables(JdbcConnectInformation connectInformation, String databaseName,
-                                       String tableName, Connection connection, Pageable pageable) {
+                                       String tableName, Connection connection, Pageable pageable) throws JdbcDataConnectionException {
     JdbcAccessor jdbcDataAccessor = DataConnectionHelper.getAccessor(connectInformation);
     jdbcDataAccessor.setConnection(connection);
     Map<String, Object> searchedTableMap = jdbcDataAccessor.getTables(connectInformation.getCatalog(), databaseName, tableName,
@@ -182,25 +186,28 @@ public class JdbcConnectionService {
 
   /**
    * Find list of table names from database
+ * @throws JdbcDataConnectionException 
    */
   public Map<String, Object> getTableNames(JdbcConnectInformation connectInformation, String databaseName,
-                                           Pageable pageable) {
+                                           Pageable pageable) throws JdbcDataConnectionException {
     return getTableNames(connectInformation, databaseName, null, null, pageable);
   }
 
   /**
    * Find list of table names from database
+ * @throws JdbcDataConnectionException 
    */
   public Map<String, Object> getTableNames(JdbcConnectInformation connectInformation, String databaseName,
-                                           String tableNamePattern, Pageable pageable) {
+                                           String tableNamePattern, Pageable pageable) throws JdbcDataConnectionException {
     return getTableNames(connectInformation, databaseName, tableNamePattern, null, pageable);
   }
 
   /**
    * Find list of table names from database
+ * @throws JdbcDataConnectionException 
    */
   public Map<String, Object> getTableNames(JdbcConnectInformation connectInformation, String databaseName,
-                                           String tableName, Connection connection, Pageable pageable) {
+                                           String tableName, Connection connection, Pageable pageable) throws JdbcDataConnectionException {
     Map<String, Object> searchedTableMap = getTables(connectInformation, databaseName, tableName, connection, pageable);
     List<Map<String, Object>> tableMapList = (List<Map<String, Object>>) searchedTableMap.get("tables");
     List<String> tableNameList = tableMapList.stream()
@@ -211,12 +218,12 @@ public class JdbcConnectionService {
   }
 
   public Map<String, Object> getTableColumns(JdbcConnectInformation connectInformation, String schema,
-                                             String tableName, String columnNamePattern, Pageable pageable) {
+                                             String tableName, String columnNamePattern, Pageable pageable) throws JdbcDataConnectionException {
     return getTableColumns(connectInformation, null, schema, tableName, columnNamePattern, pageable);
   }
 
   public Map<String, Object> getTableColumns(JdbcConnectInformation connectInformation, Connection connection, String schema,
-                                             String tableName, String columnNamePattern, Pageable pageable) {
+                                             String tableName, String columnNamePattern, Pageable pageable) throws JdbcDataConnectionException {
     Map<String, Object> columnMap = new LinkedHashMap<>();
     List<Map<String, Object>> columnNames = getTableColumnNames(connectInformation, connection, schema, tableName,
                                                                 columnNamePattern, pageable);
@@ -234,7 +241,7 @@ public class JdbcConnectionService {
   }
 
   public List<Map<String, Object>> getTableColumnNames(JdbcConnectInformation connectInformation, Connection connection, String schema,
-                                                       String tableName, String columnNamePattern, Pageable pageable) {
+                                                       String tableName, String columnNamePattern, Pageable pageable) throws JdbcDataConnectionException {
     JdbcAccessor jdbcDataAccessor = DataConnectionHelper.getAccessor(connectInformation);
     jdbcDataAccessor.setConnection(connection);
     return jdbcDataAccessor.getColumns(connectInformation.getCatalog(), schema, tableName, columnNamePattern);
@@ -247,24 +254,25 @@ public class JdbcConnectionService {
    * @param schema             the schema
    * @param tableName          the table name
    * @return the map
+ * @throws JdbcDataConnectionException 
    */
-  public Map<String, Object> showTableDescription(JdbcConnectInformation connectInformation, String schema, String tableName) {
+  public Map<String, Object> showTableDescription(JdbcConnectInformation connectInformation, String schema, String tableName) throws JdbcDataConnectionException {
     return showTableDescription(connectInformation, null, schema, tableName);
   }
 
   public Map<String, Object> showTableDescription(JdbcConnectInformation connectInformation,
                                                   Connection connection,
-                                                  String schema, String tableName) {
+                                                  String schema, String tableName) throws JdbcDataConnectionException {
     JdbcAccessor jdbcDataAccessor = DataConnectionHelper.getAccessor(connectInformation);
     jdbcDataAccessor.setConnection(connection);
     return jdbcDataAccessor.showTableDescription(connectInformation.getCatalog(), schema, tableName);
   }
 
-  public int executeUpdate(JdbcConnectInformation connectInformation, String query) {
+  public int executeUpdate(JdbcConnectInformation connectInformation, String query) throws JdbcDataConnectionException {
     return executeUpdate(connectInformation, null, query);
   }
 
-  public int executeUpdate(JdbcConnectInformation connectInformation, Connection connection, String query) {
+  public int executeUpdate(JdbcConnectInformation connectInformation, Connection connection, String query) throws JdbcDataConnectionException {
     LOGGER.debug("executeUpdate : {} ", query);
     JdbcAccessor jdbcDataAccessor = DataConnectionHelper.getAccessor(connectInformation);
     jdbcDataAccessor.setConnection(connection);
@@ -278,12 +286,12 @@ public class JdbcConnectionService {
   }
 
 
-  public JdbcQueryResultResponse selectQuery(JdbcConnectInformation connectInformation, Connection conn, String query) {
+  public JdbcQueryResultResponse selectQuery(JdbcConnectInformation connectInformation, Connection conn, String query) throws JdbcDataConnectionException {
     return selectQuery(connectInformation, conn, query, -1, false);
   }
 
   public JdbcQueryResultResponse selectQuery(JdbcConnectInformation connectInformation, Connection conn, String query,
-                                             int limit, boolean extractColumnName) {
+                                             int limit, boolean extractColumnName) throws JdbcDataConnectionException {
 
     JdbcDialect dialect = DataConnectionHelper.lookupDialect(connectInformation);
     // int totalRows = countOfSelectQuery(connection, ingestion);
@@ -325,7 +333,7 @@ public class JdbcConnectionService {
                                                          String query,
                                                          List<Map<String, Object>> partitionList,
                                                          int limit,
-                                                         boolean extractColumnName) {
+                                                         boolean extractColumnName) throws JdbcDataConnectionException {
     JdbcAccessor jdbcDataAccessor = DataConnectionHelper.getAccessor(connectInformation);
     Connection conn = jdbcDataAccessor.getConnection(schema, true);
     String queryString = generateSelectQuery(connectInformation, schema, type, query, partitionList);
@@ -337,7 +345,7 @@ public class JdbcConnectionService {
                                     String schema,
                                     JdbcIngestionInfo.DataType type,
                                     String query,
-                                    List<Map<String, Object>> partitionList){
+                                    List<Map<String, Object>> partitionList) throws JdbcDataConnectionException{
     String queryString;
     if (type == JdbcIngestionInfo.DataType.TABLE) {
       JdbcDialect dialect = DataConnectionHelper.lookupDialect(connectInformation);
@@ -368,7 +376,7 @@ public class JdbcConnectionService {
                                                          JdbcIngestionInfo.DataType type,
                                                          String query,
                                                          int limit,
-                                                         boolean extractColumnName) {
+                                                         boolean extractColumnName) throws JdbcDataConnectionException {
     return selectQueryForIngestion(connectInformation, schema, type, query, null, limit, extractColumnName);
   }
 
@@ -376,7 +384,7 @@ public class JdbcConnectionService {
                                        JdbcIngestionInfo ingestionInfo,
                                        String dataSourceName,
                                        List<Field> fields,
-                                       Integer limit) {
+                                       Integer limit) throws JdbcDataConnectionException {
 
     return selectQueryToCsv(connectInformation, ingestionInfo, null, dataSourceName, fields, null, limit);
   }
@@ -387,7 +395,7 @@ public class JdbcConnectionService {
                                        String dataSourceName,
                                        List<Field> fields,
                                        List<Filter> filters,
-                                       Integer limit) {
+                                       Integer limit) throws JdbcDataConnectionException {
 
     int fetchSize = ingestionInfo.getFetchSize();
     int maxLimit = limit == null ? ingestionInfo.getMaxLimit() : limit;
@@ -542,7 +550,7 @@ public class JdbcConnectionService {
 
   }
 
-  public List<Map<String, Object>> selectCandidateQuery(CandidateQueryRequest queryRequest) {
+  public List<Map<String, Object>> selectCandidateQuery(CandidateQueryRequest queryRequest) throws JdbcDataConnectionException {
 
     com.datasphere.server.domain.workbook.configurations.field.Field targetField = queryRequest.getTargetField();
 
@@ -550,8 +558,8 @@ public class JdbcConnectionService {
     Preconditions.checkNotNull(targetField, "target field. required.");
 
     //MetaDataSource
-    com.datasphere.server.domain.datasource.DataSource metaDataSource = queryRequest.getDataSource().getMetaDataSource();
-    com.datasphere.server.domain.datasource.Field metaField = metaDataSource.getMetaFieldMap(false, "")
+    com.datasphere.server.datasource.DataSource metaDataSource = queryRequest.getDataSource().getMetaDataSource();
+    com.datasphere.server.datasource.Field metaField = metaDataSource.getMetaFieldMap(false, "")
                                                                              .get(targetField.getName());
 
     //Jdbc Connection
@@ -630,7 +638,7 @@ public class JdbcConnectionService {
                                                   JdbcIngestionInfo ingestionInfo,
                                                   String dataSourceName,
                                                   DateTime maxTime,
-                                                  List<Field> fields) {
+                                                  List<Field> fields) throws JdbcDataConnectionException {
 
     Preconditions.checkArgument(ingestionInfo instanceof BatchIngestionInfo,
                                 "Required Batch type Jdbc ingestion information.");
@@ -696,13 +704,13 @@ public class JdbcConnectionService {
     return tempCsvFiles;
   }
 
-  public int countOfSelectQuery(JdbcConnectInformation connectInformation, JdbcIngestionInfo jdbcInfo) {
+  public int countOfSelectQuery(JdbcConnectInformation connectInformation, JdbcIngestionInfo jdbcInfo) throws JdbcDataConnectionException {
     JdbcAccessor jdbcDataAccessor = DataConnectionHelper.getAccessor(connectInformation);
     Connection connection = jdbcDataAccessor.getConnection();
     return countOfSelectQuery(connectInformation, connection, jdbcInfo);
   }
 
-  public int countOfSelectQuery(JdbcConnectInformation connectInformation, Connection conn, JdbcIngestionInfo jdbcInfo) {
+  public int countOfSelectQuery(JdbcConnectInformation connectInformation, Connection conn, JdbcIngestionInfo jdbcInfo) throws JdbcDataConnectionException {
     JdbcAccessor jdbcDataAccessor = DataConnectionHelper.getAccessor(connectInformation);
     JdbcDialect jdbcDialect = DataConnectionHelper.lookupDialect(connectInformation);
     String queryString = new SelectQueryBuilder(connectInformation, jdbcDialect)

@@ -26,8 +26,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.datasphere.server.domain.datasource.data.QueryRequest;
-import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
+import com.datasphere.server.datasource.data.QueryRequest;
+import com.datasphere.server.datasource.data.SearchQueryRequest;
 import com.datasphere.server.domain.workbook.configurations.analysis.Analysis;
 import com.datasphere.server.domain.workbook.configurations.analysis.GeoSpatialAnalysis;
 import com.datasphere.server.domain.workbook.configurations.widget.shelf.GeoShelf;
@@ -115,7 +115,7 @@ public class MultiDataSource extends DataSource {
         .orElseThrow(() -> new IllegalArgumentException("Invalid datasource name in layer"));
   }
 
-  public com.datasphere.server.domain.datasource.DataSource getMetaDataSource() {
+  public com.datasphere.server.datasource.DataSource getMetaDataSource() {
     if (mainDataSource == null) {
       return dataSources.get(0).getMetaDataSource();
     }

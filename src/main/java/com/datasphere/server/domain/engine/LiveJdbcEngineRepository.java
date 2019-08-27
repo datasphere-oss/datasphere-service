@@ -43,10 +43,10 @@ import javax.sql.DataSource;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
-import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
-import com.datasphere.server.domain.datasource.data.forward.CsvResultForward;
-import com.datasphere.server.domain.datasource.data.forward.JsonResultForward;
-import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.datasource.data.forward.CsvResultForward;
+import com.datasphere.server.datasource.data.forward.JsonResultForward;
+import com.datasphere.server.datasource.data.forward.ResultForward;
 import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.util.CustomCsvResultSetWriter;
 

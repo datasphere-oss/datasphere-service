@@ -34,9 +34,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import com.datasphere.server.domain.datasource.DataSourceRepository;
-import com.datasphere.server.domain.datasource.DataSourceTemporary;
-import com.datasphere.server.domain.datasource.DataSourceTemporaryRepository;
+import com.datasphere.server.datasource.DataSourceRepository;
+import com.datasphere.server.datasource.DataSourceTemporary;
+import com.datasphere.server.datasource.DataSourceTemporaryRepository;
 import com.datasphere.server.domain.engine.EngineLoadService;
 
 /**

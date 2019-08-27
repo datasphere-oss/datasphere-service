@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.datasphere.server.common.exception.MetatronException;
-import com.datasphere.server.domain.datasource.DataSourceRepository;
+import com.datasphere.server.datasource.DataSourceRepository;
 import com.datasphere.server.domain.workbook.DashBoard;
 import com.datasphere.server.domain.workbook.DashBoardService;
 import com.datasphere.server.domain.workbook.WorkBook;

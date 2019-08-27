@@ -21,6 +21,7 @@ import java.util.Map;
 import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
 import com.datasphere.server.connections.jdbc.connector.JdbcConnector;
 import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 
 /**
  * The interface Jdbc accessor.
@@ -42,7 +43,7 @@ public interface JdbcAccessor {
    * @param pageNumber    the page number
    * @return the databases
    */
-  Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber);
+  Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) throws SQLException;
 
   /**
    * Use database.
@@ -62,7 +63,7 @@ public interface JdbcAccessor {
    * @param pageNumber       the page number
    * @return the tables
    */
-  Map<String, Object> getTables(String catalog, String schemaPattern, String tableNamePattern, Integer pageSize, Integer pageNumber);
+  Map<String, Object> getTables(String catalog, String schemaPattern, String tableNamePattern, Integer pageSize, Integer pageNumber) throws SQLException;
 
   /**
    * Gets table names.
@@ -95,7 +96,7 @@ public interface JdbcAccessor {
    * @param tableName the table name
    * @return the map
    */
-  Map<String, Object> showTableDescription(String catalog, String schema, String tableName);
+  Map<String, Object> showTableDescription(String catalog, String schema, String tableName) throws SQLException;
 
   /**
    * Execute query for list list.

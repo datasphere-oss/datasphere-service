@@ -14,13 +14,7 @@
 
 package com.datasphere.server.domain.dataconnection.accessor;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
-import org.apache.commons.lang3.StringUtils;
-import org.pf4j.Extension;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static java.util.stream.Collectors.toList;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -29,11 +23,16 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.AbstractJdbcDataAccessor;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import org.apache.commons.lang3.StringUtils;
+import org.pf4j.Extension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import static java.util.stream.Collectors.toList;
+import com.datasphere.server.connections.jdbc.accessor.AbstractJdbcDataAccessor;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 @Extension
 public class PrestoDataAccessor extends AbstractJdbcDataAccessor {
@@ -85,7 +84,7 @@ public class PrestoDataAccessor extends AbstractJdbcDataAccessor {
   }
 
   @Override
-  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) {
+  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) throws JdbcDataConnectionException {
     Map<String, Object> databaseMap = new LinkedHashMap<>();
 
     int size = pageSize == null ? 20 : pageSize;
@@ -119,7 +118,7 @@ public class PrestoDataAccessor extends AbstractJdbcDataAccessor {
   }
 
   @Override
-  public Map<String, Object> getTables(String catalog, String schemaPattern, String tableNamePattern, Integer pageSize, Integer pageNumber) {
+  public Map<String, Object> getTables(String catalog, String schemaPattern, String tableNamePattern, Integer pageSize, Integer pageNumber) throws JdbcDataConnectionException {
 
     String tableListQuery = dialect.getTableQuery(connectionInfo, catalog, schemaPattern, tableNamePattern, getExcludeTables(), pageSize, pageNumber);
 
@@ -168,8 +167,8 @@ public class PrestoDataAccessor extends AbstractJdbcDataAccessor {
                             }).collect(toList());
     } catch (Exception e) {
       LOGGER.error("Fail to get list of Columns : {}", e.getMessage());
-      throw new JdbcDataConnectionException(JdbcDataConnectionErrorCodes.INVALID_QUERY_ERROR_CODE,
-                                            "Fail to get list of Columns : " + e.getMessage());
+//      throw new JdbcDataConnectionException(JdbcDataConnectionErrorCodes.INVALID_QUERY_ERROR_CODE,
+//                                            "Fail to get list of Columns : " + e.getMessage());
     }
     return columns;
   }

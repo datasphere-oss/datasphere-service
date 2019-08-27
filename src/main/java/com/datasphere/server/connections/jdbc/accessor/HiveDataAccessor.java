@@ -2,11 +2,9 @@
 
 package com.datasphere.server.connections.jdbc.accessor;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static java.util.stream.Collectors.toList;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -14,14 +12,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.domain.datasource.connection.jdbc.HiveTableInformation;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.connection.jdbc.HiveTableInformation;
 import com.datasphere.server.domain.workbench.hive.HiveNamingRule;
 import com.datasphere.server.util.AuthUtils;
-
-import static java.util.stream.Collectors.toList;
 
 
 public class HiveDataAccessor extends AbstractJdbcDataAccessor {
@@ -31,7 +35,7 @@ public class HiveDataAccessor extends AbstractJdbcDataAccessor {
   private static final String TABLE_NAME_COLUMN = "tab_name";
 
   @Override
-  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) {
+  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) throws SQLException {
     Map<String, Object> databaseMap = super.getDatabases(catalog, schemaPattern, pageSize, pageNumber);
 
     List<String> databaseNames = (List) databaseMap.get("databases");
@@ -68,8 +72,8 @@ public class HiveDataAccessor extends AbstractJdbcDataAccessor {
       tableNames = this.executeQueryForList(this.getConnection(), tableListQuery, null);
     } catch (Exception e) {
       LOGGER.error("Fail to get list of table : {}", e.getMessage());
-      throw new JdbcDataConnectionException(JdbcDataConnectionErrorCodes.INVALID_QUERY_ERROR_CODE,
-                                            "Fail to get list of database : " + e.getMessage());
+//      throw new JdbcDataConnectionException(JdbcDataConnectionErrorCodes.INVALID_QUERY_ERROR_CODE,
+//                                            "Fail to get list of database : " + e.getMessage());
     }
 
     tableNames.stream()
@@ -102,7 +106,7 @@ public class HiveDataAccessor extends AbstractJdbcDataAccessor {
   }
 
   @Override
-  public Map<String, Object> showTableDescription(String catalog, String schema, String tableName) {
+  public Map<String, Object> showTableDescription(String catalog, String schema, String tableName) throws SQLException {
 
     Map<String, Object> tableInfoMap = null;
     try {
@@ -117,15 +121,15 @@ public class HiveDataAccessor extends AbstractJdbcDataAccessor {
         tableInfoMap.putAll(hiveTableInformation.getStorageInformation());
     } catch (Exception e) {
       LOGGER.error("Fail to get desc of table : {}", e.getMessage());
-      throw new JdbcDataConnectionException(JdbcDataConnectionErrorCodes.INVALID_QUERY_ERROR_CODE,
-                                            "Fail to get desc of table : " + e.getMessage());
+//      throw new JdbcDataConnectionException(JdbcDataConnectionErrorCodes.INVALID_QUERY_ERROR_CODE,
+//                                            "Fail to get desc of table : " + e.getMessage());
     }
     return tableInfoMap;
   }
 
   public HiveTableInformation showHiveTableDescription(JdbcConnectInformation connectionInfo,
                                                        String catalog, String schema, String tableName,
-                                                       boolean includeInformationHeader) {
+                                                       boolean includeInformationHeader) throws JdbcDataConnectionException {
 
     String tableDescQuery = dialect.getTableDescQuery(connectionInfo, catalog, schema, tableName);
     LOGGER.debug("Execute Table Desc query : {}", tableDescQuery);

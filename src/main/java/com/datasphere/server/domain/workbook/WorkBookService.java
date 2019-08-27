@@ -27,9 +27,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.DataSourceRepository;
-import com.datasphere.server.domain.datasource.QDataSource;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceRepository;
+import com.datasphere.server.datasource.QDataSource;
 import com.datasphere.server.domain.workspace.BookRepository;
 import com.datasphere.server.domain.workspace.WorkspaceRepository;
 import com.datasphere.server.domain.workspace.WorkspaceService;

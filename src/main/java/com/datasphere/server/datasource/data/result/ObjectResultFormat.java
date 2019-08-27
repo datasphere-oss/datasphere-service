@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data.result;
+package com.datasphere.server.datasource.data.result;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -43,21 +43,18 @@ import java.util.stream.Collectors;
 
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.MatrixResponse;
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.QueryHistoryTeller;
-import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
-import com.datasphere.server.domain.datasource.data.forward.CsvResultForward;
-import com.datasphere.server.domain.datasource.data.forward.JsonResultForward;
-import com.datasphere.server.domain.datasource.data.forward.ParquetResultForward;
-import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.QueryHistoryTeller;
+import com.datasphere.server.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.datasource.data.forward.CsvResultForward;
+import com.datasphere.server.datasource.data.forward.JsonResultForward;
+import com.datasphere.server.datasource.data.forward.ParquetResultForward;
+import com.datasphere.server.datasource.data.forward.ResultForward;
 import com.datasphere.server.domain.workbook.configurations.field.Field;
 import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
 
-import static com.datasphere.server.domain.datasource.DataSource.ConnectionType.ENGINE;
+import static com.datasphere.server.datasource.DataSource.ConnectionType.ENGINE;
 
-/**
- * Created by kyungtaak on 2016. 7. 18..
- */
 @JsonTypeName("object")
 public class ObjectResultFormat extends SearchResultFormat {
 
@@ -88,7 +85,12 @@ public class ObjectResultFormat extends SearchResultFormat {
         } else if (resultForward instanceof ParquetResultForward) {
           // TODO: Druid에 준비가 되면 작업
         } else {
-          throw new QueryTimeExcetpion("Type of result is file, you must set 'resultForward' property.");
+          try {
+			throw new QueryTimeExcetpion("Type of result is file, you must set 'resultForward' property.");
+		} catch (QueryTimeExcetpion e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         }
       } finally {
         if(resultForward.getRemoveFile() && FileUtils.deleteQuietly(new File(resultFileURI))) {

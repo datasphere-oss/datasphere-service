@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data.result;
+package com.datasphere.server.datasource.data.result;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -44,7 +44,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.datasphere.server.common.MatrixResponse;
-import com.datasphere.server.domain.datasource.DataSource;
+import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.workbook.configurations.Pivot;
 import com.datasphere.server.domain.workbook.configurations.analysis.Analysis;
 import com.datasphere.server.domain.workbook.configurations.analysis.ClusterAnalysis;
@@ -60,7 +60,7 @@ import com.datasphere.server.domain.workbook.configurations.format.TimeFieldForm
 import com.datasphere.server.query.druid.funtions.RunningSumFunc;
 import com.datasphere.server.query.druid.limits.PivotSpec;
 
-import static com.datasphere.server.domain.datasource.data.result.SearchResultFormat.ResultType.MATRIX;
+import static com.datasphere.server.datasource.data.result.SearchResultFormat.ResultType.MATRIX;
 
 /**
  * Created by kyungtaak on 2016. 7. 4..
@@ -636,7 +636,7 @@ public class ChartResultFormat extends SearchResultFormat {
     if (CollectionUtils.isNotEmpty(aggrs)) {
       for (Field field : aggrs) {
         if (field instanceof MeasureField ||
-            (field instanceof ExpressionField && ((ExpressionField) field).getRole() == com.datasphere.server.domain.datasource.Field.FieldRole.MEASURE)) {
+            (field instanceof ExpressionField && ((ExpressionField) field).getRole() == com.datasphere.server.datasource.Field.FieldRole.MEASURE)) {
           aggregation.add(
               new PivotResultFormat.Aggregation(field.getAlias())
           );

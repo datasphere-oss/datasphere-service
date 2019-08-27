@@ -14,13 +14,13 @@
 
 package com.datasphere.server.common.oauth;
 
+import java.io.IOException;
+
+import com.datasphere.engine.common.exception.GlobalErrorCodes;
 import com.datasphere.server.common.exception.ErrorResponse;
-import com.datasphere.server.common.exception.GlobalErrorCodes;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-
-import java.io.IOException;
 
 public class CustomOAuth2ExceptionSerializer extends StdSerializer<CustomOAuth2Exception> {
 

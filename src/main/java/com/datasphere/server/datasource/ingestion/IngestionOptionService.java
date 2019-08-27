@@ -1,14 +1,14 @@
-package com.datasphere.server.domain.datasource.ingestion;
+package com.datasphere.server.datasource.ingestion;
 
-import com.google.common.collect.Lists;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import com.google.common.collect.Lists;
 
 @Component
 public class IngestionOptionService {

@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data;
+package com.datasphere.server.datasource.data;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -51,9 +51,10 @@ import javax.validation.constraints.NotNull;
 import com.datasphere.server.common.MatrixResponse;
 import com.datasphere.server.common.RawJsonString;
 import com.datasphere.server.common.exception.BadRequestException;
-import com.datasphere.server.domain.datasource.SimilarityQueryRequest;
-import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
-import com.datasphere.server.domain.datasource.data.result.ChartResultFormat;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.server.datasource.SimilarityQueryRequest;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.datasource.data.result.ChartResultFormat;
 import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
 import com.datasphere.server.domain.engine.EngineQueryService;
 import com.datasphere.server.domain.workbook.configurations.Limit;
@@ -67,7 +68,7 @@ import com.datasphere.server.domain.workbook.configurations.format.TimeFieldForm
 import com.datasphere.server.query.polaris.ComputationalField;
 import com.datasphere.server.util.EnumUtils;
 
-import static com.datasphere.server.domain.datasource.DataSource.ConnectionType.LINK;
+import static com.datasphere.server.datasource.DataSource.ConnectionType.LINK;
 import static com.datasphere.server.query.polaris.ComputationalField.checkComputationalFieldIn;
 
 /**
@@ -91,7 +92,7 @@ public class DataQueryController {
   JdbcConnectionService jdbcConnectionService;
 
   @RequestMapping(value = "/datasources/query/candidate", method = RequestMethod.POST)
-  public ResponseEntity<?> metaDataQuery(@RequestBody CandidateQueryRequest queryRequest) {
+  public ResponseEntity<?> metaDataQuery(@RequestBody CandidateQueryRequest queryRequest) throws JdbcDataConnectionException {
 
     dataSourceValidator.validateQuery(queryRequest);
 
@@ -211,7 +212,7 @@ public class DataQueryController {
   }
 
   @RequestMapping(value = "/datasources/validate/expr", method = RequestMethod.POST)
-  public ResponseEntity<?> validateField(@RequestBody CheckExprRequest checkExprRequest) {
+  public ResponseEntity<?> validateField(@RequestBody CheckExprRequest checkExprRequest) throws InvalidExpressionException {
 
     dataSourceValidator.validateQuery(checkExprRequest.getDataSource());
 
@@ -269,7 +270,7 @@ public class DataQueryController {
         @JsonProperty("value") Integer value,
         @JsonProperty("timeZone") String timeZone,
         @JsonProperty("locale") String locale,
-        @JsonProperty("baseTime") String baseTime) {
+        @JsonProperty("baseTime") String baseTime) throws BadRequestException {
       this.dataSource = dataSource;
       this.userFields = userFields;
       this.filters = filters;

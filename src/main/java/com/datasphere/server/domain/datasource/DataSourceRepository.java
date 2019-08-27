@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import com.datasphere.server.domain.context.ContextDomainRepository;
 import com.datasphere.server.domain.workspace.Workspace;

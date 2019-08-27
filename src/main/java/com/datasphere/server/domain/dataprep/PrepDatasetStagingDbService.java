@@ -17,6 +17,7 @@ package com.datasphere.server.domain.dataprep;
 import static com.datasphere.server.domain.dataprep.entity.PrDataset.RS_TYPE.QUERY;
 
 import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
@@ -28,11 +29,10 @@ import com.datasphere.server.domain.dataprep.json.PrepJsonUtil;
 import com.datasphere.server.domain.dataprep.repository.PrDatasetRepository;
 import com.datasphere.server.domain.dataprep.teddy.ColumnType;
 import com.datasphere.server.domain.dataprep.teddy.DataFrame;
-import com.datasphere.server.domain.datasource.Field;
-import com.datasphere.server.domain.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.domain.storage.StorageProperties;
 import com.datasphere.server.domain.storage.StorageProperties.StageDBConnection;
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -150,7 +150,7 @@ public class PrepDatasetStagingDbService {
         this.futures = Sets.newHashSet();
     }
 
-    public String getHiveDefaultHDFSPath() {
+    public String getHiveDefaultHDFSPath() throws PrepException {
         if(null==hiveDefaultHDFSPath && null!=prepProperties.getStagingBaseDir(false)) {
             hiveDefaultHDFSPath = prepProperties.getStagingBaseDir(false) + File.separator + PrepProperties.dirSnapshot;
         }
@@ -238,7 +238,7 @@ public class PrepDatasetStagingDbService {
     }
 
     // FIXME: connectUrl에 명시된 server에 hiveserver2가 돌고 있어야 한다.
-    public Map<String, Object> getPreviewStagedb(String queryStmt, String dbName, String tblName, String size) throws SQLException {
+    public Map<String, Object> getPreviewStagedb(String queryStmt, String dbName, String tblName, String size) throws Exception {
 
         Map<String, Object> responseMap = Maps.newHashMap();
 
@@ -330,14 +330,14 @@ public class PrepDatasetStagingDbService {
         return responseMap;
     }
 
-    private static void validateStorageProperties(StorageProperties storageProperties) {
+    private static void validateStorageProperties(StorageProperties storageProperties) throws ResourceNotFoundException {
         if (storageProperties == null || storageProperties.getStagedb() == null) {
             throw new ResourceNotFoundException("Stage DB information required.");
         }
     }
 
     // FIXME: connectUrl에 명시된 server에 hiveserver2가 돌고 있어야 한다.
-    public DataFrame getPreviewStagedbForDataFrame(String queryStmt, String dbName, String tblName, String size) throws SQLException {
+    public DataFrame getPreviewStagedbForDataFrame(String queryStmt, String dbName, String tblName, String size) throws Exception {
 
         DataFrame dataFrame = new DataFrame();
 
@@ -415,7 +415,7 @@ public class PrepDatasetStagingDbService {
     }
 
     // FIXME: connectUrl에 명시된 server에 hiveserver2가 돌고 있어야 한다.
-    public DataFrame getPreviewLinesFromStagedbForDataFrame(PrDataset dataset, String size) throws SQLException, IOException {
+    public DataFrame getPreviewLinesFromStagedbForDataFrame(PrDataset dataset, String size) throws SQLException, IOException, ResourceNotFoundException, PrepException {
 
         DataFrame dataFrame = new DataFrame();
 
@@ -547,7 +547,7 @@ public class PrepDatasetStagingDbService {
         return dataFrame;
     }
 
-    private Long getTotalBytesFromHdfs(String extTblPath, String dbName, String tblName) throws IOException {
+    private Long getTotalBytesFromHdfs(String extTblPath, String dbName, String tblName) throws IOException, PrepException {
         String cmd = "hdfs dfs -du -s " + extTblPath;
         Process p = Runtime.getRuntime().exec(cmd);
 

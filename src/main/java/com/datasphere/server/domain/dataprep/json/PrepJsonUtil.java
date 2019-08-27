@@ -49,8 +49,9 @@ public class PrepJsonUtil {
    * @return PrepCsvParseResult: grid, header, maxColCnt
    *
    *  Sorry for so many try-catches. Sacrificed readability for end-users' usability.
+ * @throws PrepException 
    */
-  public static PrepJsonParseResult parseJson(String strUri, int limitRows, Integer columnCount, Configuration conf, boolean onlyCount) {
+  public static PrepJsonParseResult parseJson(String strUri, int limitRows, Integer columnCount, Configuration conf, boolean onlyCount) throws PrepException {
     PrepJsonParseResult result = new PrepJsonParseResult();
     BufferedReader reader;
     URI uri;
@@ -171,7 +172,7 @@ public class PrepJsonUtil {
     return result;
   }
 
-  public static PrepJsonParseResult parseJson(String strUri, int limitRows, Integer columnCount, Configuration conf) {
+  public static PrepJsonParseResult parseJson(String strUri, int limitRows, Integer columnCount, Configuration conf) throws PrepException {
     return parseJson(strUri, limitRows, columnCount, conf, false);
   }
 
@@ -183,8 +184,9 @@ public class PrepJsonUtil {
    * @return Long: total Row count
    *
    *  Sorry for so many try-catches. Sacrificed readability for end-users' usability.
+ * @throws PrepException 
    */
-  public static Map<String, Long> countJson(String strUri, int limitRows, Configuration conf) {
+  public static Map<String, Long> countJson(String strUri, int limitRows, Configuration conf) throws PrepException {
     Map<String, Long> mapTotal = new HashMap();
     PrepJsonParseResult result = parseJson(strUri, limitRows, null, conf, true);
     mapTotal.put("totalRows", result.totalRows);
@@ -197,8 +199,9 @@ public class PrepJsonUtil {
    * @param conf        Hadoop configuration which is mandatory when the url's protocol is hdfs
    *
    *  header will be false for table-type snapshots.
+ * @throws PrepException 
    */
-  public static PrintWriter getJsonPrinter(String strUri, Configuration conf) {
+  public static PrintWriter getJsonPrinter(String strUri, Configuration conf) throws PrepException {
     PrintWriter printWriter;
     URI uri;
 
@@ -271,8 +274,9 @@ public class PrepJsonUtil {
    * @param dbName   dbName needed for column name generating
    *
    *  Sorry for so many try-catches. Sacrificed readability for end-users' usability.
+ * @throws PrepException 
    */
-  public static void writeHiveTableAsJSON(ResultSet rs, ServletOutputStream outputStream, String dbName) {
+  public static void writeHiveTableAsJSON(ResultSet rs, ServletOutputStream outputStream, String dbName) throws PrepException {
     try {
       ResultSetMetaData rsmd = rs.getMetaData();
       int columnCount = rsmd.getColumnCount();

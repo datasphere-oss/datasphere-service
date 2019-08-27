@@ -27,12 +27,12 @@ import org.joda.time.Period;
 
 import java.util.List;
 
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 import com.datasphere.server.query.druid.funtions.DateTimeMillisFunc;
 import com.datasphere.server.util.EnumUtils;
 
-import static com.datasphere.server.domain.datasource.Field.FieldRole.TIMESTAMP;
+import static com.datasphere.server.datasource.Field.FieldRole.TIMESTAMP;
 
 @JsonTypeName("time_relative")
 public class TimeRelativeFilter extends TimeFilter {

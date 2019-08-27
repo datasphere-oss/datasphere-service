@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data;
+package com.datasphere.server.datasource.data;
 
 
 import com.google.common.collect.Lists;
@@ -20,7 +20,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.data.alias.Alias;
+import com.datasphere.server.datasource.data.alias.Alias;
 import com.datasphere.server.domain.workbook.configurations.datasource.DataSource;
 
 public abstract class AbstractQueryRequest implements QueryRequest {

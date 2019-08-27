@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data;
+package com.datasphere.server.datasource.data;
 
 import com.google.common.collect.Maps;
 
@@ -24,12 +24,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.datasphere.server.domain.datasource.DataSourceAlias;
-import com.datasphere.server.domain.datasource.DataSourceAliasRepository;
-import com.datasphere.server.domain.datasource.data.alias.Alias;
-import com.datasphere.server.domain.datasource.data.alias.CodeTableAlias;
-import com.datasphere.server.domain.datasource.data.alias.MapAlias;
-import com.datasphere.server.domain.datasource.data.alias.ValueRefAlias;
+import com.datasphere.server.datasource.DataSourceAlias;
+import com.datasphere.server.datasource.DataSourceAliasRepository;
+import com.datasphere.server.datasource.data.alias.Alias;
+import com.datasphere.server.datasource.data.alias.CodeTableAlias;
+import com.datasphere.server.datasource.data.alias.MapAlias;
+import com.datasphere.server.datasource.data.alias.ValueRefAlias;
 import com.datasphere.server.domain.mdm.CodeTableService;
 
 @Component

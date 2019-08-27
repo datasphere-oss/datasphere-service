@@ -25,8 +25,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.datasphere.server.common.datasource.LogicalType;
-import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
-import com.datasphere.server.domain.datasource.data.forward.ResultForward;
+import com.datasphere.server.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.datasource.data.forward.ResultForward;
 import com.datasphere.server.domain.workbook.configurations.Limit;
 import com.datasphere.server.domain.workbook.configurations.Sort;
 import com.datasphere.server.domain.workbook.configurations.analysis.GeoSpatialOperation;
@@ -128,7 +128,7 @@ public class SelectStreamQueryBuilder extends AbstractQueryBuilder {
       if (reqField instanceof DimensionField) {
 
         DimensionField dimensionField = (DimensionField) reqField;
-        com.datasphere.server.domain.datasource.Field datasourceField = metaFieldMap.get(fieldName);
+        com.datasphere.server.datasource.Field datasourceField = metaFieldMap.get(fieldName);
 
         FieldFormat originalFormat = datasourceField.getFormatObject();
 
@@ -198,7 +198,7 @@ public class SelectStreamQueryBuilder extends AbstractQueryBuilder {
           continue;
         }
 
-        com.datasphere.server.domain.datasource.Field datasourceField = metaFieldMap.get(fieldName);
+        com.datasphere.server.datasource.Field datasourceField = metaFieldMap.get(fieldName);
         TimeFieldFormat originalTimeFormat = (TimeFieldFormat) datasourceField.getFormatObject();
 
         TimestampField timestampField = (TimestampField) reqField;
@@ -299,8 +299,8 @@ public class SelectStreamQueryBuilder extends AbstractQueryBuilder {
       if (reqLimit.getSort() != null) {
         for (Sort sort : reqLimit.getSort()) {
           if (this.metaFieldMap.containsKey(sort.getField())) {
-            com.datasphere.server.domain.datasource.Field field = this.metaFieldMap.get(sort.getField());
-            if (field.getRole() == com.datasphere.server.domain.datasource.Field.FieldRole.TIMESTAMP) {
+            com.datasphere.server.datasource.Field field = this.metaFieldMap.get(sort.getField());
+            if (field.getRole() == com.datasphere.server.datasource.Field.FieldRole.TIMESTAMP) {
               descending = sort.getDirection() == Sort.Direction.DESC ? true : false;
             } // Ignore any sorting on the rest of the field of timestamp role
           }

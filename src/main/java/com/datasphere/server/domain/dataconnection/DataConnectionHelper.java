@@ -28,6 +28,10 @@
 
 package com.datasphere.server.domain.dataconnection;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.lang3.StringUtils;
 import org.pf4j.PluginManager;
 import org.slf4j.Logger;
@@ -38,17 +42,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
+import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.connections.jdbc.connector.JdbcConnector;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.dataconnection.connector.CachedUserJdbcConnector;
-import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import com.datasphere.server.extension.dataconnection.jdbc.connector.JdbcConnector;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
 
 /**
  *
@@ -89,7 +89,7 @@ public class DataConnectionHelper {
     pluginManager = this.pluginManager0;
   }
 
-  public static JdbcAccessor getAccessor(JdbcConnectInformation connectInformation){
+  public static JdbcAccessor getAccessor(JdbcConnectInformation connectInformation) throws JdbcDataConnectionException{
     JdbcDialect jdbcDialect = lookupDialect(connectInformation);
     JdbcConnector jdbcConnector = lookupJdbcConnector(connectInformation, jdbcDialect);
 
@@ -100,11 +100,11 @@ public class DataConnectionHelper {
     return jdbcDataAccessor;
   }
 
-  public static JdbcDialect lookupDialect(JdbcConnectInformation connectInformation){
+  public static JdbcDialect lookupDialect(JdbcConnectInformation connectInformation) throws JdbcDataConnectionException{
     return lookupDialect(connectInformation.getImplementor());
   }
 
-  public static JdbcDialect lookupDialect(String implementor){
+  public static JdbcDialect lookupDialect(String implementor) throws JdbcDataConnectionException{
     JdbcDialect matchedDialect = null;
 
     //look up in bean list
@@ -141,23 +141,23 @@ public class DataConnectionHelper {
 
     if(matchedConnector == null){
       LOGGER.debug("matchedConnector not exist. return defaultConnector: {}", defaultConnector);
-      return defaultConnector;
+      return (JdbcConnector) defaultConnector;
     }
 
     LOGGER.debug("matchedConnector : {}", matchedConnector);
     return matchedConnector;
   }
 
-  private static JdbcAccessor lookupJdbcDataAccessor(JdbcConnectInformation connectInformation, JdbcDialect dialect){
+  private static JdbcAccessor lookupJdbcDataAccessor(JdbcConnectInformation connectInformation, JdbcDialect dialect) throws JdbcDataConnectionException{
 
     JdbcAccessor matchedDataAccessor = null;
 
     String definedDataAccessorClass = dialect.getDataAccessorClass(connectInformation);
 
-    List<Class<JdbcAccessor>> extensionClass = pluginManager.getExtensionClasses(JdbcAccessor.class);
+    List<Class<? extends JdbcAccessor>> extensionClass = pluginManager.getExtensionClasses(JdbcAccessor.class);
 
     try{
-      for(Class<JdbcAccessor> cls : extensionClass){
+      for(Class<? extends JdbcAccessor> cls : extensionClass){
         if(cls.getTypeName().equals(definedDataAccessorClass)){
           matchedDataAccessor = cls.newInstance();
           break;
@@ -175,15 +175,15 @@ public class DataConnectionHelper {
     return matchedDataAccessor;
   }
 
-  public static String getConnectionUrl(JdbcConnectInformation connectInformation){
+  public static String getConnectionUrl(JdbcConnectInformation connectInformation) throws JdbcDataConnectionException{
     return getConnectionUrl(connectInformation, connectInformation.getDatabase());
   }
 
-  public static String getConnectionUrl(JdbcConnectInformation connectInformation, String database){
+  public static String getConnectionUrl(JdbcConnectInformation connectInformation, String database) throws JdbcDataConnectionException{
     return getConnectionUrl(connectInformation, database, true);
   }
 
-  public static String getConnectionUrl(JdbcConnectInformation connectInformation, String database, boolean includeDatabase){
+  public static String getConnectionUrl(JdbcConnectInformation connectInformation, String database, boolean includeDatabase) throws JdbcDataConnectionException{
     JdbcDialect jdbcDialect = lookupDialect(connectInformation);
     return jdbcDialect.makeConnectUrl(connectInformation, database, includeDatabase);
   }

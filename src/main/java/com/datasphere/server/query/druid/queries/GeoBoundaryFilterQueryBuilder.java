@@ -22,7 +22,7 @@ import java.util.Map;
 
 import com.datasphere.server.common.CommonLocalVariable;
 import com.datasphere.server.common.datasource.LogicalType;
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.analysis.GeoSpatialOperation;
 import com.datasphere.server.query.druid.Query;
 import com.datasphere.server.query.druid.SpatialOperations;

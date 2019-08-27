@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.job;
+package com.datasphere.server.datasource.ingestion.job;
 
 import com.google.common.collect.Lists;
 
@@ -39,15 +39,15 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.DataSourceIngestionException;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.domain.datasource.ingestion.IngestionOption;
-import com.datasphere.server.domain.datasource.ingestion.LocalFileIngestionInfo;
-import com.datasphere.server.domain.datasource.ingestion.file.CsvFileFormat;
-import com.datasphere.server.domain.datasource.ingestion.file.ExcelFileFormat;
-import com.datasphere.server.domain.datasource.ingestion.file.FileFormat;
-import com.datasphere.server.domain.datasource.ingestion.file.JsonFileFormat;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceIngestionException;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.ingestion.IngestionOption;
+import com.datasphere.server.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.server.datasource.ingestion.file.CsvFileFormat;
+import com.datasphere.server.datasource.ingestion.file.ExcelFileFormat;
+import com.datasphere.server.datasource.ingestion.file.FileFormat;
+import com.datasphere.server.datasource.ingestion.file.JsonFileFormat;
 import com.datasphere.server.domain.engine.EngineProperties;
 import com.datasphere.server.spec.druid.ingestion.BatchIndex;
 import com.datasphere.server.spec.druid.ingestion.Index;
@@ -55,7 +55,7 @@ import com.datasphere.server.spec.druid.ingestion.IngestionSpec;
 import com.datasphere.server.spec.druid.ingestion.IngestionSpecBuilder;
 import com.datasphere.server.util.PolarisUtils;
 
-import static com.datasphere.server.domain.datasource.DataSourceErrorCodes.INGESTION_FILE_EXCEL_CONVERSION_ERROR;
+import static com.datasphere.server.datasource.DataSourceErrorCodes.INGESTION_FILE_EXCEL_CONVERSION_ERROR;
 
 public class FileIngestionJob extends AbstractIngestionJob implements IngestionJob {
 
@@ -99,7 +99,7 @@ public class FileIngestionJob extends AbstractIngestionJob implements IngestionJ
         srcFilePath = destFilePath.toString();
       } catch (Exception e) {
         LOGGER.error("Error converting the Excel file.", e);
-        throw new DataSourceIngestionException(INGESTION_FILE_EXCEL_CONVERSION_ERROR, "Error converting the Excel file", e);
+//        throw new DataSourceIngestionException(INGESTION_FILE_EXCEL_CONVERSION_ERROR, "Error converting the Excel file", e);
       }
     }
 
@@ -107,7 +107,7 @@ public class FileIngestionJob extends AbstractIngestionJob implements IngestionJ
 
   @Override
   public void loadToEngine() {
-    loadFileToEngine(Lists.newArrayList(srcFilePath), Lists.newArrayList(loadFileName));
+	loadFileToEngine(Lists.newArrayList(srcFilePath), Lists.newArrayList(loadFileName));
   }
 
   @Override
@@ -124,7 +124,13 @@ public class FileIngestionJob extends AbstractIngestionJob implements IngestionJ
 
   @Override
   public String process() {
-    String taskId = doIngestion(indexSpec);
+    String taskId = null;
+	try {
+		taskId = doIngestion(indexSpec);
+	} catch (DataSourceIngestionException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     LOGGER.info("Successfully creating task : {}", ingestionHistory);
     return taskId;
   }

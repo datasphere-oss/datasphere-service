@@ -37,13 +37,15 @@ import java.util.Map;
 
 import static java.util.stream.Collectors.toList;
 
+import java.sql.SQLException;
+
 @Extension
 public class StageDataAccessor extends HiveDataAccessor {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(StageDataAccessor.class);
 
   @Override
-  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) {
+  public Map<String, Object> getDatabases(String catalog, String schemaPattern, Integer pageSize, Integer pageNumber) throws SQLException {
     Map<String, Object> databaseMap = super.getDatabases(catalog, schemaPattern, pageSize, pageNumber);
 
     List<String> databaseNames = (List) databaseMap.get("databases");

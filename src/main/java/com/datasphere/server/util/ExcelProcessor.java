@@ -12,23 +12,29 @@
 
 package com.datasphere.server.util;
 
-import com.datasphere.server.domain.datasource.ingestion.IngestionDataResultResponse;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.monitorjbl.xlsx.StreamingReader;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.*;
-import org.joda.time.DateTime;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.joda.time.DateTime;
+
+import com.datasphere.server.common.datasource.DataType;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.FileValidationResponse;
+import com.datasphere.server.datasource.ingestion.IngestionDataResultResponse;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.monitorjbl.xlsx.StreamingReader;
 
 public class ExcelProcessor {
 

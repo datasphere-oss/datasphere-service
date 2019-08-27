@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.datasphere.server.common.entity.DomainType;
 import com.datasphere.server.common.entity.SearchParamValidator;
+import com.datasphere.server.common.exception.BadRequestException;
 
 @RepositoryRestController
 public class ContextController {
@@ -64,7 +65,7 @@ public class ContextController {
                                                 @RequestParam(value = "value", required = false) String value,
                                                 @RequestParam(value = "domainProjection", required = false, defaultValue = "default") String domainProjection,
                                                 Pageable pageable,
-                                                PersistentEntityResourceAssembler resourceAssembler) {
+                                                PersistentEntityResourceAssembler resourceAssembler) throws BadRequestException {
 
     DomainType type = SearchParamValidator.enumUpperValue(DomainType.class, domainType, "domain type");
 

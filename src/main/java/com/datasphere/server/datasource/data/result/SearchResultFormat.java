@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.data.result;
+package com.datasphere.server.datasource.data.result;
 
 import com.google.common.collect.Lists;
 
@@ -31,10 +31,10 @@ import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.QueryHistoryTeller;
-import com.datasphere.server.domain.datasource.data.QueryTimeExcetpion;
-import com.datasphere.server.domain.datasource.data.SearchQueryRequest;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.QueryHistoryTeller;
+import com.datasphere.server.datasource.data.QueryTimeExcetpion;
+import com.datasphere.server.datasource.data.SearchQueryRequest;
 import com.datasphere.server.domain.engine.EngineProperties;
 import com.datasphere.server.domain.engine.EngineQueryProperties;
 import com.datasphere.server.util.SshUtils;
@@ -96,8 +96,8 @@ public abstract class SearchResultFormat implements Serializable {
     return checkNode.has("numRows") || checkNode.has("rowCount") ? true : false;
   }
 
-  protected URI getResultFileURI(JsonNode node) {
-    return getResultFileURI(node, null);
+  protected URI getResultFileURI(JsonNode node)  {
+	return getResultFileURI(node, null);
   }
 
   protected URI getResultFileURI(JsonNode node, String targetDir) {
@@ -118,12 +118,12 @@ public abstract class SearchResultFormat implements Serializable {
     /* for history */ QueryHistoryTeller.setResultCountAndSize(rows, size);
     LOGGER.info("Forward file : {} (rows: {}, size: {})", path, rows, size);
 
-    URI location;
+    URI location = null;
     try {
       location = URI.create(path);
     } catch (Exception e) {
       LOGGER.error("Invalid forward path({}) : {}", path, ExceptionUtils.getMessage(e));
-      throw new QueryTimeExcetpion("Invalid forward path : " + path);
+//      throw new QueryTimeExcetpion("Invalid forward path : " + path);
     }
 
     String scheme = location.getScheme();
@@ -134,7 +134,7 @@ public abstract class SearchResultFormat implements Serializable {
       return location;
     } else {
 
-      String localPath;
+      String localPath = null;
       Map<String, EngineProperties.Host> hosts = EngineQueryProperties.getHosts();
       if(!"localhost".equals(location.getHost())
           && hosts.containsKey(location.getHost())) {
@@ -154,7 +154,7 @@ public abstract class SearchResultFormat implements Serializable {
                   true);
           localPath = downloadedPath.get(0);
         } catch (Exception e) {
-          throw new QueryTimeExcetpion("Fail to transfer result file from remote host.");
+//          throw new QueryTimeExcetpion("Fail to transfer result file from remote host.");
         }
       } else {
         localPath = location.getPath();

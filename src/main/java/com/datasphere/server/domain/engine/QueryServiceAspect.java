@@ -30,10 +30,10 @@ import org.springframework.util.StopWatch;
 
 import com.datasphere.server.common.CommonLocalVariable;
 import com.datasphere.server.common.IdGenerator;
-import com.datasphere.server.domain.datasource.DataSourceQueryHistory;
-import com.datasphere.server.domain.datasource.DataSourceQueryHistoryRepository;
-import com.datasphere.server.domain.datasource.QueryHistoryTeller;
-import com.datasphere.server.domain.datasource.data.QueryRequest;
+import com.datasphere.server.datasource.DataSourceQueryHistory;
+import com.datasphere.server.datasource.DataSourceQueryHistoryRepository;
+import com.datasphere.server.datasource.QueryHistoryTeller;
+import com.datasphere.server.datasource.data.QueryRequest;
 
 /**
  * Created by kyungtaak on 2016. 8. 30..

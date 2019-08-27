@@ -31,17 +31,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.datasphere.server.domain.datasource.DataSource;
-import com.datasphere.server.domain.datasource.DataSourceRepository;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.domain.datasource.ingestion.IngestionHistoryRepository;
-import com.datasphere.server.domain.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceRepository;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
+import com.datasphere.server.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.server.datasource.ingestion.jdbc.BatchIngestionInfo;
 import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
 import com.datasphere.server.domain.engine.EngineIngestionService;
 
-import static com.datasphere.server.domain.datasource.ingestion.IngestionHistory.IngestionStatus.FAILED;
-import static com.datasphere.server.domain.datasource.ingestion.IngestionHistory.IngestionStatus.RUNNING;
-import static com.datasphere.server.domain.datasource.ingestion.IngestionHistory.IngestionStatus.SUCCESS;
+import static com.datasphere.server.datasource.ingestion.IngestionHistory.IngestionStatus.FAILED;
+import static com.datasphere.server.datasource.ingestion.IngestionHistory.IngestionStatus.RUNNING;
+import static com.datasphere.server.datasource.ingestion.IngestionHistory.IngestionStatus.SUCCESS;
 
 /**
  * Created by kyungtaak on 2016. 12. 5..

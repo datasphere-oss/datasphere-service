@@ -12,23 +12,23 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource.ingestion.jdbc;
+package com.datasphere.server.datasource.ingestion.jdbc;
 
-import org.apache.commons.lang3.StringUtils;
+import static com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo.DataType.TABLE;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.datasource.LogicalType;
-import com.datasphere.server.domain.datasource.Field;
+import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.format.UnixTimeFormat;
-import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.util.TimeUnits;
-
-import static com.datasphere.server.domain.datasource.ingestion.jdbc.JdbcIngestionInfo.DataType.TABLE;
 
 /**
  * Build "SELECT" SQL for datasource ingestion

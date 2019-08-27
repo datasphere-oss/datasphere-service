@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package com.datasphere.server.domain.datasource;
+package com.datasphere.server.datasource;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -38,7 +38,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
 import java.util.Map;
@@ -52,7 +52,7 @@ import com.datasphere.server.domain.workbook.QDashBoard;
 /**
  * Created by kyungtaak on 2016. 12. 28..
  */
-public class DataSourceRepositoryImpl extends QueryDslRepositorySupport implements DataSourceSearchRepository, DataSourceRepositoryExtends {
+public class DataSourceRepositoryImpl extends QuerydslRepositorySupport implements DataSourceSearchRepository, DataSourceRepositoryExtends {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceRepositoryImpl.class);
 

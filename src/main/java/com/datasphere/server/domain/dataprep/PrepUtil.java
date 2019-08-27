@@ -54,7 +54,7 @@ public class PrepUtil {
     return f.exists();
   }
 
-  public static Configuration getHadoopConf(String hadoopConfDir) {
+  public static Configuration getHadoopConf(String hadoopConfDir) throws PrepException {
     if (hadoopConfDir == null) {
       return null;
     }

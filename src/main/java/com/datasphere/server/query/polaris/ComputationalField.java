@@ -34,7 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.server.domain.datasource.data.InvalidExpressionException;
+import com.datasphere.server.datasource.data.InvalidExpressionException;
 import com.datasphere.server.query.druid.Aggregation;
 import com.datasphere.server.query.druid.PostAggregation;
 import com.datasphere.server.query.druid.aggregations.CardinalityAggregation;

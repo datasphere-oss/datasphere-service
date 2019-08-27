@@ -22,7 +22,7 @@ import com.datasphere.server.util.EnumUtils;
 
 public class SearchParamValidator {
 
-  public static <E extends Enum<E>> E enumUpperValue(final Class<E> enumClass, final String enumName, final String propertyName) {
+  public static <E extends Enum<E>> E enumUpperValue(final Class<E> enumClass, final String enumName, final String propertyName) throws BadRequestException {
     if(StringUtils.isNotEmpty(enumName)
         && !EnumUtils.isValidUpperCaseEnum(enumClass, enumName)) {
       throw new BadRequestException("Invalid '" + propertyName + "' parameter. Choose "
@@ -31,7 +31,7 @@ public class SearchParamValidator {
     return EnumUtils.getUpperCaseEnum(enumClass, enumName);
   }
 
-  public static void range(String searchDateBy, DateTime from, DateTime to) {
+  public static void range(String searchDateBy, DateTime from, DateTime to) throws BadRequestException {
 
     // Validate searchDateBy
     if(StringUtils.isNotEmpty(searchDateBy)
@@ -44,7 +44,7 @@ public class SearchParamValidator {
     }
   }
 
-  public static <T> T checkNull(T param, String paramName) {
+  public static <T> T checkNull(T param, String paramName) throws BadRequestException {
 
     if(param == null) {
       throw new BadRequestException(paramName + " required.");
