@@ -14,7 +14,7 @@
 
 package com.datasphere.server.domain.mdm;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
@@ -28,10 +28,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface MetadataRepository extends JpaRepository<Metadata, String>,
     QuerydslPredicateExecutor<Metadata>, MetadataRepositoryExtends {
 
-	@Override
-	default List<Metadata> findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 }
