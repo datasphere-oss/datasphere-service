@@ -12,16 +12,16 @@
 
 package com.datasphere.server.config;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.core.Version;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
-import com.fasterxml.jackson.datatype.joda.JodaModule;
+import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS;
+import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_SINGLE_QUOTES;
+import static java.util.Optional.ofNullable;
 
-import de.codecentric.boot.admin.client.registration.Application;
+import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.pf4j.PluginManager;
 import org.pf4j.PluginWrapper;
@@ -69,15 +69,13 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
-import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import com.datasphere.server.MetatronDiscoveryApplication;
 import com.datasphere.server.common.MetatronProperties;
+import com.datasphere.server.datasource.DataSource;
+import com.datasphere.server.datasource.DataSourceAlias;
+import com.datasphere.server.datasource.DataSourceEventHandler;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.ingestion.IngestionHistory;
 import com.datasphere.server.domain.comment.Comment;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionEventHandler;
@@ -86,11 +84,6 @@ import com.datasphere.server.domain.dataprep.entity.PrDataset;
 import com.datasphere.server.domain.dataprep.entity.PrTransformRule;
 import com.datasphere.server.domain.dataprep.service.PrDataflowEventHandler;
 import com.datasphere.server.domain.dataprep.service.PrDatasetEventHandler;
-import com.datasphere.server.datasource.DataSource;
-import com.datasphere.server.datasource.DataSourceAlias;
-import com.datasphere.server.datasource.DataSourceEventHandler;
-import com.datasphere.server.datasource.Field;
-import com.datasphere.server.datasource.ingestion.IngestionHistory;
 import com.datasphere.server.domain.mdm.CodeTable;
 import com.datasphere.server.domain.mdm.CodeValuePair;
 import com.datasphere.server.domain.mdm.ColumnDictionary;
@@ -133,10 +126,17 @@ import com.datasphere.server.domain.workspace.Workspace;
 import com.datasphere.server.domain.workspace.WorkspaceEventHandler;
 import com.datasphere.server.domain.workspace.folder.Folder;
 import com.datasphere.server.domain.workspace.folder.FolderEventHandler;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 
-import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_NON_NUMERIC_NUMBERS;
-import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_SINGLE_QUOTES;
-import static java.util.Optional.ofNullable;
+import de.codecentric.boot.admin.client.registration.Application;
+import de.codecentric.boot.admin.jackson.ApplicationDeserializer;
 
 @Configuration
 @Import(RepositoryRestMvcConfiguration.class)
@@ -342,7 +342,7 @@ public class ApiResourceConfig extends WebMvcConfigurerAdapter {
 
     //add deserializer for managements
     SimpleModule simpleModule = new SimpleModule("SimpleModule", Version.unknownVersion());
-    simpleModule.addDeserializer(Application.class, new ApplicationDeserializer());
+    simpleModule.addDeserializer((Class)Application.class, new ApplicationDeserializer());
 
     Hibernate5Module hibernate5Module = new Hibernate5Module();
     hibernate5Module.disable(Hibernate5Module.Feature.USE_TRANSIENT_ANNOTATION);

@@ -19,7 +19,7 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by hsp on 2016. 11. 1..
+ * Created by aladin on 2016. 11. 1..
  */
 public class WindowingSpecFlattener {
 

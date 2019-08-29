@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.notebook.connector;
 
 /**
- * Created by kyungtaak on 2016. 10. 22..
+ * Created by aladin on 2019. 10. 22..
  */
 public class ConnectorException extends RuntimeException {
 

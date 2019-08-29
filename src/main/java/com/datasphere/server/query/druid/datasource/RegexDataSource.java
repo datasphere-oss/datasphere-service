@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2017. 5. 22..
+ * Created by aladin on 2019. 5. 22..
  */
 @JsonTypeName("regex")
 public class RegexDataSource implements DataSource {

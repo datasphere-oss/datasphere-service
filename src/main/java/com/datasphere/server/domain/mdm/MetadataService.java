@@ -14,6 +14,18 @@
 
 package com.datasphere.server.domain.mdm;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Optional;
+
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -29,28 +41,17 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.supercsv.prefs.CsvPreference;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Optional;
-
-import com.datasphere.server.common.data.projection.DataGrid;
-import com.datasphere.server.common.data.projection.Row;
+import com.datasphere.common.data.DataGrid;
+import com.datasphere.common.data.Row;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
-import com.datasphere.server.domain.dataconnection.DataConnection;
-import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
 import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.datasource.connection.jdbc.JdbcCSVWriter;
 import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.datasource.data.DataSourceValidator;
 import com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.engine.EngineProperties;
 import com.datasphere.server.domain.engine.EngineQueryService;
 import com.datasphere.server.domain.mdm.preview.MetadataEngineDataPreview;
@@ -58,7 +59,6 @@ import com.datasphere.server.domain.mdm.preview.MetadataJdbcDataPreview;
 import com.datasphere.server.domain.mdm.source.MetaSourceService;
 import com.datasphere.server.domain.mdm.source.MetadataSource;
 import com.datasphere.server.domain.storage.StorageProperties;
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
 
 
 @Component

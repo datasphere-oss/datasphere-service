@@ -23,7 +23,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import com.datasphere.server.domain.context.ContextService;
 
 /**
- * Created by kyungtaak on 2016. 5. 14..
+ * Created by aladin on 2019. 5. 14..
  */
 @RepositoryEventHandler(Role.class)
 public class RoleEventHandler {

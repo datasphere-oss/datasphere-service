@@ -30,7 +30,7 @@ import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.MetatronDomain;
 
 /**
- * Created by james on 2017. 7. 12..
+ * Created by aladin on 2019. 7. 12..
  */
 @Entity
 @Table(name = "notebook_model")

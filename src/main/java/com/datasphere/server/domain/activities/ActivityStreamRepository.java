@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.activities;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
@@ -24,7 +24,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(path = "activities", itemResourceRel = "activity"
     , collectionResourceRel = "activities", excerptProjection = ActivityStreamProjections.DefaultProjection.class)
 public interface ActivityStreamRepository extends JpaRepository<ActivityStream, Long>,
-                                          QueryDslPredicateExecutor<ActivityStream>, ActivityStreamRepositoryExtends {
+                                          QuerydslPredicateExecutor<ActivityStream>, ActivityStreamRepositoryExtends {
 
 
 //  List<Object> findWorkspaceViewStat(String workspaceId, TimeFieldFormat.TimeUnit timeUnit, DateTime from, DateTime to);

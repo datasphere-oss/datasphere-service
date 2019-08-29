@@ -20,7 +20,7 @@ import com.datasphere.server.datasource.data.SearchQueryRequest;
 import com.datasphere.server.datasource.data.SummaryQueryRequest;
 
 /**
- * Created by kyungtaak on 2016. 9. 22..
+ * Created by aladin on 2019. 9. 22..
  */
 public interface QueryService {
 

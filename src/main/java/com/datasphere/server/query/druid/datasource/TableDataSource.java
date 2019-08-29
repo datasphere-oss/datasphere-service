@@ -17,7 +17,7 @@ package com.datasphere.server.query.druid.datasource;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Created by kyungtaak on 2017. 5. 22..
+ * Created by aladin on 2019. 5. 22..
  */
 @JsonTypeName("table")
 public class TableDataSource implements DataSource {

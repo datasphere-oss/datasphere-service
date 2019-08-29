@@ -18,11 +18,11 @@ import com.querydsl.jpa.JPQLQuery;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.joda.time.DateTime;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
 import java.util.List;
 
-public class CatalogRepositoryImpl extends QuerydslRepositorySupport implements CatalogRepositoryExtends {
+public class CatalogRepositoryImpl extends QueryDslRepositorySupport implements CatalogRepositoryExtends {
 
   public CatalogRepositoryImpl() {
     super(Catalog.class);

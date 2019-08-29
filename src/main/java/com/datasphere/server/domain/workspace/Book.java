@@ -36,7 +36,7 @@ import com.datasphere.server.domain.MetatronDomain;
 import com.datasphere.server.domain.workspace.folder.Folder;
 
 /**
- * Created by kyungtaak on 2016. 12. 20..
+ * Created by aladin on 2019. 12. 20..
  */
 
 @Entity

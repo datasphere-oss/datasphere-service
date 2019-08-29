@@ -25,7 +25,54 @@ import static com.datasphere.server.domain.dataprep.PrepProperties.STAGEDB_PASSW
 import static com.datasphere.server.domain.dataprep.PrepProperties.STAGEDB_PORT;
 import static com.datasphere.server.domain.dataprep.PrepProperties.STAGEDB_USERNAME;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
+import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataOutputStream;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
+
 import com.datasphere.server.common.GlobalObjectMapper;
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataprep.PrepUtil;
@@ -49,54 +96,12 @@ import com.datasphere.server.domain.dataprep.teddy.exceptions.IllegalColumnNameF
 import com.datasphere.server.domain.dataprep.teddy.exceptions.JdbcQueryFailedException;
 import com.datasphere.server.domain.dataprep.teddy.exceptions.JdbcTypeNotSupportedException;
 import com.datasphere.server.domain.dataprep.teddy.exceptions.TeddyException;
-import com.datasphere.server.domain.user.role.Role;
-import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
-import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.prep.parser.exceptions.RuleException;
+import com.datasphere.server.prep.parser.preparation.RuleVisitorParser;
+import com.datasphere.server.prep.parser.preparation.rule.Join;
+import com.datasphere.server.prep.parser.preparation.rule.Rule;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Maps;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import org.apache.commons.csv.CSVPrinter;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FSDataOutputStream;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.AsyncResult;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 public class TeddyExecutor {
@@ -482,7 +487,7 @@ public class TeddyExecutor {
       List<Future<List<Row>>> futures = new ArrayList<>();
       List<DataFrame> slaveDfs = new ArrayList<>();
 
-      Role rule = new RuleVisitorParser().parse(ruleString);
+      Rule rule = new RuleVisitorParser().parse(ruleString);
 
       // FIXME: use 'rule'. avoid redundant parsing
       List<String> slaveDsIds = DataFrameService.getSlaveDsIds(ruleString);

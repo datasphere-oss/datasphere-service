@@ -41,7 +41,7 @@ import com.datasphere.server.domain.MetatronDomain;
 import com.datasphere.server.domain.engine.model.SegmentMetaDataResponse;
 
 /**
- * Created by kyungtaak on 2017. 7. 23..
+ * Created by aladin on 2019. 7. 23..
  */
 @Entity
 @Table(name = "datasource_summary")

@@ -24,7 +24,7 @@ import com.datasphere.server.domain.workbook.configurations.widget.PageWidgetCon
 import com.datasphere.server.domain.workbook.configurations.widget.TextWidgetConfiguration;
 
 /**
- * Created by kyungtaak on 2016. 3. 14..
+ * Created by aladin on 2019. 3. 14..
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXTERNAL_PROPERTY, property = "type")
 @JsonSubTypes({

@@ -14,14 +14,14 @@
 
 package com.datasphere.server.domain.workspace;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
+
 import com.facebook.presto.jdbc.internal.guava.collect.Lists;
 import com.querydsl.jpa.JPQLQuery;
 
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
-
-import java.util.List;
-
-public class BookRepositoryImpl extends QuerydslRepositorySupport implements BookRepositoryExtends {
+public class BookRepositoryImpl extends QueryDslRepositorySupport implements BookRepositoryExtends {
 
   public BookRepositoryImpl() {
     super(Book.class);

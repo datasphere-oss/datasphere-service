@@ -17,7 +17,7 @@ package com.datasphere.server.spec.druid.ingestion.parser;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2017. 3. 30..
+ * Created by aladin on 2019. 3. 30..
  */
 public class TsvParseSpec extends CsvParseSpec implements ParseSpec {
 

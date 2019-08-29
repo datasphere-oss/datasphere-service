@@ -18,7 +18,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by kyungtaak on 2017. 3. 12..
+ * Created by aladin on 2019. 3. 12..
  */
 @Component
 @ConfigurationProperties(prefix="polaris.realtime")

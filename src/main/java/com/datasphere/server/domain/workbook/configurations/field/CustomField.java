@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.workbook.configurations.field;
 
 /**
- * Created by kyungtaak on 2016. 4. 20..
+ * Created by aladin on 2019. 4. 20..
  */
 public abstract class CustomField extends Field {
 

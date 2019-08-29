@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- * Created by kyungtaak on 2016. 8. 28..
+ * Created by aladin on 2019. 8. 28..
  */
 @Component
 public final class EngineQueryProperties {

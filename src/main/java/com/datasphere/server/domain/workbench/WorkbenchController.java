@@ -14,6 +14,8 @@
 
 package com.datasphere.server.domain.workbench;
 
+import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,10 +31,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Map;
-
 import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessor;
@@ -42,7 +43,6 @@ import com.datasphere.server.domain.workbench.hive.WorkbenchHiveService;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSource;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
 import com.datasphere.server.domain.workspace.Workspace;
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
 import com.datasphere.server.util.HibernateUtils;
 
 @RepositoryRestController

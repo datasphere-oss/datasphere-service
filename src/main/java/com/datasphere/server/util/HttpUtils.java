@@ -25,7 +25,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by james on 2017. 8. 1..
+ * Created by aladin on 2019. 8. 1..
  */
 public class HttpUtils {
 

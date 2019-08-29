@@ -24,7 +24,7 @@ import java.util.List;
 import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 
 /**
- * Created by kyungtaak on 2017. 2. 8..
+ * Created by aladin on 2019. 2. 8..
  */
 @JsonTypeName("prediction")
 public class PredictionAnalysis implements Analysis {

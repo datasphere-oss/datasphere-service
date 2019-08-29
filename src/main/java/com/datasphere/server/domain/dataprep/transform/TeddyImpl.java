@@ -16,6 +16,26 @@ package com.datasphere.server.domain.dataprep.transform;
 
 import static com.datasphere.server.domain.dataprep.exceptions.PrepErrorCodes.PREP_TEDDY_ERROR_CODE;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.hadoop.conf.Configuration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataprep.PrepProperties;
@@ -36,28 +56,10 @@ import com.datasphere.server.domain.dataprep.teddy.exceptions.TransformExecution
 import com.datasphere.server.domain.dataprep.teddy.exceptions.TransformTimeoutException;
 import com.datasphere.server.domain.storage.StorageProperties;
 import com.datasphere.server.domain.storage.StorageProperties.StageDBConnection;
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
 import com.facebook.presto.jdbc.internal.guava.collect.Maps;
 import com.facebook.presto.jdbc.internal.joda.time.DateTime;
 import com.facebook.presto.jdbc.internal.joda.time.format.DateTimeFormat;
 import com.facebook.presto.jdbc.internal.joda.time.format.DateTimeFormatter;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.hadoop.conf.Configuration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Component
 public class TeddyImpl {

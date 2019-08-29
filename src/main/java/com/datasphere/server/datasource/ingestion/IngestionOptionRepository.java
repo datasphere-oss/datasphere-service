@@ -15,7 +15,7 @@
 package com.datasphere.server.datasource.ingestion;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
@@ -23,5 +23,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  */
 @RepositoryRestResource(exported = false)
 public interface IngestionOptionRepository extends JpaRepository<IngestionOption, String>,
-    QueryDslPredicateExecutor<IngestionOption> {
+    QuerydslPredicateExecutor<IngestionOption> {
 }

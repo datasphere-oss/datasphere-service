@@ -19,7 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.transaction.annotation.Propagation;
@@ -33,7 +33,7 @@ import java.util.Optional;
  */
 @RepositoryRestResource(exported = false)
 public interface MetadataPopularityRepository extends JpaRepository<MetadataPopularity, String>,
-    QueryDslPredicateExecutor<MetadataPopularity> {
+    QuerydslPredicateExecutor<MetadataPopularity> {
 
   MetadataPopularity findByTypeAndMetadataId(MetadataPopularity.PopularityType type, String metadataId);
 

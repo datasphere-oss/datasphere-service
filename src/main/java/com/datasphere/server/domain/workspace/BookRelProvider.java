@@ -21,7 +21,7 @@ import org.springframework.hateoas.RelProvider;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by kyungtaak on 2016. 10. 22..
+ * Created by aladin on 2019. 10. 22..
  */
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)

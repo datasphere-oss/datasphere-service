@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by james on 2017. 11. 1..
+ * Created by aladin on 2019. 11. 1..
  */
 public class JupyterCommandBuilder extends AbstractCommandBuilder {
 

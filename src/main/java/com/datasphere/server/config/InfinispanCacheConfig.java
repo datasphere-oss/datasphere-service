@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 import com.datasphere.server.common.cache.InfinispanClusterListener;
 
 /**
- * Created by kyungtaak on 2017. 3. 13..
+ * Created by aladin on 2019. 3. 13..
  */
 @EnableCaching
 @Configuration

@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.datasphere.server.query.druid.Aggregation;
 
 /**
- * Created by hsp on 2016. 8. 9..
+ * Created by aladin on 2016. 8. 9..
  */
 @JsonTypeName("min")
 public class GenericMinAggregation implements Aggregation {

@@ -24,7 +24,7 @@ import com.datasphere.server.domain.user.DirectoryProfile;
 import com.datasphere.server.domain.user.role.Permission;
 
 /**
- * Created by kyungtaak on 2017. 1. 22..
+ * Created by aladin on 2019. 1. 22..
  */
 @JsonTypeName("group")
 public class GroupProfile implements DirectoryProfile {

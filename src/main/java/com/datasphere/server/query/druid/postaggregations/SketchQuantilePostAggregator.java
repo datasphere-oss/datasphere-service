@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.datasphere.server.query.druid.PostAggregation;
 
 /**
- * Created by hsp on 2016. 3. 24..
+ * Created by aladin on 2016. 3. 24..
  */
 @JsonTypeName("sketch.quantiles")
 public class SketchQuantilePostAggregator implements PostAggregation {

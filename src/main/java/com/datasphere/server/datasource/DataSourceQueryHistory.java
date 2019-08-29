@@ -45,7 +45,7 @@ import static com.datasphere.server.datasource.DataSourceQueryHistory.QueryType.
 import static com.datasphere.server.datasource.DataSourceQueryHistory.QueryType.SUMMARY;
 
 /**
- * Created by kyungtaak on 2016. 8. 30..
+ * Created by aladin on 2019. 8. 30..
  */
 @Entity
 @Table(name = "datasource_query")

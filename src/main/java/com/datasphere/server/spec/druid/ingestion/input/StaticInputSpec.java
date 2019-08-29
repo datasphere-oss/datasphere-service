@@ -17,7 +17,7 @@ package com.datasphere.server.spec.druid.ingestion.input;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 6. 18..
+ * Created by aladin on 2019. 6. 18..
  */
 public class StaticInputSpec implements InputSpec {
 

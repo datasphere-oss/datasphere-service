@@ -17,17 +17,17 @@ package com.datasphere.server.domain.notebook;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 /**
- * Created by kyungtaak on 2016. 10. 22..
+ * Created by aladin on 2019. 10. 22..
  */
 @RepositoryRestResource(path = "connectors", itemResourceRel = "connector", collectionResourceRel = "connectors",
     excerptProjection = NoteBookConnectorProjections.DefaultProjection.class)
-public interface NotebookConnectorRepository extends JpaRepository<NotebookConnector, String>, QueryDslPredicateExecutor<NotebookConnector> {
+public interface NotebookConnectorRepository extends JpaRepository<NotebookConnector, String>, QuerydslPredicateExecutor<NotebookConnector> {
 
   @RestResource(path = "type")
   Page<NotebookConnector> findByType(@Param("type") String Type, Pageable pageable);

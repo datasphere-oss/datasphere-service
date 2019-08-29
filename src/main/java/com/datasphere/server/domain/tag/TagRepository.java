@@ -15,15 +15,15 @@
 package com.datasphere.server.domain.tag;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
- * Created by kyungtaak on 2016. 8. 30..
+ * Created by aladin on 2019. 8. 30..
  */
 @RepositoryRestResource(path = "tags", itemResourceRel = "tag", collectionResourceRel = "tags",
     excerptProjection = TagProjections.DefaultProjection.class)
 public interface TagRepository extends JpaRepository<Tag, String>,
-    QueryDslPredicateExecutor<Tag>, TagRepositoryExtends {
+    QuerydslPredicateExecutor<Tag>, TagRepositoryExtends {
 
 }

@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.datasphere.server.spec.druid.ingestion.index.IndexSpec;
 
 /**
- * Created by kyungtaak on 2016. 6. 18..
+ * Created by aladin on 2019. 6. 18..
  */
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include= JsonTypeInfo.As.EXTERNAL_PROPERTY, property="type")
 @JsonSubTypes({

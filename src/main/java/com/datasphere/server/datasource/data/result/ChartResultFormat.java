@@ -63,7 +63,7 @@ import com.datasphere.server.query.druid.limits.PivotSpec;
 import static com.datasphere.server.datasource.data.result.SearchResultFormat.ResultType.MATRIX;
 
 /**
- * Created by kyungtaak on 2016. 7. 4..
+ * Created by aladin on 2019. 7. 4..
  */
 @JsonTypeName("chart")
 public class ChartResultFormat extends SearchResultFormat {

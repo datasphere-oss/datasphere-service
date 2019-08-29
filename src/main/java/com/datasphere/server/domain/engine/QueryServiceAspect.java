@@ -36,7 +36,7 @@ import com.datasphere.server.datasource.QueryHistoryTeller;
 import com.datasphere.server.datasource.data.QueryRequest;
 
 /**
- * Created by kyungtaak on 2016. 8. 30..
+ * Created by aladin on 2019. 8. 30..
  */
 @Aspect
 @Order(9)

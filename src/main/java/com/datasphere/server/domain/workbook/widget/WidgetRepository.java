@@ -17,18 +17,18 @@ package com.datasphere.server.domain.workbook.widget;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import com.datasphere.server.domain.workbook.DashBoard;
 
 /**
- * Created by kyungtaak on 2016. 1. 7..
+ * Created by aladin on 2019. 1. 7..
  */
 @RepositoryRestResource(path = "widgets", collectionResourceRel = "widgets", itemResourceRel = "widget")
 public interface WidgetRepository extends JpaRepository<Widget, String>,
-                                          QueryDslPredicateExecutor<Widget> {
+                                          QuerydslPredicateExecutor<Widget> {
 
   @RestResource(exported = false)
   Page<Widget> findByDashBoardEquals(DashBoard dashBoard, Pageable pageable);

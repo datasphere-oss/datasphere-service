@@ -14,7 +14,7 @@ package com.datasphere.server.domain.user.role;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
@@ -22,11 +22,11 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by kyungtaak on 2016. 1. 7..
+ * Created by aladin on 2019. 1. 7..
  */
 @RepositoryRestResource(path = "rolesets", itemResourceRel = "roleSet", collectionResourceRel = "roleSets",
     excerptProjection = RoleSetProjections.DefaultRoleProjection.class)
-public interface RoleSetRepository extends JpaRepository<RoleSet, String>, QueryDslPredicateExecutor<RoleSet> {
+public interface RoleSetRepository extends JpaRepository<RoleSet, String>, QuerydslPredicateExecutor<RoleSet> {
 
   RoleSet findByName(String name);
 

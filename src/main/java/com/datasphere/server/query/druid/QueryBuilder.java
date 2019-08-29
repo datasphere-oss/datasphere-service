@@ -17,7 +17,7 @@ package com.datasphere.server.query.druid;
 import java.util.Map;
 
 /**
- * Created by kyungtaak on 2016. 8. 24..
+ * Created by aladin on 2019. 8. 24..
  */
 public interface QueryBuilder {
 

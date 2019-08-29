@@ -26,7 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 8. 8..
+ * Created by aladin on 2019. 8. 8..
  */
 public class CustomCsvResultSetWriter extends CsvResultSetWriter implements ICsvResultSetWriter {
 

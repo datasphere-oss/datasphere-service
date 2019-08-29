@@ -14,7 +14,7 @@
 
 package com.datasphere.server.domain.engine;
 
-import com.datasphere.server.common.exception.ErrorCodes;
+import com.datasphere.engine.common.exception.ErrorCodes;
 
 public enum EngineErrorCodes implements ErrorCodes {
 

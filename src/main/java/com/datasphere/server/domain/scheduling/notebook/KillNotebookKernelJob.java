@@ -35,7 +35,7 @@ import com.datasphere.server.domain.notebook.connector.HttpRepository;
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
 
 /**
- * Created by james on 2017. 9. 18..
+ * Created by aladin on 2019. 9. 18..
  */
 @Component
 @Scope(SCOPE_PROTOTYPE)

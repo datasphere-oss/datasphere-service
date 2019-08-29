@@ -21,11 +21,11 @@ import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
 import java.util.List;
 
-public class MetadataColumnRepositoryImpl extends QuerydslRepositorySupport implements MetadataColumnRepositoryExtends {
+public class MetadataColumnRepositoryImpl extends QueryDslRepositorySupport implements MetadataColumnRepositoryExtends {
 
   public MetadataColumnRepositoryImpl() {
     super(MetadataColumn.class);

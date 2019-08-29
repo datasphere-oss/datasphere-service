@@ -15,7 +15,7 @@
 package com.datasphere.server.spec.druid.ingestion.partition;
 
 /**
- * Created by kyungtaak on 2017. 3. 20..
+ * Created by aladin on 2019. 3. 20..
  */
 public class SizedPartition implements PartitionSpec {
 

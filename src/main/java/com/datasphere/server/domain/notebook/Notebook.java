@@ -29,7 +29,7 @@ import com.datasphere.server.domain.workspace.Book;
 import com.datasphere.server.domain.workspace.Workspace;
 
 /**
- * Created by kyungtaak on 2016. 10. 21..
+ * Created by aladin on 2019. 10. 21..
  */
 @Entity
 @Table(name = "book_notebook")

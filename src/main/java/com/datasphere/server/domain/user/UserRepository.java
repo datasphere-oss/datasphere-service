@@ -12,38 +12,135 @@
 
 package com.datasphere.server.domain.user;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import java.util.List;
-
 /**
  * Repository for User domain
  */
 @RepositoryRestResource(path = "users", excerptProjection = UserProjections.DefaultUserProjection.class)
-public interface UserRepository extends JpaRepository<User, String>, QueryDslPredicateExecutor<User>,
+public interface UserRepository extends JpaRepository<User, String>, QuerydslPredicateExecutor<User>,
                                         UserSearchRepository {
 
   @Override
   @RestResource(exported = false)
   User save(User entity);
 
-  @RestResource(exported = false)
-  @Override
-  void delete(String id);
+//  @RestResource(exported = false)
+//  @Override
+//  void delete(String id);
 
   @Override
   @RestResource(exported = false)
   void delete(User entity);
 
-  @RestResource(path = "keyword")
+  @RestResource(exported = false)
+  @Override
+  void deleteById(String id);
+
+@Override
+default <S extends User> Optional<S> findOne(Example<S> example) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+default <S extends User> Page<S> findAll(Example<S> example, Pageable pageable) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+default <S extends User> long count(Example<S> example) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+default <S extends User> boolean exists(Example<S> example) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+default void deleteAllInBatch() {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+default void deleteInBatch(Iterable<User> arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+default List<User> findAll() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+default <S extends User> List<S> findAll(Example<S> arg0, Sort arg1) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+default <S extends User> List<S> findAll(Example<S> arg0) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+default List<User> findAll(Iterable<String> arg0) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+default List<User> findAll(Sort arg0) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+default void flush() {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+default User getOne(String arg0) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+default <S extends User> List<S> save(Iterable<S> arg0) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+default <S extends User> S saveAndFlush(S arg0) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@RestResource(path = "keyword")
   @Query("select u from User u where u.id= :q")  // fake!! http://stackoverflow.com/questions/25201306/implementing-custom-methods-of-spring-data-repository-and-exposing-them-through
   Page<User> searchByKeyword(@Param("q") String keywords, Pageable pageable);
 

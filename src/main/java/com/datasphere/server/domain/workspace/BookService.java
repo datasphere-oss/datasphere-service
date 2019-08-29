@@ -14,22 +14,21 @@
 
 package com.datasphere.server.domain.workspace;
 
-import com.google.common.collect.Lists;
+import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
-
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.datasource.DataSourceRepository;
 import com.datasphere.server.domain.workbook.DashBoard;
 import com.datasphere.server.domain.workbook.DashBoardService;
 import com.datasphere.server.domain.workbook.WorkBook;
 import com.datasphere.server.domain.workbook.WorkBookRepository;
+import com.google.common.collect.Lists;
 
 
 @Component

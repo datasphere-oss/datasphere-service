@@ -29,7 +29,7 @@ import javax.servlet.http.HttpSessionListener;
 import com.datasphere.server.common.oauth.SessionStatusListener;
 
 /**
- * Created by kyungtaak on 2017. 3. 14..
+ * Created by aladin on 2019. 3. 14..
  */
 @EnableInfinispanEmbeddedHttpSession(cacheName = "metatron-sessions")
 @Configuration

@@ -25,7 +25,7 @@ import com.datasphere.server.spec.druid.ingestion.granularity.GranularitySpec;
 import com.datasphere.server.spec.druid.ingestion.parser.Parser;
 
 /**
- * Created by kyungtaak on 2016. 6. 17..
+ * Created by aladin on 2019. 6. 17..
  */
 public class DataSchema {
 

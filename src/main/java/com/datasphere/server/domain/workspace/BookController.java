@@ -45,7 +45,7 @@ import com.datasphere.server.domain.workbook.WorkBook;
 import com.datasphere.server.domain.workspace.folder.Folder;
 
 /**
- * Created by kyungtaak on 2016. 12. 21..
+ * Created by aladin on 2019. 12. 21..
  */
 @RepositoryRestController
 public class BookController {

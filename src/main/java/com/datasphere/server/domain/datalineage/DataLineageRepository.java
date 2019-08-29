@@ -15,13 +15,13 @@
 package com.datasphere.server.domain.datalineage;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
- * Created by kyungtaak on 2016. 1. 26..
+ * Created by aladin on 2019. 1. 26..
  */
 @RepositoryRestResource(path = "datalineages", itemResourceRel = "datalineage"
         , collectionResourceRel = "datalineages", excerptProjection = DataLineageProjections.DefaultProjection.class)
-public interface DataLineageRepository extends JpaRepository<DataLineage, Long>, QueryDslPredicateExecutor<DataLineage>, DataLineageRepositoryCustom {
+public interface DataLineageRepository extends JpaRepository<DataLineage, Long>, QuerydslPredicateExecutor<DataLineage>, DataLineageRepositoryCustom {
 }

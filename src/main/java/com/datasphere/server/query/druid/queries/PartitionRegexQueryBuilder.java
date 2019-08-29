@@ -20,7 +20,7 @@ import com.datasphere.server.domain.workbook.configurations.filter.Filter;
 import com.datasphere.server.query.druid.AbstractQueryBuilder;
 
 /**
- * Created by kyungtaak on 2016. 10. 21..
+ * Created by aladin on 2019. 10. 21..
  */
 public class PartitionRegexQueryBuilder extends AbstractQueryBuilder {
 

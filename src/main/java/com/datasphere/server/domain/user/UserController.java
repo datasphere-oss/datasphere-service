@@ -71,7 +71,7 @@ import static com.datasphere.server.domain.user.UserService.DuplicatedTarget.EMA
 import static com.datasphere.server.domain.user.UserService.DuplicatedTarget.USERNAME;
 
 /**
- * Created by kyungtaak on 2016. 7. 21..
+ * Created by aladin on 2019. 7. 21..
  */
 @RepositoryRestController
 public class UserController {

@@ -57,7 +57,7 @@ import static com.datasphere.server.datasource.DataSource.Status.PREPARING;
 
 
 /**
- * Created by kyungtaak on 2016. 6. 20..
+ * Created by aladin on 2019. 6. 20..
  */
 @Component
 @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)

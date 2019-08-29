@@ -17,7 +17,7 @@ package com.datasphere.server.datasource.data;
 import java.io.Serializable;
 
 /**
- * Created by kyungtaak on 2016. 4. 1..
+ * Created by aladin on 2019. 4. 1..
  */
 public class MetaQueryRequest extends AbstractQueryRequest implements QueryRequest, Serializable {
 

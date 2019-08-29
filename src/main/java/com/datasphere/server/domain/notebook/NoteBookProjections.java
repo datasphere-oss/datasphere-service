@@ -21,7 +21,7 @@ import org.springframework.data.rest.core.config.Projection;
 import com.datasphere.server.domain.user.UserProfile;
 
 /**
- * Created by kyungtaak on 2016. 11. 2..
+ * Created by aladin on 2019. 11. 2..
  */
 public class NoteBookProjections {
 

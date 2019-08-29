@@ -17,7 +17,7 @@ package com.datasphere.server.common.oauth;
 import org.springframework.security.authentication.AccountStatusException;
 
 /**
- * Created by kyungtaak on 2017. 2. 19..
+ * Created by aladin on 2019. 2. 19..
  */
 public class RequestStatusException extends AccountStatusException {
 

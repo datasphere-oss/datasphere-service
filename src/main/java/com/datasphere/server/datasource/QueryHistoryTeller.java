@@ -17,7 +17,7 @@ package com.datasphere.server.datasource;
 import com.datasphere.server.datasource.data.forward.ResultForward;
 
 /**
- * Created by kyungtaak on 2016. 8. 30..
+ * Created by aladin on 2019. 8. 30..
  */
 public class QueryHistoryTeller {
 

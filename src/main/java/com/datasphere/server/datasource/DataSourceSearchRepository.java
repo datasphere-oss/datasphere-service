@@ -19,7 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 /**
- * Created by kyungtaak on 2016. 12. 28..
+ * Created by aladin on 2019. 12. 28..
  */
 public interface DataSourceSearchRepository {
 

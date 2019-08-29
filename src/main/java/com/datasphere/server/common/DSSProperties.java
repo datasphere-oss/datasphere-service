@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by kyungtaak on 2017. 1. 26..
+ * Created by aladin on 2019. 1. 26..
  */
 @Component
 @ConfigurationProperties(prefix = "datasphere")

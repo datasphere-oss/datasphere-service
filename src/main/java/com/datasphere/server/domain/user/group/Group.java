@@ -52,7 +52,7 @@ import com.datasphere.server.domain.MetatronDomain;
 import com.datasphere.server.domain.context.ContextEntity;
 
 /**
- * Created by kyungtaak on 2016. 1. 5..
+ * Created by aladin on 2019. 1. 5..
  */
 @Entity
 @Table(name = "user_group")

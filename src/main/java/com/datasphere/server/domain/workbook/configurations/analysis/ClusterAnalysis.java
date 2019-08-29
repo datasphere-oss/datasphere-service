@@ -19,7 +19,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2017. 5. 24..
+ * Created by aladin on 2019. 5. 24..
  */
 public class ClusterAnalysis implements Analysis {
 

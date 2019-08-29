@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.security.Principal;
 
 /**
- * Created by kyungtaak on 2016. 5. 18..
+ * Created by aladin on 2019. 5. 18..
  */
 @JsonTypeName("user")
 public class UserProfile implements DirectoryProfile {

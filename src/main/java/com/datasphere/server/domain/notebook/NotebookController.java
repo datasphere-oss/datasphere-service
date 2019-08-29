@@ -30,7 +30,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * Created by kyungtaak on 2016. 10. 22..
+ * Created by aladin on 2019. 10. 22..
  */
 @RepositoryRestController
 public class NotebookController {

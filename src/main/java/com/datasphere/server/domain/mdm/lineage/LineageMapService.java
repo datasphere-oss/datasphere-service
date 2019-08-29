@@ -16,14 +16,16 @@ package com.datasphere.server.domain.mdm.lineage;
 
 import static com.datasphere.server.domain.mdm.MetadataErrorCodes.LINEAGE_NODE_COUNT_DONE;
 
-import com.datasphere.server.domain.mdm.Metadata;
-import com.datasphere.server.domain.mdm.MetadataRepository;
-import com.datasphere.server.domain.mdm.lineage.LineageMap.ALIGNMENT;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.domain.mdm.MetadataRepository;
+import com.datasphere.server.domain.mdm.lineage.LineageMap.ALIGNMENT;
 
 @Service
 public class LineageMapService {

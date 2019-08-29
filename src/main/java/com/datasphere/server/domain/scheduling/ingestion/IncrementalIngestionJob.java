@@ -38,7 +38,7 @@ import com.datasphere.server.datasource.ingestion.job.IngestionJobRunner;
 import com.datasphere.server.domain.engine.EngineIngestionService;
 
 /**
- * Created by kyungtaak on 2016. 8. 12..
+ * Created by aladin on 2019. 8. 12..
  */
 @Component
 //@Scope(SCOPE_PROTOTYPE)

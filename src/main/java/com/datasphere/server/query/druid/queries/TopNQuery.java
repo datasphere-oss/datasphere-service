@@ -34,7 +34,7 @@ import com.datasphere.server.query.druid.serializers.GranularitySerializer;
 import com.datasphere.server.query.druid.virtualcolumns.VirtualColumn;
 
 /**
- * Created by hsp on 2016. 2. 12..
+ * Created by aladin on 2016. 2. 12..
  */
 @JsonTypeName("topN")
 public class TopNQuery extends Query {

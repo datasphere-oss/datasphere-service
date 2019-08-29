@@ -14,6 +14,11 @@
 
 package com.datasphere.server.domain.extension;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,12 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.util.CaseInsensitiveConverter;
 
 @RestController
@@ -70,10 +70,10 @@ public class ExtensionController {
                             dialectInfo.put("scope", jdbcDialect.getScope());
                             dialectInfo.put("name", jdbcDialect.getName());
                             dialectInfo.put("inputSpec", jdbcDialect.getInputSpec());
-                            dialectInfo.put("iconResource1", jdbcDialect.getIconResource1());
-                            dialectInfo.put("iconResource2", jdbcDialect.getIconResource2());
-                            dialectInfo.put("iconResource3", jdbcDialect.getIconResource3());
-                            dialectInfo.put("iconResource4", jdbcDialect.getIconResource4());
+//                            dialectInfo.put("iconResource1", jdbcDialect.getIconResource1());
+//                            dialectInfo.put("iconResource2", jdbcDialect.getIconResource2());
+//                            dialectInfo.put("iconResource3", jdbcDialect.getIconResource3());
+//                            dialectInfo.put("iconResource4", jdbcDialect.getIconResource4());
                             return dialectInfo;
                           })
                           .collect(Collectors.toList());

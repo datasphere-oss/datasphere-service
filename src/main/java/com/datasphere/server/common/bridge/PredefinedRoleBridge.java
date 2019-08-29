@@ -22,7 +22,7 @@ import static com.datasphere.server.domain.user.role.Role.PREDEFINED_GROUP_SUPER
 import static com.datasphere.server.domain.user.role.Role.PREDEFINED_GROUP_USER;
 
 /**
- * Created by kyungtaak on 2017. 2. 13..
+ * Created by aladin on 2019. 2. 13..
  */
 public class PredefinedRoleBridge implements TwoWayFieldBridge {
 

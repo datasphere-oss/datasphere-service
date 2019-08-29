@@ -34,7 +34,7 @@ import com.datasphere.server.common.bridge.JodaTimeSplitBridge;
 import com.datasphere.server.util.AuthUtils;
 
 /**
- * Created by kyungtaak on 2016. 1. 6..
+ * Created by aladin on 2019. 1. 6..
  */
 @MappedSuperclass
 public abstract class AbstractHistoryEntity {

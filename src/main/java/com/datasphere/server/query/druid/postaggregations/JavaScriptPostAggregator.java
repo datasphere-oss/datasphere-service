@@ -15,7 +15,7 @@
 package com.datasphere.server.query.druid.postaggregations;
 
 /**
- * Created by hsp on 2016. 3. 24..
+ * Created by aladin on 2016. 3. 24..
  */
 public class JavaScriptPostAggregator {
 }

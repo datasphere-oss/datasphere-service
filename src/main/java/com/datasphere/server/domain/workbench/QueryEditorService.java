@@ -14,25 +14,7 @@
 
 package com.datasphere.server.domain.workbench;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.hive.jdbc.HiveStatement;
-import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.support.JdbcUtils;
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
-import org.springframework.stereotype.Service;
-import org.supercsv.cellprocessor.Optional;
-import org.supercsv.cellprocessor.ParseBigDecimal;
-import org.supercsv.cellprocessor.ParseBool;
-import org.supercsv.cellprocessor.ParseDouble;
-import org.supercsv.cellprocessor.ParseInt;
-import org.supercsv.cellprocessor.ParseLong;
-import org.supercsv.cellprocessor.ift.CellProcessor;
-import org.supercsv.io.CsvMapReader;
-import org.supercsv.io.ICsvMapReader;
-import org.supercsv.prefs.CsvPreference;
+import static com.datasphere.server.domain.workbench.WorkbenchErrorCodes.CSV_FILE_NOT_FOUND;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -55,23 +37,41 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.hive.jdbc.HiveStatement;
+import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.support.JdbcUtils;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.stereotype.Service;
+import org.supercsv.cellprocessor.Optional;
+import org.supercsv.cellprocessor.ParseBigDecimal;
+import org.supercsv.cellprocessor.ParseBool;
+import org.supercsv.cellprocessor.ParseDouble;
+import org.supercsv.cellprocessor.ParseInt;
+import org.supercsv.cellprocessor.ParseLong;
+import org.supercsv.cellprocessor.ift.CellProcessor;
+import org.supercsv.io.CsvMapReader;
+import org.supercsv.io.ICsvMapReader;
+import org.supercsv.prefs.CsvPreference;
+
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.domain.audit.Audit;
 import com.datasphere.server.domain.audit.AuditRepository;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
-import com.datasphere.server.datasource.Field;
-import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSource;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.util.AuthUtils;
 import com.datasphere.server.util.WebSocketUtils;
-
-import static com.datasphere.server.domain.workbench.WorkbenchErrorCodes.CSV_FILE_NOT_FOUND;
 
 @Service
 public class QueryEditorService {

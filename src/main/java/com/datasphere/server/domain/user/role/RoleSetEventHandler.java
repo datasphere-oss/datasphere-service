@@ -35,7 +35,7 @@ import com.datasphere.server.domain.workspace.WorkspaceMemberRepository;
 import com.datasphere.server.domain.workspace.WorkspaceRepository;
 
 /**
- * Created by kyungtaak on 2016. 5. 14..
+ * Created by aladin on 2019. 5. 14..
  */
 @RepositoryEventHandler(RoleSet.class)
 public class RoleSetEventHandler {

@@ -17,7 +17,7 @@ package com.datasphere.server.domain.workbook.configurations.chart;
 import java.io.Serializable;
 
 /**
- * Created by kyungtaak on 2016. 4. 16..
+ * Created by aladin on 2019. 4. 16..
  */
 public interface ChartSeries extends Serializable {
 

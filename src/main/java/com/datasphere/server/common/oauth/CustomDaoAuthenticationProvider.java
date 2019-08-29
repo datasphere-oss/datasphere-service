@@ -20,7 +20,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
- * Created by kyungtaak on 2017. 1. 25..
+ * Created by aladin on 2019. 1. 25..
  */
 public class CustomDaoAuthenticationProvider extends DaoAuthenticationProvider {
 

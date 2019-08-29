@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Created by kyungtaak on 2016. 9. 11..
+ * Created by aladin on 2019. 9. 11..
  */
 @JsonTypeName("like")
 public class LikeFilter extends Filter {

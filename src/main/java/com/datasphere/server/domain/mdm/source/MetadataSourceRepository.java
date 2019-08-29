@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.mdm.source;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.Set;
@@ -24,12 +24,12 @@ import com.datasphere.server.domain.mdm.Metadata;
 import com.datasphere.server.domain.mdm.MetadataProjections;
 
 /**
- * Created by kyungtaak on 2016. 8. 30..
+ * Created by aladin on 2019. 8. 30..
  */
 @RepositoryRestResource(exported = false, itemResourceRel = "metasource", collectionResourceRel = "metasources",
     excerptProjection = MetadataProjections.DefaultProjection.class)
 public interface MetadataSourceRepository extends JpaRepository<MetadataSource, String>,
-    QueryDslPredicateExecutor<MetadataSource> {
+    QuerydslPredicateExecutor<MetadataSource> {
 
   Set<MetadataSource> findMetadataSourcesByTypeAndSchema(Metadata.SourceType type, String schema);
 

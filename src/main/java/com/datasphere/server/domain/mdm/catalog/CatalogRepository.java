@@ -15,12 +15,12 @@
 package com.datasphere.server.domain.mdm.catalog;
 
 /**
- * Created by kyungtaak on 2016. 12. 20..
+ * Created by aladin on 2019. 12. 20..
  */
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -33,7 +33,7 @@ import java.util.List;
 @RepositoryRestResource(path = "catalogs", itemResourceRel = "catalog", collectionResourceRel = "catalogs",
                         excerptProjection = CatalogProjections.DefaultProjection.class)
 public interface CatalogRepository extends JpaRepository<Catalog, String>,
-    QueryDslPredicateExecutor<Catalog>,
+    QuerydslPredicateExecutor<Catalog>,
     CatalogRepositoryExtends {
 
   @RestResource(exported = false)

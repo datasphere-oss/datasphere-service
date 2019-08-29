@@ -14,18 +14,18 @@ package com.datasphere.server.domain.user.role;
 
 import com.datasphere.server.domain.user.DirectoryProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 1. 7..
+ * Created by aladin on 2019. 1. 7..
  */
 @RepositoryRestResource(exported = false, collectionResourceRel = "roleDirectories", itemResourceRel = "roleDirectory",
     excerptProjection = RoleDirectoryProjections.DefaultProjection.class)
 public interface RoleDirectoryRepository extends JpaRepository<RoleDirectory, Long>,
-    QueryDslPredicateExecutor<RoleDirectory> {
+    QuerydslPredicateExecutor<RoleDirectory> {
 
   RoleDirectory findByRoleAndTypeAndDirectoryId(Role role, DirectoryProfile.Type type, String directoryId);
 

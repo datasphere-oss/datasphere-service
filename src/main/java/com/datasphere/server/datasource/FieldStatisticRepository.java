@@ -20,7 +20,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2017. 5. 15..
+ * Created by aladin on 2019. 5. 15..
  */
 @RepositoryRestResource(exported = false)
 public interface FieldStatisticRepository extends JpaRepository<FieldStatistic, String> {

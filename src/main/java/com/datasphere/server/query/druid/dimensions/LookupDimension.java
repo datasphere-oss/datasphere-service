@@ -19,7 +19,7 @@ import com.datasphere.server.query.druid.Dimension;
 import com.datasphere.server.query.druid.lookup.LookupExtractor;
 
 /**
- * Created by kyungtaak on 2017. 4. 21..
+ * Created by aladin on 2019. 4. 21..
  */
 public class LookupDimension implements Dimension {
 

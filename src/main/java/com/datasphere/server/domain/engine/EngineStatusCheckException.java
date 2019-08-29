@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.engine;
 
 /**
- * Created by kyungtaak on 2016. 6. 21..
+ * Created by aladin on 2019. 6. 21..
  */
 public class EngineStatusCheckException extends RuntimeException {
 

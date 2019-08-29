@@ -40,7 +40,7 @@ import com.datasphere.server.domain.workbook.configurations.filter.Filter;
 import com.datasphere.server.domain.workbook.configurations.filter.InclusionFilter;
 
 /**
- * Created by kyungtaak on 2016. 8. 29..
+ * Created by aladin on 2019. 8. 29..
  */
 @Component
 public class DataSourceValidator {

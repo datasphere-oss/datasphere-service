@@ -17,16 +17,16 @@ import com.querydsl.jpa.JPQLQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 /**
- * Created by kyungtaak on 2017. 1. 23..
+ * Created by aladin on 2019. 1. 23..
  */
-public class GroupRepositoryImpl extends QuerydslRepositorySupport implements GroupRepositoryExtends {
+public class GroupRepositoryImpl extends QueryDslRepositorySupport implements GroupRepositoryExtends {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(GroupRepositoryImpl.class);
 

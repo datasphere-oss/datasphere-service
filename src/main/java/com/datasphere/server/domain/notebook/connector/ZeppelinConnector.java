@@ -47,7 +47,7 @@ import com.datasphere.server.domain.notebook.content.RNotebookContent;
 import com.datasphere.server.domain.notebook.content.ScalaNotebookContent;
 
 /**
- * Created by kyungtaak on 2016. 10. 21..
+ * Created by aladin on 2019. 10. 21..
  */
 @Entity
 @DiscriminatorValue("zeppelin")

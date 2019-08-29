@@ -38,7 +38,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
 import java.util.List;
 import java.util.Map;
@@ -49,7 +49,7 @@ import com.datasphere.server.domain.mdm.Metadata;
 import com.datasphere.server.domain.mdm.source.QMetadataSource;
 import com.datasphere.server.domain.workbook.QDashBoard;
 
-public class DataSourceRepositoryImpl extends QuerydslRepositorySupport implements DataSourceSearchRepository, DataSourceRepositoryExtends {
+public class DataSourceRepositoryImpl extends QueryDslRepositorySupport implements DataSourceSearchRepository, DataSourceRepositoryExtends {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceRepositoryImpl.class);
 

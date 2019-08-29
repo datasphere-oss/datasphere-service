@@ -20,7 +20,7 @@ import com.datasphere.server.query.druid.Filter;
 
 
 /**
- * Created by hsp on 2016. 6. 7..
+ * Created by aladin on 2016. 6. 7..
  */
 
 

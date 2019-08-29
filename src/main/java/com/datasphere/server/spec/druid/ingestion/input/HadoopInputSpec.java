@@ -22,7 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2017. 4. 30..
+ * Created by aladin on 2019. 4. 30..
  */
 public class HadoopInputSpec implements InputSpec {
 

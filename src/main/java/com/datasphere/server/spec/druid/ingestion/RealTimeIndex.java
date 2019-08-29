@@ -23,7 +23,7 @@ import java.util.Map;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by kyungtaak on 2016. 6. 18..
+ * Created by aladin on 2019. 6. 18..
  */
 public class RealTimeIndex implements Index {
 

@@ -20,7 +20,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 /**
- * Created by kyungtaak on 2017. 5. 24..
+ * Created by aladin on 2019. 5. 24..
  */
 public class Style implements Serializable {
 

@@ -17,7 +17,7 @@ package com.datasphere.server.domain.notebook;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 
 /**
- * Created by james on 2017. 7. 16..
+ * Created by aladin on 2019. 7. 16..
  */
 @RepositoryRestController
 public class NotebookModelController {

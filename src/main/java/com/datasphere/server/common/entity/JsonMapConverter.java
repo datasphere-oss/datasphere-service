@@ -21,7 +21,7 @@ import javax.persistence.AttributeConverter;
 import java.io.IOException;
 
 /**
- * Created by kyungtaak on 2016. 5. 10..
+ * Created by aladin on 2019. 5. 10..
  */
 public class JsonMapConverter implements AttributeConverter<Object, String> {
 

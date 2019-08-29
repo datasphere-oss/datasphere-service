@@ -12,7 +12,9 @@
 
 package com.datasphere.server.connections.jdbc.exception;
 
-public enum JdbcDataConnectionErrorCodes {
+import com.datasphere.engine.common.exception.ErrorCodes;
+
+public enum JdbcDataConnectionErrorCodes implements ErrorCodes{
 
   GENERAL_ERROR_CODE("JDC0001")
   , HIVE_METASTORE_ERROR_CODE("JDC0002")

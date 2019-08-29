@@ -37,7 +37,7 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 
 /**
- * Created by kyungtaak on 2017. 1. 23..
+ * Created by aladin on 2019. 1. 23..
  */
 public class UserRepositoryImpl implements UserSearchRepository {
 
@@ -77,7 +77,7 @@ public class UserRepositoryImpl implements UserSearchRepository {
     );
 
     FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(outer.createQuery(), User.class);
-    fullTextQuery.setFirstResult(pageable.getOffset());
+    fullTextQuery.setFirstResult((int)pageable.getOffset());
     fullTextQuery.setMaxResults(pageable.getPageSize());
     fullTextQuery.setSort(getSearchSort(pageable));
 
@@ -98,7 +98,7 @@ public class UserRepositoryImpl implements UserSearchRepository {
       throw new RuntimeException("Fail to search query : " + e.getMessage());
     }
 
-    fullTextQuery.setFirstResult(pageable.getOffset());
+    fullTextQuery.setFirstResult((int)pageable.getOffset());
     fullTextQuery.setMaxResults(pageable.getPageSize());
     fullTextQuery.setSort(getSearchSort(pageable));
 

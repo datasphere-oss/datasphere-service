@@ -32,12 +32,6 @@ import com.datasphere.server.domain.workspace.WorkspacePagedResourcesAssembler;
 @Configuration
 public class CustomRepositoryRestMvcConfiguration extends RepositoryRestMvcConfiguration {
 
-  public CustomRepositoryRestMvcConfiguration(ApplicationContext context,
-			ObjectFactory<ConversionService> conversionService) {
-		super(context, conversionService);
-		// TODO Auto-generated constructor stub
-	}
-
 /**
    * Spring Data Rest 에서 사용하는 ObjectMapper 정의 (타 Framework 충돌방지를 위하여 @Primary 사용)
    *

@@ -17,18 +17,18 @@ package com.datasphere.server.domain.comment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.datasphere.server.common.entity.DomainType;
 
 /**
- * Created by kyungtaak on 2016. 12. 28..
+ * Created by aladin on 2019. 12. 28..
  */
 @RepositoryRestResource(exported = false, path = "comments", itemResourceRel = "comment"
     , collectionResourceRel = "comments", excerptProjection = CommentProjections.DefaultProjection.class)
 public interface CommentRepository extends JpaRepository<Comment, Long>,
-                                          QueryDslPredicateExecutor<Comment> {
+                                          QuerydslPredicateExecutor<Comment> {
 
   Page<Comment> findByDomainTypeAndDomainIdOrderByCreatedTimeDesc(DomainType domainType,
                                                                   String domainId,

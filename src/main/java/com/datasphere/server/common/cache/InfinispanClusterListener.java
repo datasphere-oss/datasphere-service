@@ -21,7 +21,7 @@ import org.infinispan.notifications.cachemanagerlistener.event.ViewChangedEvent;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Created by kyungtaak on 2017. 3. 13..
+ * Created by aladin on 2019. 3. 13..
  */
 @Listener
 public class InfinispanClusterListener {

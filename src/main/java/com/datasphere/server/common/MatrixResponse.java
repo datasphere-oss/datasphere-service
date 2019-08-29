@@ -34,7 +34,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 /**
- * Created by kyungtaak on 2016. 10. 19..
+ * Created by aladin on 2019. 10. 19..
  */
 public class MatrixResponse<R, C> implements Serializable {
 

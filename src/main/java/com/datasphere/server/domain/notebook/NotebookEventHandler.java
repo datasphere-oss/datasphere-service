@@ -29,7 +29,7 @@ import com.datasphere.server.domain.notebook.connector.HttpRepository;
 import com.datasphere.server.domain.workspace.BookTreeService;
 
 /**
- * Created by kyungtaak on 2016. 10. 21..
+ * Created by aladin on 2019. 10. 21..
  */
 @RepositoryEventHandler(Notebook.class)
 public class NotebookEventHandler {

@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by kyungtaak on 2016. 8. 12..
+ * Created by aladin on 2019. 8. 12..
  */
 public class IncrementalIngestionJobListener implements JobListener {
 

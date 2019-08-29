@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by kyungtaak on 2017. 2. 2..
+ * Created by aladin on 2019. 2. 2..
  */
 @RestController
 @RequestMapping("/api/admin")

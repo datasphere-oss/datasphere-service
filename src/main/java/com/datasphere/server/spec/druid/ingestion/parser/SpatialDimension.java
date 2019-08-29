@@ -22,7 +22,7 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by kyungtaak on 2016. 6. 17..
+ * Created by aladin on 2019. 6. 17..
  */
 public class SpatialDimension {
 

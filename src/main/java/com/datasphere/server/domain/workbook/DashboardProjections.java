@@ -27,7 +27,7 @@ import com.datasphere.server.domain.user.UserProfile;
 import com.datasphere.server.domain.workbook.widget.Widget;
 
 /**
- * Created by kyungtaak on 2016. 11. 3..
+ * Created by aladin on 2019. 11. 3..
  */
 public class DashboardProjections extends BaseProjections {
 

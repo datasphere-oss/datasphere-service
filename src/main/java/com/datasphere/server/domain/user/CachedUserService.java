@@ -29,7 +29,7 @@ import com.datasphere.server.domain.user.role.RoleService;
 import com.datasphere.server.domain.workspace.WorkspaceMember;
 
 /**
- * Created by kyungtaak on 2016. 5. 18..
+ * Created by aladin on 2019. 5. 18..
  */
 @Component("cachedUserService")
 public class CachedUserService {

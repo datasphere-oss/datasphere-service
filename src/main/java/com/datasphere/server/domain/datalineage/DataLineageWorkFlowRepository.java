@@ -15,13 +15,13 @@
 package com.datasphere.server.domain.datalineage;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
 /**
- * Created by kyungtaak on 2016. 1. 26..
+ * Created by aladin on 2019. 1. 26..
  */
 @Repository
 public interface DataLineageWorkFlowRepository extends JpaRepository<DataLineageWorkFlow, Long>,
-        QueryDslPredicateExecutor<DataLineageWorkFlow> {
+        QuerydslPredicateExecutor<DataLineageWorkFlow> {
 }

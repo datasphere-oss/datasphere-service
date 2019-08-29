@@ -14,19 +14,18 @@
 
 package com.datasphere.server.domain.notebook;
 
-import com.google.common.base.Preconditions;
+import java.net.URL;
 
 import org.springframework.data.rest.core.annotation.HandleBeforeCreate;
 import org.springframework.data.rest.core.annotation.HandleBeforeDelete;
 import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 
-import java.net.URL;
-
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.engine.common.exception.MetatronException;
+import com.google.common.base.Preconditions;
 
 /**
- * Created by james on 2017. 8. 4..
+ * Created by aladin on 2019. 8. 4..
  */
 @RepositoryEventHandler(NotebookConnector.class)
 public class NotebookConnectorEventHandler {

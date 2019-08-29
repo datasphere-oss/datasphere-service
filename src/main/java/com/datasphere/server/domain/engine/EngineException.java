@@ -14,15 +14,15 @@
 
 package com.datasphere.server.domain.engine;
 
+import static com.datasphere.server.domain.engine.EngineErrorCodes.ENGINE_ACCESS_ERROR_CODE;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.datasphere.server.common.exception.MetatronException;
-
-import static com.datasphere.server.domain.engine.EngineErrorCodes.ENGINE_ACCESS_ERROR_CODE;
+import com.datasphere.engine.common.exception.MetatronException;
 
 /**
- * Created by kyungtaak on 2016. 6. 13..
+ * Created by aladin on 2019. 6. 13..
  */
 @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR, reason="Engine access error")
 public class EngineException extends MetatronException {

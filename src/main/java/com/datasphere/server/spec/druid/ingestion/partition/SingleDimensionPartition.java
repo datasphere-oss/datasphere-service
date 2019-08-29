@@ -17,7 +17,7 @@ package com.datasphere.server.spec.druid.ingestion.partition;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by kyungtaak on 2016. 6. 18..
+ * Created by aladin on 2019. 6. 18..
  */
 public class SingleDimensionPartition implements PartitionSpec {
 

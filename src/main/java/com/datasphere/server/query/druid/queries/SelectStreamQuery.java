@@ -28,7 +28,7 @@ import com.datasphere.server.query.druid.limits.OrderByColumn;
 import com.datasphere.server.query.druid.virtualcolumns.VirtualColumn;
 
 /**
- * Created by kyungtaak on 2017. 3. 6..
+ * Created by aladin on 2019. 3. 6..
  */
 @JsonTypeName("select.stream")
 public class SelectStreamQuery extends Query {

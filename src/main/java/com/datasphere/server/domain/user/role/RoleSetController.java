@@ -47,7 +47,7 @@ import com.datasphere.server.domain.workspace.WorkspacePredicate;
 import com.datasphere.server.domain.workspace.WorkspaceRepository;
 
 /**
- * Created by kyungtaak on 2016. 7. 21..
+ * Created by aladin on 2019. 7. 21..
  */
 @RepositoryRestController
 public class RoleSetController {

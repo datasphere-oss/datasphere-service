@@ -28,7 +28,7 @@ import com.datasphere.server.datasource.data.QueryTimeExcetpion;
 import com.datasphere.server.domain.engine.EngineQueryProperties;
 
 /**
- * Created by kyungtaak on 2016. 10. 3..
+ * Created by aladin on 2019. 10. 3..
  */
 public class FileResultFormat extends SearchResultFormat {
 

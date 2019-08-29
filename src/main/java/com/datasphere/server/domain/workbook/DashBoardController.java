@@ -14,7 +14,13 @@
 
 package com.datasphere.server.domain.workbook;
 
-import com.querydsl.core.BooleanBuilder;
+import static com.datasphere.server.config.ApiResourceConfig.REDIRECT_PATH_URL;
+
+import java.util.ArrayList;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -35,11 +41,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.datasource.data.DataSourceValidator;
 import com.datasphere.server.datasource.data.SearchQueryRequest;
 import com.datasphere.server.datasource.data.result.ObjectResultFormat;
@@ -52,10 +54,7 @@ import com.datasphere.server.domain.workbook.widget.QWidget;
 import com.datasphere.server.domain.workbook.widget.Widget;
 import com.datasphere.server.domain.workbook.widget.WidgetRepository;
 import com.datasphere.server.util.AuthUtils;
-
-import java.util.ArrayList;
-
-import static com.datasphere.server.config.ApiResourceConfig.REDIRECT_PATH_URL;
+import com.querydsl.core.BooleanBuilder;
 
 @RepositoryRestController
 public class DashBoardController {

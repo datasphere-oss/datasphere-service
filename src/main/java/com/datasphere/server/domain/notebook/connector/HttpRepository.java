@@ -46,7 +46,7 @@ import com.datasphere.server.domain.notebook.NotebookErrorCodes;
 import com.datasphere.server.domain.notebook.NotebookException;
 
 /**
- * Created by kyungtaak on 2016. 8. 22..
+ * Created by aladin on 2019. 8. 22..
  */
 @Component
 public class HttpRepository implements HttpRepositoryAction {

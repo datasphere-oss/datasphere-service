@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by kyungtaak on 2017. 3. 20..
+ * Created by aladin on 2019. 3. 20..
  */
 public class HiveInputSpec implements InputSpec {
   /**

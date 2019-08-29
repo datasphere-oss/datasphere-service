@@ -60,7 +60,7 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 
 /**
- * Created by kyungtaak on 2016. 1. 5..
+ * Created by aladin on 2019. 1. 5..
  */
 @Entity
 @Table(name = "roles")

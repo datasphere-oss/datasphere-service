@@ -42,7 +42,7 @@ import com.datasphere.server.query.druid.virtualcolumns.IndexVirtualColumn;
 import com.datasphere.server.query.druid.virtualcolumns.VirtualColumn;
 
 /**
- * Created by hsp on 2016. 7. 5..
+ * Created by aladin on 2016. 7. 5..
  */
 public class TopNQueryBuilder extends AbstractQueryBuilder {
 

@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by kyungtaak on 2016. 12. 11..
+ * Created by aladin on 2019. 12. 11..
  */
 @Component
 @ConfigurationProperties(prefix = "polaris.datasource")

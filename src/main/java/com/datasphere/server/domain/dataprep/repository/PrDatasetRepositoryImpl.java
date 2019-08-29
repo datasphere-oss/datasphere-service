@@ -51,7 +51,7 @@ public class PrDatasetRepositoryImpl implements PrDatasetRepositoryCustom {
             throw new RuntimeException("Fail to search query : " + e.getMessage());
         }
 
-        fullTextQuery.setFirstResult(pageable.getOffset());
+        fullTextQuery.setFirstResult((int)pageable.getOffset());
         fullTextQuery.setMaxResults(pageable.getPageSize());
 
         return new PageImpl<>(fullTextQuery.getResultList(), pageable, fullTextQuery.getResultSize());

@@ -108,7 +108,7 @@ import static com.datasphere.server.query.druid.meta.AnalysisType.QUERYGRANULARI
 import static com.datasphere.server.query.druid.meta.AnalysisType.SERIALIZED_SIZE;
 
 /**
- * Created by kyungtaak on 2016. 8. 25..
+ * Created by aladin on 2019. 8. 25..
  */
 @Component
 public class EngineQueryService extends AbstractQueryService implements QueryService {

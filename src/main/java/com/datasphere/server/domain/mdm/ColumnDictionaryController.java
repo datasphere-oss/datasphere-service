@@ -42,7 +42,7 @@ import java.util.Map;
 import com.datasphere.server.util.ProjectionUtils;
 
 /**
- * Created by kyungtaak on 2016. 7. 22..
+ * Created by aladin on 2019. 7. 22..
  */
 @RepositoryRestController
 public class ColumnDictionaryController {

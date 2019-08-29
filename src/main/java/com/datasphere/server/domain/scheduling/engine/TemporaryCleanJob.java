@@ -40,7 +40,7 @@ import com.datasphere.server.datasource.DataSourceTemporaryRepository;
 import com.datasphere.server.domain.engine.EngineLoadService;
 
 /**
- * Created by kyungtaak on 2016. 6. 20..
+ * Created by aladin on 2019. 6. 20..
  */
 @Component
 @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)

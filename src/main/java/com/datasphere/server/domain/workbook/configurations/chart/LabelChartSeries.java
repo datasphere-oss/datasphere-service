@@ -22,7 +22,7 @@ import java.io.Serializable;
 import com.datasphere.server.util.EnumUtils;
 
 /**
- * Created by kyungtaak on 2016. 6. 2..
+ * Created by aladin on 2019. 6. 2..
  */
 public class LabelChartSeries implements Serializable {
 

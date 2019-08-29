@@ -22,7 +22,7 @@ import com.datasphere.server.domain.dataprep.teddy.ColumnType;
 import com.datasphere.server.datasource.Field;
 
 /**
- * Created by kyungtaak on 2017. 6. 11..
+ * Created by aladin on 2019. 6. 11..
  */
 public enum DataType {
   STRING,

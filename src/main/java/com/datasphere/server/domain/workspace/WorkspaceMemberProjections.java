@@ -20,7 +20,7 @@ import org.springframework.data.rest.core.config.Projection;
 import com.datasphere.server.domain.user.DirectoryProfile;
 
 /**
- * Created by kyungtaak on 2017. 1. 22..
+ * Created by aladin on 2019. 1. 22..
  */
 public class WorkspaceMemberProjections {
 

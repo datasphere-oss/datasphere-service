@@ -19,7 +19,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
- * Created by kyungtaak on 2016. 10. 30..
+ * Created by aladin on 2019. 10. 30..
  */
 public class CustomCollectors {
 

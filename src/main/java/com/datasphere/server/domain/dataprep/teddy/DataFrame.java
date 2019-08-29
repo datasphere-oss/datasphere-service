@@ -19,8 +19,8 @@ import com.datasphere.server.domain.dataprep.json.PrepJsonParseResult;
 import com.datasphere.server.domain.dataprep.transform.Histogram;
 import com.datasphere.server.domain.dataprep.teddy.exceptions.*;
 import com.datasphere.server.domain.dataprep.transform.TimestampTemplate;
-import com.datasphere.server.domain.user.role.Role;
 import com.datasphere.server.prep.parser.exceptions.RuleException;
+import com.datasphere.server.prep.parser.preparation.rule.Rule;
 import com.datasphere.server.prep.parser.preparation.rule.expr.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.joda.time.DateTime;
@@ -141,7 +141,7 @@ public class DataFrame implements Serializable, Transformable {
     this.valid = valid;
   }
 
-  public static DataFrame getNewDf(Role rule, String dsName, String ruleString) {
+  public static DataFrame getNewDf(Rule rule, String dsName, String ruleString) {
     switch (rule.getName()) {
       case "move":         return new DfMove(dsName, ruleString);
       case "sort":         return new DfSort(dsName, ruleString);
@@ -174,7 +174,7 @@ public class DataFrame implements Serializable, Transformable {
     }
   }
 
-  public static boolean isParallelizable(Role rule) {
+  public static boolean isParallelizable(Rule rule) {
     switch (rule.getName()) {
       case "move":
       case "drop":
@@ -1457,5 +1457,7 @@ public class DataFrame implements Serializable, Transformable {
     assert false : prevDf.ruleString;
     return null;
   }
+  
+  
 }
 

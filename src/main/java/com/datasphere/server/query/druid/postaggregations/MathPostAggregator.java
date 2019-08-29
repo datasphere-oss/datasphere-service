@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 import com.datasphere.server.query.druid.PostAggregation;
 
 /**
- * Created by hsp on 2016. 5. 3..
+ * Created by aladin on 2016. 5. 3..
  */
 @JsonTypeName("math")
 public class MathPostAggregator implements PostAggregation {

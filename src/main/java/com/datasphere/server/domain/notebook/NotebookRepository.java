@@ -18,7 +18,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
- * Created by kyungtaak on 2016. 10. 21..
+ * Created by aladin on 2019. 10. 21..
  */
 @RepositoryRestResource(path = "notebooks", excerptProjection = NoteBookProjections.DefaultProjection.class)
 public interface NotebookRepository extends JpaRepository<Notebook, String> {

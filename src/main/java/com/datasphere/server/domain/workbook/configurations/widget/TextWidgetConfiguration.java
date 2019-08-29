@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.datasphere.server.domain.workbook.configurations.WidgetConfiguration;
 
 /**
- * Created by kyungtaak on 2016. 5. 20..
+ * Created by aladin on 2019. 5. 20..
  */
 @JsonTypeName("text")
 public class TextWidgetConfiguration extends WidgetConfiguration {

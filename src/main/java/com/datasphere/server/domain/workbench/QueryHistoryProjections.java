@@ -22,7 +22,7 @@ import com.datasphere.server.common.BaseProjections;
 import com.datasphere.server.domain.user.UserProfile;
 
 /**
- * Created by kyungtaak on 2016. 11. 29..
+ * Created by aladin on 2019. 11. 29..
  */
 public class QueryHistoryProjections extends BaseProjections{
 

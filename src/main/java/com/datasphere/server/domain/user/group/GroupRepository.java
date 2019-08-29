@@ -14,7 +14,7 @@ package com.datasphere.server.domain.user.group;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.datasphere.server.domain.context.ContextDomainRepository;
@@ -22,12 +22,12 @@ import com.datasphere.server.domain.context.ContextDomainRepository;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 1. 7..
+ * Created by aladin on 2019. 1. 7..
  */
 @RepositoryRestResource(path = "groups", itemResourceRel = "group", collectionResourceRel = "groups",
     excerptProjection = GroupProjections.DefaultProjection.class)
 public interface GroupRepository extends JpaRepository<Group, String>,
-    QueryDslPredicateExecutor<Group>, GroupRepositoryExtends, ContextDomainRepository {
+    QuerydslPredicateExecutor<Group>, GroupRepositoryExtends, ContextDomainRepository {
 
   Group findByName(String name);
 

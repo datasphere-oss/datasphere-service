@@ -19,7 +19,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 6. 18..
+ * Created by aladin on 2019. 6. 18..
  */
 public class HashBasedPartition implements PartitionSpec {
 

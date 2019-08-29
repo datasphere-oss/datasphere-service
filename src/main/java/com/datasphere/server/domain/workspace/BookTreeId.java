@@ -20,7 +20,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
- * Created by kyungtaak on 2016. 12. 21..
+ * Created by aladin on 2019. 12. 21..
  */
 @Embeddable
 public class BookTreeId implements Serializable {

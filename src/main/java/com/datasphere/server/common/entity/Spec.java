@@ -24,7 +24,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 /**
- * Created by kyungtaak on 2017. 7. 18..
+ * Created by aladin on 2019. 7. 18..
  */
 @Documented
 @Constraint(validatedBy = SpecValidator.class)

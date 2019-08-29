@@ -23,7 +23,7 @@ import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 
 /**
- * Created by kyungtaak on 2016. 6. 2..
+ * Created by aladin on 2019. 6. 2..
  */
 public class LabelChartPeriod implements Serializable {
 

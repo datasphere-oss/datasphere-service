@@ -17,7 +17,7 @@ package com.datasphere.server.domain.workbook.widget;
 import org.springframework.data.rest.core.config.Projection;
 
 /**
- * Created by kyungtaak on 2016. 11. 3..
+ * Created by aladin on 2019. 11. 3..
  */
 public class WidgetProjections {
 

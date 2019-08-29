@@ -22,7 +22,7 @@ import com.datasphere.server.datasource.ingestion.IngestionInfo;
 import com.datasphere.server.datasource.ingestion.file.FileFormat;
 
 /**
- * Created by kyungtaak on 2017. 4. 30..
+ * Created by aladin on 2019. 4. 30..
  */
 public abstract class JdbcIngestionInfo implements IngestionInfo {
 

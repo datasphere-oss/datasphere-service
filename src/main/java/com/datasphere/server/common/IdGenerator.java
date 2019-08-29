@@ -15,7 +15,7 @@ package com.datasphere.server.common;
 import java.util.UUID;
 
 /**
- * Created by kyungtaak on 2016. 11. 21..
+ * Created by aladin on 2019. 11. 21..
  */
 public class IdGenerator {
 

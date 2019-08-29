@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 import com.datasphere.server.domain.notebook.connector.JupyterBuilder;
 
 /**
- * Created by james on 2017. 7. 16..
+ * Created by aladin on 2019. 7. 16..
  */
 @Component
 public class NotebookModelService implements NotebookModelAction {

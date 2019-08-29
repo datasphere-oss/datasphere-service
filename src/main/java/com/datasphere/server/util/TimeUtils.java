@@ -20,7 +20,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by kyungtaak on 2016. 9. 1..
+ * Created by aladin on 2019. 9. 1..
  */
 public class TimeUtils {
 

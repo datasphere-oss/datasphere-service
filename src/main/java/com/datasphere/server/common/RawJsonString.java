@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * JSON String REST API To deliver Wrapper Class`
- * Created by kyungtaak on 2016. 2. 25..
+ * Created by aladin on 2019. 2. 25..
  */
 public class RawJsonString {
   private final String value;

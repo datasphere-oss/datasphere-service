@@ -18,18 +18,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 1. 26..
+ * Created by aladin on 2019. 1. 26..
  */
 @RepositoryRestResource(path = "audits", itemResourceRel = "audit"
         , collectionResourceRel = "audits", excerptProjection = AuditProjections.DefaultProjection.class)
-public interface AuditRepository extends JpaRepository<Audit, String>, QueryDslPredicateExecutor<Audit>, AuditRepositoryCustom {
+public interface AuditRepository extends JpaRepository<Audit, String>, QuerydslPredicateExecutor<Audit>, AuditRepositoryCustom {
 
   @Query("select a.jobName, COUNT(a) as cnt " +
           "from Audit a " +

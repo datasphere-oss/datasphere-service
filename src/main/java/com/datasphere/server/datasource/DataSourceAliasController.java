@@ -37,7 +37,7 @@ import com.datasphere.server.domain.workbook.DashBoard;
 import com.datasphere.server.domain.workbook.DashboardRepository;
 
 /**
- * Created by kyungtaak on 2016. 7. 22..
+ * Created by aladin on 2019. 7. 22..
  */
 @RepositoryRestController
 public class DataSourceAliasController {

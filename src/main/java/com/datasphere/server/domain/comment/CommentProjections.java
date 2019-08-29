@@ -21,7 +21,7 @@ import org.springframework.data.rest.core.config.Projection;
 import com.datasphere.server.domain.user.UserProfile;
 
 /**
- * Created by kyungtaak on 2017. 1. 18..
+ * Created by aladin on 2019. 1. 18..
  */
 public class CommentProjections {
 

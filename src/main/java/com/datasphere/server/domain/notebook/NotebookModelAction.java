@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.notebook;
 
 /**
- * Created by james on 2017. 7. 16..
+ * Created by aladin on 2019. 7. 16..
  */
 public interface NotebookModelAction {
     String execute(NotebookModel model);

@@ -22,7 +22,7 @@ import com.datasphere.server.datasource.ingestion.IngestionDataResultResponse;
 import com.datasphere.server.datasource.ingestion.file.FileFormat;
 
 /**
- * Created by kyungtaak on 2016. 6. 16..
+ * Created by aladin on 2019. 6. 16..
  */
 public class JdbcQueryResultResponse extends IngestionDataResultResponse {
 

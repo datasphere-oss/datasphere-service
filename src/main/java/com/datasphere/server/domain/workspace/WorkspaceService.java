@@ -14,14 +14,12 @@
 
 package com.datasphere.server.domain.workspace;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
+import static com.datasphere.server.domain.workspace.Workspace.PublicType.SHARED;
 
-import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.Predicate;
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.JPAExpressions;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
@@ -35,18 +33,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.datasphere.server.common.MatrixResponse;
 import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
-import com.datasphere.server.domain.CollectionPatch;
-import com.datasphere.server.domain.activities.ActivityStreamService;
 import com.datasphere.server.datasource.DataSourceRepository;
 import com.datasphere.server.datasource.QDataSource;
+import com.datasphere.server.domain.CollectionPatch;
+import com.datasphere.server.domain.activities.ActivityStreamService;
 import com.datasphere.server.domain.user.CachedUserService;
 import com.datasphere.server.domain.user.DirectoryProfile;
 import com.datasphere.server.domain.user.User;
@@ -62,11 +55,16 @@ import com.datasphere.server.domain.user.role.RoleSetService;
 import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 import com.datasphere.server.util.AuthUtils;
 import com.datasphere.server.util.EnumUtils;
-
-import static com.datasphere.server.domain.workspace.Workspace.PublicType.SHARED;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.JPAExpressions;
 
 /**
- * Created by kyungtaak on 2017. 7. 23..
+ * Created by aladin on 2019. 7. 23..
  */
 @Component
 @Transactional(readOnly = true)

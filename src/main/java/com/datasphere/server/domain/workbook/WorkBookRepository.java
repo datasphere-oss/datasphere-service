@@ -18,7 +18,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
- * Created by kyungtaak on 2016. 1. 26..
+ * Created by aladin on 2019. 1. 26..
  */
 @RepositoryRestResource(path = "workbooks", itemResourceRel = "workbook"
 		, collectionResourceRel = "workbooks", excerptProjection = WorkBookProjections.DefaultProjection.class)

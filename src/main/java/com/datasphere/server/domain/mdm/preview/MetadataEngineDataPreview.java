@@ -14,19 +14,15 @@
 
 package com.datasphere.server.domain.mdm.preview;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
+import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Map;
-
-import com.datasphere.server.common.data.projection.ColumnDescription;
-import com.datasphere.server.common.data.projection.Row;
+import com.datasphere.common.data.ColumnDescription;
+import com.datasphere.common.data.Row;
 import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.datasource.data.SearchQueryRequest;
 import com.datasphere.server.datasource.data.result.ObjectResultFormat;
@@ -34,6 +30,9 @@ import com.datasphere.server.domain.engine.EngineQueryService;
 import com.datasphere.server.domain.mdm.Metadata;
 import com.datasphere.server.domain.workbook.configurations.Limit;
 import com.datasphere.server.domain.workbook.configurations.datasource.DefaultDataSource;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 /**
  * The type Metadata engine data preview.

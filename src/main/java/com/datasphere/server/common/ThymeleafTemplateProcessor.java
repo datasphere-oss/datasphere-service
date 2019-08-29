@@ -22,7 +22,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.IContext;
 
 /**
- * Created by kyungtaak on 2016. 11. 6..
+ * Created by aladin on 2019. 11. 6..
  */
 @Component
 public class ThymeleafTemplateProcessor {

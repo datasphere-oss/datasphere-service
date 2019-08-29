@@ -26,7 +26,7 @@ import com.datasphere.server.domain.workbook.configurations.widget.FilterWidgetC
 import com.datasphere.server.util.PolarisUtils;
 
 /**
- * Created by kyungtaak on 2017. 7. 18..
+ * Created by aladin on 2019. 7. 18..
  */
 @Entity
 @JsonTypeName("filter")

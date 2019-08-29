@@ -17,7 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 /**
- * Created by kyungtaak on 2017. 1. 23..
+ * Created by aladin on 2019. 1. 23..
  */
 public interface UserSearchRepository {
 

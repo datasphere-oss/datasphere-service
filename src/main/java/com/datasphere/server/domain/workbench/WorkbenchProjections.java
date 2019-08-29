@@ -27,7 +27,7 @@ import com.datasphere.server.domain.user.UserProfile;
 import com.datasphere.server.domain.workspace.WorkspaceProjections;
 
 /**
- * Created by kyungtaak on 2016. 11. 29..
+ * Created by aladin on 2019. 11. 29..
  */
 @Component
 public class WorkbenchProjections extends BaseProjections{

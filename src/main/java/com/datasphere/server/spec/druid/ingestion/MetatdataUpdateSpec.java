@@ -15,7 +15,7 @@
 package com.datasphere.server.spec.druid.ingestion;
 
 /**
- * Created by kyungtaak on 2016. 6. 18..
+ * Created by aladin on 2019. 6. 18..
  */
 public interface MetatdataUpdateSpec {
 }

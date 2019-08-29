@@ -25,7 +25,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Created by kyungtaak on 2017. 7. 16..
+ * Created by aladin on 2019. 7. 16..
  */
 @Entity
 @Table(name = "workspace_favorite")

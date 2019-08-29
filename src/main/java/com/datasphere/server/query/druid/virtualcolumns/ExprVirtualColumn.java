@@ -15,7 +15,7 @@
 package com.datasphere.server.query.druid.virtualcolumns;
 
 /**
- * Created by kyungtaak on 2016. 7. 2..
+ * Created by aladin on 2019. 7. 2..
  */
 public class ExprVirtualColumn extends VirtualColumn {
 

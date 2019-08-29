@@ -12,6 +12,7 @@
 
 package com.datasphere.server.common;
 
+import com.datasphere.server.common.exception.BadRequestException;
 import com.google.common.collect.Maps;
 
 import org.springframework.data.rest.core.config.Projection;

@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 9. 3..
+ * Created by aladin on 2019. 9. 3..
  */
 @RepositoryRestResource(exported = false, path = "sizehistories", itemResourceRel = "sizehistory"
         , collectionResourceRel = "sizehistories")

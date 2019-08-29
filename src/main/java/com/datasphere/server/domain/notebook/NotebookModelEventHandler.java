@@ -21,7 +21,7 @@ import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 
 /**
- * Created by james on 2017. 7. 13..
+ * Created by aladin on 2019. 7. 13..
  */
 @RepositoryEventHandler(NotebookModel.class)
 public class NotebookModelEventHandler {

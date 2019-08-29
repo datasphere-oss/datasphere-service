@@ -32,7 +32,7 @@ import com.datasphere.server.util.AuthUtils;
 import static com.datasphere.server.domain.workspace.Workspace.PublicType.SHARED;
 
 /**
- * Created by kyungtaak on 2016. 5. 10..
+ * Created by aladin on 2019. 5. 10..
  */
 @RepositoryEventHandler(Workspace.class)
 public class WorkspaceEventHandler {

@@ -16,7 +16,7 @@ import org.hibernate.dialect.MySQL5Dialect;
 import org.hibernate.type.StandardBasicTypes;
 
 /**
- * Created by kyungtaak on 2016. 4. 6..
+ * Created by aladin on 2019. 4. 6..
  */
 public class PolarisMySQLDialect extends MySQL5Dialect {
   public PolarisMySQLDialect() {

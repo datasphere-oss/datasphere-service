@@ -21,7 +21,7 @@ import com.datasphere.server.query.druid.ExtractionFunction;
 import com.datasphere.server.util.PolarisUtils;
 
 /**
- * Created by kyungtaak on 2016. 6. 13..
+ * Created by aladin on 2019. 6. 13..
  */
 @JsonTypeName("expression")
 public class ExpressionFunction  implements ExtractionFunction {

@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.notebook;
 
 /**
- * Created by james on 2017. 8. 10..
+ * Created by aladin on 2019. 8. 10..
  */
 public class NotebookModelSummary {
 

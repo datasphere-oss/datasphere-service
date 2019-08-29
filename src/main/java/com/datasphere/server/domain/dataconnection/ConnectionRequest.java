@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
 import com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo;
 
 /**
- * Created by kyungtaak on 2016. 6. 20..
+ * Created by aladin on 2019. 6. 20..
  */
 public class ConnectionRequest {
 

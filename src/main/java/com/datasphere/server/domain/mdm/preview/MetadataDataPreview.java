@@ -14,30 +14,28 @@
 
 package com.datasphere.server.domain.mdm.preview;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static com.datasphere.server.datasource.Field.COLUMN_NAME_CURRENT_DATETIME;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.datasphere.common.data.ColumnDescription;
+import com.datasphere.common.data.ColumnHistogram;
+import com.datasphere.common.data.DataGrid;
+import com.datasphere.common.data.DataHistogram;
+import com.datasphere.common.data.Row;
 import com.datasphere.server.common.GlobalObjectMapper;
-import com.datasphere.server.common.data.projection.ColumnDescription;
-import com.datasphere.server.common.data.projection.ColumnHistogram;
-import com.datasphere.server.common.data.projection.DataGrid;
-import com.datasphere.server.common.data.projection.DataHistogram;
-import com.datasphere.server.common.data.projection.Row;
 import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.mdm.Metadata;
 import com.datasphere.server.domain.mdm.MetadataColumn;
-
-import static com.datasphere.server.datasource.Field.COLUMN_NAME_CURRENT_DATETIME;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 /**
  * The type Metadata data preview.

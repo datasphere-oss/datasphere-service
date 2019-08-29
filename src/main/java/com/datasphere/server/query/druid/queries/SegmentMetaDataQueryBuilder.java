@@ -33,7 +33,7 @@ import com.datasphere.server.query.druid.meta.ListToInclude;
 import com.datasphere.server.util.EnumUtils;
 
 /**
- * Created by hsp on 2016. 12. 1..
+ * Created by aladin on 2016. 12. 1..
  */
 public class SegmentMetaDataQueryBuilder extends AbstractQueryBuilder {
 

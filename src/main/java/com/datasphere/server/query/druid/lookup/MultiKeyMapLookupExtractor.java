@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2017. 4. 20..
+ * Created by aladin on 2019. 4. 20..
  */
 @JsonTypeName("multiKeyMap")
 public class MultiKeyMapLookupExtractor implements LookupExtractor {

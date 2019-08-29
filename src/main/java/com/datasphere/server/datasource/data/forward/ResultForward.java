@@ -27,7 +27,7 @@ import java.util.UUID;
 import com.datasphere.server.domain.engine.EngineQueryProperties;
 
 /**
- * Created by kyungtaak on 2016. 8. 24..
+ * Created by aladin on 2019. 8. 24..
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXTERNAL_PROPERTY, property = "type")
 @JsonSubTypes({

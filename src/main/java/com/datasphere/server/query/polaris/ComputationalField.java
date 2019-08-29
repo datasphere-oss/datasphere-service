@@ -52,7 +52,7 @@ import static com.datasphere.server.query.polaris.ExprParser.IDENTIFIER;
 import static com.datasphere.server.query.polaris.ExprParser.IdentifierExprContext;
 
 /**
- * Created by hsp on 2016. 4. 22..
+ * Created by aladin on 2016. 4. 22..
  */
 public class ComputationalField {
 

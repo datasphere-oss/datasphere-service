@@ -27,7 +27,7 @@ import javax.persistence.Table;
 import com.datasphere.server.domain.AbstractHistoryEntity;
 
 /**
- * Created by kyungtaak on 2017. 4. 19..
+ * Created by aladin on 2019. 4. 19..
  */
 @Entity
 @Table(name = "configuration")

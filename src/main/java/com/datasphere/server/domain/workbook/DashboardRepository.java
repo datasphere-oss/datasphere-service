@@ -18,7 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
@@ -27,12 +27,12 @@ import java.util.List;
 import com.datasphere.server.datasource.DataSource;
 
 /**
- * Created by kyungtaak on 2016. 1. 26..
+ * Created by aladin on 2019. 1. 26..
  */
 @RepositoryRestResource(path = "dashboards", itemResourceRel = "dashboard"
     , collectionResourceRel = "dashboards", excerptProjection = DashboardProjections.DefaultProjection.class)
 public interface DashboardRepository extends JpaRepository<DashBoard, String>,
-                                    QueryDslPredicateExecutor<DashBoard> {
+                                    QuerydslPredicateExecutor<DashBoard> {
 
   Integer countByWorkBook(WorkBook workBook);
 

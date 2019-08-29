@@ -35,7 +35,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,9 +44,9 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 
 /**
- * Created by kyungtaak on 2017. 1. 23..
+ * Created by aladin on 2019. 1. 23..
  */
-public class RoleRepositoryImpl extends QuerydslRepositorySupport implements RoleRepositoryExtends, RoleSearchRepository {
+public class RoleRepositoryImpl extends QueryDslRepositorySupport implements RoleRepositoryExtends, RoleSearchRepository {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(RoleRepositoryImpl.class);
 
@@ -137,7 +137,7 @@ public class RoleRepositoryImpl extends QuerydslRepositorySupport implements Rol
     );
 
     FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(outer.createQuery(), Role.class);
-    fullTextQuery.setFirstResult(pageable.getOffset());
+    fullTextQuery.setFirstResult((int)pageable.getOffset());
     fullTextQuery.setMaxResults(pageable.getPageSize());
     fullTextQuery.setSort(getSearchSort(pageable));
 
@@ -162,7 +162,7 @@ public class RoleRepositoryImpl extends QuerydslRepositorySupport implements Rol
       throw new RuntimeException("Fail to search query : " + e.getMessage());
     }
 
-    fullTextQuery.setFirstResult(pageable.getOffset());
+    fullTextQuery.setFirstResult((int)pageable.getOffset());
     fullTextQuery.setMaxResults(pageable.getPageSize());
 
     Sort sort = getSearchSort(pageable);

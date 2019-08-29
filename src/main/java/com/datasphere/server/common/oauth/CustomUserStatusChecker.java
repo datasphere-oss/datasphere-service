@@ -26,7 +26,7 @@ import org.springframework.security.core.userdetails.UserDetailsChecker;
 import com.datasphere.server.domain.user.User;
 
 /**
- * Created by kyungtaak on 2017. 2. 19..
+ * Created by aladin on 2019. 2. 19..
  */
 public class CustomUserStatusChecker implements UserDetailsChecker {
 

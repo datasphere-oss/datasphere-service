@@ -27,12 +27,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
 import java.util.Iterator;
 import java.util.List;
 
-public class AuditRepositoryImpl extends QuerydslRepositorySupport implements AuditRepositoryCustom{
+public class AuditRepositoryImpl extends QueryDslRepositorySupport implements AuditRepositoryCustom{
   public AuditRepositoryImpl(){
     super(Audit.class);
   }

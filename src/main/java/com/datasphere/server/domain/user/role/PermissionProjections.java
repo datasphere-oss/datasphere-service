@@ -18,7 +18,7 @@ import com.datasphere.server.common.BaseProjections;
 
 
 /**
- * Created by kyungtaak on 2016. 5. 16..
+ * Created by aladin on 2019. 5. 16..
  */
 public class PermissionProjections extends BaseProjections {
 

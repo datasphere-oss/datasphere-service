@@ -17,7 +17,7 @@ package com.datasphere.server.datasource.data.forward;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Created by kyungtaak on 2016. 8. 24..
+ * Created by aladin on 2019. 8. 24..
  */
 @JsonTypeName("csv")
 public class CsvResultForward extends ResultForward {

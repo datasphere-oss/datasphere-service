@@ -19,7 +19,7 @@ import java.util.Map;
 import com.datasphere.server.common.GlobalObjectMapper;
 
 /**
- * Created by kyungtaak on 2017. 4. 27..
+ * Created by aladin on 2019. 4. 27..
  */
 public class LookupMapFunc {
 

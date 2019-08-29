@@ -18,7 +18,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
- * Created by james on 2017. 7. 21..
+ * Created by aladin on 2019. 7. 21..
  */
 @RepositoryRestResource(exported = false)
 public interface NotebookModelHistoryRepository extends JpaRepository<NotebookModelHistory, Long> {

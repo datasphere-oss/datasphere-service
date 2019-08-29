@@ -89,7 +89,7 @@ public class DataConnectionHelper {
     pluginManager = this.pluginManager0;
   }
 
-  public static JdbcAccessor getAccessor(JdbcConnectInformation connectInformation) throws JdbcDataConnectionException{
+  public static JdbcAccessor getAccessor(JdbcConnectInformation connectInformation){
     JdbcDialect jdbcDialect = lookupDialect(connectInformation);
     JdbcConnector jdbcConnector = lookupJdbcConnector(connectInformation, jdbcDialect);
 
@@ -100,11 +100,11 @@ public class DataConnectionHelper {
     return jdbcDataAccessor;
   }
 
-  public static JdbcDialect lookupDialect(JdbcConnectInformation connectInformation) throws JdbcDataConnectionException{
+  public static JdbcDialect lookupDialect(JdbcConnectInformation connectInformation){
     return lookupDialect(connectInformation.getImplementor());
   }
 
-  public static JdbcDialect lookupDialect(String implementor) throws JdbcDataConnectionException{
+  public static JdbcDialect lookupDialect(String implementor){
     JdbcDialect matchedDialect = null;
 
     //look up in bean list
@@ -141,23 +141,23 @@ public class DataConnectionHelper {
 
     if(matchedConnector == null){
       LOGGER.debug("matchedConnector not exist. return defaultConnector: {}", defaultConnector);
-      return (JdbcConnector) defaultConnector;
+      return defaultConnector;
     }
 
     LOGGER.debug("matchedConnector : {}", matchedConnector);
     return matchedConnector;
   }
 
-  private static JdbcAccessor lookupJdbcDataAccessor(JdbcConnectInformation connectInformation, JdbcDialect dialect) throws JdbcDataConnectionException{
+  private static JdbcAccessor lookupJdbcDataAccessor(JdbcConnectInformation connectInformation, JdbcDialect dialect){
 
     JdbcAccessor matchedDataAccessor = null;
 
     String definedDataAccessorClass = dialect.getDataAccessorClass(connectInformation);
 
-    List<Class<? extends JdbcAccessor>> extensionClass = pluginManager.getExtensionClasses(JdbcAccessor.class);
+    List<Class<JdbcAccessor>> extensionClass = pluginManager.getExtensionClasses(JdbcAccessor.class);
 
     try{
-      for(Class<? extends JdbcAccessor> cls : extensionClass){
+      for(Class<JdbcAccessor> cls : extensionClass){
         if(cls.getTypeName().equals(definedDataAccessorClass)){
           matchedDataAccessor = cls.newInstance();
           break;
@@ -175,15 +175,15 @@ public class DataConnectionHelper {
     return matchedDataAccessor;
   }
 
-  public static String getConnectionUrl(JdbcConnectInformation connectInformation) throws JdbcDataConnectionException{
+  public static String getConnectionUrl(JdbcConnectInformation connectInformation){
     return getConnectionUrl(connectInformation, connectInformation.getDatabase());
   }
 
-  public static String getConnectionUrl(JdbcConnectInformation connectInformation, String database) throws JdbcDataConnectionException{
+  public static String getConnectionUrl(JdbcConnectInformation connectInformation, String database){
     return getConnectionUrl(connectInformation, database, true);
   }
 
-  public static String getConnectionUrl(JdbcConnectInformation connectInformation, String database, boolean includeDatabase) throws JdbcDataConnectionException{
+  public static String getConnectionUrl(JdbcConnectInformation connectInformation, String database, boolean includeDatabase){
     JdbcDialect jdbcDialect = lookupDialect(connectInformation);
     return jdbcDialect.makeConnectUrl(connectInformation, database, includeDatabase);
   }

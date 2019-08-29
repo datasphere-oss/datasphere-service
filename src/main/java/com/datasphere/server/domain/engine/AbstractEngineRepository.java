@@ -44,7 +44,7 @@ import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.util.PolarisUtils;
 
 /**
- * Created by kyungtaak on 2017. 4. 16..
+ * Created by aladin on 2019. 4. 16..
  */
 public abstract class AbstractEngineRepository {
 

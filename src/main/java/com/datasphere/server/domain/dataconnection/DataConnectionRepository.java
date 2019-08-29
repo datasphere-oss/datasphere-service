@@ -16,7 +16,7 @@ package com.datasphere.server.domain.dataconnection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -33,7 +33,7 @@ import com.datasphere.server.domain.workspace.Workspace;
     itemResourceRel = "connection", collectionResourceRel = "connections",
     excerptProjection = DataConnectionProjections.defaultProjection.class)
 public interface DataConnectionRepository extends JpaRepository<DataConnection, String>,
-                                                  QueryDslPredicateExecutor<DataConnection> {
+                                                  QuerydslPredicateExecutor<DataConnection> {
 
   @RestResource(exported = false)
   @Query("SELECT DISTINCT dc.createdBy FROM DataConnection dc where dc.createdBy IS NOT NULL")

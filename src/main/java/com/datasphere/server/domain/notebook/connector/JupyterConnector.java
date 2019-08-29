@@ -48,7 +48,7 @@ import com.datasphere.server.domain.notebook.NotebookAPI;
 import com.datasphere.server.domain.notebook.NotebookConnector;
 
 /**
- * Created by kyungtaak on 2016. 10. 22..
+ * Created by aladin on 2019. 10. 22..
  */
 @Entity
 @DiscriminatorValue("jupyter")

@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 import com.datasphere.server.query.druid.Aggregation;
 
 /**
- * Created by hsp on 2016. 7. 19..
+ * Created by aladin on 2016. 7. 19..
  */
 
 @JsonTypeName("varianceFold")

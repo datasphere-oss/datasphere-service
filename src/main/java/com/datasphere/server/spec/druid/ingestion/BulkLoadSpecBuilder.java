@@ -20,7 +20,7 @@ import java.util.Map;
 import com.datasphere.server.datasource.DataSource;
 
 /**
- * Created by kyungtaak on 2016. 7. 30..
+ * Created by aladin on 2019. 7. 30..
  */
 public class BulkLoadSpecBuilder extends AbstractSpecBuilder {
 

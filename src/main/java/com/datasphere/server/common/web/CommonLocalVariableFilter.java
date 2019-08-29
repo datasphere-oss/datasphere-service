@@ -29,7 +29,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by kyungtaak on 2016. 11. 20..
+ * Created by aladin on 2019. 11. 20..
  */
 public class CommonLocalVariableFilter implements Filter {
 

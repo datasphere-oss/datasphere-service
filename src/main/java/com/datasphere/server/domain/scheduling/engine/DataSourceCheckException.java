@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.scheduling.engine;
 
 /**
- * Created by kyungtaak on 2016. 6. 21..
+ * Created by aladin on 2019. 6. 21..
  */
 public class DataSourceCheckException extends RuntimeException {
 

@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by kyungtaak on 2016. 9. 20..
+ * Created by aladin on 2019. 9. 20..
  */
 public class WidgetRelation implements Serializable {
 

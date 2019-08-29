@@ -17,7 +17,7 @@ package com.datasphere.server.spec.druid.ingestion.granularity;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 6. 17..
+ * Created by aladin on 2019. 6. 17..
  */
 public class ArbitraryGranularitySpec implements GranularitySpec {
 

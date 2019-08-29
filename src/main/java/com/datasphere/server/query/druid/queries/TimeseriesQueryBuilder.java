@@ -40,7 +40,7 @@ import com.datasphere.server.query.druid.postaggregations.ExprPostAggregator;
 import com.datasphere.server.query.druid.virtualcolumns.ExprVirtualColumn;
 
 /**
- * Created by hsp on 2016. 7. 5..
+ * Created by aladin on 2016. 7. 5..
  */
 public class TimeseriesQueryBuilder extends AbstractQueryBuilder {
 

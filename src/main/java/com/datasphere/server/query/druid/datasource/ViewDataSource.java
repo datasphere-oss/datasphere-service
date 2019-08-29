@@ -26,7 +26,7 @@ import com.datasphere.server.query.druid.Filter;
 import com.datasphere.server.query.druid.virtualcolumns.VirtualColumn;
 
 /**
- * Created by kyungtaak on 2017. 5. 22..
+ * Created by aladin on 2019. 5. 22..
  */
 @JsonTypeName("view")
 public class ViewDataSource extends TableDataSource {

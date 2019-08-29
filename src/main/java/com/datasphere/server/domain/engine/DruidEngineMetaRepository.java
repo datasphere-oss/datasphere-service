@@ -57,7 +57,7 @@ import com.datasphere.server.query.druid.queries.SegmentMetaDataQuery;
 import static com.datasphere.server.domain.engine.EngineProperties.*;
 
 /**
- * Created by kyungtaak on 2016. 11. 20..
+ * Created by aladin on 2019. 11. 20..
  */
 @Component
 public class DruidEngineMetaRepository extends AbstractEngineRepository {

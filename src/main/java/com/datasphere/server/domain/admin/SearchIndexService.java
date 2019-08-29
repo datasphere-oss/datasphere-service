@@ -34,7 +34,7 @@ import com.datasphere.server.domain.user.User;
 import com.datasphere.server.domain.user.role.Role;
 
 /**
- * Created by kyungtaak on 2017. 2. 2..
+ * Created by aladin on 2019. 2. 2..
  */
 @Component
 public class SearchIndexService {

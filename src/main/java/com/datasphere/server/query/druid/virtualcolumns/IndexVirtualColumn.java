@@ -21,7 +21,7 @@ import java.util.List;
 import com.datasphere.server.query.druid.Filter;
 
 /**
- * Created by hsp on 2016. 8. 9..
+ * Created by aladin on 2016. 8. 9..
  */
 
 @JsonTypeName("index")

@@ -14,12 +14,17 @@
 
 package com.datasphere.server.domain.engine;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import static com.datasphere.server.datasource.DataSource.DataSourceType.VOLATILITY;
+import static com.datasphere.server.datasource.DataSourceTemporary.LoadStatus.ENABLE;
+import static com.datasphere.server.datasource.DataSourceTemporary.LoadStatus.FAIL;
+import static com.datasphere.server.datasource.Field.FIELD_NAME_CURRENT_TIMESTAMP;
 
-import net.jodah.failsafe.Failsafe;
-import net.jodah.failsafe.RetryPolicy;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -32,20 +37,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.ResourceAccessException;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.ProgressResponse;
 import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.fileloader.FileLoaderFactory;
 import com.datasphere.server.common.fileloader.FileLoaderProperties;
-import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.datasource.DataSourceIngestionException;
 import com.datasphere.server.datasource.DataSourceRepository;
@@ -56,17 +53,19 @@ import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.datasource.ingestion.IngestionInfo;
 import com.datasphere.server.datasource.ingestion.LocalFileIngestionInfo;
 import com.datasphere.server.datasource.ingestion.jdbc.LinkIngestionInfo;
+import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.engine.model.SegmentMetaDataResponse;
 import com.datasphere.server.domain.workbook.configurations.filter.Filter;
 import com.datasphere.server.domain.workbook.configurations.format.TemporaryTimeFormat;
 import com.datasphere.server.spec.druid.ingestion.BulkLoadSpec;
 import com.datasphere.server.spec.druid.ingestion.BulkLoadSpecBuilder;
 import com.datasphere.server.util.PolarisUtils;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
-import static com.datasphere.server.datasource.DataSource.DataSourceType.VOLATILITY;
-import static com.datasphere.server.datasource.DataSourceTemporary.LoadStatus.ENABLE;
-import static com.datasphere.server.datasource.DataSourceTemporary.LoadStatus.FAIL;
-import static com.datasphere.server.datasource.Field.FIELD_NAME_CURRENT_TIMESTAMP;
+import net.jodah.failsafe.Failsafe;
+import net.jodah.failsafe.RetryPolicy;
 
 @Component
 public class EngineLoadService {

@@ -39,7 +39,7 @@ import java.io.InputStream;
 import java.net.URI;
 
 /**
- * Created by kyungtaak on 2016. 7. 21..
+ * Created by aladin on 2019. 7. 21..
  */
 @RepositoryRestController
 public class ImageController {

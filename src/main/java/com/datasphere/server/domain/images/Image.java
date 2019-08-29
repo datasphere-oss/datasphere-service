@@ -33,7 +33,7 @@ import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.MetatronDomain;
 
 /**
- * Created by kyungtaak on 2016. 7. 21..
+ * Created by aladin on 2019. 7. 21..
  */
 @Entity
 @Table(name = "image")

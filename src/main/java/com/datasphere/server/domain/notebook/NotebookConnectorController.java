@@ -31,7 +31,7 @@ import java.util.List;
 import com.datasphere.server.domain.notebook.connector.HttpRepository;
 
 /**
- * Created by james on 2017. 8. 4..
+ * Created by aladin on 2019. 8. 4..
  */
 @RepositoryRestController
 public class NotebookConnectorController {

@@ -21,7 +21,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 7. 21..
+ * Created by aladin on 2019. 7. 21..
  */
 @RepositoryRestResource(path = "images", excerptProjection = ImageProjections.DefaultImageProjection.class)
 public interface ImageRepository extends JpaRepository<Image, String> {

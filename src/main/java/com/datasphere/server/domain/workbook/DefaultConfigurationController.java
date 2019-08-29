@@ -28,7 +28,7 @@ import java.io.IOException;
 import com.datasphere.server.common.RawJsonString;
 
 /**
- * Created by kyungtaak on 2017. 4. 19..
+ * Created by aladin on 2019. 4. 19..
  */
 @RestController
 @RequestMapping("/api")

@@ -20,7 +20,7 @@ import org.springframework.http.HttpMethod;
 import java.util.Optional;
 
 /**
- * Created by james on 2017. 8. 22..
+ * Created by aladin on 2019. 8. 22..
  */
 public interface HttpRepositoryAction {
     <T> Optional<T> call(String url, HttpMethod method, HttpEntity<?> entity, Class<T> clazz, boolean isTransient);

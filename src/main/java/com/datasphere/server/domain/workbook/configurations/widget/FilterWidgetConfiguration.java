@@ -21,7 +21,7 @@ import com.datasphere.server.domain.workbook.configurations.datasource.DataSourc
 import com.datasphere.server.domain.workbook.configurations.filter.Filter;
 
 /**
- * Created by kyungtaak on 2016. 5. 20..
+ * Created by aladin on 2019. 5. 20..
  */
 @JsonTypeName("filter")
 public class FilterWidgetConfiguration extends WidgetConfiguration {

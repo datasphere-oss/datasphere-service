@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.datasphere.server.query.druid.Filter;
 
 /**
- * Created by kyungtaak on 2016. 4. 14..
+ * Created by aladin on 2019. 4. 14..
  */
 @JsonTypeName("general")
 public class TopNFilter implements Filter {

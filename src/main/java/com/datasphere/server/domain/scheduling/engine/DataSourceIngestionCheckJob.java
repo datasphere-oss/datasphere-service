@@ -44,7 +44,7 @@ import static com.datasphere.server.datasource.ingestion.IngestionHistory.Ingest
 import static com.datasphere.server.datasource.ingestion.IngestionHistory.IngestionStatus.SUCCESS;
 
 /**
- * Created by kyungtaak on 2016. 12. 5..
+ * Created by aladin on 2019. 12. 5..
  */
 @Component
 @Transactional(readOnly = true, isolation = Isolation.READ_UNCOMMITTED)

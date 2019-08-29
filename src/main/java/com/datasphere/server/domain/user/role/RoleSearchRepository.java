@@ -16,7 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 /**
- * Created by kyungtaak on 2017. 1. 23..
+ * Created by aladin on 2019. 1. 23..
  */
 public interface RoleSearchRepository {
 

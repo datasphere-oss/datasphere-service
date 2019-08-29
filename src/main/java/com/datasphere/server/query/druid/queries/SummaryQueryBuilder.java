@@ -31,7 +31,7 @@ import com.datasphere.server.query.druid.AbstractQueryBuilder;
 import com.datasphere.server.query.druid.Query;
 
 /**
- * Created by kyungtaak on 2017. 5. 18..
+ * Created by aladin on 2019. 5. 18..
  */
 public class SummaryQueryBuilder extends AbstractQueryBuilder {
 

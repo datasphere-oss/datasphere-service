@@ -14,15 +14,24 @@
 
 package com.datasphere.server.domain.mdm;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
- * Created by kyungtaak on 2016. 8. 30..
+ * Created by aladin on 2019. 8. 30..
  */
 @RepositoryRestResource(path = "metadatas", itemResourceRel = "metadata", collectionResourceRel = "metadatas",
     excerptProjection = MetadataProjections.DefaultProjection.class)
 public interface MetadataRepository extends JpaRepository<Metadata, String>,
-    QueryDslPredicateExecutor<Metadata>, MetadataRepositoryExtends {
+    QuerydslPredicateExecutor<Metadata>, MetadataRepositoryExtends {
+
+	@Override
+	default List<Metadata> findById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

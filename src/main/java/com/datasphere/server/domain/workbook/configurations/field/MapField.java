@@ -33,7 +33,7 @@ import javax.validation.constraints.Size;
 import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
 /**
- * Created by kyungtaak on 2016. 6. 28..
+ * Created by aladin on 2019. 6. 28..
  */
 public class MapField extends UserDefinedField {
 

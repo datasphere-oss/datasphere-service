@@ -14,14 +14,11 @@
 
 package com.datasphere.server.datasource;
 
-import com.datasphere.server.domain.context.ContextDomainRepository;
-import com.datasphere.server.domain.workspace.Workspace;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -29,13 +26,17 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import java.util.List;
 import java.util.Set;
 
+import com.datasphere.server.domain.context.ContextDomainRepository;
+import com.datasphere.server.domain.workbook.DashBoard;
+import com.datasphere.server.domain.workspace.Workspace;
+
 /**
  * DataSourceRepository
  */
 @RepositoryRestResource(path = "datasources", itemResourceRel = "datasource"
     , collectionResourceRel = "datasources", excerptProjection = DataSourceProjections.DefaultProjection.class)
 public interface DataSourceRepository extends JpaRepository<DataSource, String>,
-    QueryDslPredicateExecutor<DataSource>,
+    QuerydslPredicateExecutor<DataSource>,
     ContextDomainRepository<DataSource>,
     DataSourceRepositoryExtends,
     DataSourceSearchRepository {

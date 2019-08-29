@@ -29,7 +29,7 @@ import java.sql.Timestamp;
 import java.sql.Types;
 
 /**
- * Created by kyungtaak on 2016. 10. 11..
+ * Created by aladin on 2019. 10. 11..
  */
 public class ResultSetSerializer extends JsonSerializer<ResultSet> {
 

@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.io.Serializable;
 
 /**
- * Created by kyungtaak on 2017. 2. 8..
+ * Created by aladin on 2019. 2. 8..
  */
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include= JsonTypeInfo.As.EXTERNAL_PROPERTY, property="type")
 @JsonSubTypes({

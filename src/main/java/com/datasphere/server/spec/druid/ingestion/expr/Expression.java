@@ -15,7 +15,7 @@
 package com.datasphere.server.spec.druid.ingestion.expr;
 
 /**
- * Created by kyungtaak on 2017. 2. 17..
+ * Created by aladin on 2019. 2. 17..
  */
 public interface Expression {
   String expr();

@@ -14,12 +14,6 @@
 
 package com.datasphere.server.domain.workbench.hive;
 
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.security.UserGroupInformation;
-import org.springframework.stereotype.Repository;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.security.PrivilegedExceptionAction;
@@ -28,7 +22,13 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import com.datasphere.server.common.exception.MetatronException;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.security.UserGroupInformation;
+import org.springframework.stereotype.Repository;
+
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
 

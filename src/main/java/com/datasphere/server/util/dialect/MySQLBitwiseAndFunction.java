@@ -19,7 +19,7 @@ import org.hibernate.type.Type;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 4. 6..
+ * Created by aladin on 2019. 4. 6..
  */
 public class MySQLBitwiseAndFunction extends StandardSQLFunction {
 

@@ -15,15 +15,15 @@
 package com.datasphere.server.domain.mdm;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
- * Created by kyungtaak on 2016. 8. 30..
+ * Created by aladin on 2019. 8. 30..
  */
 @RepositoryRestResource(path = "metacolumns", itemResourceRel = "metacolumn", collectionResourceRel = "metacolumns",
     excerptProjection = MetadataColumnProjections.DefaultProjection.class)
 public interface MetadataColumnRepository extends JpaRepository<MetadataColumn, Long>,
-    QueryDslPredicateExecutor<MetadataColumn>, MetadataColumnRepositoryExtends {
+    QuerydslPredicateExecutor<MetadataColumn>, MetadataColumnRepositoryExtends {
 
 }

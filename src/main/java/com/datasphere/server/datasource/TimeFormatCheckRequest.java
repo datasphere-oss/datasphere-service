@@ -17,7 +17,7 @@ package com.datasphere.server.datasource;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 7. 22..
+ * Created by aladin on 2019. 7. 22..
  */
 public class TimeFormatCheckRequest {
 

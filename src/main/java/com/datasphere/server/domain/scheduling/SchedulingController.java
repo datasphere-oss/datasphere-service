@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 8. 15..
+ * Created by aladin on 2019. 8. 15..
  */
 @Profile("scheduling")
 @RestController

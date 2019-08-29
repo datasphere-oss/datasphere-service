@@ -16,11 +16,11 @@ package com.datasphere.server.domain.workspace;
 
 import com.querydsl.jpa.JPQLQuery;
 
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
 import java.util.List;
 
-public class WorkspaceMemberRepositoryImpl extends QuerydslRepositorySupport implements WorkspaceMemberRepositoryExtends {
+public class WorkspaceMemberRepositoryImpl extends QueryDslRepositorySupport implements WorkspaceMemberRepositoryExtends {
 
   public WorkspaceMemberRepositoryImpl() {
     super(WorkspaceMember.class);

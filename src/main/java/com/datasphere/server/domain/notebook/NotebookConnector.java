@@ -33,7 +33,7 @@ import com.datasphere.server.domain.notebook.connector.NotebookAction;
 import com.datasphere.server.domain.workspace.Workspace;
 
 /**
- * Created by kyungtaak on 2016. 10. 21..
+ * Created by aladin on 2019. 10. 21..
  */
 @Entity
 @Table(name = "notebook_connector")

@@ -30,7 +30,7 @@ import com.datasphere.server.common.SparkSubmitCommandBuilder;
 import com.datasphere.server.domain.notebook.Notebook;
 
 /**
- * Created by james on 2017. 7. 31..
+ * Created by aladin on 2019. 7. 31..
  */
 public abstract class JupyterBuilder implements JupyterAction {
 

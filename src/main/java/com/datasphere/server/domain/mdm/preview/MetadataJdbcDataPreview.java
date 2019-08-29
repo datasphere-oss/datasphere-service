@@ -14,26 +14,25 @@
 
 package com.datasphere.server.domain.mdm.preview;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.support.JdbcUtils;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Map;
 
-import com.datasphere.server.common.data.projection.ColumnDescription;
-import com.datasphere.server.common.data.projection.Row;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.support.JdbcUtils;
+
+import com.datasphere.common.data.ColumnDescription;
+import com.datasphere.common.data.Row;
+import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.mdm.Metadata;
-import com.datasphere.server.extension.dataconnection.jdbc.JdbcConnectInformation;
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.server.extension.dataconnection.jdbc.exception.JdbcDataConnectionException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * The type Metadata jdbc data preview.

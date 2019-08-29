@@ -40,7 +40,7 @@ import com.datasphere.server.domain.scheduling.notebook.KillNotebookKernelJob;
 import com.datasphere.server.domain.scheduling.workbench.TimeoutConnectionCloseJob;
 
 /**
- * Created by kyungtaak on 2016. 6. 21..
+ * Created by aladin on 2019. 6. 21..
  */
 @Profile("scheduling")
 @Configuration

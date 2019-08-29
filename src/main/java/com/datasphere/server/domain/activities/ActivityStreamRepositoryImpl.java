@@ -27,7 +27,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 
 import com.datasphere.server.domain.activities.spec.ActivityType;
 import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
@@ -38,7 +38,7 @@ import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.NumberExpression;
 
-public class ActivityStreamRepositoryImpl extends QuerydslRepositorySupport implements ActivityStreamRepositoryExtends {
+public class ActivityStreamRepositoryImpl extends QueryDslRepositorySupport implements ActivityStreamRepositoryExtends {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ActivityStreamRepositoryImpl.class);
 

@@ -12,26 +12,22 @@
 
 package com.datasphere.server.connections.jdbc.exception;
 
-import java.sql.SQLException;
+import com.datasphere.engine.common.exception.MetatronException;
 
-public class JdbcDataConnectionException extends SQLException{
+/**
+ * Created by aladin on 2019. 7. 2..
+ */
+public class JdbcDataConnectionException extends MetatronException {
 
-	JdbcDataConnectionErrorCodes codes;
+  public JdbcDataConnectionException(JdbcDataConnectionErrorCodes codes, String message, Throwable cause) {
+    super(codes, message, cause);
+  }
 
-	public JdbcDataConnectionException(JdbcDataConnectionErrorCodes codes, String message, Throwable cause) {
-		this.codes = codes;
-	}
+  public JdbcDataConnectionException(JdbcDataConnectionErrorCodes codes, Throwable cause) {
+    super(codes, cause);
+  }
 
-	public JdbcDataConnectionException(JdbcDataConnectionErrorCodes codes, Throwable cause) {
-		this.codes = codes;
-	}
-
-	public JdbcDataConnectionException(JdbcDataConnectionErrorCodes codes, String message) {
-		this.codes = codes;
-	}
-
-	public JdbcDataConnectionErrorCodes getCode() {
-		return this.codes;
-	}
-
+  public JdbcDataConnectionException(JdbcDataConnectionErrorCodes codes, String message) {
+    super(codes, message);
+  }
 }

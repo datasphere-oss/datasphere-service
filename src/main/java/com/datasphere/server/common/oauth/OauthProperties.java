@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2017. 6. 12..
+ * Created by aladin on 2019. 6. 12..
  */
 @Component
 @ConfigurationProperties(prefix = "polaris.oauth2")

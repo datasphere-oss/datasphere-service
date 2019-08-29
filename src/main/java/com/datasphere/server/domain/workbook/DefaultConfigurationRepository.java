@@ -18,7 +18,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
- * Created by kyungtaak on 2017. 4. 19..
+ * Created by aladin on 2019. 4. 19..
  */
 @RepositoryRestResource(exported = false)
 public interface DefaultConfigurationRepository extends JpaRepository<DefaultConfiguration, String> {

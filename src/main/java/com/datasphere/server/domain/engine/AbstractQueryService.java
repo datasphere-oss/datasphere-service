@@ -39,7 +39,7 @@ import com.datasphere.server.domain.workbook.configurations.filter.IntervalFilte
 import static com.datasphere.server.domain.workbook.configurations.field.MeasureField.AggregationType.NONE;
 
 /**
- * Created by kyungtaak on 2016. 8. 25..
+ * Created by aladin on 2019. 8. 25..
  */
 public abstract class AbstractQueryService implements QueryService {
 

@@ -20,7 +20,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * Created by kyungtaak on 2016. 12. 21..
+ * Created by aladin on 2019. 12. 21..
  */
 @Entity
 @Table(name = "mdm_catalog_tree")

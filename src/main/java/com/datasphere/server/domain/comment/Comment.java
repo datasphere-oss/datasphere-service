@@ -34,7 +34,7 @@ import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.MetatronDomain;
 
 /**
- * Created by kyungtaak on 2016. 12. 28..
+ * Created by aladin on 2019. 12. 28..
  */
 @Entity
 @Table(name = "comment")

@@ -27,6 +27,8 @@ import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.SortableField;
 import org.hibernate.search.annotations.Store;
 import org.hibernate.search.bridge.builtin.EnumBridge;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

@@ -1,32 +1,45 @@
 package com.datasphere.engine.common.exception;
 
-public class MetatronException extends Exception{
+import com.datasphere.engine.common.exception.ErrorCodes;
+import com.datasphere.engine.common.exception.GlobalErrorCodes;
+import com.google.common.base.Preconditions;
+
+public class MetatronException extends RuntimeException {
+
 	public static String DEFAULT_GLOBAL_MESSAGE = "Ooops!";
-	
-	ErrorCodes codes;
-	
-	public MetatronException(String message) {
-		
-	}
 
-	public MetatronException(ErrorCodes codes, String message) {
-		this.codes = codes;
-	}
-	
-	public MetatronException(ErrorCodes codes, Throwable cause) {
-		this.codes = codes;
-	}
+	  ErrorCodes code;
 
-	public MetatronException(ErrorCodes codes, String message, Throwable cause) {
-		this.codes = codes;
-	}
+	  public MetatronException(ErrorCodes code, String message) {
+	    this(code, message, null);
+	  }
 
-	public MetatronException(String message, Throwable cause) {
-		
-	}
-	
-	public ErrorCodes getCode() {
-		return this.codes;
-	}
-	
+	  public MetatronException(ErrorCodes code, Throwable cause) {
+	    this(code, cause.getMessage(), cause);
+	  }
+
+	  public MetatronException(ErrorCodes code, String message, Throwable cause) {
+	    super(message, cause);
+	    this.code = Preconditions.checkNotNull(code);
+	  }
+
+	  public MetatronException(String message) {
+	    super(message);
+	  }
+
+	  public MetatronException(String message, Throwable cause) {
+	    super(message, cause);
+	  }
+
+	  public MetatronException(Throwable cause) {
+	    super(cause);
+	  }
+
+	  public ErrorCodes getCode() {
+	    if(code == null) {
+	      return GlobalErrorCodes.DEFAULT_GLOBAL_ERROR;
+	    }
+
+	    return code;
+	  }
 }

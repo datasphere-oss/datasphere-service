@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by kyungtaak on 2016. 6. 16..
+ * Created by aladin on 2019. 6. 16..
  */
 public class QueryResult implements Serializable {
 

@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by kyungtaak on 2016. 1. 7..
+ * Created by aladin on 2019. 1. 7..
  */
 @RepositoryRestResource(path = "permissions",
     itemResourceRel = "permission", collectionResourceRel = "permissions",

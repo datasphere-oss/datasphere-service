@@ -41,7 +41,7 @@ import static com.datasphere.server.domain.engine.EngineProperties.SEARCH_QUERY;
 import static com.datasphere.server.domain.engine.EngineProperties.SUPERVISOR_INGESTION;
 
 /**
- * Created by kyungtaak on 2016. 8. 22..
+ * Created by aladin on 2019. 8. 22..
  */
 @Component
 public class DruidEngineRepository extends AbstractEngineRepository {

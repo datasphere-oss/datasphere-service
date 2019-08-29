@@ -59,7 +59,7 @@ import com.datasphere.server.common.saml.SAMLTokenConverter;
 import com.datasphere.server.common.web.OauthFilter;
 
 /**
- * Created by kyungtaak on 2016. 5. 2..
+ * Created by aladin on 2019. 5. 2..
  */
 @Configuration()
 public class OAuth2ServerConfig {

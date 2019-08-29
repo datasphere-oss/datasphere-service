@@ -22,7 +22,7 @@ import com.datasphere.server.common.BaseProjections;
 import com.datasphere.server.domain.user.UserProfile;
 
 /**
- * Created by kyungtaak on 2016. 5. 16..
+ * Created by aladin on 2019. 5. 16..
  */
 public class RoleSetProjections extends BaseProjections {
 

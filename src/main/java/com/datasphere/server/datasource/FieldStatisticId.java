@@ -20,7 +20,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
- * Created by kyungtaak on 2017. 5. 15..
+ * Created by aladin on 2019. 5. 15..
  */
 @Embeddable
 public class FieldStatisticId implements Serializable {

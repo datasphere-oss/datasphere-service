@@ -25,7 +25,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import com.datasphere.server.domain.workspace.BookTreeService;
 
 /**
- * Created by kyungtaak on 2016. 5. 13..
+ * Created by aladin on 2019. 5. 13..
  */
 @RepositoryEventHandler(Folder.class)
 public class FolderEventHandler {

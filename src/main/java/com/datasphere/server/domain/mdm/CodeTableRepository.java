@@ -16,17 +16,17 @@ package com.datasphere.server.domain.mdm;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
- * Created by kyungtaak on 2016. 8. 30..
+ * Created by aladin on 2019. 8. 30..
  */
 @RepositoryRestResource(path = "codetables", itemResourceRel = "codetable", collectionResourceRel = "codetables",
     excerptProjection = CodeTableProjections.DefaultProjection.class)
 public interface CodeTableRepository extends JpaRepository<CodeTable, String>,
-    QueryDslPredicateExecutor<CodeTable> {
+    QuerydslPredicateExecutor<CodeTable> {
 
   @Query("SELECT ct FROM CodeTable ct JOIN FETCH ct.codes WHERE ct.id = :codeTableId")
   CodeTable findByIdWithValuePair(@Param("codeTableId") String codeTableId);

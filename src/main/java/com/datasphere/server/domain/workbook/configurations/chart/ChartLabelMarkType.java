@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.workbook.configurations.chart;
 
 /**
- * Created by kyungtaak on 2016. 4. 16..
+ * Created by aladin on 2019. 4. 16..
  */
 public enum ChartLabelMarkType {
   HORIZONTAL,   // 가로로 표시

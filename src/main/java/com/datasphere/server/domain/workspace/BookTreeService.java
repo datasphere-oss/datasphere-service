@@ -34,7 +34,7 @@ import com.datasphere.server.domain.workspace.folder.FolderRepository;
 import static com.datasphere.server.domain.workspace.BookProjections.BookProjectionType.LIST;
 
 /**
- * Created by kyungtaak on 2016. 12. 21..
+ * Created by aladin on 2019. 12. 21..
  */
 @Component
 @Transactional(readOnly = true)

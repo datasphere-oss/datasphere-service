@@ -13,7 +13,7 @@
 package com.datasphere.server.util;
 
 /**
- * Created by kyungtaak on 2016. 8. 31..
+ * Created by aladin on 2019. 8. 31..
  */
 public enum TimeUnits {
 

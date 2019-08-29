@@ -20,7 +20,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
- * Created by kyungtaak on 2016. 7. 3..
+ * Created by aladin on 2019. 7. 3..
  */
 @Embeddable
 public class Partition implements Serializable {

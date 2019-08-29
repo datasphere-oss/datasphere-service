@@ -14,8 +14,14 @@
 
 package com.datasphere.server.domain.mdm;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -40,26 +46,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.net.URI;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import javax.servlet.http.HttpServletResponse;
-
-import com.datasphere.server.common.data.projection.DataGrid;
+import com.datasphere.common.data.DataGrid;
 import com.datasphere.server.common.entity.DomainType;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
-import com.datasphere.server.domain.CollectionPatch;
 import com.datasphere.server.datasource.DataSourceService;
+import com.datasphere.server.domain.CollectionPatch;
 import com.datasphere.server.domain.tag.Tag;
 import com.datasphere.server.domain.tag.TagProjections;
 import com.datasphere.server.domain.tag.TagService;
 import com.datasphere.server.util.HttpUtils;
 import com.datasphere.server.util.ProjectionUtils;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 @RepositoryRestController
 public class MetadataController {

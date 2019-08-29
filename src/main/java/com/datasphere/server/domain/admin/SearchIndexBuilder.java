@@ -23,7 +23,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by kyungtaak on 2017. 1. 4..
+ * Created by aladin on 2019. 1. 4..
  */
 @Component
 @Profile("initial")

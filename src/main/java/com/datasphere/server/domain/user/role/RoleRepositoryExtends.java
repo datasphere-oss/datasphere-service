@@ -15,7 +15,7 @@ package com.datasphere.server.domain.user.role;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 1. 7..
+ * Created by aladin on 2019. 1. 7..
  */
 public interface RoleRepositoryExtends {
 

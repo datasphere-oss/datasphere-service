@@ -22,7 +22,7 @@ import java.io.Serializable;
 import com.datasphere.server.util.EnumUtils;
 
 /**
- * Created by kyungtaak on 2016. 4. 16..
+ * Created by aladin on 2019. 4. 16..
  */
 public class ChartLegend implements Serializable {
 

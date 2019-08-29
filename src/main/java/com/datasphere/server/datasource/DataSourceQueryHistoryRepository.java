@@ -21,7 +21,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -30,13 +30,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 8. 30..
+ * Created by aladin on 2019. 8. 30..
  */
 @RepositoryRestResource(exported = false, path = "datasourcequeryhistories", itemResourceRel = "datasourcequeryhistory"
         , collectionResourceRel = "datasourcequeryhistories")
 public interface DataSourceQueryHistoryRepository extends JpaRepository<DataSourceQueryHistory, String>,
     JpaSpecificationExecutor<DataSourceQueryHistory>,
-    QueryDslPredicateExecutor<DataSourceQueryHistory> {
+    QuerydslPredicateExecutor<DataSourceQueryHistory> {
 
   @RestResource(exported = false)
   Page<DataSourceQueryHistory> findByDataSourceIdOrderByModifiedTimeDesc(String dataSourceId, Pageable pageable);

@@ -14,7 +14,7 @@
 
 package com.datasphere.server.domain.mdm.lineage;
 
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.domain.mdm.MetadataErrorCodes;
 
 public class LineageException extends MetatronException {

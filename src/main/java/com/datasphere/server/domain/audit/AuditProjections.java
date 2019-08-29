@@ -22,7 +22,7 @@ import java.util.List;
 import com.datasphere.server.common.BaseProjections;
 
 /**
- * Created by kyungtaak on 2016. 11. 29..
+ * Created by aladin on 2019. 11. 29..
  */
 public class AuditProjections extends BaseProjections{
 

@@ -14,6 +14,10 @@
 
 package com.datasphere.server.domain.mdm;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,30 +27,26 @@ import org.springframework.data.rest.core.annotation.HandleBeforeCreate;
 import org.springframework.data.rest.core.annotation.HandleBeforeDelete;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
-import com.datasphere.server.domain.dataconnection.DataConnection;
-import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
-import com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessor;
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
 import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.datasource.DataSourceService;
 import com.datasphere.server.datasource.Field;
 import com.datasphere.server.datasource.connection.jdbc.HiveTableInformation;
 import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessor;
 import com.datasphere.server.domain.engine.EngineProperties;
 import com.datasphere.server.domain.mdm.source.MetaSourceService;
 import com.datasphere.server.domain.mdm.source.MetadataSource;
 import com.datasphere.server.domain.storage.StorageProperties;
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
 
 /**
- * Created by kyungtaak on 2016. 5. 13..
+ * Created by aladin on 2019. 5. 13..
  */
 @RepositoryEventHandler(Metadata.class)
 public class MetadataEventHandler {

@@ -20,7 +20,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 
 /**
- * Created by kyungtaak on 2017. 1. 4..
+ * Created by aladin on 2019. 1. 4..
  * http://in.relation.to/2015/07/24/hibernate-search-complex-type-query/
  */
 public class JodaTimeSplitBridge implements TwoWayFieldBridge {

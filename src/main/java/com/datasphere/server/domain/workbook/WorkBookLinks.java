@@ -20,7 +20,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by kyungtaak on 2016. 2. 4..
+ * Created by aladin on 2019. 2. 4..
  */
 @Component
 public class WorkBookLinks {

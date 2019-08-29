@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.workbook.configurations.chart;
 
 /**
- * Created by kyungtaak on 2017. 5. 19..
+ * Created by aladin on 2019. 5. 19..
  */
 public class ChartLabelSubColMode extends ChartLabelMode {
 

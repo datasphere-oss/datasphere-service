@@ -25,7 +25,7 @@ import javax.persistence.Table;
 import com.datasphere.server.domain.MetatronDomain;
 
 /**
- * Created by james on 2017. 9. 21..
+ * Created by aladin on 2019. 9. 21..
  */
 @Entity
 @Table(name = "notebook_api")

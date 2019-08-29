@@ -15,7 +15,7 @@ package com.datasphere.server.common;
 import org.springframework.util.StopWatch;
 
 /**
- * Created by kyungtaak on 2016. 10. 4..
+ * Created by aladin on 2019. 10. 4..
  */
 public class WatchProfiler {
 

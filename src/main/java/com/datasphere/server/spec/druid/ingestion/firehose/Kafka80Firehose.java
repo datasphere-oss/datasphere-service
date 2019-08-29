@@ -17,7 +17,7 @@ package com.datasphere.server.spec.druid.ingestion.firehose;
 import java.util.Map;
 
 /**
- * Created by kyungtaak on 2017. 3. 12..
+ * Created by aladin on 2019. 3. 12..
  */
 public class Kafka80Firehose implements Firehose {
 

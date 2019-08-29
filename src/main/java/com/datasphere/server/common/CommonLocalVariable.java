@@ -13,7 +13,7 @@
 package com.datasphere.server.common;
 
 /**
- * Created by kyungtaak on 2016. 11. 20..
+ * Created by aladin on 2019. 11. 20..
  */
 public class CommonLocalVariable {
 

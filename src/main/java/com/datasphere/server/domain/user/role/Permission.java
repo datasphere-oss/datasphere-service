@@ -38,7 +38,7 @@ import com.datasphere.server.domain.MetatronDomain;
 import static javax.persistence.CascadeType.MERGE;
 
 /**
- * Created by kyungtaak on 2016. 1. 7..
+ * Created by aladin on 2019. 1. 7..
  */
 @Entity
 @Table(name = "permissions")

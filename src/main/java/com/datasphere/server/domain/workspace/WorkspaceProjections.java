@@ -29,7 +29,7 @@ import com.datasphere.server.domain.user.UserProfile;
 import com.datasphere.server.domain.user.role.RoleSet;
 
 /**
- * Created by kyungtaak on 2016. 12. 22..
+ * Created by aladin on 2019. 12. 22..
  */
 @Component
 public class WorkspaceProjections extends BaseProjections {

@@ -12,95 +12,120 @@
 	<name>datasphere-service</name>
 
 	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<!-- common properties -->
 		<java.version>1.8</java.version>
+		<javas.version>1.8</javas.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- common library versions -->
+
+		<!-- SpringFramework -->
+		<spring.version>4.3.13.RELEASE</spring.version>
+		<spring.boot.version>1.5.9.RELEASE</spring.boot.version>
+		<spring.boot.admin.version>1.5.6</spring.boot.admin.version>
+		<spring.data.version>1.10.5.RELEASE</spring.data.version>
+		<spring.data.rest.version>2.6.8.RELEASE</spring.data.rest.version>
+		<spring.security.version>4.1.3.RELEASE</spring.security.version>
+		<spring.security.jwt.version>1.0.8.RELEASE</spring.security.jwt.version>
+		<spring.security.oauth.version>2.0.17.RELEASE</spring.security.oauth.version>
+		<spring.session.version>1.3.0.RELEASE</spring.session.version>
+
+		<!-- WAS -->
+		<tomcat.version>8.5.23</tomcat.version>
+
+		<!-- SpringFramework -->
+		<hibernate.version>5.4.3.Final</hibernate.version>
+		<hibernate.search.version>5.11.1.Final</hibernate.search.version>
+		<lucene.version>5.5.5</lucene.version>
+
+		<!-- Cache -->
+		<infinispan.version>9.0.0.CR2</infinispan.version>
+
+		<!-- Templelet engine -->
+		<thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
+
+		<!-- LOG -->
+		<logback.version>1.1.3</logback.version>
+		<slf4j.version>1.7.27</slf4j.version>
+
+		<!-- test library versions -->
+		<junit.version>4.12</junit.version>
+
+		<jackson.version>2.9.9</jackson.version>
+		<jackson.databind.version>2.9.9.2</jackson.databind.version>
+
+		<metatron.metis.version>2.0.0-SNAPSHOT</metatron.metis.version>
+
+		<orc-core.version>1.4.4</orc-core.version>
+
+		<!-- 쿼리 빌더 이미지 snapshot lib -->
+		<jgraphx.version>3.4.1.3</jgraphx.version>
+		<lowagie.version>2.0.7</lowagie.version>
+
+		<docker.image.prefix>metatron</docker.image.prefix>
+
+		<!-- plugin versions -->
+		<hive.version>2.3.2</hive.version>
+		<!-- <hive.version>1.2.1000.2.5.5.0-157</hive.version> -->
+
+		<!-- used in dataprep -->
+		<hadoop.version>2.7.2</hadoop.version>
+
+		<!-- Metatron Build Version -->
+		<metatron.app.version>${project.version}</metatron.app.version>
+
+		<!-- pf4j -->
+		<pf4j.version>2.5.0</pf4j.version>
+		<pf4j.spring.version>0.5.0</pf4j.spring.version>
+
+		<!-- poi -->
+		<poi.version>3.16</poi.version>
+
 	</properties>
 
+
+
+	<groupId>com.datasphere</groupId>
+	<description>Service</description>
+	<artifactId>datalayer</artifactId>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-
-		<!-- <dependency> -->
-		<!-- <groupId>org.springframework.boot</groupId> -->
-		<!-- <artifactId>spring-boot-starter-test</artifactId> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<!-- Exclude the Tomcat dependency -->
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-
-		<!-- Use Jetty instead -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jetty</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>3.8.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.security.oauth.boot</groupId>
-			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
-			<version>2.1.4.RELEASE</version>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-core</artifactId>
+			<version>2.9.2</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-oauth2-client</artifactId>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-spring-web</artifactId>
+			<version>2.9.2</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-oauth2-jose</artifactId>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-spi</artifactId>
+			<version>2.9.2</version>
 		</dependency>
-
-		<!-- explicit define swagger version to overcome bug in ApiModel example -->
-		<!-- https://github.com/springfox/springfox/issues/2265 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-common</artifactId>
+			<version>2.9.2</version>
+		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.9.2</version>
-			<exclusions>
-				<exclusion>
-					<groupId>io.swagger</groupId>
-					<artifactId>swagger-annotations</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>io.swagger</groupId>
-					<artifactId>swagger-models</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.9.2</version>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-models</artifactId>
+			<version>1.5.21</version>
 		</dependency>
 		<dependency>
 			<groupId>io.swagger</groupId>
@@ -108,468 +133,1170 @@
 			<version>1.5.21</version>
 		</dependency>
 		<dependency>
-			<groupId>io.swagger</groupId>
-			<artifactId>swagger-models</artifactId>
-			<version>1.5.21</version>
+			<groupId>org.apache.ibatis</groupId>
+			<artifactId>ibatis-core</artifactId>
+			<version>3.0</version>
 		</dependency>
-
 		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20180813</version>
+			<groupId>io.reactivex.rxjava2</groupId>
+			<artifactId>rxjava</artifactId>
+			<version>2.2.8</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.5</version>
-		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.16</version>
-		</dependency>
-
 		<dependency>
 			<groupId>io.minio</groupId>
 			<artifactId>minio</artifactId>
 			<version>6.0.7</version>
 		</dependency>
-
 		<dependency>
 			<groupId>uk.co.lucasweb</groupId>
 			<artifactId>aws-v4-signer-java</artifactId>
 			<version>1.3</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.kosprov.jargon2</groupId>
 			<artifactId>jargon2-api</artifactId>
 			<version>1.1.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.kosprov.jargon2</groupId>
-			<artifactId>jargon2-native-ri-backend</artifactId>
-			<version>1.1.1</version>
-			<scope>runtime</scope>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.47</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>18.3.0.0</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.mongodb</groupId>
-			<artifactId>mongodb-driver-sync</artifactId>
-			<version>3.10.1</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-websocket</artifactId>
-			<version>5.1.9.RELEASE</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.databind.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-joda</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-hibernate5</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-csv</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>${jackson.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.codehaus.woodstox</groupId>
+					<artifactId>stax2-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.common</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>5.1.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-orm</artifactId>
+			<version>${hibernate.search.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>hibernate-commons-annotations</artifactId>
+					<groupId>org.hibernate.common</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>hibernate-core</artifactId>
+					<groupId>org.hibernate</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.calcite.avatica</groupId>
+			<artifactId>avatica</artifactId>
+			<version>1.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.opensaml</groupId>
+			<artifactId>opensaml-core</artifactId>
+			<version>3.4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.opensaml</groupId>
+			<artifactId>opensaml</artifactId>
+			<version>2.6.4</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 			<version>4.4.9</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-messaging -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-messaging</artifactId>
-			<version>5.1.9.RELEASE</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-rest-core -->
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-rest-core</artifactId>
-			<version>3.1.10.RELEASE</version>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.2</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-			<version>2.1.10.RELEASE</version>
+			<groupId>com.jayway.restassured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>2.8.0</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>httpclient</artifactId>
+					<groupId>org.apache.httpcomponents</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-rest-webmvc -->
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-rest-webmvc</artifactId>
-			<version>3.1.10.RELEASE</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>3.6</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons-core -->
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-commons-core</artifactId>
-			<version>1.4.1.RELEASE</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.6</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>5.1.9.RELEASE</version>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/net.sf.supercsv/super-csv -->
 		<dependency>
-			<groupId>net.sf.supercsv</groupId>
-			<artifactId>super-csv</artifactId>
-			<version>2.4.0</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.5</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.univocity/univocity-parsers -->
-		<dependency>
-			<groupId>com.univocity</groupId>
-			<artifactId>univocity-parsers</artifactId>
-			<version>2.8.3</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-collections4</artifactId>
-			<version>4.4</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.6</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.locationtech.jts/jts-core -->
-		<dependency>
-			<groupId>org.locationtech.jts</groupId>
-			<artifactId>jts-core</artifactId>
-			<version>1.16.1</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.8.5</version>
+			<version>4.1</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.4.6</version>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.3</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
-			<groupId>io.reactivex.rxjava2</groupId>
-			<artifactId>rxjava</artifactId>
-			<version>2.1.2</version>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.3</version>
 		</dependency>
 
 		<dependency>
-			<groupId>net.sourceforge.jchardet</groupId>
-			<artifactId>jchardet</artifactId>
-			<version>1.0</version>
+			<groupId>org.apache.orc</groupId>
+			<artifactId>orc-core</artifactId>
+			<version>${orc-core.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>1.2.47</version>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4</artifactId>
+			<version>4.5.1</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search-orm -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-search-orm</artifactId>
-			<version>5.11.2.Final</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf</artifactId>
+			<version>${thymeleaf.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring4</artifactId>
+			<version>${thymeleaf.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- 스프링 Context Support (Email기능/Quartz 사용) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-expression</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- SAML -->
+		<dependency>
+			<groupId>org.springframework.security.extensions</groupId>
+			<artifactId>spring-security-saml2-core</artifactId>
+			<version>1.0.3.RELEASE</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-core</artifactId>
+			<version>${spring.data.rest.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>${spring.data.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-envers</artifactId>
+			<version>2.1.10.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>${spring.security.oauth.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-security-core</artifactId>
+					<groupId>org.springframework.security</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-jwt</artifactId>
+			<version>${spring.security.jwt.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-messaging</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot</artifactId>
+		    <version>${spring.boot.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${spring.boot.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jackson-databind</artifactId>
+					<groupId>com.fasterxml.jackson.core</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+		<!-- Spring Data JPA 의존성 이슈로 인한 추가 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>${spring.boot.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-orm</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-tx</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>tomcat-jdbc</artifactId>
+					<groupId>org.apache.tomcat</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
+			<version>${spring.boot.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jackson-databind</artifactId>
+					<groupId>com.fasterxml.jackson.core</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jackson-annotations</artifactId>
+					<groupId>com.fasterxml.jackson.core</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+			<version>${spring.boot.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>tomcat-embed-el</artifactId>
+					<groupId>org.apache.tomcat.embed</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+			<version>${spring.boot.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jackson-databind</artifactId>
+					<groupId>com.fasterxml.jackson.core</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<version>${spring.boot.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>android-json</artifactId>
+					<groupId>com.vaadin.external.google</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session</artifactId>
+			<version>${spring.session.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<version>${spring.boot.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>tomcat-embed-core</artifactId>
+					<groupId>org.apache.tomcat.embed</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>tomcat-embed-el</artifactId>
+					<groupId>org.apache.tomcat.embed</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>tomcat-embed-websocket</artifactId>
+					<groupId>org.apache.tomcat.embed</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-juli</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-el</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-websocket</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.1.0.Alpha6</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-jpa</artifactId>
+			<artifactId>querydsl-core</artifactId>
 			<version>4.2.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.querydsl/querydsl-sql -->
+
 		<dependency>
 			<groupId>com.querydsl</groupId>
 			<artifactId>querydsl-sql</artifactId>
 			<version>4.2.1</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.mysema.querydsl/querydsl-jpa -->
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-apt</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>com.mysema.querydsl</groupId>
 			<artifactId>querydsl-jpa</artifactId>
 			<version>2.0.7</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-collections4</artifactId>
-			<version>4.4</version>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-webmvc</artifactId>
+			<version>${spring.data.rest.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
+		<!-- Spec Related Library -->
 		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf</artifactId>
-			<version>3.0.11.RELEASE</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring4 -->
-		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf-spring4</artifactId>
-			<version>3.0.11.RELEASE</version>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
 
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.infinispan</groupId>
+			<artifactId>infinispan-commons</artifactId>
+			<version>${infinispan.version}</version>
+		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.infinispan/infinispan-core -->
 		<dependency>
 			<groupId>org.infinispan</groupId>
 			<artifactId>infinispan-core</artifactId>
-			<version>9.4.16.Final</version>
+			<version>${infinispan.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jgroups</artifactId>
+					<groupId>org.jgroups</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
+		<dependency>
+			<groupId>org.infinispan</groupId>
+			<artifactId>infinispan-cloud</artifactId>
+			<version>${infinispan.version}</version>
+		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.infinispan/infinispan-spring4-embedded -->
+		<dependency>
+			<groupId>org.infinispan</groupId>
+			<artifactId>infinispan-cachestore-remote</artifactId>
+			<version>${infinispan.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.infinispan</groupId>
+			<artifactId>infinispan-cachestore-jdbc</artifactId>
+			<version>${infinispan.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.infinispan</groupId>
+			<artifactId>infinispan-cachestore-jpa</artifactId>
+			<version>${infinispan.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.infinispan</groupId>
 			<artifactId>infinispan-spring4-embedded</artifactId>
-			<version>9.4.16.Final</version>
+			<version>${infinispan.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
 		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
+			<groupId>org.infinispan</groupId>
+			<artifactId>infinispan-cdi-embedded</artifactId>
+			<version>${infinispan.version}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc7 -->
+
 		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc7</artifactId>
-			<version>12.1.0.2</version>
+			<groupId>org.infinispan</groupId>
+			<artifactId>infinispan-remote-query-client</artifactId>
+			<version>${infinispan.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.facebook.presto/presto-jdbc -->
 		<dependency>
-			<groupId>com.facebook.presto</groupId>
-			<artifactId>presto-jdbc</artifactId>
-			<version>0.224</version>
+			<groupId>org.infinispan</groupId>
+			<artifactId>infinispan-jcache</artifactId>
+			<version>${infinispan.version}</version>
 		</dependency>
 
-
-
-
-
-
-
-		<!-- https://mvnrepository.com/artifact/org.opensaml/opensaml -->
+		<!-- PF4J -->
 		<dependency>
-			<groupId>org.opensaml</groupId>
-			<artifactId>opensaml</artifactId>
-			<version>2.6.4</version>
+			<groupId>org.pf4j</groupId>
+			<artifactId>pf4j-spring</artifactId>
+			<version>${pf4j.spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.pf4j</groupId>
+					<artifactId>pf4j</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.session/spring-session -->
-		<dependency>
-			<groupId>org.springframework.session</groupId>
-			<artifactId>spring-session</artifactId>
-			<version>1.3.5.RELEASE</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-			<version>5.1.6.RELEASE</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.security.extensions/spring-security-saml2-core -->
-		<dependency>
-			<groupId>org.springframework.security.extensions</groupId>
-			<artifactId>spring-security-saml2-core</artifactId>
-			<version>1.0.9.RELEASE</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-autoconfigure -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-autoconfigure</artifactId>
-			<version>1.5.22.RELEASE</version>
-		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-			<version>2.1.10.RELEASE</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-commons -->
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-commons</artifactId>
-			<version>2.1.10.RELEASE</version>
-		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-			<version>2.1.7.RELEASE</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-server -->
-		<dependency>
-			<groupId>de.codecentric</groupId>
-			<artifactId>spring-boot-admin-server</artifactId>
-			<version>2.0.4</version>
-		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/org.pf4j/pf4j -->
 		<dependency>
 			<groupId>org.pf4j</groupId>
 			<artifactId>pf4j</artifactId>
-			<version>3.0.1</version>
+			<version>${pf4j.version}</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+
+
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.9.9</version>
+			<groupId>org.apache.phoenix</groupId>
+			<artifactId>phoenix-queryserver-client</artifactId>
+			<version>4.8.0-HBase-1.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>hadoop-common</artifactId>
+					<groupId>org.apache.hadoop</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>avatica</artifactId>
+					<groupId>org.apache.calcite.avatica</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.monitorjbl/xlsx-streamer -->
+
+		<!-- Phoenix 관련 Client Jackson 충돌로 인한 버전 업 https://issues.apache.org/jira/browse/CALCITE-1110 -->
+		<dependency>
+			<groupId>org.apache.calcite.avatica</groupId>
+			<artifactId>avatica</artifactId>
+			<version>1.9.0</version>
+		</dependency>
+		<!-- used in dataprep -->
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-client</artifactId>
+			<version>${hadoop.version}</version>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-exec</artifactId>
+			<version>2.3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-vector-code-gen</artifactId>
+			<version>2.3.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-llap-tez</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-common</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-classification</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-llap-common</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-llap-client</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-serde</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-service-rpc</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-shims</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hive.shims</groupId>
+			<artifactId>hive-shims-common</artifactId>
+			<version>3.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hive.shims</groupId>
+			<artifactId>hive-shims-0.23</artifactId>
+			<version>3.1.1</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP-java7</artifactId>
+			<version>2.4.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.janino</groupId>
+			<artifactId>janino</artifactId>
+			<version>3.0.8</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.codehaus.janino/commons-compiler -->
+		<dependency>
+			<groupId>org.codehaus.janino</groupId>
+			<artifactId>commons-compiler</artifactId>
+			<version>3.0.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-jdbc</artifactId>
+			<version>${hive.version}</version>
+			<classifier>standalone</classifier>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.hadoop</groupId>
+					<artifactId>hadoop-client</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.eclipse.jetty.aggregate</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>log4j-1.2-api</artifactId>
+					<groupId>org.apache.logging.log4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>log4j-slf4j-impl</artifactId>
+					<groupId>org.apache.logging.log4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>log4j-web</artifactId>
+					<groupId>org.apache.logging.log4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>curator-framework</artifactId>
+					<groupId>org.apache.curator</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>joda-time</artifactId>
+					<groupId>joda-time</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.0.0</version>
+		</dependency>
+
+		<!-- https://github.com/JSQLParser/JSqlParser -->
+		<dependency>
+			<groupId>com.github.jsqlparser</groupId>
+			<artifactId>jsqlparser</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-bundle</artifactId>
+			<version>1.19.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.facebook.presto</groupId>
+			<artifactId>presto-jdbc</artifactId>
+			<version>0.152.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+			<version>4.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-apt</artifactId>
+			<version>4.1.4</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-sql</artifactId>
+			<version>4.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-sql-spring</artifactId>
+			<version>4.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.querydsl</groupId>
+			<artifactId>querydsl-sql-codegen</artifactId>
+			<version>4.1.4</version>
+			<scope>provided</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>com.monitorjbl</groupId>
 			<artifactId>xlsx-streamer</artifactId>
-			<version>2.1.0</version>
+			<version>1.2.0</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>xml-apis</artifactId>
+					<groupId>xml-apis</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-joda -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-joda</artifactId>
-			<version>2.9.9</version>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<version>1.4.01</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-hibernate5 -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-hibernate5</artifactId>
-			<version>2.9.9</version>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.9.5</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-server -->
 		<dependency>
-			<groupId>de.codecentric</groupId>
-			<artifactId>spring-boot-admin-server</artifactId>
-			<version>2.1.6</version>
+			<groupId>org.jadira.usertype</groupId>
+			<artifactId>usertype.core</artifactId>
+			<version>7.0.0.CR1</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-server-ui -->
 		<dependency>
-			<groupId>de.codecentric</groupId>
-			<artifactId>spring-boot-admin-server-ui</artifactId>
-			<version>2.1.6</version>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.1</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-starter-client -->
 		<dependency>
-			<groupId>de.codecentric</groupId>
-			<artifactId>spring-boot-admin-starter-client</artifactId>
-			<version>2.1.6</version>
+			<groupId>net.sf.supercsv</groupId>
+			<artifactId>super-csv</artifactId>
+			<version>2.4.0</version>
 		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jdbc -->
 		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-jdbc</artifactId>
-			<version>9.0.24</version>
+			<groupId>net.sf.supercsv</groupId>
+			<artifactId>super-csv-joda</artifactId>
+			<version>2.4.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.datanucleus/datanucleus-core -->
 		<dependency>
-			<groupId>org.datanucleus</groupId>
-			<artifactId>datanucleus-core</artifactId>
-			<version>5.2.1</version>
+			<groupId>com.univocity</groupId>
+			<artifactId>univocity-parsers</artifactId>
+			<version>2.5.9</version>
+			<type>jar</type>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/net.jodah/failsafe -->
+
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+			<version>0.1.54</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.imgscalr</groupId>
+			<artifactId>imgscalr-lib</artifactId>
+			<version>4.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.locationtech.jts</groupId>
+			<artifactId>jts-core</artifactId>
+			<version>1.16.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.locationtech.spatial4j</groupId>
+			<artifactId>spatial4j</artifactId>
+			<version>0.7</version>
+		</dependency>
+
 		<dependency>
 			<groupId>net.jodah</groupId>
 			<artifactId>failsafe</artifactId>
 			<version>2.3.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+		<!-- Mail -->
 		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
-			<version>1.9.4</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>4.1.0</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-core -->
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-core</artifactId>
-			<version>1.2.1</version>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.5.4</version>
 		</dependency>
 
-<!-- https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc -->
-<dependency>
-    <groupId>org.apache.hive</groupId>
-    <artifactId>hive-jdbc</artifactId>
-    <version>3.1.1</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
-<dependency>
-    <groupId>org.apache.commons</groupId>
-    <artifactId>commons-csv</artifactId>
-    <version>1.7</version>
-</dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.5.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-server</artifactId>
+			<version>${spring.boot.admin.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jackson-databind</artifactId>
+					<groupId>com.fasterxml.jackson.core</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-server-ui</artifactId>
+			<version>${spring.boot.admin.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>${spring.boot.admin.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.11.0</version>
+		</dependency>
 
 	</dependencies>
 
+
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>samples/**</exclude>
+				</excludes>
+			</resource>
+		</resources>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				<configuration>
+					<testFailureIgnore>true</testFailureIgnore>
+					<includes>
+						<include>**/*Documentation.java</include>
+					</includes>
+					<excludes>
+						<exclude>**/*Test*.java</exclude>
+						<exclude>**/*Test.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring.boot.version}</version>
+				<configuration>
+					<mainClass>com.datasphere.server.MetatronDiscoveryApplication</mainClass>
+					<addResources>true</addResources>
+					<layout>ZIP</layout>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr4-maven-plugin</artifactId>
+				<version>4.5.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>antlr4</goal>
+						</goals>
+						<phase>generate-sources</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<listener>false</listener>
+					<visitor>true</visitor>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.mysema.maven</groupId>
+				<artifactId>apt-maven-plugin</artifactId>
+				<version>1.1.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<outputDirectory>target/generated-sources/java</outputDirectory>
+							<processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.asciidoctor</groupId>
+				<artifactId>asciidoctor-maven-plugin</artifactId>
+				<version>1.5.3</version>
+				<executions>
+					<execution>
+						<id>generate-docs</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>process-asciidoc</goal>
+						</goals>
+						<configuration>
+							<sourceDirectory>src/main/asciidoc</sourceDirectory>
+							<outputDirectory>target/classes/resource/docs</outputDirectory>
+							<backend>html</backend>
+							<doctype>book</doctype>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.2.3</version>
+				<configuration>
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.war</include>
+						</resource>
+					</resources>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
-	<groupId>com.datasphere</groupId>
-	<description>Service</description>
-	<artifactId>datalayer</artifactId>
 </project>

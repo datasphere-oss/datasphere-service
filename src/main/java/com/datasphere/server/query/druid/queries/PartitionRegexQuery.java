@@ -23,7 +23,7 @@ import com.datasphere.server.domain.workbook.configurations.datasource.DataSourc
 import com.datasphere.server.query.druid.Query;
 
 /**
- * Created by kyungtaak on 2016. 10. 21..
+ * Created by aladin on 2019. 10. 21..
  */
 @JsonTypeName("partitioned")
 public class PartitionRegexQuery extends Query {

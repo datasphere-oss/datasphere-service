@@ -12,16 +12,16 @@
 
 package com.datasphere.server.domain.user;
 
+import static com.datasphere.server.domain.user.UserErrorCodes.USER_COMMON_ERROR_CODE;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.datasphere.server.common.exception.ErrorCodes;
-import com.datasphere.server.common.exception.MetatronException;
-
-import static com.datasphere.server.domain.user.UserErrorCodes.USER_COMMON_ERROR_CODE;
+import com.datasphere.engine.common.exception.ErrorCodes;
+import com.datasphere.engine.common.exception.MetatronException;
 
 /**
- * Created by kyungtaak on 2016. 5. 30..
+ * Created by aladin on 2019. 5. 30..
  */
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "User error.")
 public class UserException extends MetatronException {

@@ -33,7 +33,7 @@ import com.datasphere.server.domain.user.User;
 import com.google.common.collect.Lists;
 
 /**
- * Created by kyungtaak on 2017. 1. 26..
+ * Created by aladin on 2019. 1. 26..
  */
 @Component
 public class Mailer {

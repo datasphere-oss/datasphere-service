@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 import com.datasphere.server.datasource.data.SearchQueryRequest;
 
 /**
- * Created by kyungtaak on 2016. 7. 18..
+ * Created by aladin on 2019. 7. 18..
  */
 public class ColumnResultFormat {
 

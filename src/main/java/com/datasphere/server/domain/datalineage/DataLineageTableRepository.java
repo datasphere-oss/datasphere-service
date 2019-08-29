@@ -15,17 +15,17 @@
 package com.datasphere.server.domain.datalineage;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 1. 26..
+ * Created by aladin on 2019. 1. 26..
  */
 @Repository
 public interface DataLineageTableRepository extends JpaRepository<DataLineageTable, Long>,
-        QueryDslPredicateExecutor<DataLineageTable> {
+        QuerydslPredicateExecutor<DataLineageTable> {
   List<DataLineageTable> findBySchemaNameIgnoreCaseAndTableNameIgnoreCase(String schemaName, String tableName);
 
 }

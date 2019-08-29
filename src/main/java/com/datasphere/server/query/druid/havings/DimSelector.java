@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.datasphere.server.query.druid.Having;
 
 /**
- * Created by hsp on 2016. 11. 8..
+ * Created by aladin on 2016. 11. 8..
  */
 @JsonTypeName("dimSelector")
 public class DimSelector implements Having {

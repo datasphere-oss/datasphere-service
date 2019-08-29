@@ -24,7 +24,7 @@ import org.springframework.security.oauth2.provider.approval.ApprovalStoreUserAp
 import java.util.Collection;
 
 /**
- * Created by kyungtaak on 2016. 5. 2..
+ * Created by aladin on 2019. 5. 2..
  */
 public class CustomUserApprovalHandler extends ApprovalStoreUserApprovalHandler {
 

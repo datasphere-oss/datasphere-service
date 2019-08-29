@@ -13,7 +13,7 @@
 package com.datasphere.server.domain.user.role;
 
 /**
- * Created by kyungtaak on 2017. 1. 9..
+ * Created by aladin on 2019. 1. 9..
  */
 public class DuplicatedRoleSetNameException extends RuntimeException {
 

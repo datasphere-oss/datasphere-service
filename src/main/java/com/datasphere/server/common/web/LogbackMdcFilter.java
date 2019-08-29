@@ -28,7 +28,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by kyungtaak on 2016. 7. 13..
+ * Created by aladin on 2019. 7. 13..
  */
 public class LogbackMdcFilter implements Filter {
 

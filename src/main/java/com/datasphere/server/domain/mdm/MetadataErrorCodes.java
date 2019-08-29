@@ -14,7 +14,7 @@
 
 package com.datasphere.server.domain.mdm;
 
-import com.datasphere.server.common.exception.ErrorCodes;
+import com.datasphere.engine.common.exception.ErrorCodes;
 
 public enum MetadataErrorCodes implements ErrorCodes {
 

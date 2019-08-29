@@ -22,7 +22,7 @@ import java.util.List;
 import javax.validation.constraints.Size;
 
 /**
- * Created by kyungtaak on 2016. 4. 16..
+ * Created by aladin on 2019. 4. 16..
  */
 @Deprecated
 public class ChartLabel implements Serializable {

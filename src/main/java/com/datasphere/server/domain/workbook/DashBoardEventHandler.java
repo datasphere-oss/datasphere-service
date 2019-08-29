@@ -29,7 +29,7 @@ import com.datasphere.server.domain.images.Image;
 import com.datasphere.server.domain.images.ImageRepository;
 
 /**
- * Created by kyungtaak on 2016. 5. 13..
+ * Created by aladin on 2019. 5. 13..
  */
 @RepositoryEventHandler(DashBoard.class)
 public class DashBoardEventHandler {

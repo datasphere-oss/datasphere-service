@@ -18,7 +18,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by kyungtaak on 2016. 9. 27..
+ * Created by aladin on 2019. 9. 27..
  */
 public abstract class ObjectPool<T> {
 

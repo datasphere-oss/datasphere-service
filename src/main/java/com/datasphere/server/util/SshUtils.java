@@ -43,7 +43,7 @@ import java.util.Properties;
 import java.util.UUID;
 
 /**
- * Created by kyungtaak on 2016. 7. 31..
+ * Created by aladin on 2019. 7. 31..
  */
 public class SshUtils {
 

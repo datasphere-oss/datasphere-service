@@ -25,7 +25,7 @@ import com.datasphere.server.common.BaseProjections;
 import com.datasphere.server.domain.user.UserProfile;
 
 /**
- * Created by kyungtaak on 2016. 12. 20..
+ * Created by aladin on 2019. 12. 20..
  */
 public class BookProjections extends BaseProjections {
 

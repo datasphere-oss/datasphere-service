@@ -39,6 +39,10 @@ public interface JdbcDialect {
    */
   String JDBC_PROPERTY_PREFIX = "native.";
   /**
+   * The constant METATRON_PROPERTY_PREFIX.
+   */
+  String METATRON_PROPERTY_PREFIX = "metatron.";
+  /**
    * The constant DATASPHERE_PROPERTY_PREFIX.
    */
   String DATASPHERE_PROPERTY_PREFIX = "dss.";

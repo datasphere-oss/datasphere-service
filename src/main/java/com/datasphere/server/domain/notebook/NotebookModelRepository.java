@@ -16,16 +16,16 @@ package com.datasphere.server.domain.notebook;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
- * Created by james on 2017. 7. 13..
+ * Created by aladin on 2019. 7. 13..
  */
 @RepositoryRestResource(path = "nbmodels", excerptProjection = NotebookModelProjections.DefaultProjection.class)
 public interface NotebookModelRepository extends JpaRepository<NotebookModel, String>,
         JpaSpecificationExecutor<NotebookModel>,
-        QueryDslPredicateExecutor<NotebookModel> {
+        QuerydslPredicateExecutor<NotebookModel> {
 //
 //    @Transactional
 //    void deleteByIdIn(List<String> ids);

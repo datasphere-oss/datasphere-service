@@ -22,7 +22,7 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by kyungtaak on 2016. 4. 16..
+ * Created by aladin on 2019. 4. 16..
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXTERNAL_PROPERTY, property = "mode")
 @JsonSubTypes({

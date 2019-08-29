@@ -24,7 +24,7 @@ import java.util.Map;
 import com.datasphere.server.domain.user.UserProfile;
 
 /**
- * Created by kyungtaak on 2016. 11. 3..
+ * Created by aladin on 2019. 11. 3..
  */
 public class WorkBookProjections {
 

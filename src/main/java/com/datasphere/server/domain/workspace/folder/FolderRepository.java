@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.workspace.folder;
 
 /**
- * Created by kyungtaak on 2016. 12. 20..
+ * Created by aladin on 2019. 12. 20..
  */
 
 import org.springframework.data.jpa.repository.JpaRepository;

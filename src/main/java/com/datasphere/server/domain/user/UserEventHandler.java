@@ -32,7 +32,7 @@ import com.datasphere.server.domain.workspace.WorkspaceService;
 import com.datasphere.server.util.AuthUtils;
 
 /**
- * Created by kyungtaak on 2016. 5. 14..
+ * Created by aladin on 2019. 5. 14..
  */
 @RepositoryEventHandler(User.class)
 public class UserEventHandler {

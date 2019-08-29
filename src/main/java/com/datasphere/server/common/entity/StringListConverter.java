@@ -25,7 +25,7 @@ import java.util.StringJoiner;
 import javax.persistence.AttributeConverter;
 
 /**
- * Created by kyungtaak on 2016. 5. 10..
+ * Created by aladin on 2019. 5. 10..
  */
 public class StringListConverter implements AttributeConverter<List<String>, String> {
 

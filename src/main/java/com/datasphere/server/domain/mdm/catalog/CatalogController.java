@@ -46,7 +46,7 @@ import com.datasphere.server.domain.mdm.MetadataRepository;
 import com.datasphere.server.util.ProjectionUtils;
 
 /**
- * Created by kyungtaak on 2016. 12. 21..
+ * Created by aladin on 2019. 12. 21..
  */
 @RepositoryRestController
 public class CatalogController {

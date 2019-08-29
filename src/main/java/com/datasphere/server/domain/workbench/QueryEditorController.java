@@ -14,6 +14,17 @@
 
 package com.datasphere.server.domain.workbench;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -31,30 +42,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.supercsv.prefs.CsvPreference;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.persistence.EntityManager;
-import javax.servlet.http.HttpServletResponse;
-
 import com.datasphere.server.common.exception.ResourceNotFoundException;
+import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.server.datasource.Field;
+import com.datasphere.server.datasource.connection.jdbc.JdbcCSVWriter;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.domain.audit.Audit;
 import com.datasphere.server.domain.audit.AuditRepository;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
-import com.datasphere.server.datasource.Field;
-import com.datasphere.server.datasource.connection.jdbc.JdbcCSVWriter;
-import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSource;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
-import com.datasphere.server.extension.dataconnection.jdbc.accessor.JdbcAccessor;
-import com.datasphere.server.extension.dataconnection.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.util.HibernateUtils;
 import com.datasphere.server.util.HttpUtils;
 

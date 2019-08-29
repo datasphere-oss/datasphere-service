@@ -36,7 +36,7 @@ import com.datasphere.server.domain.workbook.DashBoard;
 import com.datasphere.server.domain.workbook.configurations.WidgetConfiguration;
 
 /**
- * Created by kyungtaak on 2017. 7. 18..
+ * Created by aladin on 2019. 7. 18..
  */
 @Entity
 @Table(name = "dashboard_widget")

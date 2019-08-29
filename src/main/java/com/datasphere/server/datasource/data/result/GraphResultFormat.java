@@ -34,7 +34,7 @@ import com.datasphere.server.domain.workbook.configurations.field.Field;
 import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
 
 /**
- * Created by kyungtaak on 2016. 7. 4..
+ * Created by aladin on 2019. 7. 4..
  */
 @JsonTypeName("graph")
 public class GraphResultFormat extends SearchResultFormat {

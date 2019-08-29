@@ -22,7 +22,7 @@ import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo;
 
 /**
- * Created by kyungtaak on 2016. 6. 18..
+ * Created by aladin on 2019. 6. 18..
  */
 public class JdbcFirehose implements Firehose {
 

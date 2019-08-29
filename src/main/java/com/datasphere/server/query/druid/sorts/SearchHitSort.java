@@ -21,7 +21,7 @@ import java.util.List;
 import com.datasphere.server.datasource.data.CandidateQueryRequest;
 
 /**
- * Created by kyungtaak on 2017. 5. 12..
+ * Created by aladin on 2019. 5. 12..
  */
 public class SearchHitSort {
 

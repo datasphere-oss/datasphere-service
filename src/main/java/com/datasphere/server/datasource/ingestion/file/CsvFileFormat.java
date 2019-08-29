@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Created by kyungtaak on 2017. 4. 30..
+ * Created by aladin on 2019. 4. 30..
  */
 @JsonTypeName("csv")
 public class CsvFileFormat implements FileFormat {

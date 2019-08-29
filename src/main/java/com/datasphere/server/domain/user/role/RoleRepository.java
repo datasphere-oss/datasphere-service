@@ -17,7 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
@@ -26,11 +26,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.datasphere.server.domain.context.ContextDomainRepository;
 
 /**
- * Created by kyungtaak on 2016. 1. 7..
+ * Created by aladin on 2019. 1. 7..
  */
 @RepositoryRestResource(path = "roles", itemResourceRel = "role", collectionResourceRel = "roles",
     excerptProjection = RoleProjections.DefaultRoleProjection.class)
-public interface RoleRepository extends JpaRepository<Role, String>, QueryDslPredicateExecutor<Role>,
+public interface RoleRepository extends JpaRepository<Role, String>, QuerydslPredicateExecutor<Role>,
                                         RoleSearchRepository, RoleRepositoryExtends, ContextDomainRepository {
 
   @RestResource(path = "keyword")

@@ -36,7 +36,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.datasphere.server.common.web.CommonLocalVariableFilter;
 import com.datasphere.server.common.web.LogbackMdcFilter;
 
-import de.codecentric.boot.admin.server.config.EnableAdminServer;
+import de.codecentric.boot.admin.config.EnableAdminServer;
 
 @Configuration
 @EnableTransactionManagement

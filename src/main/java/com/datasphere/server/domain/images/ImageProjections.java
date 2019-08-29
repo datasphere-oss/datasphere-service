@@ -17,7 +17,7 @@ package com.datasphere.server.domain.images;
 import org.springframework.data.rest.core.config.Projection;
 
 /**
- * Created by kyungtaak on 2016. 5. 16..
+ * Created by aladin on 2019. 5. 16..
  */
 public class ImageProjections {
 

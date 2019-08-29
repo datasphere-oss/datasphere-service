@@ -61,7 +61,7 @@ import com.datasphere.server.query.druid.queries.GroupingSet;
 import com.datasphere.server.util.EnumUtils;
 
 /**
- * Created by kyungtaak on 2016. 8. 21..
+ * Created by aladin on 2019. 8. 21..
  */
 @JsonTypeName("dpivot")
 public class PivotResultFormat extends SearchResultFormat {

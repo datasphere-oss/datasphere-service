@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.context;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
@@ -23,12 +23,12 @@ import java.util.List;
 import com.datasphere.server.common.entity.DomainType;
 
 /**
- * Created by kyungtaak on 2016. 12. 28..
+ * Created by aladin on 2019. 12. 28..
  */
 @RepositoryRestResource(path = "contexts", itemResourceRel = "context"
     , collectionResourceRel = "contexts", excerptProjection = ContextProjections.DefaultProjection.class)
 public interface ContextRepository extends JpaRepository<Context, Long>,
-                                          QueryDslPredicateExecutor<Context> {
+                                          QuerydslPredicateExecutor<Context> {
 
   List<Context> findByDomainTypeAndDomainId(DomainType domainType, String domainId);
 

@@ -19,9 +19,9 @@ import org.springframework.data.domain.AuditorAware;
 public class AuditorAwareImpl implements AuditorAware<String> {
 
 	@Override
-	public String getCurrentAuditor() {
+	public Optional<String> getCurrentAuditor() {
 		// TODO Auto-generated method stub
-		return Optional.of("system").toString();
+		return Optional.of("system");
 		// Can use Spring Security to return currently logged in user
 		// return ((User)
 		// SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername()

@@ -30,7 +30,7 @@ import com.datasphere.server.query.druid.Query;
 import com.datasphere.server.query.druid.filters.AndFilter;
 
 /**
- * Created by kyungtaak on 2017. 5. 18..
+ * Created by aladin on 2019. 5. 18..
  */
 public class CovarianceQueryBuilder extends AbstractQueryBuilder {
 

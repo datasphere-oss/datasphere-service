@@ -22,7 +22,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 /**
- * Created by kyungtaak on 2016. 12. 21..
+ * Created by aladin on 2019. 12. 21..
  */
 public interface BookTreeRepository extends JpaRepository<BookTree, BookTreeId> {
 

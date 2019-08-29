@@ -23,7 +23,7 @@ import com.datasphere.server.datasource.data.forward.ResultForward;
 import com.datasphere.server.domain.user.UserProfile;
 
 /**
- * Created by kyungtaak on 2016. 9. 3..
+ * Created by aladin on 2019. 9. 3..
  */
 public class DataSourceQueryHistoryProjections extends BaseProjections {
 

@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 /**
- * Created by kyungtaak on 2017. 3. 14..
+ * Created by aladin on 2019. 3. 14..
  */
 @RestController
 @RequestMapping("/api/admin")

@@ -14,7 +14,7 @@
 
 package com.datasphere.server.domain.notebook;
 
-import com.datasphere.server.common.exception.ErrorCodes;
+import com.datasphere.engine.common.exception.ErrorCodes;
 
 public enum NotebookErrorCodes implements ErrorCodes {
 

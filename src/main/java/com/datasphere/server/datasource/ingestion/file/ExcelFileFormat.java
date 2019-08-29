@@ -17,7 +17,7 @@ package com.datasphere.server.datasource.ingestion.file;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Created by kyungtaak on 2017. 4. 30..
+ * Created by aladin on 2019. 4. 30..
  */
 @JsonTypeName("excel")
 public class ExcelFileFormat implements FileFormat {

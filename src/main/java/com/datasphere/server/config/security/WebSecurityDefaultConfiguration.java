@@ -48,7 +48,7 @@ import com.datasphere.server.common.oauth.CustomUserStatusChecker;
 
 
 /**
- * Created by kyungtaak on 2016. 5. 2..
+ * Created by aladin on 2019. 5. 2..
  */
 public class WebSecurityDefaultConfiguration extends WebSecurityConfigurerAdapter {
 

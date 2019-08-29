@@ -17,11 +17,11 @@ package com.datasphere.server.domain.workbench;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.datasphere.server.common.exception.ErrorCodes;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.engine.common.exception.ErrorCodes;
+import com.datasphere.engine.common.exception.MetatronException;
 
 /**
- * Created by kyungtaak on 2016. 6. 18..
+ * Created by aladin on 2019. 6. 18..
  */
 @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR, reason="Workbench Error")
 public class WorkbenchException extends MetatronException {

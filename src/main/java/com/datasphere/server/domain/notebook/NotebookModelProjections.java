@@ -23,7 +23,7 @@ import java.util.List;
 import com.datasphere.server.domain.user.UserProfile;
 
 /**
- * Created by james on 2017. 7. 13..
+ * Created by aladin on 2019. 7. 13..
  */
 public class NotebookModelProjections {
 

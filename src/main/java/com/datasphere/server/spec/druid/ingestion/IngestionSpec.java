@@ -20,7 +20,7 @@ import com.datasphere.server.spec.druid.ingestion.io.IoConfig;
 import com.datasphere.server.spec.druid.ingestion.tuning.TuningConfig;
 
 /**
- * Created by kyungtaak on 2016. 6. 17..
+ * Created by aladin on 2019. 6. 17..
  */
 public class IngestionSpec {
 

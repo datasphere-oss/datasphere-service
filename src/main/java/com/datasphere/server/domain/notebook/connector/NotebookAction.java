@@ -17,7 +17,7 @@ package com.datasphere.server.domain.notebook.connector;
 import com.datasphere.server.domain.notebook.Notebook;
 
 /**
- * Created by kyungtaak on 2016. 10. 21..
+ * Created by aladin on 2019. 10. 21..
  */
 public interface NotebookAction {
 

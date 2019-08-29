@@ -24,7 +24,7 @@ import com.datasphere.server.query.druid.AbstractQueryBuilder;
 import com.datasphere.server.query.druid.Query;
 
 /**
- * Created by kyungtaak on 2016. 10. 24..
+ * Created by aladin on 2019. 10. 24..
  */
 public class TimeBoundaryQueryBuilder extends AbstractQueryBuilder {
 

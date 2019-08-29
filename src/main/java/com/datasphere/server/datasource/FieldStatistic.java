@@ -25,7 +25,7 @@ import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.domain.MetatronDomain;
 
 /**
- * Created by kyungtaak on 2017. 5. 15..
+ * Created by aladin on 2019. 5. 15..
  */
 @Entity
 public class FieldStatistic implements MetatronDomain<FieldStatisticId> {

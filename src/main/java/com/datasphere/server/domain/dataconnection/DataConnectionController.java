@@ -73,7 +73,7 @@ import com.google.common.collect.Maps;
 import com.querydsl.core.types.Predicate;
 
 /**
- * Created by kyungtaak on 2016. 6. 10..
+ * Created by aladin on 2019. 6. 10..
  */
 @RepositoryRestController
 public class DataConnectionController {

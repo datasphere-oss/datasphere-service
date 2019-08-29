@@ -26,7 +26,7 @@ import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.MetatronDomain;
 
 /**
- * Created by kyungtaak on 2016. 9. 3..
+ * Created by aladin on 2019. 9. 3..
  */
 @Entity
 @Table(name = "datasource_size_history")

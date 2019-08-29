@@ -14,14 +14,6 @@
 
 package com.datasphere.server.domain.workbench.hive;
 
-import com.google.common.collect.Maps;
-
-import org.apache.hadoop.fs.Path;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -31,13 +23,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.hadoop.fs.Path;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.datasphere.engine.common.exception.GlobalErrorCodes;
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.MetatronProperties;
 import com.datasphere.server.common.exception.BadRequestException;
-import com.datasphere.server.common.exception.GlobalErrorCodes;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
-import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.domain.workbench.WorkbenchErrorCodes;
 import com.datasphere.server.domain.workbench.WorkbenchException;
 import com.datasphere.server.domain.workbench.WorkbenchProperties;
@@ -46,6 +44,7 @@ import com.datasphere.server.domain.workbench.dto.ImportFile;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSource;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
 import com.datasphere.server.util.csv.CsvTemplate;
+import com.google.common.collect.Maps;
 
 @Service
 public class WorkbenchHiveService {

@@ -14,13 +14,29 @@
 
 package com.datasphere.server.domain.workspace;
 
-import com.google.common.collect.Lists;
+import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
+import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRawValue;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -34,31 +50,26 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import javax.persistence.*;
-import javax.validation.constraints.Size;
-
+import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.MetatronDomain;
 import com.datasphere.server.domain.context.ContextEntity;
 import com.datasphere.server.domain.dataconnection.DataConnection;
-import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.notebook.NotebookConnector;
 import com.datasphere.server.domain.user.User;
 import com.datasphere.server.domain.user.UserProfile;
 import com.datasphere.server.domain.user.role.Role;
 import com.datasphere.server.domain.user.role.RoleSet;
 import com.datasphere.server.domain.workbook.WorkBookSummary;
-
-import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
-import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.common.collect.Lists;
 
 /**
  * 분석을 위한 Workspace 모델 </br> 사용자별로 1개 이상의 Workspace를 가질수 있으며 타인/그룹과 공유가 가능한 Workspace를 생성할수 있다

@@ -21,7 +21,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 /**
- * Created by kyungtaak on 2016. 1. 26..
+ * Created by aladin on 2019. 1. 26..
  */
 @RepositoryRestResource(path = "workbenchs", itemResourceRel = "workbench"
 				, collectionResourceRel = "workbenchs", excerptProjection = WorkbenchProjections.DefaultProjection.class)

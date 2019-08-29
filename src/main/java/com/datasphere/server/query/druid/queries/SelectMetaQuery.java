@@ -17,7 +17,7 @@ package com.datasphere.server.query.druid.queries;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Created by kyungtaak on 2017. 3. 6..
+ * Created by aladin on 2019. 3. 6..
  */
 @JsonTypeName("selectMeta")
 public class SelectMetaQuery extends SelectQuery {
