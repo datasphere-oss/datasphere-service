@@ -14,22 +14,22 @@ package com.datasphere.common.data;
 public class Column {
 
 	/**
-	 * 列的原名称
+	 * column name
 	 */
 	String name;
 	
 	/**
-	 * 列的JDBC类型编码，参考{@link java.sql.Types}
+	 * Column JDBC type encoding, see {@link java.sql.Types}
 	 */
 	Integer sourceType;
 	
 	/**
-	 * 列的业务类型
+	 * Column business type
 	 */
 	String type;
 	
 	/**
-	 * 保留字段
+	 * reserved Column
 	 */
 	String reserve;
 
