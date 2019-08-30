@@ -1,15 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.domain.workbench;
@@ -92,9 +90,9 @@ public class QueryEditorController {
   public ResponseEntity<?> runQuery(@PathVariable("id") String id,
                                @RequestBody QueryRunRequest queryRunRequest) {
 
-    //1. Parameter 확인
+    //1. Parameter check
 
-    //Request Param 확인
+    //Confirm Request Param
     String query = StringUtils.defaultString(queryRunRequest.getQuery());
     String webSocketId = StringUtils.defaultString(queryRunRequest.getWebSocketId());
     String database = StringUtils.defaultString(queryRunRequest.getDatabase());
@@ -109,13 +107,13 @@ public class QueryEditorController {
     Assert.isTrue(!query.isEmpty(), "Parameter 'query' is empty.");
     Assert.isTrue(!webSocketId.isEmpty(), "Parameter 'webSocketId' is empty.");
 
-    //QueryEditor Entity 확인
-    QueryEditor queryEditor = queryEditorRepository.findOne(id);
+    //Check QueryEditor Entity
+    QueryEditor queryEditor = queryEditorRepository.findById(id).get();
     if(queryEditor == null){
       throw new ResourceNotFoundException("QueryEditor(" + id + ")");
     }
 
-    //Connection Entity 확인
+    //Check Connection Entity
     Workbench workbench = queryEditor.getWorkbench();
 
     if(workbench == null){
@@ -133,28 +131,28 @@ public class QueryEditorController {
       throw new WorkbenchException(WorkbenchErrorCodes.DATASOURCE_NOT_EXISTED, "DataSource for webSocket(" + webSocketId + ") is not existed.");
     }
 
-    //2. 현재 실행중인 쿼리 상태 확인
+    //2. Check the status of currently running queries
     QueryStatus queryStatus = queryEditorService.getQueryStatus(webSocketId);
     if(queryStatus != null && queryStatus == QueryStatus.RUNNING) {
-      //실행중일 경우 에러 메시지 Return
+      //Error message when running Return
       throw new WorkbenchException(WorkbenchErrorCodes.QUERY_STATUS_ERROR_CODE, "Query is Running");
     }
 
-    //3. 쿼리 실행 서비스 호출
+    //3. Calling the Query Execution Service
     List<QueryResult> queryResults = queryEditorService.getQueryResult(queryEditor, dataConnection, workbench,
             query, webSocketId, database);
 
 
-    //Hive Hook에서 Update할때 버전이 안맞아 업데이트 에러방지
+    //Prevents update error due to incorrect version when updating from Hive Hook
     entityManager.clear();
 
-    //4. 쿼리 결과를 나중에 복원하기 위해 저장
+    //4. Save the query results for later restore
     saveQueryEditorResults(id, queryResults, queryRunRequest);
 
-    //5. Audit에 쿼리 결과 저장 (Hive Audit Hook와 충돌 방지 하기 위해 Controller 레벨에서 수행함)
+    //5. Save query results to Audit (Performed at Controller level to avoid conflict with Hive Audit Hook)
     for(QueryResult queryResult : queryResults){
       Audit.AuditStatus auditStatus = Audit.AuditStatus.valueOf(queryResult.getQueryResultStatus().toString());
-      Audit audit = auditRepository.findOne(queryResult.getAuditId());
+      Audit audit = auditRepository.findById(queryResult.getAuditId()).get();
       audit.setStatus(auditStatus);
       audit.setElapsedTime(queryResult.getFinishDateTime().toDate().getTime() - queryResult.getStartDateTime().toDate().getTime());
       audit.setFinishTime(queryResult.getFinishDateTime());
@@ -170,9 +168,9 @@ public class QueryEditorController {
   private void saveQueryEditorResults(String queryEditorId, List<QueryResult> queryResults, QueryRunRequest queryRunRequest) {
     if(CollectionUtils.isNotEmpty(queryResults)) {
       try {
-        // 이전에 entityManager를 clear 하기 때문에 변경 감지 기능을 사용하여 queryEditor 엔티티의 queryEditorResult 를 사용할 수 없음
-        // 따라서 queryEditor를 다시 managed 상태로 하기 위해 재 조회
-        QueryEditor queryEditor = queryEditorRepository.findOne(queryEditorId);
+        // You cannot use queryEditorResult on queryEditor entities with change detection because you previously cleared entityManager
+    	 	// so requery queryEditor to make it managed again
+        QueryEditor queryEditor = queryEditorRepository.findById(queryEditorId).get();
 
         if(queryRunRequest.isFirstRunInQueryEditor()) {
           queryEditor.clearQueryResults();
@@ -210,9 +208,9 @@ public class QueryEditorController {
     //Result Map
     Map<String, Object> returnMap = new HashMap<>();
 
-    //1. Parameter 확인
+    //1. Parameter check
 
-    //Request Param 확인
+    //Request Param check
     String webSocketId = StringUtils.defaultString(requestBody.getWebSocketId());
 
     LOGGER.debug("id : {}", id);
@@ -220,26 +218,26 @@ public class QueryEditorController {
 
     Assert.isTrue(!webSocketId.isEmpty(), "Parameter 'webSocketId' is empty.");
 
-    //2. 현재 실행중인 쿼리 상태 확인
+    //2. Check the status of currently running queries
     QueryStatus queryStatus = queryEditorService.getQueryStatus(webSocketId);
 //    if(queryStatus == null || queryStatus != QueryStatus.RUNNING) {
-//      //실행중일 경우 에러 메시지 Return
+//      
 //      throw new WorkbenchException(WorkbenchErrorCodes.QUERY_STATUS_ERROR_CODE, "Query is Not Running");
 //    }
 
-    //QueryEditor Entity 확인
-    QueryEditor queryEditor = queryEditorRepository.findOne(id);
+    //Check QueryEditor Entity
+    QueryEditor queryEditor = queryEditorRepository.findById(id).get();
     if(queryEditor == null){
       throw new ResourceNotFoundException("QueryEditor(" + id + ")");
     }
 
-    //Workbench Entity 확인
+    //Check Workbench Entity
     Workbench workbench = queryEditor.getWorkbench();
     if(workbench == null){
       throw new ResourceNotFoundException("Workbench");
     }
 
-    //Connection Entity 확인
+    //Check Connection Entity
     //Hibernate Proxy Initialize
     DataConnection dataConnection = HibernateUtils.unproxy(workbench.getDataConnection());
     if(dataConnection == null){
@@ -257,7 +255,7 @@ public class QueryEditorController {
   public ResponseEntity<?> getStatus(@PathVariable("id") String id,
                                      @RequestBody QueryRunRequest requestBody) {
 
-    //Request Param 확인
+    //Check Request Param
     String webSocketId = StringUtils.defaultString(requestBody.getWebSocketId());
 
     LOGGER.debug("id : {}", id);
@@ -265,13 +263,13 @@ public class QueryEditorController {
 
     Assert.isTrue(!webSocketId.isEmpty(), "Parameter 'webSocketId' is empty.");
 
-    //QueryEditor Entity 확인
-    QueryEditor queryEditor = queryEditorRepository.findOne(id);
+    //Check QueryEditor Entity
+    QueryEditor queryEditor = queryEditorRepository.findById(id).get();
     if(queryEditor == null){
       throw new ResourceNotFoundException("QueryEditor(" + id + ")");
     }
 
-    //2. 현재 실행중인 쿼리 상태 확인
+    //2.Check the status of currently running queries
     QueryStatus queryStatus = queryEditorService.getQueryStatus(webSocketId);
 
     if(queryStatus == null){
@@ -291,12 +289,12 @@ public class QueryEditorController {
     String connectionId = (String) requestParam.get("connectionId");
     String fileName = (String) requestParam.get("fileName");
 
-    //1. 현재 실행중인 쿼리 상태 확인
+    //1. Check the status of currently running queries
     QueryStatus queryStatus = queryEditorService.getQueryStatus(webSocketId);
     if(queryStatus == null){
       throw new ResourceNotFoundException("WorkbenchDataSource For WebSocket(" + webSocketId + ")");
     } else if(queryStatus == QueryStatus.RUNNING) {
-      //실행중일 경우 에러 메시지 Return
+      //Error message when running Return
       throw new WorkbenchException(WorkbenchErrorCodes.QUERY_STATUS_ERROR_CODE, "Query is Running");
     }
 
@@ -337,7 +335,7 @@ public class QueryEditorController {
   private void createCSVFile(String query, String webSocketId,
                         String connectionId, String fileName, String csvFilePath) throws IOException{
     //Hibernate Proxy Initialize
-    DataConnection dataConnection = dataConnectionRepository.findOne(connectionId);
+    DataConnection dataConnection = dataConnectionRepository.findById(connectionId).get();
     JdbcAccessor jdbcDataAccessor = DataConnectionHelper.getAccessor(dataConnection);
     JdbcDialect jdbcDialect = jdbcDataAccessor.getDialect();
 
@@ -376,7 +374,7 @@ public class QueryEditorController {
   public ResponseEntity<?> getResult(@PathVariable("id") String id,
                                     @RequestBody QueryResultRequest requestBody) {
 
-    //Request Param 확인
+    //Check Request Param
     String csvFilePath = StringUtils.defaultString(requestBody.getCsvFilePath());
     List<Field> fieldList = requestBody.getFieldList();
     Integer pageSize = requestBody.getPageSize();
