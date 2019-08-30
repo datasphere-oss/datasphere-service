@@ -1,15 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.domain.workspace;
@@ -111,7 +109,7 @@ public class WorkspaceService {
   @Transactional
   public Workspace createWorkspaceByUserCreation(User user, boolean ifExistThrowException) {
 
-    // 워크스페이스 생성(등록된 워크스페이스가 없을 경우 생성)
+    // Create Workspace (if no workspace is registered)
     Workspace checkedWorkspace = workspaceRepository.findPrivateWorkspaceByOwnerId(user.getUsername());
     if(checkedWorkspace != null) {
       if (ifExistThrowException ) {
@@ -130,7 +128,7 @@ public class WorkspaceService {
         && Workspace.workspaceTypes.contains(user.getWorkspaceType())) {
       createWorkspace.setType(user.getWorkspaceType());
     } else {
-      createWorkspace.setType(Workspace.workspaceTypes.get(0)); // "DEFAULT" 셋팅
+      createWorkspace.setType(Workspace.workspaceTypes.get(0)); // "DEFAULT" setting
     }
 
     return workspaceRepository.saveAndFlush(createWorkspace);
@@ -138,7 +136,7 @@ public class WorkspaceService {
   }
 
   /**
-   * Workspace 접근 시간 지정
+   * Specify Workspace Access Times
    */
   @Transactional
   public void updateLastAccessedTime(String workspaceId) {
@@ -146,32 +144,31 @@ public class WorkspaceService {
   }
 
   /**
-   * 사용자 삭제시 Workspace 처리
+   * Workspace processing when user is deleted
    */
   @Transactional
   public void disableWorkspaceAndMember(String username, Map<String, String> delegateePair) {
-    // Workspace Owner 인 경우 처리, 위임자 정보가 없는 경우, 전체 Inactive 시킴
+    // In case of Workspace Owner, if there is no delegate information, all Inactive
     if(MapUtils.isEmpty(delegateePair)) {
       workspaceRepository.updateInactiveWorkspaceAndChangeKnownOwnerId(username, Workspace.PublicType.PRIVATE, Workspace.PublicType.SHARED);
     } else {
-      // 개인 워크스페이스만 비활성화 시킵니다
+      // Only disable private workspaces
       workspaceRepository.updateInactiveWorkspaceOfOwner(username, Workspace.PublicType.PRIVATE);
-      // TODO: delegateePair 를 통해 위임합니다
+      // TODO: delegate through delegateePair
     }
 
-    // Workspace Member 로 포함된 경우 삭제
+    // Delete if included as a Workspace Member
     workspaceMemberRepository.deleteByMemberIds(Lists.newArrayList(username));
 
-    // Workspace Favorite 삭제
+    // Delete Workspace Favorite
     workspaceFavoriteRepository.deleteByUsername(username);
   }
 
   /**
-   * 사용자 삭제시 Workspace 삭제
+   * Delete Workspace When Deleting Users
    */
   @Transactional
   public void deleteWorkspaceAndMember(String username) {
-    // PRIVATE workspace 삭제
     Workspace workspace = workspaceRepository.findPrivateWorkspaceByOwnerId(username);
     if(workspace == null) {
       LOGGER.warn("Fail to find private workspace : {}", username);
@@ -179,10 +176,9 @@ public class WorkspaceService {
       workspaceRepository.delete(workspace);
     }
 
-    // Workspace Member 로 포함된 경우 삭제
+   
     workspaceMemberRepository.deleteByMemberIds(Lists.newArrayList(username));
 
-    // Workspace Favorite 삭제
     workspaceFavoriteRepository.deleteByUsername(username);
   }
 
@@ -191,13 +187,13 @@ public class WorkspaceService {
     BooleanBuilder builder = new BooleanBuilder();
     QDataSource dataSource = QDataSource.dataSource;
 
-    // 전체 공개 Sub-Query
+    // full public Sub-Query
     BooleanExpression published = dataSource.id
         .in(JPAExpressions.select(dataSource.id)
                           .from(dataSource)
                           .where(dataSource.published.eq(true)));
 
-    // Workspace 내 포함된 Datasource 조회 Sub-Query
+    // Subsource Query of Datasource in Workspace
     BooleanExpression workspaceContains = dataSource.id
         .in(JPAExpressions.select(dataSource.id)
                           .from(dataSource)
@@ -229,7 +225,7 @@ public class WorkspaceService {
   @Transactional
   public void updateMembers(Workspace workspace, List<CollectionPatch> patches) {
 
-    // RoleSet 이 없는 경우 기본 RoleSet 지정
+	// default roleSet if no RoleSet
     if (CollectionUtils.isEmpty(workspace.getRoleSets())) {
       workspace.addRoleSet(roleSetService.getDefaultRoleSet());
     }
@@ -258,7 +254,7 @@ public class WorkspaceService {
           if (memberMap.containsKey(memberId)) {
             workspace.getMembers().remove(memberMap.get(memberId));
             LOGGER.debug("Deleted member in workspace({}) : {}", workspace.getId(), memberId);
-            // 즐겨찾기가 등록되어 있는 경우 삭제
+         // remove the bookmark if it is registered
             workspaceFavoriteRepository.deleteByUsernameAndWorkspaceId(memberId, workspace.getId());
           }
           break;
@@ -310,7 +306,7 @@ public class WorkspaceService {
   }
 
   /**
-   * 워크스페이스 내에서 접속한 Member 및 Member가 포함된 Group 의 역할을 전달 (for Projection)
+   * Transfer the role of Member and Group containing Member in the workspace (for Projection)
    */
   public List<WorkspaceMember> myRoles(String workspaceId, String ownerId) {
 
@@ -320,7 +316,7 @@ public class WorkspaceService {
       return null;
     }
 
-    // Workspace 내 멤버 여부 확인하고 Role 명 가져오기
+    // Check Membership in Workspace and Get Role Name
     List<String> joinedIds = groupService.getJoinedGroups(currentUser).stream()
                                          .map(Group::getName)
                                          .collect(Collectors.toList());
@@ -333,19 +329,17 @@ public class WorkspaceService {
   }
 
   /**
-   * Workspace Permission 목록 가져오기 (for Projection)
+   * Get a list of workspace permissions (for Projection)
    *
-   * @return Permission 목록
+   * @return Permission list
    */
   public Set<String> getPermissions(Workspace workspace) {
 
     String currentUser = AuthUtils.getAuthUserName();
-    // Owner 는 모든 권한을 가짐
     if (currentUser.equals(workspace.getOwnerId())) {
       return WorkspacePermissions.allPermissions();
     }
 
-    // Workspace 내 멤버 여부 확인하고 Role 명 가져오기
     List<String> joinedIds = groupService.getJoinedGroups(currentUser).stream()
                                          .map(Group::getId)
                                          .collect(Collectors.toList());
@@ -353,7 +347,6 @@ public class WorkspaceService {
 
     List<String> roleNames = workspaceMemberRepository.findRoleNameByMemberIdsAndWorkspaceId(joinedIds, workspace.getId());
 
-    // 멤버가 아닌 경우 빈값 노출
     if (CollectionUtils.isEmpty(roleNames)) {
       return Sets.newHashSet();
     }
@@ -366,9 +359,9 @@ public class WorkspaceService {
   }
 
   /**
-   * Workspace 내 RoleSet 추가
+   * Add RoleSet in Workspace
    *
-   * @return Permission 목록
+   * @return Permission List
    */
   @Transactional
   public void addRoleSet(Workspace workspace, String roleSetName) {
@@ -384,23 +377,22 @@ public class WorkspaceService {
       throw new IllegalArgumentException("Already added roleset.");
     }
 
-    // RoleSet 추가
     roleSets.add(addRoleSet);
 
     workspaceRepository.save(workspace);
   }
 
   /**
-   * Workspace 내 RoleSet 변경
+   * Change RoleSet in Workspace
    *
-   * @return Permission 목록
+   * @return Permission List
    */
   @Transactional
   public void changeRoleSet(Workspace workspace, String from, String to, String defaultRoleName, Map<String, String> mapper) {
 
     RoleSet fromRoleSet = null;
     RoleSet defaultRoleSet = roleSetService.getDefaultRoleSet();
-    // RoleSet 이 없는 경우 fromRoleSet 이 Default rolset 인지 확인
+    // If no RoleSet exists, check if fromRoleSet is the default rolset
     List<RoleSet> roleSets = workspace.getRoleSets();
     if (CollectionUtils.isEmpty(roleSets)) {
       if (defaultRoleSet.getName().equals(from)) {
@@ -425,14 +417,10 @@ public class WorkspaceService {
 
     workspaceRepository.saveAndFlush(workspace);
 
-    /*
-      Mapper 처리 부분
-     */
-
-    // mapper 를 통한 workspace member role 업데이트
+    // Updating workspace member role via mapper
     Role toDefaultRole = getDefaultRole(defaultRoleName, Lists.newArrayList(toRoleSet));
 
-    if (MapUtils.isEmpty(mapper)) { // mapper 정보가 없는 경우 default role로 변경
+    if (MapUtils.isEmpty(mapper)) { // If there is no mapper information, change to default role
       for (Role role : fromRoleSet.getRoles()) {
         workspaceMemberRepository.updateMemberRoleInWorkspace(workspace, role.getName(), toDefaultRole.getName());
       }
@@ -447,7 +435,7 @@ public class WorkspaceService {
           continue;
         }
 
-        // toRoleName 이 존재하지 않으면 기본 RoleName 으로 변경
+        // If toRoleName does not exist, change to default RoleName
         String toRoleName = mapper.get(fromRoleName);
         if (!toRoleNames.contains(toRoleName)) {
           toRoleName = toDefaultRoleName;
@@ -459,7 +447,7 @@ public class WorkspaceService {
       }
 
       if (!fromRoleNames.isEmpty()) {
-        // 포함되지 않은 from RoleSet 의 member role 을 to RoleSet 기본 Role Name 으로 일괄 변경
+        // Bulk change member roles of the not included from RoleSet to to RoleSet default Role Name
         workspaceMemberRepository.updateMultiMemberRoleInWorkspace(workspace, fromRoleSet.getRoleNames(), toDefaultRoleName);
       }
 
@@ -467,9 +455,9 @@ public class WorkspaceService {
   }
 
   /**
-   * Workspace 내 RoleSet 삭제
+   * Delete RoleSet in Workspace
    *
-   * @return Permission 목록
+   * @return Permission List
    */
   @Transactional
   public void deleteRoleSet(Workspace workspace, String roleSetName, String defaultRoleName) {
@@ -487,14 +475,14 @@ public class WorkspaceService {
       throw new IllegalArgumentException("Already added roleset.");
     }
 
-    // 삭제하고 RoleSet이 하나도 없는 경우 지정
+    // Specify if deleted and no RoleSets exist
     if (roleSets.size() == 0) {
       roleSets.add(roleSetService.getDefaultRoleSet());
     }
 
     workspaceRepository.saveAndFlush(workspace);
 
-    // Default Role 을 통해 삭제할 RoleSet내  지정된 Workspace Member Role 업데이트
+    // Update specified Workspace Member Role in RoleSet to be deleted by Default Role
     Role defaultRole = getDefaultRole(defaultRoleName, roleSets);
 
     List<String> targetRoleNames = deleteRoleSet.getRoles().stream()
@@ -532,11 +520,11 @@ public class WorkspaceService {
     Double avgDashboardByWorkBook = workspaceRepository.avgDashBoardByWorkBook(workspace);
     Long countFavoriteWorkspace = workspaceFavoriteRepository.countDistinctByWorkspaceId(workspace.getId());
 
-    // 접속 이력 통계 구하기
+    // Obtaining connection history statistics
     Map<String, Long> viewCountByTime = activityStreamService
         .getWorkspaceViewByDateTime(workspace.getId(), timeUnit, from, to);
 
-    // 누적 옵션 추가
+    // Add cumulative option
     List<Long> viewCountValues;
     if(accumulated) {
       viewCountValues = Lists.newArrayList();
@@ -549,10 +537,9 @@ public class WorkspaceService {
       viewCountValues = Lists.newArrayList(viewCountByTime.values());
     }
 
-
-    MatrixResponse<String, Long> matrix = new MatrixResponse<>(Lists.newArrayList(viewCountByTime.keySet()),
-                                                               Lists.newArrayList(new MatrixResponse.Column("Count", viewCountValues)));
-
+//    MatrixResponse<String, Long> matrix = new MatrixResponse<>(Lists.newArrayList(viewCountByTime.keySet()),
+//                                                               Lists.newArrayList(new MatrixResponse.Column("Count", viewCountValues)));
+    MatrixResponse<String, Long> matrix = new MatrixResponse<>();
     Map<String, Object> statMap = Maps.newLinkedHashMap();
     statMap.put("countBookByType", countBookByType);
     statMap.put("avgDashboardByWorkBook", avgDashboardByWorkBook);
@@ -571,10 +558,10 @@ public class WorkspaceService {
 
     Predicate publicWorkspacePredicate = getPublicWorkspacePredicate(onlyFavorite, myWorkspace, published, nameContains);
 
-    // 결과 질의
+    // Result query
     Page<Workspace> publicWorkspaces = workspaceRepository.findAll(publicWorkspacePredicate, pageable);
 
-    // Favorite 여부 처리
+    // Favorite Whether Processing
     if (onlyFavorite) {
       publicWorkspaces.forEach(publicWorkspace -> publicWorkspace.setFavorite(true));
     } else {
@@ -599,10 +586,10 @@ public class WorkspaceService {
 
     Predicate publicWorkspacePredicate = getPublicWorkspacePredicate(onlyFavorite, myWorkspace, published, nameContains);
 
-    // 결과 질의
+    // Result query
     List<Workspace> publicWorkspaces = (List) workspaceRepository.findAll(publicWorkspacePredicate);
 
-    // Favorite 여부 처리
+    // Favorite Whether Processing
     if (onlyFavorite) {
       publicWorkspaces.forEach(publicWorkspace -> publicWorkspace.setFavorite(true));
     } else {

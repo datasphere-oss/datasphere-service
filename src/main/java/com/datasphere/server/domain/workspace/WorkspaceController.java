@@ -1,15 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.domain.workspace;
@@ -265,7 +263,7 @@ public class WorkspaceController {
       Page<Workspace> workspaces = workspaceRepository
           .findAll(WorkspacePredicate.searchPublicTypeAndNameContainsAndActive(type, nameContains, true), pageable);
 
-      // 특정 데이터 소스에 연결된 Workspace 찾기
+      // Find Workspaces Connected to Specific Data Sources
       List<String> linkedWorkspaceIds = null;
 
       if (StringUtils.isNotEmpty(linkedId)) {
@@ -394,7 +392,7 @@ public class WorkspaceController {
                                                Pageable pageable,
                                                PersistentEntityResourceAssembler resourceAssembler) {
 
-    Workspace workspace = workspaceRepository.findOne(workspaceId);
+    Workspace workspace = workspaceRepository.findById(workspaceId).get();
     if (workspace == null) {
       return ResponseEntity.notFound().build();
     }
@@ -406,19 +404,19 @@ public class WorkspaceController {
       }
     }
 
-    // Source Type 별 조회
+    // Search by Source Type
     DataSourceType sourceType = null;
     if (StringUtils.isNotEmpty(type)) {
       sourceType = SearchParamValidator.enumUpperValue(DataSourceType.class, type, "type");
     }
 
-    // Connection Type 별 조회
+    // Search by Connection Type
     ConnectionType connectionType = null;
     if (StringUtils.isNotEmpty(connType)) {
       connectionType = SearchParamValidator.enumUpperValue(ConnectionType.class, connType, "connType");
     }
 
-    // 기본 정렬 조건 셋팅
+    // Default sort condition settings
     if (pageable.getSort() == null || !pageable.getSort().iterator().hasNext()) {
       pageable = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(),
                                  new Sort(Sort.Direction.ASC, "name"));
@@ -456,7 +454,7 @@ public class WorkspaceController {
     Predicate searchPredicated = DataConnectionPredicate
         .searchListForWorkspace(name, implementor, authenticationTypeValue, id);
 
-    // 기본 정렬 조건 셋팅
+    // Default sort condition settings
     if (pageable.getSort() == null || !pageable.getSort().iterator().hasNext()) {
       pageable = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(),
                                  new Sort(Sort.Direction.ASC, "name"));
@@ -477,12 +475,12 @@ public class WorkspaceController {
                                                       Pageable pageable,
                                                       PersistentEntityResourceAssembler resourceAssembler) {
 
-    Workspace workspace = workspaceRepository.findOne(workspaceId);
+    Workspace workspace = workspaceRepository.findById(workspaceId).get();
     if (workspace == null) {
       throw new ResourceNotFoundException(workspaceId);
     }
 
-    // 기본 정렬 조건 셋팅
+    // Default sort condition settings
     if (pageable.getSort() == null || !pageable.getSort().iterator().hasNext()) {
       pageable = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(),
                                  new Sort(Sort.Direction.ASC, "name"));
@@ -505,14 +503,14 @@ public class WorkspaceController {
       @PathVariable("wid") String wid,
       @PathVariable("cids") List<String> cids) {
 
-    Workspace workspace = workspaceRepository.findOne(wid);
+    Workspace workspace = workspaceRepository.findById(wid).get();
     if (workspace == null) {
       return ResponseEntity.notFound().build();
     }
     workspace.setConnectors(Collections.emptySet());
     Set<NotebookConnector> updateConnectors = new HashSet<>();
     for (String cid : cids) {
-      NotebookConnector connector = notebookConnectorRepository.findOne(cid);
+      NotebookConnector connector = notebookConnectorRepository.findById(cid).get();
       if (connector == null) {
         throw new RuntimeException("Connector not found");
       }
@@ -539,21 +537,21 @@ public class WorkspaceController {
       throw new IllegalArgumentException("Invalid widget type. choose " + Book.SEARCHABLE_BOOKS);
     }
 
-    Workspace workspace = workspaceRepository.findOne(workspaceId);
+    Workspace workspace = workspaceRepository.findById(workspaceId).get();
     if (workspace == null) {
       return ResponseEntity.notFound().build();
     }
 
     if ("ROOT".equalsIgnoreCase(bookId)) {
-      workspace.setBookType(bookType); // 타입별 조회 위함
+      workspace.setBookType(bookType); //To search by type
       return ResponseEntity.ok(resourceAssembler.toResource(workspace));
     }
 
-    Book book = bookRepository.findOne(bookId);
+    Book book = bookRepository.findById(bookId).get();
     if (book == null) {
       throw new ResourceNotFoundException(bookId);
     }
-    book.setBookType(bookType); // 타입별 조회 위함
+    book.setBookType(bookType); // To search by type
 
 
     return ResponseEntity.ok(resourceAssembler.toResource(book));
@@ -566,7 +564,7 @@ public class WorkspaceController {
                                               Pageable pageable,
                                               PersistentEntityResourceAssembler resourceAssembler) {
 
-    Workspace workspace = workspaceRepository.findOne(workspaceId);
+    Workspace workspace = workspaceRepository.findById(workspaceId).get();
     if (workspace == null) {
       throw new ResourceNotFoundException(workspaceId);
     }
@@ -587,7 +585,7 @@ public class WorkspaceController {
                                             @RequestParam(value = "to", required = false)
                                             @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME) DateTime to) {
 
-    Workspace workspace = workspaceRepository.findOne(workspaceId);
+    Workspace workspace = workspaceRepository.findById(workspaceId).get();
     if (workspace == null) {
       throw new ResourceNotFoundException(workspaceId);
     }
@@ -630,7 +628,7 @@ public class WorkspaceController {
                                                Pageable pageable,
                                                PersistentEntityResourceAssembler resourceAssembler) {
 
-    Book book = bookRepository.findOne(bookId);
+    Book book = bookRepository.findById(bookId).get();
     if (book == null || !(book instanceof WorkBook)) {
       throw new ResourceNotFoundException(bookId);
     }
@@ -641,7 +639,7 @@ public class WorkspaceController {
 
     Workspace.PublicType pubType = SearchParamValidator.enumUpperValue(Workspace.PublicType.class, publicType, "publicType");
 
-    // Workbook 내 대시보드에 연결되어 있는 데이터 소스(공개 데이터 소스 제외)
+    // Data sources that are connected to dashboards within your workbook (except public data sources)
     List<String> dataSourceIds;
     if (book instanceof WorkBook) {
       dataSourceIds = dataSourceRepository.findIdsByWorkbookInNotPublic(bookId);
@@ -655,7 +653,7 @@ public class WorkspaceController {
     List<String> targets = Lists.newArrayList(username);
     targets.addAll(groupRepository.findGroupIdsByMemberId(username));
 
-    // 사용자가 접근(편집) 가능한 Workspace 목록
+    // List of workspaces accessible to the user
     List<String> joinedWorkspaceIds = workspaceRepository
         .findMyWorkspaceIdsByPermission(username, targets, perms.toArray(new String[perms.size()]));
 
@@ -665,7 +663,7 @@ public class WorkspaceController {
 
     Page<Workspace> results;
     if (CollectionUtils.isEmpty(dataSourceIds) && CollectionUtils.isEmpty(joinedWorkspaceIds)) {
-      // dataSourceIds, joinedWorkspaceIds 둘다 0 인 케이스는 질의 불필요
+      // Cases where both dataSourceIds and joinedWorkspaceIds are 0 do not require a query
       results = new PageImpl(Collections.emptyList(), pageable, 0);
     } else {
       results = workspaceRepository.findAll(
@@ -691,7 +689,7 @@ public class WorkspaceController {
       page = workspaceMemberRepository.findAll(pageRequest);
 
       for (WorkspaceMember member : page) {
-        // 사용자/그룹 정보를 미리 넣어둡니다
+        // Preset user / group information
         if (member.getMemberType() == WorkspaceMember.MemberType.GROUP) {
           Group group = cachedUserService.findGroup(member.getMemberId());
           if (group != null) member.setMemberName(group.getName());
@@ -721,7 +719,7 @@ public class WorkspaceController {
                                             Pageable pageable,
                                             PersistentEntityResourceAssembler resourceAssembler) {
 
-    Workspace workspace = workspaceRepository.findOne(id);
+    Workspace workspace = workspaceRepository.findById(id).get();
     if (workspace == null) {
       return ResponseEntity.notFound().build();
     }
@@ -759,7 +757,7 @@ public class WorkspaceController {
   ResponseEntity<?> patchMemebersInWorkspace(
       @PathVariable("id") String id, @RequestBody List<CollectionPatch> patches) {
 
-    Workspace workspace = workspaceRepository.findOne(id);
+    Workspace workspace = workspaceRepository.findById(id).get();
     if (workspace == null) {
       return ResponseEntity.notFound().build();
     }
@@ -780,7 +778,7 @@ public class WorkspaceController {
   ResponseEntity<?> deleteMemebersInWorkspace(
       @PathVariable("id") String id, @PathVariable("memberId") List<String> memberIds) {
 
-    if (workspaceRepository.findOne(id) == null) {
+    if (workspaceRepository.findById(id) == null) {
       return ResponseEntity.notFound().build();
     }
 
@@ -797,7 +795,7 @@ public class WorkspaceController {
   public @ResponseBody
   ResponseEntity<?> saveFavoriteWorkspace(HttpServletRequest request, @PathVariable("id") String id) {
 
-    if (workspaceRepository.findOne(id) == null) {
+    if (workspaceRepository.findById(id) == null) {
       return ResponseEntity.notFound().build();
     }
 
@@ -816,7 +814,7 @@ public class WorkspaceController {
   public ResponseEntity<?> delegateWorkspace(@PathVariable("id") String workspaceId,
                                              @PathVariable("owner") String owner) {
 
-    Workspace workspace = workspaceRepository.findOne(workspaceId);
+    Workspace workspace = workspaceRepository.findById(workspaceId).get();
     if (workspace == null) {
       throw new ResourceNotFoundException(workspaceId);
     }
@@ -829,10 +827,8 @@ public class WorkspaceController {
       throw new BadRequestException("Invalid username of owner : " + owner);
     }
 
-    // Owner 변경
     workspace.setOwnerId(owner);
 
-    // 변경할 Owner 가 Workspace member 였다면 제거
     if (CollectionUtils.isNotEmpty(workspace.getMembers())) {
       Optional<WorkspaceMember> originalMember = workspace.getMembers().stream()
                                                           .filter(member ->
@@ -847,18 +843,18 @@ public class WorkspaceController {
   }
 
   /**
-   * Workspace 활성화 여부 지정
+   * Specify whether to activate the workspace
    */
   @RequestMapping(path = "/workspaces/{id}/activate/{status:active|inactive}", method = RequestMethod.POST)
   public ResponseEntity<?> activateWorkspace(@PathVariable("id") String workspaceId,
                                              @PathVariable("status") String status) {
 
-    Workspace workspace = workspaceRepository.findOne(workspaceId);
+    Workspace workspace = workspaceRepository.findById(workspaceId).get();
     if (workspace == null) {
       throw new ResourceNotFoundException(workspaceId);
     }
 
-    // 추가적인 Action 이 있을 경우
+    // If there is additional Action
     if ("inactive".equals(status)) {
       workspace.setActive(false);
     } else {
@@ -874,7 +870,7 @@ public class WorkspaceController {
   public ResponseEntity<?> addRoleSetForWorkspace(@PathVariable("id") String workspaceId,
                                                   @RequestBody RoleSet roleSet) {
 
-    Workspace workspace = workspaceRepository.findOne(workspaceId);
+    Workspace workspace = workspaceRepository.findById(workspaceId).get();
     if (workspace == null) {
       throw new ResourceNotFoundException(workspaceId);
     }
@@ -892,7 +888,7 @@ public class WorkspaceController {
   public ResponseEntity<?> setWorkspaceRoleSet(@PathVariable("id") String workspaceId,
                                                @PathVariable("roleSetName") String roleSetName) {
 
-    Workspace workspace = workspaceRepository.findOne(workspaceId);
+    Workspace workspace = workspaceRepository.findById(workspaceId).get();
     if (workspace == null) {
       throw new ResourceNotFoundException(workspaceId);
     }
@@ -910,7 +906,7 @@ public class WorkspaceController {
                                                   @RequestParam(required = false) String defaultRoleName,
                                                   @RequestBody(required = false) Map<String, String> mapper) {
 
-    Workspace workspace = workspaceRepository.findOne(workspaceId);
+    Workspace workspace = workspaceRepository.findById(workspaceId).get();
     if (workspace == null) {
       throw new ResourceNotFoundException(workspaceId);
     }
@@ -925,7 +921,7 @@ public class WorkspaceController {
                                                   @PathVariable("roleSetName") String roleSetName,
                                                   @RequestParam(required = false) String defaultRoleName) {
 
-    Workspace workspace = workspaceRepository.findOne(workspaceId);
+    Workspace workspace = workspaceRepository.findById(workspaceId).get();
     if (workspace == null) {
       throw new ResourceNotFoundException(workspaceId);
     }

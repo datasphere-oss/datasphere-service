@@ -1,32 +1,22 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.prep.parser.preparation;
 
-import com.datasphere.server.prep.parser.antlr.RuleBaseVisitor;
-import com.datasphere.server.prep.parser.antlr.RuleLexer;
-import com.datasphere.server.prep.parser.antlr.RuleParser;
-import com.datasphere.server.prep.parser.exceptions.FunctionInvalidFunctionNameException;
-import com.datasphere.server.prep.parser.preparation.rule.Arguments;
-import com.datasphere.server.prep.parser.preparation.rule.Rule;
-import com.datasphere.server.prep.parser.preparation.rule.RuleBuilder;
+import static java.util.stream.Collectors.toList;
 
-import com.datasphere.server.prep.parser.preparation.rule.expr.*;
-import com.google.common.base.Supplier;
-import com.google.common.base.Suppliers;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import java.lang.reflect.Modifier;
+import java.util.List;
+import java.util.Map;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
@@ -36,11 +26,25 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Modifier;
-import java.util.List;
-import java.util.Map;
-
-import static java.util.stream.Collectors.toList;
+import com.datasphere.prep.parser.antlr.RuleBaseVisitor;
+import com.datasphere.prep.parser.antlr.RuleLexer;
+import com.datasphere.prep.parser.antlr.RuleParser;
+import com.datasphere.server.prep.parser.exceptions.FunctionInvalidFunctionNameException;
+import com.datasphere.server.prep.parser.preparation.rule.Arguments;
+import com.datasphere.server.prep.parser.preparation.rule.Rule;
+import com.datasphere.server.prep.parser.preparation.rule.RuleBuilder;
+import com.datasphere.server.prep.parser.preparation.rule.expr.BuiltinFunctions;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Constant;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Expr;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Expression;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Function;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Identifier;
+import com.datasphere.server.prep.parser.preparation.rule.expr.Null;
+import com.datasphere.server.prep.parser.preparation.rule.expr.RegularExpr;
+import com.google.common.base.Supplier;
+import com.google.common.base.Suppliers;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 public class RuleVisitorParser implements Parser {
 

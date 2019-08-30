@@ -1,15 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.domain.workspace;
@@ -81,7 +79,7 @@ public class BookController {
                                          Pageable pageable,
                                          PersistentEntityResourceAssembler resourceAssembler) {
 
-    Book book = bookRepository.findOne(bookId);
+    Book book = bookRepository.findById(bookId).get();
     if(book == null) {
       throw new ResourceNotFoundException(bookId);
     }
@@ -103,7 +101,7 @@ public class BookController {
                                               @PathVariable("folderId") Optional<String> folderId,
                                               @RequestParam("toWorkspace") Optional<String> toWorkspace) {
 
-    if(folderId.isPresent() && bookRepository.findOne(folderId.get()) == null) {
+    if(folderId.isPresent() && bookRepository.findById(folderId.get()) == null) {
       throw new ResourceNotFoundException(folderId.get());
     }
 
@@ -112,7 +110,7 @@ public class BookController {
     }
 
     for (String bookId : bookIds) {
-      Book targetBook = bookRepository.findOne(bookId);
+      Book targetBook = bookRepository.findById(bookId).get();
       if(targetBook == null) {
         continue;
       }
@@ -130,12 +128,12 @@ public class BookController {
                                     @RequestParam("toWorkspace") Optional<String> toWorkspace,
                                     PersistentEntityResourceAssembler resourceAssembler) {
 
-    Book book = bookRepository.findOne(bookId);
+    Book book = bookRepository.findById(bookId).get();
     if(book == null) {
       return ResponseEntity.notFound().build();
     }
 
-    if(folderId.isPresent() && bookRepository.findOne(folderId.get()) == null) {
+    if(folderId.isPresent() && bookRepository.findById(folderId.get()) == null) {
       throw new ResourceNotFoundException(folderId.get());
     }
 
@@ -156,12 +154,12 @@ public class BookController {
   @RequestMapping(path = "/books/{bookIds}", method = RequestMethod.DELETE)
   public @ResponseBody ResponseEntity<?> multiDelete(@PathVariable("bookIds") List<String> bookIds) {
     for(String bookId : bookIds) {
-      Book book = bookRepository.findOne(bookId);
+      Book book = bookRepository.findById(bookId).get();
       if(book == null) {
         LOGGER.warn("Fail to find book : {}", bookId);
         continue;
       } else if(book.getType().equals("notebook")) {
-        Notebook notebook = notebookRepository.findOne(bookId);
+        Notebook notebook = notebookRepository.findById(bookId).get();
         NotebookConnector connector = notebook.getConnector();
         connector.setHttpRepository(httpRepository);
         connector.deleteNotebook(notebook.getaLink());

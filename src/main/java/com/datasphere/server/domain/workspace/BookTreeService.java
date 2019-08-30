@@ -1,15 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.domain.workspace;
@@ -88,10 +86,10 @@ public class BookTreeService {
     } else {
       books = bookRepository.findOnlySubBooks(bookId, type);
     }
-    // Folder가 최상단으로 오도록 조정
+    // Adjust Folder to Top
     books.sort(comparator);
 
-    // 하위 Book 중 Folder Type 인 경우 하위 Book 들이 존재하는지 체크
+    // Check if subbooks exist in case of folder type among subbooks
     for (Book book : books) {
       if (book instanceof Folder) {
         Folder folder = (Folder) book;
@@ -147,7 +145,7 @@ public class BookTreeService {
       return;
     }
 
-    Folder folder = folderRepository.findOne(book.getFolderId());
+    Folder folder = folderRepository.findById(book.getFolderId()).get();
     if (folder == null) {
       throw new IllegalArgumentException("Invalid Folder : " + book.getFolderId());
     }
@@ -176,7 +174,7 @@ public class BookTreeService {
 
     } else {
 
-      Folder folder = folderRepository.findOne(book.getFolderId());
+      Folder folder = folderRepository.findById(book.getFolderId()).get();
       if (folder == null) {
         throw new IllegalArgumentException("Invalid Folder : " + book.getFolderId());
       }
@@ -199,7 +197,7 @@ public class BookTreeService {
       }
     }
 
-    // Empty IN clause 발생 상황 회의(mysql 의 경우 오류 발생)
+    // Empty IN clause occurrence situation meeting (an error occurs in mysql)
     bookTreeRepository.deleteEditedBookTree(deleteDescendants.isEmpty() ? null : deleteDescendants,
                                             book.getId());
 
@@ -213,7 +211,7 @@ public class BookTreeService {
     if (descendants.size() > 0) {
       for (BookTree bookTree : descendants) {
         String descendantId = bookTree.getId().getDescendant();
-        bookRepository.delete(descendantId);
+        bookRepository.deleteById(descendantId);
         bookTreeRepository.deteleAllBookTree(descendantId);
       }
     }
