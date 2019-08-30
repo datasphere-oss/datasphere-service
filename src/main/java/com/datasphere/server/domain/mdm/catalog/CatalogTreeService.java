@@ -54,7 +54,7 @@ public class CatalogTreeService {
     catalogTrees.add(new CatalogTree(catalog.getId(), catalog.getId(), 0));
 
     if (catalog.getParentId() == null) {
-      catalogTreeRepository.save(catalogTrees);
+      catalogTreeRepository.saveAll(catalogTrees);
       return;
     }
 
@@ -69,7 +69,7 @@ public class CatalogTreeService {
       catalogTrees.add(new CatalogTree(ancestor.getId().getAncestor(), catalog.getId(), ancestor.getDepth() + 1));
     }
 
-    catalogTreeRepository.save(catalogTrees);
+    catalogTreeRepository.saveAll(catalogTrees);
   }
 
   @Transactional
@@ -113,7 +113,7 @@ public class CatalogTreeService {
 
     catalogTreeRepository.deleteEditedTree(deleteDescendants.isEmpty() ? null : deleteDescendants, catalog.getId());
 
-    catalogTreeRepository.save(catalogTrees);
+    catalogTreeRepository.saveAll(catalogTrees);
   }
 
   @Transactional

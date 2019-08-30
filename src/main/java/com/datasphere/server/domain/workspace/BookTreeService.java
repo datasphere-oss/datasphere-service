@@ -141,7 +141,7 @@ public class BookTreeService {
     bookTrees.add(new BookTree(book.getId(), book.getId(), 0));
 
     if (Folder.ROOT.equals(book.getFolderId())) {
-      bookTreeRepository.save(bookTrees);
+      bookTreeRepository.saveAll(bookTrees);
       return;
     }
 
@@ -156,7 +156,7 @@ public class BookTreeService {
       bookTrees.add(new BookTree(ancestor.getId().getAncestor(), book.getId(), ancestor.getDepth() + 1));
     }
 
-    bookTreeRepository.save(bookTrees);
+    bookTreeRepository.saveAll(bookTrees);
   }
 
   @Transactional
@@ -201,7 +201,7 @@ public class BookTreeService {
     bookTreeRepository.deleteEditedBookTree(deleteDescendants.isEmpty() ? null : deleteDescendants,
                                             book.getId());
 
-    bookTreeRepository.save(bookTrees);
+    bookTreeRepository.saveAll(bookTrees);
   }
 
   @Transactional

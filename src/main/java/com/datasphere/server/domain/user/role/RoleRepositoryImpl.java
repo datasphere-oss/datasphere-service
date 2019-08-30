@@ -35,7 +35,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.Arrays;
 import java.util.List;
@@ -46,7 +46,7 @@ import javax.persistence.EntityManager;
 /**
  * Created by aladin on 2019. 1. 23..
  */
-public class RoleRepositoryImpl extends QueryDslRepositorySupport implements RoleRepositoryExtends, RoleSearchRepository {
+public class RoleRepositoryImpl extends QuerydslRepositorySupport implements RoleRepositoryExtends, RoleSearchRepository {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(RoleRepositoryImpl.class);
 

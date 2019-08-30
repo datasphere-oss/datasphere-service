@@ -84,7 +84,7 @@ public class ContextService {
         saveEntities.add(new Context(type, domainId, key, reqContexts.get(key)));
       }
     }
-    contextRepository.save(saveEntities);
+    contextRepository.saveAll(saveEntities);
     LOGGER.info("Saved {} context from {}, {}", saveEntities.size(), type, domainId);
   }
 

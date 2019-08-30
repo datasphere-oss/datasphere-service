@@ -169,7 +169,7 @@ public class CalculatePopularityJob extends QuartzJobBean {
       metadataPopularities.add(metadataPopularity);
     }
 
-    popularityRepository.save(metadataPopularities);
+    popularityRepository.saveAll(metadataPopularities);
   }
 
   /**
@@ -200,7 +200,7 @@ public class CalculatePopularityJob extends QuartzJobBean {
       }
     }
 
-    popularityRepository.save(popularityMap.values());
+    popularityRepository.saveAll(popularityMap.values());
   }
 
   @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -242,7 +242,7 @@ public class CalculatePopularityJob extends QuartzJobBean {
       }
     }
 
-    popularityRepository.save(metadataPopularityMap.values());
+    popularityRepository.saveAll(metadataPopularityMap.values());
   }
 
   private DataSource getDataSourceByRef(com.datasphere.server.domain.workbook.configurations.datasource.DataSource dataSource, String ref) {

@@ -34,7 +34,7 @@ public interface QueryHistoryRepository extends JpaRepository<QueryHistory, Long
 
   @Override
   @RestResource(exported = false)
-  <S extends QueryHistory> List<S> save(Iterable<S> iterable);
+  <S extends QueryHistory> List<S> saveAll(Iterable<S> iterable);
 
  @Override
   @RestResource(exported = false)

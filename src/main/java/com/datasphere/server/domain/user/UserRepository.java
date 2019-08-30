@@ -104,11 +104,7 @@ default <S extends User> List<S> findAll(Example<S> arg0) {
 	return null;
 }
 
-@Override
-default List<User> findAll(Iterable<String> arg0) {
-	// TODO Auto-generated method stub
-	return null;
-}
+
 
 @Override
 default List<User> findAll(Sort arg0) {
@@ -128,11 +124,7 @@ default User getOne(String arg0) {
 	return null;
 }
 
-@Override
-default <S extends User> List<S> save(Iterable<S> arg0) {
-	// TODO Auto-generated method stub
-	return null;
-}
+
 
 @Override
 default <S extends User> S saveAndFlush(S arg0) {

@@ -700,7 +700,7 @@ public class WorkspaceController {
         members.add(member);
       }
 
-      workspaceMemberRepository.save(members);
+      workspaceMemberRepository.saveAll(members);
 
       pageNum++;
 

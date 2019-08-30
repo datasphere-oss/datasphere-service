@@ -24,7 +24,7 @@ import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
 import java.util.Map;
@@ -33,7 +33,7 @@ import com.datasphere.server.domain.user.role.QRoleSet;
 import com.datasphere.server.domain.workbook.QDashBoard;
 import com.datasphere.server.domain.workbook.QWorkBook;
 
-public class WorkspaceRepositoryImpl extends QueryDslRepositorySupport implements WorkspaceRepositoryExtends {
+public class WorkspaceRepositoryImpl extends QuerydslRepositorySupport implements WorkspaceRepositoryExtends {
 
   public WorkspaceRepositoryImpl() {
     super(Workspace.class);

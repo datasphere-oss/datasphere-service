@@ -27,14 +27,14 @@ import org.joda.time.DateTime;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
 
 import com.datasphere.server.domain.mdm.source.QMetadataSource;
 import com.datasphere.server.domain.tag.QTagDomain;
 
-public class MetadataRepositoryImpl extends QueryDslRepositorySupport implements MetadataRepositoryExtends {
+public class MetadataRepositoryImpl extends QuerydslRepositorySupport implements MetadataRepositoryExtends {
 
   public MetadataRepositoryImpl() {
     super(Metadata.class);

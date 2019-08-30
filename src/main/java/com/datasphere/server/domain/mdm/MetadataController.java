@@ -318,7 +318,7 @@ public class MetadataController {
                                                     .map(p -> p.getMetadataId())
                                                     .collect(Collectors.toList());
 
-    List metadatas = metadataRepository.findAll(metadataId);
+    List metadatas = metadataRepository.findAllById(metadataId);
 
     //order by populraity
     metadatas.sort((a, b) -> {

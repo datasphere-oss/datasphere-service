@@ -56,7 +56,7 @@ public class PasswordInitializeListener implements ApplicationListener<Applicati
         }
       });
 
-      userRepository.save(userList);
+      userRepository.saveAll(userList);
       userRepository.flush();
 
     } else {

@@ -93,7 +93,7 @@ public class QueryHistoryController {
 
     if(queryHistories != null){
     queryHistories.stream().forEach(e -> e.setDeleted(true));
-      queryHistoryRepository.save(queryHistories);
+      queryHistoryRepository.saveAll(queryHistories);
       queryHistoryRepository.flush();
     }
 
