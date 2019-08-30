@@ -19,17 +19,17 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 public class ValidationCodeUtil {
 	
-        // 图片的宽度。  
+        // The width of the image.  
         private int width = 200;  
-        // 图片的高度。  
+        // The height of the image.  
         private int height = 40;  
-        // 验证码字符个数  
+        // Number of verification code characters
         private int codeCount = 5;  
-        // 验证码干扰线数  
+        // Verification code interference line number 
         private int lineCount = 150;  
-        // 验证码  
+        // Verification code
         private String code = null;  
-        // 验证码图片Buffer  
+        // Verification code Picture Buffer
         private BufferedImage buffImg=null;  
         
         private String randomCode ="";
@@ -43,8 +43,8 @@ public class ValidationCodeUtil {
       
         /** 
          *  
-         * @param width 图片宽 
-         * @param height 图片高 
+         * @param width Picture width
+         * @param height Picture height
          */  
         public  ValidationCodeUtil(int width,int height) {  
             this.width=width;  
@@ -53,10 +53,10 @@ public class ValidationCodeUtil {
         }  
         /** 
          *  
-         * @param width 图片宽 
-         * @param height 图片高 
-         * @param codeCount 字符个数 
-         * @param lineCount 干扰线条数 
+         * @param width Picture width
+         * @param height Picture height
+         * @param codeCount Number of verification code characters
+         * @param lineCount Verification code interference line number
          */  
         public  ValidationCodeUtil(int width,int height,int codeCount,int lineCount) {  
             this.width=width;  
@@ -70,19 +70,18 @@ public class ValidationCodeUtil {
             int x = 0,fontHeight=0,codeY=0;  
             int red = 0, green = 0, blue = 0;  
               
-            x = width / (codeCount +2);//每个字符的宽度  
-            fontHeight = height - 2;//字体的高度  
+            x = width / (codeCount +2);// The width of each character  
+            fontHeight = height - 2;// Height of the font
             codeY = height - 4;  
               
-            // 图像buffer  
             buffImg = new BufferedImage(width, height,BufferedImage.TYPE_INT_RGB);  
             Graphics2D g = buffImg.createGraphics();  
-            // 生成随机数  
+            // Generate random numbers  
             Random random = new Random();  
-            // 将图像填充为白色  
+            // Fill the image with white
             g.setColor(Color.WHITE);  
             g.fillRect(0, 0, width, height);  
-            // 创建字体  
+            // Create font
             ImgFontByte imgFont=new ImgFontByte();  
             Font font =imgFont.getFont(fontHeight);  
             g.setFont(font);  
@@ -99,21 +98,21 @@ public class ValidationCodeUtil {
                 g.drawLine(xs, ys, xe, ye);  
             }  
               
-            // randomCode记录随机产生的验证码  
+            // randomCode records randomly generated verification code  
             StringBuffer randomCode = new StringBuffer();  
-            // 随机产生codeCount个字符的验证码。  
+            // Randomly generate a verification code for codeCount characters.  
             for (int i = 0; i < codeCount; i++) {  
                 String strRand = String.valueOf(codeSequence[random.nextInt(codeSequence.length)]);  
-                // 产生随机的颜色值，让输出的每个字符的颜色值都将不同。  
+                // Generate random color values ​​so that the color value of each character output will be different. 
                 red = random.nextInt(255);  
                 green = random.nextInt(255);  
                 blue = random.nextInt(255);  
                 g.setColor(new Color(red, green, blue));  
                 g.drawString(strRand, (i + 1) * x, codeY);  
-                // 将产生的四个随机数组合在一起。  
+                // Combine the four random numbers generated.  
                 randomCode.append(strRand);  
             }  
-            // 将四位数字的验证码保存到Session中。  
+            // Save the four-digit verification code to the Session. 
             code=randomCode.toString();       
         }  
         
@@ -180,12 +179,13 @@ public class ValidationCodeUtil {
             } catch (Exception e) {  
                 return null;  
             }  
-        } /** 
-      * ttf字体文件的十六进制字符串 
+        } 
+     /** 
+      * The hex string of the ttf font file
       * @return 
       */  
      private String getFontByteStr(){ 
-    	 return null;  
-    
-    }  
+	    	 return null;  
+	    
+	    }  
     }  
