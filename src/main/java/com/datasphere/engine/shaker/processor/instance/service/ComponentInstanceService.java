@@ -805,7 +805,7 @@ public class ComponentInstanceService extends BaseService {
 
 
 	/**
-	 * 查询数据集--daas
+	 * 查询数据集
 	 *
 	 * @param query
 	 * @return
@@ -813,14 +813,12 @@ public class ComponentInstanceService extends BaseService {
 	public Map<String, Object> queryTableData(QueryDBDataParams query) {
 		try {
 			if (StringUtils.isEmpty(query.getSql())) {
-				//获取sql
 				query.setSql(oneTableQuery(query));
 			}
 			if (StringUtils.isEmpty(query.getSql())) {
 				return null;
 			}
 
-			//jdbc查询方式
 			return dataQueryService.dataQuery(query.getSql());
 		} catch (Exception e) {
 			logger.error("{}", e);
@@ -828,57 +826,7 @@ public class ComponentInstanceService extends BaseService {
 		return null;
 	}
 
-
-//	/**
-//	 * 查询数据集--daas
-//	 * @param query
-//	 * @return
-//	 */
-//	public Map<String,Object> queryTableData(QueryDBDataParams query) {
-//
-//		if(com.datalliance.drmp.module.dal.buscommon.utils.StringUtils.isBlank(query.getSql())){
-//			//获取sql
-//			query.setSql(oneTableQuery(query));
-//		}
-//
-//		if(com.datalliance.drmp.module.dal.buscommon.utils.StringUtils.isBlank(query.getSql())){
-//			return null;
-//		}
-//		//获取jobId
-//		String job_id = getJobId(query.getSql());
-//
-//		//获取job状态
-//		while (!JSON.parseObject(getJobStatus(job_id)).getString("jobState").equals("COMPLETED")) {
-//			System.out.println("The job ["+job_id+"] is "+ JSON.parseObject(getJobStatus(job_id)).getString("jobState"));
-//			try {
-//				Thread.sleep(1000);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		logger.info("The job [" +job_id+ "] is COMPLETED!");
-//
-//		//获取结果集
-//		String result = getJobResults(job_id);
-//		JSONObject json = JSON.parseObject(result);
-//		JSONArray schema = json.getJSONArray("schema");
-//		List<Map<String,Object>> list = new ArrayList<>();
-//		for (int i = 0; i < schema.size(); i++) {
-//			Map<String,Object> map = new HashMap<>();
-//			map.put("name",schema.getJSONObject(i).getString("name"));
-//			map.put("type",schema.getJSONObject(i).getJSONObject("type").getString("name"));
-//			list.add(map);
-//
-//		}
-//		Map<String,Object> re = new HashMap<>();
-//		re.put("columns",list);
-//		re.put("sql",query.getSql());
-//		return re;
-//	}
-
-	//获取sql
 	public String oneTableQuery(QueryDBDataParams query){
-		//获取sql
 		String vds = "";
 		try {
 			String secondPath = "/datasets/new_untitled?parentDataset=%22" +

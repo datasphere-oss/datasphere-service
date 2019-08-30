@@ -1,4 +1,4 @@
-package com.datasphere.engine.shaker.processor.instance.service;//package com.datalliance.drmp.module.component.instance.impl;
+package com.datasphere.engine.shaker.processor.instance.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.datasphere.core.common.BaseService;
