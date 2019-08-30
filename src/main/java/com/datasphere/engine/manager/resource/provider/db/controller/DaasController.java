@@ -1,3 +1,15 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.manager.resource.provider.db.controller;
 
 import com.datasphere.core.common.BaseController;
@@ -369,7 +381,6 @@ public class DaasController extends BaseController {
 	 * 通过组件实例id，获取数据源详细信息
 	 * 触发操作：点击已经拖拽进去的组件 jeq
 	 * @param id 组件实例id
-	 * com.datalliance.common.dmpbase.constant.GlobalDefine
 	 * 	组件代码code			组件分类classification（数据源、预处理、机器学习）
 	 * MyDataSource			001
 	 * SimpleDataSource		001

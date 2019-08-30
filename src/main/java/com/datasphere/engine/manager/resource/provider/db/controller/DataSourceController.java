@@ -1,3 +1,15 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.manager.resource.provider.db.controller;
 
 import com.datasphere.core.common.BaseController;
@@ -32,7 +44,7 @@ import java.util.Map;
 
 
 /**
- * 数据源管理  DB
+ * DataSource Management
  */
 @Controller
 public class DataSourceController extends BaseController {
@@ -46,7 +58,7 @@ public class DataSourceController extends BaseController {
 
 
 	/**
-	 * 获得全部数据源信息
+	 * Get all data source information
 	 * @param
 	 * @return
 	 */
@@ -63,7 +75,7 @@ public class DataSourceController extends BaseController {
 
 
 	/**
-	 * 验证数据源名称
+	 * Verify the data source name
 	 * @param name
 	 * @return
 	 */
@@ -82,7 +94,7 @@ public class DataSourceController extends BaseController {
 	}
 
 	/**
-	 * 测试数据源  (在daas创建)
+	 * Test data source
 	 */
 	@RequestMapping(value = BASE_PATH + "/test", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> test(@Body DremioDataSourceInfo es) {
@@ -112,7 +124,7 @@ public class DataSourceController extends BaseController {
 
 
 	/**
-	 * 创建数据源时 获取数据库表信息
+	 * When creating a data source Get database table information
 	 * @param daasName
 	 * @return
 	 */
@@ -129,7 +141,7 @@ public class DataSourceController extends BaseController {
 
 
 	/**
-	 * 更新数据源名称及描述
+	 * Update data source name and description
 	 * @param dataSource
 	 * @return
 	 */
@@ -137,24 +149,24 @@ public class DataSourceController extends BaseController {
 	public Single<Map<String,Object>> update(@Body DataSource dataSource){
 		return Single.fromCallable(() -> {
 			if (StringUtils.isBlank(dataSource.getId()) && StringUtils.isBlank(dataSource.getName())){
-				return JsonWrapper.failureWrapper("id和数据源名称不能为空！");
+				return JsonWrapper.failureWrapper("The id and data source names cannot be empty!");
 			}
 			//查询数据源信息ById
 			DataSource dataSourceInfo = dataSourceService.findDataSourceById(dataSource.getId());
 			if(dataSourceInfo == null){
-				return JsonWrapper.failureWrapper("数据源不存在！");
+				return JsonWrapper.failureWrapper("The data source does not exist!");
 			}
 //			if(dataSourceinfo.getName().equals((dataSource.getName()))){
 //				return JsonWrapper.failureWrapper("数据源名称已经存在！");
 //			}
 			int result = dataSourceService.update(dataSource);
-			if(result == 1) return JsonWrapper.successWrapper("更新成功");
-			return JsonWrapper.successWrapper("更新失败");
+			if(result == 1) return JsonWrapper.successWrapper("update completed");
+			return JsonWrapper.successWrapper("Update failed");
 		});
 	}
 
 	/**
-	 * 创建多个 DB 数据源    create pg数据库
+	 * Create multiple DB data sources
 	 * @param dataSourceInfo
 	 * @return
 	 */
@@ -163,7 +175,7 @@ public class DataSourceController extends BaseController {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
-			//验证名称是否重复
+			// Verify that the name is duplicated
 			List<String> names = new ArrayList<>();
 			List<Table> tables = dataSourceInfo.getTables();
 			for (Table table:tables) {
@@ -171,17 +183,17 @@ public class DataSourceController extends BaseController {
 			}
 			Map<String, String> verifyResult = dataSourceService.verifyDatasourceName(names);
 			if(verifyResult.size() != 0) {
-				return JsonWrapper.failureWrapper(verifyResult);//"插入失败!数据源名称重复！"
+				return JsonWrapper.failureWrapper(verifyResult);// Insert failed! Data source name is duplicated!
 			}
 			//insert
 			int result = dataSourceService.create(dataSourceInfo,token);
-			if (result == 0) return JsonWrapper.failureWrapper("插入失败");
-			return JsonWrapper.successWrapper("插入成功");
+			if (result == 0) return JsonWrapper.failureWrapper("Insert failed");
+			return JsonWrapper.successWrapper("Insert successfully");
 		});
 	}
 
 	/**
-	 * 查询 DB 数据源表中数据 
+	 * 查询数据源表中数据 
 	 * @param query
 	 * @return
 	 */
@@ -190,7 +202,7 @@ public class DataSourceController extends BaseController {
 		return Single.fromCallable(() -> {
 			Map<String, Object> result = dataSourceService.queryTableData(query);
 			if(result == null){
-				return JsonWrapper.failureWrapper("查询失败，请检查表是否存在!");
+				return JsonWrapper.failureWrapper("The query failed, please check if the table exists!");
 			}
 			return JsonWrapper.successWrapper(result);
 		});
@@ -198,7 +210,7 @@ public class DataSourceController extends BaseController {
 
 
 	/**
-	 * 根据id查询 DB and COMPONENT 数据源数据 - daas
+	 * Query DB and COMPONENT data source data based on id
 	 * @param query
 	 * @return
 	 */
@@ -207,13 +219,13 @@ public class DataSourceController extends BaseController {
 		return Single.fromCallable(() -> {
 			Map<String, Object> result = null;
 			if (!StringUtils.isBlank(query.getSql())) {
-				//获取sql
+				// Get sql
 				result = dataSourceService.queryTableData(query);
 			}else{
 				if (StringUtils.isBlank(query.getId())){
 					return JsonWrapper.failureWrapper("id不能为空！");
 				}
-				//根据id查询信息
+				// Query information based on id
 				DataSource dataSource = dataSourceService.findDataSourceById(query.getId());
 				Map<String, Object>  gsonMap = new Gson()
 						.fromJson(dataSource.getDataConfig(), new TypeToken<Map<String, Object>>() {
@@ -221,7 +233,7 @@ public class DataSourceController extends BaseController {
 				query.setDatabaseName("POSTGRES".equals(dataSource.getDataDSType())?
 						gsonMap.get("scheme").toString():gsonMap.get("databaseName").toString());
 				query.setTableName(gsonMap.get("tableName").toString());
-				//查询daasName
+				
 				String daasName = dataSourceService.getDaasNameByID(query.getId());
 				query.setDaasName(daasName);
 				if("CSV".equals(dataSource.getDataDSType()) || "JSON".equals(dataSource.getDataDSType())){
@@ -235,30 +247,29 @@ public class DataSourceController extends BaseController {
 			if(result != null){
 				return JsonWrapper.successWrapper(result);
 			}
-			return JsonWrapper.failureWrapper("查询失败，请检查表是否存在!");
+			return JsonWrapper.failureWrapper("The query failed, please check if the table exists!");
 		});
 	}
 
 
 	/**
-	 * 查询单个 DB 数据源连接信息根据id
+	 * Query a single DB data source connection information based on id
 	 * @param id
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/findConnectionById", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> findConnectionById(@Parameter String id){
 		return Single.fromCallable(() -> {
-			//查询数据源信息ById
 			DremioDataSourceInfo dataSource = dataSourceService.findDataSourceInfo(id);
 			if(dataSource == null){
-				return JsonWrapper.failureWrapper("数据不存在");
+				return JsonWrapper.failureWrapper("Data does not exist");
 			}
 			return JsonWrapper.successWrapper(dataSource);
 		});
 	}
 
 	/**
-	 * 更新单个 DB 数据源
+	 * Update a single DB data source
 	 * @param source
 	 * @return
 	 */
@@ -266,14 +277,14 @@ public class DataSourceController extends BaseController {
 	public Single<Map<String,Object>> updateDatasourceById(@Body DremioDataSourceInfo source){
 		return Single.fromCallable(() -> {
 			if(StringUtils.isBlank(source.getId())){
-				return JsonWrapper.failureWrapper("id不能为空！");
+				return JsonWrapper.failureWrapper("Id can't be empty!");
 			}
 
 			int rsult = dataSourceService.updateDatasourceById(source);
 			if(rsult == 0){
-				return JsonWrapper.failureWrapper("更新失败！");
+				return JsonWrapper.failureWrapper("Update failed!");
 			}else{
-				return JsonWrapper.successWrapper("更新成功");
+				return JsonWrapper.successWrapper("update completed");
 			}
 
 		});
@@ -281,14 +292,13 @@ public class DataSourceController extends BaseController {
 
 
 	/**
-	 * 查询单个数据源信息根据id
+	 * Query individual data source information based on id
 	 * @param id
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/findDatasourceById", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> findDatasourceById(@Parameter String id){
 		return Single.fromCallable(() -> {
-			//查询数据源信息ById
 			DataSource dataSource = dataSourceService.findDataSourceById(id);
 			dataSource.setDataConfig(null);
 			return JsonWrapper.successWrapper(dataSource);
@@ -296,20 +306,19 @@ public class DataSourceController extends BaseController {
 	}
 
 	/**
-	 * 批量删除 根据id
+	 * Batch delete based on id
 	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/delete", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> deleteDatasourceById(@Parameter String ids){
 		return Single.fromCallable(() -> {
-			//查询数据源信息ById
 			int result = dataSourceService.deleteDatasourceById(ids);
 			if(result == 0){
-				return JsonWrapper.failureWrapper("删除失败");
+				return JsonWrapper.failureWrapper("failed to delete");
 			}
 			if(result == 2){
-				return JsonWrapper.failureWrapper("数据源被引用,无法删除");
+				return JsonWrapper.failureWrapper("Cannot delete a used data source");
 			}
 			return JsonWrapper.successWrapper(result);
 		});
@@ -317,7 +326,7 @@ public class DataSourceController extends BaseController {
 
 
 	/**
-	 * 查询已定阅资源（资源目录）
+	 * Query scheduled resources (resource directory)
 	 * @param requestParams
 	 * @return
 	 */
@@ -331,16 +340,16 @@ public class DataSourceController extends BaseController {
 
 	//	type == 'SimpleDataSource' ? url = API.dataSourceDetail : url = API.getInstances;
 	/** 
-	 * 通过组件实例id，获取数据源详细信息
-	 * 触发操作：点击已经拖拽进去的组件 jeq
-	 * @param id 组件实例id
-	 * 组件代码code			组件分类classification（数据源、预处理、机器学习）
+	 * Get the data source details through the component instance id.
+	 * Action: Click on the component that has been dragged into the panel
+	 * @param id Component instance id
+	 * Component code       component classification (data source, preprocessing, machine learning)
 	 * MyDataSource			001
 	 * SimpleDataSource		001
-	 * DataPreProcess 		002	数据处理
-	 * DataFilter  			002	数据过滤
-	 * UNION  				002	并表
-	 * Split  				002	拆分
+	 * DataPreProcess 		002	data processing
+	 * DataFilter  			002	Data filtering
+	 * UNION  				002	union table
+	 * Split  				002	Split table
 	 */
 	@RequestMapping(value = BASE_PATH + "/dataSourceDetail", method = RequestMethod.POST) 
 	public Object dataSourceDetail(@Parameter String id,@Parameter String code,@Parameter String classification,HttpRequest request) {
@@ -348,46 +357,46 @@ public class DataSourceController extends BaseController {
 			if (!StringUtils.isBlank(id) && !StringUtils.isBlank(code) && !StringUtils.isBlank(classification)) {
 				if ("001".equals(classification) && "SimpleDataSource".equals(code)) {
 					String token = request.getParameters().get("token");
-					if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
-					return JsonWrapper.successWrapper(dataSourceService.findDataSourceDetail(id, token));//数据源Tree
+					if (token == null) return JsonWrapper.failureWrapper("The token cannot be empty!");
+					return JsonWrapper.successWrapper(dataSourceService.findDataSourceDetail(id, token));
 				} else if ("002".equals(classification)) { //
-					return JsonWrapper.successWrapper(dataSourceService.dataPreProcess(id));//数据预处理组件
+					return JsonWrapper.successWrapper(dataSourceService.dataPreProcess(id));
 				} else {
-					return JsonWrapper.failureWrapper("暂不支持其他类型组件");
-//					return JsonWrapper.successWrapper(dataSourceService.getInstance(id));//其他，暂时不做
+					return JsonWrapper.failureWrapper("Other types of components are not supported at this time");
+//					return JsonWrapper.successWrapper(dataSourceService.getInstance(id));
 				}
 			} else {
-				return JsonWrapper.failureWrapper("参数不能为空");
+				return JsonWrapper.failureWrapper("Parameter cannot be empty");
 			}
 		});
 	}
 
 	/** 
-	 * 根据id获得数据源信息
-	 * @param id 数据源id
+	 * Get datasource information based on id
+	 * @param id datasource id
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/get", method = RequestMethod.POST) 
 	public Object get(@Parameter String id,HttpRequest request) {
 		return Single.fromCallable(() -> {
-			if(!com.datalsphere.drmp.module.dal.buscommon.utils.StringUtils.isBlank(id)) {
+			if(!StringUtils.isBlank(id)) {
 				String token = request.getParameters().get("token");
-				if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
+				if (token == null) return JsonWrapper.failureWrapper("The token cannot be empty!");
 				DataSourceWithAll dataSource=dataSourceService.getWithPanel(id, token);
 				if(dataSource!=null){
 					return JsonWrapper.successWrapper(dataSource);
 				} else {
-					return JsonWrapper.failureWrapper("没有该id的数据源");
+					return JsonWrapper.failureWrapper("No data source for this id");
 				}
 			} else {
-				return JsonWrapper.failureWrapper("id参数不能为空");
+				return JsonWrapper.failureWrapper("The id parameter cannot be empty");
 			}
 		});
 	}
 
 
 	/**
-	 * 预览JSON文件内容
+	 * Preview JSON file content
 	 * @param file
 	 * @return
 	 */
@@ -400,7 +409,7 @@ public class DataSourceController extends BaseController {
 	}
 
 	/**
-	 * JSONFinsh方法
+	 * JSON Finsh
 	 * @param JSONInfo
 	 * @return
 	 */
@@ -414,7 +423,7 @@ public class DataSourceController extends BaseController {
 	}
 
 	/**
-	 * 更新JSON
+	 * update JSON
 	 * @param JSONInfo
 	 * @return
 	 */
@@ -431,7 +440,7 @@ public class DataSourceController extends BaseController {
 	}
 
 //	/**
-//	 * 删除JSON
+//	 * delete JSON
 //	 * @param JSONInfo
 //	 * @return
 //	 */
@@ -443,7 +452,7 @@ public class DataSourceController extends BaseController {
 //	}
 
 	/**
-	 * 预览CSV文件内容
+	 * Preview CSV file content
 	 * @param file
 	 * @return
 	 */
@@ -461,7 +470,7 @@ public class DataSourceController extends BaseController {
 	}
 
 	/**
-	 * CSV Finish方法
+	 * CSV Finish
 	 * @param JSONInfo
 	 * @return
 	 */
@@ -476,7 +485,7 @@ public class DataSourceController extends BaseController {
 	}
 
 	/**
-	 * 更新CSV
+	 * update CSV
 	 * @param JSONInfo
 	 * @return
 	 */
@@ -490,16 +499,6 @@ public class DataSourceController extends BaseController {
 		});
 	}
 
-//	@Post(value = "/preview_unsaved", consumes = MediaType.MULTIPART_FORM_DATA)
-//	public Single<Map<String,Object>> upload(CompletedFileUpload file,String name) {
-//		return Single.fromCallable(() -> {
-//			System.out.println(name);
-////			if(dataSourceService.test(file)!=1){
-//			return JsonWrapper.successWrapper(dataSourceService.uploadStart(file));
-////			}
-////			return JsonWrapper.failureWrapper("上传失败");
-//		});
-//	}
 
 	@RequestMapping(value = BASE_PATH + "/listFile", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> listJSON(@Parameter String id) {
