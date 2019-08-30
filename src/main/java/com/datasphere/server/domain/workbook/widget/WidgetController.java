@@ -1,29 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specic language governing permissions and
- * limitations under the License.
- */
-
-/*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.domain.workbook.widget;
@@ -93,7 +77,7 @@ import com.datasphere.server.util.HttpUtils;
 import static com.datasphere.server.config.ApiResourceConfig.REDIRECT_PATH_URL;
 import static java.util.stream.Collectors.toList;
 
-/**d
+/**
  * Resource of Widgets
  */
 @RepositoryRestController
@@ -127,7 +111,7 @@ public class WidgetController {
   public @ResponseBody ResponseEntity<?> copyWidget(@PathVariable("widgetId") String widgetId,
                                   PersistentEntityResourceAssembler resourceAssembler) {
 
-    Widget widget = widgetRepository.findOne(widgetId);
+    Widget widget = widgetRepository.findById(widgetId).get();
     if (widget == null) {
       throw new ResourceNotFoundException("Widget(" + widgetId + ") not found");
     }
@@ -174,7 +158,7 @@ public class WidgetController {
                                                            @RequestParam(value = "preview", required = false) boolean preview,
                                                            @RequestParam(value = "limit", required = false) Integer limit,
                                                            @RequestBody(required = false) List<Filter> filters) {
-    Widget widget = widgetRepository.findOne(widgetId);
+    Widget widget = widgetRepository.findById(widgetId).get();
     if (widget == null) {
       throw new ResourceNotFoundException(widgetId);
     }
@@ -214,7 +198,7 @@ public class WidgetController {
                                                            HttpServletRequest request,
                                                            HttpServletResponse response) {
 
-    Widget widget = widgetRepository.findOne(widgetId);
+    Widget widget = widgetRepository.findById(widgetId).get();
     if (widget == null) {
       throw new ResourceNotFoundException(widgetId);
     }
@@ -287,7 +271,7 @@ public class WidgetController {
                                                                limit,
                                                                null);
 
-    // 최대값을 임시로 천만 건으로 조정
+    // Temporarily adjust the maximum to 10 million
     searchQuery.setLimits(new Limit(10000000));
 
     String accept = resquest.getHeader("accept");
@@ -320,7 +304,7 @@ public class WidgetController {
       throw new BadRequestException("Not allowed row count. max 1,000,000");
     }
 
-    Widget widget = widgetRepository.findOne(widgetId);
+    Widget widget = widgetRepository.findById(widgetId).get();
     if (widget == null) {
       throw new ResourceNotFoundException(widgetId);
     }

@@ -1,15 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.domain.workbook;
@@ -87,7 +85,7 @@ public class DashBoardController {
       throw new IllegalArgumentException("Invalid widget type. choose " + Widget.SEARCHABLE_WIDGETS);
     }
 
-    DashBoard dashBoard = dashboardRepository.findOne(dashboardId);
+    DashBoard dashBoard = dashboardRepository.findById(dashboardId).get();
     if(dashBoard == null) {
       throw new ResourceNotFoundException("Dashboard(" + dashboardId + ") not found");
     }
@@ -109,7 +107,7 @@ public class DashBoardController {
   public @ResponseBody ResponseEntity<?> copyDashboard(@PathVariable("dashboardId") String dashboardId,
                                                        PersistentEntityResourceAssembler resourceAssembler) {
 
-    DashBoard dashBoard = dashboardRepository.findOne(dashboardId);
+    DashBoard dashBoard = dashboardRepository.findById(dashboardId).get();
     if(dashBoard == null) {
       throw new ResourceNotFoundException("Dashboard(" + dashboardId + ") not found");
     }
@@ -121,7 +119,7 @@ public class DashBoardController {
 
 
   /**
-   * 대시보드 내 매핑된 데이터 질의 수행, NoteBook 모듈내에서 수행
+   * Query mapped data in dashboards, within NoteBook module
    *
    * @param id
    * @param request
@@ -133,7 +131,7 @@ public class DashBoardController {
                                           @RequestParam(value = "limit", required = false) Integer limit,
                                           @RequestBody(required = false) SearchQueryRequest request) {
 
-    DashBoard dashBoard = dashboardRepository.findOne(id);
+    DashBoard dashBoard = dashboardRepository.findById(id).get();
     if (dashBoard == null) {
       throw new ResourceNotFoundException(id);
     }
@@ -147,7 +145,7 @@ public class DashBoardController {
       throw new MetatronException("Configuration empty.");
     }
 
-    // 멀티데이터 소스의 경우 첫번째 데이터 소스를 처리
+    // For multidata sources, process the first data source
     DataSource targetDataSource = null;
     if(configuration.getDataSource() instanceof MultiDataSource) {
       targetDataSource = ((MultiDataSource) configuration.getDataSource()).getDataSources().get(0);
@@ -168,7 +166,6 @@ public class DashBoardController {
       request.setProjections(new ArrayList<>());
     }
 
-    // 데이터 Limit 처리 최대 백만건까지 확인 가능함
     if(request.getLimits() == null) {
       if(limit == null) {
         limit = 1000;
@@ -184,7 +181,7 @@ public class DashBoardController {
   }
 
   /**
-   * 대시보드 Embed 용 화면 전달
+   * Screen Pass for Dashboard Embed
    *
    * @param id
    * @return
@@ -194,7 +191,7 @@ public class DashBoardController {
                                       HttpServletRequest request,
                                       HttpServletResponse response) {
 
-    DashBoard dashBoard = dashboardRepository.findOne(id);
+    DashBoard dashBoard = dashboardRepository.findById(id).get();
     if (dashBoard == null) {
       throw new ResourceNotFoundException(id);
     }

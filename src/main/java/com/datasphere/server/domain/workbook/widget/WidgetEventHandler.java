@@ -1,15 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.domain.workbook.widget;
@@ -48,7 +46,7 @@ public class WidgetEventHandler {
 
     if(widget instanceof PageWidget) {
       PageWidget pageWidget = (PageWidget) widget;
-      // 이미지 처리
+      // Image processing
       if(StringUtils.isNotEmpty(pageWidget.getImageUrl())) {
         updateImages(pageWidget.getId());
       }
@@ -62,7 +60,7 @@ public class WidgetEventHandler {
 
     if(widget instanceof PageWidget) {
       PageWidget pageWidget = (PageWidget) widget;
-      // 이미지 처리
+      // Image processing
       if(StringUtils.isNotEmpty(pageWidget.getImageUrl())) {
         deleteImages(pageWidget.getId());
       }
@@ -80,7 +78,7 @@ public class WidgetEventHandler {
       targetImages.get(0).setEnabled(true);
       imageRepository.save(targetImages.get(0));
     } else {
-      // 여러번 사진을 업로드한 경우
+      // If you uploaded a photo multiple times
       for (int i = 0; i < targetImages.size(); i++) {
         if (i == 0) {
           targetImages.get(i).setEnabled(true);
@@ -99,6 +97,6 @@ public class WidgetEventHandler {
       return;
     }
 
-    imageRepository.delete(targetImages);
+    imageRepository.deleteInBatch(targetImages);
   }
 }
