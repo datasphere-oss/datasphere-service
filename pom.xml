@@ -61,7 +61,7 @@
 
 		<orc-core.version>1.4.4</orc-core.version>
 
-		<!-- 쿼리 빌더 이미지 snapshot lib -->
+		<!--Query builder image snapshot lib -->
 		<jgraphx.version>3.4.1.3</jgraphx.version>
 		<lowagie.version>2.0.7</lowagie.version>
 
@@ -424,13 +424,12 @@
 			<systemPath>${project.basedir}/lib/ojdbc8-18.3.0.0.jar</systemPath>
 		</dependency>
 		
-
 		<dependency>
 		    <groupId>cglib</groupId>
 		    <artifactId>cglib-nodep</artifactId>
 		    <version>2.2.2</version>
 		</dependency>
-		<!-- 스프링 Context Support (Email기능/Quartz 사용) -->
+		<!-- Spring Context Support (Email feature / Quartz use) -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
@@ -538,7 +537,7 @@
 			<artifactId>spring-boot-starter-aop</artifactId>
 			<version>${spring.boot.version}</version>
 		</dependency>
-		<!-- Spring Data JPA 의존성 이슈로 인한 추가 -->
+		<!-- Added due to Spring Data JPA dependency issue -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
@@ -856,7 +855,7 @@
 			</exclusions>
 		</dependency>
 
-		<!-- Phoenix 관련 Client Jackson 충돌로 인한 버전 업 https://issues.apache.org/jira/browse/CALCITE-1110 -->
+		<!-- Version upgrade due to Phoenix-related Client Jackson crash https://issues.apache.org/jira/browse/CALCITE-1110 -->
 		<dependency>
 			<groupId>org.apache.calcite.avatica</groupId>
 			<artifactId>avatica</artifactId>
