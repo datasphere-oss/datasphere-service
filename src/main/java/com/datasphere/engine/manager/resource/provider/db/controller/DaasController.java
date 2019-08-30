@@ -379,7 +379,7 @@ public class DaasController extends BaseController {
 	//	type == 'SimpleDataSource' ? url = API.dataSourceDetail : url = API.getInstances;
 	/** 
 	 * 通过组件实例id，获取数据源详细信息
-	 * 触发操作：点击已经拖拽进去的组件 jeq
+	 * 触发操作：点击已经拖拽进去的组件
 	 * @param id 组件实例id
 	 * 	组件代码code			组件分类classification（数据源、预处理、机器学习）
 	 * MyDataSource			001

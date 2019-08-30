@@ -1,3 +1,15 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.shaker.processor.instance.service;
 
 import java.sql.SQLException;
@@ -38,9 +50,11 @@ import com.datasphere.engine.manager.resource.provider.service.DataQueryService;
 import com.datasphere.engine.manager.resource.provider.service.ExchangeSSOService;
 import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
+import com.datasphere.engine.shaker.processor.definition.constant.GlobalDefine;
 import com.datasphere.engine.shaker.processor.definition.dao.ComponentDefinitionDao;
 import com.datasphere.engine.shaker.processor.instance.analysis.WarpInputAndOutput;
 import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;
+import com.datasphere.engine.shaker.processor.instance.constant.DataKeyPrefix;
 import com.datasphere.engine.shaker.processor.instance.dao.ComponentInstanceDao;
 import com.datasphere.engine.shaker.processor.instance.dao.ComponentInstanceRelationDao;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;

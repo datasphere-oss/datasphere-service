@@ -1,23 +1,33 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.shaker.processor.instance.dao;
 
 import java.util.List;
 
-//import org.apache.ibatis.annotations.ResultMap;
-import io.micronaut.context.annotation.Parameter;
+import javax.inject.Singleton;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.datasphere.resource.manager.module.component.instance.domain.ComponentInstance;
-
-import javax.inject.Singleton;
+import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 
 @Singleton
 public interface ComponentInstanceDao  {
 	
 	/**
-	 * 根据面板ID和组件分类查询出组件实例，面板ID条件是精确匹配，组件分类条件是正则匹配
+	 * The component instance is queried according to the panel ID and the component classification. The panel ID condition is an exact match, and the component classification condition is a regular match.
 	 * @param panelId
 	 * @param
 	 * @return
@@ -27,14 +37,14 @@ public interface ComponentInstanceDao  {
 //	List<ComponentInstance> listDataSourceByPanelId(String panelId);
 	
 	/**
-	 * 根据组件ID查询引用了此组件的面板数量
+	 * Query the number of panels that reference this component based on the component ID
 	 * @param componentDefinitionId
 	 * @return
 	 */
 //	long countDistinctPanelsByComponentId(String componentDefinitionId);
 	
 	/**
-	 * 列出当前面板下所有组件实例的名称
+	 * List the names of all component instances under the current panel
 	 * @param panelId
 	 * @retur
 	 */

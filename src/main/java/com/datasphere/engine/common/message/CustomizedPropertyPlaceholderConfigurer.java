@@ -1,3 +1,15 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.common.message;
 
 import java.io.IOException;
@@ -32,6 +44,22 @@ public class CustomizedPropertyPlaceholderConfigurer {
 				break;
 			case "ISSTOP":
 				rs = "\\u5DF2\\u7ECF\\u505C\\u6B62";
+				break;
+		}
+		return rs;
+	}
+	
+	public Object getDefault(Object name) throws IOException {
+		String rs = "";
+		switch (name.toString()) {
+			case "COMPONENTINSTANCE_CALCULATE_CALLBACK_URL":
+				rs = "http://127.0.0.1:8082/dfc/process/callBack/";
+				break;
+			case "COMPONENTINSTANCE_CALCULATE_URL":
+				rs = "http://127.0.0.1:8082/algm/compute";
+				break;
+			case "COMPONENTINSTANCE_CALCULATE_GROUPURL":
+				rs = "http://127.0.0.1:8082/algm/compute_group";
 				break;
 		}
 		return rs;

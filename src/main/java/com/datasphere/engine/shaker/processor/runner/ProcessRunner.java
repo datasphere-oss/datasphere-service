@@ -1,25 +1,40 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.shaker.processor.runner;
 
-import java.util.*;
-import java.util.concurrent.Callable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.datasphere.resource.manager.module.dal.service.DataAccessor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.datasphere.common.data.Dataset;
 import com.datasphere.engine.shaker.processor.instance.AssociationEndpoint;
 import com.datasphere.engine.shaker.processor.instance.Component;
+import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;
+import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
 import com.datasphere.engine.shaker.processor.stop.StopSingleInstance;
-import com.datasphere.resource.manager.module.component.instance.buscommon.constant.ComponentInstanceStatus;
-import com.datasphere.resource.manager.module.component.instance.service.ComponentInstanceService;
-import com.datasphere.resource.manager.module.panel.buscommon.constant.PanelState;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.datasphere.engine.shaker.workflow.panel.constant.PanelState;
+import com.datasphere.server.connections.service.DataAccessor;
 
 public class ProcessRunner {
 	protected DataAccessor dataAccessor;
@@ -140,7 +155,7 @@ public class ProcessRunner {
                     List<Component> parents = getProcessComponentsFromParents(allComponentsMap.get(c.getId()).getParents());
                     if (!isToRun(parents))  return null;
                     try {
-                        complete(c,latch);// 计数器-1
+                        complete(c,latch);
                         allComponentsMap.get(c.getId()).setStatus(ComponentInstanceStatus.SUCCESS);
                     } catch (Exception e) {
                         allComponentsMap.get(c.getId()).setStatus(ComponentInstanceStatus.FAILURE);

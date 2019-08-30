@@ -1,3 +1,15 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.shaker.processor.prep.controller;
 
 import com.datasphere.core.common.BaseController;
@@ -20,6 +32,9 @@ import static com.datasphere.engine.shaker.processor.prep.constant.ReturnConst.D
 import static com.datasphere.engine.shaker.processor.prep.constant.ReturnConst.Failed;
 import static com.datasphere.engine.shaker.processor.prep.constant.ReturnConst.ParameterInvalid;
 
+import io.micronaut.context.annotation.Parameter;
+import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.Body;
 /**
  * data preprocessing by workflow
  */
@@ -43,7 +58,6 @@ public class DataProcessController extends BaseController{
                 } else
                     result.setCode(ParameterInvalid);
             } catch (Exception e) {
-                logger.info("获取信息 出错");
                 result.setCode(Failed);
             }
             return result;
@@ -68,7 +82,6 @@ public class DataProcessController extends BaseController{
             result.setData(programFlowData);
 
         } catch (Exception e) {
-            logger.info("设置为默认方案 出错");
             result.setCode(Failed);
         }
         return result;
@@ -86,7 +99,6 @@ public class DataProcessController extends BaseController{
             JoinOutputData ouputData = dataProcessService.join(inputdata);
             result.setData(ouputData);
         } catch (RuntimeException e) {
-            logger.info("删除指定数据处理出错");
             result.setCode(Failed);
         }
         return result;

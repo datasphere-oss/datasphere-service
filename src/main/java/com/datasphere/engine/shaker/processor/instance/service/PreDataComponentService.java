@@ -24,7 +24,7 @@ public class PreDataComponentService extends BaseService {
 		String url = this.getDetailUrl() + id;
 		String res = HttpUtils.get(url);
 		if (StringUtils.isBlank(res)) {
-			throw new JIllegalOperationException("请求失败！url=" + url);
+			throw new JIllegalOperationException("Request failed!url=" + url);
 		}
 		PreDataProcessEntity preDataProcessEntity = null;
 		ReturnData result = JSONObject.parseObject(res, ReturnData.class);
@@ -37,7 +37,7 @@ public class PreDataComponentService extends BaseService {
 	}
 
 	public int check(String id) throws Exception {
-		String checkUrl = String.valueOf("http://127.0.0.1:8082/drmp/prepsc/process/check/") + "?processId="+id;// jeq
+		String checkUrl = String.valueOf("http://127.0.0.1:8082/drmp/prepsc/process/check/") + "?processId="+id;
 		String checkResponse = HttpUtils.get(checkUrl);
 		if (!StringUtils.isEmpty(checkResponse)) {
 			JSONObject obj = JSONObject.parseObject(checkResponse);

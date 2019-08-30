@@ -1,14 +1,27 @@
-package com.datasphere.engine.shaker.processor.runner;
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
 
-import com.datasphere.resource.manager.module.dal.buscommon.utils.StringUtils;
-import com.datasphere.resource.manager.module.dal.service.DataAccessor;
-import com.datasphere.common.data.Dataset;
-import com.datasphere.engine.shaker.processor.instance.AssociationEndpoint;
-import com.datasphere.engine.shaker.processor.instance.Component;
+package com.datasphere.engine.shaker.processor.runner;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.datasphere.common.data.Dataset;
+import com.datasphere.engine.shaker.processor.instance.AssociationEndpoint;
+import com.datasphere.engine.shaker.processor.instance.Component;
+import com.datasphere.server.connections.service.DataAccessor;
 
 
 public class SubProcessRunner extends ProcessRunner {

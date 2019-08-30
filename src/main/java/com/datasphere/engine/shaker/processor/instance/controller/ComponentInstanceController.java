@@ -1,8 +1,21 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.shaker.processor.instance.controller;
 
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -10,12 +23,23 @@ import com.datasphere.common.data.Dataset;
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.core.utils.JsonWrapper;
+import com.datasphere.engine.manager.resource.provider.service.DataQueryService;
+import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
+import com.datasphere.engine.shaker.processor.instance.model.DeleteComponentInstanceResult;
+import com.datasphere.engine.shaker.processor.instance.model.QueryDataParams;
+import com.datasphere.engine.shaker.processor.instance.model.UpdatePositionEntity;
+import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
+import com.datasphere.server.connections.model.DataSetInstance;
 
 import io.reactivex.Single;
+import javax.inject.Inject;
+
+import io.micronaut.context.annotation.Parameter;
+import io.micronaut.http.annotation.Post;
 
 /**
- * 组件实例操作接口
- * 组件拖拽进panel、组件从面板中删除、组件在面板中编辑
+ * Component instance operation interface
+ * The component is dragged into the panel, the component is removed from the panel, and the component is edited in the panel.
  */
 @Controller
 public class ComponentInstanceController extends BaseController {
@@ -27,7 +51,7 @@ public class ComponentInstanceController extends BaseController {
 	@Autowired
 	DataQueryService dataQueryService;
 	/**
-	 * 查询组件实例的详细信息
+	 * Query component instance details
 	 */
 	@Post(BASE_PATH + "/get")
 	public Single<Map<String,Object>> get(@Parameter String id, @Parameter String creator) {
@@ -37,7 +61,7 @@ public class ComponentInstanceController extends BaseController {
 	}
 
 	/**
-	 * 创建组件实例：组件拖拽进panel
+	 * Create a component instance: the component drags into the panel
 	 * @param componentInstance
 	 * @return
 	 */
@@ -45,11 +69,11 @@ public class ComponentInstanceController extends BaseController {
 	public Single<Map<String,Object>> create(@Body ComponentInstance componentInstance, HttpRequest request) { //, @Parameter String reserve
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
-			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
+			if (token == null) return JsonWrapper.failureWrapper("The token cannot be empty!");
 			if (componentInstanceService.insert(componentInstance, token) > 0 ) {
 				return JsonWrapper.successWrapper(componentInstanceService.get(componentInstance.getId()));
 			} else {
-				return JsonWrapper.failureWrapper("创建组件实例：失败");
+				return JsonWrapper.failureWrapper("Create component instance: failed");
 			}
 		});
 	}
@@ -69,7 +93,7 @@ public class ComponentInstanceController extends BaseController {
 	}
 
 	/**
-	 * 更新组件实例位置以及相关关联线的位置
+	 * Update the location of the component instance and the location of the associated line
 	 * @param entity
 	 * @return
 	 */
@@ -82,7 +106,7 @@ public class ComponentInstanceController extends BaseController {
 	}
 
 	/**
-	 * 获得面板全部组件实例
+	 * Get all component instances of the panel
 	 * 
 	 * @param panelId
 	 * @return
@@ -95,8 +119,7 @@ public class ComponentInstanceController extends BaseController {
 	}
 
 	/**
-	 * 删除组件实例
-	 * 操作：删除面板中的一个组件
+	 * Delete component instance
 	 * @param id
 	 * @return
 	 */
@@ -104,7 +127,7 @@ public class ComponentInstanceController extends BaseController {
 	public Single<Map<String,Object>> delete(@Parameter String id, HttpRequest request) {//, @Parameter String creator
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
-			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
+			if (token == null) return JsonWrapper.failureWrapper("The token cannot be empty!");
 			DeleteComponentInstanceResult deleteComponentInstanceResult = componentInstanceService.deleteComponentInstance(id, token);
 			if (deleteComponentInstanceResult != null) {
 				return JsonWrapper.successWrapper(deleteComponentInstanceResult);
@@ -114,23 +137,23 @@ public class ComponentInstanceController extends BaseController {
 		});
 	}
 
-	/**0
-	 * 组件实例的复制
+	/**
+	 * Replication of component instances
 	 */
 	@Post(BASE_PATH + "/copy")
 	public Single<Map<String,Object>> copy(@Parameter String creator,@Parameter String componentInstanceId, HttpRequest request)  {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
-			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
+			if (token == null) return JsonWrapper.failureWrapper("The token cannot be empty!");
 			if (StringUtils.isBlank(creator) || StringUtils.isBlank(componentInstanceId)) {
-				return JsonWrapper.failureWrapper("参数不能为空！");
+				return JsonWrapper.failureWrapper("The parameter cannot be empty!");
 			}
 			return JsonWrapper.successWrapper(componentInstanceService.copy(creator, componentInstanceId));
 		});
 	}
 
 	/**
-	 * 得获组件实例输出的数据集描述
+	 * Get the data set description of the component instance output
 	 * @param componentInstanceId
 	 * @param output
 	 * @return
@@ -149,14 +172,13 @@ public class ComponentInstanceController extends BaseController {
 	public Single<Map<String,Object>> dataQuery(@Body QueryDataParams query) {
 		return Single.fromCallable(() -> {
 			if(!StringUtils.isBlank(query.getComponentInstanceId())){
-				//查询实例 sql
 				DataSetInstance dataSetInstance = componentInstanceService.getDataSetInfo(query.getComponentInstanceId());
 				if(dataSetInstance != null && !StringUtils.isBlank(dataSetInstance.getCiSql())){
 					query.setSql(dataSetInstance.getCiSql());
 				}else if(query.getSql() == null){
-					return JsonWrapper.failureWrapper("查询无数据!");
+					return JsonWrapper.failureWrapper("No data!");
 				}else{
-					return JsonWrapper.failureWrapper("请检查寻条件!");
+					return JsonWrapper.failureWrapper("Please check the conditions!");
 				}
 
 			}
@@ -164,7 +186,7 @@ public class ComponentInstanceController extends BaseController {
 			if(result != null){
 				return JsonWrapper.successWrapper(result);
 			}
-			return JsonWrapper.failureWrapper("查询失败，请检查数据集!");
+			return JsonWrapper.failureWrapper("The query failed, please check the data set!");
 		});
 
 	}

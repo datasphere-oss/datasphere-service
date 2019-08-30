@@ -119,6 +119,4 @@ public class ProcessInstance {
 		this.status = status;
 	}
 
-
-
 }

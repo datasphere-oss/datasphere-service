@@ -1,14 +1,35 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.shaker.workflow.panel.service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.datasphere.core.common.BaseService;
+import com.datasphere.core.common.utils.UUIDUtils;
 import com.datasphere.engine.common.exception.JIllegalOperationException;
 import com.datasphere.engine.common.named.NameGenerator;
 import com.datasphere.engine.core.utils.ExceptionConst;
@@ -27,14 +48,9 @@ import com.datasphere.engine.shaker.workflow.panel.dao.PanelDao;
 import com.datasphere.engine.shaker.workflow.panel.model.Panel;
 import com.datasphere.engine.shaker.workflow.panel.model.PanelWithAll;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 @Service
 public class PanelServiceImpl extends BaseService {
-	public static final String CustomPanelName = "默认项目";// 自定义面板默认名称
+	public static final String CustomPanelName = "Default Project";// Custom panel default name
 
 //	@@Autowired
 //    ProjectServiceImpl projectService;
@@ -50,7 +66,7 @@ public class PanelServiceImpl extends BaseService {
 //	RedisServiceImpl redisService;
 
 	/**
-	 * 创建面板（包含"自动保存"的自定义面板创建，命名为draft1,draft2,....）
+	 * Create a panel (created with a custom panel that contains "Auto Save", named draft1, draft2,....)
 	 */
 	public Panel create(Panel panel, String token) {
 		panel.setId(UUIDUtils.random());
@@ -61,20 +77,8 @@ public class PanelServiceImpl extends BaseService {
 				panelNames = dao.listNameByPanelId(panel.getId());
 			}
 			panel.setPanelName(nameGenerator.generate(CustomPanelName, panelNames));
-//			panel.setPanelName("默认项目");
 		}
-//        String userId;
-//		List<String> departmentIds;
-//        userId = exchangeSSOService.getUserId(token); //根据token获取用户信息（userId）
-//        if(userId == null) return "获取用户信息失败！";
-//        //2.获取用户所在部门id接口（get请求）
-//        departmentIds = exchangeSSOService.getCurDepAndSubDepIds(userId,token);
-//        if(departmentIds == null) return "获取用户所在部门失败！";
-//        String departmentId = null;
-//        for (String dId:departmentIds) {
-//        	dId = dId+",";
-//			departmentId+=dId;
-//		}
+
 //		departmentId = departmentId.substring(0, departmentId.length()-1);
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			PanelDao dao = sqlSession.getMapper(PanelDao.class);
@@ -91,7 +95,7 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	/**
-	 * 根据id获得面板信息(加载过project) select * from app_panel where id = ?
+	 * Get panel information based on id (loaded project) select * from app_panel where id = ?
 	 * @param id
 	 * @return
 	 */
@@ -115,9 +119,9 @@ public class PanelServiceImpl extends BaseService {
 			panel = dao.get(newPanel.getId());
 			sqlSession.close();
 		}
-		// 新旧名称不同时，判断项目下是否已经有些名称的面板。
+		// When the old and new names are different, it is judged whether there is a panel with some names under the project.
 		if (panel.getPanelName().equals(newPanel.getPanelName())) {
-			JAssert.isTrue(!verifyName(newPanel.getPanelName(), null, newPanel.getCreator()), ExceptionConst.NAME_REPEAT, "面板名称已存在！");
+			JAssert.isTrue(!verifyName(newPanel.getPanelName(), null, newPanel.getCreator()), ExceptionConst.NAME_REPEAT, "The panel name already exists!");
 		}
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			PanelDao dao = sqlSession.getMapper(PanelDao.class);
@@ -189,7 +193,7 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	/**
-	 * 检验名称是否已经存在
+	 * Verify that the name already exists
 	 * @return
 	 */
 	public boolean verifyName(String panelName, String projectId, String userId) {
@@ -200,7 +204,7 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	/**
-	 * 查询最后一词访问的面板
+	 * Query the panel accessed by the last word
 	 * @param creator
 	 * @return
 	 */
@@ -214,7 +218,7 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	/**
-	 * 模糊查询
+	 * Fuzzy query
 	 * @param t
 	 * @return
 	 */
@@ -226,7 +230,7 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	/**
-	 * 根据id查询project, 关联将panel查询出来，帶排序，加分页
+	 * Query the project according to the id, the association will query the panel, with sorting, adding pages
 	 * @param panel
 	 * @return
 	 */
@@ -239,7 +243,7 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	/**
-	 * 根据多个项目id查找每个项目下的面板列表，分页，排序功能需要实现。返回包含所以项目（每个项目id + 对应的面板信息）
+	 * Find the list of panels under each project based on multiple project ids. The paging and sorting functions need to be implemented. Returns the items that contain the items (each panel id + corresponding panel information)
 	 * @param panel
 	 * @return
 	 */
@@ -277,19 +281,18 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	/**
-	 * dmp：获取面板详细信息。情况一：有项目和面板，正常处理；情况二：有项目没有面板，返回null，提示没有面板；情况三：没有项目没有面板，创建默认项目、
-	 * reource.manager：情况一：有项目面板，返回null，提示没有面板；情况二：没有项目面板，创建默认项目面板，返回空白面板信息
+	 * Get the panel details. Case 1: There are projects and panels, normal processing; Case 2: There are no panels in the project, return null, prompt no panel; Case 3: no project has no panel, create default project,
+	 * Reource.manager: Case 1: There is a project panel, returning null, prompting no panel; Case 2: No project panel, creating default project panel, returning blank panel information
 	 * @param projectId
 	 * @param panelId
 	 * @return
 	 */
 	public PanelWithAll panelDetail(String projectId, String panelId, String token) {
-		JAssert.isTrue(panelId != null, "项目面板ID不能为空!");
+		JAssert.isTrue(panelId != null, "Project panel ID cannot be empty!");
 //		id = getPanelById(panelId).getId();
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			PanelDao dao = sqlSession.getMapper(PanelDao.class);
 			String username = exchangeSSOService.getAccount(token);
-			// 如果是超级管理员，则可以操作
 			boolean root = false;
 			try {
 				Object obj = redisService.get(token);
@@ -297,7 +300,6 @@ public class PanelServiceImpl extends BaseService {
 					String allInfo = obj.toString();
 					JSONObject allInfoJson = JSON.parseObject(allInfo);
 					JSONArray roles = allInfoJson.getJSONArray("roles");
-// {"roles":[{"level":"ROOT","name":"系统超级管理员","remark":"系统默认角色,拥有系统访问的最大权限","id":"superAdmin","type":"DEFAULT","roleGroupId":"defaultRoleGroup"}]
 					for(Object role:roles) {
 						JSONObject role2 = JSON.parseObject(role.toString());
 						if("superAdmin".equals(role2.getString("id"))) {
@@ -308,7 +310,7 @@ public class PanelServiceImpl extends BaseService {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			if (!root) JAssert.isTrue(dao.existsByCreator(panelId, username), "面板不存在！ID="+panelId+"，用户："+username);
+			if (!root) JAssert.isTrue(dao.existsByCreator(panelId, username), "The panel does not exist!ID="+panelId+"，user："+username);
 		}
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			PanelDao dao = sqlSession.getMapper(PanelDao.class);
@@ -327,40 +329,29 @@ public class PanelServiceImpl extends BaseService {
 	public Map<String, Object> panelPageDetail(String projectId, String panelId, String token) {
 		String userId = exchangeSSOService.getAccount(token);
 		Map<String, Object> panelList = null;
-		//项目不存在，面板不存在
-//		if(StringUtils.isBlank(projectId) && StringUtils.isBlank(panelId)) {
 		if(StringUtils.isBlank(panelId)) {
-			//取该用户上一次访问面板详细信息
 			Map<String, String> lastPanel = getLastAccessPanel(userId);
-			if(lastPanel == null) {	// 如果还没创建面板，在“默认项目”下创建一个面板
-				//该用户上一次访问面板详细信息不存在，则创建默认面板
-//				panelId = getDefaultPanel().getId();
+			if(lastPanel == null) {
 				Panel panel = new Panel();
 				panel = create(panel, token);
-				JAssert.isTrue(panel != null,"创建默认面板-面板不能为空！");
+				JAssert.isTrue(panel != null,"Create default panel - panel can't be empty!");
 				panelId = panel.getId();
 			} else {
-				//该用户上一次访问面板详细信息存在，则获取上次的面板流程详细信息
 				panelId = lastPanel.get("id");
-//				projectId = lastPanel.get("projectId");
 			}
 		}
-//		else if(!StringUtils.isBlank(projectId) && StringUtils.isBlank(panelId)){
-//			//该项目下没有面板时，提示没有面板
-//			return null;
-//		}
 
-		//获取面板及流程详细信息，并将该用户下的全部项目信息放入结果中。
+		//Get the panel and process details and put all the project information under the user into the results.
 		getPanelWithAll(projectId, panelId, userId, token);
 
 		return panelList;
 	}
 
-	//默认项目面板
+	//Default project panel
 	public Panel getDefaultPanel(String token) {
 		Panel panel = new Panel();
 		panel.setCreator(exchangeSSOService.getAccount(token));
-		panel.setProjectName("默认项目");
+		panel.setProjectName("Default project");
 		List<Panel> panelList = null;
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			PanelDao dao = sqlSession.getMapper(PanelDao.class);
@@ -369,7 +360,7 @@ public class PanelServiceImpl extends BaseService {
 		if (panelList.size() > 0) {
 			return panelList.get(0);
 		} else {
-			panel.setProjectDesc("该项目存储自定义面板!");
+			panel.setProjectDesc("This project stores custom panels!");
 			try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 				PanelDao dao = sqlSession.getMapper(PanelDao.class);
 				dao.insert(panel);
@@ -380,7 +371,7 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	/**
-	 * 另存为
+	 * Save as
 	 * @return
 	 */
 	public Map<String, String> saveAs(String id, String projectId, String panelName, String panelDesc, String token) {
@@ -418,7 +409,7 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	/**
-	 * 另存为
+	 * save as
 	 * @param newPanel
 	 * @return
 	 */
@@ -429,14 +420,14 @@ public class PanelServiceImpl extends BaseService {
 			PanelDao dao = sqlSession.getMapper(PanelDao.class);
 			oldPanel = dao.get(oldPanelId);
 		}
-		JAssert.isTrue(oldPanel != null, "面板不存在！ID=" + oldPanelId);
+		JAssert.isTrue(oldPanel != null, "The panel does not exist!ID=" + oldPanelId);
 //		List<String> panelNames = null;
 		if (StringUtils.isBlank(newPanel.getPanelName())) {
 //			panelNames = dao.listNamesByProjectId(newPanel.getProjectId());
 			newPanel.setPanelName(newPanel.getPanelName());
 		} else {
 			if (!StringUtils.isBlank(newPanel.getPanelName()) && verifyName(newPanel.getPanelName(), newPanel.getProjectId(), newPanel.getCreator())) {
-				throw new JIllegalOperationException("面板重命名！");
+				throw new JIllegalOperationException("Panel rename!");
 			}
 		}
 		if (StringUtils.isBlank(newPanel.getPanelDesc())) {
@@ -466,7 +457,7 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	/**
-	 * 溯源，查询数据源在哪些面板中引用了
+	 * Traceability, in which panels the query data source is referenced
 	 * @param id
 	 * @param userId
 	 * @return
@@ -479,7 +470,7 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	/**
-	 * 多个数据源中每个数据源被多少个面板引用，以及是那些面板在引用，返回面板数量和面板信息（包括面板id，面板名称 和 项目id）。
+	 * How many panels are referenced by each of the multiple data sources, and those panels are referenced, returning the number of panels and panel information (including panel id, panel name, and project id).
 	 * @param ids
 	 * @param userId
 	 * @return
@@ -500,7 +491,7 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	/**
-	 * 获取该用户上一次访问面板详细信息
+	 * Get the last time the user accessed the panel details
 	 * @return
 	 */
 	public Map<String, String> getLastAccessPanel(String creator) {
@@ -519,13 +510,13 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	/**
-	 * 删除项目下的面板
+	 * Delete the panel contained in the project
 	 * @param projectId
 	 */
 	public Integer deleteById(String projectId) {
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			PanelDao dao = sqlSession.getMapper(PanelDao.class);
-			// 查询项目下所有面板的ID
+			
 			List<String> panelIdList = dao.listIdByProjectId(projectId);
 			if (!CollectionUtils.isEmpty(panelIdList)) {
 				for (String panelId : panelIdList) {
@@ -544,28 +535,11 @@ public class PanelServiceImpl extends BaseService {
 	}
 
 	protected void deleteByPanelIdList(List<String> panelIdList) {
-//		if (panelIdList.size() != 0) {
-			// 查询项目下所有面板的所有组件实例ID
-//			List<String> componentInstanceIdList = componentInstanceService.listIdByPanelIdList(panelIdList);
-			// 删除所有面板下的组件实例
-//			componentInstanceService.deleteByPanelIdList(panelIdList);
 
-//jeq
-			// 删除所有面板下的关联线
-//			componentInstanceRelationService.deleteByPanelIdList(panelIdList);
-
-			// 根据面板ID删除所有面板的运行实例、运行记录
-//			processInstanceService.deleteByPanelIdList(panelIdList);
-//			processRecordService.deleteByPanelIdList(panelIdList);
-
-//			if (componentInstanceIdList.size() != 0) {
-				// to do
-//			}
-//		}
 	}
 
 	/**
-	 * 获取面板运行状态
+	 * Get the panel running status
 	 * @param panelId
 	 * @return
 	 */
@@ -574,15 +548,13 @@ public class PanelServiceImpl extends BaseService {
 		PanelWithAll panelWithAll = null;
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			PanelDao dao = sqlSession.getMapper(PanelDao.class);
-			Panel temp = dao.get(panelId);// 获得面板基本信息
-			JAssert.isTrue(temp != null, "面板不存在！ID=" + panelId);
-			// 包装面板以获得容纳其他信息的能力
+			Panel temp = dao.get(panelId);
+			JAssert.isTrue(temp != null, "The panel does not exist!ID=" + panelId);
 			panelWithAll = PanelWithAll.wrap(temp);
 			pi = dao.getLastByPanelId(panelId);
 		}
 		if (pi != null) {
 			panelWithAll.setStatus(pi.getStatus());
-			// 比对Panel的lastProcessInstanceId与最近一次的执行记录ID
 //			if (panelWithAll.getLastProcessInstanceId() == null || !panelWithAll.getLastProcessInstanceId().equals(pi.getId())) {
 				try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 					PanelDao dao = sqlSession.getMapper(PanelDao.class);
@@ -596,22 +568,22 @@ public class PanelServiceImpl extends BaseService {
 				}
 //			}
 		} else {
-			panelWithAll.setStatus(PanelState.PREPARED);// 还未执行过，就设置成“未开始”
+			panelWithAll.setStatus(PanelState.PREPARED);// Has not been executed, it is set to "not started"
 		}
 		return panelWithAll;
 	}
 
 	/**
-	 * 封装面板中的组件
+	 * Components in the package panel
 	 * @param panelWithAll
 	 * @return
 	 */
 	public PanelWithAll getComponentInstanceAndWrap(PanelWithAll panelWithAll) {
 		String id = panelWithAll.getId();
-		// 给当前面板组件实例拼接最后一次运行信息
-		// 更改组件实例状态#ComponentInstanceModified.MODIFIED变成#ComponentInstanceStatus.PREPARED
-		// 更改组件实例状态#ComponentInstanceModified.RAW变成对应#{ProcessRecord}的status
-		// 如果最后一次运行记录不存在，那么变成#ComponentInstanceStatus.PREPARED
+		// splicing the last run information for the current panel component instance
+		// Change the component instance state #ComponentInstanceModified.MODIFIED to #ComponentInstanceStatus.PREPARED
+		// Change the component instance state #ComponentInstanceModified.RAW to become the status corresponding to #{ProcessRecord}
+		// If the last run record does not exist, then become #ComponentInstanceStatus.PREPARED
 		List<ComponentInstance> cis = componentInstanceService.getAllComponentInstancesWithPanel(id);
 //		List<ProcessRecord> records = processRecordServiceImpl.getPanelComponentInstancesLatestRecord(id);
 		List<ProcessRecord> records = new ArrayList<>();
@@ -644,9 +616,9 @@ public class PanelServiceImpl extends BaseService {
 			ci.setProcessRecord(pr);
 		}
 
-		// 组装当前面板组件实例列表
+		// Assemble the current panel component instance list
 		panelWithAll.setComponentInstances(cis);
-		// 组装当前面板组件关联列表
+		// Assemble the current panel component association list
 		panelWithAll.setComponentInstanceRelations(componentInstanceRelationService.getComponentInstanceRelationsByPanelId(panelWithAll.getId()));
 		return panelWithAll;
 	}
@@ -659,20 +631,9 @@ public class PanelServiceImpl extends BaseService {
 		return map;
 	}
 
-	/**
-	 * 查询项目列表  以创建时间排序
-	 */
-//	public List<Panel> getAllPanelList(Panel panel) {
-//		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
-//			PanelDao dao = sqlSession.getMapper(PanelDao.class);
-//			List<Panel> panels = dao.listAll(panel.getCreator());
-//            return panels;
-//		}
-//	}
     public List<Panel> getAllPanelList(Panel panel,String token) {
-        String userId = exchangeSSOService.getUserId(token);//根据token获取用户信息(userId)
+        String userId = exchangeSSOService.getUserId(token);
         if(userId == null) return null;
-        //根据userId获取用户部门id
         List<String> departmentIds = exchangeSSOService.getCurDepAndSubDepIds(userId,token);
         if(departmentIds == null) return null;
         try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
@@ -689,25 +650,7 @@ public class PanelServiceImpl extends BaseService {
 		StringBuilder sb = new StringBuilder();
 		List<ComponentInstance> cis = componentInstanceService.getAllComponentInstancesWithPanel(id);
 		List<ComponentInstanceRelation> cirs = componentInstanceRelationService.getComponentInstanceRelationsByPanelId(id);
-		return sb.append("面板中有"+cis.size()+"个组件实例，有"+cirs.size()+"个连线").toString();
+		return sb.append("There are "+cis.size()+" component instances in the panel, with "+cirs.size()+" connections").toString();
 	}
-
-	/**4
-	 * 根据项目id查找该项目下的面板列表
-	 */
-//	public Project getPanelById(String id) {
-////		String userId = UserContextHolder.getUserContext().getOmSysUser().getUserId();
-//		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
-//			PanelDao dao = sqlSession.getMapper(PanelDao.class);
-//			Project Panel = dao.getPanelById(id);
-////			if(project != null) {
-////				List panelList = getByProjectId(id,null);
-////				if(panelList != null) {
-////					project.setPanelList(panelList);
-////				}
-////			}
-//			return Panel;// 获取面板信息，放入项目中
-//		}
-//	}
 
 }

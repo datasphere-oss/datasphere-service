@@ -1,3 +1,15 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.shaker.processor.instance.predatacomponent;
 
 import java.sql.SQLException;
@@ -6,27 +18,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.common.data.Dataset;
-import com.datasphere.engine.shaker.processor.buscommon.utils.HttpUtils;
-import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
-import com.datasphere.engine.shaker.processor.instance.analyse.WarpInputAndOutput;
-import com.datasphere.engine.shaker.processor.instance.callbackresult.ComponentCalcuateResult;
-import com.datasphere.engine.shaker.processor.instance.componentparams.BaseComponentParams;
-import com.datasphere.engine.shaker.processor.instance.componentparams.InputParams;
-import com.datasphere.engine.shaker.processor.instance.componentparams.OutPutParams;
-import com.datasphere.engine.shaker.processor.message.status.notice.CallBackStatusMessage;
-import com.datasphere.resource.manager.module.component.instance.buscommon.constant.ComponentInstanceStatus;
-import com.datasphere.resource.manager.module.component.instance.domain.ComponentInstance;
-import com.datasphere.resource.manager.module.panel.domain.sub.PreDataProcessEntity;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.jusfoun.common.springmvc.exception.JIllegalOperationException;
-import com.jusfoun.common.springmvc.utils.ObjectMapperUtils;
+import com.datasphere.common.data.Dataset;
+import com.datasphere.engine.common.exception.JIllegalOperationException;
+import com.datasphere.engine.core.utils.ObjectMapperUtils;
+import com.datasphere.engine.shaker.processor.buscommon.utils.HttpUtils;
+import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
+import com.datasphere.engine.shaker.processor.instance.analysis.WarpInputAndOutput;
+import com.datasphere.engine.shaker.processor.instance.callbackresult.ComponentCalcuateResult;
+import com.datasphere.engine.shaker.processor.instance.componentparams.BaseComponentParams;
+import com.datasphere.engine.shaker.processor.instance.componentparams.InputParams;
+import com.datasphere.engine.shaker.processor.instance.componentparams.OutPutParams;
+import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;
+import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
+import com.datasphere.engine.shaker.processor.message.status.notice.CallBackStatusMessage;
+import com.datasphere.engine.shaker.workflow.panel.model.sub.PreDataProcessEntity;
 
 /**
  * Title: PreDataComponentInstance
