@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Controller返回数据封装
+ * Encapsulate the data returned by the Controller
  */
 public class ResponseBodyUtils {
     private static Map<String, Object> map = new HashMap<>();

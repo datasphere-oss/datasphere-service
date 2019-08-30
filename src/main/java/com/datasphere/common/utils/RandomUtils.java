@@ -17,7 +17,7 @@ import java.util.Random;
 public class RandomUtils {
 
     /**
-     * 生成一个由16位数字组成的字符串
+     * Generate a string of 16 digits
      * @return
      */
     public static String getNumStr_16() {
@@ -37,7 +37,7 @@ public class RandomUtils {
     }
 
     /**
-     * 生成一个由13位数字组成的字符串
+     * Generate a string of 13 digits
      * @return
      */
     public static String getNumStr_13() {
