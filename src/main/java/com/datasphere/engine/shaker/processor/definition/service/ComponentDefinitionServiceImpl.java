@@ -1,20 +1,20 @@
 package com.datasphere.engine.shaker.processor.definition.service;
 
-import com.datasphere.resource.manager.module.panel.domain.ComponentDefinitionPanel;
-import com.datasphere.server.manager.common.constant.GlobalDefine;
-import com.datasphere.core.common.BaseService;
-import com.datasphere.engine.manager.resource.provider.dictionary.model.DSSWord;
-import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
-import com.datasphere.engine.shaker.processor.definition.dao.ComponentDefinitionDao;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.datasphere.core.common.BaseService;
+import com.datasphere.engine.manager.resource.provider.dictionary.model.DSSWord;
+import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
+import com.datasphere.engine.shaker.processor.definition.constant.GlobalDefine;
+import com.datasphere.engine.shaker.processor.definition.dao.ComponentDefinitionDao;
+import com.datasphere.engine.shaker.workflow.panel.model.ComponentDefinitionPanel;
 
 @Service
 public class ComponentDefinitionServiceImpl extends BaseService {

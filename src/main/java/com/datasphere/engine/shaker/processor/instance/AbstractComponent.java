@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.datasphere.common.data.Dataset;
 import com.datasphere.engine.common.message.CustomizedPropertyPlaceholderConfigurer;
 import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
@@ -14,6 +17,7 @@ import com.datasphere.engine.shaker.processor.factory.ComponentFactory;
 import com.datasphere.engine.shaker.processor.instance.callbackresult.ComponentCalcuateResult;
 import com.datasphere.engine.shaker.processor.instance.componentparams.DefaultComponentParams;
 import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;
+import com.datasphere.engine.shaker.processor.instance.constant.DataKeyPrefix;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstanceRelation;
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceRelationService;
@@ -31,9 +35,6 @@ import com.datasphere.engine.shaker.workflow.panel.model.Panel;
 import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
 import com.datasphere.engine.shaker.workflow.panel.service.SubPanelService;
 import com.datasphere.server.connections.service.DataAccessor;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 public abstract class AbstractComponent implements Component {
 
@@ -308,10 +309,6 @@ public abstract class AbstractComponent implements Component {
 		ProcessRecord record = processRecordService.create_back(processId, componentInstance.getPanelId(), getId(), userId);
 		record.setBeginTime(new Date());
 		record.setStatus(ComponentInstanceStatus.RUNNING);
-
-		if (null != instance) {
-			instance.sendToClientMessage(record);
-		}
 		try {
 			logger.info("the component[name:" + this.getName() + ",id:" + this.getId() + "] start to compute.");
 			setJobId(record.getId());
@@ -320,17 +317,12 @@ public abstract class AbstractComponent implements Component {
 			record.setStatus(ComponentInstanceStatus.SUCCESS);
 			// setStatus(ComponentInstanceStatus.SUCCESS);
 			logger.info("the component[name:" + this.getName() + ",id:" + this.getId() + "] compute successfully.");
-			if (null != instance) {
-				instance.sendToClientMessage(record);
-			}
 		} catch (Throwable e) {
 			record.setEndTime(new Date());
 			record.setStatus(ComponentInstanceStatus.FAILURE);
 			// setStatus(ComponentInstanceStatus.FAILURE);
 			record.setErrorMsg(e.getMessage());
-			if (null != instance) {
-				instance.sendToClientMessage(record);
-			}
+
 			logger.error("the component[name:" + this.getName() + ",id:" + this.getId() + "] compute fail.", e);
 			throw e;
 		} finally {

@@ -12,13 +12,13 @@
 
 package com.datasphere.engine.shaker.processor.definition.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
+import com.datasphere.engine.manager.resource.provider.dictionary.model.DSSWord;
 import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
-import com.datasphere.resource.manager.module.dictionary.domain.JusfounWord;
-import com.datasphere.resource.manager.module.panel.domain.ComponentDefinitionPanel;
-
-import java.util.List;
+import com.datasphere.engine.shaker.workflow.panel.model.ComponentDefinitionPanel;
 
 
 public interface ComponentDefinitionDao {
