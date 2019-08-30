@@ -97,7 +97,7 @@ public class UserService {
       return;
     }
 
-    imageRepository.delete(targetImages);
+    imageRepository.deleteInBatch(targetImages);
   }
 
   @Transactional

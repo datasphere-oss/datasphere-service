@@ -110,13 +110,13 @@ public class RoleSetController {
   }
 
   /**
-   * RoleSet 을 지정한 Workspace 목록 조회
+   * Query Workspace List with RoleSet
    *
-   * @param nameContains 그룹명에 포함되는 문자
-   * @param searchDateBy 그룹 조회시 날짜 기준 (생성/수정)
-   * @param from 검색 시작 일시
-   * @param to 검색 종료 일시
-   * @param pageable 페이징/정렬 정보(page, size, sort)
+   * @param nameContains The characters in the group name
+   * @param searchDateBy Based on date when viewing group (create / modify)
+   * @param from Search start date and time
+   * @param to Search end date and time
+   * @param pageable Paging / Sorting Information (page, size, sort)
    * @return
    */
   @RequestMapping(path = "/rolesets/{rolesetId}/workspaces", method = RequestMethod.GET)
@@ -129,7 +129,7 @@ public class RoleSetController {
                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime to,
                                         Pageable pageable, PersistentEntityResourceAssembler resourceAssembler) {
 
-    RoleSet roleSet = roleSetRepository.findOne(rolesetId);
+    RoleSet roleSet = roleSetRepository.findById(rolesetId).get();
     if(roleSet == null) {
       throw new ResourceNotFoundException(rolesetId);
     }
@@ -140,7 +140,6 @@ public class RoleSetController {
     // Get Predicate
     Predicate searchPredicated = WorkspacePredicate.searchWorkspaceOnRoleSet(roleSet, nameContains, searchDateBy, from, to);
 
-    // 기본 정렬 조건 셋팅
     if(pageable.getSort() == null || !pageable.getSort().iterator().hasNext()) {
       pageable = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(),
                                  new Sort(Sort.Direction.ASC, "name"));
@@ -152,7 +151,7 @@ public class RoleSetController {
   }
 
   /**
-   * RoleSet 명 중복 체크
+   * Check duplicate RoleSet names
    *
    * @param value
    * @return
@@ -185,7 +184,7 @@ public class RoleSetController {
   @RequestMapping(path = "/rolesets/{id}/copy", method = RequestMethod.POST)
   public ResponseEntity<?> copyRoleSet(@PathVariable("id") String id,
                                        @RequestParam(name = "name", required = false) String name) {
-    RoleSet originalRoleSet = roleSetRepository.findOne(id);
+    RoleSet originalRoleSet = roleSetRepository.findById(id).get();
     if(originalRoleSet == null) {
       throw new ResourceNotFoundException(id);
     }
@@ -199,7 +198,7 @@ public class RoleSetController {
   public ResponseEntity<?> updateRoleSet(@PathVariable("id") String id,
                                          @RequestBody RoleSet roleSet) {
 
-    RoleSet persistRole = roleSetRepository.findOne(id);
+    RoleSet persistRole = roleSetRepository.findById(id).get();
     if(persistRole == null) {
       throw new ResourceNotFoundException(id);
     }

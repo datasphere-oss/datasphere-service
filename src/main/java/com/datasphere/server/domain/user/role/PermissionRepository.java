@@ -47,7 +47,7 @@ public interface PermissionRepository extends JpaRepository<Permission, Long> {
 
   @Override
   @RestResource(exported = false)
-  void delete(Long aLong);
+  void deleteById(Long aLong);
 
   @Override
   @RestResource(exported = false)

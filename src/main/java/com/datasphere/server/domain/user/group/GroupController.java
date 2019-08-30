@@ -138,7 +138,7 @@ public class GroupController {
 //  @RequestMapping(path = "/groups/{groupId}", method = RequestMethod.GET)
 //  public ResponseEntity<?> findGroup(@PathVariable("groupId") String groupId,
 //                                     PersistentEntityResourceAssembler resourceAssembler) {
-//    Group group = groupRepository.findOne(groupId);
+//    Group group = groupRepository.findById(groupId);
 //    if(group == null) {
 //      throw new ResourceNotFoundException(groupId);
 //    }
@@ -164,7 +164,7 @@ public class GroupController {
   @RequestMapping(path = "/groups/{groupId}", method = RequestMethod.PUT)
   public ResponseEntity<?> updateGroups(@PathVariable("groupId") String groupId, @RequestBody Group group) {
 
-    Group persistGroup = groupRepository.findOne(groupId);
+    Group persistGroup = groupRepository.findById(groupId).get();
     if(persistGroup == null) {
       throw new ResourceNotFoundException(groupId);
     }
@@ -196,7 +196,7 @@ public class GroupController {
 
   @RequestMapping(path = "/groups/{groupId}", method = RequestMethod.DELETE)
   public ResponseEntity<?> deleteGroups(@PathVariable("groupId") String groupId) {
-    Group persistGroup = groupRepository.findOne(groupId);
+    Group persistGroup = groupRepository.findById(groupId).get();
     if(persistGroup == null) {
       throw new ResourceNotFoundException(groupId);
     }
@@ -239,7 +239,7 @@ public class GroupController {
   public ResponseEntity<?> findGroupMembers(@PathVariable("id") String groupId,
                                             Pageable pageable, PersistentEntityResourceAssembler resourceAssembler) {
 
-    Group persistGroup = groupRepository.findOne(groupId);
+    Group persistGroup = groupRepository.findById(groupId).get();
     if(persistGroup == null) {
       throw new ResourceNotFoundException(groupId);
     }
@@ -252,7 +252,7 @@ public class GroupController {
   @RequestMapping(path = "/groups/{id}/members", method = {RequestMethod.PATCH, RequestMethod.PUT})
   public ResponseEntity<?> updateGroupMembers(@PathVariable("id") String groupId, @RequestBody List<CollectionPatch> members) {
 
-    Group persistGroup = groupRepository.findOne(groupId);
+    Group persistGroup = groupRepository.findById(groupId).get();
     if(persistGroup == null) {
       throw new ResourceNotFoundException(groupId);
     }

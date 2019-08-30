@@ -1,15 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.domain.dataconnection;
@@ -19,6 +17,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -341,14 +340,14 @@ public class DataConnectionController {
           @RequestParam(required = false) String loginUserId,
           Pageable pageable) throws ResourceNotFoundException, BadRequestException, SQLException {
 
-    DataConnection connectionInfo = connectionRepository.findOne(connectionId);
+    Optional<DataConnection> connectionInfo = connectionRepository.findById(connectionId);
 
     if(connectionInfo == null) {
       throw new ResourceNotFoundException(connectionId);
     }
 
     //userinfo, dialog required webSocketId
-    if(connectionInfo.getAuthenticationType() != DataConnection.AuthenticationType.MANUAL){
+    if(connectionInfo.get().getAuthenticationType() != DataConnection.AuthenticationType.MANUAL){
       SearchParamValidator.checkNull(webSocketId, "webSocketId");
     }
 
@@ -357,7 +356,7 @@ public class DataConnectionController {
       connection = workbenchDataSourceManager.findDataSourceInfo(webSocketId).getPrimaryConnection();
     }
 
-    Map<String, Object> findDatabases = connectionService.getDatabases(connectionInfo, connection, databaseName, pageable);
+    Map<String, Object> findDatabases = connectionService.getDatabases(connectionInfo.get(), connection, databaseName, pageable);
 
     //moved filter for personal database logic to HiveDataAccessor..
     return ResponseEntity.ok(findDatabases);
@@ -372,13 +371,13 @@ public class DataConnectionController {
           @RequestParam(required = false) String webSocketId,
           Pageable pageable) throws ResourceNotFoundException, BadRequestException, SQLException {
 
-    DataConnection dataConnection = connectionRepository.findOne(connectionId);
+    Optional<DataConnection> dataConnection = connectionRepository.findById(connectionId);
     if(dataConnection == null) {
       throw new ResourceNotFoundException(connectionId);
     }
 
     //userinfo, dialog required webSocketId
-    if(dataConnection.getAuthenticationType() != DataConnection.AuthenticationType.MANUAL){
+    if(dataConnection.get().getAuthenticationType() != DataConnection.AuthenticationType.MANUAL){
       SearchParamValidator.checkNull(webSocketId, "webSocketId");
     }
 
@@ -388,7 +387,7 @@ public class DataConnectionController {
     }
 
     return ResponseEntity.ok(
-        connectionService.getTableNames(dataConnection, databaseName, tableName, connection, pageable)
+        connectionService.getTableNames(dataConnection.get(), databaseName, tableName, connection, pageable)
     );
   }
 
@@ -402,13 +401,13 @@ public class DataConnectionController {
           @RequestParam(required = false) String columnNamePattern,
           Pageable pageable) throws ResourceNotFoundException, BadRequestException, JdbcDataConnectionException {
 
-    DataConnection dataConnection = connectionRepository.findOne(connectionId);
+    Optional<DataConnection> dataConnection = connectionRepository.findById(connectionId);
     if(dataConnection == null) {
       throw new ResourceNotFoundException("DataConnection(" + connectionId + ")");
     }
 
     //userinfo, dialog required webSocketId
-    if(dataConnection.getAuthenticationType() != DataConnection.AuthenticationType.MANUAL){
+    if(dataConnection.get().getAuthenticationType() != DataConnection.AuthenticationType.MANUAL){
       SearchParamValidator.checkNull(webSocketId, "webSocketId");
     }
 
@@ -417,7 +416,7 @@ public class DataConnectionController {
       connection = workbenchDataSourceManager.findDataSourceInfo(webSocketId).getPrimaryConnection();
     }
 
-    Map<String, Object> columnsMap = connectionService.getTableColumns(dataConnection, connection, databaseName,
+    Map<String, Object> columnsMap = connectionService.getTableColumns(dataConnection.get(), connection, databaseName,
                                                                         tableName, columnNamePattern, pageable);
 
     return ResponseEntity.ok(columnsMap);
@@ -431,13 +430,13 @@ public class DataConnectionController {
           @PathVariable("tableName") String tableName,
           @RequestParam(required = false) String webSocketId) throws ResourceNotFoundException, BadRequestException, SQLException {
 
-    DataConnection dataConnection = connectionRepository.findOne(connectionId);
+    Optional<DataConnection> dataConnection = connectionRepository.findById(connectionId);
     if(dataConnection == null) {
       throw new ResourceNotFoundException("DataConnection(" + connectionId + ")");
     }
 
     //userinfo, dialog required webSocketId
-    if(dataConnection.getAuthenticationType() != DataConnection.AuthenticationType.MANUAL){
+    if(dataConnection.get().getAuthenticationType() != DataConnection.AuthenticationType.MANUAL){
       SearchParamValidator.checkNull(webSocketId, "webSocketId");
     }
 
@@ -446,7 +445,7 @@ public class DataConnectionController {
       connection = workbenchDataSourceManager.findDataSourceInfo(webSocketId).getPrimaryConnection();
     }
 
-    Map<String, Object> tableInfoMap = connectionService.showTableDescription(dataConnection, connection,
+    Map<String, Object> tableInfoMap = connectionService.showTableDescription(dataConnection.get(), connection,
                                                                               databaseName, tableName);
 
     return ResponseEntity.ok(tableInfoMap);
@@ -459,7 +458,7 @@ public class DataConnectionController {
           @PathVariable("databaseName") String databaseName,
           @RequestBody Map<String, String> requestBodyMap) throws ResourceNotFoundException, JdbcDataConnectionException {
 
-    DataConnection dataConnection = connectionRepository.findOne(connectionId);
+    Optional<DataConnection> dataConnection = connectionRepository.findById(connectionId);
     if(dataConnection == null) {
       throw new ResourceNotFoundException("DataConnection(" + connectionId + ")");
     }
@@ -470,17 +469,17 @@ public class DataConnectionController {
       connection = workbenchDataSourceManager.findDataSourceInfo(webSocketId).getPrimaryConnection();
     }
 
-    connectionService.changeDatabase(dataConnection, databaseName, connection);
+    connectionService.changeDatabase(dataConnection.get(), databaseName, connection);
 
     //Workbench의 선택된 Database 속성 업데이트
     String workbenchId = requestBodyMap.get("workbenchId");
     if(StringUtils.isNotEmpty(workbenchId)){
-      Workbench workbench = workbenchRepository.findOne(workbenchId);
+      Optional<Workbench> workbench = workbenchRepository.findById(workbenchId);
       if(workbench == null){
         throw new ResourceNotFoundException("Workbench(" + workbenchId + ") is not found.");
       }
-      workbench.setDatabaseName(databaseName);
-      workbenchRepository.saveAndFlush(workbench);
+      workbench.get().setDatabaseName(databaseName);
+      workbenchRepository.saveAndFlush(workbench.get());
     }
 
     return ResponseEntity.ok().build();
@@ -492,12 +491,12 @@ public class DataConnectionController {
           @PathVariable("connectionId") String connectionId,
           @RequestBody Map<String, String> requestBodyMap) throws ResourceNotFoundException, JdbcDataConnectionException {
 
-    DataConnection dataConnection = connectionRepository.findOne(connectionId);
+    Optional<DataConnection> dataConnection = connectionRepository.findById(connectionId);
     if(dataConnection == null) {
       throw new ResourceNotFoundException("DataConnection(" + connectionId + ")");
     }
     String webSocketId = requestBodyMap.get("webSocketId");
-    workbenchDataSourceManager.createDataSourceInfo(dataConnection, webSocketId);
+    workbenchDataSourceManager.createDataSourceInfo(dataConnection.get(), webSocketId);
 
     return ResponseEntity.ok().build();
   }

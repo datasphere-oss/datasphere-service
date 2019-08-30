@@ -166,7 +166,7 @@ public class RoleController {
 
   @RequestMapping(path = "/roles/{id}/copy", method = RequestMethod.POST)
   public ResponseEntity<?> copyRole(@PathVariable("id") String id) {
-    Role originalRole = roleRepository.findOne(id);
+    Role originalRole = roleRepository.findById(id).get();
     if (originalRole == null) {
       throw new ResourceNotFoundException(id);
     }
@@ -180,7 +180,7 @@ public class RoleController {
   public ResponseEntity<?> updateRole(@PathVariable("id") String id,
                                       @RequestBody Role role) {
 
-    Role persistRole = roleRepository.findOne(id);
+    Role persistRole = roleRepository.findById(id).get();
     if (persistRole == null) {
       throw new ResourceNotFoundException(id);
     }
@@ -210,7 +210,7 @@ public class RoleController {
                                                      @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime to,
                                                      Pageable pageable, PersistentEntityResourceAssembler resourceAssembler) {
 
-    Role role = roleRepository.findOne(roleId);
+    Role role = roleRepository.findById(roleId).get();
     if (role == null) {
       throw new ResourceNotFoundException(roleId);
     }
@@ -245,7 +245,7 @@ public class RoleController {
   ResponseEntity<?> patchRoleDirectories(
       @PathVariable("roleId") String roleId, @RequestBody List<CollectionPatch> patches) {
 
-    Role role = roleRepository.findOne(roleId);
+    Role role = roleRepository.findById(roleId).get();
     if (role == null) {
       throw new ResourceNotFoundException(roleId);
     }

@@ -85,7 +85,7 @@ public class CachedUserService {
     if (groupMap.containsKey(groupId)) {
       return groupMap.get(groupId);
     } else {
-      Group group = groupRepository.findOne(groupId);
+      Group group = groupRepository.findById(groupId).get();
       if (group == null) {
         LOGGER.debug("Role({}) not found. Return empty Role object.", groupId);
         return null;

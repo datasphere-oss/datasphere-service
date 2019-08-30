@@ -1,15 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.domain.engine;
@@ -182,7 +180,7 @@ public class EngineLoadService {
     if (StringUtils.isEmpty(temporaryId)) {
       temporaryId = PolarisUtils.randomUUID(DataSourceTemporary.ID_PREFIX, false);
     } else {
-      temporary = temporaryRepository.findOne(temporaryId);
+      temporary = temporaryRepository.findById(temporaryId).get();
       if (temporary != null && temporary.getStatus() == ENABLE) {
         temporary.reloadExpiredTime();
         return temporaryRepository.save(temporary);
@@ -297,7 +295,7 @@ public class EngineLoadService {
 
     temporary.setStatus(ENABLE);
 
-    // 적재가 완료된 순간 이후 부터 reset
+    // Reset from the moment the loading is completed
     temporary.reloadExpiredTime();
 
     sendTopic(sendTopicUri, new ProgressResponse(100, "COMPLETE_LOAD_TEMP_DATASOURCE"));
@@ -314,10 +312,10 @@ public class EngineLoadService {
                                          .filter(field -> field.getLogicalType() == LogicalType.TIMESTAMP)
                                          .collect(Collectors.toList());
 
-      // Time Field 처리
-      // timestamp 타입의 필드가 없다면 current timestamp 를 전달하고,
-      // 있다면 맨 처음 timestamp 타입의 필드를 선택
-      Field timeField;
+    // Time Field Processing
+	// If there is no timestamp type field, it passes current timestamp,
+	// If there is, select the first timestamp type field
+	  Field timeField;
       if (timeFields == null || timeFields.size() == 0) {
         timeField = new Field(FIELD_NAME_CURRENT_TIMESTAMP, DataType.TIMESTAMP, Field.FieldRole.TIMESTAMP, 0L);
         timeField.setFormat(GlobalObjectMapper.writeValueAsString(new TemporaryTimeFormat()));

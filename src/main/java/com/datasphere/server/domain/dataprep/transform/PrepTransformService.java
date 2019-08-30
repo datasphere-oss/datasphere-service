@@ -1,15 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.domain.dataprep.transform;
@@ -172,7 +170,7 @@ public class PrepTransformService {
   // Currently, the ETL programs kinds are the embedded engine and Apache Spark.
   private String getJsonPrepPropertiesInfo(String dsId, PrepSnapshotRequestPost requestPost)
       throws JsonProcessingException, URISyntaxException {
-    PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findOne(dsId));
+    PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findById(dsId).get());
 
     PrDataset.IMPORT_TYPE importType = dataset.getImportType();
     boolean dsStagingDb = (importType == PrDataset.IMPORT_TYPE.STAGING_DB);
@@ -294,8 +292,8 @@ public class PrepTransformService {
     LOGGER.trace("create(): start");
 
     PrDataset importedDataset = datasetRepository
-        .findRealOne(datasetRepository.findOne(importedDsId));
-    PrDataflow dataflow = dataflowRepository.findOne(dfId);
+        .findRealOne(datasetRepository.findById(importedDsId).get());
+    PrDataflow dataflow = dataflowRepository.findById(dfId).get();
     assert importedDataset.getDsType() == IMPORTED : importedDataset.getDsType();
 
     PrDataset wrangledDataset = makeWrangledDataset(importedDataset, dataflow, dfId, cloningDsName);
@@ -355,7 +353,7 @@ public class PrepTransformService {
   @Transactional(rollbackFor = Exception.class)
   public PrepTransformResponse clone(String wrangledDsId) throws Exception {
     PrDataset wrangledDataset = datasetRepository
-        .findRealOne(datasetRepository.findOne(wrangledDsId));
+        .findRealOne(datasetRepository.findById(wrangledDsId).get());
     String upstreamDsId = getFirstUpstreamDsId(wrangledDsId);
 
     PrepTransformResponse response = create(upstreamDsId, wrangledDataset.getCreatorDfId(),
@@ -401,8 +399,8 @@ public class PrepTransformService {
       }
     }
 
-    PrDataset oldDataset = datasetRepository.findOne(oldDsId);
-    PrDataset newDataset = datasetRepository.findOne(newDsId);
+    PrDataset oldDataset = datasetRepository.findById(oldDsId).get();
+    PrDataset newDataset = datasetRepository.findById(newDsId).get();
 
     List<PrDataflow> dataflows = dataflowRepository.findAll();
     for (PrDataflow dataflow : dataflows) {
@@ -475,7 +473,7 @@ public class PrepTransformService {
       return affectedDsIds;
     }
 
-    PrDataset newDataset = datasetRepository.findOne(newDsId);
+    PrDataset newDataset = datasetRepository.findById(newDsId).get();
 
     List<PrDataset> datasets = dataflow.getDatasets();
     for (PrDataset dataset : datasets) {
@@ -532,7 +530,7 @@ public class PrepTransformService {
     teddyImpl.remove(dsId);
 
     PrDataset upstreamDataset = datasetRepository
-        .findRealOne(datasetRepository.findOne(getFirstUpstreamDsId(dsId)));
+        .findRealOne(datasetRepository.findById(getFirstUpstreamDsId(dsId)).get());
     gridResponse = createStage0(dsId, upstreamDataset);
     teddyImpl.reset(dsId);
 
@@ -558,7 +556,7 @@ public class PrepTransformService {
         totalTargetDsIds.add(upstreamDsId);
 
         PrDataset targetDataset = datasetRepository
-            .findRealOne(datasetRepository.findOne(upstreamDsId));
+            .findRealOne(datasetRepository.findById(upstreamDsId).get());
         totalTargetDatasets.add(targetDataset);
       }
     }
@@ -643,7 +641,7 @@ public class PrepTransformService {
     teddyImpl.setCurStageIdx(dsId, stageIdx);
 
     if (persist) {
-      PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findOne(dsId));
+      PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findById(dsId).get());
       dataset.setRuleCurIdx(stageIdx);
       datasetRepository.saveAndFlush(dataset);
     }
@@ -659,7 +657,7 @@ public class PrepTransformService {
       transformRuleService.shortenRuleString(ruleString);
     }
 
-    PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findOne(dsId));
+    PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findById(dsId).get());
     assert dataset != null : dsId;
 
     // dataset이 loading되지 않았으면 loading
@@ -736,7 +734,7 @@ public class PrepTransformService {
 
   private PrepTransformResponse postTransform(String dsId, OP_TYPE op)
       throws CannotSerializeIntoJsonException, JsonProcessingException {
-    PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findOne(dsId));
+    PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findById(dsId).get());
     assert dataset != null : dsId;
 
     PrepTransformResponse response = null;
@@ -777,7 +775,7 @@ public class PrepTransformService {
     List<String> jsonRuleStrings = teddyImpl.getJsonRuleStrings(dsId);
     List<Boolean> valids = teddyImpl.getValids(dsId);
 
-    PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findOne(dsId));
+    PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findById(dsId).get());
     for (int i = 0; i < ruleStrings.size(); i++) {
       String ruleString = ruleStrings.get(i);
       String jsonRuleString = jsonRuleStrings.get(i);
@@ -928,7 +926,7 @@ public class PrepTransformService {
 
     for (String upstreamDsId : getUpstreamDsIds(wrangledDsId)) {
       PrDataset upstreamDataset = datasetRepository
-          .findRealOne(datasetRepository.findOne(upstreamDsId));
+          .findRealOne(datasetRepository.findById(upstreamDsId).get());
       if (upstreamDataset.getDsType() == IMPORTED) {
         datasetInfo.put("importType", upstreamDataset.getImportType().name());
         switch (upstreamDataset.getImportType()) {
@@ -1112,7 +1110,7 @@ public class PrepTransformService {
   // FIXME: What is this functions for?
   private void prepareTransformRules(String dsId)
       throws CannotSerializeIntoJsonException, JsonProcessingException {
-    PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findOne(dsId));
+    PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findById(dsId).get());
     List<PrTransformRule> transformRules = dataset.getTransformRules();
 
     if (transformRules != null && transformRules.size() > 0) {
@@ -1136,7 +1134,7 @@ public class PrepTransformService {
     PrepSnapshotResponse response;
     List<String> allFullDsIds;
     PrSnapshot snapshot = new PrSnapshot();
-    PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findOne(wrangledDsId));
+    PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findById(wrangledDsId).get());
 
     PrSnapshot.SS_TYPE ssType = requestPost.getSsType();
     String ssName = requestPost.getSsName();
@@ -1156,7 +1154,7 @@ public class PrepTransformService {
     }
 
     String dfId = dataset.getCreatorDfId();
-    PrDataflow dataflow = dataflowRepository.findOne(dfId);
+    PrDataflow dataflow = dataflowRepository.findById(dfId).get();
 
     // fill snapshot entity: common attributes - snapshot own
     snapshot.setSsName(ssName);
@@ -1184,7 +1182,7 @@ public class PrepTransformService {
 
     // fill snapshot entity: common attributes - info for origin dataset
     String origDsId = getFirstUpstreamDsId(dataset.getDsId());
-    PrDataset origDataset = datasetRepository.findRealOne(datasetRepository.findOne(origDsId));
+    PrDataset origDataset = datasetRepository.findRealOne(datasetRepository.findById(origDsId).get());
     snapshot.setOrigDsId(origDsId);
     snapshot.setOrigDsName(origDataset.getDsName());
     snapshot.setOrigDsCreatedBy(origDataset.getCreatedBy());
@@ -1385,7 +1383,7 @@ public class PrepTransformService {
   private DataFrame createStage0(String wrangledDsId, PrDataset importedDataset)
       throws CannotSerializeIntoJsonException, JsonProcessingException {
     PrDataset wrangledDataset = datasetRepository
-        .findRealOne(datasetRepository.findOne(wrangledDsId));
+        .findRealOne(datasetRepository.findById(wrangledDsId).get());
     DataFrame gridResponse;
 
     LOGGER.trace("createStage0: dsId={}", wrangledDsId);
@@ -1472,7 +1470,7 @@ public class PrepTransformService {
   public Map<String, Object> getConfiguration(String wrangledDsId) {
     Map<String, Object> configuration = Maps.newHashMap();
     try {
-      PrDataset wrangledDataset = datasetRepository.findOne(wrangledDsId);
+      PrDataset wrangledDataset = datasetRepository.findById(wrangledDsId).get();
       assert (null != wrangledDataset);
       DateTime launchTime = DateTime.now(DateTimeZone.UTC);
       String ssName = this.snapshotService

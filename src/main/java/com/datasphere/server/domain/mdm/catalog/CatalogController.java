@@ -1,15 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.domain.mdm.catalog;
@@ -140,7 +138,7 @@ public class CatalogController {
   public @ResponseBody
   ResponseEntity<?> findCatalogForTree(@PathVariable("catalogId") String catalogId) {
 
-    if (!Catalog.ROOT.equals(catalogId) && catalogRepository.findOne(catalogId) == null) {
+    if (!Catalog.ROOT.equals(catalogId) && catalogRepository.findById(catalogId) == null) {
       throw new ResourceNotFoundException(catalogId);
     }
 
@@ -153,7 +151,7 @@ public class CatalogController {
                          @PathVariable("toCatalogId") Optional<String> toCatalogId) {
 
     for (String fromCatalogId : fromCatalogIds) {
-      Catalog fromCatalog = catalogRepository.findOne(fromCatalogId);
+      Catalog fromCatalog = catalogRepository.findById(fromCatalogId).get();
       if (fromCatalog == null) {
         continue;
       }
@@ -170,7 +168,7 @@ public class CatalogController {
                                     @PathVariable("toCatalogId") Optional<String> toCatalogId,
                                     PersistentEntityResourceAssembler resourceAssembler) {
 
-    Catalog fromCatalog = catalogRepository.findOne(fromCatalogIds);
+    Catalog fromCatalog = catalogRepository.findById(fromCatalogIds).get();
     if (fromCatalog == null) {
       return ResponseEntity.notFound().build();
     }
@@ -185,7 +183,7 @@ public class CatalogController {
   public @ResponseBody
   ResponseEntity<?> multiDelete(@PathVariable("catalogIds") List<String> catalogIds) {
     for (String catalogId : catalogIds) {
-      Catalog deleteCatalog = catalogRepository.findOne(catalogId);
+      Catalog deleteCatalog = catalogRepository.findById(catalogId).get();
       if (deleteCatalog == null) {
         LOGGER.warn("Fail to find deleting catalog : {}", catalogId);
         continue;

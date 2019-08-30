@@ -49,12 +49,12 @@ public class RoleSetService {
 
   @Transactional
   public RoleSet createRoleSet(RoleSet roleSet) {
-    // 이름이 중복인지 체크함
+    // Checked for duplicate name
     if(checkDuplicatedName(roleSet.getName())) {
       throw new DuplicatedRoleSetNameException(roleSet.getName());
     }
 
-    // RoleSet 내 Role 이 존재하는 경우 default role 이 반드시 하나씩 존재해야 함
+    // Default Roles must exist one by one if Role exists in RoleSet
     if(!existDefaultRoleSet(roleSet)) {
       throw new IllegalArgumentException("One default role must be specified.");
     }
@@ -79,8 +79,8 @@ public class RoleSetService {
 
     RoleSet copiedRoleSet = originalRoleSet.copyOf();
 
-    // 복사시 롤셋명을 지정했을 경우, 이름에 대한 중복될 경우 오류 처리를 수행하며
-    // 자동 지정이고 중복인 경우 Numbering 을 수행합니다
+    // If a rollset name is specified during copying, error handling is performed if the name is duplicated.
+    // Auto assign and do numbering if duplicate
     if(StringUtils.isNotEmpty(name)) {
       copiedRoleSet.setName(name);
     } else {
@@ -97,7 +97,6 @@ public class RoleSetService {
   @Transactional
   public RoleSet updateRoleSet(RoleSet roleSet, RoleSet persistRoleSet) {
 
-    // 이름이 다른 경우 중복체크를 수행합니다
     if(!persistRoleSet.getName().equals(roleSet.getName())) {
       if (checkDuplicatedName(roleSet.name)) {
         throw new DuplicatedRoleSetNameException(roleSet.getName());
@@ -107,12 +106,10 @@ public class RoleSetService {
 
     persistRoleSet.setDescription(roleSet.getDescription());
 
-    // RoleSet 내 Role 이 존재하는 경우 default role 이 반드시 하나씩 존재해야 함
     if(!existDefaultRoleSet(roleSet)) {
       throw new IllegalArgumentException("One default role must be specified.");
     }
 
-    // Mapper 값 설정을 위해 미리 셋팅
     List<String> fromRoleNames = persistRoleSet.getRoleNames();
     List<String> toRoleNames = roleSet.getRoleNames();
 
@@ -135,20 +132,16 @@ public class RoleSetService {
 
     roleSetRepository.saveAndFlush(persistRoleSet);
 
-    // mapper 값을 통해 기존 GroupMember 값을 변경
     Map<String, String> mapper = roleSet.getMapper();
 
-    // RoleSet에 연결되어 있는 Workspace 가 존재시 매핑 정보 참조하여 변경
     List<String> linkedWorkspaceIds = workspaceRepository.findIdByRoleSetId(persistRoleSet.getId());
     if(CollectionUtils.isNotEmpty(linkedWorkspaceIds)) {
       Role defaultRole = persistRoleSet.getDefaultRole();
       if (MapUtils.isNotEmpty(mapper)) {
-        // mapper 내 값 유효성 검증
         if (!fromRoleNames.containsAll(mapper.keySet())) {
           throw new BadRequestException("Invalid mapper property: from Name(" + fromRoleNames + "), mapper key(" + mapper.keySet() + ")");
         }
 
-        // 변환된 Role 에 대해 WorkspaceMember 내 값들을 변경, toRoleName 이 존재하지 않는 경우 Default 값 처리
         for (String fromRoleName : mapper.keySet()) {
           String toRoleName = mapper.get(fromRoleName);
           workspaceMemberRepository.updateMultiMemberRoleInWorkspaces(linkedWorkspaceIds, fromRoleName,
@@ -175,7 +168,7 @@ public class RoleSetService {
   }
 
   public RoleSet getDefaultRoleSet() {
-    return roleSetRepository.findOne(RoleSet.ROLESET_ID_DEFAULT);
+    return roleSetRepository.findById(RoleSet.ROLESET_ID_DEFAULT).get();
   }
 
 }

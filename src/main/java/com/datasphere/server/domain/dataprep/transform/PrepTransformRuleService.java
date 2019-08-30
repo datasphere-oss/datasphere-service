@@ -1,15 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.domain.dataprep.transform;
@@ -259,7 +257,7 @@ public class PrepTransformRuleService {
     switch (ruleCommand) {
       case "create":
         String dsId = mapStrExp.get("with").toString();
-        String dsName = datasetRepository.findRealOne(datasetRepository.findOne(dsId)).getDsName();
+        String dsName = datasetRepository.findRealOne(datasetRepository.findById(dsId).get()).getDsName();
         mapJsonStr.put("with", dsName);
         break;
       case "header":
@@ -468,7 +466,7 @@ public class PrepTransformRuleService {
     }
 
     for (String dsId : strExpResult.arrStr) {
-      PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findOne(dsId));
+      PrDataset dataset = datasetRepository.findRealOne(datasetRepository.findById(dsId).get());
       strExpResult.str = strExpResult.str.replaceAll(dsId, dataset.getDsName());
     }
 
@@ -520,7 +518,7 @@ public class PrepTransformRuleService {
     switch (mapStrExp.get("name").toString()) {
       case "create":
         String dsId = mapStrExp.get("with").toString();
-        String dsName = datasetRepository.findRealOne(datasetRepository.findOne(dsId)).getDsName();
+        String dsName = datasetRepository.findRealOne(datasetRepository.findById(dsId).get()).getDsName();
         shortRuleString = String.format(FMTSTR_CREATE, dsName);
         break;
       case "header":
