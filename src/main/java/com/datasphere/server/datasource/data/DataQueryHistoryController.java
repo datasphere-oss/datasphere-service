@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
@@ -78,7 +79,7 @@ public class DataQueryHistoryController {
                                               @RequestParam(value = "projection", required = false, defaultValue = "default") String projection,
                                               Pageable pageable) {
 
-    if (dataSourceRepository.findOne(dataSourceId) == null) {
+    if (dataSourceRepository.findById(dataSourceId) == null) {
       throw new ResourceNotFoundException(dataSourceId);
     }
 
@@ -103,11 +104,11 @@ public class DataQueryHistoryController {
                                               @PathVariable("historyId") String historyId,
                                               @RequestParam(value = "projection", required = false, defaultValue = "default") String projection) throws ResourceNotFoundException {
 
-    if (dataSourceRepository.findOne(dataSourceId) == null) {
+    if (dataSourceRepository.findById(dataSourceId) == null) {
       throw new ResourceNotFoundException(dataSourceId);
     }
 
-    DataSourceQueryHistory history = queryHistoryRepository.findOne(historyId);
+    Optional<DataSourceQueryHistory> history = queryHistoryRepository.findById(historyId);
     if (history == null) {
       throw new ResourceNotFoundException(historyId);
     }
@@ -120,7 +121,7 @@ public class DataQueryHistoryController {
   @RequestMapping(value = "/datasources/{id}/query/histories/stats/count", method = RequestMethod.GET, produces = "application/json")
   public ResponseEntity<?> findByQueryCountPerHour(@PathVariable("id") String dataSourceId,
                                               @RequestParam(value = "duration", defaultValue = "-P1D") String duration) {
-    if (dataSourceRepository.findOne(dataSourceId) == null) {
+    if (dataSourceRepository.findById(dataSourceId) == null) {
       return ResponseEntity.notFound().build();
     }
 
@@ -149,7 +150,7 @@ public class DataQueryHistoryController {
   @RequestMapping(value = "/datasources/{id}/query/histories/stats/user", method = RequestMethod.GET, produces = "application/json")
   public ResponseEntity<?> findByQueryCountPerUser(@PathVariable("id") String dataSourceId,
                                                    @RequestParam(value = "duration", defaultValue = "-P1D") String duration) {
-    if (dataSourceRepository.findOne(dataSourceId) == null) {
+    if (dataSourceRepository.findById(dataSourceId) == null) {
       return ResponseEntity.notFound().build();
     }
 
@@ -175,7 +176,7 @@ public class DataQueryHistoryController {
   @RequestMapping(value = "/datasources/{id}/query/histories/stats/elapsed", method = RequestMethod.GET, produces = "application/json")
   public ResponseEntity<?> findByQueryCountPerElapsedTime(@PathVariable("id") String dataSourceId,
                                                    @RequestParam(value = "duration", defaultValue = "-P1D") String duration) {
-    if (dataSourceRepository.findOne(dataSourceId) == null) {
+    if (dataSourceRepository.findById(dataSourceId) == null) {
       return ResponseEntity.notFound().build();
     }
 
@@ -201,7 +202,7 @@ public class DataQueryHistoryController {
   @RequestMapping(value = "/datasources/{id}/histories/size/stats/hour", method = RequestMethod.GET, produces = "application/json")
   public ResponseEntity<?> findByAvgSizePerHour(@PathVariable("id") String dataSourceId,
                                                    @RequestParam(value = "duration", defaultValue = "-P1D") String duration) {
-    if (dataSourceRepository.findOne(dataSourceId) == null) {
+    if (dataSourceRepository.findById(dataSourceId) == null) {
       return ResponseEntity.notFound().build();
     }
 

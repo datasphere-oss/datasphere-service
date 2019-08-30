@@ -72,7 +72,8 @@ public class EmailUtils {
             DataSource source = new FileDataSource(affix);
             messageBodyPart.setDataHandler(new DataHandler(source));
             // It is very important here that the following Base64 encoded conversions will ensure that your Chinese attachment title will not become garbled when sent.
-            sun.misc.BASE64Encoder enc = new sun.misc.BASE64Encoder();
+            @SuppressWarnings("restriction")
+			sun.misc.BASE64Encoder enc = new sun.misc.BASE64Encoder();
             messageBodyPart.setFileName("=?GBK?B?"
                     + enc.encode(affixName.getBytes()) + "?=");
             //multipart.addBodyPart(messageBodyPart);

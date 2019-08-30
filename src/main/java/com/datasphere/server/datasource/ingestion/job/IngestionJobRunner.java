@@ -430,7 +430,8 @@ public class IngestionJobRunner {
     Callable<IngestionStatusResponse> callable = () -> ingestionService.doCheckResult(taskId);
 
     // @formatter:off
-    IngestionStatusResponse statusResponse = Failsafe.with(retryPolicy)
+    @SuppressWarnings("unchecked")
+	IngestionStatusResponse statusResponse = (Failsafe.with(retryPolicy))
             .onRetriesExceeded((o, throwable) -> {
               throw new DataSourceIngestionException("Retries exceed for ingestion task : " + taskId);
             })
