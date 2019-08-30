@@ -32,13 +32,19 @@ import com.datasphere.server.domain.workspace.WorkspacePagedResourcesAssembler;
 @Configuration
 public class CustomRepositoryRestMvcConfiguration extends RepositoryRestMvcConfiguration {
 
+	
+public CustomRepositoryRestMvcConfiguration(ApplicationContext context,
+			ObjectFactory<ConversionService> conversionService) {
+		super(context, conversionService);
+		// TODO Auto-generated constructor stub
+	}
+
 /**
-   * Spring Data Rest 에서 사용하는 ObjectMapper 정의 (타 Framework 충돌방지를 위하여 @Primary 사용)
+   * ObjectMapper definition used in Spring Data Rest (use @Primary to prevent other Framework conflict)
    *
-   * Spring Data Rest 관리 외적 부분에서 json+hal 타입의 정보 처리시,
-   * HypermediaSupportBeanDefinitionRegistrar 에서 TypeConstrainedMappingJackson2HttpMessageConverter 추가하게 되는데
-   * 이때 _halObjectMapper 라는 이름으로 ObjectMapper 를 로드하게 되어 동일한 ObjectMapper 영향권을 위해 name 처리 추가
-   *
+   * When processing json + hal type information outside the Spring Data Rest management,
+   * In the HypermediaSupportBeanDefinitionRegistrar we add a TypeConstrainedMappingJackson2HttpMessageConverter
+   * At this time, it loads the ObjectMapper with the name _halObjectMapper and adds name handling for the same ObjectMapper sphere of influence.
    * @return
    */
   @Override

@@ -168,7 +168,7 @@ public class DataSourceRepositoryImpl extends QueryDslRepositorySupport implemen
     );
 
     FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(outer.createQuery(), DataSource.class);
-    fullTextQuery.setFirstResult(pageable.getOffset());
+    fullTextQuery.setFirstResult((int)pageable.getOffset());
     fullTextQuery.setMaxResults(pageable.getPageSize());
     fullTextQuery.setSort(getSearchSort(pageable));
 
@@ -190,7 +190,7 @@ public class DataSourceRepositoryImpl extends QueryDslRepositorySupport implemen
       throw new RuntimeException("Fail to search query : " + e.getMessage());
     }
 
-    fullTextQuery.setFirstResult(pageable.getOffset());
+    fullTextQuery.setFirstResult((int)pageable.getOffset());
     fullTextQuery.setMaxResults(pageable.getPageSize());
     fullTextQuery.setSort(getSearchSort(pageable));
 

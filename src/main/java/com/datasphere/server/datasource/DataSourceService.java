@@ -172,7 +172,7 @@ public class DataSourceService {
   }
 
   public void setDataSourceStatus(String datasourceId, DataSource.Status status, DataSourceSummary summary, Boolean failOnEngine) {
-    DataSource dataSource = dataSourceRepository.findOne(datasourceId);
+    DataSource dataSource = dataSourceRepository.findById(datasourceId).get();
     dataSource.setStatus(status);
     dataSource.setFailOnEngine(failOnEngine);
     dataSource.setSummary(summary);
@@ -186,18 +186,18 @@ public class DataSourceService {
 
     for (DataSourceTemporary temporary : temporaries) {
       List<Filter> originalFilters = temporary.getFilterList();
-      // Filter 설정을 비교대상 모두 하지 않은 경우, matched
+      // Matched if all of the filter settings are not compared
       if (CollectionUtils.isEmpty(originalFilters) && CollectionUtils.isEmpty(filters)) {
         matchedTempories.add(temporary);
         continue;
       }
 
-      // Filter 설정이 둘중 한쪽이 없는 경우, pass
+      // If there is no filter setting, pass
       if (originalFilters == null || filters == null) {
         continue;
       }
 
-      // Filter 개수가 다른 경우, pass
+      // If the number of filters is different, pass
       if (!(originalFilters.size() == filters.size())) {
         continue;
       }
@@ -223,7 +223,7 @@ public class DataSourceService {
   }
 
   /**
-   * 데이터 소스 엔진 적재시 name 을 기반으로 engin 내 데이터 소스 지정
+   * Specify data source in engin based on name when loading data source engine
    */
   @Transactional(readOnly = true)
   public List<String> findImportAvailableEngineDataSource() {
@@ -239,7 +239,7 @@ public class DataSourceService {
   }
 
   /**
-   * 데이터 소스 엔진 적재시 name 을 기반으로 engine 내 데이터 소스 지정
+   * Specify data source in engine based on name when loading data source engine
    */
   @Transactional(readOnly = true)
   public String convertName(String name) {
@@ -258,7 +258,7 @@ public class DataSourceService {
   }
 
   /**
-   * 데이터 소스 상세 조회 (임시 데이터 소스도 함께 조회 가능)
+   * Detailed data source search (also available for temporary data source)
  * @throws Exception 
    */
   @Transactional(readOnly = true)
@@ -268,12 +268,12 @@ public class DataSourceService {
     if (dataSourceId.indexOf(ID_PREFIX) == 0) {
       LOGGER.debug("Find temporary datasource : {}", dataSourceId);
 
-      DataSourceTemporary temporary = temporaryRepository.findOne(dataSourceId);
+      DataSourceTemporary temporary = temporaryRepository.findById(dataSourceId).get();
       if (temporary == null) {
         throw new ResourceNotFoundException(dataSourceId);
       }
 
-      dataSource = dataSourceRepository.findOne(temporary.getDataSourceId());
+      dataSource = dataSourceRepository.findById(temporary.getDataSourceId()).get();
       if (dataSource == null) {
         throw new DataSourceTemporaryException(DataSourceErrorCodes.VOLATILITY_NOT_FOUND_CODE,
                                                "Not found related datasource :" + temporary.getDataSourceId());
@@ -283,7 +283,7 @@ public class DataSourceService {
       dataSource.setTemporary(temporary);
 
     } else {
-      dataSource = dataSourceRepository.findOne(dataSourceId);
+      dataSource = dataSourceRepository.findById(dataSourceId).get();
       if (dataSource == null) {
         throw new ResourceNotFoundException(dataSourceId);
       }
@@ -297,7 +297,7 @@ public class DataSourceService {
   }
 
   /**
-   * 데이터 소스 다건 상세 조회 (임시 데이터 소스도 함께 조회 가능)
+   * Detailed data source search (temporary data source can also be viewed)
  * @throws Exception 
    */
   @Transactional(readOnly = true)
@@ -649,7 +649,7 @@ public class DataSourceService {
       return;
     }
 
-    DataSource dataSource = dataSourceRepository.findOne(metadata.getSource().getSourceId());
+    DataSource dataSource = dataSourceRepository.findById(metadata.getSource().getSourceId()).get();
 
     // check whether datasource exists
     if (dataSource == null) {

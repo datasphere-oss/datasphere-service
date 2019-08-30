@@ -1,15 +1,13 @@
 /*
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
  */
 
 package com.datasphere.server.datasource;
@@ -57,7 +55,7 @@ public class DataSourceAliasController {
   }
 
   /**
-   * 데이터 소스 Alias 정보 저장
+   * Save Data Source Alias ​​Information
    *
    * @param dataSourceAlias
    * @return
@@ -66,24 +64,24 @@ public class DataSourceAliasController {
   @RequestMapping(value = "/datasources/aliases", method = RequestMethod.POST)
   public ResponseEntity<?> createDataSourceAlias(@RequestBody DataSourceAlias dataSourceAlias) throws ResourceNotFoundException {
 
-    // 데이터 소스가 존재하는지 체크
-    DataSource dataSource = dataSourceRepository.findOne(dataSourceAlias.getDataSourceId());
+    // Check if data source exists
+    DataSource dataSource = dataSourceRepository.findById(dataSourceAlias.getDataSourceId()).get();
     if (dataSource == null) {
       throw new ResourceNotFoundException(dataSourceAlias.getDataSourceId());
     }
 
-    // 필드명이 존재하는지 체크
+    // Check if field name exists
     if(!dataSource.existFieldName(dataSourceAlias.getFieldName())) {
       throw new ResourceNotFoundException(dataSourceAlias.getFieldName());
     }
 
-    // 대시보드가 존재하는지 체크
-    DashBoard dashBoard = dashboardRepository.findOne(dataSourceAlias.getDashBoardId());
+    // Check if dashboard exists
+    DashBoard dashBoard = dashboardRepository.findById(dataSourceAlias.getDashBoardId()).get();
     if (dashBoard == null) {
       throw new ResourceNotFoundException(dataSourceAlias.getDashBoardId());
     }
 
-    // Alias 항목을 Name 또는 Value 를 지정하지 않은지 체크
+    // Check that no Alias ​​or Name is specified
     if(StringUtils.isEmpty(dataSourceAlias.getNameAlias()) && StringUtils.isEmpty(dataSourceAlias.getValueAlias())) {
       throw new IllegalArgumentException("Alias value required.");
     }
@@ -93,7 +91,7 @@ public class DataSourceAliasController {
   }
 
   /**
-   * 데이터 소스내 필드 Alias 값 수정
+   * Modify Field Alias ​​Values ​​in Data Sources
    *
    * @param aliasId
    * @param paramMap
@@ -105,7 +103,7 @@ public class DataSourceAliasController {
   ResponseEntity<?> appendDataSource(@PathVariable("aliasId") Long aliasId,
                                      @RequestBody Map<String, Object> paramMap) throws ResourceNotFoundException {
 
-    DataSourceAlias alias = dataSourceAliasRepository.findOne(aliasId);
+    DataSourceAlias alias = dataSourceAliasRepository.findById(aliasId).get();
     if (alias == null) {
       throw new ResourceNotFoundException(String.valueOf(aliasId));
     }
@@ -126,7 +124,7 @@ public class DataSourceAliasController {
   }
 
   /**
-   * Alias 정보를 삭제 합니다.
+   * Delete Alias ​​Information.
    *
    * @param aliasId
    * @return
@@ -135,7 +133,7 @@ public class DataSourceAliasController {
   @RequestMapping(value = "/datasources/aliases/{aliasId}", method = RequestMethod.DELETE)
   public ResponseEntity<?> findDataSources(@PathVariable("aliasId") Long aliasId) throws ResourceNotFoundException {
 
-    DataSourceAlias alias = dataSourceAliasRepository.findOne(aliasId);
+    DataSourceAlias alias = dataSourceAliasRepository.findById(aliasId).get();
     if (alias == null) {
       throw new ResourceNotFoundException(String.valueOf(aliasId));
     }
@@ -146,7 +144,7 @@ public class DataSourceAliasController {
   }
 
   /**
-   * alias 상세정보를 가져옵니다.
+   * Get alias details.
    *
    * @param aliasId
    * @param resourceAssembler
@@ -158,7 +156,7 @@ public class DataSourceAliasController {
   public ResponseEntity<?> findDataSources(@PathVariable("aliasId") Long aliasId,
                                            PersistentEntityResourceAssembler resourceAssembler) throws ResourceNotFoundException {
 
-    DataSourceAlias alias = dataSourceAliasRepository.findOne(aliasId);
+    DataSourceAlias alias = dataSourceAliasRepository.findById(aliasId).get();
     if (alias == null) {
       throw new ResourceNotFoundException(String.valueOf(aliasId));
     }
