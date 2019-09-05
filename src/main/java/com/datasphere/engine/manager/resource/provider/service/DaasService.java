@@ -1,3 +1,15 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.manager.resource.provider.service;
 
 import com.alibaba.fastjson.JSON;
@@ -65,8 +77,7 @@ public class DaasService extends BaseService {
 			.writeTimeout(10, TimeUnit.SECONDS).build();
 	private static final MediaType ESJSON = MediaType.parse("application/json; charset=utf-8");
 	private static final String AUTO = "auto_";
-	@Autowired
-	ExchangeSSOService exchangeSSOService;
+	
 
 	@Autowired
 	ComponentInstanceService ciService;
@@ -137,7 +148,7 @@ public class DaasService extends BaseService {
 					dataSource.setClassification("001");
 					dataSource.setCode("SimpleDataSource");
 					dataSource.setCreateTime(new Date());
-					dataSource.setCreator(exchangeSSOService.getAccount(token));
+//					dataSource.setCreator(exchangeSSOService.getAccount(token));
 
 					//数据连接信息
 					Map<String, Object> gsonMap = new Gson()
@@ -158,7 +169,7 @@ public class DaasService extends BaseService {
 					cd.setCode(ComponentClassification.SimpleDataSource.name());
 					cd.setName(daas.getTables().get(i).getResourceName());
 					cd.setClassification("001");
-					cd.setCreator(exchangeSSOService.getAccount(token));
+//					cd.setCreator(exchangeSSOService.getAccount(token));
 					cd.setParams("");
 					dictionaryDao.insert(cd);
 					//新增数据源
@@ -617,7 +628,7 @@ public class DaasService extends BaseService {
 	 */
 	public DataSource findDataSourceDetail(String id, String token) {
 		ComponentInstance cinstances = getInstance(id);//根据id获取 组件实例
-		String creator = exchangeSSOService.getAccount(token);
+//		String creator = exchangeSSOService.getAccount(token);
 		JAssert.isTrue(cinstances != null, "组件实例不存在：" + id);
 		DataSource dataSource = null;
 		DataSourceDao baseDao = null;
@@ -758,7 +769,7 @@ public class DaasService extends BaseService {
 	 */
 	public DataSourceWithAll getWithPanel(String id, String token) {
 		List<DataSourceWithAll> all = null;
-		String userId = exchangeSSOService.getAccount(token);
+//		String userId = exchangeSSOService.getAccount(token);
 		try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			DataSourceDao baseDao = sqlSession.getMapper(DataSourceDao.class);
 			all = baseDao.getWithAll(id, userId);
@@ -1173,7 +1184,7 @@ public class DaasService extends BaseService {
 				dataSource.setClassification("001");
 				dataSource.setCode("SimpleDataSource");
 				dataSource.setCreateTime(new Date());
-				dataSource.setCreator(exchangeSSOService.getAccount(token));
+//				dataSource.setCreator(exchangeSSOService.getAccount(token));
 				JsonObject jsonObject=new JsonObject();
 				jsonObject.addProperty("tableName",daas.getName());
 				jsonObject.addProperty("databaseName","@daas"); //TODO 暂时写死
@@ -1185,7 +1196,7 @@ public class DaasService extends BaseService {
 				cd.setCode(ComponentClassification.SimpleDataSource.name());
 				cd.setName(daas.getResourceName());
 				cd.setClassification("001");
-				cd.setCreator(exchangeSSOService.getAccount(token));
+//				cd.setCreator(exchangeSSOService.getAccount(token));
 				cd.setParams("");
 				//新增数据源
 				if(daas.getResourceId()==null){
@@ -1230,7 +1241,7 @@ public class DaasService extends BaseService {
 				dataSource.setClassification("001");
 				dataSource.setCode("SimpleDataSource");
 				dataSource.setCreateTime(new Date());
-				dataSource.setCreator(exchangeSSOService.getAccount(token));
+//				dataSource.setCreator(exchangeSSOService.getAccount(token));
 				//数据连接信息
 				dataSource.setDataConfig(daas.getType());
 				//更新组件定义
@@ -1239,7 +1250,7 @@ public class DaasService extends BaseService {
 				cd.setCode(ComponentClassification.SimpleDataSource.name());
 				cd.setName(daas.getResourceName());
 				cd.setClassification("001");
-				cd.setCreator(exchangeSSOService.getAccount(token));
+//				cd.setCreator(exchangeSSOService.getAccount(token));
 				cd.setParams("");
 				dictionaryDao.update(cd);
 				//更新数据源
@@ -1471,7 +1482,7 @@ public class DaasService extends BaseService {
 				dataSource.setClassification("001");
 				dataSource.setCode("SimpleDataSource");
 				dataSource.setCreateTime(new Date());
-				dataSource.setCreator(exchangeSSOService.getAccount(token));
+//				dataSource.setCreator(exchangeSSOService.getAccount(token));
 				JsonObject jsonObject=new JsonObject();
 				jsonObject.addProperty("tableName",daas.getName());
 				jsonObject.addProperty("databaseName","@daas"); //TODO 暂时写死
@@ -1483,7 +1494,7 @@ public class DaasService extends BaseService {
 				cd.setCode(ComponentClassification.SimpleDataSource.name());
 				cd.setName(daas.getResourceName());
 				cd.setClassification("001");
-				cd.setCreator(exchangeSSOService.getAccount(token));
+//				cd.setCreator(exchangeSSOService.getAccount(token));
 				cd.setParams("");
 				dictionaryDao.update(cd);
 				//更新数据源
