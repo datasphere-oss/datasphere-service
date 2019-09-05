@@ -67,10 +67,10 @@ public class UDSMService extends BaseService {
     ComponentInstanceRelationService cirService;
     @Autowired
     private ProgramService programService;
-    @Autowired
-    DSSUserTokenService dSSUserTokenService;
-    @Autowired
-    ExchangeSSOService exchangeSSOService;
+//    @Autowired
+//    DSSUserTokenService dSSUserTokenService;
+//    @Autowired
+//    ExchangeSSOService exchangeSSOService;
 
     /**
      * 获得全部数据源信息
@@ -79,22 +79,22 @@ public class UDSMService extends BaseService {
     public Map<String, Object> listAll(Integer pageIndex, Integer pageSize, String name , String token) {
         try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
             DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
-            String account = exchangeSSOService.getAccount(token);
+//            String account = exchangeSSOService.getAccount(token);
             ComponentInstanceDao componentInstanceDao = sqlSession.getMapper(ComponentInstanceDao.class);
             Map<String, Object> map = new HashMap<>();
             map.put("name", name);
             map.put("pageIndex", PageUtil.getPageStart(pageIndex, pageSize));
             map.put("pageSize", pageSize);
             map.put("dataFrom", "DataWave");
-            if("root".equals(account)){
-                map.put("account",null);
-                map.put("userId",null);
-                map.put("departmentId",null);
-            }else{
-                map.put("account",account);
-                map.put("userId",exchangeSSOService.getUserId(token));
-                map.put("departmentId",exchangeSSOService.getCurDepAndSubDepIds(exchangeSSOService.getUserId(token),token));
-            }
+//            if("root".equals(account)){
+//                map.put("account",null);
+//                map.put("userId",null);
+//                map.put("departmentId",null);
+//            }else{
+//                map.put("account",account);
+//                map.put("userId",exchangeSSOService.getUserId(token));
+//                map.put("departmentId",exchangeSSOService.getCurDepAndSubDepIds(exchangeSSOService.getUserId(token),token));
+//            }
             Integer count = dataSourceDao.count(map);
             Map<String, Object> map1 = new HashMap<>();
             List<DataSource> sourceList = dataSourceDao.listAll(map);
