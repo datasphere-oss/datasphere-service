@@ -225,7 +225,7 @@ public class UDSMService extends BaseService {
                     dataSource.setClassification("001");
                     dataSource.setCode("SimpleDataSource");
                     dataSource.setCreateTime(new Date());
-                    dataSource.setCreator(exchangeSSOService.getAccount(token));
+//                    dataSource.setCreator(exchangeSSOService.getAccount(token));
                     //数据连接信息
                     DBConnectionInfo connectionInfo = new DBConnectionInfo();
                     connectionInfo.setTypeName(dataSourceInfo.getDataDSType());
@@ -253,7 +253,7 @@ public class UDSMService extends BaseService {
                     cd.setCode(ComponentClassification.SimpleDataSource.name());
                     cd.setName(dataSources.get(i).getName());
                     cd.setClassification("001");
-                    cd.setCreator(exchangeSSOService.getAccount(token));
+//                    cd.setCreator(exchangeSSOService.getAccount(token));
                     cd.setParams("");
                     dictionaryDao.insert(cd);
                     //新增数据源
@@ -407,7 +407,7 @@ public class UDSMService extends BaseService {
                 dataSource.setDataType(dataSourceInfo.getDataType());
                 dataSource.setDataFrom("DataWave");
                 dataSource.setLastModified(new Date());
-                dataSource.setCreator(exchangeSSOService.getAccount(token));
+//                dataSource.setCreator(exchangeSSOService.getAccount(token));
                 //数据连接信息
                 DBConnectionInfo connectionInfo = new DBConnectionInfo();
                 connectionInfo.setTypeName(dataSourceInfo.getDataDSType());
@@ -541,7 +541,7 @@ public class UDSMService extends BaseService {
      */
     public DataSource findDataSourceDetail(String id,String token) {
         ComponentInstance cinstances = getInstance(id);//根据id获取 组件实例
-        String creator = exchangeSSOService.getAccount(token);
+//        String creator = exchangeSSOService.getAccount(token);
         JAssert.isTrue(cinstances != null, "组件实例不存在：" + id);
         DataSource dataSource = null;
         if (cinstances != null) {
@@ -680,7 +680,7 @@ public class UDSMService extends BaseService {
                     dataSource.setDataDesc(dataSources.get(i).getDataDesc());
                     dataSource.setDataFrom("DataWave");
                     dataSource.setCreateTime(new Date());
-                    dataSource.setCreator(exchangeSSOService.getAccount(token));
+//                    dataSource.setCreator(exchangeSSOService.getAccount(token));
                     //hive数据连接信息
                     HiveConnectionInfo connectionInfo =
                             gson.fromJson(gson.toJson(hiveDataSourceInfo), HiveConnectionInfo.class);
@@ -697,7 +697,7 @@ public class UDSMService extends BaseService {
                     cd.setCode(ComponentClassification.SimpleDataSource.name());
                     cd.setName(dataSources.get(i).getName());
                     cd.setClassification("001");
-                    cd.setCreator(exchangeSSOService.getAccount(token));
+//                    cd.setCreator(exchangeSSOService.getAccount(token));
                     cd.setParams(dataConfig);
                     dictionaryDao.insert(cd);
                     //新增数据源
@@ -793,7 +793,7 @@ public class UDSMService extends BaseService {
                     dataSource.setDataDesc(dataSources.get(i).getDataDesc());
 //                    dataSource.setDataFrom("DataWave");
                     dataSource.setLastModified(new Date());
-                    dataSource.setCreator(exchangeSSOService.getAccount(token));
+//                    dataSource.setCreator(exchangeSSOService.getAccount(token));
                     //hive数据连接信息
                     HiveConnectionInfo connectionInfo =
                             gson.fromJson(gson.toJson(hiveDataSourceInfo), HiveConnectionInfo.class);
@@ -809,7 +809,7 @@ public class UDSMService extends BaseService {
                     cd.setId(hiveDataSourceInfo.getId());
                     cd.setCode(ComponentClassification.SimpleDataSource.name());
                     cd.setName(dataSources.get(i).getName());
-                    cd.setCreator(exchangeSSOService.getAccount(token));
+//                    cd.setCreator(exchangeSSOService.getAccount(token));
                     dictionaryDao.update(cd);
                     //更新数据源
                     dataSourceDao.updateDatasourceById(dataSource);
@@ -829,7 +829,7 @@ public class UDSMService extends BaseService {
      */
     public DataSourceWithAll getWithPanel(String id,String token) {
         List<DataSourceWithAll> all = null;
-        String userId = exchangeSSOService.getAccount(token);
+//        String userId = exchangeSSOService.getAccount(token);
         try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
             DataSourceDao baseDao = sqlSession.getMapper(DataSourceDao.class);
             all = baseDao.getWithAll(id, userId);
@@ -985,7 +985,7 @@ public class UDSMService extends BaseService {
                     dataSource.setDataFrom("DataWave");
                     dataSource.setClassification("001");
                     dataSource.setCreateTime(new Date());
-                    dataSource.setCreator(exchangeSSOService.getAccount(token));
+//                    dataSource.setCreator(exchangeSSOService.getAccount(token));
                     //hbase数据连接信息
                     HbaseConnectionInfo connectionInfo =
                             gson.fromJson(gson.toJson(hbaseDataSourceInfo), HbaseConnectionInfo.class);
@@ -1002,7 +1002,7 @@ public class UDSMService extends BaseService {
                     cd.setCode(ComponentClassification.SimpleDataSource.name());
                     cd.setName(dataSources.get(i).getName());
                     cd.setClassification("001");
-                    cd.setCreator(exchangeSSOService.getAccount(token));
+//                    cd.setCreator(exchangeSSOService.getAccount(token));
                     cd.setParams("");
                     dictionaryDao.insert(cd);
                     //新增数据源
@@ -1038,7 +1038,7 @@ public class UDSMService extends BaseService {
                     dataSource.setDataDesc(dataSources.get(i).getDataDesc());
 //                    dataSource.setDataFrom("DataWave");
                     dataSource.setLastModified(new Date());
-                    dataSource.setCreator(exchangeSSOService.getAccount(token));
+//                    dataSource.setCreator(exchangeSSOService.getAccount(token));
                     //hbase数据连接信息
                     HbaseConnectionInfo connectionInfo =
                             gson.fromJson(gson.toJson(hbaseDataSourceInfo), HbaseConnectionInfo.class);
@@ -1054,7 +1054,7 @@ public class UDSMService extends BaseService {
                     cd.setId(hbaseDataSourceInfo.getId());
                     cd.setCode(ComponentClassification.SimpleDataSource.name());
                     cd.setName(dataSources.get(i).getName());
-                    cd.setCreator(exchangeSSOService.getAccount(token));
+//                    cd.setCreator(exchangeSSOService.getAccount(token));
                     dictionaryDao.update(cd);
                     //更新数据源
                     dataSourceDao.updateDatasourceById(dataSource);
