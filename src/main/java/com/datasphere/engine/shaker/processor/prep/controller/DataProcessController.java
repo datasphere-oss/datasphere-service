@@ -32,9 +32,6 @@ import static com.datasphere.engine.shaker.processor.prep.constant.ReturnConst.D
 import static com.datasphere.engine.shaker.processor.prep.constant.ReturnConst.Failed;
 import static com.datasphere.engine.shaker.processor.prep.constant.ReturnConst.ParameterInvalid;
 
-import io.micronaut.context.annotation.Parameter;
-import io.micronaut.http.annotation.Post;
-import io.micronaut.http.annotation.Body;
 /**
  * data preprocessing by workflow
  */
