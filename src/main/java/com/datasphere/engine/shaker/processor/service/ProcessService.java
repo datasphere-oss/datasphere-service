@@ -1,3 +1,15 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.shaker.processor.service;
 
 import java.util.*;
@@ -23,6 +35,7 @@ import com.datasphere.engine.shaker.processor.buscommon.AggregationFunctions;
 import com.datasphere.engine.shaker.processor.buscommon.CharReplaceUtils;
 import com.datasphere.engine.shaker.processor.buscommon.OperatorUtils;
 import com.datasphere.engine.shaker.processor.buscommon.ReturnMessageUtils;
+import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.instance.Component;
 import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;
 import com.datasphere.engine.shaker.processor.instance.dao.ComponentInstanceDao;
@@ -91,8 +104,8 @@ public class ProcessService extends BaseService {
 	@Autowired
 	private ProcessRecordService processRecordService;
 	private DataAccessor dataAccessor;
-	@Autowired
-	ExchangeSSOService exchangeSSOService;
+//	@Autowired
+//	ExchangeSSOService exchangeSSOService;
 
 	public String runProcess(String creator_user_id, String panelId) {
 		List<Component> fromComponents = componentService.getBeginComponents(panelId);//获取panel中所有的源组件
@@ -1554,7 +1567,7 @@ public class ProcessService extends BaseService {
 	 * @param logsType 1-info，2-error，3-warn
 	 */
 	public void addCILog(String processId, String panelId, String componentInstanceId, String actionMsg, int logsType) {
-		String user_id = exchangeSSOService.getAccount(TOKEN);
+//		String user_id = exchangeSSOService.getAccount(TOKEN);
 		JSONObject msgObj = new JSONObject();
 		String msg;
 		if (StringUtils.isBlank(componentInstanceId)) {
