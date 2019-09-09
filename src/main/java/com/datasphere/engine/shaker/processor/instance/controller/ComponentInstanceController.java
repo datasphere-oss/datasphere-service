@@ -18,6 +18,8 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.datasphere.common.data.Dataset;
 import com.datasphere.core.common.BaseController;
@@ -34,8 +36,6 @@ import com.datasphere.server.connections.model.DataSetInstance;
 import io.reactivex.Single;
 import javax.inject.Inject;
 
-import io.micronaut.context.annotation.Parameter;
-import io.micronaut.http.annotation.Post;
 
 /**
  * Component instance operation interface
@@ -53,7 +53,7 @@ public class ComponentInstanceController extends BaseController {
 	/**
 	 * Query component instance details
 	 */
-	@Post(BASE_PATH + "/get")
+	@RequestMapping(value = BASE_PATH+"/get", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> get(@Parameter String id, @Parameter String creator) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(componentInstanceService.get(id));
@@ -65,7 +65,7 @@ public class ComponentInstanceController extends BaseController {
 	 * @param componentInstance
 	 * @return
 	 */
-	@Post(BASE_PATH + "/create")
+	@RequestMapping(value = BASE_PATH+"/create", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> create(@Body ComponentInstance componentInstance, HttpRequest request) { //, @Parameter String reserve
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -83,7 +83,7 @@ public class ComponentInstanceController extends BaseController {
 	 * @param componentInstance
 	 * @return
 	 */
-	@Post(BASE_PATH + "/update")
+	@RequestMapping(value = BASE_PATH+"/update", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> update(@Body ComponentInstance componentInstance) {
 		return Single.fromCallable(() -> {
 			if (0 == componentInstanceService.update(componentInstance))
@@ -97,7 +97,7 @@ public class ComponentInstanceController extends BaseController {
 	 * @param entity
 	 * @return
 	 */
-	@Post(BASE_PATH + "/updatePosition")
+	@RequestMapping(value = BASE_PATH+"/updatePosition", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> updatePosition(@Body UpdatePositionEntity entity) {
 		return Single.fromCallable(() -> {
 			componentInstanceService.updatePosition(entity);
@@ -111,7 +111,7 @@ public class ComponentInstanceController extends BaseController {
 	 * @param panelId
 	 * @return
 	 */
-	@Post(BASE_PATH + "/listByPanelId")
+	@RequestMapping(value = BASE_PATH+"/listByPanelId", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> listBy(@Parameter String panelId) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(componentInstanceService.getAllComponentInstancesWithPanel(panelId));
@@ -123,7 +123,7 @@ public class ComponentInstanceController extends BaseController {
 	 * @param id
 	 * @return
 	 */
-	@Post(BASE_PATH + "/delete")
+	@RequestMapping(value = BASE_PATH+"/delete", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> delete(@Parameter String id, HttpRequest request) {//, @Parameter String creator
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -140,7 +140,7 @@ public class ComponentInstanceController extends BaseController {
 	/**
 	 * Replication of component instances
 	 */
-	@Post(BASE_PATH + "/copy")
+	@RequestMapping(value = BASE_PATH+"/copy", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> copy(@Parameter String creator,@Parameter String componentInstanceId, HttpRequest request)  {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -158,7 +158,7 @@ public class ComponentInstanceController extends BaseController {
 	 * @param output
 	 * @return
 	 */
-	@Post(BASE_PATH + "/getOutput")
+	@RequestMapping(value = BASE_PATH+"/getOutput", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> getOutput(@Parameter String componentInstanceId,@Parameter String output) {
 		return Single.fromCallable(() -> {
 			List<Dataset> datasets = componentInstanceService.getDatasetByComponentId(componentInstanceId, output);
@@ -168,7 +168,7 @@ public class ComponentInstanceController extends BaseController {
 	}
 
 
-	@Post(BASE_PATH + "/dataQuery")
+	@RequestMapping(value = BASE_PATH+"/dataQuery", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> dataQuery(@Body QueryDataParams query) {
 		return Single.fromCallable(() -> {
 			if(!StringUtils.isBlank(query.getComponentInstanceId())){
