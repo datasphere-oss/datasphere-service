@@ -19,7 +19,6 @@ import java.util.UUID;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.manager.resource.provider.mybatis.page.Pager;
-//import com.datasphere.engine.manager.resource.provider.service.ExchangeSSOService;
 import com.datasphere.engine.projects.dao.ProjectDao;
 import com.datasphere.engine.projects.model.Project;
 
