@@ -20,13 +20,13 @@ public class SAMLSSOCircleUserMapper extends SAMLUserMapper{
 
   @Override
   public User createUser(SAMLCredential samlCredential) {
-    User metatronUser = new User();
+    User user = new User();
     if(samlCredential != null){
       String firstName = getAttributeValue(samlCredential, "FirstName");
       String lastName = getAttributeValue(samlCredential, "LastName");
-      metatronUser.setFullName(lastName + " " + firstName);
-      metatronUser.setEmail(getAttributeValue(samlCredential, "EmailAddress"));
+      user.setFullName(lastName + " " + firstName);
+      user.setEmail(getAttributeValue(samlCredential, "EmailAddress"));
     }
-    return metatronUser;
+    return user;
   }
 }
