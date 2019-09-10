@@ -34,7 +34,7 @@ public class SAMLTokenConverter extends JwtAccessTokenConverter {
   @Override
   public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
 
-    //SAMLCredential 정보를 Token에 추가
+    // 将SAMLCredential信息添加到令牌
     if(accessToken instanceof DefaultOAuth2AccessToken){
       LOGGER.debug("accessToken : {}", accessToken);
       Authentication userAuthentication = authentication.getUserAuthentication();
