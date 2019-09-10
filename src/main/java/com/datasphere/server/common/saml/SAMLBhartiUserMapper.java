@@ -20,12 +20,12 @@ public class SAMLBhartiUserMapper extends SAMLUserMapper{
 
   @Override
   public User createUser(SAMLCredential samlCredential) {
-    User metatronUser = new User();
+    User user = new User();
     if(samlCredential != null){
-      metatronUser.setTel(getAttributeValue(samlCredential, "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/phonenumber"));
-      metatronUser.setFullName(getAttributeValue(samlCredential, "http://schemas.microsoft.com/2012/01/devicecontext/claims/displayname"));
-      metatronUser.setEmail(getAttributeValue(samlCredential, "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"));
+      user.setTel(getAttributeValue(samlCredential, "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/phonenumber"));
+      user.setFullName(getAttributeValue(samlCredential, "http://schemas.microsoft.com/2012/01/devicecontext/claims/displayname"));
+      user.setEmail(getAttributeValue(samlCredential, "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"));
     }
-    return metatronUser;
+    return user;
   }
 }
