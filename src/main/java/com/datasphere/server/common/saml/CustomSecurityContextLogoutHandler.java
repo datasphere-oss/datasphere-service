@@ -29,7 +29,7 @@ public class CustomSecurityContextLogoutHandler extends SecurityContextLogoutHan
   public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
     super.logout(request, response, authentication);
 
-    //Logout 시점에 Cookie 삭제
+    // 在注销时删除cookie
     if(clearCookie){
       String[] cookies = new String[]{"LOGIN_TOKEN", "LOGIN_TOKEN_TYPE", "REFRESH_LOGIN_TOKEN", "LOGIN_USER_ID", "PERMISSION"};
 
