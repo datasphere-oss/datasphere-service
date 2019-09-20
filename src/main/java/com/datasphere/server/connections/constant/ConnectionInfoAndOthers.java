@@ -9,6 +9,7 @@
  * PURPOSE.
  * See the Mulan PSL v1 for more details.
  */
+
 package com.datasphere.server.connections.constant;
 
 public class ConnectionInfoAndOthers extends ConnectionInfo {
