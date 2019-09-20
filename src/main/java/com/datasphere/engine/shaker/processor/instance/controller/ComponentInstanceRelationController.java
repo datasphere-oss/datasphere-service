@@ -1,42 +1,52 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.shaker.processor.instance.controller;
 
 import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
-import com.datasphere.resource.manager.module.component.instance.domain.ComponentInstanceRelation;
-import com.datasphere.resource.manager.module.component.instance.service.ComponentInstanceRelationService;
-import com.datasphere.resource.manager.module.component.instance.service.ComponentInstanceService;
-import com.datasphere.resource.manager.module.datasource.service.ExchangeSSOService;
+import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceRelationService;
+import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
 
-import io.micronaut.context.annotation.Parameter;
-import io.micronaut.http.HttpRequest;
-import io.micronaut.http.annotation.Body;
-import io.micronaut.http.annotation.Post;
-//import io.micronaut.validation.Validated;
 import io.reactivex.Single;
 
 /**
  * 关联线操作接口
  */
-//@Validated
+@Service
 public class ComponentInstanceRelationController extends BaseController {
 	public static final String BASE_PATH = "/component/instance/relations";
 
-	@Inject
+	@Autowired
 	ComponentInstanceService ciService;
-	@Inject
+	@Autowired
     ComponentInstanceRelationService cirService;
-	@Inject
-	ExchangeSSOService exchangeSSOService;
+//	@Inject
+//	ExchangeSSOService exchangeSSOService;
 
 	/**
 	 * 创建关联线
 	 * @param componentInstanceRelation
 	 */
-	@Post(BASE_PATH + "/create")
+	@RequestMapping(value = BASE_PATH+"/create", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> create(@Body ComponentInstanceRelation componentInstanceRelation, HttpRequest request) { //, @Parameter String creator
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -53,7 +63,7 @@ public class ComponentInstanceRelationController extends BaseController {
 	 * @param componentInstanceRelation
 	 * @return
 	 */
-	@Post(BASE_PATH + "/update")
+	@RequestMapping(value = BASE_PATH+"/update", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> update(@Body ComponentInstanceRelation componentInstanceRelation, HttpRequest request) {//, @Parameter String creator
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -65,7 +75,7 @@ public class ComponentInstanceRelationController extends BaseController {
 	/**
 	 * 删除关联线
 	 */
-	@Post(BASE_PATH + "/delete")
+	@RequestMapping(value = BASE_PATH+"/delete", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> delete(@Parameter String id, HttpRequest request) {//,@Parameter String creator
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -79,7 +89,7 @@ public class ComponentInstanceRelationController extends BaseController {
 	 * @param componentInstanceRelation
 	 * @return
 	 */
-	@Post(BASE_PATH + "/listBy")
+	@RequestMapping(value = BASE_PATH+"/listBy", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> listBy(@Body ComponentInstanceRelation componentInstanceRelation) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(cirService.listBy(componentInstanceRelation));

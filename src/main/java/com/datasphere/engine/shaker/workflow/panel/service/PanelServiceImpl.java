@@ -292,10 +292,10 @@ public class PanelServiceImpl extends BaseService {
 //		id = getPanelById(panelId).getId();
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			PanelDao dao = sqlSession.getMapper(PanelDao.class);
-			String username = exchangeSSOService.getAccount(token);
+//			String username = exchangeSSOService.getAccount(token);
 			boolean root = false;
 			try {
-				Object obj = redisService.get(token);
+//				Object obj = redisService.get(token);
 				if (obj != null) {
 					String allInfo = obj.toString();
 					JSONObject allInfoJson = JSON.parseObject(allInfo);

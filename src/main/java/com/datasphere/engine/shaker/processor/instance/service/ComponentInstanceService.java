@@ -47,7 +47,6 @@ import com.datasphere.engine.manager.resource.provider.db.dao.DataSourceDao;
 import com.datasphere.engine.manager.resource.provider.elastic.model.QueryDBDataParams;
 import com.datasphere.engine.manager.resource.provider.model.DataSource;
 import com.datasphere.engine.manager.resource.provider.service.DataQueryService;
-import com.datasphere.engine.manager.resource.provider.service.ExchangeSSOService;
 import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
 import com.datasphere.engine.shaker.processor.definition.constant.GlobalDefine;
@@ -85,8 +84,8 @@ public class ComponentInstanceService extends BaseService {
 	DSSUserTokenService dSSUserTokenService;
 	@Autowired
 	DataQueryService dataQueryService;
-	@Autowired
-	ExchangeSSOService exchangeSSOService;
+//	@Autowired
+//	ExchangeSSOService exchangeSSOService;
 
 	public ComponentInstance get(String id) {
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
@@ -188,7 +187,7 @@ public class ComponentInstanceService extends BaseService {
 		}
 		componentInstance.setStatus(ComponentInstanceStatus.PREPARED);// 设置状态为预处理状态：3
 		componentInstance.setId(UUIDUtils.random());//jeq
-		componentInstance.setCreator(exchangeSSOService.getAccount(token));
+//		componentInstance.setCreator(exchangeSSOService.getAccount(token));
 		componentInstance.setCiParams(paramsValue);
 		componentInstance.setInputName(inputNameValue);
 		componentInstance.setOutputName(outputNameValue);
@@ -277,7 +276,7 @@ public class ComponentInstanceService extends BaseService {
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			ComponentInstanceDao dao = sqlSession.getMapper(ComponentInstanceDao.class);
 			// 判断当前组件实例的创建者是否是当前用户
-			JAssert.isTrue(dao.belong(id, exchangeSSOService.getAccount(token)), "组件实例不存在或者删除了他人的组件实例！");
+//			JAssert.isTrue(dao.belong(id, exchangeSSOService.getAccount(token)), "组件实例不存在或者删除了他人的组件实例！");
 		}
 
 		int flag = 0;

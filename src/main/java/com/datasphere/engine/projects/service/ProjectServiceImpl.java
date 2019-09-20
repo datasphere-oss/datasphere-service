@@ -1,3 +1,15 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.projects.service;
 
 import java.util.List;
@@ -7,7 +19,6 @@ import java.util.UUID;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.manager.resource.provider.mybatis.page.Pager;
-import com.datasphere.engine.manager.resource.provider.service.ExchangeSSOService;
 import com.datasphere.engine.projects.dao.ProjectDao;
 import com.datasphere.engine.projects.model.Project;
 
@@ -21,8 +32,8 @@ import org.springframework.stereotype.Service;
 public class ProjectServiceImpl extends BaseService {
 	public static String DEFAULT_PROJECT_NAME = "默认项目";
 
-	@Autowired
-	ExchangeSSOService exchangeSSOService;
+//	@Autowired
+//	ExchangeSSOService exchangeSSOService;
 	
 	/**1
 	 * 检验名称是否已经存在
@@ -42,7 +53,7 @@ public class ProjectServiceImpl extends BaseService {
 	 * @param project
 	 */
 	public int create(Project project, String token) {
-		project.setCreator(exchangeSSOService.getAccount(token));
+//		project.setCreator(exchangeSSOService.getAccount(token));
 		project.setId(UUID.randomUUID().toString());
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			ProjectDao dao = sqlSession.getMapper(ProjectDao.class);
@@ -102,7 +113,8 @@ public class ProjectServiceImpl extends BaseService {
 //		String userId = UserContextHolder.getUserContext().getOmSysUser().getUserId();
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			ProjectDao dao = sqlSession.getMapper(ProjectDao.class);
-			Project project = dao.getProjectById(id,exchangeSSOService.getAccount(token));
+//			Project project = dao.getProjectById(id,exchangeSSOService.getAccount(token));
+			Project project = dao.getProjectById(id);
 			if(project != null) {
 				List panelList = getByProjectId(id,null);
 				if(panelList != null) {

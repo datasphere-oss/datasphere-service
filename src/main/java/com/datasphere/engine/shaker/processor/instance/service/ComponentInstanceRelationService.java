@@ -1,3 +1,15 @@
+/*
+ * Copyright 2019, Huahuidata, Inc.
+ * DataSphere is licensed under the Mulan PSL v1.
+ * You can use this software according to the terms and conditions of the Mulan PSL v1.
+ * You may obtain a copy of Mulan PSL v1 at:
+ * http://license.coscl.org.cn/MulanPSL
+ * THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT, MERCHANTABILITY OR FIT FOR A PARTICULAR
+ * PURPOSE.
+ * See the Mulan PSL v1 for more details.
+ */
+
 package com.datasphere.engine.shaker.processor.instance.service;
 
 import java.util.List;
@@ -12,7 +24,6 @@ import org.springframework.stereotype.Service;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.core.common.utils.UUIDUtils;
 import com.datasphere.engine.core.utils.JAssert;
-import com.datasphere.engine.manager.resource.provider.service.ExchangeSSOService;
 import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.instance.dao.ComponentInstanceDao;
 import com.datasphere.engine.shaker.processor.instance.dao.ComponentInstanceRelationDao;
@@ -25,8 +36,8 @@ import com.datasphere.engine.shaker.processor.instance.model.ComponentInstanceRe
 @Service
 public class ComponentInstanceRelationService extends BaseService {
 	private final static Log logger = LogFactory.getLog(ComponentInstanceService.class);
-	@Autowired
-	ExchangeSSOService exchangeSSOService;
+//	@Autowired
+//	ExchangeSSOService exchangeSSOService;
 
 	public String insert(ComponentInstanceRelation cir, String userId) {
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
@@ -54,7 +65,7 @@ public class ComponentInstanceRelationService extends BaseService {
 	}
 
 	public int update(ComponentInstanceRelation t,String token) {
-		String userId = exchangeSSOService.getAccount(token);
+//		String userId = exchangeSSOService.getAccount(token);
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			ComponentInstanceDao componentInstanceDao = sqlSession.getMapper(ComponentInstanceDao.class);
 			ComponentInstanceRelationDao baseDao = sqlSession.getMapper(ComponentInstanceRelationDao.class);
@@ -62,7 +73,7 @@ public class ComponentInstanceRelationService extends BaseService {
 			ComponentInstance source = componentInstanceDao.get(t.getSourceComponentInstanceId());
 			ComponentInstance dest = componentInstanceDao.get(t.getDestComponentInstanceId());
 			JAssert.isTrue(source != null && dest != null, "源组件实例或者目的组件实例不存在！");
-			JAssert.isTrue(userId.equals(source.getCreator()) && userId.equals(dest.getCreator()), "不能关联他人的组件实例！");
+//			JAssert.isTrue(userId.equals(source.getCreator()) && userId.equals(dest.getCreator()), "不能关联他人的组件实例！");
 			JAssert.isTrue(source.getPanelId().equals(dest.getPanelId()), "只能给同一面板的组件实例进行关联！");
 			// 判断线两端的点都是存在的
 			int flag = baseDao.update(t);
