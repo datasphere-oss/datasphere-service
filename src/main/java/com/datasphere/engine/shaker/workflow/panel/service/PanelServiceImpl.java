@@ -293,24 +293,24 @@ public class PanelServiceImpl extends BaseService {
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			PanelDao dao = sqlSession.getMapper(PanelDao.class);
 //			String username = exchangeSSOService.getAccount(token);
-			boolean root = false;
-			try {
+//			boolean root = false;
+//			try {
 //				Object obj = redisService.get(token);
-				if (obj != null) {
-					String allInfo = obj.toString();
-					JSONObject allInfoJson = JSON.parseObject(allInfo);
-					JSONArray roles = allInfoJson.getJSONArray("roles");
-					for(Object role:roles) {
-						JSONObject role2 = JSON.parseObject(role.toString());
-						if("superAdmin".equals(role2.getString("id"))) {
-							root = true;
-						}
-					}
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			if (!root) JAssert.isTrue(dao.existsByCreator(panelId, username), "The panel does not exist!ID="+panelId+"，user："+username);
+//				if (obj != null) {
+//					String allInfo = obj.toString();
+//					JSONObject allInfoJson = JSON.parseObject(allInfo);
+//					JSONArray roles = allInfoJson.getJSONArray("roles");
+//					for(Object role:roles) {
+//						JSONObject role2 = JSON.parseObject(role.toString());
+//						if("superAdmin".equals(role2.getString("id"))) {
+//							root = true;
+//						}
+//					}
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			if (!root) JAssert.isTrue(dao.existsByCreator(panelId, username), "The panel does not exist!ID="+panelId+"，user："+username);
 		}
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			PanelDao dao = sqlSession.getMapper(PanelDao.class);
@@ -327,7 +327,8 @@ public class PanelServiceImpl extends BaseService {
 	 * @return
 	 */
 	public Map<String, Object> panelPageDetail(String projectId, String panelId, String token) {
-		String userId = exchangeSSOService.getAccount(token);
+//		String userId = exchangeSSOService.getAccount(token);
+		String userId = "0";
 		Map<String, Object> panelList = null;
 		if(StringUtils.isBlank(panelId)) {
 			Map<String, String> lastPanel = getLastAccessPanel(userId);
@@ -350,7 +351,7 @@ public class PanelServiceImpl extends BaseService {
 	//Default project panel
 	public Panel getDefaultPanel(String token) {
 		Panel panel = new Panel();
-		panel.setCreator(exchangeSSOService.getAccount(token));
+		panel.setCreator("0");
 		panel.setProjectName("Default project");
 		List<Panel> panelList = null;
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
@@ -381,7 +382,8 @@ public class PanelServiceImpl extends BaseService {
 		panel.setId(id);
 		panel.setProjectId(projectId);
 		panel.setPanelName(panelName);
-		panel.setCreator(exchangeSSOService.getAccount(token));
+//		panel.setCreator(exchangeSSOService.getAccount(token));
+		panel.setCreator("0");
 		if(!StringUtils.isBlank(panelDesc)) {
 			panel.setProjectDesc(panelDesc);
 		}
@@ -632,9 +634,11 @@ public class PanelServiceImpl extends BaseService {
 	}
 
     public List<Panel> getAllPanelList(Panel panel,String token) {
-        String userId = exchangeSSOService.getUserId(token);
+//        String userId = exchangeSSOService.getUserId(token);
+    		String userId = "0";
         if(userId == null) return null;
-        List<String> departmentIds = exchangeSSOService.getCurDepAndSubDepIds(userId,token);
+//        List<String> departmentIds = exchangeSSOService.getCurDepAndSubDepIds(userId,token);
+        List<String> departmentIds = null;
         if(departmentIds == null) return null;
         try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
             PanelDao dao = sqlSession.getMapper(PanelDao.class);

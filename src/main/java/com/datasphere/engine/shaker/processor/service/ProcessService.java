@@ -12,12 +12,25 @@
 
 package com.datasphere.engine.shaker.processor.service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.session.SqlSession;
+import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -44,12 +57,12 @@ import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstanceRelation;
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceRelationService;
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
-import com.datasphere.engine.shaker.processor.model.BinaryTree;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 import com.datasphere.engine.shaker.processor.runner.ProcessRunner;
 import com.datasphere.engine.shaker.processor.stop.StopSingleInstance;
 import com.datasphere.engine.shaker.workflow.panel.constant.PanelState;
 import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
+import com.datasphere.server.connections.constant.ConnectionInfoAndOthers;
 import com.datasphere.server.connections.dao.DataSetInstanceDao;
 import com.datasphere.server.connections.model.DataSetInstance;
 import com.datasphere.server.connections.service.DataAccessor;
@@ -57,14 +70,6 @@ import com.datasphere.server.sso.service.DSSUserTokenService;
 import com.datasphere.server.sso.service.DSSVersionService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.apache.commons.lang3.StringUtils;
-
-import org.apache.ibatis.session.SqlSession;
-import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * 工作流-服务
@@ -1017,7 +1022,8 @@ public class ProcessService extends BaseService {
 		String secondPath = second_path_prefix + new_version + second_path_next;// 两表join
 		String urlPath = this.daasServerAPIV2RootUrl + secondPath;
 		try {
-			virtualDataset = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toJSONString(), dSSUserTokenService.getCurrentToken());
+//			virtualDataset = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toJSONString(), dSSUserTokenService.getCurrentToken());
+			virtualDataset = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toJSONString(), null);
 			addCILog(PROCESS_ID,PANEL_ID,"","两表"+jsonParam.getString("joinType")+"成功",1);
 		} catch (Exception e) {
 			addCILog(PROCESS_ID,PANEL_ID,"","两表"+jsonParam.getString("joinType")+"异常:"+e.getMessage(),2);
@@ -1046,7 +1052,8 @@ public class ProcessService extends BaseService {
 		jsonParam.put("newVersion", new_version);
 		jsonParam.put("limit", 150);
 		try {
-			return OkHttpRequest.okHttpClientPost(this.daasServerAPIV2RootUrl + secondPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
+//			return OkHttpRequest.okHttpClientPost(this.daasServerAPIV2RootUrl + secondPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
+			return OkHttpRequest.okHttpClientPost(this.daasServerAPIV2RootUrl + secondPath, jsonParam.toString(), null);
 		} catch (Exception e) {
 			logger.error("ProcessService.getVDS(panel_id):请求DAAS异常");
 		}
@@ -1538,7 +1545,7 @@ public class ProcessService extends BaseService {
 		connectionInfo.setUserName(user_name);
 		connectionInfo.setUserPassword(user_password);
 		connectionInfo.setDatabaseName(db_name);
-		connectionInfo.setScheme(scheme);
+		connectionInfo.setSchema(scheme);
 		connectionInfo.setTableName(table_name);
 		connectionInfo.setDatas(resultOrSql);
 		connectionInfo.setBatchSize("500");
@@ -1568,6 +1575,7 @@ public class ProcessService extends BaseService {
 	 */
 	public void addCILog(String processId, String panelId, String componentInstanceId, String actionMsg, int logsType) {
 //		String user_id = exchangeSSOService.getAccount(TOKEN);
+		String user_id = "0";
 		JSONObject msgObj = new JSONObject();
 		String msg;
 		if (StringUtils.isBlank(componentInstanceId)) {
@@ -1594,7 +1602,8 @@ public class ProcessService extends BaseService {
         jsonParam.put("message", "Job cancellation requested");
 		String result = null;
 		try {
-			result = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
+//			result = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
+			result = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toString(), null);
         } catch (Exception e) {
             logger.error("ProcessService.cancelJobById(jobId):请求DAAS异常");
 			addCILog(PROCESS_ID,PANEL_ID, "","暂停任务-失败："+e.getMessage(), 1);
