@@ -321,7 +321,6 @@ public class PanelServiceImpl extends BaseService {
 		return panelWithAll;
 	}
 
-
 	/** new0
 	 * 获取面板详细信息
 	 * @return
