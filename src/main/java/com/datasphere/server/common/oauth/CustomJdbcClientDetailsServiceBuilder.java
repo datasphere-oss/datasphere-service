@@ -26,7 +26,7 @@ import java.util.Set;
 import javax.sql.DataSource;
 
 /**
- * ClientAlreadyExistsException 으로 인한 Custom class 조치
+ * ClientAlreadyExistsException Class action caused by
  *
  * https://github.com/spring-projects/spring-security-oauth/issues/864
  *
