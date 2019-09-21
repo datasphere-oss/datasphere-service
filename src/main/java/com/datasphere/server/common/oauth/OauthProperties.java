@@ -22,7 +22,7 @@ import java.util.List;
  * Created by aladin on 2019. 6. 12..
  */
 @Component
-@ConfigurationProperties(prefix = "polaris.oauth2")
+@ConfigurationProperties(prefix = "datasphere.oauth2")
 public class OauthProperties {
 
   String privateKey;
