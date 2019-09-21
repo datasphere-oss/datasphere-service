@@ -34,8 +34,11 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * dataflow controller
@@ -105,7 +108,7 @@ public class ProcessController extends BaseController {
 					return JsonWrapper.failureWrapper(ReturnMessageUtils.ParameterIsNull);
 				}
 				panelName = panelService.getPanelById(panelId).getPanelName();
-				String token = request.getParameters().get("token");
+				String token = request.getParameter("token");
 				if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
 				Map<String, Object> rs = processService.runToByCIId(panelId, componentInstanceId, token);
 				if (Integer.parseInt(rs.get("code").toString()) == JsonWrapper.DEFAULT_FAILURE_CODE) {//1
@@ -132,7 +135,7 @@ public class ProcessController extends BaseController {
 				if (StringUtils.isBlank(panelId) || StringUtils.isBlank(componentInstanceId)) {
 					return JsonWrapper.failureWrapper(ReturnMessageUtils.ParameterIsNull);
 				}
-				String token = request.getParameters().get("token");
+				String token = request.getParameter("token");
 				if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
 				return JsonWrapper.successWrapper(processService.runFromByCIId(panelId, componentInstanceId,token));
 			} catch (Exception e) {
@@ -149,7 +152,7 @@ public class ProcessController extends BaseController {
 	@PostMapping(value = BASE_PATH + "/runAll")
 	public Single<Map<String,Object>> runAll(@RequestParam String panelId, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
-			String token = request.getParameters().get("token");
+			String token = request.getParameter("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
 			String panelName = "";
 			String jobId = "3";
@@ -194,7 +197,7 @@ public class ProcessController extends BaseController {
 				if (StringUtils.isBlank(jobId)) {
 					return JsonWrapper.failureWrapper(ReturnMessageUtils.ParameterIsNull);
 				} else {
-					String token = request.getParameters().get("token");
+					String token = request.getParameter("token");
 					if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
 					return JsonWrapper.successWrapper(processService.cancelJobById(jobId, token));
 				}
