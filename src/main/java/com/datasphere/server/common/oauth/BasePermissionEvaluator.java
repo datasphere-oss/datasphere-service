@@ -41,7 +41,7 @@ import com.datasphere.server.domain.workspace.WorkspaceService;
 import com.datasphere.server.domain.workspace.folder.Folder;
 
 /**
- * Workspace 관련 Custom 권한 처리
+ * Workspace related custom permissions
  */
 @Component
 @Transactional
@@ -60,7 +60,7 @@ public class BasePermissionEvaluator implements PermissionEvaluator {
 
   @Override
   public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission) {
-
+	// 各模块的认证入口
     if(targetDomainObject instanceof Workspace) {
       return checkWorkspacePermission(authentication, (Workspace) targetDomainObject, permission);
     } else if(targetDomainObject instanceof WorkBook) {
@@ -100,7 +100,7 @@ public class BasePermissionEvaluator implements PermissionEvaluator {
     LOGGER.debug("Check WorkBook Permission : UserId({}), Id/OwnerId({},{}), Permission({})"
             , authentication.getName(), workspace.getId(), workspace.getOwnerId(), permission);
 
-//    // 공유 대상의 Permission 체크
+//    // Share permission check
 //    Set<String> permissionNames = workspaceService.getPermissions(workspace);
 //
 //    if(permissionNames.contains(permission)) {
@@ -109,7 +109,7 @@ public class BasePermissionEvaluator implements PermissionEvaluator {
 //
 //    return false;
 
-    // TODO: workspace 퍼미션이 정리 될때까지 보류
+    // TODO: pending until workspace permissions are cleaned up
     return true;
   }
 
@@ -175,7 +175,7 @@ public class BasePermissionEvaluator implements PermissionEvaluator {
 //      return false;
 //    }
 //
-//    // 관련된 워크스페이스를 일일히 찾아서, ㅠㅠ 권한체크를 해봐야함
+//    // Find the relevant workspace and check the permissions.
 //    for(Workspace targetWorkspace : workspaces) {
 //      return checkWorkspacePermission(authentication, targetWorkspace, permission);
 //    }
@@ -189,7 +189,7 @@ public class BasePermissionEvaluator implements PermissionEvaluator {
         , authentication.getName(), role.getId(), permission, role.getScope());
 
     if(role.getScope() == Role.RoleScope.WORKSPACE) {
-      // TODO: 추후 고민이 필요함, 워크스페이스의 RoleSet 은  누가 수정하는지 정리가 필요함
+      // TODO: Need to worry later, RoleSet of workspace needs to be cleaned up who can modify
       return true;
     }
 
