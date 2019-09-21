@@ -80,7 +80,7 @@ public class SAMLAuthenticationSuccessHandler extends SavedRequestAwareAuthentic
     scopes.add("write");
 
     OAuth2Request authorizationRequest = new OAuth2Request(
-            authorizationParameters, "polaris_client",
+            authorizationParameters, "datasphere_client",
             token.getAuthorities(), true, scopes, null, "",
             responseType, null);
 
@@ -90,7 +90,7 @@ public class SAMLAuthenticationSuccessHandler extends SavedRequestAwareAuthentic
     //2. Create OAuth2 Token (converted JWT Token via JWTTokenEnhancer)
     OAuth2AccessToken oAuth2AccessToken = defaultTokenServices.createAccessToken(oAuth2Authentication);
     LOGGER.debug("oAuth2AccessToken = " + oAuth2AccessToken);
-
+    // Generate Security Context to get auth information
     SecurityContext context = SecurityContextHolder.getContext();
     Authentication auth = context.getAuthentication();
     List<String> permissions = AuthUtils.getPermissions();
@@ -103,26 +103,27 @@ public class SAMLAuthenticationSuccessHandler extends SavedRequestAwareAuthentic
   }
 
   private void getResponse(OAuth2AccessToken accessToken, HttpServletResponse response, String userName, List<String> permissions) {
-    Cookie cookie = new Cookie("LOGIN_TOKEN", accessToken.getValue());
+    // 添加 "LOGIN_TOKEN" cookie
+	Cookie cookie = new Cookie("LOGIN_TOKEN", accessToken.getValue());
     cookie.setPath("/");
     cookie.setMaxAge(60*60*24) ;
     response.addCookie(cookie);
-
+    // 添加 "LOGIN_TOKEN_TYPE" cookie
     cookie = new Cookie("LOGIN_TOKEN_TYPE", accessToken.getTokenType());
     cookie.setPath("/");
     cookie.setMaxAge(60*60*24) ;
     response.addCookie(cookie);
-
+    // 添加 "REFRESH_LOGIN_TOKEN" cookie
     cookie = new Cookie("REFRESH_LOGIN_TOKEN", accessToken.getRefreshToken().getValue());
     cookie.setPath("/");
     cookie.setMaxAge(60*60*24);
     response.addCookie(cookie);
-
+    // 添加 "LOGIN_USER_ID" cookie
     cookie = new Cookie("LOGIN_USER_ID", userName);
     cookie.setPath("/");
     cookie.setMaxAge(60*60*24) ;
     response.addCookie(cookie);
-
+    // 添加 "PERMISSION" cookie
     cookie = new Cookie( "PERMISSION", String.join( "==", permissions ) );
     cookie.setPath("/");
     cookie.setMaxAge(60*60*24) ;
