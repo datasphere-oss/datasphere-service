@@ -43,8 +43,9 @@ public class PasswordInitializeListener implements ApplicationListener<Applicati
     if(environment.acceptsProfiles("encode-password-initial")){
       LOGGER.debug("Password Initialize profile is active");
       LOGGER.debug("encrypt User Password All..");
-
+      // 查找用户列表
       List<User> userList = userRepository.findAll();
+      // 对用户密码进行加密
       userList.stream().forEach(user -> {
         String userPassword = user.getPassword();
         if (!BCRYPT_PATTERN.matcher(userPassword).matches()) {
