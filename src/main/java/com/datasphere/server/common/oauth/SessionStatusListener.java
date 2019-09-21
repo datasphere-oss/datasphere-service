@@ -36,7 +36,7 @@ public class SessionStatusListener implements HttpSessionListener {
     try {
       context = session.getAttribute("SPRING_SECURITY_CONTEXT");
     } catch (Exception e) {
-      // TODO: ExpiringSessionHttpSession 내 session 이 또있다 그게 null 체크할 방법이 없다. 버그인듯. 커스텀 Adapter로 작성할것
+      // TODO: ExpiringSessionHttpSession My session is again There is no way to check for null. Like a bug. Write with a custom adapter
       return;
     }
 
