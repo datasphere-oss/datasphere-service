@@ -26,11 +26,11 @@ import javax.transaction.Transactional;
 
 import com.datasphere.server.domain.images.Image;
 import com.datasphere.server.domain.images.ImageRepository;
-import com.datasphere.server.domain.user.group.Group;
-import com.datasphere.server.domain.user.group.GroupMember;
-import com.datasphere.server.domain.user.group.GroupMemberRepository;
-import com.datasphere.server.domain.user.group.GroupRepository;
-import com.datasphere.server.domain.user.role.RoleRepository;
+import com.datasphere.server.user.group.Group;
+import com.datasphere.server.user.group.GroupMember;
+import com.datasphere.server.user.group.GroupMemberRepository;
+import com.datasphere.server.user.group.GroupRepository;
+import com.datasphere.server.user.role.RoleRepository;
 
 @Component
 public class UserService {

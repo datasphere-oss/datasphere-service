@@ -48,9 +48,9 @@ import javax.persistence.Transient;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.DSSDomain;
-import com.datasphere.server.domain.user.role.Permission;
-import com.datasphere.server.domain.user.role.Role;
-import com.datasphere.server.domain.user.role.RoleService;
+import com.datasphere.server.user.role.Permission;
+import com.datasphere.server.user.role.Role;
+import com.datasphere.server.user.role.RoleService;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 import static org.hibernate.search.annotations.Index.NO;
