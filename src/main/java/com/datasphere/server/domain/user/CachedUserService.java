@@ -54,7 +54,7 @@ public class CachedUserService {
     if(StringUtils.isBlank(username)) {
       return null;
     }
-
+    // 通过用户名找到用户
     if (userMap.containsKey(username)) {
       return userMap.get(username);
     } else {
@@ -69,13 +69,13 @@ public class CachedUserService {
       }
     }
   }
-
+  // 删除用户缓存信息
   public void removeCachedUser(String userId) {
     if(userMap.containsKey(userId)) {
       userMap.remove(userId);
     }
   }
-
+  // 通过群组Id找到群组
   public Group findGroup(String groupId) {
 
     if(groupId == null) {
@@ -131,7 +131,7 @@ public class CachedUserService {
     }
     return null;
   }
-
+  // 通过群组Id找到群组资料
   public GroupProfile findGroupProfile(String groupId) {
     Group group = findGroup(groupId);
     if(group == null) {
@@ -140,7 +140,7 @@ public class CachedUserService {
       return GroupProfile.getProfile(group);
     }
   }
-
+  // 通过用户名查找用户资料
   public UserProfile findUserProfile(String username) {
     User user = findUser(username);
 
