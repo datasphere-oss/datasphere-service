@@ -128,7 +128,7 @@ public class SAMLAuthenticationInfo {
   public void setAssertion(String assertion) {
     this.assertion = assertion;
   }
-
+  // 打印SAML认证信息
   @Override
   public String toString() {
     return "SAMLAuthenticationInfo{" +
