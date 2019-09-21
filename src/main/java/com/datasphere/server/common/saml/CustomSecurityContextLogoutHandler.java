@@ -31,8 +31,9 @@ public class CustomSecurityContextLogoutHandler extends SecurityContextLogoutHan
 
     // 在注销时删除cookie
     if(clearCookie){
+    		// cookie包含登录口令, 登录口令类型, 刷新登录口令类型,登录用户ID,权限
       String[] cookies = new String[]{"LOGIN_TOKEN", "LOGIN_TOKEN_TYPE", "REFRESH_LOGIN_TOKEN", "LOGIN_USER_ID", "PERMISSION"};
-
+      // 将cookie信息添加到响应中
       Arrays.stream(cookies).forEach(cookieName -> {
         Cookie cookie = new Cookie(cookieName, "");
         cookie.setPath("/");
