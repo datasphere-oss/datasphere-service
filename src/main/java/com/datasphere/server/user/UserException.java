@@ -12,7 +12,7 @@
 
 package com.datasphere.server.user;
 
-import static com.datasphere.server.domain.user.UserErrorCodes.USER_COMMON_ERROR_CODE;
+import static com.datasphere.server.user.UserErrorCodes.USER_COMMON_ERROR_CODE;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

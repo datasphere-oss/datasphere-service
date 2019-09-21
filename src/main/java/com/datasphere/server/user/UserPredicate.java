@@ -21,12 +21,12 @@ import org.joda.time.DateTime;
 
 import java.util.List;
 
-import static com.datasphere.server.domain.user.User.Status.ACTIVATED;
-import static com.datasphere.server.domain.user.User.Status.DELETED;
-import static com.datasphere.server.domain.user.User.Status.EXPIRED;
-import static com.datasphere.server.domain.user.User.Status.LOCKED;
-import static com.datasphere.server.domain.user.User.Status.REJECTED;
-import static com.datasphere.server.domain.user.User.Status.REQUESTED;
+import static com.datasphere.server.user.User.Status.ACTIVATED;
+import static com.datasphere.server.user.User.Status.DELETED;
+import static com.datasphere.server.user.User.Status.EXPIRED;
+import static com.datasphere.server.user.User.Status.LOCKED;
+import static com.datasphere.server.user.User.Status.REJECTED;
+import static com.datasphere.server.user.User.Status.REQUESTED;
 
 public class UserPredicate {
 
@@ -37,10 +37,10 @@ public class UserPredicate {
     BooleanBuilder builder = new BooleanBuilder();
     QUser user = QUser.user;
 
-    // status 가 active 파라미터와 동시에 쓰였을 경우 status 가 우선순위가 있음
+    // If status is used simultaneously with the active parameter, status has priority.
     if(CollectionUtils.isEmpty(status)) {
-      // 사용자 목록 기본 목록은 DELETED, EXPIRED, REJECTED, REQUESTED 상태는 제외하고
-      // ACTIVATED, LOCKED 상태만 조회 가능
+      // User List The default list is except for the DELETED, EXPIRED, REJECTED, and REQUESTED states.
+      // Can only view ACTIVATED, LOCKED status
       if (active == null) {
         builder = builder.and(user.status.notIn(DELETED, EXPIRED, REJECTED, REQUESTED));
       } else {

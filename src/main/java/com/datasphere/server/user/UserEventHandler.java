@@ -59,9 +59,9 @@ public class UserEventHandler {
       throw new UserException("duplicate user");
     }
 
-    // 최초 사용자 등록시 요청상태로 수행
+    // Executed as request state when first registering users
     user.setStatus(User.Status.REQUESTED);
-    // 이미지 처리
+    // Image processing
     if(StringUtils.isNotEmpty(user.getImageUrl())) {
       updateImages(user.getUsername());
     }
@@ -72,7 +72,7 @@ public class UserEventHandler {
   @PreAuthorize("(authentication.name == #user.id) " +
           "or hasAuthority('PERM_SYSTEM_MANAGE_USER')")
   public void checkUpdateAuthorityAndImage(User user) {
-    // 이미지 처리
+    // Image processing
     if(StringUtils.isNotEmpty(user.getImageUrl())) {
       updateImages(user.getId());
     }
@@ -81,7 +81,7 @@ public class UserEventHandler {
   @HandleAfterSave
   @PreAuthorize("(authentication.name == #user.id) ")
   public void checkUpdateImage(User user) {
-    //사용자 이미지 수정시 user 정보 갱신
+    //Update user information when modifying user image
     AuthUtils.refreshAuth(user);
   }
 
@@ -100,7 +100,7 @@ public class UserEventHandler {
       targetImages.get(0).setEnabled(true);
       imageRepository.save(targetImages.get(0));
     } else {
-      // 여러번 사진을 업로드한 경우
+      // If you uploaded a photo multiple times
       for (int i = 0; i < targetImages.size(); i++) {
         if (i == 0) {
           targetImages.get(i).setEnabled(true);
