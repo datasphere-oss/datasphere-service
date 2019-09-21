@@ -18,14 +18,14 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@ConfigurationProperties(prefix = "polaris.saml")
+@ConfigurationProperties(prefix = "datasphere.saml")
 public class SAMLProperties {
-  List<SamlMetadata> idp;
+  List<SamlMetadata> idp;	//idp 信息
   String entityId;
-  List<String> idpName;
+  List<String> idpName;		// idp名称
   String entityBaseUrl;
   boolean requestSigned;
-  SamlContext samlContext;
+  SamlContext samlContext;	// saml上下文
   String userMapperClass;
 
   public List<SamlMetadata> getIdp() {
