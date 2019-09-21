@@ -15,7 +15,6 @@ public class ConnectionInfoAndOthers extends ConnectionInfo {
     private String datas;
     private String batchSize;
     private String schema;
-
     public String getDatas() {
         return datas;
     }

@@ -9,7 +9,6 @@
  * PURPOSE.
  * See the Mulan PSL v1 for more details.
  */
-
 package com.datasphere.engine.shaker.processor.service;
 
 import java.util.ArrayList;
