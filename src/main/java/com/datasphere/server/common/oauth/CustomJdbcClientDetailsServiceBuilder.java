@@ -35,7 +35,7 @@ public class CustomJdbcClientDetailsServiceBuilder extends ClientDetailsServiceB
 
   private Set<ClientDetails> clientDetails = new HashSet<ClientDetails>();
 
-  private DataSource dataSource;
+  private DataSource dataSource; // data sources
 
   private PasswordEncoder passwordEncoder; // for writing client secrets
 
