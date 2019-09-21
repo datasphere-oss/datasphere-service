@@ -14,7 +14,7 @@ package com.datasphere.server.connections.constant;
 public class ConnectionInfoAndOthers extends ConnectionInfo {
     private String datas;
     private String batchSize;
-    private String schema; //postgresql schema
+    private String schema;
 
     public String getDatas() {
         return datas;
