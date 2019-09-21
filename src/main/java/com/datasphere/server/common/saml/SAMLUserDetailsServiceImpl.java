@@ -90,7 +90,7 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService{
 		String nameID = credential.getNameID().getValue();
     LOGGER.debug("loadUserBySAML from {}, for : {}", credential.getRemoteEntityID(), nameID);
 
-		//신규 유저 등록
+		//New user registration
     UserDetails metatronUser = userRepository.findByUsername(nameID);
 		if(metatronUser == null) {
       LOGGER.debug("{} is not metatron user.", nameID);
@@ -101,7 +101,7 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService{
 
     ((com.datasphere.server.domain.user.User) metatronUser).setRoleService(roleService);
 
-    // 권한 정보 미리 로드
+    // Preload credentials
     metatronUser.getAuthorities();
 
 		return metatronUser;
@@ -119,7 +119,7 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService{
 		  metatronUser = samlUserMapper.createUser(credential);
     }
 
-		//UserName은 NameID사용
+		//UserName uses NameID
 		String nameID = credential.getNameID().getValue();
 		metatronUser.setUsername(nameID);
 		metatronUser.setUserOrigin(credential.getRemoteEntityID());
@@ -136,13 +136,13 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService{
 			metatronUser.setFullName(metatronUser.getUsername());
 		}
 
-		// mail 전송을 수행하지 않고 패스워드를 지정하지 않은 경우 시스템에서 비번 생성
+		// mail If you do not perform a transfer and do not specify a password, the system generates a password
 		metatronUser.setPassword(PolarisUtils.createTemporaryPassword(8));
 
-    //기본은 deactivated
+		//Basic is deactivated
 		metatronUser.setStatus(com.datasphere.server.domain.user.User.Status.ACTIVATED);
 
-		// Group 정보가 없을 경우 기본그룹 지정
+		// Group Specify default group if no information
 		Group defaultGroup = groupService.getDefaultGroup();
 		if (defaultGroup == null) {
 			LOGGER.warn("Default group not found.");
@@ -153,7 +153,7 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService{
 
     userRepository.save(metatronUser);
 
-		// 워크스페이스 생성(등록된 워크스페이스가 없을 경우 생성)
+		// Create Workspace (if no workspace is registered)
 		RoleSet roleSet = roleSetService.getDefaultRoleSet();
 
 		Workspace workspace = new Workspace();
@@ -166,7 +166,7 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService{
 						&& Workspace.workspaceTypes.contains(metatronUser.getWorkspaceType())) {
 			workspace.setType(metatronUser.getWorkspaceType());
 		} else {
-			workspace.setType(Workspace.workspaceTypes.get(0)); // "DEFAULT" 셋팅
+			workspace.setType(Workspace.workspaceTypes.get(0)); // "DEFAULT" setting
 		}
 
 		workspaceRepository.saveAndFlush(workspace);
