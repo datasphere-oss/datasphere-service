@@ -66,8 +66,8 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
     // Use the DefaultSavedRequest URL
     String targetUrl = savedRequest.getRedirectUrl();
 
-    // Ajax 타입의 호출일경우 targetUrl 정보만 넘겨줌
-    // 현 로그인 페이지와 일치시키기 위함
+    // In case of Ajax type call, only targetUrl information is passed.
+    // To match the current login page
     if (StringUtils.indexOf(accept, "json") > -1) {
       logger.debug("Send to DefaultSavedRequest Url: " + targetUrl);
 
