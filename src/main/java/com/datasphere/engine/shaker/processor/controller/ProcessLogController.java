@@ -43,7 +43,7 @@ public class ProcessLogController extends BaseController {
 	 * @throws Exception
 	 */
 	@PostMapping(value = BASE_PATH + "/getPanelLog")
-	public Object processInstanceLog(@Parameter String panelId) {
+	public Object processInstanceLog(@RequestParam String panelId) {
 		return JsonWrapper.successWrapper(processInstanceService.getLastByPanelId(panelId));
 	}
 
@@ -54,7 +54,7 @@ public class ProcessLogController extends BaseController {
 	 * @throws Exception
 	 */
 	@PostMapping(value = BASE_PATH + "/getComponentLog")
-	public Single<Map<String,Object>> componentLog(@Parameter String componentId) {
+	public Single<Map<String,Object>> componentLog(@RequestParam String componentId) {
 		return Single.fromCallable(() -> {
 			if (!StringUtils.isBlank(componentId)) {
 				return JsonWrapper.successWrapper(processRecordService.getLatestRecord(componentId));
@@ -71,7 +71,7 @@ public class ProcessLogController extends BaseController {
 	 * @throws Exception
 	 */
 	@PostMapping(value = BASE_PATH + "/getAllLogByPanelId")
-	public Object getAllLogByPanelId(@Parameter String panelId) {
+	public Object getAllLogByPanelId(@RequestParam String panelId) {
 		return JsonWrapper.successWrapper(processRecordService.getPanelComponentInstancesLatestRecord(panelId));
 	}
 }

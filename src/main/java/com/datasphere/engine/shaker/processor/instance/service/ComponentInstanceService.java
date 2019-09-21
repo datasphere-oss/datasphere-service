@@ -34,7 +34,7 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.datasphere.common.data.Dataset;
-import com.datasphere.common.utils.OkHttpRequest;
+import com.datasphere.common.utils.OkHttpServletRequest;
 import com.datasphere.common.utils.RandomUtils;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.core.common.utils.UUIDUtils;
@@ -842,7 +842,7 @@ public class ComponentInstanceService extends BaseService {
 					"000" + RandomUtils.getNumStr_13() +
 					"\",\"limit\":\"150\"}";
 			try {
-				vds = OkHttpRequest.okHttpClientPost(urlPath, jsonStr, dSSUserTokenService.getCurrentToken());
+				vds = OkHttpServletRequest.okHttpClientPost(urlPath, jsonStr, dSSUserTokenService.getCurrentToken());
 			} catch (Exception e) {
 				logger.error("ProcessService.oneTableQuery(panel_id):请求DAAS异常");
 			}
@@ -867,7 +867,7 @@ public class ComponentInstanceService extends BaseService {
 //		JSONObject jsonParam = new JSONObject();
 //		jsonParam.put("sql", sql);
 //		try {
-//			job_id = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toString(), daasUserTokenService.getCurrentToken());
+//			job_id = OkHttpServletRequest.okHttpClientPost(urlPath, jsonParam.toString(), daasUserTokenService.getCurrentToken());
 //		} catch (Exception e) {
 //			logger.error("ProcessService.getJobId(sql):请求DAAS异常");
 //		}
@@ -879,7 +879,7 @@ public class ComponentInstanceService extends BaseService {
 //		String result = "";
 //		String urlPath = this.daasServerAPIV3RootUrl + "/job/" + job_id;
 //		try {
-//			result = OkHttpRequest.okHttpClientGet(urlPath, daasUserTokenService.getCurrentToken());
+//			result = OkHttpServletRequest.okHttpClientGet(urlPath, daasUserTokenService.getCurrentToken());
 //		} catch (Exception e) {
 //			logger.error("ProcessService.getJobStatus(job_id):请求DAAS异常");
 //		}
@@ -892,7 +892,7 @@ public class ComponentInstanceService extends BaseService {
 //		String urlPath = this.daasServerAPIV3RootUrl + "/job/" +job_id+ "/results?offset=0&limit=100";
 //		System.out.println(urlPath);
 //		try {
-//			results = OkHttpRequest.okHttpClientGet(urlPath, daasUserTokenService.getCurrentToken());
+//			results = OkHttpServletRequest.okHttpClientGet(urlPath, daasUserTokenService.getCurrentToken());
 //		} catch (Exception e) {
 //			logger.error("ProcessService.getJobResults(job_id):请求DAAS异常");
 //		}

@@ -40,7 +40,7 @@ public class ProjectController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/createProject", method = RequestMethod.POST)
-	public Single<Map<String,Object>> createProject(@Body Project project, HttpRequest request) {
+	public Single<Map<String,Object>> createProject(@RequestBody Project project, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			if(!StringUtils.isBlank(project.getProjectName())){
 				if(!projectServiceImpl.veriftyName(project.getProjectName())) {
@@ -62,7 +62,7 @@ public class ProjectController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/updateProject", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> updateProject(@Body Project project, HttpRequest request) {
+	public Single<Map<String,Object>> updateProject(@RequestBody Project project, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			if(!StringUtils.isBlank(project.getId())) {
 				String token = request.getParameters().get("token");
@@ -85,7 +85,7 @@ public class ProjectController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/deleteProject", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> deleteProject(@Parameter String id, HttpRequest request) {
+	public Single<Map<String,Object>> deleteProject(@RequestParam String id, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			if (!StringUtils.isBlank(id)) {
 				String token = request.getParameters().get("token");
@@ -110,7 +110,7 @@ public class ProjectController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/getProject", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> getProject(@Parameter String id, HttpRequest request) {
+	public Single<Map<String,Object>> getProject(@RequestParam String id, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			if (!StringUtils.isBlank(id)) {
 				String token = request.getParameters().get("token");
@@ -127,7 +127,7 @@ public class ProjectController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/getAllProjectList", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> getAllProjectList(@Body Project project) {
+	public Single<Map<String,Object>> getAllProjectList(@RequestBody Project project) {
 		return Single.fromCallable(() -> {
 			List<Project> list = projectServiceImpl.getAllProjectList(project);
 			return JsonWrapper.successWrapper(list);
@@ -139,7 +139,7 @@ public class ProjectController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/getAllWithPanelsListByPage", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> getAllWithPanelsListByPage(@Body Project project) {
+	public Single<Map<String,Object>> getAllWithPanelsListByPage(@RequestBody Project project) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(projectServiceImpl.getAllWithPanelsListByPage(project));
 		});

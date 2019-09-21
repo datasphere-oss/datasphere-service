@@ -35,7 +35,7 @@ public class HbaseDatasourceController extends BaseController {
      * @return
      */
 	@RequestMapping(value = BASE_PATH + "/testHBase", method = RequestMethod.POST) 
-    public Single<Map<String,Object>> testHBase(@Body HbaseConnectionInfo hbaseConnectionInfo) {
+    public Single<Map<String,Object>> testHBase(@RequestBody HbaseConnectionInfo hbaseConnectionInfo) {
         return Single.fromCallable(() -> {
             int result = uDSMService.testHBase(hbaseConnectionInfo);
             if(result == 0){
@@ -51,7 +51,7 @@ public class HbaseDatasourceController extends BaseController {
      * @hbaseConnectionInfo
      */
 	@RequestMapping(value = BASE_PATH + "/hBaseListTable", method = RequestMethod.POST) 
-    public Object hBaseListTable(@Body HbaseConnectionInfo hbaseConnectionInfo){
+    public Object hBaseListTable(@RequestBody HbaseConnectionInfo hbaseConnectionInfo){
         return Single.fromCallable(() -> {
             List<DBTableInfodmp> dbTableInfodmps = uDSMService.hBaseListTable(hbaseConnectionInfo);
             if(dbTableInfodmps == null){
@@ -67,7 +67,7 @@ public class HbaseDatasourceController extends BaseController {
      * @hbaseConnectionInfo
      */
 	@RequestMapping(value = BASE_PATH + "/queryHBaseTableData", method = RequestMethod.POST) 
-    public Object queryHBaseTableData(@Body HbaseConnectionInfo hbaseConnectionInfo){
+    public Object queryHBaseTableData(@RequestBody HbaseConnectionInfo hbaseConnectionInfo){
         return Single.fromCallable(() -> {
             return JsonWrapper.successWrapper(uDSMService.queryHBaseTableData(hbaseConnectionInfo));
         });
@@ -79,7 +79,7 @@ public class HbaseDatasourceController extends BaseController {
      * @return
      */
 	@RequestMapping(value = BASE_PATH + "/createHBase", method = RequestMethod.POST) 
-    public Single<Map<String,Object>> createHBase(@Body HbaseDataSourceInfo hbaseDataSourceInfo, HttpRequest request){
+    public Single<Map<String,Object>> createHBase(@RequestBody HbaseDataSourceInfo hbaseDataSourceInfo, HttpServletRequest request){
         return Single.fromCallable(() -> {
             if(hbaseDataSourceInfo.getBusinessType() == null){
                 return JsonWrapper.failureWrapper("业务类型不能为空");
@@ -100,7 +100,7 @@ public class HbaseDatasourceController extends BaseController {
      * @return
      */
 	@RequestMapping(value = BASE_PATH + "/updateHBase", method = RequestMethod.POST) 
-    public Single<Map<String,Object>> updateHBaseById(@Body HbaseDataSourceInfo hbaseDataSourceInfo, HttpRequest request){
+    public Single<Map<String,Object>> updateHBaseById(@RequestBody HbaseDataSourceInfo hbaseDataSourceInfo, HttpServletRequest request){
         return Single.fromCallable(() -> {
             if(StringUtils.isBlank(hbaseDataSourceInfo.getId())){
                 return JsonWrapper.failureWrapper("id不能为空！");

@@ -42,8 +42,8 @@ import java.util.Map;
  * 数据源管理  DB
  */
 @Controller
-public class DaasController extends BaseController {
-    private static final Logger log = LoggerFactory.getLogger(DaasController.class);
+public class DataSphereController extends BaseController {
+    private static final Logger log = LoggerFactory.getLogger(DataSphereController.class);
 	public static final String BASE_PATH = "/datasource1";
 
 	@Autowired
@@ -55,7 +55,7 @@ public class DaasController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/listAll", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> listAll(@Parameter Integer pageIndex,@Parameter Integer pageSize,@Parameter String name,HttpRequest request) {
+	public Single<Map<String,Object>> listAll(@RequestParam Integer pageIndex,@RequestParam Integer pageSize,@RequestParam String name,HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
@@ -69,7 +69,7 @@ public class DaasController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/verifyDatasourceName", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> verifyDatasourceName(@Parameter String name){
+	public Single<Map<String,Object>> verifyDatasourceName(@RequestParam String name){
 		return Single.fromCallable(() -> {
 			if(StringUtils.isBlank(name)){
 				return JsonWrapper.failureWrapper("名称不能为空!");
@@ -92,7 +92,7 @@ public class DaasController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/update", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> update(@Body DataSource dataSource){
+	public Single<Map<String,Object>> update(@RequestBody DataSource dataSource){
 		return Single.fromCallable(() -> {
 			if (StringUtils.isBlank(dataSource.getId()) && StringUtils.isBlank(dataSource.getName())){
 				return JsonWrapper.failureWrapper("id和数据源名称不能为空！");
@@ -126,7 +126,7 @@ public class DaasController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/listTable", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> listTableInfo(@Body DBCommonInfo info){
+	public Single<Map<String,Object>> listTableInfo(@RequestBody DBCommonInfo info){
 		return Single.fromCallable(() -> {
 			List<DBTableInfodmp> dbTableInfodmps = uDSMService.listTableInfo(info);
 			if (dbTableInfodmps == null){
@@ -142,7 +142,7 @@ public class DaasController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/createDatasource", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> create(@Body DBDataSourceInfo dataSourceInfo, HttpRequest request){
+	public Single<Map<String,Object>> create(@RequestBody DBDataSourceInfo dataSourceInfo, HttpServletRequest request){
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
@@ -160,7 +160,7 @@ public class DaasController extends BaseController {
      * @return
      */
 	@RequestMapping(value = BASE_PATH+"/testDatabase", method = RequestMethod.POST) 
-    public Single<Map<String,Object>> testDatabase(@Body DBConnectionInfo connectionInfo) {
+    public Single<Map<String,Object>> testDatabase(@RequestBody DBConnectionInfo connectionInfo) {
 		return Single.fromCallable(() -> {
             int result = uDSMService.testDatabase(connectionInfo);
             if(result == 0){
@@ -176,7 +176,7 @@ public class DaasController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/queryTableData", method = RequestMethod.POST) 
-	public Object queryTableData(@Body DBConnectionInfo connectionInfo){
+	public Object queryTableData(@RequestBody DBConnectionInfo connectionInfo){
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(uDSMService.queryTableData(connectionInfo));
 		});
@@ -190,7 +190,7 @@ public class DaasController extends BaseController {
 	 */
 	@RequestMapping(value = BASE_PATH+"/queryTableDataById", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> queryTableDataById(
-			@Body DBQuery dbQuery
+			@RequestBody DBQuery dbQuery
 			){
 
 		return Single.fromCallable(() -> {
@@ -259,7 +259,7 @@ public class DaasController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/findConnectionById", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> findConnectionById(@Parameter String id){
+	public Single<Map<String,Object>> findConnectionById(@RequestParam String id){
 		return Single.fromCallable(() -> {
 			//查询数据源信息ById
 			DataSource dataSource = uDSMService.findDataSourceById(id);
@@ -311,7 +311,7 @@ public class DaasController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/updateDatasource", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> updateDatasourceById(@Body DBDataSourceInfo dataSourceInfo, HttpRequest request){
+	public Single<Map<String,Object>> updateDatasourceById(@RequestBody DBDataSourceInfo dataSourceInfo, HttpServletRequest request){
 		return Single.fromCallable(() -> {
 			if(StringUtils.isBlank(dataSourceInfo.getId())){
 				return JsonWrapper.failureWrapper("id不能为空！");
@@ -335,7 +335,7 @@ public class DaasController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/findDatasourceById", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> findDatasourceById(@Parameter String id){
+	public Single<Map<String,Object>> findDatasourceById(@RequestParam String id){
 		return Single.fromCallable(() -> {
 			//查询数据源信息ById
 			DataSource dataSource = uDSMService.findDataSourceById(id);
@@ -352,7 +352,7 @@ public class DaasController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/delete", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> deleteDatasourceById(@Parameter String ids){
+	public Single<Map<String,Object>> deleteDatasourceById(@RequestParam String ids){
 		return Single.fromCallable(() -> {
 			//查询数据源信息ById
 			int result = uDSMService.deleteDatasourceById(ids);
@@ -369,7 +369,7 @@ public class DaasController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/subscribeDatasource", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> getSubscribeDatasource(@Body RequestParams requestParams){
+	public Single<Map<String,Object>> getSubscribeDatasource(@RequestBody RequestParams requestParams){
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(uDSMService.getSubscribeDatasource(requestParams));
 		});
@@ -390,7 +390,7 @@ public class DaasController extends BaseController {
 	 * Split  				002	拆分
 	 */
 	@RequestMapping(value = BASE_PATH+"/dataSourceDetail", method = RequestMethod.POST) 
-	public Object dataSourceDetail(@Parameter String id,@Parameter String code,@Parameter String classification, HttpRequest request) {
+	public Object dataSourceDetail(@RequestParam String id,@RequestParam String code,@RequestParam String classification, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			if (!StringUtils.isBlank(id)) {
 				if (!StringUtils.isBlank(code) && !StringUtils.isBlank(classification) && classification.startsWith("001") && code.equals("SimpleDataSource")) {
@@ -414,7 +414,7 @@ public class DaasController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/get", method = RequestMethod.POST) 
-	public Object get(@Parameter String id, HttpRequest request) {
+	public Object get(@RequestParam String id, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			if(!StringUtils.isBlank(id)) {
 				String token = request.getParameters().get("token");

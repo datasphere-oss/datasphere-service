@@ -62,7 +62,7 @@ public class ProcessController extends BaseController {
 	 * @return
 	 */
 	@PostMapping(value = BASE_PATH + "/queryByCIId")
-	public Single<Map<String,Object>> queryByCIId(@Parameter String componentInstanceId, HttpRequest request) {
+	public Single<Map<String,Object>> queryByCIId(@RequestParam String componentInstanceId, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			String ciName = "";
 			String jobId = "1";
@@ -95,7 +95,7 @@ public class ProcessController extends BaseController {
      * @return
      */
 	@PostMapping(value = BASE_PATH + "/runToThis")
-    public Single<Map<String,Object>> runToThis(@Parameter String panelId, @Parameter String componentInstanceId, HttpRequest request) {
+    public Single<Map<String,Object>> runToThis(@RequestParam String panelId, @RequestParam String componentInstanceId, HttpServletRequest request) {
         return Single.fromCallable(() -> {
 			String panelName = "";
 			String jobId = "2";
@@ -126,7 +126,7 @@ public class ProcessController extends BaseController {
 	 * @return
 	 */
 	@PostMapping(value = BASE_PATH + "/runFromThis")
-	public Single<Map<String,Object>> runFromThis(@Parameter String panelId, @Parameter String componentInstanceId, HttpRequest request) {
+	public Single<Map<String,Object>> runFromThis(@RequestParam String panelId, @RequestParam String componentInstanceId, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			try {
 				if (StringUtils.isBlank(panelId) || StringUtils.isBlank(componentInstanceId)) {
@@ -147,7 +147,7 @@ public class ProcessController extends BaseController {
 	 * @return
 	 */
 	@PostMapping(value = BASE_PATH + "/runAll")
-	public Single<Map<String,Object>> runAll(@Parameter String panelId, HttpRequest request) {
+	public Single<Map<String,Object>> runAll(@RequestParam String panelId, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
@@ -188,7 +188,7 @@ public class ProcessController extends BaseController {
 	 * @return
 	 */
 	@PostMapping(value = BASE_PATH + "/cancel")
-	public Single<Map<String,Object>> cancel(@Parameter String jobId, HttpRequest request) {
+	public Single<Map<String,Object>> cancel(@RequestParam String jobId, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			try {
 				if (StringUtils.isBlank(jobId)) {
@@ -214,7 +214,7 @@ public class ProcessController extends BaseController {
 	 * @return
 	 */
 	@PostMapping(value = BASE_PATH + "/getProcessState")
-	public Single<Map<String,Object>> getProcessState(@Parameter String jobId) {
+	public Single<Map<String,Object>> getProcessState(@RequestParam String jobId) {
 		return Single.fromCallable(() -> {
 			try {
 //				String sql = processService.getProcessSQL(panelId,1);
@@ -232,8 +232,8 @@ public class ProcessController extends BaseController {
 	 * @return
 	 */
 	@PostMapping(value = BASE_PATH + "/run")
-	public Map<String,Object> run(@Parameter String panelId) {
-//	public Single<Map<String,Object>> run(@Parameter String panelId) { //, String creator
+	public Map<String,Object> run(@RequestParam String panelId) {
+//	public Single<Map<String,Object>> run(@RequestParam String panelId) { //, String creator
 //		return Single.fromCallable(() -> {
 			return processHandle(() -> {
                 // stopService.start(panelId);
@@ -249,7 +249,7 @@ public class ProcessController extends BaseController {
 	 * @return
 	 */
 	@PostMapping(value = BASE_PATH + "/stop")
-	public Single<Map<String,Object>> stop(@Parameter String panelId) { //,@Parameter String creator
+	public Single<Map<String,Object>> stop(@RequestParam String panelId) { //,@RequestParam String creator
 		return Single.fromCallable(() -> {
 			try {
 				StopSingleInstance.getInstances().stop(panelId);
@@ -261,7 +261,7 @@ public class ProcessController extends BaseController {
 	}
 
 	@PostMapping(value = BASE_PATH + "/run_to")
-	public Single<Map<String,Object>> runTo(@Parameter String panelId, @Parameter String componentId) {//, String creator
+	public Single<Map<String,Object>> runTo(@RequestParam String panelId, @RequestParam String componentId) {//, String creator
 //		return processHandle(new ProcessRunCallable() {
 //			@Override
 //			public String call(){
@@ -273,7 +273,7 @@ public class ProcessController extends BaseController {
 	}
 
 	@PostMapping(value = BASE_PATH + "/run_from")
-	public Single<Map<String,Object>> runFrom(@Parameter String panelId, @Parameter String componentId) {//, String creator
+	public Single<Map<String,Object>> runFrom(@RequestParam String panelId, @RequestParam String componentId) {//, String creator
 //		return processHandle(new ProcessRunCallable() {
 //			@Override
 //			public String call(){
@@ -294,7 +294,7 @@ public class ProcessController extends BaseController {
 	 * @param message
 	 */
 	@PostMapping(value = BASE_PATH + "/callBack/{id}")
-	public void callBackUrl(@Parameter String id, @Parameter int code, @Parameter String message) { //, String creator
+	public void callBackUrl(@RequestParam String id, @RequestParam int code, @RequestParam String message) { //, String creator
 		ComponentCalcuateResult calcuateResult = new ComponentCalcuateResult();
 		calcuateResult.setStatus(0 == code ? ComponentInstanceStatus.SUCCESS : ComponentInstanceStatus.FAILURE);
 		calcuateResult.setMessage(message);
@@ -303,7 +303,7 @@ public class ProcessController extends BaseController {
 	}
 
 	@PostMapping(value = BASE_PATH + "lastRecord")
-	public Single<Map<String,Object>> lastRecord(@Parameter String componentId) { //, String creator
+	public Single<Map<String,Object>> lastRecord(@RequestParam String componentId) { //, String creator
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(processRecordService.getLatestRecord(componentId));
 		});

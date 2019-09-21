@@ -37,7 +37,7 @@ public class WebHDFSDatasourceController extends BaseController {
      * @return
      */
 	@PostMapping(value = BASE_PATH + "/testWebHDFS")
-    public Single<Map<String,Object>> testWebHDFS(@Body WebHDFSConnectionInfo webHDFSConnectionInfo) {
+    public Single<Map<String,Object>> testWebHDFS(@RequestBody WebHDFSConnectionInfo webHDFSConnectionInfo) {
         return Single.fromCallable(() -> {
             int result = uDSMService.testWebHDFS(webHDFSConnectionInfo);
             if(result == 0){
@@ -53,7 +53,7 @@ public class WebHDFSDatasourceController extends BaseController {
      * @webhdfsConnectionInfo
      */
     @PostMapping(value = BASE_PATH + "/webHDFSListFiles")
-    public Object webHDFSListFiles(@Body WebHDFSConnectionInfo webHDFSConnectionInfo){
+    public Object webHDFSListFiles(@RequestBody WebHDFSConnectionInfo webHDFSConnectionInfo){
         return Single.fromCallable(() -> {
             List<DBTableInfodmp> dbTableInfodmps = uDSMService.webHDFSListFiles(webHDFSConnectionInfo);
             if(dbTableInfodmps == null){
@@ -69,7 +69,7 @@ public class WebHDFSDatasourceController extends BaseController {
      * @return
      */
     @PostMapping(value = BASE_PATH + "/createWebHDFS")
-    public Single<Map<String,Object>> createWebHDFS(@Body WebHDFSDataSourceInfo webHDFSDataSourceInfo){
+    public Single<Map<String,Object>> createWebHDFS(@RequestBody WebHDFSDataSourceInfo webHDFSDataSourceInfo){
         return Single.fromCallable(() -> {
             if(webHDFSDataSourceInfo.getBusinessType() == null){
                 return JsonWrapper.failureWrapper("业务类型不能为空");
@@ -88,7 +88,7 @@ public class WebHDFSDatasourceController extends BaseController {
      * @return
      */
     @PostMapping(value = BASE_PATH + "/updateWebHDFS")
-    public Single<Map<String,Object>> updateWebHDFS(@Body WebHDFSDataSourceInfo webHDFSDataSourceInfo){
+    public Single<Map<String,Object>> updateWebHDFS(@RequestBody WebHDFSDataSourceInfo webHDFSDataSourceInfo){
         return Single.fromCallable(() -> {
             if(StringUtils.isBlank(webHDFSDataSourceInfo.getId())){
                 return JsonWrapper.failureWrapper("id不能为空！");

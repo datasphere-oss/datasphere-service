@@ -12,6 +12,24 @@
 
 package com.datasphere.engine.manager.resource.provider.db.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.manager.resource.provider.catalog.model.RequestParams;
@@ -20,7 +38,8 @@ import com.datasphere.engine.manager.resource.provider.elastic.model.DremioDataS
 import com.datasphere.engine.manager.resource.provider.elastic.model.JSONInfo;
 import com.datasphere.engine.manager.resource.provider.elastic.model.QueryDBDataParams;
 import com.datasphere.engine.manager.resource.provider.elastic.model.Table;
-import com.datasphere.engine.manager.resource.provider.model.*;
+import com.datasphere.engine.manager.resource.provider.model.DataSource;
+import com.datasphere.engine.manager.resource.provider.model.DataSourceWithAll;
 import com.datasphere.engine.manager.resource.provider.service.DaasService;
 import com.google.common.base.Splitter;
 import com.google.gson.Gson;
@@ -28,19 +47,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-import io.reactivex.Single;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import io.reactivex.Single;
+import oracle.jdbc.proxy.annotation.Post;
 
 
 /**
@@ -64,9 +73,9 @@ public class DataSourceController extends BaseController {
 	 */
 	@RequestMapping(value = BASE_PATH + "/listAll", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> listAll(
-			@Parameter Integer pageIndex,
-			@Parameter Integer pageSize,
-			@Parameter String name
+			@RequestParam Integer pageIndex,
+			@RequestParam Integer pageSize,
+			@RequestParam String name
 	) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(dataSourceService.listAll(pageIndex,pageSize,name));
@@ -80,7 +89,7 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/verifyDatasourceName", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> verifyDatasourceName(@Parameter String name){
+	public Single<Map<String,Object>> verifyDatasourceName(@RequestParam String name){
 		return Single.fromCallable(() -> {
 			if(StringUtils.isBlank(name)) return JsonWrapper.failureWrapper("数据源名称不能为空!");
 			List<String> nameList = Splitter.on("^^").splitToList(name);
@@ -97,7 +106,7 @@ public class DataSourceController extends BaseController {
 	 * Test data source
 	 */
 	@RequestMapping(value = BASE_PATH + "/test", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> test(@Body DremioDataSourceInfo es) {
+	public Single<Map<String,Object>> test(@RequestBody DremioDataSourceInfo es) {
 		return Single.fromCallable(() -> {
 			String es2 = dataSourceService.createSource(es);
 			if (es2.contains("失败")) return JsonWrapper.failureWrapper(es2);
@@ -129,7 +138,7 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/listTable", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> listTable(@Parameter String daasName) {
+	public Single<Map<String,Object>> listTable(@RequestParam String daasName) {
 		return Single.fromCallable(() -> {
 			List<Map<String,String>> es2 = dataSourceService.listTable(daasName);
 			if(es2!=null){
@@ -146,7 +155,7 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/update", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> update(@Body DataSource dataSource){
+	public Single<Map<String,Object>> update(@RequestBody DataSource dataSource){
 		return Single.fromCallable(() -> {
 			if (StringUtils.isBlank(dataSource.getId()) && StringUtils.isBlank(dataSource.getName())){
 				return JsonWrapper.failureWrapper("The id and data source names cannot be empty!");
@@ -171,9 +180,9 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/createDataSource", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> create(@Body DremioDataSourceInfo dataSourceInfo, HttpRequest request){
+	public Single<Map<String,Object>> create(@RequestBody DremioDataSourceInfo dataSourceInfo, HttpServletRequest request){
 		return Single.fromCallable(() -> {
-			String token = request.getParameters().get("token");
+			String token = request.getParameter("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
 			// Verify that the name is duplicated
 			List<String> names = new ArrayList<>();
@@ -198,7 +207,7 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/queryTableData", method = RequestMethod.POST) 
-	public Object queryTableData(@Body QueryDBDataParams query){
+	public Object queryTableData(@RequestBody QueryDBDataParams query){
 		return Single.fromCallable(() -> {
 			Map<String, Object> result = dataSourceService.queryTableData(query);
 			if(result == null){
@@ -215,7 +224,7 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/queryTableDataById", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> queryTableDataById(@Body QueryDBDataParams query){
+	public Single<Map<String,Object>> queryTableDataById(@RequestBody QueryDBDataParams query){
 		return Single.fromCallable(() -> {
 			Map<String, Object> result = null;
 			if (!StringUtils.isBlank(query.getSql())) {
@@ -258,7 +267,7 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/findConnectionById", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> findConnectionById(@Parameter String id){
+	public Single<Map<String,Object>> findConnectionById(@RequestParam String id){
 		return Single.fromCallable(() -> {
 			DremioDataSourceInfo dataSource = dataSourceService.findDataSourceInfo(id);
 			if(dataSource == null){
@@ -274,7 +283,7 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/updateDatasource", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> updateDatasourceById(@Body DremioDataSourceInfo source){
+	public Single<Map<String,Object>> updateDatasourceById(@RequestBody DremioDataSourceInfo source){
 		return Single.fromCallable(() -> {
 			if(StringUtils.isBlank(source.getId())){
 				return JsonWrapper.failureWrapper("Id can't be empty!");
@@ -297,7 +306,7 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/findDatasourceById", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> findDatasourceById(@Parameter String id){
+	public Single<Map<String,Object>> findDatasourceById(@RequestParam String id){
 		return Single.fromCallable(() -> {
 			DataSource dataSource = dataSourceService.findDataSourceById(id);
 			dataSource.setDataConfig(null);
@@ -311,7 +320,7 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/delete", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> deleteDatasourceById(@Parameter String ids){
+	public Single<Map<String,Object>> deleteDatasourceById(@RequestParam String ids){
 		return Single.fromCallable(() -> {
 			int result = dataSourceService.deleteDatasourceById(ids);
 			if(result == 0){
@@ -331,7 +340,7 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/subscribeDatasource", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> getSubscribeDatasource(@Body RequestParams requestParams){
+	public Single<Map<String,Object>> getSubscribeDatasource(@RequestBody RequestParams requestParams){
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(dataSourceService.getSubscribeDatasource(requestParams));
 		});
@@ -352,11 +361,11 @@ public class DataSourceController extends BaseController {
 	 * Split  				002	Split table
 	 */
 	@RequestMapping(value = BASE_PATH + "/dataSourceDetail", method = RequestMethod.POST) 
-	public Object dataSourceDetail(@Parameter String id,@Parameter String code,@Parameter String classification,HttpRequest request) {
+	public Object dataSourceDetail(@RequestParam String id,@RequestParam String code,@RequestParam String classification,HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			if (!StringUtils.isBlank(id) && !StringUtils.isBlank(code) && !StringUtils.isBlank(classification)) {
 				if ("001".equals(classification) && "SimpleDataSource".equals(code)) {
-					String token = request.getParameters().get("token");
+					String token = request.getParameter("token");
 					if (token == null) return JsonWrapper.failureWrapper("The token cannot be empty!");
 					return JsonWrapper.successWrapper(dataSourceService.findDataSourceDetail(id, token));
 				} else if ("002".equals(classification)) { //
@@ -377,10 +386,10 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/get", method = RequestMethod.POST) 
-	public Object get(@Parameter String id,HttpRequest request) {
+	public Object get(@RequestParam String id,HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			if(!StringUtils.isBlank(id)) {
-				String token = request.getParameters().get("token");
+				String token = request.getParameter("token");
 				if (token == null) return JsonWrapper.failureWrapper("The token cannot be empty!");
 				DataSourceWithAll dataSource=dataSourceService.getWithPanel(id, token);
 				if(dataSource!=null){
@@ -414,9 +423,9 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/uploadJSON", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> upload(@Body JSONInfo JSONInfo,HttpRequest request) {
+	public Single<Map<String,Object>> upload(@RequestBody JSONInfo JSONInfo,HttpServletRequest request) {
 		return Single.fromCallable(() -> {
-			String token = request.getParameters().get("token");
+			String token = request.getParameter("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
 			return JsonWrapper.successWrapper(dataSourceService.uploadFinish(JSONInfo, token));
 		});
@@ -428,9 +437,9 @@ public class DataSourceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/updateJSON", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> updateJSON(@Body JSONInfo JSONInfo,HttpRequest request) {
+	public Single<Map<String,Object>> updateJSON(@RequestBody JSONInfo JSONInfo,HttpServletRequest request) {
 		return Single.fromCallable(() -> {
-			String token = request.getParameters().get("token");
+			String token = request.getParameter("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
 			if(dataSourceService.updateJSON(JSONInfo, token) != 0){
 				return JsonWrapper.successWrapper("更新成功");
@@ -445,7 +454,7 @@ public class DataSourceController extends BaseController {
 //	 * @return
 //	 */
 //	@Post("/deleteJSON")
-//	public Single<Map<String,Object>> deleteJSON(@Body JSONInfo JSONInfo) {
+//	public Single<Map<String,Object>> deleteJSON(@RequestBody JSONInfo JSONInfo) {
 //		return Single.fromCallable(() -> {
 //			return JsonWrapper.successWrapper(dataSourceService.updateJSON(JSONInfo));
 //		});
@@ -476,9 +485,9 @@ public class DataSourceController extends BaseController {
 	 */
 	@RequestMapping(value = BASE_PATH + "/uploadCSV", method = RequestMethod.POST) 
 
-	public Single<Map<String,Object>> uploadCSV(@Body JSONInfo JSONInfo,HttpRequest request) {
+	public Single<Map<String,Object>> uploadCSV(@RequestBody JSONInfo JSONInfo,HttpServletRequest request) {
 		return Single.fromCallable(() -> {
-			String token = request.getParameters().get("token");
+			String token = request.getParameter("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
 			return JsonWrapper.successWrapper(dataSourceService.uploadFinishCSV(JSONInfo, token));
 		});
@@ -491,9 +500,9 @@ public class DataSourceController extends BaseController {
 	 */
 	@RequestMapping(value = BASE_PATH + "/updateCSV", method = RequestMethod.POST) 
 
-	public Single<Map<String,Object>> updateCSV(@Body JSONInfo JSONInfo,HttpRequest request) {
+	public Single<Map<String,Object>> updateCSV(@RequestBody JSONInfo JSONInfo,HttpServletRequest request) {
 		return Single.fromCallable(() -> {
-			String token = request.getParameters().get("token");
+			String token = request.getParameter("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
 			return JsonWrapper.successWrapper(dataSourceService.updateCSV(JSONInfo, token));
 		});
@@ -501,7 +510,7 @@ public class DataSourceController extends BaseController {
 
 
 	@RequestMapping(value = BASE_PATH + "/listFile", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> listJSON(@Parameter String id) {
+	public Single<Map<String,Object>> listJSON(@RequestParam String id) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(dataSourceService.listJSON(id));
 		});

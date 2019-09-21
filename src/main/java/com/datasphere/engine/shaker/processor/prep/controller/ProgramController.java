@@ -51,7 +51,7 @@ public class ProgramController extends BaseController {
      * @return
      */
     @Post(BASE_PATH + "/getDefault")
-    public Object getDefault(@Parameter String processId) {
+    public Object getDefault(@RequestParam String processId) {
         return Single.fromCallable(() -> {
             ReturnData result = new ReturnData();
             try {

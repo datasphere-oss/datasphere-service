@@ -60,14 +60,14 @@ public class ComponentDefinitionController extends BaseController {
 	}
 	
 	@RequestMapping(value = BASE_PATH+"/listForTree", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> listForTree(@Parameter String creator, @Parameter String name) {
+	public Single<Map<String,Object>> listForTree(@RequestParam String creator, @RequestParam String name) {
 		return Single.fromCallable(() -> {
 		 	return JsonWrapper.successWrapper(componentDefinitionService.listForTree(creator, name));
 		});
 	}
 	
 	@RequestMapping(value = BASE_PATH+"/get", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> get(@Parameter String id) {
+	public Single<Map<String,Object>> get(@RequestParam String id) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(componentDefinitionService.get(id));
 		});
@@ -79,7 +79,7 @@ public class ComponentDefinitionController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/getDFIDByName", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> getDFIDByName(@Parameter String name) {
+	public Single<Map<String,Object>> getDFIDByName(@RequestParam String name) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(componentDefinitionService.getDFIDByName(name));
 		});
@@ -91,21 +91,21 @@ public class ComponentDefinitionController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/listDataProcessComponent", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> listDataProcessComponent(@Parameter String creator) {
+	public Single<Map<String,Object>> listDataProcessComponent(@RequestParam String creator) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(componentDefinitionService.listDataProcessComponent(creator));
 		});
 	}
 
 	@RequestMapping(value = BASE_PATH+"/listBy", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> listBy(@Body ComponentDefinition componentDefinition) {
+	public Single<Map<String,Object>> listBy(@RequestBody ComponentDefinition componentDefinition) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(componentDefinitionService.listBy(componentDefinition));
 		});
 	}
 
 	@RequestMapping(value = BASE_PATH+"/create", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> create(@Body ComponentDefinition componentDefinition) {
+	public Single<Map<String,Object>> create(@RequestBody ComponentDefinition componentDefinition) {
 		return Single.fromCallable(() -> {
 			componentDefinitionService.insert(componentDefinition);
 			return JsonWrapper.successWrapper();
@@ -118,7 +118,7 @@ public class ComponentDefinitionController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/delete", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> delete(@Parameter String id) {
+	public Single<Map<String,Object>> delete(@RequestParam String id) {
 		return Single.fromCallable(() -> {
 			int num = componentDefinitionService.delete(id);
 			if (0 == num)
@@ -129,7 +129,7 @@ public class ComponentDefinitionController extends BaseController {
 	}
 
 	@RequestMapping(value = BASE_PATH+"/update", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> update(@Body ComponentDefinition componentDefinition) {
+	public Single<Map<String,Object>> update(@RequestBody ComponentDefinition componentDefinition) {
 		return Single.fromCallable(() -> {
 			int num = componentDefinitionService.update(componentDefinition);
 			if (0 == num)
@@ -140,7 +140,7 @@ public class ComponentDefinitionController extends BaseController {
 	}
 
 	@RequestMapping(value = BASE_PATH+"/exists", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> exists(@Parameter String id) {
+	public Single<Map<String,Object>> exists(@RequestParam String id) {
 		return Single.fromCallable(() -> {
 			boolean b = componentDefinitionService.exists(id);
 			return JsonWrapper.successWrapper(b);

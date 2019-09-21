@@ -14,7 +14,7 @@ package com.datasphere.engine.shaker.processor.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.datasphere.common.utils.OkHttpRequest;
+import com.datasphere.common.utils.OkHttpServletRequest;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.shaker.processor.buscommon.ReturnMessageUtils;
 import com.datasphere.server.sso.service.DSSUserTokenService;
@@ -57,7 +57,7 @@ public class ProcessDaasService extends BaseService {
             System.out.println("The job ["+job_id+"] is "+ jobState);
             String urlPath = this.daasServerAPIV3RootUrl + "/job/" + job_id;
             try {
-                result = OkHttpRequest.okHttpClientGet(urlPath, dSSUserTokenService.getCurrentToken());
+                result = OkHttpServletRequest.okHttpClientGet(urlPath, dSSUserTokenService.getCurrentToken());
                 Thread.sleep(200);
             } catch (Exception e) {
                 logger.error("ProcessService.getJobState(job_id):请求DAAS异常");
@@ -74,7 +74,7 @@ public class ProcessDaasService extends BaseService {
         String urlPath = this.daasServerAPIV3RootUrl + "/job/" +job_id+ "/results?offset=0&limit=100";
         System.out.println(urlPath);
         try {
-            results = OkHttpRequest.okHttpClientGet(urlPath, dSSUserTokenService.getCurrentToken());
+            results = OkHttpServletRequest.okHttpClientGet(urlPath, dSSUserTokenService.getCurrentToken());
         } catch (Exception e) {
             logger.error("ProcessService.getJobResults(job_id):请求DAAS异常");
         }
@@ -86,7 +86,7 @@ public class ProcessDaasService extends BaseService {
         JSONObject jsonParam = new JSONObject();
         jsonParam.put("sql", sql.toString());
         try {
-            return OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
+            return OkHttpServletRequest.okHttpClientPost(urlPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
         } catch (Exception e) {
             logger.error("ProcessService.executeSqlOnDaas(sql):请求DAAS异常");
         }
@@ -96,7 +96,7 @@ public class ProcessDaasService extends BaseService {
     public String getCatalogEntity(String dass_ds_id) {
         try {
             Thread.sleep(100);
-            String catalogEntity = OkHttpRequest.okHttpClientGet(this.daasServerAPIV3RootUrl+"/catalog/"+dass_ds_id, dSSUserTokenService.getCurrentToken());
+            String catalogEntity = OkHttpServletRequest.okHttpClientGet(this.daasServerAPIV3RootUrl+"/catalog/"+dass_ds_id, dSSUserTokenService.getCurrentToken());
             System.err.println(catalogEntity);
             if(catalogEntity.contains("\"errorMessage\"")) return null;
             return JSON.parseObject(catalogEntity).getString("name");

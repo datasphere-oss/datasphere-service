@@ -63,7 +63,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpServletRequestFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
@@ -424,7 +424,7 @@ public class TeddyExecutor {
     headers.add("Accept", "application/json, text/plain, */*");
     headers.add("Authorization", oauth_token);
 
-    HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
+    HttpComponentsClientHttpServletRequestFactory requestFactory = new HttpComponentsClientHttpServletRequestFactory();
     RestTemplate restTemplate = new RestTemplate(requestFactory);
 
     Map<String, String> patchItems = new HashMap<>();

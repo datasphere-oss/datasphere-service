@@ -25,7 +25,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpServletRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -70,8 +70,8 @@ public abstract class AbstractEngineRepository {
         new MappingJackson2HttpMessageConverter(GlobalObjectMapper.getDefaultMapper()));
   }
 
-  protected HttpComponentsClientHttpRequestFactory defaultHttpFactory(int timeout) {
-    HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+  protected HttpComponentsClientHttpServletRequestFactory defaultHttpFactory(int timeout) {
+    HttpComponentsClientHttpServletRequestFactory factory = new HttpComponentsClientHttpServletRequestFactory();
     factory.setConnectTimeout(timeout);
     factory.setReadTimeout(timeout);
 

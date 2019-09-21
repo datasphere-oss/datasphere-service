@@ -24,7 +24,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpServletRequestFactory;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -64,7 +64,7 @@ public class HttpRepository implements HttpRepositoryAction {
     @PostConstruct
     public void setUp() {
         restTemplate = new RestTemplate(getHttpMessageConverters());
-        restTemplate.setRequestFactory(getHttpComponentsClientHttpRequestFactory());
+        restTemplate.setRequestFactory(getHttpComponentsClientHttpServletRequestFactory());
         restTemplate.setErrorHandler(new HttpResponseErrorHandler());
     }
 
@@ -73,7 +73,7 @@ public class HttpRepository implements HttpRepositoryAction {
      */
     private RestTemplate getRestTemplate() {
         RestTemplate restTemplate = new RestTemplate(getHttpMessageConverters());
-        restTemplate.setRequestFactory(getHttpComponentsClientHttpRequestFactory());
+        restTemplate.setRequestFactory(getHttpComponentsClientHttpServletRequestFactory());
         restTemplate.setErrorHandler(new HttpResponseErrorHandler());
 
         return restTemplate;
@@ -129,12 +129,12 @@ public class HttpRepository implements HttpRepositoryAction {
     }
 
     /**
-     * get HttpComponentsClientHttpRequestFactory
+     * get HttpComponentsClientHttpServletRequestFactory
      *
      * @return
      */
-    private HttpComponentsClientHttpRequestFactory getHttpComponentsClientHttpRequestFactory() {
-        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+    private HttpComponentsClientHttpServletRequestFactory getHttpComponentsClientHttpServletRequestFactory() {
+        HttpComponentsClientHttpServletRequestFactory factory = new HttpComponentsClientHttpServletRequestFactory();
         factory.setConnectTimeout(1 * 60 * 1000);
         factory.setReadTimeout(1 * 60 * 1000);
 

@@ -14,7 +14,7 @@ package com.datasphere.engine.manager.resource.provider.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.datasphere.common.utils.OkHttpRequest;
+import com.datasphere.common.utils.OkHttpServletRequest;
 import com.datasphere.common.utils.PageUtil;
 import com.datasphere.common.utils.RandomUtils;
 import com.datasphere.core.common.BaseService;
@@ -239,7 +239,7 @@ public class DaasService extends BaseService {
 									 version +
 									 "\",\"limit\":\"150\"}";
 			try {
-				vds = OkHttpRequest.okHttpClientPost(urlPath, jsonStr, dSSUserTokenService.getCurrentToken());
+				vds = OkHttpServletRequest.okHttpClientPost(urlPath, jsonStr, dSSUserTokenService.getCurrentToken());
 			} catch (Exception e) {
 				log.error("ProcessService.oneTableQuery(panel_id):请求DAAS异常");
 			}
@@ -263,7 +263,7 @@ public class DaasService extends BaseService {
 		JSONObject jsonParam = new JSONObject();
 		jsonParam.put("sql", sql);
 		try {
-			job_id = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
+			job_id = OkHttpServletRequest.okHttpClientPost(urlPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
 		} catch (Exception e) {
 			log.error("ProcessService.getJobId(sql):请求DAAS异常");
 		}
@@ -275,7 +275,7 @@ public class DaasService extends BaseService {
 		String result = "";
 		String urlPath = this.daasServerAPIV3RootUrl + "/job/" + job_id;
 		try {
-			result = OkHttpRequest.okHttpClientGet(urlPath, dSSUserTokenService.getCurrentToken());
+			result = OkHttpServletRequest.okHttpClientGet(urlPath, dSSUserTokenService.getCurrentToken());
 		} catch (Exception e) {
 			log.error("ProcessService.getJobStatus(job_id):请求DAAS异常");
 		}
@@ -288,7 +288,7 @@ public class DaasService extends BaseService {
 		String urlPath = this.daasServerAPIV3RootUrl + "/job/" + job_id + "/results?offset=0&limit=100";
 		System.err.println(urlPath);
 		try {
-			results = OkHttpRequest.okHttpClientGet(urlPath, dSSUserTokenService.getCurrentToken());
+			results = OkHttpServletRequest.okHttpClientGet(urlPath, dSSUserTokenService.getCurrentToken());
 		} catch (Exception e) {
 			log.error("ProcessService.getJobResults(job_id):请求DAAS异常");
 		}

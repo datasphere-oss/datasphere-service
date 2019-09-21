@@ -45,7 +45,7 @@ public class DataProcessController extends BaseController{
     ProgramService programService;
 
 	@RequestMapping(value = BASE_PATH+"/check", method = RequestMethod.POST) 
-    public Object check(@Parameter String processId) {
+    public Object check(@RequestParam String processId) {
         return Single.fromCallable(() -> {
             ReturnData result = new ReturnData();
             try {
@@ -62,7 +62,7 @@ public class DataProcessController extends BaseController{
     }
 
 	@RequestMapping(value = BASE_PATH+"/getDefaultProgramOperates/{processId}", method = RequestMethod.POST) 
-    public ReturnData<ProgramFlowData> getDefaultProgramOperates(@Parameter("processId") String processId) {
+    public ReturnData<ProgramFlowData> getDefaultProgramOperates(@RequestParam("processId") String processId) {
         ReturnData result = new ReturnData();
         try {
 
@@ -90,7 +90,7 @@ public class DataProcessController extends BaseController{
      * @return
      */
 	@RequestMapping(value = BASE_PATH+"/join", method = RequestMethod.POST) 
-    public ReturnData join(@Body JoinInputData inputdata) {
+    public ReturnData join(@RequestBody JoinInputData inputdata) {
         ReturnData result = new ReturnData();
         try {
             JoinOutputData ouputData = dataProcessService.join(inputdata);

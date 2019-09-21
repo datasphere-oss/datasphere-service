@@ -33,7 +33,7 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.datasphere.common.utils.OkHttpRequest;
+import com.datasphere.common.utils.OkHttpServletRequest;
 import com.datasphere.common.utils.RandomUtils;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.core.common.utils.UUIDUtils;
@@ -989,7 +989,7 @@ public class ProcessService extends BaseService {
 		String secondPath = second_path_prefix + getNewVersion2(daas_ds_id,right_cd_id) + second_path_next;// 两表join
 		String urlPath = this.daasServerAPIV2RootUrl + secondPath;
 		try {
-			virtualDataset = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toJSONString(), dssUserTokenService.getCurrentToken());
+			virtualDataset = OkHttpServletRequest.okHttpClientPost(urlPath, jsonParam.toJSONString(), dssUserTokenService.getCurrentToken());
 			addCILog(PROCESS_ID,PANEL_ID,right_source_ci_id,"两表"+jsonParam.getString("joinType")+"成功",1);
 		} catch (Exception e) {
 			addCILog(PROCESS_ID,PANEL_ID,right_source_ci_id,"两表"+jsonParam.getString("joinType")+"异常:"+e.getMessage(),2);
@@ -1021,8 +1021,8 @@ public class ProcessService extends BaseService {
 		String secondPath = second_path_prefix + new_version + second_path_next;// 两表join
 		String urlPath = this.daasServerAPIV2RootUrl + secondPath;
 		try {
-//			virtualDataset = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toJSONString(), dSSUserTokenService.getCurrentToken());
-			virtualDataset = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toJSONString(), null);
+//			virtualDataset = OkHttpServletRequest.okHttpClientPost(urlPath, jsonParam.toJSONString(), dSSUserTokenService.getCurrentToken());
+			virtualDataset = OkHttpServletRequest.okHttpClientPost(urlPath, jsonParam.toJSONString(), null);
 			addCILog(PROCESS_ID,PANEL_ID,"","两表"+jsonParam.getString("joinType")+"成功",1);
 		} catch (Exception e) {
 			addCILog(PROCESS_ID,PANEL_ID,"","两表"+jsonParam.getString("joinType")+"异常:"+e.getMessage(),2);
@@ -1051,8 +1051,8 @@ public class ProcessService extends BaseService {
 		jsonParam.put("newVersion", new_version);
 		jsonParam.put("limit", 150);
 		try {
-//			return OkHttpRequest.okHttpClientPost(this.daasServerAPIV2RootUrl + secondPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
-			return OkHttpRequest.okHttpClientPost(this.daasServerAPIV2RootUrl + secondPath, jsonParam.toString(), null);
+//			return OkHttpServletRequest.okHttpClientPost(this.daasServerAPIV2RootUrl + secondPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
+			return OkHttpServletRequest.okHttpClientPost(this.daasServerAPIV2RootUrl + secondPath, jsonParam.toString(), null);
 		} catch (Exception e) {
 			logger.error("ProcessService.getVDS(panel_id):请求DAAS异常");
 		}
@@ -1601,8 +1601,8 @@ public class ProcessService extends BaseService {
         jsonParam.put("message", "Job cancellation requested");
 		String result = null;
 		try {
-//			result = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
-			result = OkHttpRequest.okHttpClientPost(urlPath, jsonParam.toString(), null);
+//			result = OkHttpServletRequest.okHttpClientPost(urlPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
+			result = OkHttpServletRequest.okHttpClientPost(urlPath, jsonParam.toString(), null);
         } catch (Exception e) {
             logger.error("ProcessService.cancelJobById(jobId):请求DAAS异常");
 			addCILog(PROCESS_ID,PANEL_ID, "","暂停任务-失败："+e.getMessage(), 1);

@@ -38,7 +38,7 @@ public class HiveDataSourceController extends BaseController {
      * @return
      */
 	@RequestMapping(value = BASE_PATH + "/testHive", method = RequestMethod.POST) 
-    public Single<Map<String,Object>> testHive(@Body HiveConnectionInfo hiveConnectionInfo) {
+    public Single<Map<String,Object>> testHive(@RequestBody HiveConnectionInfo hiveConnectionInfo) {
         return Single.fromCallable(() -> {
             int result = uDSMService.testHive(hiveConnectionInfo);
             if(result == 0){
@@ -54,7 +54,7 @@ public class HiveDataSourceController extends BaseController {
      * @hiveConnectionInfo
      */
 	@RequestMapping(value = BASE_PATH + "/HiveListTable", method = RequestMethod.POST) 
-    public Object HiveListTable(@Body HiveConnectionInfo hiveConnectionInfo){
+    public Object HiveListTable(@RequestBody HiveConnectionInfo hiveConnectionInfo){
         return Single.fromCallable(() -> {
             List<DBTableInfodmp> dbTableInfodmps = uDSMService.HiveListTable(hiveConnectionInfo);
             if(dbTableInfodmps == null){
@@ -70,7 +70,7 @@ public class HiveDataSourceController extends BaseController {
      * @hiveConnectionInfo
      */
 	@RequestMapping(value = BASE_PATH + "/queryHiveTableData", method = RequestMethod.POST) 
-    public Object queryHiveTableData(@Body HiveConnectionInfo hiveConnectionInfo){
+    public Object queryHiveTableData(@RequestBody HiveConnectionInfo hiveConnectionInfo){
         return Single.fromCallable(() -> {
             return JsonWrapper.successWrapper(uDSMService.queryHiveTableData(hiveConnectionInfo));
         });
@@ -82,7 +82,7 @@ public class HiveDataSourceController extends BaseController {
      * @return
      */
 	@RequestMapping(value = BASE_PATH + "/createHive", method = RequestMethod.POST) 
-    public Single<Map<String,Object>> createHive(@Body HiveDataSourceInfo hiveDataSourceInfo, HttpRequest request){
+    public Single<Map<String,Object>> createHive(@RequestBody HiveDataSourceInfo hiveDataSourceInfo, HttpServletRequest request){
         return Single.fromCallable(() -> {
             String token = request.getParameters().get("token");
             if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
@@ -100,7 +100,7 @@ public class HiveDataSourceController extends BaseController {
      * @return
      */
 	@RequestMapping(value = BASE_PATH + "/updateHive", method = RequestMethod.POST) 
-    public Single<Map<String,Object>> updateHiveById(@Body HiveDataSourceInfo hiveDataSourceInfo, HttpRequest request){
+    public Single<Map<String,Object>> updateHiveById(@RequestBody HiveDataSourceInfo hiveDataSourceInfo, HttpServletRequest request){
         return Single.fromCallable(() -> {
             if(StringUtils.isBlank(hiveDataSourceInfo.getId())){
                 return JsonWrapper.failureWrapper("id不能为空！");

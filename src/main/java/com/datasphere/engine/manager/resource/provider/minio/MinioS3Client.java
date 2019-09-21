@@ -51,7 +51,7 @@ import io.minio.Result;
 import io.minio.errors.MinioException;
 import io.minio.messages.Item;
 import io.minio.messages.Upload;
-import uk.co.lucasweb.aws.v4.signer.HttpRequest;
+import uk.co.lucasweb.aws.v4.signer.HttpServletRequest;
 import uk.co.lucasweb.aws.v4.signer.Signer;
 import uk.co.lucasweb.aws.v4.signer.credentials.AwsCredentials;
 
@@ -278,7 +278,7 @@ public class MinioS3Client {
             _log.trace("policy json " + content);
             _log.trace("content sha " + contentSha256);
 
-            HttpRequest request = new HttpRequest("PUT", new URI(url));
+            HttpServletRequest request = new HttpServletRequest("PUT", new URI(url));
             String signature = Signer.builder()
                     .awsCredentials(new AwsCredentials(ACCESS_KEY, SECRET_KEY))
                     .header("Host", hostname)
@@ -337,7 +337,7 @@ public class MinioS3Client {
             String content = ""; // empty content needed for sha256
             String contentSha256 = MinioSha256.get(content, Charset.forName("UTF-8"));
 
-            HttpRequest request = new HttpRequest("DELETE", new URI(url));
+            HttpServletRequest request = new HttpServletRequest("DELETE", new URI(url));
             String signature = Signer.builder()
                     .awsCredentials(new AwsCredentials(ACCESS_KEY, SECRET_KEY))
                     .header("Host", hostname)
@@ -422,7 +422,7 @@ public class MinioS3Client {
             String contentSha256 = MinioSha256.get(content);
             _log.trace("content sha " + contentSha256);
 
-            HttpRequest request = new HttpRequest("PUT", new URI(url));
+            HttpServletRequest request = new HttpServletRequest("PUT", new URI(url));
             String signature = Signer.builder()
                     .awsCredentials(new AwsCredentials(ACCESS_KEY, SECRET_KEY))
                     .header("Host", hostname)
@@ -462,7 +462,7 @@ public class MinioS3Client {
                 content = new byte[0];
                 contentSha256 = MinioSha256.get(content);
 
-                request = new HttpRequest("PUT", new URI(url));
+                request = new HttpServletRequest("PUT", new URI(url));
                 signature = Signer.builder()
                         .awsCredentials(new AwsCredentials(ACCESS_KEY, SECRET_KEY))
                         .header("Host", hostname)
@@ -528,7 +528,7 @@ public class MinioS3Client {
             String content = ""; // empty content needed for sha256
             String contentSha256 = MinioSha256.get(content, Charset.forName("UTF-8"));
 
-            HttpRequest request = new HttpRequest("DELETE", new URI(url));
+            HttpServletRequest request = new HttpServletRequest("DELETE", new URI(url));
             String signature = Signer.builder()
                     .awsCredentials(new AwsCredentials(ACCESS_KEY, SECRET_KEY))
                     .header("Host", hostname)

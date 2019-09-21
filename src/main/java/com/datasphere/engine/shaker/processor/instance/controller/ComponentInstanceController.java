@@ -54,7 +54,7 @@ public class ComponentInstanceController extends BaseController {
 	 * Query component instance details
 	 */
 	@RequestMapping(value = BASE_PATH+"/get", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> get(@Parameter String id, @Parameter String creator) {
+	public Single<Map<String,Object>> get(@RequestParam String id, @RequestParam String creator) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(componentInstanceService.get(id));
 		});
@@ -66,7 +66,7 @@ public class ComponentInstanceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/create", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> create(@Body ComponentInstance componentInstance, HttpRequest request) { //, @Parameter String reserve
+	public Single<Map<String,Object>> create(@RequestBody ComponentInstance componentInstance, HttpServletRequest request) { //, @RequestParam String reserve
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("The token cannot be empty!");
@@ -84,7 +84,7 @@ public class ComponentInstanceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/update", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> update(@Body ComponentInstance componentInstance) {
+	public Single<Map<String,Object>> update(@RequestBody ComponentInstance componentInstance) {
 		return Single.fromCallable(() -> {
 			if (0 == componentInstanceService.update(componentInstance))
 				return JsonWrapper.failureWrapper(ExceptionConst.RECORD_NOT_EXITS, ExceptionConst.get(ExceptionConst.RECORD_NOT_EXITS));
@@ -98,7 +98,7 @@ public class ComponentInstanceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/updatePosition", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> updatePosition(@Body UpdatePositionEntity entity) {
+	public Single<Map<String,Object>> updatePosition(@RequestBody UpdatePositionEntity entity) {
 		return Single.fromCallable(() -> {
 			componentInstanceService.updatePosition(entity);
 			return JsonWrapper.successWrapper("1");
@@ -112,7 +112,7 @@ public class ComponentInstanceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/listByPanelId", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> listBy(@Parameter String panelId) {
+	public Single<Map<String,Object>> listBy(@RequestParam String panelId) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(componentInstanceService.getAllComponentInstancesWithPanel(panelId));
 		});
@@ -124,7 +124,7 @@ public class ComponentInstanceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/delete", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> delete(@Parameter String id, HttpRequest request) {//, @Parameter String creator
+	public Single<Map<String,Object>> delete(@RequestParam String id, HttpServletRequest request) {//, @RequestParam String creator
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("The token cannot be empty!");
@@ -141,7 +141,7 @@ public class ComponentInstanceController extends BaseController {
 	 * Replication of component instances
 	 */
 	@RequestMapping(value = BASE_PATH+"/copy", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> copy(@Parameter String creator,@Parameter String componentInstanceId, HttpRequest request)  {
+	public Single<Map<String,Object>> copy(@RequestParam String creator,@RequestParam String componentInstanceId, HttpServletRequest request)  {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("The token cannot be empty!");
@@ -159,7 +159,7 @@ public class ComponentInstanceController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/getOutput", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> getOutput(@Parameter String componentInstanceId,@Parameter String output) {
+	public Single<Map<String,Object>> getOutput(@RequestParam String componentInstanceId,@RequestParam String output) {
 		return Single.fromCallable(() -> {
 			List<Dataset> datasets = componentInstanceService.getDatasetByComponentId(componentInstanceId, output);
 			return JsonWrapper.successWrapper(datasets);
@@ -169,7 +169,7 @@ public class ComponentInstanceController extends BaseController {
 
 
 	@RequestMapping(value = BASE_PATH+"/dataQuery", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> dataQuery(@Body QueryDataParams query) {
+	public Single<Map<String,Object>> dataQuery(@RequestBody QueryDataParams query) {
 		return Single.fromCallable(() -> {
 			if(!StringUtils.isBlank(query.getComponentInstanceId())){
 				DataSetInstance dataSetInstance = componentInstanceService.getDataSetInfo(query.getComponentInstanceId());

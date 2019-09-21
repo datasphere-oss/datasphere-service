@@ -47,7 +47,7 @@ public class ComponentInstanceRelationController extends BaseController {
 	 * @param componentInstanceRelation
 	 */
 	@RequestMapping(value = BASE_PATH+"/create", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> create(@Body ComponentInstanceRelation componentInstanceRelation, HttpRequest request) { //, @Parameter String creator
+	public Single<Map<String,Object>> create(@RequestBody ComponentInstanceRelation componentInstanceRelation, HttpServletRequest request) { //, @RequestParam String creator
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
@@ -64,7 +64,7 @@ public class ComponentInstanceRelationController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/update", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> update(@Body ComponentInstanceRelation componentInstanceRelation, HttpRequest request) {//, @Parameter String creator
+	public Single<Map<String,Object>> update(@RequestBody ComponentInstanceRelation componentInstanceRelation, HttpServletRequest request) {//, @RequestParam String creator
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
@@ -76,7 +76,7 @@ public class ComponentInstanceRelationController extends BaseController {
 	 * 删除关联线
 	 */
 	@RequestMapping(value = BASE_PATH+"/delete", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> delete(@Parameter String id, HttpRequest request) {//,@Parameter String creator
+	public Single<Map<String,Object>> delete(@RequestParam String id, HttpServletRequest request) {//,@RequestParam String creator
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
@@ -90,7 +90,7 @@ public class ComponentInstanceRelationController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH+"/listBy", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> listBy(@Body ComponentInstanceRelation componentInstanceRelation) {
+	public Single<Map<String,Object>> listBy(@RequestBody ComponentInstanceRelation componentInstanceRelation) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(cirService.listBy(componentInstanceRelation));
 		});
