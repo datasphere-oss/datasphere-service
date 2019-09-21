@@ -31,7 +31,7 @@ import javax.validation.constraints.Size;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.entity.Spec;
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.workbook.DashBoard;
 import com.datasphere.server.domain.workbook.configurations.WidgetConfiguration;
 
@@ -43,7 +43,7 @@ import com.datasphere.server.domain.workbook.configurations.WidgetConfiguration;
 @DiscriminatorColumn(name = "widget_type")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-public abstract class Widget extends AbstractHistoryEntity implements MetatronDomain<String>  {
+public abstract class Widget extends AbstractHistoryEntity implements DSSDomain<String>  {
 
   public static List<String> SEARCHABLE_WIDGETS = Lists.newArrayList("page", "text", "filter");
 

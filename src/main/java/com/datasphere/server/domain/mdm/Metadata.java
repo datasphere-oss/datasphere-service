@@ -32,7 +32,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.mdm.catalog.Catalog;
@@ -40,7 +40,7 @@ import com.datasphere.server.domain.mdm.source.MetadataSource;
 
 @Entity
 @Table(name="mdm_metadata")
-public class Metadata extends AbstractHistoryEntity implements MetatronDomain<String> {
+public class Metadata extends AbstractHistoryEntity implements DSSDomain<String> {
 
   /**
    * ID

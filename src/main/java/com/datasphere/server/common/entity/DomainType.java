@@ -13,7 +13,7 @@
 package com.datasphere.server.common.entity;
 
 import com.datasphere.server.common.BaseProjections;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.context.ContextEntity;
 import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.datasource.DataSourceProjections;
@@ -74,7 +74,7 @@ public enum  DomainType {
     }
   }
 
-  public static DomainType getType(MetatronDomain domain) {
+  public static DomainType getType(DSSDomain domain) {
     if(domain instanceof DataSource) {
       return DATASOURCE;
     } else if(domain instanceof Metadata) {

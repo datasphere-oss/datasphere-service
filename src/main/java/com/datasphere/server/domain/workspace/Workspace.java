@@ -55,7 +55,7 @@ import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.context.ContextEntity;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.notebook.NotebookConnector;
@@ -76,7 +76,7 @@ import com.google.common.collect.Lists;
  */
 @Entity
 @Table(name = "workspace")
-public class Workspace extends AbstractHistoryEntity implements MetatronDomain<String>, ContextEntity {
+public class Workspace extends AbstractHistoryEntity implements DSSDomain<String>, ContextEntity {
 
   public static final List<String> workspaceTypes = Lists.newArrayList("DEFAULT", "TYPE_1", "TYPE_2");
 

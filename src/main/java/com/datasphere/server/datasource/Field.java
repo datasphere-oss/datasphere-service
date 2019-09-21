@@ -55,7 +55,7 @@ import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.datasource.ingestion.rule.IngestionRule;
 import com.datasphere.server.domain.CollectionPatch;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.mdm.MetadataColumn;
 import com.datasphere.server.domain.workbook.configurations.field.MeasureField;
 import com.datasphere.server.domain.workbook.configurations.field.MeasureField.AggregationType;
@@ -90,7 +90,7 @@ import com.google.common.primitives.Longs;
 
 @Entity
 @Table(name = "field")
-public class Field implements MetatronDomain<Long> {
+public class Field implements DSSDomain<Long> {
 
   public final static String FIELD_NAME_CURRENT_TIMESTAMP = "__ctime";
   public final static String COLUMN_NAME_CURRENT_DATETIME = "current_datetime";

@@ -27,11 +27,11 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 
 @Entity
 @Table(name="data_lineage")
-public class DataLineage implements MetatronDomain<Long> {
+public class DataLineage implements DSSDomain<Long> {
 
   @Id
   @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
@@ -70,7 +70,7 @@ public class DataLineage implements MetatronDomain<Long> {
   String targetFieldComment;
 
   @Column(name="target_table_type")
-  String targetTableType;  //Table 타입으로 Table, View, Temporary Table
+  String targetTableType;  //Table By Type, Table, View, Temporary Table
 
   @Column(name="target_table_temporary")
   boolean targetTableTemporary;
@@ -84,7 +84,7 @@ public class DataLineage implements MetatronDomain<Long> {
   DateTime ms;
 
   @Column(name="cluster")
-  String cluster; //Server 종류로 Hive 의 설정 파일 정보에서 가져오게 해야할 것 같음
+  String cluster; //Server Kind of need to get from Hive's configuration file information
 
   @Column(name="current_db")
   String currentDatabase;

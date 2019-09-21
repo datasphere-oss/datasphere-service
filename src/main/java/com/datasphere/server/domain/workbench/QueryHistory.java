@@ -25,12 +25,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.util.TimeUtils;
 
 @Entity
 @Table(name="queryhistory")
-public class QueryHistory extends AbstractHistoryEntity implements MetatronDomain<Long> {
+public class QueryHistory extends AbstractHistoryEntity implements DSSDomain<Long> {
 
 	// TODO: "id" 로 네이밍 변경 부탁드립니다
 	@Id

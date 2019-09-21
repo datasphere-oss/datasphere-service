@@ -37,13 +37,13 @@ import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.entity.Spec;
 import com.datasphere.server.domain.CollectionPatch;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
 @Entity
 @Table(name = "mdm_metadata_column")
-public class MetadataColumn implements MetatronDomain<Long>  {
+public class MetadataColumn implements DSSDomain<Long>  {
 
   /**
    * ID

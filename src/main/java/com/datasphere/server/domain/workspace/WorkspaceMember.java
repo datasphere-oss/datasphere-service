@@ -24,7 +24,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.datasphere.server.domain.CollectionPatch;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.user.CachedUserService;
 import com.datasphere.server.domain.user.User;
 import com.datasphere.server.domain.user.group.Group;
@@ -37,7 +37,7 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
  */
 @Entity
 @Table(name = "workspace_member")
-public class WorkspaceMember implements MetatronDomain<Long> {
+public class WorkspaceMember implements DSSDomain<Long> {
 
   @Id
   @GeneratedValue(strategy= GenerationType.AUTO, generator="native")

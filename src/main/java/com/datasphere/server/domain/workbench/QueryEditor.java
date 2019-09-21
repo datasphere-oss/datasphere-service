@@ -16,7 +16,7 @@ package com.datasphere.server.domain.workbench;
 
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotBlank;
@@ -31,7 +31,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="queryeditor")
-public class QueryEditor extends AbstractHistoryEntity implements MetatronDomain<String>  {
+public class QueryEditor extends AbstractHistoryEntity implements DSSDomain<String>  {
 	
 	@Id
 	@GeneratedValue(generator = "uuid")

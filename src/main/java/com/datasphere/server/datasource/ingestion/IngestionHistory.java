@@ -33,14 +33,14 @@ import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.datasource.ingestion.job.IngestionProgress;
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.engine.model.IngestionStatusResponse;
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
 @Table(name = "ingestion_history")
-public class IngestionHistory extends AbstractHistoryEntity implements MetatronDomain<Long> {
+public class IngestionHistory extends AbstractHistoryEntity implements DSSDomain<Long> {
 
   @Column(name = "id")
   @GeneratedValue(strategy= GenerationType.AUTO, generator="native")

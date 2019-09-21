@@ -37,7 +37,7 @@ import javax.persistence.Table;
 
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.engine.model.SegmentMetaDataResponse;
 
 /**
@@ -45,7 +45,7 @@ import com.datasphere.server.domain.engine.model.SegmentMetaDataResponse;
  */
 @Entity
 @Table(name = "datasource_summary")
-public class DataSourceSummary implements MetatronDomain<Long> {
+public class DataSourceSummary implements DSSDomain<Long> {
 
   @Column(name = "id")
   @GeneratedValue(strategy= GenerationType.AUTO, generator="native")

@@ -90,7 +90,7 @@ import com.datasphere.server.datasource.ingestion.jdbc.BatchIngestionInfo;
 import com.datasphere.server.datasource.ingestion.jdbc.JdbcIngestionInfo;
 import com.datasphere.server.datasource.ingestion.jdbc.SingleIngestionInfo;
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.context.ContextEntity;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataprep.entity.PrSnapshot;
@@ -119,7 +119,7 @@ import com.google.common.collect.Sets;
         @Index(name = "idx_datasource_engine_name", columnList = "ds_engine_name", unique = true)
     })
 @Indexed
-public class DataSource extends AbstractHistoryEntity implements MetatronDomain<String>, ContextEntity {
+public class DataSource extends AbstractHistoryEntity implements DSSDomain<String>, ContextEntity {
 
   /**
    * ID

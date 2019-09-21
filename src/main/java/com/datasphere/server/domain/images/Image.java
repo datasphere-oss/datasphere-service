@@ -30,14 +30,14 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 
 /**
  * Created by aladin on 2019. 7. 21..
  */
 @Entity
 @Table(name = "image")
-public class Image extends AbstractHistoryEntity implements MetatronDomain<String> {
+public class Image extends AbstractHistoryEntity implements DSSDomain<String> {
 
   public static final String DOMAIN_USER = "user";
   public static final String DOMAIN_DASHBOARD = "dashboard";

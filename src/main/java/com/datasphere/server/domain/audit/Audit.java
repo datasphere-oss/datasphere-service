@@ -15,7 +15,7 @@
 package com.datasphere.server.domain.audit;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.univocity.parsers.annotations.Parsed;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -28,7 +28,7 @@ import java.util.List;
 @Entity
 @Table(name="audit")
 @org.hibernate.annotations.Entity(dynamicUpdate = true)
-public class Audit extends AbstractHistoryEntity implements MetatronDomain<String> {
+public class Audit extends AbstractHistoryEntity implements DSSDomain<String> {
 
   @Id
   @GeneratedValue(generator = "uuid")

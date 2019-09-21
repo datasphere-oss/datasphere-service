@@ -30,14 +30,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 
 /**
  * Created by aladin on 2019. 7. 20..
  */
 @Entity
 @Table(name = "notebook_model_history")
-public class NotebookModelHistory extends AbstractHistoryEntity implements MetatronDomain<Long> {
+public class NotebookModelHistory extends AbstractHistoryEntity implements DSSDomain<Long> {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")

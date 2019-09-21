@@ -25,11 +25,11 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 
 @Entity
 @Table(name="data_lineage_workflow")
-public class DataLineageWorkFlow implements MetatronDomain<Long> {
+public class DataLineageWorkFlow implements DSSDomain<Long> {
 
   @Id
   @GeneratedValue(strategy= GenerationType.AUTO, generator="native")

@@ -21,7 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.user.CachedUserService;
 import com.datasphere.server.domain.user.UserProfile;
 
@@ -35,7 +35,7 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 @Table(name = "user_group_member", indexes = {
     @Index(name = "i_user_member_id", columnList = "member_id")
 })
-public class GroupMember implements MetatronDomain<Long> {
+public class GroupMember implements DSSDomain<Long> {
 
   @Id
   @GeneratedValue(strategy= GenerationType.AUTO, generator="native")

@@ -27,7 +27,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 
 /**
  * @date        : 2016.04.22
@@ -36,7 +36,7 @@ import com.datasphere.server.domain.MetatronDomain;
  */
 @Entity
 @Table(name="common_code")
-public class CommonCode extends AbstractHistoryEntity implements MetatronDomain<Long> {
+public class CommonCode extends AbstractHistoryEntity implements DSSDomain<Long> {
 
     private static final long serialVersionUID = 1L;
 

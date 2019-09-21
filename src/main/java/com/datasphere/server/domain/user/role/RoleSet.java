@@ -35,12 +35,12 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.workspace.Workspace;
 
 @Entity
 @Table(name = "role_set")
- public class  RoleSet extends AbstractHistoryEntity implements MetatronDomain<String> {
+ public class  RoleSet extends AbstractHistoryEntity implements DSSDomain<String> {
 
   public static String ROLESET_ID_DEFAULT = "DEFAULT_ROLE_SET";
 

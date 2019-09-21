@@ -32,7 +32,7 @@ import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.entity.Spec;
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.workbook.configurations.BoardConfiguration;
 import com.datasphere.server.domain.workbook.widget.Widget;
@@ -44,7 +44,7 @@ import com.datasphere.server.util.PolarisUtils;
  */
 @Entity
 @Table(name = "dashboard")
-public class DashBoard extends AbstractHistoryEntity implements MetatronDomain<String>  {
+public class DashBoard extends AbstractHistoryEntity implements DSSDomain<String>  {
 
   /**
    * ID

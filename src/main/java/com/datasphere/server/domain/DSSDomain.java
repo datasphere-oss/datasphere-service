@@ -16,6 +16,6 @@ package com.datasphere.server.domain;
 
 import java.io.Serializable;
 
-public interface MetatronDomain<T> extends Serializable {
+public interface DSSDomain<T> extends Serializable {
   T getId();
 }

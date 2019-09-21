@@ -26,12 +26,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.datasphere.server.common.entity.DomainType;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.util.AuthUtils;
 
 @Entity
 @Table(name="tag")
-public class Tag implements MetatronDomain<String> {
+public class Tag implements DSSDomain<String> {
 
   /**
    * ID

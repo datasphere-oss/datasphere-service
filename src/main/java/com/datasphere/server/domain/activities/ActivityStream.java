@@ -26,7 +26,7 @@ import java.security.Principal;
 import javax.persistence.*;
 
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.activities.spec.ActivityStreamV2;
 import com.datasphere.server.domain.activities.spec.ActivityType;
 import com.datasphere.server.domain.activities.spec.Actor;
@@ -34,7 +34,7 @@ import com.datasphere.server.util.EnumUtils;
 
 @Entity
 @Table(name = "activity_stream")
-public class ActivityStream implements MetatronDomain<Long> {
+public class ActivityStream implements DSSDomain<Long> {
 
   @Id
   @GeneratedValue(strategy= GenerationType.AUTO, generator="native")

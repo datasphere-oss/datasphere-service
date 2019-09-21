@@ -32,7 +32,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.workspace.folder.Folder;
 
 /**
@@ -44,7 +44,7 @@ import com.datasphere.server.domain.workspace.folder.Folder;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-public abstract class Book extends AbstractHistoryEntity implements MetatronDomain<String> {
+public abstract class Book extends AbstractHistoryEntity implements DSSDomain<String> {
 
   public static List<String> SEARCHABLE_BOOKS = Lists.newArrayList("workbook", "notebook", "workbench");
 

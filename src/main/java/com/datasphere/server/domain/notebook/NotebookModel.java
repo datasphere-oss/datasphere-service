@@ -27,14 +27,14 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 
 /**
  * Created by aladin on 2019. 7. 12..
  */
 @Entity
 @Table(name = "notebook_model")
-public class NotebookModel extends AbstractHistoryEntity implements MetatronDomain<String> {
+public class NotebookModel extends AbstractHistoryEntity implements DSSDomain<String> {
 
     @Id
     @GeneratedValue(generator = "uuid")

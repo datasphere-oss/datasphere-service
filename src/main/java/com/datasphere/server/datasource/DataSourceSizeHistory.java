@@ -23,14 +23,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 
 /**
  * Created by aladin on 2019. 9. 3..
  */
 @Entity
 @Table(name = "datasource_size_history")
-public class DataSourceSizeHistory extends AbstractHistoryEntity implements MetatronDomain<String>  {
+public class DataSourceSizeHistory extends AbstractHistoryEntity implements DSSDomain<String>  {
 
   /**
    *  ID

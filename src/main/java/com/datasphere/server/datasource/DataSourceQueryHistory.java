@@ -28,7 +28,7 @@ import javax.validation.constraints.Size;
 
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.datasource.data.CandidateQueryRequest;
 import com.datasphere.server.datasource.data.CovarianceQueryRequest;
 import com.datasphere.server.datasource.data.MetaQueryRequest;
@@ -49,7 +49,7 @@ import static com.datasphere.server.datasource.DataSourceQueryHistory.QueryType.
  */
 @Entity
 @Table(name = "datasource_query")
-public class DataSourceQueryHistory extends AbstractHistoryEntity implements MetatronDomain<String>  {
+public class DataSourceQueryHistory extends AbstractHistoryEntity implements DSSDomain<String>  {
 
   /**
    *  ID

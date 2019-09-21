@@ -35,12 +35,12 @@ import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.entity.Spec;
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
 @Entity
 @Table(name = "mdm_column_dictionary")
-public class ColumnDictionary extends AbstractHistoryEntity implements MetatronDomain<String> {
+public class ColumnDictionary extends AbstractHistoryEntity implements DSSDomain<String> {
 
   /**
    * ID

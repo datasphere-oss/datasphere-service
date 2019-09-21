@@ -27,7 +27,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.notebook.connector.HttpRepository;
 import com.datasphere.server.domain.notebook.connector.NotebookAction;
 import com.datasphere.server.domain.workspace.Workspace;
@@ -44,7 +44,7 @@ import com.datasphere.server.domain.workspace.Workspace;
 //    @JsonSubTypes.Type(value = ZeppelinConnector.class, name = "zeppelin"),
 //    @JsonSubTypes.Type(value = JupyterConnector.class, name = "jupyter")
 //})
-public abstract class NotebookConnector extends AbstractHistoryEntity implements MetatronDomain<String>, NotebookAction {
+public abstract class NotebookConnector extends AbstractHistoryEntity implements DSSDomain<String>, NotebookAction {
 
     @Id
     @GeneratedValue(generator = "uuid")

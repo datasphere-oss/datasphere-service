@@ -36,11 +36,11 @@ import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.entity.Spec;
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 
 @Entity
 @Table(name = "datasource_alias")
-public class DataSourceAlias extends AbstractHistoryEntity implements MetatronDomain<Long> {
+public class DataSourceAlias extends AbstractHistoryEntity implements DSSDomain<Long> {
   /**
    * ID
    */

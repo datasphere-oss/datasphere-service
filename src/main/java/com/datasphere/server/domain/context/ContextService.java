@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.datasphere.server.common.entity.DomainType;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 
 @Component
 @Transactional
@@ -60,7 +60,7 @@ public class ContextService {
     }
 
     DomainType type = DomainType.getType(domain);
-    String domainId = ((MetatronDomain<String>) domain).getId();
+    String domainId = ((DSSDomain<String>) domain).getId();
 
     Map<String, Context> savedContextMap = contextRepository.findByDomainTypeAndDomainId(type, domainId)
                                                             .stream()
@@ -91,7 +91,7 @@ public class ContextService {
   public void removeContextFromDomain(ContextEntity domain) {
 
     DomainType type = DomainType.getType(domain);
-    String domainId = ((MetatronDomain<String>) domain).getId();
+    String domainId = ((DSSDomain<String>) domain).getId();
 
     contextRepository.deleteByDomainTypeAndDomainId(type, domainId);
 
@@ -102,7 +102,7 @@ public class ContextService {
   public Map<String, String> getContexts(ContextEntity domain) {
 
     DomainType type = DomainType.getType(domain);
-    String domainId = ((MetatronDomain<String>) domain).getId();
+    String domainId = ((DSSDomain<String>) domain).getId();
 
     return contextRepository.findByDomainTypeAndDomainId(type, domainId)
                             .stream()
@@ -124,7 +124,7 @@ public class ContextService {
     Map<String, Object> domainMap = Maps.newHashMap();
     for (Object domainResult : domainResults) {
       ContextEntity entity = (ContextEntity) domainResult;
-      domainMap.put(((MetatronDomain<String>) entity).getId(), entity);
+      domainMap.put(((DSSDomain<String>) entity).getId(), entity);
     }
 
     contexts.forEach(context -> {

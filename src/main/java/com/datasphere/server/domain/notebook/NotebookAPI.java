@@ -22,14 +22,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 
 /**
  * Created by aladin on 2019. 9. 21..
  */
 @Entity
 @Table(name = "notebook_api")
-public class NotebookAPI implements MetatronDomain<String> {
+public class NotebookAPI implements DSSDomain<String> {
 
     @Id
     @Column(name = "api_id")

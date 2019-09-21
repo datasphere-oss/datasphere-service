@@ -41,7 +41,7 @@ import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.entity.Spec;
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.workbook.configurations.filter.Filter;
 
 /**
@@ -49,7 +49,7 @@ import com.datasphere.server.domain.workbook.configurations.filter.Filter;
  */
 @Entity
 @Table(name = "datasource_temporary")
-public class DataSourceTemporary extends AbstractHistoryEntity implements MetatronDomain<String> {
+public class DataSourceTemporary extends AbstractHistoryEntity implements DSSDomain<String> {
 
   public final static String ID_PREFIX = "TEMP";
 

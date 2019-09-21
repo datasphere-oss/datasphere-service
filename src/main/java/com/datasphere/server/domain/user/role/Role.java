@@ -52,7 +52,7 @@ import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.bridge.PredefinedRoleBridge;
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.context.ContextEntity;
 import com.datasphere.server.domain.user.DirectoryProfile;
 
@@ -65,7 +65,7 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 @Entity
 @Table(name = "roles")
 @Indexed
-public class Role extends AbstractHistoryEntity implements MetatronDomain<String>, GrantedAuthority, ContextEntity {
+public class Role extends AbstractHistoryEntity implements DSSDomain<String>, GrantedAuthority, ContextEntity {
 
   public static String PREDEFINED_GROUP_ADMIN = "SYSTEM_ADMIN";
   public static String PREDEFINED_GROUP_SUPER = "SYSTEM_SUPERVISOR";

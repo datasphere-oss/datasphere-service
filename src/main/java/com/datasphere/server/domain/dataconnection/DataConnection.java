@@ -40,7 +40,7 @@ import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.workbench.Workbench;
 import com.datasphere.server.domain.workspace.Workspace;
@@ -52,7 +52,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
 @Table(name = "dataconnection")
-public class DataConnection extends AbstractHistoryEntity implements MetatronDomain<String>, JdbcConnectInformation {
+public class DataConnection extends AbstractHistoryEntity implements DSSDomain<String>, JdbcConnectInformation {
 
   @Id
   @GeneratedValue(generator = "uuid")

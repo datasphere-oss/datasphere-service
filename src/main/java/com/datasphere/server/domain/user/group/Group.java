@@ -48,7 +48,7 @@ import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.bridge.PredefinedRoleBridge;
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.context.ContextEntity;
 
 /**
@@ -57,7 +57,7 @@ import com.datasphere.server.domain.context.ContextEntity;
 @Entity
 @Table(name = "user_group")
 @Indexed
-public class Group extends AbstractHistoryEntity implements MetatronDomain<String>, ContextEntity {
+public class Group extends AbstractHistoryEntity implements DSSDomain<String>, ContextEntity {
 
   @Id
   @GeneratedValue(generator = "uuid")

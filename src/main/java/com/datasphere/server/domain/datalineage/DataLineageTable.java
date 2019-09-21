@@ -26,11 +26,11 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 
 @Entity
 @Table(name="data_lineage_table")
-public class DataLineageTable implements MetatronDomain<Long> {
+public class DataLineageTable implements DSSDomain<Long> {
 
   @Id
   @GeneratedValue(strategy= GenerationType.AUTO, generator="native")

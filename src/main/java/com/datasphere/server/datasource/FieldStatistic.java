@@ -22,13 +22,13 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 
 /**
  * Created by aladin on 2019. 5. 15..
  */
 @Entity
-public class FieldStatistic implements MetatronDomain<FieldStatisticId> {
+public class FieldStatistic implements DSSDomain<FieldStatisticId> {
 
   @EmbeddedId
   FieldStatisticId id;

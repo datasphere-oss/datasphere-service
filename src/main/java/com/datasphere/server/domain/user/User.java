@@ -47,7 +47,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 import com.datasphere.server.domain.user.role.Permission;
 import com.datasphere.server.domain.user.role.Role;
 import com.datasphere.server.domain.user.role.RoleService;
@@ -66,7 +66,7 @@ import static org.hibernate.search.annotations.Index.NO;
     @Index(name = "i_user_username_status", columnList = "user_name,user_status")
 })
 @Indexed
-public class User extends AbstractHistoryEntity implements UserDetails, MetatronDomain<String> {
+public class User extends AbstractHistoryEntity implements UserDetails, DSSDomain<String> {
 
   @Id
   @GeneratedValue(generator = "uuid")

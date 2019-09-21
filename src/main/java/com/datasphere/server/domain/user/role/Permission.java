@@ -33,7 +33,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.MetatronDomain;
+import com.datasphere.server.domain.DSSDomain;
 
 import static javax.persistence.CascadeType.MERGE;
 
@@ -42,7 +42,7 @@ import static javax.persistence.CascadeType.MERGE;
  */
 @Entity
 @Table(name = "permissions")
-public class Permission extends AbstractHistoryEntity implements MetatronDomain<Long>, GrantedAuthority {
+public class Permission extends AbstractHistoryEntity implements DSSDomain<Long>, GrantedAuthority {
 
   @Id
   @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
