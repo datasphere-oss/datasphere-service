@@ -22,7 +22,7 @@ import com.datasphere.server.common.BaseProjections;
 import com.datasphere.server.domain.user.UserProfile;
 
 /**
- * Created by aladin on 2019. 11. 29..
+ * Created by aladin on 2018. 11. 29..
  */
 public class DataLineageProjections extends BaseProjections{
 
@@ -57,7 +57,7 @@ public class DataLineageProjections extends BaseProjections{
 
     DateTime getTimestamp();
 
-    String getCluster(); //Server 종류로 Hive 의 설정 파일 정보에서 가져오게 해야할 것 같음
+    String getCluster(); //Server type seems to need to get from Hive configuration file information
 
     String getCurrentDatabase();
 
@@ -115,7 +115,7 @@ public class DataLineageProjections extends BaseProjections{
 
     DateTime getTimestamp();
 
-    String getCluster(); //Server 종류로 Hive 의 설정 파일 정보에서 가져오게 해야할 것 같음
+    String getCluster(); //Server type seems to need to get from Hive configuration file information
 
     String getCurrentDatabase();
 
@@ -142,7 +142,7 @@ public class DataLineageProjections extends BaseProjections{
 
     DateTime getTimestamp();
 
-    String getCluster(); //Server 종류로 Hive 의 설정 파일 정보에서 가져오게 해야할 것 같음
+    String getCluster(); //Server type seems to need to get from Hive configuration file information
 
     String getCurrentDatabase();
 

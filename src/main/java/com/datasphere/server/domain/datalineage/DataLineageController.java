@@ -144,10 +144,10 @@ public class DataLineageController {
     Map<String, String> queryMap = new HashMap<>();
     for(DataLineageLink dataLineageLink : dataLineageLinks){
       for(DataLineageLinkedEdge dataLineageLinkedEdge : dataLineageLink.getEdges()){
-        //Link index를 depth로 사용 (1부터 시작)
+        //Link Use index as depth (starting at 1)
         dataLineageLinkedEdge.setDepth(linkCnt);
 
-        //SqlQuery 중복 내용 삭제
+        //SqlQuery Delete duplicates
         String path = dataLineageLinkedEdge.getPath();
         boolean pathStored = false;
         for(String storedPath : queryMap.values()){
@@ -157,7 +157,7 @@ public class DataLineageController {
           }
         }
 
-        //중복된 path일 경우 내용 삭제, 최초 등장 path는 Map에 추가
+        //In case of duplicate path, delete contents, first appearing path is added to Map
         if(pathStored){
           dataLineageLinkedEdge.setPath("");
         } else {

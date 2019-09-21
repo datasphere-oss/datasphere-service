@@ -51,7 +51,7 @@ public class DataLineageService {
     if(dataLineageList != null){
 
       for(DataLineage dataLineage : dataLineageList){
-        //Target Table명 확인
+        //Target Check Table Name
         String targetDatabaseName = dataLineage.getTargetDataBaseName();
         String targetTableName = dataLineage.getTargetTableName();
         String targetTableEntityName = getTableName(targetDatabaseName, targetTableName);
@@ -60,7 +60,7 @@ public class DataLineageService {
           tableMap.put(targetTableEntityName, entity);
         }
 
-        //Target Field명 확인
+        //Target Check Field Name
         String targetFieldName = dataLineage.getTargetFieldName();
         String targetFieldType = dataLineage.getTargetFieldType();
         String targetFieldEntityName = getTableName(targetDatabaseName, targetTableName) + "." + targetFieldName;
@@ -70,7 +70,7 @@ public class DataLineageService {
           tableMap.put(targetFieldEntityName, entity);
         }
 
-        //Source Table명 확인
+        //Source Check Table Name
         String sourceDatabaseName = dataLineage.getSourceDataBaseName();
         String sourceTableName = dataLineage.getSourceTableName();
         String sourceTableEntityName = getTableName(sourceDatabaseName, sourceTableName);
@@ -79,7 +79,7 @@ public class DataLineageService {
           tableMap.put(sourceTableEntityName, entity);
         }
 
-        //Source Field명 확인
+        //Source Check Field Name
         String sourceFieldName = dataLineage.getSourceFieldName();
         String sourceFieldType = dataLineage.getSourceFieldType();
         String sourceFieldEntityName = getTableName(sourceDatabaseName, sourceTableName) + "." + sourceFieldName;
@@ -98,7 +98,7 @@ public class DataLineageService {
     LinkedHashMap<String, DataLineageDto> tableMap = new LinkedHashMap<>();
     if(dataLineageList != null){
       for(DataLineage dataLineage : dataLineageList){
-        //Target Table명 확인
+        //Target Check Table Name
         String targetDatabaseName = dataLineage.getTargetDataBaseName();
         String targetTableName = dataLineage.getTargetTableName();
         String targetTableEntityName = getTableName(targetDatabaseName, targetTableName);
@@ -107,7 +107,7 @@ public class DataLineageService {
           tableMap.put(targetTableEntityName, entity);
         }
 
-        //Target Field명 확인
+        //Target Check Field Name
         String targetFieldName = dataLineage.getTargetFieldName();
         String targetFieldType = dataLineage.getTargetFieldType();
         String targetFieldEntityName = getTableName(targetDatabaseName, targetTableName) + "." + targetFieldName;
@@ -119,7 +119,7 @@ public class DataLineageService {
           tableMap.put(targetFieldEntityName, entity);
         }
 
-        //Source Table명 확인
+        //Source Check Table Name
         String sourceDatabaseName = dataLineage.getSourceDataBaseName();
         String sourceTableName = dataLineage.getSourceTableName();
         String sourceTableEntityName = getTableName(sourceDatabaseName, sourceTableName);
@@ -128,7 +128,7 @@ public class DataLineageService {
           tableMap.put(sourceTableEntityName, entity);
         }
 
-        //Source Field명 확인
+        //Source Check Field Name
         String sourceFieldName = dataLineage.getSourceFieldName();
         String sourceFieldType = dataLineage.getSourceFieldType();
         String sourceFieldEntityName = getTableName(sourceDatabaseName, sourceTableName) + "." + sourceFieldName;
@@ -223,7 +223,7 @@ public class DataLineageService {
     List<DataLineageLinkedEdge> edgeList = new ArrayList<>();
 
     for(DataLineage dataLineage : dataLineageList){
-      //Query 객체 생성
+      //Query Create object
       String sqlQuery = dataLineage.getSqlQuery();
       DataLineageLinkedQuery dataLineageLinkedQuery = queryMap.get(sqlQuery);
       if(dataLineageLinkedQuery == null){
@@ -238,7 +238,7 @@ public class DataLineageService {
         queryList.add(dataLineageLinkedQuery);
       }
 
-      //Predicate 목록 생성
+      //Predicate Generate list
       if(dataLineage.isPredicate()){
         if(dataLineageLinkedQuery.getPredicates() == null){
           dataLineageLinkedQuery.setPredicates(new ArrayList<>());
@@ -250,7 +250,7 @@ public class DataLineageService {
         }
       }
 
-      //Table 생성(backward)
+      //Table produce(backward)
       if(direction == BOTH || direction == BACKWARD){
         String dbName = dataLineage.getSourceDataBaseName();
         String tableName = dataLineage.getSourceTableName();
@@ -266,7 +266,7 @@ public class DataLineageService {
             tableList.add(dataLineageLinkedTable);
           }
           if(StringUtils.isNotEmpty(dataLineage.getSourceFieldName())){
-            //Column 목록 생성
+            //Column Generate list
             if(dataLineageLinkedTable.getColumns() == null){
               dataLineageLinkedTable.setColumns(new ArrayList<>());
             }
@@ -287,7 +287,7 @@ public class DataLineageService {
         }
       }
 
-      //Table 생성(Forward)
+      //Table produce(Forward)
       if(direction == BOTH || direction == FORWARD) {
         String dbName = dataLineage.getTargetDataBaseName();
         String tableName = dataLineage.getTargetTableName();
@@ -303,7 +303,7 @@ public class DataLineageService {
             tableList.add(dataLineageLinkedTable);
           }
           if(StringUtils.isNotEmpty(dataLineage.getTargetFieldName())){
-            //Column 목록 생성
+            //Column Generate list
             if(dataLineageLinkedTable.getColumns() == null){
               dataLineageLinkedTable.setColumns(new ArrayList<>());
             }
@@ -324,7 +324,7 @@ public class DataLineageService {
         }
       }
 
-      //Edge(Column) 생성
+      //Edge(Column) produce
       String fromTable = getTableName(dataLineage.getSourceDataBaseName(), dataLineage.getSourceTableName());
       String toTable = getTableName(dataLineage.getTargetDataBaseName(), dataLineage.getTargetTableName());
       DataLineageLinkedEdge dataLineageLinkedEdge = new DataLineageLinkedEdge();
@@ -340,7 +340,7 @@ public class DataLineageService {
       edgeList.add(dataLineageLinkedEdge);
     }
 
-    //Edge(Table) 생성
+    //Edge(Table) produce
     List<DataLineageLinkedEdge> distinctEdgeList = ListUtils.distinctList(edgeList, DataLineageLinkedEdge::getFromTable,
             DataLineageLinkedEdge::getToTable, DataLineageLinkedEdge::getPath);
     distinctEdgeList.stream().forEach(edge -> {
@@ -384,7 +384,7 @@ public class DataLineageService {
 
   private DataLineageLink arrangePositionByTable(DataLineageLink dataLineageLink, String databaseName, String tableName){
 
-    //정렬 기준 (가운데)
+    //Sort by (center)
     final String sortByName = getTableName(databaseName, tableName);
 
     List<DataLineageLinkedTable> tables = dataLineageLink.getTables();
@@ -402,18 +402,18 @@ public class DataLineageService {
       sortBy.setyPos(0);
     }
 
-    //첫 시작은 0, 0
+    //First start 0, 0
     int minXPos = 0;
     int currentXPos = (sortBy == null ? 0 : sortBy.getxPos());
 
-    //정렬기준 왼쪽 Entity Position Start
+    //Left by sort Entity Position Start
 
-    //정렬기준 왼쪽 Edge List
+    //Left by sort Edge List
     List<DataLineageLinkedEdge> filteredLeftEdges = edges.stream()
             .filter(edge -> edge.getToColumn() == null && edge.getToTable().equalsIgnoreCase(sortByName))
             .collect(Collectors.toList());
 
-    //정렬기준 왼쪽 Edge List의 Path에 해당하는 Sql Name List
+    //Left by sort Edge Corresponding to Path of List Sql Name List
     List<String> leftQueryNameList = filteredLeftEdges.stream()
             .map(edge -> edge.getPath())
             .collect(Collectors.toList());
@@ -427,14 +427,14 @@ public class DataLineageService {
 
     for(DataLineageLinkedQuery leftQuery : filteredLeftQueries){
       currentXPos = (sortBy == null ? -1 : sortBy.getxPos() - 1);
-      //Position 할당은 최초 한번만
+      //Position Assignment only once
       if(leftQuery.getyPos() == -9999){
         leftQuery.setxPos(currentXPos);
         leftQuery.setyPos(queryYPos++);
         minXPos = Math.min(minXPos, leftQuery.getxPos());
       }
 
-      //정렬기준 왼쪽 Edge List의 From에 해당하는 tableName List
+      //TableName List that corresponds to From From Left Edge List
       List<String> leftTableNameList = filteredLeftEdges.stream()
               .filter(edge -> edge.getPath().equals(leftQuery.getName()))
               .map(edge -> edge.getFromTable())
@@ -447,7 +447,7 @@ public class DataLineageService {
               })
               .collect(Collectors.toList());
 
-      //Table 최초 Y Position은 Query Y Position 기준
+      //Initial Y Position in Table is based on Query Y Position
       if(filteredLeftTables.size() > 0){
         tableYPos = leftQuery.getyPos();
         for(DataLineageLinkedTable leftTable : filteredLeftTables) {

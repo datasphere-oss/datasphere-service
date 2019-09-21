@@ -112,7 +112,7 @@ public class DataLineageRepositoryImpl extends QuerydslRepositorySupport impleme
             .orderBy(tableNameAliasPath.asc());
 
     if(pageable != null){
-      //Pagination 적용
+      //Pagination apply
       listQuery.offset((long)pageable.getOffset());
       listQuery.limit((long)pageable.getPageSize());
     }
@@ -191,7 +191,7 @@ public class DataLineageRepositoryImpl extends QuerydslRepositorySupport impleme
             .orderBy(fieldNameAliasPath.asc());
 
     if(pageable != null){
-      //Pagination 적용
+      //Pagination apply
       listQuery.offset((long)pageable.getOffset());
       listQuery.limit((long)pageable.getPageSize());
     }
@@ -213,7 +213,7 @@ public class DataLineageRepositoryImpl extends QuerydslRepositorySupport impleme
 
     SQLQueryFactory queryFactory = new SQLQueryFactory(new Configuration(new MySQLTemplates()), dataSource);
 
-    //Multiple Field를 Group by 할때 count 기능 지원이 안됨(JPQLQuery 사용불가)
+    //Count function is not supported when grouping multiple fields (JPQLQuery not available)
     //https://github.com/querydsl/querydsl/issues/2134
     SQLQuery countQuery = queryFactory
             .select(sqlQueryPath, eventTimePath, sqlFilePath)
@@ -248,7 +248,7 @@ public class DataLineageRepositoryImpl extends QuerydslRepositorySupport impleme
     }
 
     if(pageable != null){
-      //Pagination 적용
+      //Pagination apply
       listQuery.offset((long)pageable.getOffset());
       listQuery.limit((long)pageable.getPageSize());
     }
@@ -260,7 +260,7 @@ public class DataLineageRepositoryImpl extends QuerydslRepositorySupport impleme
 
   @Override
   public Page<DataLineageDto> getWorkflowList(String sqlFileName, Pageable pageable) {
-    //검색 범위 는 sqlFileName
+    //Search scope is sqlFileName
 
     QDataLineage qDataLineage = new QDataLineage("data_lineage");
     QDataLineageWorkFlow qDataLineageWorkFlow = new QDataLineageWorkFlow("data_lineage_workflow");
@@ -277,7 +277,7 @@ public class DataLineageRepositoryImpl extends QuerydslRepositorySupport impleme
 
     SQLQueryFactory queryFactory = new SQLQueryFactory(new Configuration(new MySQLTemplates()), dataSource);
 
-    //Multiple Field를 Group by 할때 count 기능 지원이 안됨(JPQLQuery 사용불가)
+    //Count function is not supported when grouping multiple fields (JPQLQuery not available)
     //https://github.com/querydsl/querydsl/issues/2134
     SQLQuery countSubQuery = queryFactory
             .select(sqlQueryPath, eventTimePath, sqlFilePath)
@@ -334,7 +334,7 @@ public class DataLineageRepositoryImpl extends QuerydslRepositorySupport impleme
     }
 
     if(pageable != null){
-      //Pagination 적용
+      //Pagination apply
       listQuery.offset((long)pageable.getOffset());
       listQuery.limit((long)pageable.getPageSize());
     }
