@@ -74,7 +74,7 @@ public class ProcessController extends BaseController {
 					return JsonWrapper.failureWrapper(ReturnMessageUtils.ParameterIsNull);
 				}
 				ciName = componentInstanceService.getComponentInstanceById(componentInstanceId).getCiName();
-				String token = request.getParameters().get("token");
+				String token = request.getParameter("token");
 				if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
 				Map<String, Object> rs = processService.queryByCIId(componentInstanceId, token);
 				if (rs != null) {
