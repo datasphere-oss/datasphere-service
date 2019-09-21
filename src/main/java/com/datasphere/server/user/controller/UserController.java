@@ -12,10 +12,12 @@
 
 package com.datasphere.server.user.controller;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import static com.datasphere.server.user.UserService.DuplicatedTarget.EMAIL;
+import static com.datasphere.server.user.UserService.DuplicatedTarget.USERNAME;
 
-import com.querydsl.core.types.Predicate;
+import java.net.URI;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -44,31 +46,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.net.URI;
-import java.util.List;
-import java.util.Map;
-
 import com.datasphere.server.common.Mailer;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
 import com.datasphere.server.domain.images.Image;
 import com.datasphere.server.domain.images.ImageService;
-import com.datasphere.server.domain.user.group.Group;
-import com.datasphere.server.domain.user.group.GroupMember;
-import com.datasphere.server.domain.user.group.GroupService;
-import com.datasphere.server.domain.user.role.RoleRepository;
-import com.datasphere.server.domain.user.role.RoleService;
-import com.datasphere.server.domain.user.role.RoleSetRepository;
-import com.datasphere.server.domain.user.role.RoleSetService;
 import com.datasphere.server.domain.workspace.Workspace;
 import com.datasphere.server.domain.workspace.WorkspaceMemberRepository;
 import com.datasphere.server.domain.workspace.WorkspaceService;
+import com.datasphere.server.user.User;
+import com.datasphere.server.user.UserErrorCodes;
+import com.datasphere.server.user.UserException;
+import com.datasphere.server.user.UserPredicate;
+import com.datasphere.server.user.UserRepository;
+import com.datasphere.server.user.UserService;
+import com.datasphere.server.user.group.Group;
+import com.datasphere.server.user.group.GroupMember;
+import com.datasphere.server.user.group.GroupService;
+import com.datasphere.server.user.role.RoleRepository;
+import com.datasphere.server.user.role.RoleService;
+import com.datasphere.server.user.role.RoleSetRepository;
+import com.datasphere.server.user.role.RoleSetService;
+import com.datasphere.server.user.service.CachedUserService;
 import com.datasphere.server.util.AuthUtils;
 import com.datasphere.server.util.PolarisUtils;
-
-import static com.datasphere.server.domain.user.UserService.DuplicatedTarget.EMAIL;
-import static com.datasphere.server.domain.user.UserService.DuplicatedTarget.USERNAME;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.querydsl.core.types.Predicate;
 
 /**
  * Created by aladin on 2019. 7. 21..
@@ -124,7 +129,7 @@ public class UserController {
   PasswordEncoder passwordEncoder;
 
   /**
-   * User 목록 조회
+   * User List Lookup
    */
   @RequestMapping(path = "/users", method = RequestMethod.GET)
   public ResponseEntity<?> findUsers(@RequestParam(value = "level", required = false) String level,
@@ -149,7 +154,7 @@ public class UserController {
     // Get Predicate
     Predicate searchPredicated = UserPredicate.searchList(level, active, reqStatus, nameContains, searchDateBy, from, to);
 
-    // 기본 정렬 조건 셋팅
+    // Default sort condition settings
     if (pageable.getSort() == null || !pageable.getSort().iterator().hasNext()) {
       pageable = new PageRequest(pageable.getPageNumber(), pageable.getPageSize(),
                                  new Sort(Sort.Direction.ASC, "fullName"));
@@ -163,7 +168,7 @@ public class UserController {
   }
 
   /**
-   * User 상세 조회
+   * User Detailed Search
    */
   @RequestMapping(path = "/users/{username:.+}", method = RequestMethod.GET)
   public ResponseEntity<?> findDetailUser(@PathVariable("username") String username,
@@ -179,7 +184,7 @@ public class UserController {
   }
 
   /**
-   * User 삭제
+   * Delete User
    */
   @Transactional
   @PreAuthorize("authentication.name == #username or hasAuthority('PERM_SYSTEM_MANAGE_USER')")
@@ -193,25 +198,25 @@ public class UserController {
 
     userRepository.delete(user);
 
-    // 이미지 처리
+    // Image processing
     if (StringUtils.isNotEmpty(user.getImageUrl())) {
       imageService.deleteImage(Image.DOMAIN_USER, user.getId());
     }
 
-    // 그룹내 Member 삭제
+    // Delete member in group
     groupService.deleteGroupMember(user.getUsername());
 
-    // Workspace 관련 처리
+    // Workspace related processing
     workspaceService.deleteWorkspaceAndMember(user.getUsername());
 
-    // 캐시에 저장되어 있는 User 정보가 있다면 삭제
+    // Delete any user information stored in the cache
     cachedUserService.removeCachedUser(user.getUsername());
 
     return ResponseEntity.noContent().build();
   }
 
   /**
-   * User 자신에 의해 사용자 정보 수정
+   * Modify user information by User himself
    */
   @Transactional
   @PreAuthorize("authentication.name == #username")
@@ -247,12 +252,12 @@ public class UserController {
 
     userRepository.saveAndFlush(updatedUser);
 
-    // user 정보 갱신
+    // update user information
     updatedUser.setRoleService(roleService);
     AuthUtils.refreshAuth(updatedUser);
     cachedUserService.removeCachedUser(username);
 
-    // Workspace Member 이름 갱신
+    // Update Workspace Member Name
     workspaceMemberRepository.updateMemberName(updatedUser.getUsername(), updatedUser.getFullName());
 
     return ResponseEntity.ok(updatedUser);
@@ -260,17 +265,17 @@ public class UserController {
   }
 
   /**
-   * 사용자 가입 요청
+   * User signup request
    */
   @RequestMapping(path = "/users/signup", method = RequestMethod.POST)
   public ResponseEntity<?> createUserBySignup(@RequestBody User user) {
 
-    // Username 중복 체크
+    // Username duplication check
     if (userService.checkDuplicated(USERNAME, user.getUsername())) {
       throw new UserException(UserErrorCodes.DUPLICATED_USERNAME_CODE, "Duplicated username : " + user.getUsername());
     }
 
-    // email 중복 체크
+    // duplicate email check
     if (userService.checkDuplicated(USERNAME, user.getUsername())) {
       throw new UserException(UserErrorCodes.DUPLICATED_EMAIL_CODE, "Duplicated e-mail : " + user.getEmail());
     }
@@ -298,7 +303,7 @@ public class UserController {
   }
 
   /**
-   * 관리자용 사용자 등록
+   * User Registration for Administrators
    */
   @Transactional
   @PreAuthorize("hasAuthority('PERM_SYSTEM_MANAGE_USER')")
@@ -307,12 +312,12 @@ public class UserController {
 
     String userEmail = user.getEmail();
 
-    // Username 중복 체크
+    // Username duplication check
     if (userService.checkDuplicated(USERNAME, user.getUsername())) {
       throw new UserException(UserErrorCodes.DUPLICATED_USERNAME_CODE, "Duplicated username : " + user.getUsername());
     }
 
-    // email 중복 체크
+    // duplicate email check
     if (StringUtils.isNotEmpty(userEmail) && userService.checkDuplicated(EMAIL, user.getEmail())) {
       throw new UserException(UserErrorCodes.DUPLICATED_EMAIL_CODE, "Duplicated e-mail : " + user.getEmail());
     }
@@ -325,7 +330,7 @@ public class UserController {
       userService.updateUserImage(user.getUsername());
     }
 
-    // mail 전송을 수행하지 않고 패스워드를 지정하지 않은 경우 시스템에서 비번 생성
+    // If you do not perform a mail transfer and do not specify a password
     if (!user.getPassMailer() || StringUtils.isEmpty(user.getPassword())) {
       String encodedPassword = passwordEncoder.encode(PolarisUtils.createTemporaryPassword(8));
       user.setPassword(encodedPassword);
@@ -333,7 +338,7 @@ public class UserController {
 
     user.setStatus(User.Status.ACTIVATED);
 
-    // Group 정보가 없을 경우 기본그룹 지정
+    // Specify default group if there is no Group information
     if (CollectionUtils.isNotEmpty(user.getGroupNames())) {
       userService.setUserToGroups(user, user.getGroupNames(), false);
     } else {
@@ -345,7 +350,7 @@ public class UserController {
       }
     }
 
-    // 워크스페이스 생성(등록된 워크스페이스가 없을 경우 생성)
+    // Create Workspace (if no workspace is registered)
     Workspace createdWorkspace = workspaceService.createWorkspaceByUserCreation(user, false);
 
     userRepository.save(user);
@@ -362,7 +367,7 @@ public class UserController {
   }
 
   /**
-   * 관리자용 사용자 정보 업데이트
+   * Update User Information for Administrators
    */
   @Transactional
   @PreAuthorize("hasAuthority('PERM_SYSTEM_MANAGE_USER')")
@@ -392,16 +397,16 @@ public class UserController {
 
     userRepository.saveAndFlush(updatedUser);
 
-    // user 정보 갱신
+    // update user information
     if (AuthUtils.getAuthUserName().equals(updatedUser.getUsername())) {
       updatedUser.setRoleService(roleService);
       AuthUtils.refreshAuth(updatedUser);
     }
 
-    // Cache 저장 정보 갱신
+    // Update cache storage information
     cachedUserService.removeCachedUser(username);
 
-    // Workspace Member 이름 갱신
+    // Update Workspace Member Name
     workspaceMemberRepository.updateMemberName(updatedUser.getUsername(), updatedUser.getFullName());
 
     return ResponseEntity.ok(updatedUser);
@@ -487,7 +492,7 @@ public class UserController {
   }
 
   /**
-   * 가입 승인
+   * Approval of subscription
    */
   @Transactional
   @PreAuthorize("hasAuthority('PERM_SYSTEM_MANAGE_USER')")
@@ -500,7 +505,7 @@ public class UserController {
 
     user.setStatus(User.Status.ACTIVATED);
 
-    // 기본 그룹에 포함
+    // Include in primary group
     Group defaultGroup = groupService.getDefaultGroup();
     if (defaultGroup == null) {
       LOGGER.warn("Default group not found.");
@@ -508,7 +513,7 @@ public class UserController {
       defaultGroup.addGroupMember(new GroupMember(user.getUsername(), user.getFullName()));
     }
 
-    // 워크스페이스 생성(등록된 워크스페이스가 없을 경우 생성)
+    // Create Workspace (if no workspace is registered)
     workspaceService.createWorkspaceByUserCreation(user, false);
 
     mailer.sendSignUpApprovedMail(user, false, null);
@@ -517,7 +522,7 @@ public class UserController {
   }
 
   /**
-   * 가입 승인 반려
+   *Return to join approval
    */
   @PreAuthorize("hasAuthority('PERM_SYSTEM_MANAGE_USER')")
   @RequestMapping(path = "/users/{username}/rejected", method = RequestMethod.POST)
@@ -539,7 +544,7 @@ public class UserController {
   }
 
   /**
-   * 사용자 상태 변경, 관리자(사용자 변경) 권한만 처리 가능
+   * Only user status change and administrator (user change) authority can be handled
    */
   @PreAuthorize("hasAuthority('PERM_SYSTEM_MANAGE_USER')")
   @RequestMapping(path = "/users/{username}/status/{status}", method = RequestMethod.POST)
@@ -573,7 +578,7 @@ public class UserController {
         }
         user.setStatus(User.Status.DELETED);
 
-        // 캐시에 저장되어 있는 User 정보가 있다면 삭제
+        // Delete any user information stored in the cache
         cachedUserService.removeCachedUser(user.getUsername());
         break;
       default:
