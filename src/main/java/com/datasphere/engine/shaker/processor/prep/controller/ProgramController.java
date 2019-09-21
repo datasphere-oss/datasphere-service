@@ -9,6 +9,9 @@ import io.reactivex.Single;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import static com.datasphere.engine.shaker.processor.prep.constant.ReturnConst.Failed;
 import static com.datasphere.engine.shaker.processor.prep.constant.ReturnConst.ParameterInvalid;
@@ -50,7 +53,7 @@ public class ProgramController extends BaseController {
      * @param processId 流程ID
      * @return
      */
-    @Post(BASE_PATH + "/getDefault")
+    @RequestMapping(value = BASE_PATH + "/getDefault", method = RequestMethod.POST)
     public Object getDefault(@RequestParam String processId) {
         return Single.fromCallable(() -> {
             ReturnData result = new ReturnData();
