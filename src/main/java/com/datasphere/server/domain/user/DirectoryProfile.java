@@ -20,6 +20,7 @@ import java.io.Serializable;
 import com.datasphere.server.domain.user.group.GroupProfile;
 
 /**
+ * 用户资料和群组资料
  * Created by aladin on 2019. 1. 22..
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
