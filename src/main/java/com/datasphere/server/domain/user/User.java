@@ -56,8 +56,8 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
 import static org.hibernate.search.annotations.Index.NO;
 
 /**
- * 사용자 모델 정의 <br/>
- * Spring Security 에서 제공하는 User 모델(UserDetails) 확장 구현
+ * User Model Definition <br/>
+ * Implementing extension of User model (UserDetails) provided by Spring Security
  */
 @Entity
 @Table(name = "users", indexes = {
@@ -73,21 +73,22 @@ public class User extends AbstractHistoryEntity implements UserDetails, DSSDomai
   @GenericGenerator(name = "uuid", strategy = "uuid2")
   @Column(name = "id")
   private String id;
-
+  // 用户名
   @Column(name = "user_name", length = 50)
   @Field(analyze = Analyze.NO, store = Store.YES)
   @NotBlank
   private String username;
-
+  // 用户密码
   @JsonProperty(access = WRITE_ONLY)
   @Column(name = "user_password", length = 200)
   private String password;
-
+  // 用户全名
   @Column(name = "user_full_name")
   @Fields({
       @Field(analyze = Analyze.YES, store = Store.YES),
       @Field(name = "sortFullName", analyze = Analyze.NO, store = Store.NO, index = NO)
   })
+  // 排序全名
   @SortableField(forField = "sortFullName")
   private String fullName;
 
@@ -95,21 +96,19 @@ public class User extends AbstractHistoryEntity implements UserDetails, DSSDomai
   @Email
   @Field(analyze = Analyze.NO, store = Store.YES)
   private String email;
-
+  // 用户电话
   @Column(name = "user_tel")
   @Field(analyze = Analyze.YES, store = Store.YES)
   private String tel;
 
-  /**
-   * use flag
-   */
+  // 用户状态
   @Column(name = "user_status")
   @Enumerated(EnumType.STRING)
   @JsonProperty(access = JsonProperty.Access.READ_ONLY)
   @Field(analyze = Analyze.NO, store = Store.YES)
   @FieldBridge(impl = EnumBridge.class)
   private Status status;
-
+  // 用户状态消息
   @Column(name = "user_status_msg", length = 3000)
   private String statusMessage;
 
@@ -121,11 +120,11 @@ public class User extends AbstractHistoryEntity implements UserDetails, DSSDomai
    */
   @Column(name = "user_image_Url")
   private String imageUrl;
-
+  // 群组名称
   @Transient
   @JsonProperty(access = WRITE_ONLY)
   private List<String> groupNames;
-
+  // 角色名称
   @Transient
   @JsonProperty(access = WRITE_ONLY)
   private List<String> roleNames;
@@ -137,7 +136,7 @@ public class User extends AbstractHistoryEntity implements UserDetails, DSSDomai
   @Transient
   @JsonProperty(access = WRITE_ONLY)
   private String roleSetName;
-
+  // 工作空间类型
   @Transient
   @JsonProperty(access = WRITE_ONLY)
   private String workspaceType;
