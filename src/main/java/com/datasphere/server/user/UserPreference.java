@@ -26,16 +26,16 @@ public class UserPreference {
   @Id
   @Column(name = "id")
   String username;
-
+  // 用户语言
   @Column(name = "user_lang")
   String language;
-
+  // 用户位置
   @Column(name = "user_locale")
   String locale;
-
+  // 用户时区
   @Column(name = "user_timezone")
   String timezone;
-
+  // 用户最后访问时间
   @Column(name = "user_last_access_time")
   DateTime lastAccessTime;
 

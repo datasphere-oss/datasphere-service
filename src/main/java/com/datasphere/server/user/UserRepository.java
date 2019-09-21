@@ -158,7 +158,7 @@ default <S extends User> S saveAndFlush(S arg0) {
   User findByEmail(@Param("email") String email);
 
   /**
-   * 사용자 ID 중복 확인시 활용
+   * Used to check duplicate user ID
    *
    * @param username
    * @return
@@ -168,7 +168,7 @@ default <S extends User> S saveAndFlush(S arg0) {
   Long countByUsername(@Param("username") String username);
 
   /**
-   * 사용자 e-mail 중복 확인시 활용
+   * Used to check duplicate user emails
    *
    * @param email
    * @return

@@ -24,13 +24,13 @@ import java.security.Principal;
 public class UserProfile implements DirectoryProfile {
 
   public static final String UNKNOWN_USERNAME = "Unknown user";
-
+  // 用户名称
   String username;
-
+  // 用户全名
   String fullName;
-
+  // 电子邮箱
   String email;
-
+  // 图片路径
   String imageUrl;
 
   public UserProfile() {

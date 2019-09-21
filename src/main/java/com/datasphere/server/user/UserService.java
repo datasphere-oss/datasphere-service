@@ -77,7 +77,7 @@ public class UserService {
       targetImages.get(0).setEnabled(true);
       imageRepository.save(targetImages.get(0));
     } else {
-      // 여러번 사진을 업로드한 경우
+      // If you uploaded a photo multiple times
       for (int i = 0; i < targetImages.size(); i++) {
         if (i == 0) {
           targetImages.get(i).setEnabled(true);
