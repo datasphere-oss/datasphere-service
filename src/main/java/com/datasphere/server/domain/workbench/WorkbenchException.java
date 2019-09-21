@@ -17,8 +17,8 @@ package com.datasphere.server.domain.workbench;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.datasphere.engine.common.exception.ErrorCodes;
-import com.datasphere.engine.common.exception.MetatronException;
+import com.datasphere.server.common.exception.ErrorCodes;
+import com.datasphere.server.common.exception.MetatronException;
 
 /**
  * Created by aladin on 2019. 6. 18..

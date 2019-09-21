@@ -27,13 +27,13 @@ import org.springframework.util.CollectionUtils;
 
 import com.datasphere.common.data.Dataset;
 import com.datasphere.core.common.utils.UUIDUtils;
-import com.datasphere.engine.common.exception.JIllegalOperationException;
 import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
 import com.datasphere.engine.shaker.processor.instance.Component;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 import com.datasphere.engine.shaker.processor.runner.SubProcessRunner;
 import com.datasphere.engine.shaker.workflow.panel.constant.PanelState;
+import com.datasphere.server.common.exception.JIllegalOperationException;
 
 
 public class SubComponentInstance extends AbstractComponent {

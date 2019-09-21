@@ -2,7 +2,7 @@ package com.datasphere.engine.manager.resource.provider.exception;
 
 import java.sql.SQLException;
 
-import com.datasphere.engine.common.exception.JRuntimeException;
+import com.datasphere.server.common.exception.JRuntimeException;
 
 public class JSQLException extends JRuntimeException {
 	

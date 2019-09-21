@@ -12,8 +12,8 @@
 
 package com.datasphere.engine.core.utils;
 
-import com.datasphere.engine.common.exception.JRuntimeException;
 import com.datasphere.engine.core.constant.CodeDefine;
+import com.datasphere.server.common.exception.JRuntimeException;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.core.*;
 import com.google.gson.Gson;

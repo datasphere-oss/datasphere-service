@@ -30,8 +30,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.CommonProperties;
+import com.datasphere.server.common.exception.MetatronException;
 
 @RestController
 @RequestMapping("/api/common")

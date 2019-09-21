@@ -28,7 +28,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.core.common.utils.UUIDUtils;
-import com.datasphere.engine.common.exception.JIllegalOperationException;
 import com.datasphere.engine.common.named.NameGenerator;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.core.utils.JAssert;
@@ -45,6 +44,7 @@ import com.datasphere.engine.shaker.workflow.panel.constant.PanelState;
 import com.datasphere.engine.shaker.workflow.panel.dao.PanelDao;
 import com.datasphere.engine.shaker.workflow.panel.model.Panel;
 import com.datasphere.engine.shaker.workflow.panel.model.PanelWithAll;
+import com.datasphere.server.common.exception.JIllegalOperationException;
 
 @Service
 public class PanelServiceImpl extends BaseService {

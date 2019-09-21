@@ -17,8 +17,8 @@ package com.datasphere.server.datasource;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.datasphere.engine.common.exception.ErrorCodes;
-import com.datasphere.engine.common.exception.MetatronException;
+import com.datasphere.server.common.exception.ErrorCodes;
+import com.datasphere.server.common.exception.MetatronException;
 
 @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR, reason="Temporary datasource Error")
 public class DataSourceTemporaryException extends MetatronException {

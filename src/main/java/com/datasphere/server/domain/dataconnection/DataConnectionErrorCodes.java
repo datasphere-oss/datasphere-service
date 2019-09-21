@@ -14,7 +14,7 @@
 
 package com.datasphere.server.domain.dataconnection;
 
-import com.datasphere.engine.common.exception.ErrorCodes;
+import com.datasphere.server.common.exception.ErrorCodes;
 
 public enum DataConnectionErrorCodes implements ErrorCodes {
 

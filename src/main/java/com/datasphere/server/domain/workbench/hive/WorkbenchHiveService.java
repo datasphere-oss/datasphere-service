@@ -29,10 +29,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.datasphere.engine.common.exception.GlobalErrorCodes;
-import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.MetatronProperties;
 import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.common.exception.GlobalErrorCodes;
+import com.datasphere.server.common.exception.MetatronException;
 import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;

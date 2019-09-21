@@ -15,7 +15,7 @@ package com.datasphere.server.connections.jdbc.dialect;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.datasphere.engine.common.exception.FunctionWithException;
+import com.datasphere.server.common.exception.FunctionWithException;
 import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
 /**
  * The interface Jdbc dialect.

@@ -24,9 +24,9 @@ import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
-import com.datasphere.engine.common.exception.GlobalErrorCodes;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.exception.ErrorResponse;
+import com.datasphere.server.common.exception.GlobalErrorCodes;
 import com.datasphere.server.util.AuthUtils;
 
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {

@@ -24,7 +24,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.datasphere.engine.common.exception.FunctionWithException;
+import com.datasphere.server.common.exception.FunctionWithException;
 import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
 import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.connections.jdbc.dialect.JdbcDialect.InputMandatory;

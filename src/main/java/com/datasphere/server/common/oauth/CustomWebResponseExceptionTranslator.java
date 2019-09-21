@@ -20,8 +20,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.security.oauth2.provider.error.DefaultWebResponseExceptionTranslator;
 
-import com.datasphere.engine.common.exception.GlobalErrorCodes;
 import com.datasphere.server.common.exception.ErrorResponse;
+import com.datasphere.server.common.exception.GlobalErrorCodes;
 
 public class CustomWebResponseExceptionTranslator extends DefaultWebResponseExceptionTranslator {
 

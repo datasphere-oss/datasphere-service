@@ -17,8 +17,8 @@ package com.datasphere.server.domain.dataprep.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.datasphere.engine.common.exception.ErrorCodes;
-import com.datasphere.engine.common.exception.MetatronException;
+import com.datasphere.server.common.exception.ErrorCodes;
+import com.datasphere.server.common.exception.MetatronException;
 import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.dataprep.teddy.exceptions.CannotCastFromException;
 import com.datasphere.server.domain.dataprep.teddy.exceptions.CannotCastToException;

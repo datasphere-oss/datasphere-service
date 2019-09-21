@@ -13,7 +13,7 @@
 package com.datasphere.engine.core.utils;
 
 
-import com.datasphere.engine.common.exception.JIllegalOperationException;
+import com.datasphere.server.common.exception.JIllegalOperationException;
 
 public class JAssert
 {

@@ -28,9 +28,9 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.hibernate.annotations.GenericGenerator;
 
-import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.common.exception.MetatronException;
 import com.datasphere.server.datasource.ingestion.job.IngestionProgress;
 import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.DSSDomain;

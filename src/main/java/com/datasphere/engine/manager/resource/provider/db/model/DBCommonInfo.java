@@ -2,7 +2,7 @@ package com.datasphere.engine.manager.resource.provider.db.model;
 
 import java.util.List;
 
-import com.datasphere.engine.common.exception.JRuntimeException;
+import com.datasphere.server.common.exception.JRuntimeException;
 
 public class DBCommonInfo extends DBQuery implements Cloneable{
 	

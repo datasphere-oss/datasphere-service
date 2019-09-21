@@ -21,7 +21,7 @@ import org.springframework.data.rest.core.annotation.HandleBeforeDelete;
 import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 
-import com.datasphere.engine.common.exception.MetatronException;
+import com.datasphere.server.common.exception.MetatronException;
 import com.google.common.base.Preconditions;
 
 /**

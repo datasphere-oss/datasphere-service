@@ -60,7 +60,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.datasphere.engine.common.exception.MetatronException;
+import com.datasphere.server.common.exception.MetatronException;
 import com.datasphere.server.common.saml.SAMLAuthenticationInfo;
 import com.datasphere.server.domain.user.CachedUserService;
 import com.datasphere.server.domain.user.User;

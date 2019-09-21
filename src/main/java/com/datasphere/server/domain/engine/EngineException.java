@@ -19,7 +19,7 @@ import static com.datasphere.server.domain.engine.EngineErrorCodes.ENGINE_ACCESS
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.datasphere.engine.common.exception.MetatronException;
+import com.datasphere.server.common.exception.MetatronException;
 
 /**
  * Created by aladin on 2019. 6. 13..

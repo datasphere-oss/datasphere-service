@@ -25,7 +25,6 @@ import org.apache.commons.logging.LogFactory;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.datasphere.common.data.Dataset;
-import com.datasphere.engine.common.exception.JIllegalOperationException;
 import com.datasphere.engine.core.utils.ObjectMapperUtils;
 import com.datasphere.engine.shaker.processor.buscommon.utils.HttpUtils;
 import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
@@ -38,6 +37,7 @@ import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanc
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.message.status.notice.CallBackStatusMessage;
 import com.datasphere.engine.shaker.workflow.panel.model.sub.PreDataProcessEntity;
+import com.datasphere.server.common.exception.JIllegalOperationException;
 
 /**
  * Title: PreDataComponentInstance

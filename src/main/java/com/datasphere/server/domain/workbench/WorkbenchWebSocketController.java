@@ -27,7 +27,7 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
 
-import com.datasphere.engine.common.exception.MetatronException;
+import com.datasphere.server.common.exception.MetatronException;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
 import com.datasphere.server.util.WebSocketUtils;
 

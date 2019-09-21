@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.datasphere.engine.common.exception.FunctionWithException;
+import com.datasphere.server.common.exception.FunctionWithException;
 import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
 import com.datasphere.server.connections.jdbc.accessor.AbstractJdbcDataAccessor;
 import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;

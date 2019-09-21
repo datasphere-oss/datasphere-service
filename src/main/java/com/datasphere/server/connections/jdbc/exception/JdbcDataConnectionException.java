@@ -12,7 +12,7 @@
 
 package com.datasphere.server.connections.jdbc.exception;
 
-import com.datasphere.engine.common.exception.MetatronException;
+import com.datasphere.server.common.exception.MetatronException;
 
 /**
  * Created by aladin on 2019. 7. 2..

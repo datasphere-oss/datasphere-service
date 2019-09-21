@@ -70,7 +70,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.CommonLocalVariable;
 import com.datasphere.server.common.MetatronProperties;
 import com.datasphere.server.common.criteria.ListCriterion;
@@ -79,6 +78,7 @@ import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.exception.BadRequestException;
+import com.datasphere.server.common.exception.MetatronException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
 import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.datasource.data.DataSourceValidator;

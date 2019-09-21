@@ -75,11 +75,11 @@ import org.joda.time.Interval;
 import org.joda.time.Period;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-import com.datasphere.engine.common.exception.MetatronException;
 import com.datasphere.server.common.CustomCollectors;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.entity.Spec;
+import com.datasphere.server.common.exception.MetatronException;
 import com.datasphere.server.datasource.ingestion.HdfsIngestionInfo;
 import com.datasphere.server.datasource.ingestion.HiveIngestionInfo;
 import com.datasphere.server.datasource.ingestion.IngestionHistory;

@@ -24,7 +24,6 @@ import org.apache.commons.logging.LogFactory;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.datasphere.common.data.Dataset;
-import com.datasphere.engine.common.exception.JIllegalOperationException;
 import com.datasphere.engine.shaker.processor.buscommon.utils.HttpUtils;
 import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
 import com.datasphere.engine.shaker.processor.instance.analysis.WarpInputAndOutput;
@@ -35,6 +34,7 @@ import com.datasphere.engine.shaker.processor.instance.componentparams.OutPutPar
 import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.message.status.notice.CallBackStatusMessage;
+import com.datasphere.server.common.exception.JIllegalOperationException;
 
 public class DefaultComponentInstance extends AbstractComponent {
 	private final static Log logger = LogFactory.getLog(DefaultComponentInstance.class);

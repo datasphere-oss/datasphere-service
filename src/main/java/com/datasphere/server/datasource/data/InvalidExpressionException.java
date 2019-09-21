@@ -19,7 +19,7 @@ import static com.datasphere.server.datasource.DataSourceErrorCodes.INVALID_EXPR
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.datasphere.engine.common.exception.MetatronException;
+import com.datasphere.server.common.exception.MetatronException;
 
 /**
  * 유효하지 않은 표현식 오류

@@ -5,8 +5,6 @@ import com.datasphere.common.data.Column;
 import com.datasphere.common.data.Dataset;
 import com.datasphere.common.utils.PageUtil;
 import com.datasphere.core.common.BaseService;
-import com.datasphere.engine.common.exception.JIllegalOperationException;
-import com.datasphere.engine.common.exception.http.HttpClientException;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.manager.resource.provider.catalog.model.RequestParams;
 import com.datasphere.engine.manager.resource.provider.db.dao.DataSourceDao;
@@ -31,6 +29,8 @@ import com.datasphere.engine.shaker.processor.instance.model.ComponentInstanceRe
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceRelationService;
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
 import com.datasphere.engine.shaker.processor.prep.service.ProgramService;
+import com.datasphere.server.common.exception.JIllegalOperationException;
+import com.datasphere.server.common.exception.http.HttpClientException;
 import com.datasphere.server.connections.dao.DataSetInstanceDao;
 import com.datasphere.server.connections.model.DataSetInstance;
 import com.datasphere.server.connections.service.DataAccessor;

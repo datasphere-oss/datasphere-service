@@ -38,8 +38,6 @@ import com.datasphere.common.utils.OkHttpServletRequest;
 import com.datasphere.common.utils.RandomUtils;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.core.common.utils.UUIDUtils;
-import com.datasphere.engine.common.exception.JIllegalOperationException;
-import com.datasphere.engine.common.exception.JRuntimeException;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.core.utils.ObjectMapperUtils;
@@ -62,6 +60,8 @@ import com.datasphere.engine.shaker.processor.instance.model.DeleteComponentInst
 import com.datasphere.engine.shaker.processor.instance.model.GraphNode;
 import com.datasphere.engine.shaker.processor.instance.model.UpdatePositionEntity;
 import com.datasphere.engine.shaker.workflow.panel.dao.PanelDao;
+import com.datasphere.server.common.exception.JIllegalOperationException;
+import com.datasphere.server.common.exception.JRuntimeException;
 import com.datasphere.server.connections.dao.DataSetInstanceDao;
 import com.datasphere.server.connections.model.DataSetInstance;
 import com.datasphere.server.connections.service.DataAccessor;

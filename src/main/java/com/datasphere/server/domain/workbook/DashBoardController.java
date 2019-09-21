@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
-import com.datasphere.engine.common.exception.MetatronException;
+import com.datasphere.server.common.exception.MetatronException;
 import com.datasphere.server.datasource.data.DataSourceValidator;
 import com.datasphere.server.datasource.data.SearchQueryRequest;
 import com.datasphere.server.datasource.data.result.ObjectResultFormat;

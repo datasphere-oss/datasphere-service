@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.datasphere.engine.common.exception.MetatronException;
+import com.datasphere.server.common.exception.MetatronException;
 import com.datasphere.server.datasource.DataSourceRepository;
 import com.datasphere.server.domain.workbook.DashBoard;
 import com.datasphere.server.domain.workbook.DashBoardService;
