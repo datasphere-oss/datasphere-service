@@ -21,7 +21,7 @@ import org.springframework.data.rest.core.annotation.HandleBeforeDelete;
 import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 import com.google.common.base.Preconditions;
 
 /**
@@ -65,7 +65,7 @@ public class NotebookConnectorEventHandler {
                 connector.setPort(aURL.getPort());
             }
         } catch (Exception e) {
-            throw new MetatronException("notebook url is invalid");
+            throw new DSSException("notebook url is invalid");
         }
         return connector;
     }

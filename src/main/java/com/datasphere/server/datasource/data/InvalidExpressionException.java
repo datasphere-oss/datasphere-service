@@ -19,13 +19,13 @@ import static com.datasphere.server.datasource.DataSourceErrorCodes.INVALID_EXPR
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 
 /**
  * 유효하지 않은 표현식 오류
  */
 @ResponseStatus(value= HttpStatus.BAD_REQUEST, reason="Invalid expression")
-public class InvalidExpressionException extends MetatronException {
+public class InvalidExpressionException extends DSSException {
 
   public InvalidExpressionException(String message) {
     super(INVALID_EXPR_CODE, message);

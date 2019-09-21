@@ -78,7 +78,7 @@ import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.exception.BadRequestException;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
 import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.datasource.data.DataSourceValidator;
@@ -717,7 +717,7 @@ public class DataSourceController {
     EngineIngestionService.EngineTaskLog taskLog;
     try {
       taskLog = engineIngestionService.getIngestionTaskLog(taskId, offset);
-    } catch (MetatronException e) {
+    } catch (DSSException e) {
       throw new DataSourceIngestionException(INGESTION_ENGINE_GET_TASK_LOG_ERROR, "Task log on engine not founded", e);
     } catch (Exception e) {
       throw new DataSourceIngestionException(INGESTION_COMMON_ERROR, e);

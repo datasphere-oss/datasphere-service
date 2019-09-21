@@ -27,7 +27,7 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
 
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
 import com.datasphere.server.util.WebSocketUtils;
 
@@ -70,7 +70,7 @@ public class WorkbenchWebSocketController {
     message.put("connected", true);
     try{
       workbenchDataSourceManager.getWorkbenchDataSource(dataConnectionId, sessionId, username, password);
-    } catch (MetatronException e){
+    } catch (DSSException e){
       message.put("connected", false);
       message.put("message", e.getMessage());
     }

@@ -18,10 +18,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.datasphere.server.common.exception.ErrorCodes;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 
 @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR, reason="Notebook Error")
-public class NotebookException extends MetatronException {
+public class NotebookException extends DSSException {
 
   public NotebookException(ErrorCodes errorCodes, String message) {
     super(errorCodes, message);

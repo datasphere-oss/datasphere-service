@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.datasource.data.DataSourceValidator;
 import com.datasphere.server.datasource.data.SearchQueryRequest;
 import com.datasphere.server.datasource.data.result.ObjectResultFormat;
@@ -142,7 +142,7 @@ public class DashBoardController {
 
     BoardConfiguration configuration = dashBoard.getConfigurationObject();
     if(configuration == null || configuration.getDataSource() == null) {
-      throw new MetatronException("Configuration empty.");
+      throw new DSSException("Configuration empty.");
     }
 
     // For multidata sources, process the first data source

@@ -20,10 +20,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.datasphere.server.common.exception.ErrorCodes;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 
 @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR, reason="Query time error")
-public class QueryTimeExcetpion extends MetatronException {
+public class QueryTimeExcetpion extends DSSException {
 
   public QueryTimeExcetpion(String message) {
     super(QUERY_ERROR_CODE, message);

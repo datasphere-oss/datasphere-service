@@ -79,7 +79,7 @@ import com.datasphere.server.common.CustomCollectors;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.entity.Spec;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.datasource.ingestion.HdfsIngestionInfo;
 import com.datasphere.server.datasource.ingestion.HiveIngestionInfo;
 import com.datasphere.server.datasource.ingestion.IngestionHistory;
@@ -1175,7 +1175,7 @@ public class DataSource extends AbstractHistoryEntity implements DSSDomain<Strin
       return type.getTimeUnitFormat();
     }
 
-    public static GranularityType fromPeriod(Period period) throws MetatronException {
+    public static GranularityType fromPeriod(Period period) throws DSSException {
       int[] vals = period.getValues();
       int index = -1;
       for (int i = 0; i < vals.length; i++) {
@@ -1184,7 +1184,7 @@ public class DataSource extends AbstractHistoryEntity implements DSSDomain<Strin
             index = i;
           } else {
 
-            throw new MetatronException("Granularity is not supported : " + period);
+            throw new DSSException("Granularity is not supported : " + period);
           }
         }
       }
@@ -1228,7 +1228,7 @@ public class DataSource extends AbstractHistoryEntity implements DSSDomain<Strin
         default:
           break;
       }
-      throw new MetatronException("Granularity is not supported : " + period);
+      throw new DSSException("Granularity is not supported : " + period);
     }
 
     public static GranularityType fromInterval(Interval interval) {

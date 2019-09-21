@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
 import com.datasphere.server.common.criteria.ListCriterion;
 import com.datasphere.server.common.criteria.ListCriterionType;
 import com.datasphere.server.common.criteria.ListFilter;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
 import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
 import com.datasphere.server.domain.engine.EngineQueryService;
@@ -115,9 +115,9 @@ public class DataSourceService {
 
   /**
    * 데이터 소스 엔진 적재시 name 을 기반으로 engin 내 데이터 소스 지정
- * @throws MetatronException 
+ * @throws DSSException 
    */
-  public DataSource importEngineDataSource(String engineName, DataSource reqDataSource) throws MetatronException {
+  public DataSource importEngineDataSource(String engineName, DataSource reqDataSource) throws DSSException {
 
     SegmentMetaDataResponse segmentMetaData = queryService.segmentMetadata(engineName);
 
@@ -155,7 +155,7 @@ public class DataSourceService {
     }
   }
 
-  public DataSource.GranularityType getGranularityType(Granularity granularity) throws MetatronException {
+  public DataSource.GranularityType getGranularityType(Granularity granularity) throws DSSException {
 
     if (granularity instanceof PeriodGranularity) {
       Period period = Period.parse(((PeriodGranularity) granularity).getPeriod());

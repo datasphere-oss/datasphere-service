@@ -30,7 +30,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.datasource.ingestion.job.IngestionProgress;
 import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.DSSDomain;
@@ -117,7 +117,7 @@ public class IngestionHistory extends AbstractHistoryEntity implements DSSDomain
     this.cause = cause;
   }
 
-  public void setStatus(IngestionStatus status, MetatronException e) {
+  public void setStatus(IngestionStatus status, DSSException e) {
     this.status = status;
     this.errorCode = String.valueOf(e.getCode());
     this.cause = ExceptionUtils.getRootCauseMessage(e);

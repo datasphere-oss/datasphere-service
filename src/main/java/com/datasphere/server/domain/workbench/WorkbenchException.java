@@ -18,13 +18,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.datasphere.server.common.exception.ErrorCodes;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 
 /**
  * Created by aladin on 2019. 6. 18..
  */
 @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR, reason="Workbench Error")
-public class WorkbenchException extends MetatronException {
+public class WorkbenchException extends DSSException {
 
   public WorkbenchException(ErrorCodes errorCodes, String message) {
     super(errorCodes, message);

@@ -52,7 +52,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.DSSDomain;
@@ -262,7 +262,7 @@ public class Workspace extends AbstractHistoryEntity implements DSSDomain<String
 
     return roles.stream()
                 .filter(role -> role.getDefaultRole())
-                .findFirst().orElseThrow(() -> new MetatronException("Default role required."));
+                .findFirst().orElseThrow(() -> new DSSException("Default role required."));
   }
 
   public void deleteMember(String... memberIds) {

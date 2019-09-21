@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.datasphere.server.common.entity.DomainType;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.datasource.DataSourceRepository;
 import com.datasphere.server.domain.notebook.NotebookRepository;
 import com.datasphere.server.domain.user.role.RoleRepository;
@@ -58,7 +58,7 @@ public class ContextDomainRepositoryFactory {
   @Autowired
   ContextRepository contextRepository;
 
-  public ContextDomainRepository getDomainRepository(DomainType type) throws MetatronException {
+  public ContextDomainRepository getDomainRepository(DomainType type) throws DSSException {
     switch (type) {
       case DATASOURCE:
         return dataSourceRepository;
@@ -68,7 +68,7 @@ public class ContextDomainRepositoryFactory {
         return roleRepository;
       default:
         // 임시 Exception 정의, 추후 Exception 정의 필요.
-        throw new MetatronException("Not supported repository.");
+        throw new DSSException("Not supported repository.");
     }
   }
 }

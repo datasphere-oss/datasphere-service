@@ -15,10 +15,10 @@
 package com.datasphere.server.domain.dataconnection;
 
 import com.datasphere.server.common.exception.ErrorCodes;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 
 
-public class DataConnectionException extends MetatronException {
+public class DataConnectionException extends DSSException {
 
   public DataConnectionException(ErrorCodes code, String message) {
     super(code, message);

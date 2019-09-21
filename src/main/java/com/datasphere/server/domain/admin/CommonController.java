@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.datasphere.server.common.CommonProperties;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 
 @RestController
 @RequestMapping("/api/common")
@@ -47,14 +47,14 @@ public class CommonController {
    *
    * @param response
    * @throws IOException
- * @throws MetatronException 
+ * @throws DSSException 
    */
   @RequestMapping(path ="/manual/download", method = RequestMethod.GET, produces = { "application/pdf" })
   public void downloadDataFromWidget(@RequestParam(value = "lang", required = false, defaultValue = "en") String lang,
-                                     HttpServletResponse response) throws IOException, MetatronException {
+                                     HttpServletResponse response) throws IOException, DSSException {
 
     URI manualLink = commonProperties.getLinkByLang(lang)
-                                .orElseThrow(() -> new MetatronException("Manual Link not found."));
+                                .orElseThrow(() -> new DSSException("Manual Link not found."));
 
     String scheme = manualLink.getScheme();
 
@@ -65,16 +65,16 @@ public class CommonController {
       case "http":
       case "https":
       default:
-        throw new MetatronException("Invalid manual link : " + manualLink);
+        throw new DSSException("Invalid manual link : " + manualLink);
     }
   }
 
-  private void downloadFile(String path, HttpServletResponse response) throws IOException, MetatronException {
+  private void downloadFile(String path, HttpServletResponse response) throws IOException, DSSException {
 
     File downloadFile = new File(path);
 
     if(!downloadFile.exists()) {
-      throw new MetatronException("Invalid manual link : " + downloadFile.getAbsolutePath());
+      throw new DSSException("Invalid manual link : " + downloadFile.getAbsolutePath());
     }
 
     response.setContentType("application/pdf");

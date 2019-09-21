@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
 import com.datasphere.server.common.MetatronProperties;
 import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.common.exception.GlobalErrorCodes;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
@@ -108,7 +108,7 @@ public class WorkbenchHiveService {
         if(e.getMessage().indexOf("AlreadyExistsException") > -1) {
           throw new WorkbenchException(WorkbenchErrorCodes.TABLE_ALREADY_EXISTS, "Table already exists.");
         }
-        throw new MetatronException(GlobalErrorCodes.DEFAULT_GLOBAL_ERROR_CODE, "Failed save as hive table.", e);
+        throw new DSSException(GlobalErrorCodes.DEFAULT_GLOBAL_ERROR_CODE, "Failed save as hive table.", e);
       }
     }
   }

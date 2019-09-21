@@ -12,12 +12,12 @@
 
 package com.datasphere.server.connections.jdbc.exception;
 
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 
 /**
  * Created by aladin on 2019. 7. 2..
  */
-public class JdbcDataConnectionException extends MetatronException {
+public class JdbcDataConnectionException extends DSSException {
 
   public JdbcDataConnectionException(JdbcDataConnectionErrorCodes codes, String message, Throwable cause) {
     super(codes, message, cause);

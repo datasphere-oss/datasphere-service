@@ -18,7 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.datasphere.server.common.exception.ErrorCodes;
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.dataprep.teddy.exceptions.CannotCastFromException;
 import com.datasphere.server.domain.dataprep.teddy.exceptions.CannotCastToException;
@@ -80,7 +80,7 @@ import com.datasphere.server.domain.dataprep.teddy.exceptions.WrongTargetPositio
 import com.datasphere.server.domain.dataprep.teddy.exceptions.WrongWindowFunctionExpressionException;
 
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Preparation Error")
-public class PrepException extends MetatronException {
+public class PrepException extends DSSException {
     public static String DEFAULT_GLOBAL_MESSAGE = "Preparation Error";
 
     // msg.dp.alert....

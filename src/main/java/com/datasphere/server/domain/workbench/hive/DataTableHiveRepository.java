@@ -28,7 +28,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.security.UserGroupInformation;
 import org.springframework.stereotype.Repository;
 
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
 
@@ -45,7 +45,7 @@ public class DataTableHiveRepository {
           fs.mkdirs(path);
         } catch (IOException e) {
           String errorMessage = String.format("failed make user query result directory to HDFS : %s", path.toString());
-          throw new MetatronException(errorMessage, e);
+          throw new DSSException(errorMessage, e);
         }
       }
 
@@ -61,13 +61,13 @@ public class DataTableHiveRepository {
         }
       } catch (Exception e) {
         String errorMessage = String.format("failed write file to HDFS : %s", recordsFile.toString());
-        throw new MetatronException(errorMessage, e);
+        throw new DSSException(errorMessage, e);
       }
 
       return recordsFile.toString();
     } catch (Exception e) {
       String errorMessage = "failed write file to HDFS";
-      throw new MetatronException(errorMessage, e);
+      throw new DSSException(errorMessage, e);
     } finally {
       if (fs != null) {
         try {

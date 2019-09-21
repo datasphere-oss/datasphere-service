@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.datasphere.server.common.exception.MetatronException;
+import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.datasource.DataSourceRepository;
 import com.datasphere.server.domain.workbook.DashBoard;
 import com.datasphere.server.domain.workbook.DashBoardService;
@@ -59,12 +59,12 @@ public class BookService {
 
     // 이동 가능한 workspace 인지 체크 (동일한 데이터 소스 포함 여부)
     if(!canMoveToWorkspace(book.getId(), book.getWorkspace().getId(), workspaceId)) {
-      throw new MetatronException("Not allowed copy to workspace( " + workspaceId + " )");
+      throw new DSSException("Not allowed copy to workspace( " + workspaceId + " )");
     }
 
     // FolderId가 워크스페이스에 존재하는지 여부 체크
     if(!existFolderInWorkspace(workspaceId, folderId)) {
-      throw new MetatronException("Not allowed copy to folder( " + folderId + " ) in workspace.");
+      throw new DSSException("Not allowed copy to folder( " + folderId + " ) in workspace.");
     }
 
     if(book instanceof WorkBook) {
@@ -96,7 +96,7 @@ public class BookService {
       return workBookRepository.save(targetWorkBook);
 
     } else {
-      throw new MetatronException("Not supported type.");
+      throw new DSSException("Not supported type.");
     }
   }
 
@@ -105,14 +105,14 @@ public class BookService {
 
     // 이동 가능한 workspace 인지 체크 (동일한 데이터 소스 포함 여부)
     if(!canMoveToWorkspace(book.getId(), book.getWorkspace().getId(), workspaceId)) {
-      throw new MetatronException("Not allowed copy to workspace( " + workspaceId + " )");
+      throw new DSSException("Not allowed copy to workspace( " + workspaceId + " )");
     }
 
     // TODO: 동일 워크스페이스내 동일한 폴더 인경우는 고려해볼것!
 
     // FolderId가 워크스페이스에 존재하는지 여부 체크
     if(!existFolderInWorkspace(workspaceId, folderId)) {
-      throw new MetatronException("Not allowed copy to folder( " + folderId + " ) in workspace.");
+      throw new DSSException("Not allowed copy to folder( " + folderId + " ) in workspace.");
     }
 
     if(workspaceId.isPresent()) {
