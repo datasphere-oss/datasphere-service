@@ -48,7 +48,7 @@ public class ProcessLogController extends BaseController {
 		return JsonWrapper.successWrapper(processInstanceService.getLastByPanelId(panelId));
 	}
 
-	/**0
+	/**
 	 * 查询某一组件最后一次运行情况
 	 * @param componentId
 	 * @return
