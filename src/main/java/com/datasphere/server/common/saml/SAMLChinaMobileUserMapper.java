@@ -16,16 +16,16 @@ import org.springframework.security.saml.SAMLCredential;
 
 import com.datasphere.server.domain.user.User;
 
-public class SAMLBhartiUserMapper extends SAMLUserMapper{
+public class SAMLChinaMobileUserMapper extends SAMLUserMapper{
 
   @Override
   public User createUser(SAMLCredential samlCredential) {
-    User user = new User();
+    User mobileUser = new User();
     if(samlCredential != null){
-      user.setTel(getAttributeValue(samlCredential, "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/phonenumber"));
-      user.setFullName(getAttributeValue(samlCredential, "http://schemas.microsoft.com/2012/01/devicecontext/claims/displayname"));
-      user.setEmail(getAttributeValue(samlCredential, "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"));
+    		mobileUser.setTel(getAttributeValue(samlCredential, "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/phonenumber"));
+    		mobileUser.setFullName(getAttributeValue(samlCredential, "http://schemas.microsoft.com/2012/01/devicecontext/claims/displayname"));
+    		mobileUser.setEmail(getAttributeValue(samlCredential, "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"));
     }
-    return user;
+    return mobileUser;
   }
 }
