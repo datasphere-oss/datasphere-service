@@ -20,6 +20,7 @@ import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseConnecti
 import com.datasphere.engine.manager.resource.provider.hive.model.HiveConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.model.*;
 import com.datasphere.engine.manager.resource.provider.service.UDSMService;
+import com.datasphere.engine.shaker.processor.definition.constant.GlobalDefine;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import io.reactivex.Single;
@@ -28,8 +29,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
