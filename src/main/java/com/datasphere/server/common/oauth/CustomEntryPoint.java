@@ -34,7 +34,7 @@ public class CustomEntryPoint extends OAuth2AuthenticationEntryPoint {
 
   @PostConstruct
   public void init() {
-    // JSON Type 의 결과값 전달을 위해 Converter 설정
+    // JSON Type Converter for passing the result of
     DefaultOAuth2ExceptionRenderer renderer = new DefaultOAuth2ExceptionRenderer();
     renderer.setMessageConverters(Lists.newArrayList(mappingJackson2HttpMessageConverter));
     setExceptionRenderer(renderer);
