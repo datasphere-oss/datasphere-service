@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.datasphere.server.domain.user.role.RoleService;
 
 /**
- * User Information Processing Service, Spring Security Utilize in
+ * Spring Security Utilize in User Information Processing Service
  */
 @Component(BeanIds.USER_DETAILS_SERVICE)
 @Transactional(readOnly = true)
@@ -41,7 +41,7 @@ public class InnerUserServiceImpl implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
+	// 通过用户名查询用户信息
     User user = userRepository.findByUsername(username);
 
     if (user == null) {
@@ -50,7 +50,7 @@ public class InnerUserServiceImpl implements UserDetailsService {
 
     user.setRoleService(roleService);
 
-    // 권한 정보 미리 로드
+    // Preload credentials
     user.getAuthorities();
 
     LOGGER.debug("Load User info. : " + user);
