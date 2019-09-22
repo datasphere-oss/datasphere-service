@@ -24,7 +24,7 @@ import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.datasphere.server.domain.context.ContextService;
+import com.datasphere.server.common.domain.context.ContextService;
 import com.datasphere.server.domain.user.role.RoleSet;
 import com.datasphere.server.domain.user.role.RoleSetService;
 import com.datasphere.server.util.AuthUtils;

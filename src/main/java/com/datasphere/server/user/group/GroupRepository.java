@@ -17,7 +17,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import com.datasphere.server.domain.context.ContextDomainRepository;
+import com.datasphere.server.common.domain.context.ContextDomainRepository;
 
 import java.util.List;
 

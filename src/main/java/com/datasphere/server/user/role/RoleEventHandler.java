@@ -20,7 +20,7 @@ import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.datasphere.server.domain.context.ContextService;
+import com.datasphere.server.common.domain.context.ContextService;
 
 /**
  * Created by aladin on 2019. 5. 14..

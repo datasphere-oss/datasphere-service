@@ -43,11 +43,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
+import com.datasphere.server.common.domain.context.ContextService;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
 import com.datasphere.server.domain.CollectionPatch;
-import com.datasphere.server.domain.context.ContextService;
 import com.datasphere.server.domain.user.User;
 import com.datasphere.server.domain.user.UserRepository;
 import com.datasphere.server.domain.user.role.PermissionRepository;

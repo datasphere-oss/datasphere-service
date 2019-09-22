@@ -51,9 +51,9 @@ import javax.validation.constraints.Size;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.bridge.PredefinedRoleBridge;
+import com.datasphere.server.common.domain.context.ContextEntity;
 import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.DSSDomain;
-import com.datasphere.server.domain.context.ContextEntity;
 import com.datasphere.server.domain.user.DirectoryProfile;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;

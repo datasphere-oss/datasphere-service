@@ -52,11 +52,11 @@ import org.springframework.data.rest.core.annotation.RestResource;
 
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.common.domain.context.ContextEntity;
 import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.datasource.DataSource;
 import com.datasphere.server.domain.AbstractHistoryEntity;
 import com.datasphere.server.domain.DSSDomain;
-import com.datasphere.server.domain.context.ContextEntity;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.notebook.NotebookConnector;
 import com.datasphere.server.domain.user.User;

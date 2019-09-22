@@ -25,9 +25,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.datasphere.server.common.domain.context.ContextDomainRepository;
 
-import com.datasphere.server.domain.context.ContextDomainRepository;
+import java.util.List;
 
 /**
  * The interface Workspace repository.

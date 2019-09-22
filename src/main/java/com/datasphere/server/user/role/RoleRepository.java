@@ -23,7 +23,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.datasphere.server.domain.context.ContextDomainRepository;
+import com.datasphere.server.common.domain.context.ContextDomainRepository;
 
 /**
  * Created by aladin on 2019. 1. 7..
