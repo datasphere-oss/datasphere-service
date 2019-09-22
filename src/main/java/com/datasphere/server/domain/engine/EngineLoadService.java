@@ -12,10 +12,10 @@
 
 package com.datasphere.server.domain.engine;
 
-import static com.datasphere.server.datasource.DataSource.DataSourceType.VOLATILITY;
-import static com.datasphere.server.datasource.DataSourceTemporary.LoadStatus.ENABLE;
-import static com.datasphere.server.datasource.DataSourceTemporary.LoadStatus.FAIL;
-import static com.datasphere.server.datasource.Field.FIELD_NAME_CURRENT_TIMESTAMP;
+import static com.datasphere.datasource.DataSource.DataSourceType.VOLATILITY;
+import static com.datasphere.datasource.DataSourceTemporary.LoadStatus.ENABLE;
+import static com.datasphere.datasource.DataSourceTemporary.LoadStatus.FAIL;
+import static com.datasphere.datasource.Field.FIELD_NAME_CURRENT_TIMESTAMP;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,23 +35,23 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.ResourceAccessException;
 
+import com.datasphere.datasource.DataSource;
+import com.datasphere.datasource.DataSourceIngestionException;
+import com.datasphere.datasource.DataSourceRepository;
+import com.datasphere.datasource.DataSourceTemporary;
+import com.datasphere.datasource.DataSourceTemporaryRepository;
+import com.datasphere.datasource.Field;
+import com.datasphere.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.datasource.dataconnection.DataConnection;
+import com.datasphere.datasource.ingestion.IngestionInfo;
+import com.datasphere.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.datasource.ingestion.jdbc.LinkIngestionInfo;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.ProgressResponse;
 import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.fileloader.FileLoaderFactory;
 import com.datasphere.server.common.fileloader.FileLoaderProperties;
-import com.datasphere.server.datasource.DataSource;
-import com.datasphere.server.datasource.DataSourceIngestionException;
-import com.datasphere.server.datasource.DataSourceRepository;
-import com.datasphere.server.datasource.DataSourceTemporary;
-import com.datasphere.server.datasource.DataSourceTemporaryRepository;
-import com.datasphere.server.datasource.Field;
-import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
-import com.datasphere.server.datasource.ingestion.IngestionInfo;
-import com.datasphere.server.datasource.ingestion.LocalFileIngestionInfo;
-import com.datasphere.server.datasource.ingestion.jdbc.LinkIngestionInfo;
-import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.engine.model.SegmentMetaDataResponse;
 import com.datasphere.server.domain.workbook.configurations.filter.Filter;
 import com.datasphere.server.domain.workbook.configurations.format.TemporaryTimeFormat;
