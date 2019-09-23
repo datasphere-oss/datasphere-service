@@ -17,9 +17,9 @@ import org.apache.lucene.index.IndexableField;
 import org.hibernate.search.bridge.LuceneOptions;
 import org.hibernate.search.bridge.TwoWayFieldBridge;
 
-import static com.datasphere.server.domain.user.role.Role.PREDEFINED_GROUP_ADMIN;
-import static com.datasphere.server.domain.user.role.Role.PREDEFINED_GROUP_SUPER;
-import static com.datasphere.server.domain.user.role.Role.PREDEFINED_GROUP_USER;
+import static com.datasphere.server.user.role.Role.PREDEFINED_GROUP_ADMIN;
+import static com.datasphere.server.user.role.Role.PREDEFINED_GROUP_SUPER;
+import static com.datasphere.server.user.role.Role.PREDEFINED_GROUP_USER;
 
 /**
  * Created by aladin on 2019. 2. 13..
