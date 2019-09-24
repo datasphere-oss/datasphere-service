@@ -35,12 +35,12 @@ import java.util.Locale;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
-import com.datasphere.server.datasource.Field;
+import com.datasphere.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 import com.datasphere.server.query.druid.AbstractQueryBuilder;
 import com.datasphere.server.query.druid.funtions.DateTimeMillisFunc;
 
-import static com.datasphere.server.datasource.Field.FieldRole.TIMESTAMP;
+import static com.datasphere.datasource.Field.FieldRole.TIMESTAMP;
 
 @JsonTypeName("time_range")
 public class TimeRangeFilter extends TimeFilter {
