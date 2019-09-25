@@ -35,7 +35,7 @@ import com.datasphere.server.common.exception.GlobalErrorCodes;
 import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.domain.dataconnection.DataConnection;
-import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
+import com.datasphere.datasource.connections.jdbc.dialect.HiveDialect;
 import com.datasphere.server.domain.workbench.WorkbenchErrorCodes;
 import com.datasphere.server.domain.workbench.WorkbenchException;
 import com.datasphere.server.domain.workbench.WorkbenchProperties;
