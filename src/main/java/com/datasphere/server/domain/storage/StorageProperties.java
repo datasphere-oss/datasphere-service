@@ -27,8 +27,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 
 import com.datasphere.server.common.GlobalObjectMapper;
-import com.datasphere.server.domain.dataconnection.DataConnection;
-import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
+import com.datasphere.datasource.connections.DataConnection;
+import com.datasphere.datasource.connections.jdbc.dialect.HiveDialect;
 
 @Component
 @ConfigurationProperties(prefix = "polaris.storage")
