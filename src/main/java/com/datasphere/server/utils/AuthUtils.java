@@ -12,7 +12,7 @@
 
 package com.datasphere.server.utils;
 
-import com.datasphere.server.common.domain.User;
+import  com.datasphere.server.user.User;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

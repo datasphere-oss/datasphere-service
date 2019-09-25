@@ -46,8 +46,8 @@ import javax.persistence.Index;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.DSSDomain;
+import com.datasphere.server.common.domain.AbstractHistoryEntity;
+import com.datasphere.server.common.domain.DSSDomain;
 import com.datasphere.server.user.role.Permission;
 import com.datasphere.server.user.role.Role;
 import com.datasphere.server.user.role.RoleService;
