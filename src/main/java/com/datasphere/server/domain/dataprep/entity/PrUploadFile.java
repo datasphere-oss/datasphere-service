@@ -1,6 +1,6 @@
 package com.datasphere.server.domain.dataprep.entity;
 
-import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.common.domain.AbstractHistoryEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.apache.commons.io.FilenameUtils;
