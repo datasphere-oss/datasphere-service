@@ -36,7 +36,7 @@ import org.supercsv.prefs.CsvPreference;
 import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
 import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
-import com.datasphere.server.datasource.Field;
+import com.datasphere.datasource.Field;
 
 public class JdbcCSVWriter extends CsvResultSetWriter implements ICsvResultSetWriter {
 

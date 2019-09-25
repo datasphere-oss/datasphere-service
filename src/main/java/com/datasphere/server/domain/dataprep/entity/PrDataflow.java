@@ -14,7 +14,7 @@
 
 package com.datasphere.server.domain.dataprep.entity;
 
-import com.datasphere.server.domain.AbstractHistoryEntity;
+import com.datasphere.server.common.domain.AbstractHistoryEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
