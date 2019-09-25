@@ -42,7 +42,7 @@ import com.datasphere.datasource.DataSourceTemporary;
 import com.datasphere.datasource.DataSourceTemporaryRepository;
 import com.datasphere.datasource.Field;
 import com.datasphere.datasource.connection.jdbc.JdbcConnectionService;
-import com.datasphere.datasource.dataconnection.DataConnection;
+import com.datasphere.datasource.connections.DataConnection;
 import com.datasphere.datasource.ingestion.IngestionInfo;
 import com.datasphere.datasource.ingestion.LocalFileIngestionInfo;
 import com.datasphere.datasource.ingestion.jdbc.LinkIngestionInfo;

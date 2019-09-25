@@ -20,7 +20,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
 
-import com.datasphere.server.datasource.ingestion.file.JsonFileFormat;
+import com.datasphere.datasource.ingestion.file.JsonFileFormat;
 
 /**
  * Druid: JsonParseSpec
