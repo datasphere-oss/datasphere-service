@@ -52,7 +52,7 @@ public class DSSNoSqlConsumer extends Consumer {
     private List<String> tags;
 
     private DSSRestClient _client;
-
+    // 设置租户
     public DSSNoSqlConsumer() {
         endpoint = "";
         username = "";
@@ -123,7 +123,7 @@ public class DSSNoSqlConsumer extends Consumer {
                 password = _properties.get("password").toString();
 
             }
-
+            // 获取租户信息
             if (_properties.containsKey("tenant")) {
                 tenant = _properties.get("tenant").toString();
             }
@@ -142,7 +142,7 @@ public class DSSNoSqlConsumer extends Consumer {
     public int getStatus() {
         return STATUS;
     }
-
+    // 添加资源
     @Override
     public void addResource(String scopeId, String userId, Resource resource) throws ConsumerException {
         if (checkScope(resource.getScopeId()) && checkTags(resource.getTags())) {
@@ -159,7 +159,7 @@ public class DSSNoSqlConsumer extends Consumer {
                     String passw = SqlUtil.getPassword(uri);
                     String database = SqlUtil.getDatabase(uri);
                     String name = type.toLowerCase() + "_" + database;
-
+                    // 添加资源
                     name = _client.addSource(type, name, host, port, database, uname, passw);
                     _log.debug("created source " + name);
                 }
@@ -169,7 +169,7 @@ public class DSSNoSqlConsumer extends Consumer {
             }
         }
     }
-
+    // 更新资源
     @Override
     public void updateResource(String scopeId, String userId, Resource resource) throws ConsumerException {
         if (checkScope(resource.getScopeId())) {
@@ -212,7 +212,7 @@ public class DSSNoSqlConsumer extends Consumer {
             }
         }
     }
-
+    // 删除资源
     @Override
     public void deleteResource(String scopeId, String userId, Resource resource) throws ConsumerException {
         if (checkScope(resource.getScopeId()) && checkTags(resource.getTags())) {
@@ -236,7 +236,7 @@ public class DSSNoSqlConsumer extends Consumer {
             }
         }
     }
-
+    // 检查资源
     @Override
     public void checkResource(String scopeId, String userId, Resource resource) throws ConsumerException {
         if (checkScope(resource.getScopeId()) && checkTags(resource.getTags())) {
@@ -264,7 +264,8 @@ public class DSSNoSqlConsumer extends Consumer {
     }
 
     /*
-     * Helpers
+     * Helpers 
+     * 获得供应商的类型
      */
     public String getType(String provider) {
         String type = "";
@@ -275,7 +276,7 @@ public class DSSNoSqlConsumer extends Consumer {
         }
         return type;
     }
-
+    // 检查标签
     public boolean checkTags(List<String> tags) {
         boolean ret = true;
         if (!this.tags.isEmpty() || !tags.isEmpty()) {
@@ -291,7 +292,7 @@ public class DSSNoSqlConsumer extends Consumer {
 
         return ret;
     }
-
+    // 检查范围
     public boolean checkScope(String scope) {
         if (!this.scopeId.isEmpty()) {
             return scopeId.equals(scope);
