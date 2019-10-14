@@ -92,7 +92,7 @@ public class AuthController {
     private ScopePermissionEvaluator permissionEvaluator;
 
     /*
-     * Login
+     * Login - 认证登录
      */
 
     @GetMapping(value = "/api/auth/login", produces = "application/json")
@@ -118,7 +118,7 @@ public class AuthController {
 
         return new RedirectView(authorizationURL, false);
     }
-
+    // OAuth登录认证调用
     @GetMapping(value = "/api/auth/callback", produces = "application/json")
     @ApiOperation(value = "Login calback via OAuth")
     public void callback(RedirectAttributes attributes,
@@ -214,7 +214,7 @@ public class AuthController {
     }
 
     /*
-     * List
+     * List - 获得登录用户信息
      */
 
     @GetMapping(value = "/api/auth/user", produces = "application/json")
@@ -251,7 +251,7 @@ public class AuthController {
         session.setPermissions(permissions.toArray(new String[0]));
         return session;
     }
-
+    // 登录产生错误
     @ExceptionHandler(LoginException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ResponseBody
