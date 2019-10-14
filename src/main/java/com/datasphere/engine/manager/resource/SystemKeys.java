@@ -41,18 +41,18 @@ public class SystemKeys {
 
     public final static String ORDER_ASC = "asc";
     public final static String ORDER_DESC = "desc";
-
+    // 角色管理
     public final static String ROLE_ADMIN = "ROLE_ADMIN";
     public final static String ROLE_RESOURCE_ADMIN = "ROLE_RESOURCE_ADMIN";
     public final static String ROLE_CONSUMER_ADMIN = "ROLE_CONSUMER_ADMIN";
     public final static String ROLE_USER = "ROLE_USER";
-
+    // 资源管理
     public final static String PERMISSION_RESOURCE_CREATE = "CREATE_RESOURCE";
     public final static String PERMISSION_RESOURCE_UPDATE = "UPDATE_RESOURCE";
     public final static String PERMISSION_RESOURCE_DELETE = "DELETE_RESOURCE";
     public final static String PERMISSION_RESOURCE_CHECK = "CHECK_RESOURCE";
     public final static String PERMISSION_RESOURCE_VIEW = "VIEW_RESOURCE";
-
+    // 消费者管理
     public final static String PERMISSION_CONSUMER_CREATE = "CREATE_CONSUMER";
     public final static String PERMISSION_CONSUMER_UPDATE = "UPDATE_CONSUMER";
     public final static String PERMISSION_CONSUMER_DELETE = "DELETE_CONSUMER";
