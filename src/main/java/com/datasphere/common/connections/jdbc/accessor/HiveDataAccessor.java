@@ -15,12 +15,12 @@
 package com.datasphere.common.connections.jdbc.accessor;
 
 import com.datasphere.common.Field;
-import com.datasphere.datasource.connection.jdbc.HiveTableInformation;
-import com.datasphere.datasource.connections.jdbc.JdbcConnectInformation;
-import com.datasphere.datasource.connections.jdbc.accessor.AbstractJdbcDataAccessor;
-import com.datasphere.datasource.connections.jdbc.dialect.HiveDialect;
-import com.datasphere.datasource.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.datasource.connections.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.engine.datasource.connection.jdbc.HiveTableInformation;
+import com.datasphere.engine.datasource.connections.jdbc.JdbcConnectInformation;
+import com.datasphere.engine.datasource.connections.jdbc.accessor.AbstractJdbcDataAccessor;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.HiveDialect;
+import com.datasphere.engine.datasource.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.engine.datasource.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.domain.workbench.hive.HiveNamingRule;
 import com.datasphere.server.utils.AuthUtils;
