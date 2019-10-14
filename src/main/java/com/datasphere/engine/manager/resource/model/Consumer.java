@@ -30,7 +30,7 @@ public abstract class Consumer {
 	public abstract Registration getRegistration();
 
 	/*
-	 * Resources
+	 * Resources - 添加、检查、更新、删除资源
 	 */
 	public abstract void addResource(String scopeId, String userId, Resource resource) throws ConsumerException;
 
