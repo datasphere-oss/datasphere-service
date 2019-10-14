@@ -13,8 +13,8 @@
 package com.datasphere.common;
 
 
-import com.datasphere.datasource.connections.jdbc.dialect.JdbcDialect;
-import com.datasphere.datasource.ingestion.rule.IngestionRule;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.engine.datasource.ingestion.rule.IngestionRule;
 import com.datasphere.government.mdm.MetadataColumn;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
