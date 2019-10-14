@@ -30,7 +30,7 @@ public class ResourceManagerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ResourceManagerApplication.class, args);
 	}
-
+	// 运行命令行上下文
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		return args -> {
