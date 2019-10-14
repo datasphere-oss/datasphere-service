@@ -43,24 +43,24 @@
 package com.datasphere.common.connection.jdbc;
 
 import com.datasphere.common.Field;
-import com.datasphere.datasource.connection.jdbc.JdbcCSVWriter;
-import com.datasphere.datasource.connection.jdbc.JdbcQueryResultResponse;
-import com.datasphere.datasource.connections.DataConnection;
-import com.datasphere.datasource.connections.DataConnectionHelper;
-import com.datasphere.datasource.connections.jdbc.JdbcConnectInformation;
-import com.datasphere.datasource.connections.jdbc.accessor.JdbcAccessor;
-import com.datasphere.datasource.connections.jdbc.dialect.JdbcDialect;
-import com.datasphere.datasource.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.datasource.connections.jdbc.exception.JdbcDataConnectionException;
-import com.datasphere.datasource.connections.query.NativeCriteria;
-import com.datasphere.datasource.connections.query.expression.*;
-import com.datasphere.datasource.connections.query.utils.VarGenerator;
-import com.datasphere.datasource.data.CandidateQueryRequest;
-import  com.datasphere.datasource.connections.jdbc.dialect.HiveDialect;
-import com.datasphere.datasource.ingestion.jdbc.BatchIngestionInfo;
-import com.datasphere.datasource.ingestion.jdbc.JdbcIngestionInfo;
-import com.datasphere.datasource.ingestion.jdbc.LinkIngestionInfo;
-import com.datasphere.datasource.ingestion.jdbc.SelectQueryBuilder;
+import com.datasphere.engine.datasource.connection.jdbc.JdbcCSVWriter;
+import com.datasphere.engine.datasource.connection.jdbc.JdbcQueryResultResponse;
+import com.datasphere.engine.datasource.connections.DataConnection;
+import com.datasphere.engine.datasource.connections.DataConnectionHelper;
+import com.datasphere.engine.datasource.connections.jdbc.JdbcConnectInformation;
+import com.datasphere.engine.datasource.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.HiveDialect;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.engine.datasource.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.engine.datasource.connections.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.engine.datasource.connections.query.NativeCriteria;
+import com.datasphere.engine.datasource.connections.query.expression.*;
+import com.datasphere.engine.datasource.connections.query.utils.VarGenerator;
+import com.datasphere.engine.datasource.data.CandidateQueryRequest;
+import com.datasphere.engine.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.engine.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.engine.datasource.ingestion.jdbc.LinkIngestionInfo;
+import com.datasphere.engine.datasource.ingestion.jdbc.SelectQueryBuilder;
 import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.exception.FunctionWithException;
@@ -549,7 +549,7 @@ public class JdbcConnectionService {
     Preconditions.checkNotNull(targetField, "target field. required.");
 
     //MetaDataSource
-    com.datasphere.datasource.DataSource metaDataSource = queryRequest.getDataSource().getMetaDataSource();
+    com.datasphere.engine.datasource.DataSource metaDataSource = queryRequest.getDataSource().getMetaDataSource();
     Field metaField = metaDataSource.getMetaFieldMap(false, "")
                                                                              .get(targetField.getName());
 
