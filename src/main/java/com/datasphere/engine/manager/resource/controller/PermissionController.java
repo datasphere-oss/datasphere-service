@@ -54,7 +54,8 @@ public class PermissionController {
     @Autowired
     private ScopePermissionEvaluator permissionEvaluator;
 
-    /*
+    /**
+     * 权限列表 - 获取所有的权限信息
      * Permission list w/scope
      */
     @GetMapping(value = "/api/c/{scope}/permissions", produces = "application/json")
@@ -84,7 +85,8 @@ public class PermissionController {
         return permissions;
     }
 
-    /*
+    /**
+     * 角色列表 - 获取所有的角色信息
      * Roles list w/scope
      */
     @GetMapping(value = "/api/c/{scope}/roles", produces = "application/json")
@@ -111,7 +113,8 @@ public class PermissionController {
         return roles;
     }
 
-    /*
+    /**
+     * 查询所有的范围信息
      * Scopes list
      */
     @GetMapping(value = "/api/scopes", produces = "application/json")
@@ -129,7 +132,8 @@ public class PermissionController {
         return scopes;
     }
 
-    /*
+    /**
+     * 权限列表 - 在范围内查询所有的权限信息
      * Permissions list
      */
     @GetMapping(value = "/api/permissions", produces = "application/json")
@@ -146,7 +150,8 @@ public class PermissionController {
         return permissions(scopeId, request, response);
     }
 
-    /*
+    /**
+     * 角色列表 - 在范围内的查询所有角色信息
      * Roles list
      */
     @GetMapping(value = "/api/roles", produces = "application/json")
