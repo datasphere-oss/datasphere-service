@@ -1,10 +1,11 @@
 package com.datasphere.common.connections.dao.impl;
 
-import com.datasphere.datasource.connections.dbutils.ConnectionFactory;
-import com.datasphere.datasource.connections.utils.Assert;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.dbcp.DelegatingConnection;
 import org.apache.commons.lang3.StringUtils;
+
+import com.datasphere.engine.datasource.connections.dbutils.ConnectionFactory;
+import com.datasphere.engine.datasource.connections.utils.Assert;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
