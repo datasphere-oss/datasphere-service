@@ -25,7 +25,11 @@ import com.datasphere.engine.manager.resource.common.NoSuchConsumerException;
 import com.datasphere.engine.manager.resource.model.Consumer;
 import com.datasphere.engine.manager.resource.model.ConsumerBuilder;
 import com.datasphere.engine.manager.resource.model.Registration;
-
+/**
+ * NoSQL 数据源构建
+ * @author theseusyang
+ *
+ */
 @Component
 public class DremioNoSqlBuilder implements ConsumerBuilder {
 
