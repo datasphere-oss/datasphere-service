@@ -3,10 +3,10 @@ package com.datasphere.common.connections.dao.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.datasphere.common.data.Column;
 import com.datasphere.common.data.Dataset;
+import com.datasphere.engine.datasource.connections.dbutils.ConnectionFactory;
+import com.datasphere.engine.datasource.connections.dbutils.JDBCUtils;
+import com.datasphere.engine.datasource.connections.jdbc.service.DataAccessor;
 import com.datasphere.common.connections.dao.DatasetDAO;
-import com.datasphere.datasource.connections.dbutils.ConnectionFactory;
-import com.datasphere.datasource.connections.dbutils.JDBCUtils;
-import com.datasphere.datasource.connections.jdbc.service.DataAccessor;
 import com.google.gson.Gson;
 
 import java.sql.Connection;
