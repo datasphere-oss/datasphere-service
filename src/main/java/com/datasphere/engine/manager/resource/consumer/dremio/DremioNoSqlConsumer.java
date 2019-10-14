@@ -143,7 +143,7 @@ public class DremioNoSqlConsumer extends Consumer {
     public int getStatus() {
         return STATUS;
     }
-
+    // 添加资源
     @Override
     public void addResource(String scopeId, String userId, Resource resource) throws ConsumerException {
         if (checkScope(resource.getScopeId()) && checkTags(resource.getTags())) {
@@ -171,7 +171,7 @@ public class DremioNoSqlConsumer extends Consumer {
             }
         }
     }
-
+    // 更新资源
     @Override
     public void updateResource(String scopeId, String userId, Resource resource) throws ConsumerException {
         if (checkScope(resource.getScopeId())) {
@@ -215,7 +215,7 @@ public class DremioNoSqlConsumer extends Consumer {
             }
         }
     }
-
+    // 删除资源
     @Override
     public void deleteResource(String scopeId, String userId, Resource resource) throws ConsumerException {
         if (checkScope(resource.getScopeId()) && checkTags(resource.getTags())) {
@@ -240,7 +240,7 @@ public class DremioNoSqlConsumer extends Consumer {
             }
         }
     }
-
+    // 检查资源
     @Override
     public void checkResource(String scopeId, String userId, Resource resource) throws ConsumerException {
         if (checkScope(resource.getScopeId()) && checkTags(resource.getTags())) {
@@ -268,7 +268,8 @@ public class DremioNoSqlConsumer extends Consumer {
     }
 
     /*
-     * Helpers
+     * Helpers 
+     * 获得资源类型
      */
     public String getType(String provider) {
         String type = "";
@@ -304,7 +305,7 @@ public class DremioNoSqlConsumer extends Consumer {
             return true;
         }
     }
-
+    // 获取数据库连接信息
     public String extractURI(String provider, String uri, String property) {
         String value = "";
 
