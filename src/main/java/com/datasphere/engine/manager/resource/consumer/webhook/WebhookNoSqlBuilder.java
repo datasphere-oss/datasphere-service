@@ -54,13 +54,13 @@ public class WebhookNoSqlBuilder implements ConsumerBuilder {
     public boolean isAvailable() {
         return enabled;
     }
-
+    // 构建WebhookNoSql
     @Override
     public Consumer build() throws NoSuchConsumerException {
         // not supported
         throw new NoSuchConsumerException();
     }
-
+    // WebhookNoSql构建器
     @Override
     public Consumer build(Map<String, Serializable> properties) throws NoSuchConsumerException {
         // properties supported
