@@ -54,7 +54,7 @@ public class DremioClient {
         }
 
     }
-
+    // 获得资源
     private JSONObject getSource(String name, String token) throws DremioException {
         try {
             RestTemplate template = template();
@@ -76,7 +76,7 @@ public class DremioClient {
             throw new DremioException("rest error " + rex.getMessage());
         }
     }
-
+    // 列出资源
     private JSONArray listSources(String token) throws DremioException {
         try {
             RestTemplate template = template();
@@ -99,7 +99,7 @@ public class DremioClient {
             throw new DremioException("rest error " + rex.getMessage());
         }
     }
-
+    // 查询是否有资源
     public boolean hasSource(String name) throws DremioException {
         boolean exists = false;
 
@@ -114,7 +114,18 @@ public class DremioClient {
 
         return exists;
     }
-
+    /**
+     *  添加资源: 数据库类型、数据库名称、主机、端口、数据库、用户名和密码
+     * @param type
+     * @param name
+     * @param host
+     * @param port
+     * @param database
+     * @param username
+     * @param password
+     * @return
+     * @throws DremioException
+     */
     public String addSource(
             String type,
             String name,
@@ -156,7 +167,7 @@ public class DremioClient {
         }
 
     }
-
+    // 更新资源
     public String updateSource(
             String type,
             String name,
@@ -171,7 +182,7 @@ public class DremioClient {
         return name;
 
     }
-
+    // 删除资源
     public void deleteSource(String name) throws DremioException {
         try {
             RestTemplate template = template();
@@ -201,6 +212,7 @@ public class DremioClient {
 
     /*
      * Helpers
+     * 获得客户端配置
      */
 
     private JSONObject getClientConfiguration(String type,
@@ -211,7 +223,11 @@ public class DremioClient {
         if (type.equals("POSTGRES")) {
             return getPostgresConfiguration(host, port, database, username, password);
         }
-
+        
+        if (type.equals("HASHDATA")) {
+            return getHashdataConfiguration(host, port, database, username, password);
+        }
+        
         if (type.equals("MYSQL")) {
             // does NOT work in dremio - missing dbName
 //            return getMySqlConfiguration(host, port, database, username, password);
@@ -231,6 +247,22 @@ public class DremioClient {
     }
 
     private JSONObject getPostgresConfiguration(
+            String host, int port,
+            String database,
+            String username, String password) {
+        JSONObject json = new JSONObject();
+
+        json.put("username", username);
+        json.put("password", password);
+        json.put("hostname", host);
+        json.put("port", Integer.toString(port));
+        json.put("databaseName", database);
+
+        return json;
+
+    }
+    
+    private JSONObject getHashdataConfiguration(
             String host, int port,
             String database,
             String username, String password) {
@@ -322,7 +354,7 @@ public class DremioClient {
     private RestTemplate template() {
         return new RestTemplate();
     }
-
+    // HTTP 连接
     private HttpHeaders connect(String token) throws DremioException, RestClientException {
 
         if (token.isEmpty()) {
@@ -336,7 +368,7 @@ public class DremioClient {
 
         return headers;
     }
-
+    // 用户登录操作
     private String login() throws DremioException, RestClientException {
         RestTemplate template = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
