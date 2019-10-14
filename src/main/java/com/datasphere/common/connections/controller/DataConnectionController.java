@@ -12,19 +12,19 @@
 
 package com.datasphere.common.connections.controller;
 
-import com.datasphere.datasource.DataSourceProperties;
 import com.datasphere.common.Field;
-import com.datasphere.datasource.connection.jdbc.HiveTableInformation;
-import com.datasphere.datasource.connection.jdbc.JdbcConnectionService;//有三个类不知道引用哪个
-import com.datasphere.datasource.connection.jdbc.JdbcQueryResultResponse;
-import com.datasphere.datasource.connections.*;
-import com.datasphere.datasource.connections.jdbc.accessor.HiveDataAccessor;
-import com.datasphere.datasource.connections.jdbc.accessor.HiveDataAccessorUsingMetastore;
-import com.datasphere.datasource.connections.jdbc.dialect.HiveDialect;
-import com.datasphere.datasource.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
-import com.datasphere.datasource.connections.jdbc.exception.JdbcDataConnectionException;
-import com.datasphere.datasource.ingestion.file.FileFormat;
-import com.datasphere.datasource.ingestion.jdbc.JdbcIngestionInfo;
+import com.datasphere.engine.datasource.DataSourceProperties;
+import com.datasphere.engine.datasource.connection.jdbc.HiveTableInformation;
+import com.datasphere.engine.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.engine.datasource.connection.jdbc.JdbcQueryResultResponse;
+import com.datasphere.engine.datasource.connections.*;
+import com.datasphere.engine.datasource.connections.jdbc.accessor.HiveDataAccessor;
+import com.datasphere.engine.datasource.connections.jdbc.accessor.HiveDataAccessorUsingMetastore;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.HiveDialect;
+import com.datasphere.engine.datasource.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
+import com.datasphere.engine.datasource.connections.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.engine.datasource.ingestion.file.FileFormat;
+import com.datasphere.engine.datasource.ingestion.jdbc.JdbcIngestionInfo;
 import com.datasphere.government.mdm.Metadata;
 import com.datasphere.government.mdm.source.MetadataSource;
 import com.datasphere.government.mdm.source.MetadataSourceRepository;
