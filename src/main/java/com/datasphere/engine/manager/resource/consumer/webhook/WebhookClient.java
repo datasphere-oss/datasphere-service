@@ -55,13 +55,13 @@ public class WebhookClient {
         TOKEN = "";
         SECRET = "";
     }
-
+    // 认证Token
     public void setAuthToken(String token) {
         // skip validation
         authMode = AUTH_TOKEN;
         TOKEN = token;
     }
-
+    // 基本认证信息
     public void setAuthBasic(String username, String password) {
         // skip validation
         authMode = AUTH_BASIC;
@@ -75,7 +75,7 @@ public class WebhookClient {
     }
 
     /*
-     * Hooks
+     * Hooks - 调用主机端口数据库
      */
     public void call(
             String event,
@@ -156,7 +156,7 @@ public class WebhookClient {
 
         return headers;
     }
-
+    // 签名认证
     private String sign(String content) throws SignatureException {
         try {
             // derive key spec from secret
