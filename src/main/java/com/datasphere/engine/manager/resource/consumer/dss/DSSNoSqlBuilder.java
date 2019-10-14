@@ -60,7 +60,7 @@ public class DSSNoSqlBuilder implements ConsumerBuilder {
         // not supported
         throw new NoSuchConsumerException();
     }
-
+    // 构建NoSQL数据消费者
     @Override
     public Consumer build(Map<String, Serializable> properties) throws NoSuchConsumerException {
         // properties supported
@@ -70,7 +70,7 @@ public class DSSNoSqlBuilder implements ConsumerBuilder {
 
         return consumer;
     }
-
+    // 数据消费者构建
     @Override
     public Consumer build(Registration reg) throws NoSuchConsumerException {
         // properties supported
