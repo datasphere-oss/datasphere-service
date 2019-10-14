@@ -28,6 +28,7 @@ import com.datasphere.engine.manager.resource.model.Consumer;
 import com.datasphere.engine.manager.resource.model.Registration;
 import com.datasphere.engine.manager.resource.model.Resource;
 import com.datasphere.engine.manager.resource.provider.cockroachdb.CockroachDBProvider;
+import com.datasphere.engine.manager.resource.provider.hashdata.HashdataSqlProvider;
 import com.datasphere.engine.manager.resource.provider.mysql.MySqlProvider;
 import com.datasphere.engine.manager.resource.provider.postgres.PostgresSqlProvider;
 import com.datasphere.engine.manager.resource.util.SqlUtil;
@@ -145,7 +146,7 @@ public class DremioSqlConsumer extends Consumer {
     public int getStatus() {
         return STATUS;
     }
-
+    // 添加资源
     @Override
     public void addResource(String scopeId, String userId, Resource resource) throws ConsumerException {
         if (checkScope(resource.getScopeId()) && checkTags(resource.getTags())) {
@@ -173,7 +174,7 @@ public class DremioSqlConsumer extends Consumer {
             }
         }
     }
-
+    // 更新资源
     @Override
     public void updateResource(String scopeId, String userId, Resource resource) throws ConsumerException {
         if (checkScope(resource.getScopeId())) {
@@ -217,7 +218,7 @@ public class DremioSqlConsumer extends Consumer {
             }
         }
     }
-
+    // 删除资源
     @Override
     public void deleteResource(String scopeId, String userId, Resource resource) throws ConsumerException {
         if (checkScope(resource.getScopeId()) && checkTags(resource.getTags())) {
@@ -242,7 +243,7 @@ public class DremioSqlConsumer extends Consumer {
             }
         }
     }
-
+    // 检查资源
     @Override
     public void checkResource(String scopeId, String userId, Resource resource) throws ConsumerException {
         if (checkScope(resource.getScopeId()) && checkTags(resource.getTags())) {
@@ -278,6 +279,10 @@ public class DremioSqlConsumer extends Consumer {
         case PostgresSqlProvider.ID:
             type = "POSTGRES";
             break;
+        case HashdataSqlProvider.ID:
+            type = "HASHDATA";
+            break;
+                
         case CockroachDBProvider.ID:
             // cockroachDB supports postgres line protocol
             type = "POSTGRES";
