@@ -41,7 +41,7 @@ public class DSSRestClient {
     private String TENANT;
 
     private final static String API = "/rest/";
-
+    // 设置租户
     public DSSRestClient(String endpoint, String tenant, String username, String password) {
         super();
         ENDPOINT = endpoint;
@@ -110,7 +110,7 @@ public class DSSRestClient {
         }
         return exists;
     }
-
+    // 添加资源
     public String addSource(
             String type,
             String name,
@@ -159,7 +159,7 @@ public class DSSRestClient {
         }
 
     }
-
+    // 更新资源
     public String updateSource(
             String type,
             String name,
@@ -172,7 +172,7 @@ public class DSSRestClient {
         return name;
 
     }
-
+    // 删除资源
     public void deleteSource(String name) throws DSSException {
         try {
             RestTemplate template = new RestTemplate();
@@ -200,7 +200,7 @@ public class DSSRestClient {
     }
 
     /*
-     * Helpers
+     * Helpers - 获取HTTP头信息
      */
 
     private HttpHeaders headers(String username, String password) throws RestClientException {
@@ -229,6 +229,10 @@ public class DSSRestClient {
             return getPostgresConfiguration(name, host, port, database, username, password);
         }
 
+        if (type.equals("HASHDATA")) {
+            return getHashdataConfiguration(name, host, port, database, username, password);
+        }
+        
         if (type.equals("MYSQL")) {
             return getMySqlConfiguration(name, host, port, database, username, password);
         }
@@ -287,6 +291,49 @@ public class DSSRestClient {
 
     }
 
+    private JSONObject getHashdataConfiguration(
+            String name,
+            String host, int port,
+            String database,
+            String username, String password) {
+
+        String connection = "jdbc:postgresql://" + host + ":" + Integer.toString(port) + "/" + database;
+
+        JSONObject json = new JSONObject();
+
+        json.put("id", name);
+        json.put("dataSourceType", "RDBMS");
+        json.put("exposeAsODataService", false);
+        json.put("publicODataService", false);
+
+        JSONArray properties = new JSONArray();
+
+        JSONObject driver = new JSONObject();
+        driver.put("name", "driverClassName");
+        driver.put("value", "org.postgresql.Driver");
+        properties.put(driver);
+
+        JSONObject url = new JSONObject();
+        url.put("name", "url");
+        url.put("value", connection);
+        properties.put(url);
+
+        JSONObject user = new JSONObject();
+        user.put("name", "username");
+        user.put("value", username);
+        properties.put(user);
+
+        JSONObject pass = new JSONObject();
+        pass.put("name", "password");
+        pass.put("value", password);
+        properties.put(pass);
+
+        json.put("properties", properties);
+
+        return json;
+
+    }
+    
     private JSONObject getMySqlConfiguration(
             String name,
             String host, int port,
@@ -372,7 +419,7 @@ public class DSSRestClient {
         return json;
 
     }
-
+    // 获得dremio配置
     private JSONObject getDremioConfiguration(
             String name,
             String host, int port,
