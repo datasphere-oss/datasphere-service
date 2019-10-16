@@ -5,13 +5,13 @@ import java.util.Map;
 
 import com.datasphere.engine.manager.resource.provider.db.model.DBQuery;
 import com.datasphere.engine.manager.resource.provider.db.model.DBTableField;
-import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
+import com.datasphere.engine.manager.resource.provider.model.DBTableInfo;
 
 
 public interface DataSourceDatabaseService {
 	
 	public List<List<DBTableField>> readTable(DBQuery query);
-	public List<DBTableInfodmp> listTableInfo(DBQuery query);
+	public List<DBTableInfo> listTableInfo(DBQuery query);
 	public List<Map<String, String>> readTableWithColumnName(DBQuery query, Map<String, Integer> typeMap);
 	public boolean tableExsit(DBQuery query);
 	public String[] listDatabase();
