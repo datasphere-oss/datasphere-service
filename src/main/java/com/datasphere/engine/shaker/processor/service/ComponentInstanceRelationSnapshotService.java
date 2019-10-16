@@ -13,7 +13,8 @@
 package com.datasphere.engine.shaker.processor.service;
 
 import org.springframework.stereotype.Service;
-import com.datasphere.core.common.BaseService;
+
+import com.datasphere.engine.core.common.BaseService;
 
 /**
  * 组件实例关系快照服务实现类
