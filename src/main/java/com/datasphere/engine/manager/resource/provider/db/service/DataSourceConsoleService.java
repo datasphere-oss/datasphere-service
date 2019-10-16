@@ -1,7 +1,7 @@
 package com.datasphere.engine.manager.resource.provider.db.service;
 
-import com.datasphere.core.common.BaseService;
-import com.datasphere.core.common.utils.UUIDUtils;
+import com.datasphere.engine.core.common.BaseService;
+import com.datasphere.engine.core.common.utils.UUIDUtils;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.datasource.connections.utils.ObjectMapperUtils;
 import com.datasphere.engine.manager.resource.provider.db.model.DBCommonInfo;
@@ -10,7 +10,7 @@ import com.datasphere.engine.manager.resource.provider.db.model.DBTableDataList;
 import com.datasphere.engine.manager.resource.provider.db.service.impl.DataSourcePlatformServiceImpl;
 import com.datasphere.engine.manager.resource.provider.db.util.BeanToMapUtil;
 import com.datasphere.engine.manager.resource.provider.db.util.DALTypeUtil;
-import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
+import com.datasphere.engine.manager.resource.provider.model.DBTableInfo;
 import com.datasphere.engine.manager.resource.provider.model.DataSource;
 
 import org.apache.commons.lang3.StringUtils;
@@ -97,10 +97,10 @@ public class DataSourceConsoleService extends BaseService {
 	 * @param info
 	 * @return
 	 */
-	public List<DBTableInfodmp> listTableInfo(DBCommonInfo info) {
+	public List<DBTableInfo> listTableInfo(DBCommonInfo info) {
 		validate(info);
 		DataSourceDatabaseService databaseService = getDatabaseService(info);
-		List<DBTableInfodmp> infoList = databaseService.listTableInfo(info);
+		List<DBTableInfo> infoList = databaseService.listTableInfo(info);
 		//infoList 不会为null
 		JAssert.isTrue(infoList.size() > 0, "没有发现数据库");
 		return infoList;
