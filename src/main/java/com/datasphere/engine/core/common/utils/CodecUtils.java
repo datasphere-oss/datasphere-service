@@ -14,7 +14,7 @@ package com.datasphere.engine.core.common.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
+// 数据加解密方法
 public class CodecUtils
 {
     public static String md5(final String source) throws NoSuchAlgorithmException {
