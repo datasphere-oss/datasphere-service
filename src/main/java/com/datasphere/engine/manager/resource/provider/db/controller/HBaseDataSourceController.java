@@ -1,10 +1,10 @@
 package com.datasphere.engine.manager.resource.provider.db.controller;
 
-import com.datasphere.core.common.BaseController;
+import com.datasphere.engine.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.manager.resource.provider.hbase.model.HBaseConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.hbase.model.HBaseDataSourceInfo;
-import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
+import com.datasphere.engine.manager.resource.provider.model.DBTableInfo;
 import com.datasphere.engine.manager.resource.provider.service.UDSMService;
 
 import io.reactivex.Single;
