@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.core.common;
+package com.datasphere.engine.core.common;
 
 import org.springframework.stereotype.Controller;
 
