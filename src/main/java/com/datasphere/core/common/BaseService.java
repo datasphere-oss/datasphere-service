@@ -48,11 +48,11 @@ public class BaseService {
         this.redisHost = PropertyUtil.getProperty("redis.host");
         this.redisPort = Integer.parseInt(PropertyUtil.getProperty("redis.port"));
     }
-
+    // TODO 待删除部分
     protected String dataServiceOnPrestoServerRootUrl;
     protected String OpenAPIServerRootUrl;
 
-    // daas
+    // datasphere
     protected String daasServerAPIV2RootUrl;
     protected String daasServerAPIV3RootUrl;
     protected String daasClassName;
