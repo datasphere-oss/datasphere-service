@@ -12,7 +12,7 @@
 
 package com.datasphere.engine.projects.controller;
 
-import com.datasphere.core.common.BaseController;
+import com.datasphere.engine.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.projects.model.Project;
 import com.datasphere.engine.projects.service.ProjectServiceImpl;
