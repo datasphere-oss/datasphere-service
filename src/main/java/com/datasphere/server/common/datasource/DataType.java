@@ -16,7 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.sql.Types;
 
-import com.datasphere.common.Field;
+import com.datasphere.engine.common.Field;
 import com.datasphere.server.domain.dataprep.teddy.ColumnType;
 
 /**
