@@ -2,7 +2,7 @@ package com.datasphere.engine.manager.resource.provider.db.service.impl;
 
 import com.datasphere.common.data.Column;
 import com.datasphere.common.data.Dataset;
-import com.datasphere.engine.datasource.connections.jdbc.service.DataAccessor;
+import com.datasphere.engine.datasource.connections.jdbc.accessor.DremioDataAccessor;
 import com.datasphere.engine.manager.resource.provider.db.model.DBTableField;
 
 import java.util.Date;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class DataSourcePlatformServiceImpl{
 
 	@Autowired
-	DataAccessor dataAccessor;
+	DremioDataAccessor dataAccessor;
 	
 	public void write(String key,String tableName,List<List<DBTableField>> dataList) throws Exception {
 		if(dataList == null || dataList.size() == 0){
