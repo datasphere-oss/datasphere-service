@@ -12,7 +12,7 @@
 
 package com.datasphere.engine.shaker.workflow.panelboard.model;
 
-import com.datasphere.core.common.BaseEntity;
+import com.datasphere.engine.core.common.BaseEntity;
 
 public class Panel extends BaseEntity {
 	protected String id;
