@@ -26,7 +26,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.datasphere.common.data.Dataset;
 import com.datasphere.engine.core.utils.ObjectMapperUtils;
-import com.datasphere.engine.shaker.processor.buscommon.utils.HttpUtils;
 import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
 import com.datasphere.engine.shaker.processor.instance.analysis.WarpInputAndOutput;
 import com.datasphere.engine.shaker.processor.instance.callbackresult.ComponentCalcuateResult;
@@ -36,6 +35,7 @@ import com.datasphere.engine.shaker.processor.instance.componentparams.OutPutPar
 import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.message.status.notice.CallBackStatusMessage;
+import com.datasphere.engine.shaker.processor.utils.HttpUtils;
 import com.datasphere.engine.shaker.workflow.panelboard.model.sub.PreDataProcessEntity;
 import com.datasphere.server.common.exception.JIllegalOperationException;
 
@@ -130,7 +130,7 @@ public class PreDataComponentInstance extends AbstractComponent {
 		 */
 		String[] cls = new String[columns.size()];
 		columns.toArray(cls);
-		dataAccessor.saveasDataset(preDataKey, dataKey, cls);
+		dataAccessor.saveAsDataset(preDataKey, dataKey, cls);
 		dataAccessor.removeDataset(preDataKey);
 		Dataset dataset = new Dataset();
 		dataset.setDataKey(dataKey);
