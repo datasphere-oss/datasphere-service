@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.engine.shaker.processor.buscommon;
+package com.datasphere.engine.shaker.processor.utils;
 
 /*{
     "1": "大于",

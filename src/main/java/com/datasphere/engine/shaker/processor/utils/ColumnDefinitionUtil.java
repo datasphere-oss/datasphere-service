@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.engine.shaker.processor.buscommon.utils;
+package com.datasphere.engine.shaker.processor.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
