@@ -40,7 +40,7 @@ import com.datasphere.engine.manager.resource.provider.elastic.model.QueryDBData
 import com.datasphere.engine.manager.resource.provider.elastic.model.Table;
 import com.datasphere.engine.manager.resource.provider.model.DataSource;
 import com.datasphere.engine.manager.resource.provider.model.DataSourceWithAll;
-import com.datasphere.engine.manager.resource.provider.service.DaasService;
+import com.datasphere.engine.manager.resource.provider.service.DSSService;
 import com.google.common.base.Splitter;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -61,12 +61,13 @@ public class DataSourceController extends BaseController {
 	public static final String BASE_PATH = "/datasource/v1";
 
 	@Autowired
-	DaasService dataSourceService;
+	DSSService dataSourceService;
 	@Autowired
 	DBOperationService dbOperationService;
 
 
 	/**
+	 * 获取所有数据资源信息 
 	 * Get all data source information
 	 * @param
 	 * @return
@@ -84,6 +85,7 @@ public class DataSourceController extends BaseController {
 
 
 	/**
+	 * 验证数据资源名称
 	 * Verify the data source name
 	 * @param name
 	 * @return
@@ -104,6 +106,7 @@ public class DataSourceController extends BaseController {
 
 	/**
 	 * Test data source
+	 * 测试数据源连接
 	 */
 	@RequestMapping(value = BASE_PATH + "/test", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> test(@RequestBody DremioDataSourceInfo es) {
@@ -124,7 +127,7 @@ public class DataSourceController extends BaseController {
 				id = null;
 			}
 			Map<String,String> map = new HashMap<>();
-			map.put("daasId",id);
+			map.put("dssId",id);
 			map.put("name",name);
 			if(es2 != null) return JsonWrapper.successWrapper(map);
 			return JsonWrapper.failureWrapper("测试失败");
@@ -133,14 +136,15 @@ public class DataSourceController extends BaseController {
 
 
 	/**
+	 * 列出数据源中的表
 	 * When creating a data source Get database table information
 	 * @param daasName
 	 * @return
 	 */
 	@RequestMapping(value = BASE_PATH + "/listTable", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> listTable(@RequestParam String daasName) {
+	public Single<Map<String,Object>> listTable(@RequestParam String dssName) {
 		return Single.fromCallable(() -> {
-			List<Map<String,String>> es2 = dataSourceService.listTable(daasName);
+			List<Map<String,String>> es2 = dataSourceService.listTable(dssName);
 			if(es2!=null){
 				return JsonWrapper.successWrapper(es2);
 			}
@@ -150,17 +154,18 @@ public class DataSourceController extends BaseController {
 
 
 	/**
+	 * 更新数据源名称和描述
 	 * Update data source name and description
 	 * @param dataSource
 	 * @return
 	 */
-	@RequestMapping(value = BASE_PATH + "/update", method = RequestMethod.POST) 
+	@RequestMapping(value = BASE_PATH + "/updateDataSource", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> update(@RequestBody DataSource dataSource){
 		return Single.fromCallable(() -> {
 			if (StringUtils.isBlank(dataSource.getId()) && StringUtils.isBlank(dataSource.getName())){
 				return JsonWrapper.failureWrapper("The id and data source names cannot be empty!");
 			}
-			//查询数据源信息ById
+			//通过Id查询数据源信息
 			DataSource dataSourceInfo = dataSourceService.findDataSourceById(dataSource.getId());
 			if(dataSourceInfo == null){
 				return JsonWrapper.failureWrapper("The data source does not exist!");
@@ -219,6 +224,7 @@ public class DataSourceController extends BaseController {
 
 
 	/**
+	 * 通过Id查询数据源中数据
 	 * Query DB and COMPONENT data source data based on id
 	 * @param query
 	 * @return
@@ -228,7 +234,7 @@ public class DataSourceController extends BaseController {
 		return Single.fromCallable(() -> {
 			Map<String, Object> result = null;
 			if (!StringUtils.isBlank(query.getSql())) {
-				// Get sql
+				// 查询表中的数据
 				result = dataSourceService.queryTableData(query);
 			}else{
 				if (StringUtils.isBlank(query.getId())){
@@ -243,12 +249,12 @@ public class DataSourceController extends BaseController {
 						gsonMap.get("scheme").toString():gsonMap.get("databaseName").toString());
 				query.setTableName(gsonMap.get("tableName").toString());
 				
-				String daasName = dataSourceService.getDaasNameByID(query.getId());
+				String dssName = dataSourceService.getDaasNameByID(query.getId());
 				query.setDaasName(daasName);
 				if("CSV".equals(dataSource.getDataDSType()) || "JSON".equals(dataSource.getDataDSType())){
 					query.setSql("SELECT * FROM \""+query.getDatabaseName()+"\".\""+query.getTableName()+"\"");
 				} else {
-					query.setSql("SELECT * FROM \""+daasName+"\".\""+query.getDatabaseName()+"\"."+query.getTableName()+"");
+					query.setSql("SELECT * FROM \""+dssName+"\".\""+query.getDatabaseName()+"\"."+query.getTableName()+"");
 				}
 				result = dataSourceService.queryTableData(query);
 			}
