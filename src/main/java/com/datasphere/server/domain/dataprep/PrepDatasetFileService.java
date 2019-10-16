@@ -33,7 +33,7 @@ import com.datasphere.server.domain.dataprep.teddy.DataFrameService;
 import com.datasphere.server.domain.dataprep.teddy.exceptions.TeddyException;
 import com.datasphere.server.domain.dataprep.transform.TeddyImpl;
 import com.datasphere.server.domain.dataprep.transform.TimestampTemplate;
-import com.datasphere.common.Field;
+import com.datasphere.engine.common.Field;
 import com.datasphere.engine.datasource.utils.ExcelProcessor;
 import com.datasphere.server.domain.storage.StorageProperties;
 import com.fasterxml.jackson.core.type.TypeReference;
