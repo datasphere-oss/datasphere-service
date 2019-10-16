@@ -2,7 +2,7 @@ package com.datasphere.engine.manager.resource.provider.hbase.model;
 
 import java.util.List;
 
-public class HbaseDataSourceInfo {
+public class HBaseDataSourceInfo {
 
     //主键
     private String id;
@@ -15,8 +15,8 @@ public class HbaseDataSourceInfo {
 //    private String databaseName; // 数据库名称
     //数据源类型(文件系统，数据库...)
     private Integer dataType;
-    //具体表信息（一个数据源）
-    private List<HbaseTableInfo> dataSources;
+    //HBase表信息
+    private List<HBaseTableInfo> dataSources;
 
     public String getId() {
         return id;
@@ -58,11 +58,11 @@ public class HbaseDataSourceInfo {
         this.dataType = dataType;
     }
 
-    public List<HbaseTableInfo> getDataSources() {
+    public List<HBaseTableInfo> getDataSources() {
         return dataSources;
     }
 
-    public void setDataSources(List<HbaseTableInfo> dataSources) {
+    public void setDataSources(List<HBaseTableInfo> dataSources) {
         this.dataSources = dataSources;
     }
 }
