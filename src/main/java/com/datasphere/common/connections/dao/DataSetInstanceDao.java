@@ -1,6 +1,6 @@
 package com.datasphere.common.connections.dao;
 
-import com.datasphere.datasource.connections.model.DataSetInstance;
+import com.datasphere.engine.datasource.connections.model.DataSetInstance;
 
 public interface DataSetInstanceDao {
     void insert(DataSetInstance dataSetInstance);
