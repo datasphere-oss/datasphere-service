@@ -1,6 +1,6 @@
 package com.datasphere.engine.manager.resource.provider.dictionary.model.service;
 
-import com.datasphere.core.common.BaseService;
+import com.datasphere.engine.core.common.BaseService;
 import com.datasphere.engine.manager.resource.provider.dictionary.model.DSSWord;
 
 import java.util.ArrayList;
