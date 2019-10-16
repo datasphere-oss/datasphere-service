@@ -19,7 +19,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.datasphere.core.common.BaseService;
+import com.datasphere.engine.core.common.BaseService;
 import com.datasphere.engine.core.utils.ObjectMapperUtils;
 import com.datasphere.engine.shaker.processor.dao.ComponentInstanceSnapshotDao;
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceRelationService;
