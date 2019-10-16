@@ -2,9 +2,9 @@ package com.datasphere.engine.manager.resource.provider.elastic.model;
 
 public class QueryDBDataParams {
     private String id;
-    private String daasId;
-    private String daasName;
-    private String dataBaseName;
+	private String dssId;
+    private String dssName;
+    private String databaseName;
     private String tableName;
     private String sql;
 
@@ -16,30 +16,31 @@ public class QueryDBDataParams {
         this.id = id;
     }
 
-    public String getDaasId() {
-        return daasId;
-    }
+  
+    public String getDssId() {
+		return dssId;
+	}
 
-    public void setDaasId(String daasId) {
-        this.daasId = daasId;
-    }
+	public void setDssId(String dssId) {
+		this.dssId = dssId;
+	}
 
-    public String getDaasName() {
-        return daasName;
-    }
+	public String getDssName() {
+		return dssName;
+	}
 
-    public void setDaasName(String daasName) {
-        this.daasName = daasName;
-    }
+	public void setDssName(String dssName) {
+		this.dssName = dssName;
+	}
 
-    public String getDatabaseName() {
-        return dataBaseName;
-    }
+	public String getDatabaseName() {
+		return databaseName;
+	}
 
-    public void setDatabaseName(String databaseName) {
-        this.dataBaseName = databaseName;
-    }
-
+	public void setDatabaseName(String databaseName) {
+		this.databaseName = databaseName;
+	}
+ 
     public String getTableName() {
         return tableName;
     }
