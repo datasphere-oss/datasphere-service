@@ -37,11 +37,11 @@ import com.datasphere.engine.manager.resource.util.SqlUtil;
 import com.datasphere.engine.manager.resource.util.StringUtils;
 
 @Component
-public class PostgresSqlProvider extends ResourceProvider {
-    private final static Logger _log = LoggerFactory.getLogger(PostgresSqlProvider.class);
+public class HashdataSqlProvider extends ResourceProvider {
+    private final static Logger _log = LoggerFactory.getLogger(HashdataSqlProvider.class);
 
     public static final String TYPE = SystemKeys.TYPE_SQL;
-    public static final String ID = "postgresSql";
+    public static final String ID = "hashdataSql";
 
     private static final String VALID_CHARS = "[a-zA-Z0-9]+";
 
@@ -69,7 +69,7 @@ public class PostgresSqlProvider extends ResourceProvider {
     @Value("${providers.postgressql.password}")
     private String PASSWORD;
 
-    private PostgresSqlClient _client;
+    private HashdataSqlClient _client;
 
     @Override
     public String getId() {
@@ -96,7 +96,7 @@ public class PostgresSqlProvider extends ResourceProvider {
         STATUS = SystemKeys.STATUS_DISABLED;
 
         if (ENABLED) {
-            _client = new PostgresSqlClient(HOST, PORT, SSL, USERNAME, PASSWORD);
+            _client = new HashdataSqlClient(HOST, PORT, SSL, USERNAME, PASSWORD);
             // check postgres availability
 
             if (_client.ping()) {
