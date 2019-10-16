@@ -222,7 +222,7 @@ public class MetabaseClient {
             }
         }
     }
-
+    // 更新数据库
     public long updateDatabase(
             String engine,
             String name,
@@ -295,7 +295,7 @@ public class MetabaseClient {
             }
         }
     }
-
+    // 删除数据库
     public void deleteDatabase(String engine, String name) throws MetabaseException {
         String token = "";
         try {
@@ -345,7 +345,7 @@ public class MetabaseClient {
             }
         }
     }
-
+    // 同步数据库
     public void syncDatabase(long id) throws MetabaseException {
         String token = "";
         try {
