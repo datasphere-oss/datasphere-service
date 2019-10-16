@@ -12,7 +12,7 @@
 
 package com.datasphere.engine.shaker.processor.prep.service;
 
-import com.datasphere.core.common.BaseService;
+import com.datasphere.engine.core.common.BaseService;
 import com.datasphere.engine.shaker.processor.prep.dao.*;
 import com.datasphere.engine.shaker.processor.prep.data.ColumnData;
 import com.datasphere.engine.shaker.processor.prep.data.OperateData;
