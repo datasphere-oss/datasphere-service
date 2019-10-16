@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.common;
+package com.datasphere.engine.common;
 
 
 import com.datasphere.engine.datasource.connections.jdbc.dialect.JdbcDialect;
