@@ -1,10 +1,10 @@
 package com.datasphere.engine.manager.resource.provider.db.controller;
 
-import com.datasphere.core.common.BaseController;
+import com.datasphere.engine.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.manager.resource.provider.hive.model.HiveConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.hive.model.HiveDataSourceInfo;
-import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
+import com.datasphere.engine.manager.resource.provider.model.DBTableInfo;
 import com.datasphere.engine.manager.resource.provider.service.UDSMService;
 
 import io.reactivex.Single;
@@ -57,7 +57,7 @@ public class HiveDataSourceController extends BaseController {
 	@RequestMapping(value = BASE_PATH + "/HiveListTable", method = RequestMethod.POST) 
     public Object HiveListTable(@RequestBody HiveConnectionInfo hiveConnectionInfo){
         return Single.fromCallable(() -> {
-            List<DBTableInfodmp> dbTableInfodmps = uDSMService.HiveListTable(hiveConnectionInfo);
+            List<DBTableInfo> dbTableInfodmps = uDSMService.HiveListTable(hiveConnectionInfo);
             if(dbTableInfodmps == null){
                 return JsonWrapper.failureWrapper("获取失败");
             }
