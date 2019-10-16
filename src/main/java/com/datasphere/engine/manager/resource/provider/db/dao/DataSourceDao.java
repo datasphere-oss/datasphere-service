@@ -28,29 +28,29 @@ public interface DataSourceDao {
     //根据ID查询数据源信息
     DataSource findDataSourceById(String id);
 
-    int deleteDatasourceById(String id);
+    int deleteDataSourceById(String id);
 
     int deleteDSByAppId(String id);
 
-    String getDaasId(String appId);
+    String getDSSId(String appId);
 
-    int getDaasIdSum(String daasId);
+    int getDSSIdSum(String daasId);
 
-    int updateDatasourceById(DataSource dataSource);
+    int updateDataSourceById(DataSource dataSource);
 
-    int findDatasourceByName(String s);
+    int findDataSourceByName(String s);
 
     List<DataSourceWithAll> getWithAll(String id, String userId);
 
-    Integer insertDS(@Param(value = "daasId") String dassId, @Param(value = "dataSourceId") String dataSourceId , @Param(value = "daasName") String daasName);
+    Integer insertDS(@Param(value = "dssId") String dassId, @Param(value = "dataSourceId") String dataSourceId , @Param(value = "dssName") String dssName);
 
-    String getDaasName(String daasId);
+    String getDSSName(String daasId);
 
-    String getDaasNameByID(String id);
+    String getDSSNameByID(String id);
 
-    String getDaasV3Catalog(String app_ds_id);
+    String getDSSV3Catalog(String app_ds_id);
 
-    Integer updateDSByDataSourceID(@Param(value = "daasId") String dassId, @Param(value = "dataSourceId") String dataSourceId , @Param(value = "daasName") String daasName);
+    Integer updateDSByDataSourceID(@Param(value = "dssId") String dassId, @Param(value = "dataSourceId") String dataSourceId , @Param(value = "dssName") String dssName);
 
 
 }
