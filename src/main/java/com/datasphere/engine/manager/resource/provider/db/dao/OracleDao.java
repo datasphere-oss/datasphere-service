@@ -1,6 +1,6 @@
 package com.datasphere.engine.manager.resource.provider.db.dao;
 
-import com.datasphere.core.common.utils.O;
+import com.datasphere.engine.core.common.utils.O;
 import com.datasphere.engine.datasource.connections.constant.ConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.config.OracleDBConfig;
 import com.datasphere.server.common.exception.JRuntimeException;
