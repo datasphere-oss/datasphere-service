@@ -2,8 +2,8 @@ package com.datasphere.engine.manager.resource.provider.db.controller;
 
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
-import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseConnectionInfo;
-import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseDataSourceInfo;
+import com.datasphere.engine.manager.resource.provider.hbase.model.HBaseConnectionInfo;
+import com.datasphere.engine.manager.resource.provider.hbase.model.HBaseDataSourceInfo;
 import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
 import com.datasphere.engine.manager.resource.provider.service.UDSMService;
 
@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class HbaseDatasourceController extends BaseController {
+public class HBaseDataSourceController extends BaseController {
 
-    private static final Logger log = LoggerFactory.getLogger(HbaseDatasourceController.class);
+    private static final Logger log = LoggerFactory.getLogger(HBaseDataSourceController.class);
 
     public static final String BASE_PATH = "/datasource/hbase";
 
@@ -32,11 +32,11 @@ public class HbaseDatasourceController extends BaseController {
 
     /**
      * test connection  hbase
-     * @param hbaseConnectionInfo
+     * @param hBaseConnectionInfo
      * @return
      */
 	@RequestMapping(value = BASE_PATH + "/testHBase", method = RequestMethod.POST) 
-    public Single<Map<String,Object>> testHBase(@RequestBody HbaseConnectionInfo hbaseConnectionInfo) {
+    public Single<Map<String,Object>> testHBase(@RequestBody HBaseConnectionInfo hBaseConnectionInfo) {
         return Single.fromCallable(() -> {
             int result = uDSMService.testHBase(hbaseConnectionInfo);
             if(result == 0){
@@ -48,11 +48,11 @@ public class HbaseDatasourceController extends BaseController {
 
     /**
      * select hbase list table
-     * @param hbaseConnectionInfo
+     * @param hBaseConnectionInfo
      * @hbaseConnectionInfo
      */
 	@RequestMapping(value = BASE_PATH + "/hBaseListTable", method = RequestMethod.POST) 
-    public Object hBaseListTable(@RequestBody HbaseConnectionInfo hbaseConnectionInfo){
+    public Object hBaseListTable(@RequestBody HBaseConnectionInfo hBaseConnectionInfo){
         return Single.fromCallable(() -> {
             List<DBTableInfodmp> dbTableInfodmps = uDSMService.hBaseListTable(hbaseConnectionInfo);
             if(dbTableInfodmps == null){
@@ -64,11 +64,11 @@ public class HbaseDatasourceController extends BaseController {
 
     /**
      * select hbase table data
-     * @param hbaseConnectionInfo
+     * @param hBaseConnectionInfo
      * @hbaseConnectionInfo
      */
 	@RequestMapping(value = BASE_PATH + "/queryHBaseTableData", method = RequestMethod.POST) 
-    public Object queryHBaseTableData(@RequestBody HbaseConnectionInfo hbaseConnectionInfo){
+    public Object queryHBaseTableData(@RequestBody HBaseConnectionInfo hBaseConnectionInfo){
         return Single.fromCallable(() -> {
             return JsonWrapper.successWrapper(uDSMService.queryHBaseTableData(hbaseConnectionInfo));
         });
@@ -76,11 +76,11 @@ public class HbaseDatasourceController extends BaseController {
 
     /**
      * create hbase datasource big data
-     * @param hbaseDataSourceInfo
+     * @param hBaseDataSourceInfo
      * @return
      */
 	@RequestMapping(value = BASE_PATH + "/createHBase", method = RequestMethod.POST) 
-    public Single<Map<String,Object>> createHBase(@RequestBody HbaseDataSourceInfo hbaseDataSourceInfo, HttpServletRequest request){
+    public Single<Map<String,Object>> createHBase(@RequestBody HBaseDataSourceInfo hBaseDataSourceInfo, HttpServletRequest request){
         return Single.fromCallable(() -> {
             if(hbaseDataSourceInfo.getBusinessType() == null){
                 return JsonWrapper.failureWrapper("业务类型不能为空");
@@ -97,11 +97,11 @@ public class HbaseDatasourceController extends BaseController {
 
     /**
      * update hbase datasource info
-     * @param hbaseDataSourceInfo
+     * @param hBaseDataSourceInfo
      * @return
      */
 	@RequestMapping(value = BASE_PATH + "/updateHBase", method = RequestMethod.POST) 
-    public Single<Map<String,Object>> updateHBaseById(@RequestBody HbaseDataSourceInfo hbaseDataSourceInfo, HttpServletRequest request){
+    public Single<Map<String,Object>> updateHBaseById(@RequestBody HBaseDataSourceInfo hBaseDataSourceInfo, HttpServletRequest request){
         return Single.fromCallable(() -> {
             if(StringUtils.isBlank(hbaseDataSourceInfo.getId())){
                 return JsonWrapper.failureWrapper("id不能为空！");
