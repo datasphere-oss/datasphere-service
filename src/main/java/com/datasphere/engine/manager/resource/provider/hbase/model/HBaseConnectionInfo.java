@@ -1,6 +1,6 @@
 package com.datasphere.engine.manager.resource.provider.hbase.model;
 
-public class HbaseConnectionInfo {
+public class HBaseConnectionInfo {
 
     private String name;
     private String businessType;
