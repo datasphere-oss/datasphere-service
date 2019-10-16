@@ -13,15 +13,15 @@
 package com.datasphere.engine.manager.resource.provider.config;
 
 public class DBConfig {
-	
+	// 主机
 	protected String host;
-	
+	// 端口
 	protected Integer port;
-	
+	// 用户
 	protected String user;
-	
+	// 密码
 	protected String password;
-	
+	// 数据库类型
 	protected String databaseType;
 	
 	
