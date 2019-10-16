@@ -14,7 +14,7 @@ package com.datasphere.engine.projects.model;
 
 import java.util.List;
 
-import com.datasphere.core.common.BaseEntity;
+import com.datasphere.engine.core.common.BaseEntity;
 import com.datasphere.engine.shaker.workflow.panelboard.model.Panel;
 
 
