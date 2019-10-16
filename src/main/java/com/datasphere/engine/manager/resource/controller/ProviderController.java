@@ -58,7 +58,8 @@ public class ProviderController {
     @Autowired
     private ProviderService providerService;
 
-    /*
+    /**
+     * 获得提供商列表信息
      * List w/scope
      */
 
@@ -98,7 +99,8 @@ public class ProviderController {
         return results;
     }
 
-    /*
+    /**
+     * 获得指定资源的提供商
      * Get w/scope
      */
 
@@ -122,7 +124,8 @@ public class ProviderController {
         return ProviderDTO.fromProvider(p);
     }
 
-    /*
+    /**
+     * 获得提供商类型
      * Types w/scope
      */
 
@@ -147,7 +150,8 @@ public class ProviderController {
         return results;
     }
 
-    /*
+    /**
+     * 列出可用的资源提供商
      * List
      */
 
@@ -186,7 +190,8 @@ public class ProviderController {
         return get(scopeId, id, request, response);
     }
 
-    /*
+    /**
+     * 获得提供商的类型
      * Type
      */
 
