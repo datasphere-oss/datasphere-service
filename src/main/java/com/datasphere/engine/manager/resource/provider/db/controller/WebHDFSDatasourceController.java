@@ -1,8 +1,8 @@
 package com.datasphere.engine.manager.resource.provider.db.controller;
 
-import com.datasphere.core.common.BaseController;
+import com.datasphere.engine.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
-import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
+import com.datasphere.engine.manager.resource.provider.model.DBTableInfo;
 import com.datasphere.engine.manager.resource.provider.service.UDSMService;
 import com.datasphere.engine.manager.resource.provider.webhdfs.model.WebHDFSConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.webhdfs.model.WebHDFSDataSourceInfo;
@@ -56,7 +56,7 @@ public class WebHDFSDatasourceController extends BaseController {
     @PostMapping(value = BASE_PATH + "/webHDFSListFiles")
     public Object webHDFSListFiles(@RequestBody WebHDFSConnectionInfo webHDFSConnectionInfo){
         return Single.fromCallable(() -> {
-            List<DBTableInfodmp> dbTableInfodmps = uDSMService.webHDFSListFiles(webHDFSConnectionInfo);
+            List<DBTableInfo> dbTableInfodmps = uDSMService.webHDFSListFiles(webHDFSConnectionInfo);
             if(dbTableInfodmps == null){
                 return JsonWrapper.failureWrapper("获取失败");
             }
