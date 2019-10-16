@@ -16,11 +16,11 @@ import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.manager.resource.provider.catalog.model.RequestParams;
 import com.datasphere.engine.manager.resource.provider.db.model.DBCommonInfo;
-import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseConnectionInfo;
+import com.datasphere.engine.manager.resource.provider.hbase.model.HBaseConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.hive.model.HiveConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.model.*;
 import com.datasphere.engine.manager.resource.provider.service.UDSMService;
-import com.datasphere.engine.shaker.processor.definition.constant.GlobalDefine;
+import com.datasphere.engine.shaker.processor.definition.constant.GlobalConstant;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import io.reactivex.Single;
@@ -202,7 +202,7 @@ public class DataSphereController extends BaseController {
 			}
 
 			//根据不同的组件类型（数据源/组件）查询数据
-			if(GlobalDefine.COMPONENT_CLASSIFICATION.MY_DATASOURCE.equals(dbQuery.getClassification())){
+			if(GlobalConstant.COMPONENT_CLASSIFICATION.MY_DATASOURCE.equals(dbQuery.getClassification())){
 				//查询数据源信息ById
 				DataSource dataSource = uDSMService.findDataSourceById(dbQuery.getId());
 				if(dataSource == null){
@@ -293,8 +293,8 @@ public class DataSphereController extends BaseController {
 					conn.setBusinessType(dataSource.getBusinessType());
 					return JsonWrapper.successWrapper(conn);
 				}else if("hbase".equals(dataSource.getDataDSType())){
-					Type listType = new TypeToken<HbaseConnectionInfo>(){}.getType();
-					HbaseConnectionInfo conn = new Gson().fromJson(dataConfig, listType);
+					Type listType = new TypeToken<HBaseConnectionInfo>(){}.getType();
+					HBaseConnectionInfo conn = new Gson().fromJson(dataConfig, listType);
 					conn.setTypeName(dataSource.getDataDSType());
 					conn.setName(dataSource.getName());
 					conn.setBusinessType(dataSource.getBusinessType());
