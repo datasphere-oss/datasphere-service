@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.core.common.utils;
+package com.datasphere.engine.core.common.utils;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.Multipart;
