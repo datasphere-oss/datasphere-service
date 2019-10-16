@@ -12,7 +12,7 @@
 
 package com.datasphere.engine.shaker.processor.common.constant;
 
-import com.datasphere.core.common.utils.O;
+import com.datasphere.engine.core.common.utils.O;
 /**
  * 处理组件分类
  * @author theseusyang
