@@ -12,7 +12,7 @@
 
 package com.datasphere.engine.shaker.processor.prep.controller;
 
-import com.datasphere.core.common.BaseController;
+import com.datasphere.engine.core.common.BaseController;
 import com.datasphere.engine.shaker.processor.prep.ReturnData;
 import com.datasphere.engine.shaker.processor.prep.data.JoinInputData;
 import com.datasphere.engine.shaker.processor.prep.data.JoinOutputData;
