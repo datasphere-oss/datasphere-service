@@ -1,18 +1,24 @@
 package com.datasphere.engine.manager.resource.provider.hive.model;
 
 public class HiveConnectionInfo {
-
+  // 名称信息
   private String name;
+  // 业务类型
   private String businessType;
+  // 类型名称
   private String typeName;
   private String hostIP;
   private String hostPort;
   private String userName;
   private String userPassword;
-  private String databaseName; // 数据库名称 或 Oracle的SID
+  // 数据库名称 或 Oracle的SID
+  private String databaseName; 
   private String tableName;
+  // 列信息
   private String columns;
+  // 行信息
   private String rows;
+  // URL信息
   private String jdbcURL;
   private String query;
 
