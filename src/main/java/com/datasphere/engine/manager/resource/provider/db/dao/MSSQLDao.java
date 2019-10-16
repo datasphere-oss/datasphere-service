@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.core.common.utils.O;
+import com.datasphere.engine.core.common.utils.O;
 import com.datasphere.engine.manager.resource.provider.config.DBConfig;
 
 public class MSSQLDao extends BaseDao<DBConfig> {
