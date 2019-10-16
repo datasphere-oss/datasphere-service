@@ -24,6 +24,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.datasphere.common.data.Dataset;
 import com.datasphere.engine.common.message.CustomizedPropertyPlaceholderConfigurer;
+import com.datasphere.engine.datasource.connections.jdbc.accessor.DremioDataAccessor;
 import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.factory.ComponentFactory;
 import com.datasphere.engine.shaker.processor.instance.callbackresult.ComponentCalcuateResult;
@@ -43,10 +44,9 @@ import com.datasphere.engine.shaker.processor.service.ComponentService;
 import com.datasphere.engine.shaker.processor.service.ProcessInstanceService;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
 import com.datasphere.engine.shaker.processor.stop.StopSingleInstance;
-import com.datasphere.engine.shaker.workflow.panel.model.Panel;
-import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
-import com.datasphere.engine.shaker.workflow.panel.service.SubPanelService;
-import com.datasphere.server.connections.service.DataAccessor;
+import com.datasphere.engine.shaker.workflow.panelboard.model.Panel;
+import com.datasphere.engine.shaker.workflow.panelboard.service.PanelServiceImpl;
+import com.datasphere.engine.shaker.workflow.panelboard.service.SubPanelService;
 
 public abstract class AbstractComponent implements Component {
 
@@ -66,7 +66,7 @@ public abstract class AbstractComponent implements Component {
 	private PanelServiceImpl panelService;
 	protected String processId;
 	protected Map<String, Dataset> inputsMap;
-	protected DataAccessor dataAccessor;
+	protected DremioDataAccessor dataAccessor;
 	protected ProcessRecordService processRecordService;
 	protected DefaultComponentParams params;
 	private ProcessInstance instance;
@@ -129,7 +129,7 @@ public abstract class AbstractComponent implements Component {
 		this.componentService = componentService;
 	}
 
-	public void setDataAccessor(DataAccessor dataAccessor) {
+	public void setDataAccessor(DremioDataAccessor dataAccessor) {
 		this.dataAccessor = dataAccessor;
 	}
 
@@ -307,8 +307,7 @@ public abstract class AbstractComponent implements Component {
 
 		Date end = new Date();
 		long time = end.getTime() - begin.getTime();
-		logger.info(
-				"组件id＝" + this.getId() + "===>运行状态：" + calcuateResult.getStatus() + "====>运行时间:" + time / 1000 + "s");
+		logger.info("组件id＝" + this.getId() + "===>运行状态：" + calcuateResult.getStatus() + "====>运行时间:" + time / 1000 + "s");
 		CallBackStatusMessage.getInstance().remove(jobId);
 		return calcuateResult;
 	}
@@ -374,7 +373,7 @@ public abstract class AbstractComponent implements Component {
 			this.setOutput(outputName, dataset);
 		}
 	}
-
+	// 获得数据流的子关系
 	private List<ComponentInstanceRelation> getSubRelations(String id) {
 		List<ComponentInstanceRelation> relations = new ArrayList<>();
 		// 查询当前实例
@@ -395,7 +394,7 @@ public abstract class AbstractComponent implements Component {
 		return relations;
 
 	}
-
+	// 拼装父映射
 	private void assembleParentsMap() {
 		if (parentsMap == null) {
 			parentsMap = new HashMap<>();
@@ -414,7 +413,7 @@ public abstract class AbstractComponent implements Component {
 			}
 		}
 	}
-
+	// 拼装子映射
 	private void assembleChildrenMap() {
 		if (childrenMap == null) {
 			childrenMap = new HashMap<>();
