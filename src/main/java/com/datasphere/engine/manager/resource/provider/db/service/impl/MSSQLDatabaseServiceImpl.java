@@ -10,7 +10,7 @@ import com.datasphere.engine.manager.resource.provider.db.service.AbstractDataba
 import com.datasphere.engine.manager.resource.provider.db.service.DataSourceDatabaseService;
 import com.datasphere.engine.manager.resource.provider.db.util.DALTypeUtil;
 import com.datasphere.engine.manager.resource.provider.exception.JSQLException;
-import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
+import com.datasphere.engine.manager.resource.provider.model.DBTableInfo;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -34,17 +34,17 @@ public class MSSQLDatabaseServiceImpl extends AbstractDatabaseService<MSSQLDao> 
 		}
 	}
 
-	public List<DBTableInfodmp> listTableInfo(DBQuery query) {
+	public List<DBTableInfo> listTableInfo(DBQuery query) {
 		String databaseName = query.getDatabaseName();
 		String schemaName = query.getSchemaName();
-		List<DBTableInfodmp> tbinfoList = new LinkedList<>();
+		List<DBTableInfo> tbinfoList = new LinkedList<>();
 		try{
 			String[] tables = StringUtils.isBlank(query.getSearchName()) ?
 					baseDao.listTable(databaseName,schemaName) : 
 					baseDao.listTable(databaseName,schemaName,query.getSearchName());
 			
 			for(String table : tables){
-				DBTableInfodmp tbinfo = new DBTableInfodmp();
+				DBTableInfo tbinfo = new DBTableInfo();
 				String tableName = schemaName + "." + table;
 				int tableRows = baseDao.readTableRowcount(databaseName,tableName);
 				if(tableRows != 0){
