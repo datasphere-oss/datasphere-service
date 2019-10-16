@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 @Service
-public class MMSQLDatabaseServiceImpl extends AbstractDatabaseService<MSSQLDao> implements DataSourceDatabaseService {
+public class MSSQLDatabaseServiceImpl extends AbstractDatabaseService<MSSQLDao> implements DataSourceDatabaseService {
 
 	public List<List<DBTableField>> readTable(DBQuery query) {
 		try {
