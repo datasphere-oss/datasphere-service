@@ -12,7 +12,7 @@
 
 package com.datasphere.engine.manager.resource.provider.db.controller;
 
-import com.datasphere.core.common.BaseController;
+import com.datasphere.engine.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.manager.resource.provider.catalog.model.RequestParams;
 import com.datasphere.engine.manager.resource.provider.db.model.DBCommonInfo;
@@ -43,6 +43,7 @@ import java.util.Map;
 
 /**
  * 数据源管理  DB
+ * TODO 需要进一步改造
  */
 @Controller
 public class DataSphereController extends BaseController {
@@ -78,7 +79,7 @@ public class DataSphereController extends BaseController {
 				return JsonWrapper.failureWrapper("名称不能为空!");
 			}
 
-			List<String> result = uDSMService.verifyDatasourceName(name);
+			List<String> result = uDSMService.verifyDataSourceName(name);
 
 			if(result == null || result.size() == 0){
 				return JsonWrapper.successWrapper("验证成功！");
@@ -324,7 +325,7 @@ public class DataSphereController extends BaseController {
 			//TODO 查询数据库中有无数据源  验证名称是否重复
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
-			int rsult = uDSMService.updateDatasourceById(dataSourceInfo,token);
+			int rsult = uDSMService.updateDataSourceById(dataSourceInfo,token);
 			if(rsult == 0){
 				return JsonWrapper.failureWrapper("更新失败！");
 			}
@@ -358,7 +359,7 @@ public class DataSphereController extends BaseController {
 	public Single<Map<String,Object>> deleteDatasourceById(@RequestParam String ids){
 		return Single.fromCallable(() -> {
 			//查询数据源信息ById
-			int result = uDSMService.deleteDatasourceById(ids);
+			int result = uDSMService.deleteDataSourceById(ids);
 			if(result == 0){
 				return JsonWrapper.failureWrapper("删除失败");
 			}
@@ -374,7 +375,7 @@ public class DataSphereController extends BaseController {
 	@RequestMapping(value = BASE_PATH+"/subscribeDatasource", method = RequestMethod.POST) 
 	public Single<Map<String,Object>> getSubscribeDatasource(@RequestBody RequestParams requestParams){
 		return Single.fromCallable(() -> {
-			return JsonWrapper.successWrapper(uDSMService.getSubscribeDatasource(requestParams));
+			return JsonWrapper.successWrapper(uDSMService.getSubscribedDataSource(requestParams));
 		});
 	}
 
