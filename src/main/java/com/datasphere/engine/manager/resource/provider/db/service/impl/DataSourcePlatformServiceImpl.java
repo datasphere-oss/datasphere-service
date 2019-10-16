@@ -2,8 +2,8 @@ package com.datasphere.engine.manager.resource.provider.db.service.impl;
 
 import com.datasphere.common.data.Column;
 import com.datasphere.common.data.Dataset;
+import com.datasphere.engine.datasource.connections.jdbc.service.DataAccessor;
 import com.datasphere.engine.manager.resource.provider.db.model.DBTableField;
-import com.datasphere.server.connections.service.DataAccessor;
 
 import java.util.Date;
 import java.util.LinkedList;
