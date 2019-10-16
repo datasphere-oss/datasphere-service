@@ -28,8 +28,7 @@ package com.datasphere.engine.shaker.processor.buscommon;
 }*/
 
 /**
- * 数据处理 Filter：获取操作符
- * jeq
+ * 数据处理过滤器 ：获取操作符
  */
 public class OperatorUtils {
 

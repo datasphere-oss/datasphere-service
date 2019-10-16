@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.engine.shaker.workflow.panel.model.sub;
+package com.datasphere.engine.shaker.workflow.panelboard.model.sub;
 
 import com.alibaba.fastjson.annotation.JSONField;
 

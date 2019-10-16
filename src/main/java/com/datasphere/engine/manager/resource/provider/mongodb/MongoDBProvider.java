@@ -86,6 +86,7 @@ public class MongoDBProvider extends ResourceProvider {
     }
 
     /*
+     * 数据库初始化
      * Init method - POST constructor since spring injects properties *after
      * creation*
      */

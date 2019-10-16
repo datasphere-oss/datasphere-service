@@ -60,11 +60,12 @@ public class WorkspacePagedResources<T> extends PagedResources<T> {
     this.workspaceMetadata = workspaceMetadata;
   }
 
-
+  // 工作空间的元数据
   public static class WorkspaceMetadata {
-
+	// 链接
     @JsonProperty
     private long linked;
+    	// 总数
     @JsonProperty
     private long total;
 

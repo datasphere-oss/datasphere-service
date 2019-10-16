@@ -24,14 +24,14 @@ import org.springframework.stereotype.Service;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.manager.resource.provider.dictionary.model.DSSWord;
 import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
-import com.datasphere.engine.shaker.processor.definition.constant.GlobalDefine;
+import com.datasphere.engine.shaker.processor.definition.constant.GlobalConstant;
 import com.datasphere.engine.shaker.processor.definition.dao.ComponentDefinitionDao;
-import com.datasphere.engine.shaker.workflow.panel.model.ComponentDefinitionPanel;
+import com.datasphere.engine.shaker.workflow.panelboard.model.ComponentDefinitionPanel;
 
 @Service
 public class ComponentDefinitionServiceImpl extends BaseService {
 
-
+	// 列出数据源
 	public List<ComponentDefinition> listDataSource() {
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			ComponentDefinitionDao dictionaryDao = sqlSession.getMapper(ComponentDefinitionDao.class);
@@ -193,7 +193,7 @@ public class ComponentDefinitionServiceImpl extends BaseService {
 	public List<ComponentDefinition> listDataProcessComponent(String creator) {
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			ComponentDefinitionDao componentDefinition = sqlSession.getMapper(ComponentDefinitionDao.class);
-			return componentDefinition.getDataProcessComponent(creator,GlobalDefine.COMPONENT_CLASSIFICATION.PREPROCESS);
+			return componentDefinition.getDataProcessComponent(creator,GlobalConstant.COMPONENT_CLASSIFICATION.PREPROCESS);
 		}
 	}
 

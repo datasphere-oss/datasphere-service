@@ -60,7 +60,7 @@ public class WorkbookController {
 
   @Autowired
   PagedResourcesAssembler pagedResourcesAssembler;
-
+  // 查找仪表盘列表
   @RequestMapping(path = "/workbooks/{workbookId}/dashboards", method = RequestMethod.GET)
   public @ResponseBody
   ResponseEntity<?> findDashBoardList(
@@ -127,7 +127,7 @@ public class WorkbookController {
 
     return ResponseEntity.noContent().build();
   }
-
+  // 找到评论列表
   @RequestMapping(path = "/workbooks/{workbookId}/comments", method = RequestMethod.GET)
   public @ResponseBody
   ResponseEntity<?> findCommentList(
@@ -139,7 +139,7 @@ public class WorkbookController {
 
     return ResponseEntity.ok(this.pagedResourcesAssembler.toResource(comments, resourceAssembler));
   }
-
+  // 在工作表中查找评论
   @RequestMapping(path = "/workbooks/{workbookId}/comments/{commentId}", method = RequestMethod.GET)
   public @ResponseBody
   ResponseEntity<?> findCommentInWorkbook(
@@ -151,7 +151,7 @@ public class WorkbookController {
 
     return ResponseEntity.ok(resourceAssembler.toResource(persistComment));
   }
-
+  // 在工作表中创建评论
   @RequestMapping(path = "/workbooks/{workbookId}/comments", method = RequestMethod.POST)
   public @ResponseBody
   ResponseEntity<?> createComments(@PathVariable("workbookId") String workbookId,
@@ -168,7 +168,7 @@ public class WorkbookController {
 
     return ResponseEntity.created(location).build();
   }
-
+  // 保存评论
   @RequestMapping(path = "/workbooks/{workbookId}/comments/{commentId}",
       method = { RequestMethod.PUT, RequestMethod.PATCH })
   public @ResponseBody
@@ -183,7 +183,7 @@ public class WorkbookController {
 
     return ResponseEntity.noContent().build();
   }
-
+  // 保存评论
   @RequestMapping(path = "/workbooks/{workbookId}/comments/{commentId}",
       method = { RequestMethod.DELETE })
   public @ResponseBody
@@ -196,7 +196,7 @@ public class WorkbookController {
 
     return ResponseEntity.noContent().build();
   }
-
+  // 验证评论
   private Comment validateComment(String workbookId, Long commentId) {
 
     Comment persistComment = commentRepository.findById(commentId).get();

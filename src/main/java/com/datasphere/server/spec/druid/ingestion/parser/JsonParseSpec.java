@@ -14,13 +14,12 @@
 
 package com.datasphere.server.spec.druid.ingestion.parser;
 
+import com.datasphere.engine.datasource.ingestion.file.JsonFileFormat;
 import com.google.common.collect.Lists;
 
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
-
-import com.datasphere.datasource.ingestion.file.JsonFileFormat;
 
 /**
  * Druid: JsonParseSpec

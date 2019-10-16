@@ -22,7 +22,7 @@ import com.datasphere.server.domain.workbook.configurations.WorkBookConfiguratio
 import com.datasphere.server.domain.workspace.Book;
 
 /**
- * WorkBook 요약 정보 모델
+ * WorkBook 概要信息
  */
 public class WorkBookSummary {
 
@@ -37,13 +37,13 @@ public class WorkBookSummary {
   DateTime modifiedTime;
 
   String type;
-
+  // 工作表配置
   WorkBookConfiguration configuration;
-
+  // datasheet数量
   int sheetCount;
-
+  // 仪表盘数量
   int boardCount;
-
+  // 数据源数量
   int datasourceCount;
 
   String mainDataSourceName;

@@ -18,7 +18,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "polaris.workbench")
+@ConfigurationProperties(prefix = "datasphere.workbench")
 public class WorkbenchProperties {
   private Integer maxResultSize = 1000000;
   private Integer defaultResultSize = 1000;
@@ -26,7 +26,7 @@ public class WorkbenchProperties {
   private String tempHdfsPath = "/tmp/hive";
   private String tempCSVPath = "/tmp";
   private String tempCSVExpireDuration = "1";
-  private String tempDataTableHdfsPath = "/tmp/metatron";
+  private String tempDataTableHdfsPath = "/tmp/datasphere";
 
   public static String TEMP_SCHEMA_PREFIX = "temp_";
   public static String TEMP_TABLE_PREFIX = "wb_";

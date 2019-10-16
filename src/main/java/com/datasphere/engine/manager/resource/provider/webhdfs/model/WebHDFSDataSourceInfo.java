@@ -17,30 +17,30 @@ import java.util.List;
 
 public class WebHDFSDataSourceInfo {
 
-    //主键
+    // 主键
     private String id;
 
-    //数据源类型（mysql，oracle...）
+    // 数据源类型
     private String dataDSType;
 
-    //数据源业务类型
+    // 数据源业务类型
     private String businessType;
 
-    //ip
+    // 主机IP地址
     private String hostIP;
-    //端口
+    // 端口
     private String hostPort;
-    //路径
+    // 路径
     private String descriptor;
-    //用户
+    // 用户
     private String userName;
-    //密码
+    // 密码
     private String password;
 
-    //数据源类型(文件系统，数据库...)
+    // 数据源类型
     private Integer dataType;
 
-    //具体表信息（一个数据源）
+    //数据源表信息
     private List<WebHDFSTableInfo> dataSources;
 
     public String getId() {

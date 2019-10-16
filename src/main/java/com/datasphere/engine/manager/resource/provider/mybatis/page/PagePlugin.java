@@ -37,7 +37,7 @@ public class PagePlugin implements Interceptor
     public void setProperties(final Properties properties) {
         throw new Error("Unresolved compilation problem: \n\tThe method setProperties(Properties) of type PagePlugin must override a superclass method\n");
     }
-    
+    // 生成分页的SQL语句
     private String generatePageSql(final String sql, final Pager page) {
         final StringBuffer sqlBuffer = new StringBuffer(sql);
         if ("mysql".equalsIgnoreCase(this.dialect)) {
@@ -62,7 +62,7 @@ public class PagePlugin implements Interceptor
         return sqlBuffer.toString();
     }
     
-    
+    // 过滤字符串
     private String fileterString(String sqlvalue) {
         if (StringUtils.isEmpty(sqlvalue)) {
             return sqlvalue;
@@ -84,7 +84,7 @@ public class PagePlugin implements Interceptor
         sqlvalue = sqlvalue.replace("--", "");
         return sqlvalue;
     }
-    
+    	// 设置查询参数
     private void setParameters(final PreparedStatement ps, final MappedStatement mappedStatement, final BoundSql boundSql, final Object parameterObject) throws SQLException {
         ErrorContext.instance().activity("setting parameters").object(mappedStatement.getParameterMap().getId());
         final List<ParameterMapping> parameterMappings = (List<ParameterMapping>)boundSql.getParameterMappings();
@@ -125,7 +125,7 @@ public class PagePlugin implements Interceptor
             }
         }
     }
-    
+    // 计数调用
     int count(final Invocation invocation) throws SQLException {
         final RoutingStatementHandler statementHandler = (RoutingStatementHandler)invocation.getTarget();
         final BaseStatementHandler delegate = ReflectHelper.getValue(statementHandler, "delegate");

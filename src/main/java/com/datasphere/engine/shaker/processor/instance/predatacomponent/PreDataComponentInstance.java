@@ -36,7 +36,7 @@ import com.datasphere.engine.shaker.processor.instance.componentparams.OutPutPar
 import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.message.status.notice.CallBackStatusMessage;
-import com.datasphere.engine.shaker.workflow.panel.model.sub.PreDataProcessEntity;
+import com.datasphere.engine.shaker.workflow.panelboard.model.sub.PreDataProcessEntity;
 import com.datasphere.server.common.exception.JIllegalOperationException;
 
 /**

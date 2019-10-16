@@ -70,9 +70,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.datasphere.engine.datasource.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.common.GlobalObjectMapper;
-import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
-import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataprep.PrepUtil;

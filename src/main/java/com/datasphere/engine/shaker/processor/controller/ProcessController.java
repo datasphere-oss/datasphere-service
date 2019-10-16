@@ -15,18 +15,18 @@ package com.datasphere.engine.shaker.processor.controller;
 import com.alibaba.fastjson.JSON;
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
+import com.datasphere.engine.datasource.connections.utils.StringUtils;
 import com.datasphere.engine.shaker.processor.ProcessRunCallable;
 import com.datasphere.engine.shaker.processor.buscommon.ReturnMessageUtils;
 import com.datasphere.engine.shaker.processor.instance.callbackresult.ComponentCalcuateResult;
 import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
 import com.datasphere.engine.shaker.processor.message.status.notice.CallBackStatusMessage;
-import com.datasphere.engine.shaker.processor.service.ProcessDaasService;
+import com.datasphere.engine.shaker.processor.service.ProcessDSSService;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
 import com.datasphere.engine.shaker.processor.service.ProcessService;
 import com.datasphere.engine.shaker.processor.stop.StopSingleInstance;
-import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
-import com.datasphere.server.connections.utils.StringUtils;
+import com.datasphere.engine.shaker.workflow.panelboard.service.PanelServiceImpl;
 
 import io.reactivex.Single;
 import org.apache.commons.logging.Log;
@@ -57,7 +57,7 @@ public class ProcessController extends BaseController {
 	@Autowired
 	private ComponentInstanceService componentInstanceService;
 	@Autowired
-    private ProcessDaasService processDaasService;
+    private ProcessDSSService processDSSService;
 
 	/** Daas-1 test-ok
 	 * 指定组件实例的数据查询
@@ -222,7 +222,7 @@ public class ProcessController extends BaseController {
 			try {
 //				String sql = processService.getProcessSQL(panelId,1);
 //				String jobId = processService.getJobId(sql);
-				return JSON.parseObject(processDaasService.getJobState(jobId));
+				return JSON.parseObject(processDSSService.getJobState(jobId));
 			} catch (Exception e) {
 				return JsonWrapper.failureWrapper(jobId);
 			}

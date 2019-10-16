@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.engine.shaker.workflow.panel.service;
+package com.datasphere.engine.shaker.workflow.panelboard.service;
 
 import java.util.ArrayList;
 import java.util.List;

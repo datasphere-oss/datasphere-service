@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class WorkBookLinks {
-
+  // 实体链接
   @Autowired
   EntityLinks entityLinks;
 
@@ -32,7 +32,7 @@ public class WorkBookLinks {
     return this.entityLinks.linkForSingleResource(WorkBook.class, workBook.getId())
             .withSelfRel();
   }
-
+  // 获得配置链接
   public Link getConfigurationLink(WorkBook workBook) {
     return this.entityLinks.linkForSingleResource(WorkBook.class, workBook.getId())
             .slash("configuration").withRel("configuration");

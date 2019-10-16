@@ -25,7 +25,7 @@ import org.springframework.messaging.support.MessageHeaderAccessor;
 
 import java.util.List;
 
-import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.engine.datasource.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSourceManager;
 
 import static org.springframework.messaging.simp.stomp.StompCommand.CONNECT;

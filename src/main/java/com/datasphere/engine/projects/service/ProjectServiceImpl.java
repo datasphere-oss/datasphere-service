@@ -128,7 +128,7 @@ public class ProjectServiceImpl extends BaseService {
 	/**5
 	 * 查找所有项目,不分页
 	 */
-	public List<Project> getAllProjectList(Project project) {
+	public List<Project> listAllProjects(Project project) {
 //		String userId = UserContextHolder.getUserContext().getOmSysUser().getUserId();
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			ProjectDao dao = sqlSession.getMapper(ProjectDao.class);
@@ -145,7 +145,7 @@ public class ProjectServiceImpl extends BaseService {
 	 * 带面板和分页的的项目列表
 	 * @return
 	 */
-	public Project getAllWithPanelsListByPage(Project project){
+	public Project listAllProjectsByPage(Project project){
 //		String userId = UserContextHolder.getUserContext().getOmSysUser().getUserId();
 		if(StringUtils.isBlank(project.getSortField())) {
 			project.setSortField("create_time");
@@ -235,7 +235,7 @@ public class ProjectServiceImpl extends BaseService {
 	}
 
 	//默认项目
-	public Project getDefultProject(String token) {
+	public Project getProjectByDefault(String token) {
 		Project project = new Project();
 		project.setCreator(null);
 		project.setProjectName("默认项目");
@@ -362,7 +362,7 @@ public class ProjectServiceImpl extends BaseService {
 	 * @param projectId
 	 * @return
 	 */
-	public Map<String, Object> panelPageDetail(String projectId, String id) {
+	public Map<String, Object> panelPageDetails(String projectId, String id) {
 //		String userId = UserContextHolder.getUserContext().getOmSysUser().getUserId();
 		Map<String, Object> panelList=null;
 		//项目不存在，面板不存在

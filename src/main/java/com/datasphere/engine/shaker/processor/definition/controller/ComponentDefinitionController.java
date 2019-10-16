@@ -99,8 +99,8 @@ public class ComponentDefinitionController extends BaseController {
 		});
 	}
 
-	@RequestMapping(value = BASE_PATH+"/listBy", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> listBy(@RequestBody ComponentDefinition componentDefinition) {
+	@RequestMapping(value = BASE_PATH+"/list", method = RequestMethod.POST) 
+	public Single<Map<String,Object>> list(@RequestBody ComponentDefinition componentDefinition) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(componentDefinitionService.listBy(componentDefinition));
 		});

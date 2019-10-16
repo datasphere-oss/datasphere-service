@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.engine.shaker.workflow.panel.model;
+package com.datasphere.engine.shaker.workflow.panelboard.model;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import com.datasphere.engine.projects.model.Project;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstanceRelation;
 
-public class PanelWithAll extends com.datasphere.engine.shaker.workflow.panel.model.Panel {
+public class PanelWithAll extends com.datasphere.engine.shaker.workflow.panelboard.model.Panel {
 	public String getStatus() {
 		return status;
 	}
@@ -31,7 +31,7 @@ public class PanelWithAll extends com.datasphere.engine.shaker.workflow.panel.mo
 
 	List<Project> projects;
 	
-	List<com.datasphere.engine.shaker.workflow.panel.model.Panel> panels;
+	List<com.datasphere.engine.shaker.workflow.panelboard.model.Panel> panels;
 	
 	List<ComponentInstance> componentInstances;
 	
@@ -45,11 +45,11 @@ public class PanelWithAll extends com.datasphere.engine.shaker.workflow.panel.mo
 		this.projects = projects;
 	}
 
-	public List<com.datasphere.engine.shaker.workflow.panel.model.Panel> getPanels() {
+	public List<com.datasphere.engine.shaker.workflow.panelboard.model.Panel> getPanels() {
 		return panels;
 	}
 
-	public void setPanels(List<com.datasphere.engine.shaker.workflow.panel.model.Panel> panels) {
+	public void setPanels(List<com.datasphere.engine.shaker.workflow.panelboard.model.Panel> panels) {
 		this.panels = panels;
 	}
 

@@ -60,7 +60,7 @@ public class ProviderLocalService {
         }
         return map;
     }
-
+    // 列出供应商
     public List<ResourceProvider> listProviders(String type) {
         // return only active providers
         return _providers.entrySet().stream()
@@ -68,7 +68,7 @@ public class ProviderLocalService {
                 .filter(entry -> (entry.getStatus() == SystemKeys.STATUS_READY && entry.getType().equals(type)))
                 .collect(Collectors.toList());
     }
-
+    // 列出类型
     public List<String> listTypes() {
         // return only non empty types
         Set<String> types = new HashSet<>();
@@ -79,7 +79,7 @@ public class ProviderLocalService {
         }
         return new ArrayList<>(types);
     }
-
+    // 获得提供商
     public ResourceProvider getProvider(String id) throws NoSuchProviderException {
 
         // fetch
@@ -94,7 +94,7 @@ public class ProviderLocalService {
 
         return provider;
     }
-
+    // 查询提供商
     public ResourceProvider fetchProvider(String id) throws NoSuchProviderException {
 
         // check if id ends with "Provider"

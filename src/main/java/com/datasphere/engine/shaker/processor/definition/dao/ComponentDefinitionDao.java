@@ -18,7 +18,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.datasphere.engine.manager.resource.provider.dictionary.model.DSSWord;
 import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
-import com.datasphere.engine.shaker.workflow.panel.model.ComponentDefinitionPanel;
+import com.datasphere.engine.shaker.workflow.panelboard.model.ComponentDefinitionPanel;
 
 
 public interface ComponentDefinitionDao {

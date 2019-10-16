@@ -98,7 +98,7 @@ public class WorkspaceRepositoryImpl extends QuerydslRepositorySupport implement
 
     return query.fetch();
   }
-
+  // 通过权限来查找工作空间
   @Override
   public List<String> findMyWorkspaceIdsByPermission(String username, List<String> memberIds, String... permissions) {
 

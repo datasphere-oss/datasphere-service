@@ -50,20 +50,20 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTime;
 import org.springframework.data.rest.core.annotation.RestResource;
 
+import com.datasphere.engine.datasource.DataSource;
+import com.datasphere.engine.datasource.connections.DataConnection;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
+import com.datasphere.server.common.domain.AbstractHistoryEntity;
+import com.datasphere.server.common.domain.DSSDomain;
 import com.datasphere.server.common.domain.context.ContextEntity;
 import com.datasphere.server.common.exception.DSSException;
-import com.datasphere.server.datasource.DataSource;
-import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.DSSDomain;
-import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.notebook.NotebookConnector;
-import com.datasphere.server.domain.user.User;
-import com.datasphere.server.domain.user.UserProfile;
-import com.datasphere.server.domain.user.role.Role;
-import com.datasphere.server.domain.user.role.RoleSet;
 import com.datasphere.server.domain.workbook.WorkBookSummary;
+import com.datasphere.server.user.User;
+import com.datasphere.server.user.UserProfile;
+import com.datasphere.server.user.role.Role;
+import com.datasphere.server.user.role.RoleSet;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -85,54 +85,56 @@ public class Workspace extends AbstractHistoryEntity implements DSSDomain<String
   @GenericGenerator(name = "uuid", strategy = "uuid2")
   @Column(name = "id")
   String id;
-
+  // 工作空间名称
   @Column(name = "ws_name", nullable = false)
   @Field(store = Store.YES)
   @NotBlank
   @Size(max = 150)
   String name;
-
+  // 工作空间描述
   @Column(name = "ws_desc", length = 1000)
   @Size(max = 900)
   String description;
-
+  // 工作空间类型
   @Column(name = "ws_type")
   @Size(max = 150)
   String type;
-
+  // 工作空间所有者
   @JsonProperty(access = WRITE_ONLY)
   @Column(name = "ws_owner_id")
   String ownerId;
-
+  // 用户信息
   @JsonProperty(access = READ_ONLY)
   @Transient
   UserProfile owner;
-
+  // 工作空间公开类型
   @Column(name = "ws_pub_type")
   @Enumerated(EnumType.STRING)
   PublicType publicType;
-
+  // 工作空间已发布
   @Column(name = "ws_published")
   Boolean published;
-
+  // 工作空间活跃
   @Column(name = "ws_active")
   Boolean active;
-
+  // 工作空间最后访问时间
   @Column(name = "ws_last_accessed_time")
   @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
   DateTime lastAccessedTime;
-
+  // 工作空间工作表
   @OneToMany(mappedBy = "workspace", cascade = CascadeType.ALL)
   @OrderBy("modifiedTime DESC")
   @BatchSize(size = 50)
   Set<Book> books;
-
+  
+  // 工作空间成员
   @OneToMany(mappedBy = "workspace", cascade = {CascadeType.ALL}, orphanRemoval = true)
   @RestResource(exported = false, path = "members")
   @BatchSize(size = 100)
   @JsonBackReference
   Set<WorkspaceMember> members;
 
+  // 工作空间角色
   @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(name = "role_set_workspace",
       joinColumns = @JoinColumn(name = "ws_id", referencedColumnName = "id"),
@@ -141,6 +143,7 @@ public class Workspace extends AbstractHistoryEntity implements DSSDomain<String
   @RestResource(path = "rolesets")
   List<RoleSet> roleSets;
 
+  // 工作空间连接器
   @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(name = "connector_workspace",
       joinColumns = @JoinColumn(name = "ws_id", referencedColumnName = "id"),
@@ -189,6 +192,7 @@ public class Workspace extends AbstractHistoryEntity implements DSSDomain<String
    * Spring data rest 제약으로 인한 Dummy Property. - Transient 어노테이션 구성시 HandleBeforeSave 에서 인식 못하는 문제
    * 발생
    */
+  // 工作空间上下文
   @Column(name = "workspace_contexts", length = 10000)
   @JsonRawValue
   @JsonDeserialize(using = KeepAsJsonDeserialzier.class)
@@ -264,7 +268,7 @@ public class Workspace extends AbstractHistoryEntity implements DSSDomain<String
                 .filter(role -> role.getDefaultRole())
                 .findFirst().orElseThrow(() -> new DSSException("Default role required."));
   }
-
+  // 删除工作空间的成员
   public void deleteMember(String... memberIds) {
 
     Map<String, WorkspaceMember> memberMap = getMemberIdMap();
@@ -282,6 +286,7 @@ public class Workspace extends AbstractHistoryEntity implements DSSDomain<String
   /**
    * deprecated
    */
+  // 通过类型删除连接器
   public void deleteConnectorByType(String connectorType) {
     synchronized (connectors) {
       for (NotebookConnector connector : connectors) {
@@ -519,8 +524,8 @@ public class Workspace extends AbstractHistoryEntity implements DSSDomain<String
         ", publicType=" + publicType +
         '}';
   }
-
+  // 开放类型
   public enum PublicType {
-    PRIVATE, SHARED
+    PRIVATE,SEMI_SHARED ,SHARED
   }
 }

@@ -19,9 +19,9 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 
 import com.datasphere.common.data.Dataset;
+import com.datasphere.engine.datasource.connections.jdbc.service.DataAccessor;
 import com.datasphere.engine.shaker.processor.instance.AssociationEndpoint;
 import com.datasphere.engine.shaker.processor.instance.Component;
-import com.datasphere.server.connections.service.DataAccessor;
 
 
 public class SubProcessRunner extends ProcessRunner {

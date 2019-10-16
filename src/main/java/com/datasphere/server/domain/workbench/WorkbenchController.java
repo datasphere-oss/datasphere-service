@@ -29,13 +29,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.datasphere.datasource.connections.jdbc.accessor.JdbcAccessor;
 import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
+<<<<<<< Updated upstream
 import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
 import com.datasphere.datasource.connections.DataConnection;
 import com.datasphere.datasource.connections.DataConnectionHelper;
 import com.datasphere.datasource.connections.jdbc.accessor.HiveDataAccessor;
 import com.datasphere.datasource.connections.jdbc.dialect.HiveDialect;
+=======
+import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
+import com.datasphere.server.domain.dataconnection.accessor.HiveDataAccessor;
+import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
+>>>>>>> Stashed changes
 import com.datasphere.server.domain.workbench.dto.ImportFile;
 import com.datasphere.server.domain.workbench.hive.WorkbenchHiveService;
 import com.datasphere.server.domain.workbench.util.WorkbenchDataSource;

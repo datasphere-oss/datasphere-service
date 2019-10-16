@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.engine.shaker.workflow.panel.service;
+package com.datasphere.engine.shaker.workflow.panelboard.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,15 +40,17 @@ import com.datasphere.engine.shaker.processor.instance.service.ComponentInstance
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 import com.datasphere.engine.shaker.processor.model.ProcessRecord;
-import com.datasphere.engine.shaker.workflow.panel.constant.PanelState;
-import com.datasphere.engine.shaker.workflow.panel.dao.PanelDao;
-import com.datasphere.engine.shaker.workflow.panel.model.Panel;
-import com.datasphere.engine.shaker.workflow.panel.model.PanelWithAll;
+import com.datasphere.engine.shaker.workflow.panelboard.constant.PanelState;
+import com.datasphere.engine.shaker.workflow.panelboard.dao.PanelDao;
+import com.datasphere.engine.shaker.workflow.panelboard.model.Panel;
+import com.datasphere.engine.shaker.workflow.panelboard.model.PanelWithAll;
 import com.datasphere.server.common.exception.JIllegalOperationException;
 
 @Service
 public class PanelServiceImpl extends BaseService {
-	public static final String CustomPanelName = "Default Project";// Custom panel default name
+	
+	// Custom panel default name
+	public static final String CustomPanelName = "Default Project";
 
 //	@@Autowired
 //    ProjectServiceImpl projectService;
@@ -82,13 +84,9 @@ public class PanelServiceImpl extends BaseService {
 			PanelDao dao = sqlSession.getMapper(PanelDao.class);
 //			panel.setCreator(exchangeSSOService.getAccount(token));
 			panel.setCreateTime(new Date(System.currentTimeMillis()));
-//            panel.setUserId(userId);
-//            panel.setDepartmentId(departmentId);
-//            panel.setDepartmentName(exchangeSSOService.getCurDepNameIdByUserId(userId,token));
 			dao.insert(panel);
 			sqlSession.commit();
 			return panel;
-//			return "Success";
 		}
 	}
 

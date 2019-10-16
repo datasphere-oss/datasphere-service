@@ -14,9 +14,9 @@
 
 package com.datasphere.server.connections.jdbc.dialect;
 
-import com.datasphere.datasource.connections.jdbc.JdbcConnectInformation;
-import com.datasphere.datasource.connections.jdbc.dialect.JdbcDialect;
-import com.datasphere.datasource.connections.jdbc.dialect.MySQLDialect;
+import com.datasphere.engine.datasource.connections.jdbc.JdbcConnectInformation;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.MySQLDialect;
 import com.datasphere.server.common.exception.FunctionWithException;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;

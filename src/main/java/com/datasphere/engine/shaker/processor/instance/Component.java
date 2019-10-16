@@ -17,7 +17,11 @@ import com.datasphere.engine.shaker.processor.common.constant.ComponentClassific
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 
 import java.util.List;
-
+/**
+ * 数据流的组件
+ * @author theseusyang
+ *
+ */
 public interface Component extends ComponentGetDataKeyMethod {
 
 	String getId();

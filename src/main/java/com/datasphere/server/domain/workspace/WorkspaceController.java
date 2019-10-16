@@ -130,13 +130,13 @@ public class WorkspaceController {
 
   @Autowired
   WorkspaceFavoriteRepository workspaceFavoriteRepository;
-
+  // 群组容器
   @Autowired
   GroupRepository groupRepository;
 
   @Autowired
   WorkspacePagedResourcesAssembler pagedResourcesAssembler;
-
+  // 模型容器
   @Autowired
   NotebookModelRepository notebookModelRepository;
 
@@ -227,7 +227,7 @@ public class WorkspaceController {
                                                                                                     workspaceProjections.getProjectionByName(projection),
                                                                                                     publicWorkspaces)));
   }
-
+  // 查找工作空间
   @RequestMapping(path = "/workspaces", method = RequestMethod.GET)
   public @ResponseBody
   ResponseEntity<?> findWorkspaces(
@@ -302,7 +302,7 @@ public class WorkspaceController {
                                                         resourceAssembler));
     }
   }
-
+  // 管理者工作空间
   @RequestMapping(path = "/workspaces/byadmin", method = RequestMethod.GET)
   public @ResponseBody
   ResponseEntity<?> findWorkspacesByAdmin(
@@ -344,7 +344,7 @@ public class WorkspaceController {
    * @param id
    * @param pageable
    * @param resourceAssembler
-   * @return
+   * @return notebook model
    */
   @RequestMapping(path = "/workspaces/{id}/nbmodels", method = RequestMethod.GET)
   public @ResponseBody
@@ -443,7 +443,7 @@ public class WorkspaceController {
     LOGGER.debug("authenticationType = {}", authenticationType);
     LOGGER.debug("workspaceId = {}", id);
     LOGGER.debug("pageable = {}", pageable);
-
+    // 获取认证类型
     DataConnection.AuthenticationType authenticationTypeValue = null;
     if (StringUtils.isNotEmpty(authenticationType)) {
       authenticationTypeValue = SearchParamValidator
@@ -465,6 +465,7 @@ public class WorkspaceController {
   }
 
   /**
+   * 通过工作空间查找连接器
    * @param workspaceId
    * @param type
    */
@@ -474,7 +475,7 @@ public class WorkspaceController {
                                                       @RequestParam(value = "type", required = false) String type,
                                                       Pageable pageable,
                                                       PersistentEntityResourceAssembler resourceAssembler) {
-
+	
     Workspace workspace = workspaceRepository.findById(workspaceId).get();
     if (workspace == null) {
       throw new ResourceNotFoundException(workspaceId);
@@ -494,6 +495,7 @@ public class WorkspaceController {
   }
 
   /**
+   * 在工作空间中添加连接器
    * @param wid  workspace Id
    * @param cids notebook-connectors Id
    */
@@ -556,7 +558,7 @@ public class WorkspaceController {
 
     return ResponseEntity.ok(resourceAssembler.toResource(book));
   }
-
+  // 找到仪表盘
   @RequestMapping(path = "/workspaces/{workspaceId}/dashboards", method = RequestMethod.GET)
   public @ResponseBody
   ResponseEntity<?> findDashBoardsInWorkspace(@PathVariable("workspaceId") String workspaceId,
@@ -574,7 +576,7 @@ public class WorkspaceController {
 
     return ResponseEntity.ok(pagedResourcesAssembler.toResource(dashBoards, resourceAssembler));
   }
-
+  // 工作空间统计信息
   @RequestMapping(path = "/workspaces/{workspaceId}/statistics", method = RequestMethod.GET)
   public @ResponseBody
   ResponseEntity<?> findWorkspaceStatistics(@PathVariable("workspaceId") String workspaceId,
@@ -865,7 +867,7 @@ public class WorkspaceController {
 
     return ResponseEntity.noContent().build();
   }
-
+  // 获取工作空间的角色信息
   @RequestMapping(path = "/workspaces/{id}/rolesets", method = RequestMethod.POST)
   public ResponseEntity<?> addRoleSetForWorkspace(@PathVariable("id") String workspaceId,
                                                   @RequestBody RoleSet roleSet) {
@@ -874,7 +876,7 @@ public class WorkspaceController {
     if (workspace == null) {
       throw new ResourceNotFoundException(workspaceId);
     }
-
+    // 在角色中添加工作空间
     roleSet.addWorkspace(workspace);
     roleSet.setScope(RoleSet.RoleSetScope.PRIVATE);
 
@@ -897,7 +899,7 @@ public class WorkspaceController {
 
     return ResponseEntity.noContent().build();
   }
-
+  // 更改工作空间的角色
   @RequestMapping(path = "/workspaces/{id}/rolesets/{roleSetName}/to/{toRoleSetName}",
       method = {RequestMethod.PUT, RequestMethod.PATCH})
   public ResponseEntity<?> changeWorkspaceRoleSet(@PathVariable("id") String workspaceId,

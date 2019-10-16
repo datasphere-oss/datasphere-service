@@ -20,7 +20,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * 列字段定义
+ * @author theseusyang
+ *
+ */
 public class ColumnDefinitionUtil {
 	private static final ObjectMapper MAPPER = new ObjectMapper();
 

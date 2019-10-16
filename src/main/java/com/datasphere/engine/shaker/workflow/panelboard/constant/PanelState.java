@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.engine.shaker.workflow.panel.constant;
+package com.datasphere.engine.shaker.workflow.panelboard.constant;
 
 public class PanelState {
 	public static String RUNNING = "0";//运行状态不能删除,其余状态都可以删除

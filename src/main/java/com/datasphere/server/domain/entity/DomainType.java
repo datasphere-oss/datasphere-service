@@ -12,10 +12,10 @@
 
 package com.datasphere.server.domain.entity;
 
+import com.datasphere.engine.datasource.DataSource;
+import com.datasphere.engine.datasource.DataSourceProjections;
 import com.datasphere.government.mdm.Metadata;
 import com.datasphere.server.common.BaseProjections;
-import com.datasphere.datasource.DataSource;
-import com.datasphere.datasource.DataSourceProjections;
 import com.datasphere.server.common.domain.DSSDomain;
 import com.datasphere.server.domain.context.ContextEntity;
 import com.datasphere.server.domain.notebook.Notebook;

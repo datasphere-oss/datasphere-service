@@ -1,22 +1,29 @@
 package com.datasphere.engine.manager.resource.provider.model;
 
 /**
- * database
+ * 数据库连接信息
  */
 public class DBConnectionInfo {
   private String name;
+  // 业务类型
   private String businessType;
-  private String typeName;//DB2, MySQL, Oracle, Postgres, SQL Server
-  private String hostIP;// 主机IP地址
-  private String hostPort; // 主机Port
-  private String userName; // 用户名
+  //数据库类型名: DB2, MySQL, Oracle, Postgres, SQL Server
+  private String typeName;
+  //主机IP地址
+  private String hostIP;
+  //主机Port
+  private String hostPort; 
+  //用户名
+  private String userName; 
   private String userPassword;
-  private String databaseName; // 数据库名称 或 Oracle的SID
+  //数据库名称 或 Oracle的SID
+  private String databaseName; 
   private String searchName;
   private String tableName;
   private String columns;
   private String rows;
-  private String query;//查询语句
+  //查询语句
+  private String query;
 
   public String getName() {
     return name;

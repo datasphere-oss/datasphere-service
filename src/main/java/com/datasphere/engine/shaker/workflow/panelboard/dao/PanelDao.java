@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.engine.shaker.workflow.panel.dao;
+package com.datasphere.engine.shaker.workflow.panelboard.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +19,7 @@ import javax.inject.Singleton;
 
 import com.datasphere.engine.manager.resource.provider.mybatis.page.Pager;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
-import com.datasphere.engine.shaker.workflow.panel.model.Panel;
+import com.datasphere.engine.shaker.workflow.panelboard.model.Panel;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

@@ -13,7 +13,11 @@
 package com.datasphere.engine.shaker.processor.common.constant;
 
 import com.datasphere.core.common.utils.O;
-
+/**
+ * 处理组件分类
+ * @author theseusyang
+ *
+ */
 public enum ComponentClassification {
 	Normalize,				// 归一化
 	Standardize,				// 标准化

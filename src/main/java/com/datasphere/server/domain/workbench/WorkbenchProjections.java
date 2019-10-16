@@ -21,9 +21,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
+import com.datasphere.engine.datasource.connections.DataConnectionProjections;
 import com.datasphere.server.common.BaseProjections;
-import com.datasphere.server.domain.dataconnection.DataConnectionProjections;
-import com.datasphere.server.domain.user.UserProfile;
+import com.datasphere.server.user.UserProfile;
 import com.datasphere.server.domain.workspace.WorkspaceProjections;
 
 /**
@@ -36,17 +36,17 @@ public class WorkbenchProjections extends BaseProjections{
   public interface DefaultProjection {
 
     String getId();
-
+    // 工作表类型
     String getType();
-
+    // 工作表名称
     String getName();
-
+    // 工作表描述
     String getDescription();
-
+    // 工作表文件夹
     String getFolderId();
-
+    // 数据库名称
     String getDatabaseName();
-
+    // 用户资料
     @Value("#{@cachedUserService.findUserProfile(target.createdBy)}")
     UserProfile getCreatedBy();
 
@@ -62,25 +62,25 @@ public class WorkbenchProjections extends BaseProjections{
   public interface DetailViewProjection {
 
     String getId();
-
+    // 工作表类型
     String getType();
-
+    // 工作表名称
     String getName();
-
+    // 工作表描述
     String getDescription();
-
+    // 工作表文件夹
     String getFolderId();
-
+    // 工作表全局变量
     String getGlobalVar();
-
+    // 获得工作空间
     @Value("#{T(com.datasphere.server.util.HibernateUtils).unproxy(target.workspace)}")
     WorkspaceProjections.HeaderViewProjection getWorkspace();
-
+    // 获得数据连接
     @Value("#{T(com.datasphere.server.util.HibernateUtils).unproxy(target.dataConnection)}")
     DataConnectionProjections.defaultProjection getDataConnection();
 
     Set<QueryEditor> getQueryEditors();
-
+    // 获得数据库名称
     String getDatabaseName();
 
     @Value("#{target.dataConnection.workspaces.contains(target.workspace) || target.dataConnection.published}")
@@ -96,12 +96,12 @@ public class WorkbenchProjections extends BaseProjections{
 
     DateTime getModifiedTime();
   }
-
+  // 工作表浏览
   @Projection(name = "workbenchNavigation", types = { Workbench.class })
   public interface WorkbenchNavigationProjection {
 
     String getId();
-
+    // 工作表类型
     String getType();
 
     String getName();
@@ -111,16 +111,16 @@ public class WorkbenchProjections extends BaseProjections{
     String getFolderId();
 
 //    WorkspaceProjections.HeaderViewProjection getWorkspace();
-
+    // 工作空间
     @Value("#{target.workspace.id}")
     String getWorkspaceId();
-
+    // 工作空间名称
     @Value("#{target.workspace.name}")
     String getWorkspaceName();
 
     @Value("#{@cachedUserService.findUserProfile(target.createdBy)}")
     UserProfile getCreatedBy();
-
+    // 创建时间
     DateTime getCreatedTime();
 
     @Value("#{@cachedUserService.findUserProfile(target.modifiedBy)}")

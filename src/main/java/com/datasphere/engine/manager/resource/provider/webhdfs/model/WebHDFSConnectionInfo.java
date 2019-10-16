@@ -25,15 +25,15 @@ public class WebHDFSConnectionInfo {
      */
     private String typeName;
 
-    //ip
+    // IP地址
     private String hostIP;
-    //端口
+    // 端口
     private String hostPort;
-    //路径
+    // 路径
     private String descriptor;
-    //用户
+    // 用户
     private String userName;
-    //密码
+    // 密码
     private String password;
 
     public String getName() {

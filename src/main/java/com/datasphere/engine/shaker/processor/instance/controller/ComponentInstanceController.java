@@ -27,13 +27,13 @@ import com.datasphere.common.data.Dataset;
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.core.utils.JsonWrapper;
+import com.datasphere.engine.datasource.connections.model.DataSetInstance;
 import com.datasphere.engine.manager.resource.provider.service.DataQueryService;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.instance.model.DeleteComponentInstanceResult;
 import com.datasphere.engine.shaker.processor.instance.model.QueryDataParams;
 import com.datasphere.engine.shaker.processor.instance.model.UpdatePositionEntity;
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
-import com.datasphere.server.connections.model.DataSetInstance;
 
 import io.reactivex.Single;
 import javax.inject.Inject;

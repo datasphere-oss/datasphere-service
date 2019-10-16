@@ -44,7 +44,7 @@ public class ResourceService {
     private ResourceLocalService resourceLocalService;
 
     /*
-     * Data
+     * Data 创建资源
      */
     @PreAuthorize("hasPermission(#scopeId, '" + SystemKeys.SCOPE + "', '"
             + SystemKeys.PERMISSION_RESOURCE_CREATE + "')")
@@ -58,7 +58,7 @@ public class ResourceService {
         return resourceLocalService.create(scopeId, userId, type, providerId, name, properties, tags);
 
     }
-
+    // 添加资源
     @PreAuthorize("hasPermission(#scopeId, '" + SystemKeys.SCOPE + "', '"
             + SystemKeys.PERMISSION_RESOURCE_CREATE + "')")
     public Resource add(String scopeId, String userId, String type, String providerId,
@@ -71,7 +71,7 @@ public class ResourceService {
         return resourceLocalService.add(scopeId, userId, type, providerId, uri, properties, tags);
 
     }
-
+    // 更新资源
     @PreAuthorize("hasPermission(#id, '" + SystemKeys.ENTITY_RESOURCE +
             "', '" + SystemKeys.PERMISSION_RESOURCE_UPDATE + "')")
     public Resource update(String scopeId, String userId, long id,
@@ -83,7 +83,7 @@ public class ResourceService {
         return resourceLocalService.update(id, properties, tags);
 
     }
-
+    // 删除资源
     @PreAuthorize("hasPermission(#id, '" + SystemKeys.ENTITY_RESOURCE +
             "', '" + SystemKeys.PERMISSION_RESOURCE_DELETE + "')")
     public void delete(String scopeId, String userId, long id)
@@ -93,7 +93,7 @@ public class ResourceService {
         // call local service
         resourceLocalService.delete(id);
     }
-
+    // 获得资源
     @PreAuthorize("hasPermission(#id, '" + SystemKeys.ENTITY_RESOURCE +
             "', '" + SystemKeys.PERMISSION_RESOURCE_VIEW + "')")
     public Resource get(String scopeId, String userId, long id) throws NoSuchResourceException {
@@ -102,7 +102,7 @@ public class ResourceService {
         // call local service
         return resourceLocalService.get(id);
     }
-
+    // 是否存在资源
     @PreAuthorize("hasPermission(#scopeId, '" + SystemKeys.SCOPE +
             "', '" + SystemKeys.PERMISSION_RESOURCE_VIEW + "')")
     public boolean exists(String scopeId, String userId, long id) throws NoSuchResourceException {
@@ -119,7 +119,7 @@ public class ResourceService {
     /*
      * Count
      */
-
+    // 计数
     @PreAuthorize("hasPermission(#scopeId, '" + SystemKeys.SCOPE +
             "', '" + SystemKeys.PERMISSION_RESOURCE_VIEW + "')")
     public long count(String scopeId, String userId) {
@@ -153,7 +153,7 @@ public class ResourceService {
     }
 
     /*
-     * List
+     * List - 列出范围内资源信息
      */
 
     @PreAuthorize("hasPermission(#scopeId, '" + SystemKeys.SCOPE + "', '" + SystemKeys.PERMISSION_RESOURCE_VIEW + "')")
@@ -171,7 +171,7 @@ public class ResourceService {
         // call local service
         return list(scopeId, userId, page, pageSize, "id", SystemKeys.ORDER_ASC);
     }
-
+    // 过滤后列出资源信息
     @PreAuthorize("hasPermission(#scopeId, '" + SystemKeys.SCOPE + "', '" + SystemKeys.PERMISSION_RESOURCE_VIEW + "')")
     @PostFilter("hasPermission(filterObject, '" + SystemKeys.PERMISSION_RESOURCE_VIEW + "')")
     public List<Resource> list(String scopeId, String userId, int page, int pageSize, String orderBy, String order) {
@@ -183,7 +183,7 @@ public class ResourceService {
         // see DefaultMethodSecurityExpressionHandler.java
         return new ArrayList<>(resourceLocalService.listByScopeId(scopeId, pageable));
     }
-
+    // 通过类型列出资源信息
     @PreAuthorize("hasPermission(#scopeId, '" + SystemKeys.SCOPE + "', '" + SystemKeys.PERMISSION_RESOURCE_VIEW + "')")
     @PostFilter("hasPermission(filterObject, '" + SystemKeys.PERMISSION_RESOURCE_VIEW + "')")
     public List<Resource> listByType(String scopeId, String userId, String type) {
@@ -203,7 +203,7 @@ public class ResourceService {
         // see DefaultMethodSecurityExpressionHandler.java
         return new ArrayList<>(resourceLocalService.listByProviderAndScopeId(provider, scopeId));
     }
-
+    // 通过用户列出资源信息
     @PreAuthorize("hasPermission(#scopeId, '" + SystemKeys.SCOPE + "', '" + SystemKeys.PERMISSION_RESOURCE_VIEW + "')")
     @PostFilter("hasPermission(filterObject, '" + SystemKeys.PERMISSION_RESOURCE_VIEW + "')")
     public List<Resource> listByUserId(String scopeId, String userId, String ownerId) {

@@ -12,7 +12,7 @@
 
 package com.datasphere.server.user.role;
 
-import com.datasphere.server.domain.user.DirectoryProfile;
+import com.datasphere.server.user.DirectoryProfile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

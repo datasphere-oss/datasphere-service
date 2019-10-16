@@ -28,11 +28,15 @@ import javax.annotation.PostConstruct;
 
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.datasource.connections.DataConnection;
+<<<<<<< Updated upstream
 import com.datasphere.datasource.connections.jdbc.dialect.HiveDialect;
+=======
+import com.datasphere.datasource.connections.dialect.HiveDialect;
+>>>>>>> Stashed changes
 
 @Component
-@ConfigurationProperties(prefix = "polaris.storage")
-@ConditionalOnProperty("polaris.storage.stagedb.hostname")
+@ConfigurationProperties(prefix = "datasphere.storage")
+@ConditionalOnProperty("datasphere.storage.stagedb.hostname")
 public class StorageProperties {
 
   public enum StorageType{

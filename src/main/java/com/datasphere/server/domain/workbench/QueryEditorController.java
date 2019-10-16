@@ -40,9 +40,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.supercsv.prefs.CsvPreference;
 
+import com.datasphere.engine.datasource.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
-import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
-import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.datasource.Field;
 import com.datasphere.server.datasource.connection.jdbc.JdbcCSVWriter;
 import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;

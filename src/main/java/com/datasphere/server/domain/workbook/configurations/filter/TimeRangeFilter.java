@@ -29,18 +29,18 @@ import org.joda.time.Period;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import static com.datasphere.engine.datasource.Field.FieldRole.TIMESTAMP;
+
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Locale;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
-import com.datasphere.datasource.Field;
+import com.datasphere.engine.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 import com.datasphere.server.query.druid.AbstractQueryBuilder;
 import com.datasphere.server.query.druid.funtions.DateTimeMillisFunc;
-
-import static com.datasphere.datasource.Field.FieldRole.TIMESTAMP;
 
 @JsonTypeName("time_range")
 public class TimeRangeFilter extends TimeFilter {

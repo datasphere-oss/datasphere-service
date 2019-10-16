@@ -68,7 +68,7 @@ public class PostgresSqlProvider extends ResourceProvider {
 
     @Value("${providers.postgressql.password}")
     private String PASSWORD;
-
+    // postgresql客户端
     private PostgresSqlClient _client;
 
     @Override
@@ -114,7 +114,7 @@ public class PostgresSqlProvider extends ResourceProvider {
     public int getStatus() {
         return STATUS;
     }
-
+    // 创建资源
     @Override
     public Resource createResource(String scopeId, String userId, String name, Map<String, Serializable> properties)
             throws ResourceProviderException, InvalidNameException, DuplicateNameException {
@@ -186,13 +186,13 @@ public class PostgresSqlProvider extends ResourceProvider {
             throw new ResourceProviderException("sql error");
         }
     }
-
+    // 更新资源
     @Override
     public void updateResource(Resource resource) throws ResourceProviderException {
         // TODO
 
     }
-
+    // 删除资源
     @Override
     public void deleteResource(Resource resource) throws ResourceProviderException {
 
@@ -221,7 +221,7 @@ public class PostgresSqlProvider extends ResourceProvider {
             throw new ResourceProviderException("sql error");
         }
     }
-
+    // 检查资源
     @Override
     public void checkResource(Resource resource) throws ResourceProviderException {
         // TODO

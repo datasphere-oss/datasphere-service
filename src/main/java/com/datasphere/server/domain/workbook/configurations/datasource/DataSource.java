@@ -42,7 +42,7 @@ public abstract class DataSource implements Serializable {
    * Biz. Logic 용 객체(스펙과 관련 없음)
    */
   @JsonIgnore
-  com.datasphere.datasource.DataSource metaDataSource;
+  com.datasphere.engine.datasource.DataSource metaDataSource;
 
   public DataSource() {
     // Empty Constructor
@@ -68,11 +68,11 @@ public abstract class DataSource implements Serializable {
     this.temporary = temporary;
   }
 
-  public com.datasphere.datasource.DataSource getMetaDataSource() {
+  public com.datasphere.engine.datasource.DataSource getMetaDataSource() {
     return metaDataSource;
   }
 
-  public void setMetaDataSource(com.datasphere.datasource.DataSource metaDataSource) {
+  public void setMetaDataSource(com.datasphere.engine.datasource.DataSource metaDataSource) {
     this.metaDataSource = metaDataSource;
   }
 }

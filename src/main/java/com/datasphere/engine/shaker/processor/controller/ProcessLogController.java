@@ -14,9 +14,10 @@ package com.datasphere.engine.shaker.processor.controller;
 
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
+import com.datasphere.engine.datasource.connections.utils.StringUtils;
 import com.datasphere.engine.shaker.processor.service.ProcessInstanceService;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
-import com.datasphere.server.connections.utils.StringUtils;
+
 import io.reactivex.Single;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

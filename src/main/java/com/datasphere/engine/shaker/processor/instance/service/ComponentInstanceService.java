@@ -41,13 +41,16 @@ import com.datasphere.core.common.utils.UUIDUtils;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.core.utils.ObjectMapperUtils;
+import com.datasphere.engine.datasource.connections.dao.DataSetInstanceDao;
+import com.datasphere.engine.datasource.connections.jdbc.service.DataAccessor;
+import com.datasphere.engine.datasource.connections.model.DataSetInstance;
 import com.datasphere.engine.manager.resource.provider.db.dao.DataSourceDao;
 import com.datasphere.engine.manager.resource.provider.elastic.model.QueryDBDataParams;
 import com.datasphere.engine.manager.resource.provider.model.DataSource;
 import com.datasphere.engine.manager.resource.provider.service.DataQueryService;
 import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
-import com.datasphere.engine.shaker.processor.definition.constant.GlobalDefine;
+import com.datasphere.engine.shaker.processor.definition.constant.GlobalConstant;
 import com.datasphere.engine.shaker.processor.definition.dao.ComponentDefinitionDao;
 import com.datasphere.engine.shaker.processor.instance.analysis.WarpInputAndOutput;
 import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;
@@ -59,12 +62,9 @@ import com.datasphere.engine.shaker.processor.instance.model.ComponentInstanceRe
 import com.datasphere.engine.shaker.processor.instance.model.DeleteComponentInstanceResult;
 import com.datasphere.engine.shaker.processor.instance.model.GraphNode;
 import com.datasphere.engine.shaker.processor.instance.model.UpdatePositionEntity;
-import com.datasphere.engine.shaker.workflow.panel.dao.PanelDao;
+import com.datasphere.engine.shaker.workflow.panelboard.dao.PanelDao;
 import com.datasphere.server.common.exception.JIllegalOperationException;
 import com.datasphere.server.common.exception.JRuntimeException;
-import com.datasphere.server.connections.dao.DataSetInstanceDao;
-import com.datasphere.server.connections.model.DataSetInstance;
-import com.datasphere.server.connections.service.DataAccessor;
 import com.datasphere.server.sso.service.DSSUserTokenService;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -122,7 +122,7 @@ public class ComponentInstanceService extends BaseService {
 				componentInstance.setComponentType(Enum.valueOf(ComponentClassification.class, componentDefinition.getCode()));
 //				 判断是否为子流程
 			} catch (RuntimeException e) {
-				throw new JRuntimeException(GlobalDefine.ERROR_CODE.COMPONENT_NAME_CONSISTENCY,
+				throw new JRuntimeException(GlobalConstant.ERROR_CODE.COMPONENT_NAME_CONSISTENCY,
 						"组件名称与应用内部定义不一致！NAME＝" + componentDefinition.getCode());
 			}
 			componentInstance.setComponentClassification(componentDefinition.getClassification());// 冗余保存组件分类
@@ -466,7 +466,7 @@ public class ComponentInstanceService extends BaseService {
 			List<ComponentInstance> start = new LinkedList<ComponentInstance>();
 			List<ComponentInstance> list = getAllComponentInstancesToCompInsIdWithPanel(panelId, toComponentInstanceId);
 			for (ComponentInstance ci : list) {// 根据组件分类判断是否起始点
-				if (ci.getComponentClassification().startsWith(GlobalDefine.COMPONENT_CLASSIFICATION.MY_DATASOURCE)) {
+				if (ci.getComponentClassification().startsWith(GlobalConstant.COMPONENT_CLASSIFICATION.MY_DATASOURCE)) {
 					start.add(ci);
 				}
 			}

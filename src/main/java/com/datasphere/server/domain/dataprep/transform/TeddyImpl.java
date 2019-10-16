@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.engine.datasource.connections.jdbc.accessor.JdbcAccessor;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataprep.PrepProperties;

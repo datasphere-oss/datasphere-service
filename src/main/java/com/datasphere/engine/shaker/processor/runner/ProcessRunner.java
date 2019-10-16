@@ -26,6 +26,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.datasphere.common.data.Dataset;
+import com.datasphere.engine.datasource.connections.jdbc.service.DataAccessor;
 import com.datasphere.engine.shaker.processor.instance.AssociationEndpoint;
 import com.datasphere.engine.shaker.processor.instance.Component;
 import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanceStatus;
@@ -33,8 +34,7 @@ import com.datasphere.engine.shaker.processor.instance.service.ComponentInstance
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
 import com.datasphere.engine.shaker.processor.stop.StopSingleInstance;
-import com.datasphere.engine.shaker.workflow.panel.constant.PanelState;
-import com.datasphere.server.connections.service.DataAccessor;
+import com.datasphere.engine.shaker.workflow.panelboard.constant.PanelState;
 
 public class ProcessRunner {
 	protected DataAccessor dataAccessor;

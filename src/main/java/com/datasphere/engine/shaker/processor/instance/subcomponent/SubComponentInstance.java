@@ -32,7 +32,7 @@ import com.datasphere.engine.shaker.processor.instance.Component;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 import com.datasphere.engine.shaker.processor.runner.SubProcessRunner;
-import com.datasphere.engine.shaker.workflow.panel.constant.PanelState;
+import com.datasphere.engine.shaker.workflow.panelboard.constant.PanelState;
 import com.datasphere.server.common.exception.JIllegalOperationException;
 
 

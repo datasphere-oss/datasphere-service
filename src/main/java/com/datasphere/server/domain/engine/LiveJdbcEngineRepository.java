@@ -34,8 +34,8 @@ import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.stereotype.Component;
 import org.supercsv.prefs.CsvPreference;
 
+import com.datasphere.engine.datasource.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.common.GlobalObjectMapper;
-import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.datasource.data.QueryTimeExcetpion;
 import com.datasphere.server.datasource.data.forward.CsvResultForward;
 import com.datasphere.server.datasource.data.forward.JsonResultForward;

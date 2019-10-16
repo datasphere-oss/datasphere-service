@@ -27,9 +27,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import com.datasphere.server.datasource.DataSource;
-import com.datasphere.server.datasource.DataSourceRepository;
-import com.datasphere.server.datasource.QDataSource;
+import com.datasphere.engine.datasource.DataSource;
+import com.datasphere.engine.datasource.DataSourceRepository;
+import com.datasphere.engine.datasource.QDataSource;
 import com.datasphere.server.domain.workspace.BookRepository;
 import com.datasphere.server.domain.workspace.WorkspaceRepository;
 import com.datasphere.server.domain.workspace.WorkspaceService;
@@ -41,19 +41,19 @@ public class WorkBookService {
 
   @Autowired
   BookRepository bookRepository;
-
+  // 工作表容器
   @Autowired
   WorkBookRepository workBookRepository;
-
+  // 数据源容器
   @Autowired
   DataSourceRepository dataSourceRepository;
-
+  // 工作空间容器
   @Autowired
   WorkspaceRepository workspaceRepository;
-
+  // 仪表盘服务
   @Autowired
   DashBoardService dashBoardService;
-
+  // 工作空间服务
   @Autowired
   WorkspaceService workspaceService;
 

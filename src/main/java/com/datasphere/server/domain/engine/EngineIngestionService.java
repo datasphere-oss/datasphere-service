@@ -39,27 +39,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.datasphere.engine.datasource.ingestion.IngestionHistory.IngestionStatus.RUNNING;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.datasphere.engine.datasource.DataSource;
+import com.datasphere.engine.datasource.DataSourceIngestionException;
+import com.datasphere.engine.datasource.connections.jdbc.JdbcConnectionService;
+import com.datasphere.engine.datasource.ingestion.IngestionHistory;
+import com.datasphere.engine.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.engine.datasource.ingestion.IngestionInfo;
+import com.datasphere.engine.datasource.ingestion.IngestionOptionService;
+import com.datasphere.engine.datasource.ingestion.RealtimeIngestionInfo;
+import com.datasphere.engine.datasource.realtime.RealTimeProperties;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.fileloader.FileLoaderFactory;
-import com.datasphere.server.datasource.DataSource;
-import com.datasphere.server.datasource.DataSourceIngestionException;
-import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
-import com.datasphere.server.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.datasource.ingestion.IngestionHistoryRepository;
-import com.datasphere.server.datasource.ingestion.IngestionInfo;
-import com.datasphere.server.datasource.ingestion.IngestionOptionService;
-import com.datasphere.server.datasource.ingestion.RealtimeIngestionInfo;
-import com.datasphere.server.datasource.realtime.RealTimeProperties;
 import com.datasphere.server.domain.engine.model.IngestionStatusResponse;
 import com.datasphere.server.spec.druid.ingestion.KafkaRealTimeIndexBuilder;
 import com.datasphere.server.spec.druid.ingestion.SupervisorIndex;
-
-import static com.datasphere.server.datasource.ingestion.IngestionHistory.IngestionStatus.RUNNING;
 
 /**
  *

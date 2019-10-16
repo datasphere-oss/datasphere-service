@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.engine.panel.controller;
+package com.datasphere.engine.projects.panelboard.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +19,9 @@ import java.util.Map;
 import com.datasphere.core.common.BaseController;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.core.utils.JsonWrapper;
-import com.datasphere.engine.shaker.workflow.panel.model.Panel;
-import com.datasphere.engine.shaker.workflow.panel.model.PanelType;
-import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
+import com.datasphere.engine.shaker.workflow.panelboard.model.Panel;
+import com.datasphere.engine.shaker.workflow.panelboard.model.PanelType;
+import com.datasphere.engine.shaker.workflow.panelboard.service.PanelServiceImpl;
 
 import io.reactivex.Single;
 import org.apache.commons.lang3.StringUtils;
@@ -91,8 +91,8 @@ public class PanelController extends BaseController {
 	/**
 	 * 查询最后一次访问的面板
 	 */
-	@PostMapping(value = BASE_PATH + "/last")
-	public Single<Map<String,Object>> getLast(@RequestBody Panel panel1) {
+	@PostMapping(value = BASE_PATH + "/lastAccessed")
+	public Single<Map<String,Object>> getLastAccessed(@RequestBody Panel panel1) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(panelServiceImpl.getLast(panel1.getCreator()));
 		});
@@ -115,8 +115,8 @@ public class PanelController extends BaseController {
 	 * 按钮：另存为
 	 * @return
 	 */
-	@PostMapping(value = BASE_PATH + "/saveAs")
-	public Single<Map<String,Object>> saveAs(@RequestBody Panel panel) {
+	@PostMapping(value = BASE_PATH + "/save")
+	public Single<Map<String,Object>> save(@RequestBody Panel panel) {
 		return Single.fromCallable(() -> {
 //			if (!StringUtils.isBlank(panel.getId()) && !StringUtils.isBlank(panel.getPanelName())) {
 ////				Map<String, String> panelSaveMap = panelServiceImpl.saveAs(id, projectId, panelName, panelDesc);
@@ -210,7 +210,7 @@ public class PanelController extends BaseController {
 	 * @param id 面板id
 	 * @return
 	 */
-	@PostMapping(value = BASE_PATH + "/getPanels")
+	@PostMapping(value = BASE_PATH + "/getPanel")
 	public Single<Map<String,Object>> getPanel(@RequestParam String id, @RequestParam String creator) {
 		return Single.fromCallable(() -> {
 			if (StringUtils.isBlank(id) || StringUtils.isBlank(creator)) {
@@ -224,8 +224,8 @@ public class PanelController extends BaseController {
 	 * 模糊查询
 	 * @return
 	 */
-	@PostMapping(value = BASE_PATH + "/listBy")
-	public Single<Map<String,Object>> listBy(@RequestBody Panel panel) {
+	@PostMapping(value = BASE_PATH + "/listByPanel")
+	public Single<Map<String,Object>> listByPanel(@RequestBody Panel panel) {
 		return Single.fromCallable(() -> {
 			panel.setType(PanelType.DEFAULT);
 			return JsonWrapper.successWrapper(panelServiceImpl.listBy(panel));
@@ -238,8 +238,8 @@ public class PanelController extends BaseController {
 	 * @param panel 项目id
 	 * @return
 	 */
-	@PostMapping(value = BASE_PATH + "/getByProjectId")
-	public Single<Map<String,Object>> getByProjectId(@RequestBody Panel panel) {
+	@PostMapping(value = BASE_PATH + "/getPanelsByProjectId")
+	public Single<Map<String,Object>> getPanelsByProjectId(@RequestBody Panel panel) {
 		return Single.fromCallable(() -> {
 			panel.setType(PanelType.DEFAULT);
 			return JsonWrapper.successWrapper(panelServiceImpl.getPanelsByProjectIdOrdeyPager(panel));
@@ -251,8 +251,8 @@ public class PanelController extends BaseController {
 	 * @param panel
 	 * @return
 	 */
-	@PostMapping(value = BASE_PATH + "/getByProjectIdList")
-	public Single<Map<String,Object>> getByProjectIdList(@RequestBody Panel panel) {
+	@PostMapping(value = BASE_PATH + "/listByProjectId")
+	public Single<Map<String,Object>> listByProjectId(@RequestBody Panel panel) {
 		return Single.fromCallable(() -> {
 			panel.setType(PanelType.DEFAULT);
 			return JsonWrapper.successWrapper(panelServiceImpl.getByProjectIdList(panel));
@@ -264,7 +264,7 @@ public class PanelController extends BaseController {
 	 * 实际是获取面板的流程信息
 	 */
 	@PostMapping(value = BASE_PATH + "/panelPageDetail")
-	public Single<Map<String,Object>> panelDetail(@RequestParam String projectId, @RequestParam String panelId, HttpServletRequest request) {
+	public Single<Map<String,Object>> panelPageDetail(@RequestParam String projectId, @RequestParam String panelId, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.failureWrapper("token不能为空！");
@@ -275,7 +275,7 @@ public class PanelController extends BaseController {
 	/**
 	 * 获取面板详细信息。如果id为null，那么获取最后一次访问的面板ID。如果用户没有面板，那么会使用默认项目创建一个新的面板。
 	 */
-	@PostMapping(value = BASE_PATH + "/panelDetail")
+	@PostMapping(value = BASE_PATH + "/panelPageDetail")
 	public Single<Map<String,Object>> panelPageDetail(@RequestParam String id, @RequestParam String panelId, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
@@ -287,7 +287,7 @@ public class PanelController extends BaseController {
 	/**
 	 * 获取面板详细信息。如果id为null，那么获取最后一次访问的面板ID。如果用户没有面板，那么会使用默认项目创建一个新的面板
 	 */
-	@PostMapping(value = BASE_PATH + "/panelDetailCyl")
+	@PostMapping(value = BASE_PATH + "/panelPageDetailCyl")
 	public Single<Map<String,Object>> panelPageDetailCyl(@RequestParam String id, @RequestParam String panelId) {
 		return Single.fromCallable(() -> {
 //			PanelWithAll all = panelServiceImpl.panelPageDetail(id, panelId);
@@ -349,8 +349,8 @@ public class PanelController extends BaseController {
 	 * @param panel
 	 * @return
 	 */
-	@PostMapping(value = BASE_PATH + "/getAllPanelList")
-	public Single<Map<String,Object>> getAllPanelList(@RequestBody Panel panel,HttpServletRequest request) {
+	@PostMapping(value = BASE_PATH + "/listAllPanels")
+	public Single<Map<String,Object>> listAllPanels(@RequestBody Panel panel,HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			String token = request.getParameters().get("token");
 			if (token == null) return JsonWrapper.jobFailure(-1, "token不能为空！");

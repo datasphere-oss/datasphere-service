@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.engine.shaker.workflow.panel.model;
+package com.datasphere.engine.shaker.workflow.panelboard.model;
 
 public class PanelType {
 	public static final int DEFAULT = 0;

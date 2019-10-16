@@ -15,6 +15,7 @@ package com.datasphere.engine.shaker.processor.factory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.datasphere.engine.common.message.CustomizedPropertyPlaceholderConfigurer;
+import com.datasphere.engine.datasource.connections.jdbc.accessor.DremioDataAccessor;
 import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
 import com.datasphere.engine.shaker.processor.instance.Component;
@@ -32,9 +33,8 @@ import com.datasphere.engine.shaker.processor.service.ComponentInstanceSnapshotS
 import com.datasphere.engine.shaker.processor.service.ComponentService;
 import com.datasphere.engine.shaker.processor.service.ProcessInstanceService;
 import com.datasphere.engine.shaker.processor.service.ProcessRecordService;
-import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
-import com.datasphere.engine.shaker.workflow.panel.service.SubPanelService;
-import com.datasphere.server.connections.service.DataAccessor;
+import com.datasphere.engine.shaker.workflow.panelboard.service.PanelServiceImpl;
+import com.datasphere.engine.shaker.workflow.panelboard.service.SubPanelService;
 
 public class ComponentFactory {
 
@@ -51,7 +51,7 @@ public class ComponentFactory {
 	@Autowired
 	private PanelServiceImpl panelService;
 
-	private DataAccessor dataAccessor;
+	private DremioDataAccessor dataAccessor;
 	private CustomizedPropertyPlaceholderConfigurer propertiesBean;
 	@Autowired
 	private SubPanelService subPanelService;
@@ -70,7 +70,7 @@ public class ComponentFactory {
 			component.setComponentService(componentService);
 			component.setPreDataComponentService(preDataComponentService);
 		}
-		/*else { //jeq 目前不用
+		/*else {  
 			AbstractComponentValition componentValition = validation(componentInstance);
 			if (null != componentValition && componentValition.isErrorFlag()) {
 				System.out.println(componentValition.getErrorMessage().toString());

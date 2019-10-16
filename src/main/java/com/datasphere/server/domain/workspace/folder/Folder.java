@@ -43,10 +43,10 @@ public class Folder extends Book {
   public static final String ROOT = "ROOT";
 
   public static final String HIERARCHY_SEP = "\u2015";
-
+  // 文件夹权限
   @Column(name = "fd_permission")
   String permission;
-
+  // 笔记本列表
   @Transient
   List<Book> books;
 

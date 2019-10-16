@@ -87,7 +87,7 @@ public class MongoDBClient {
 
         return exists;
     }
-
+    // 创建数据库
     public void createDatabase(String name) {
         // create a collection "rm" to init db
         // TODO set as config or rework
@@ -102,7 +102,7 @@ public class MongoDBClient {
         client.close();
 
     }
-
+    // 删除数据库
     public void deleteDatabase(String name) {
         MongoClient client = connect();
         MongoDatabase db = client.getDatabase(name);
@@ -114,7 +114,7 @@ public class MongoDBClient {
         client.close();
 
     }
-
+    // 创建用户
     public void createUser(String database, String username, String password, String role) {
         MongoClient client = connect();
         MongoDatabase db = client.getDatabase(database);
@@ -130,7 +130,7 @@ public class MongoDBClient {
         client.close();
 
     }
-
+    // 删除用户
     public void deleteUser(String database, String username) {
         MongoClient client = connect();
         MongoDatabase db = client.getDatabase(database);
@@ -142,7 +142,7 @@ public class MongoDBClient {
         client.close();
 
     }
-
+    // 角色与权限
     public static final String ROLE_OWNER = "dbOwner"; // admin+userAdmin+readWrite
     public static final String ROLE_ADMIN = "dbAdmin"; // admin has stats, info etc
     public static final String ROLE_RW = "readWrite"; // rw access to collections

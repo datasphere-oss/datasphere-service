@@ -111,8 +111,8 @@ public class ProjectController extends BaseController {
 	 * @param id 项目id
 	 * @return
 	 */
-	@RequestMapping(value = BASE_PATH+"/getProject", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> getProject(@RequestParam String id, HttpServletRequest request) {
+	@RequestMapping(value = BASE_PATH+"/getProjectById", method = RequestMethod.POST) 
+	public Single<Map<String,Object>> getProjectById(@RequestParam String id, HttpServletRequest request) {
 		return Single.fromCallable(() -> {
 			if (!StringUtils.isBlank(id)) {
 				String token = request.getParameters().get("token");
@@ -128,8 +128,8 @@ public class ProjectController extends BaseController {
 	 * 5.查询全部项目（不分页）
 	 * @return
 	 */
-	@RequestMapping(value = BASE_PATH+"/getAllProjectList", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> getAllProjectList(@RequestBody Project project) {
+	@RequestMapping(value = BASE_PATH+"/listAllProjects", method = RequestMethod.POST) 
+	public Single<Map<String,Object>> listAllProjects(@RequestBody Project project) {
 		return Single.fromCallable(() -> {
 			List<Project> list = projectServiceImpl.getAllProjectList(project);
 			return JsonWrapper.successWrapper(list);
@@ -140,8 +140,8 @@ public class ProjectController extends BaseController {
 	 * 6.带面板信息的全部项目（分页）
 	 * @return
 	 */
-	@RequestMapping(value = BASE_PATH+"/getAllWithPanelsListByPage", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> getAllWithPanelsListByPage(@RequestBody Project project) {
+	@RequestMapping(value = BASE_PATH+"/listAllProjectsByPage", method = RequestMethod.POST) 
+	public Single<Map<String,Object>> listAllProjectsByPage(@RequestBody Project project) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(projectServiceImpl.getAllWithPanelsListByPage(project));
 		});
@@ -151,8 +151,8 @@ public class ProjectController extends BaseController {
 	 * 7.根据条件查询项目列表,如按名称查询，按描述查询
 	 * @return
 	 */
-	@RequestMapping(value = BASE_PATH+"/getProjectByField", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> getProjectByField(Project project) {
+	@RequestMapping(value = BASE_PATH+"/getProjectsByField", method = RequestMethod.POST) 
+	public Single<Map<String,Object>> getProjectsByField(Project project) {
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(projectServiceImpl.getProjectByField(project));
 		});
@@ -163,8 +163,8 @@ public class ProjectController extends BaseController {
 	 * @param project
 	 * @return
 	 */
-	@RequestMapping(value = BASE_PATH+"/listByName", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> listByName(Project project){
+	@RequestMapping(value = BASE_PATH+"/listProjectsByName", method = RequestMethod.POST) 
+	public Single<Map<String,Object>> listProjectsByName(Project project){
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(projectServiceImpl.findByName(project));
 		});
@@ -175,8 +175,8 @@ public class ProjectController extends BaseController {
 	 * @param projectName
 	 * @return
 	 */
-	@RequestMapping(value = BASE_PATH+"/veriftyName", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> veriftyName(String projectName) {
+	@RequestMapping(value = BASE_PATH+"/veriftyProjectName", method = RequestMethod.POST) 
+	public Single<Map<String,Object>> veriftyProjectName(String projectName) {
 		return Single.fromCallable(() -> {
 			if (!StringUtils.isBlank(projectName)) {
 				return JsonWrapper.successWrapper(projectServiceImpl.veriftyName(projectName));
@@ -190,8 +190,8 @@ public class ProjectController extends BaseController {
 	 * 获取该项目面板的详细信息，包含项目列表，面板列表，以及流程信息
 	 * @param projectId
 	 */
-	@RequestMapping(value = BASE_PATH+"/panelPageDetail", method = RequestMethod.POST) 
-	public Single<Map<String,Object>> getByProjectId(String projectId,String id){
+	@RequestMapping(value = BASE_PATH+"/getPanelInfoByProjectId", method = RequestMethod.POST) 
+	public Single<Map<String,Object>> getPanelInfoByProjectId(String projectId,String id){
 		return Single.fromCallable(() -> {
 			return JsonWrapper.successWrapper(projectServiceImpl.panelPageDetail(projectId, id));
 		});

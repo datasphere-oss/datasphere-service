@@ -22,10 +22,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-import com.datasphere.server.domain.user.group.Group;
-import com.datasphere.server.domain.user.group.GroupProfile;
-import com.datasphere.server.domain.user.group.GroupRepository;
-import com.datasphere.server.domain.user.role.RoleService;
+import com.datasphere.server.user.DirectoryProfile;
+import com.datasphere.server.user.User;
+import com.datasphere.server.user.UserProfile;
+import com.datasphere.server.user.UserRepository;
+import com.datasphere.server.user.group.Group;
+import com.datasphere.server.user.group.GroupProfile;
+import com.datasphere.server.user.group.GroupRepository;
+import com.datasphere.server.user.role.RoleService;
 import com.datasphere.server.domain.workspace.WorkspaceMember;
 
 /**

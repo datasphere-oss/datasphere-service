@@ -43,12 +43,12 @@ public class WorkBookEventHandler {
     // Tree 생성
     bookTreeService.createTree(workbook);
   }
-
+  // 检查更新授权
   @HandleBeforeSave
   @PreAuthorize("hasPermission(#workbook, 'PERM_WORKSPACE_WRITE_BOOK')")
   public void checkUpdateAuthority(WorkBook workbook) {
   }
-
+  // 检查删除授权
   @HandleBeforeDelete
   @PreAuthorize("hasPermission(#workbook, 'PERM_WORKSPACE_WRITE_BOOK')")
   public void checkDeleteAuthority(WorkBook workbook) {

@@ -37,10 +37,10 @@ public interface ProjectDao {
 	Project getProjectById(@Param(value = "id") String id, @Param(value = "creator") String creator);
 
 	//查询所有的项目 (不带分页，不包含面板)
-	List<Project> listAll(String creator, String sortField, String orderBy);
+	List<Project> listAllProjects(String creator, String sortField, String orderBy);
 
 	//查询所有的项目（带面板列表）
-	List<Project> listAllWithPanelsPager(String creator, String sortField, String orderBy, @Param("pager") Pager pager);
+	List<Project> listAllProjectsByPage(String creator, String sortField, String orderBy, @Param("pager") Pager pager);
 
 	List<Project> getProjectByField(Project project);
 }

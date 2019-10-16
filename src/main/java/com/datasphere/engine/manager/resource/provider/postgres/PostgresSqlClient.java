@@ -88,7 +88,7 @@ public class PostgresSqlClient {
 
 		return ret;
 	}
-
+	// 创建数据库
 	public void createDatabase(String name) throws SQLException {
 		// use internal "postgres" db
 		Connection conn = connect(DB, false);
@@ -102,7 +102,7 @@ public class PostgresSqlClient {
 		stmt.close();
 		conn.close();
 	}
-
+	// 删除数据库
 	public void deleteDatabase(String name) throws SQLException {
 		// use internal "postgres" db
 		Connection conn = connect(DB, false);
@@ -116,7 +116,7 @@ public class PostgresSqlClient {
 		stmt.close();
 		conn.close();
 	}
-
+	// 创建用户
 	public void createUser(String database, String username, String password) throws SQLException {
 		// use provided db - must exist
 		Connection conn = connect(database, false);
@@ -142,7 +142,7 @@ public class PostgresSqlClient {
 
 		conn.close();
 	}
-
+	// 删除用户
 	public void deleteUser(String database, String username) throws SQLException {
 		// use provided db - must exist
 		Connection conn = connect(database, false);

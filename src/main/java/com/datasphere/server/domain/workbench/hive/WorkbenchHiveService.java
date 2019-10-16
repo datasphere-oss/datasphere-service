@@ -29,13 +29,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.datasphere.engine.datasource.connections.jdbc.dialect.HiveDialect;
 import com.datasphere.server.common.MetatronProperties;
 import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.common.exception.GlobalErrorCodes;
 import com.datasphere.server.common.exception.DSSException;
 import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.domain.dataconnection.DataConnection;
-import com.datasphere.datasource.connections.jdbc.dialect.HiveDialect;
 import com.datasphere.server.domain.workbench.WorkbenchErrorCodes;
 import com.datasphere.server.domain.workbench.WorkbenchException;
 import com.datasphere.server.domain.workbench.WorkbenchProperties;

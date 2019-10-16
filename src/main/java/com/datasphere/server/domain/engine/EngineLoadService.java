@@ -12,10 +12,10 @@
 
 package com.datasphere.server.domain.engine;
 
-import static com.datasphere.datasource.DataSource.DataSourceType.VOLATILITY;
-import static com.datasphere.datasource.DataSourceTemporary.LoadStatus.ENABLE;
-import static com.datasphere.datasource.DataSourceTemporary.LoadStatus.FAIL;
-import static com.datasphere.datasource.Field.FIELD_NAME_CURRENT_TIMESTAMP;
+import static com.datasphere.engine.datasource.DataSource.DataSourceType.VOLATILITY;
+import static com.datasphere.engine.datasource.DataSourceTemporary.LoadStatus.ENABLE;
+import static com.datasphere.engine.datasource.DataSourceTemporary.LoadStatus.FAIL;
+import static com.datasphere.engine.datasource.Field.FIELD_NAME_CURRENT_TIMESTAMP;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,17 +35,17 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.ResourceAccessException;
 
-import com.datasphere.datasource.DataSource;
-import com.datasphere.datasource.DataSourceIngestionException;
-import com.datasphere.datasource.DataSourceRepository;
-import com.datasphere.datasource.DataSourceTemporary;
-import com.datasphere.datasource.DataSourceTemporaryRepository;
-import com.datasphere.datasource.Field;
-import com.datasphere.datasource.connection.jdbc.JdbcConnectionService;
-import com.datasphere.datasource.connections.DataConnection;
-import com.datasphere.datasource.ingestion.IngestionInfo;
-import com.datasphere.datasource.ingestion.LocalFileIngestionInfo;
-import com.datasphere.datasource.ingestion.jdbc.LinkIngestionInfo;
+import com.datasphere.engine.datasource.DataSource;
+import com.datasphere.engine.datasource.DataSourceIngestionException;
+import com.datasphere.engine.datasource.DataSourceRepository;
+import com.datasphere.engine.datasource.DataSourceTemporary;
+import com.datasphere.engine.datasource.DataSourceTemporaryRepository;
+import com.datasphere.engine.datasource.Field;
+import com.datasphere.engine.datasource.connection.jdbc.JdbcConnectionService;
+import com.datasphere.engine.datasource.connections.DataConnection;
+import com.datasphere.engine.datasource.ingestion.IngestionInfo;
+import com.datasphere.engine.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.engine.datasource.ingestion.jdbc.LinkIngestionInfo;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.ProgressResponse;
 import com.datasphere.server.common.datasource.DataType;

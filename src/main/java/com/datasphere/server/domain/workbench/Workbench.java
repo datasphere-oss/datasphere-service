@@ -30,7 +30,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.datasphere.server.domain.dataconnection.DataConnection;
+import com.datasphere.engine.datasource.connections.DataConnection;
 import com.datasphere.server.domain.workspace.Book;
 import com.datasphere.server.domain.workspace.Workspace;
 
@@ -39,26 +39,29 @@ import com.datasphere.server.domain.workspace.Workspace;
 @JsonTypeName("workbench")
 @DiscriminatorValue("workbench")
 public class Workbench extends Book {
-
+	
+	// 全局命名空间
 	static final String GLOBAL_VAR_KEY_NAME = "globalNm";
+	// 全局类型
 	static final String GLOBAL_VAR_KEY_TYPE = "globalType";
+	// 全局变量
 	static final String GLOBAL_VAR_KEY_VALUE = "globalVar";
 
 	static final String GLOBAL_VAR_TYPE_TEXT = "t";
 	static final String GLOBAL_VAR_TYPE_CALENDAR = "c";
-
+	// 全局变量设置
 	@Column(name = "workbench_global_var")
 	@Size(max = 5000)
 	String globalVar;
-
+	// 数据库名称
 	@Column(name = "database_name")
 	String databaseName;
-
+	// 查询编辑器
 	@OneToMany(mappedBy = "workbench", cascade = CascadeType.ALL)
 	@OrderBy("createdTime ASC")
 	@RestResource(path = "queryeditors")
 	Set<QueryEditor> queryEditors;
-
+	// 数据库连接
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "dc_id", referencedColumnName = "id")
 	@RestResource(path = "dataconnection")
@@ -75,17 +78,17 @@ public class Workbench extends Book {
 	public Map<String, Object> listViewProjection() {
 		Map<String, Object> projection = super.listViewProjection();
 		projection.put("type", "workbench");
-
+		// 连接类型、连接名称、连接校验
 		Map<String, Object> contents = Maps.newLinkedHashMap();
 		contents.put("connType", dataConnection.getImplementor());
 		contents.put("connName", dataConnection.getName());
 		contents.put("connValid", dataConnection.getWorkspaces().contains(workspace) || BooleanUtils.isTrue(dataConnection.getPublished()));
-
+		// 连接内容
 		projection.put("contents", contents);
 
 		return projection;
 	}
-
+	// 树形投影
 	@Override
 	public Map<String, Object> treeViewProjection() {
 		Map<String, Object> projection = super.treeViewProjection();

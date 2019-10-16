@@ -19,6 +19,9 @@ import com.datasphere.common.utils.PageUtil;
 import com.datasphere.common.utils.RandomUtils;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.core.utils.JAssert;
+import com.datasphere.engine.datasource.connections.dao.DataSetInstanceDao;
+import com.datasphere.engine.datasource.connections.model.DataSetInstance;
+import com.datasphere.engine.datasource.connections.utils.StringUtils;
 import com.datasphere.engine.manager.resource.provider.catalog.model.RequestParams;
 import com.datasphere.engine.manager.resource.provider.db.dao.DataSourceDao;
 import com.datasphere.engine.manager.resource.provider.elastic.model.CSVInfo;
@@ -36,9 +39,6 @@ import com.datasphere.engine.shaker.processor.instance.service.ComponentInstance
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceService;
 import com.datasphere.server.common.exception.JIllegalOperationException;
 import com.datasphere.server.common.exception.http.HttpClientException;
-import com.datasphere.server.connections.dao.DataSetInstanceDao;
-import com.datasphere.server.connections.model.DataSetInstance;
-import com.datasphere.server.connections.utils.StringUtils;
 import com.datasphere.server.sso.service.DSSUserTokenService;
 import com.google.common.base.Splitter;
 import com.google.gson.*;
@@ -66,11 +66,11 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
- * 数据源管理
+ * DataSphere 数据资源管理-服务层
  */
 @Service
-public class DaasService extends BaseService {
-	private static final Logger log = LoggerFactory.getLogger(DaasService.class);
+public class DSSService extends BaseService {
+	private static final Logger log = LoggerFactory.getLogger(DSSService.class);
 	private static final OkHttpClient httpClient = new OkHttpClient.Builder()
 			.connectTimeout(10, TimeUnit.SECONDS)
 			.readTimeout(10, TimeUnit.SECONDS)
@@ -86,7 +86,7 @@ public class DaasService extends BaseService {
 	@Autowired
 	DataQueryService dataQueryService;
 	@Autowired
-	DSSUserTokenService dSSUserTokenService;
+	DSSUserTokenService dssUserTokenService;
 
 	/**
 	 * 获得全部数据源信息
@@ -102,7 +102,7 @@ public class DaasService extends BaseService {
 			map.put("name", name);
 			map.put("pageIndex", PageUtil.getPageStart(pageIndex, pageSize));
 			map.put("pageSize", pageSize);
-			map.put("dataFrom", "DataWave");
+			map.put("dataFrom", "DSS");
 			Integer count = dataSourceDao.count(map);
 			Map<String, Object> map1 = new HashMap<>();
 			List<DataSource> sourceList = dataSourceDao.listAll(map);
@@ -120,29 +120,29 @@ public class DaasService extends BaseService {
 	/**
 	 * 创建多个数据源
 	 *
-	 * @param daas
+	 * @param dss
 	 * @return
 	 */
-	public int create(DremioDataSourceInfo daas, String token) {
+	public int create(DremioDataSourceInfo dss, String token) {
 		try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			//数据源
 			DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
 			//组建定义
 			ComponentDefinitionDao dictionaryDao = sqlSession.getMapper(ComponentDefinitionDao.class);
 			int result = 0;
-			if (daas.getTables() != null && daas.getTables().size() > 0) {
-				for (int i = 0; i < daas.getTables().size(); i++) {
+			if (dss.getTables() != null && dss.getTables().size() > 0) {
+				for (int i = 0; i < dss.getTables().size(); i++) {
 					DataSource dataSource = new DataSource();
 					String id = UUID.randomUUID().toString();
-					dataSourceDao.insertDS(daas.getDaasId(), id, daas.getName());
+					dataSourceDao.insertDS(dss.getdssId(), id, dss.getName());
 					dataSource.setId(id);
-					dataSource.setName(daas.getTables().get(i).getResourceName());
-					dataSource.setDataDesc(daas.getTables().get(i).getResourceDesc());
-					dataSource.setBusinessType(daas.getBusinessType());
-					if ("MEMSQL".equals(daas.getSpareType())) {
-						daas.setType("MEMSQL");
+					dataSource.setName(dss.getTables().get(i).getResourceName());
+					dataSource.setDataDesc(dss.getTables().get(i).getResourceDesc());
+					dataSource.setBusinessType(dss.getBusinessType());
+					if ("MEMSQL".equals(dss.getSpareType())) {
+						dss.setType("MEMSQL");
 					}
-					dataSource.setDataDSType(daas.getType());
+					dataSource.setDataDSType(dss.getType());
 					dataSource.setDataType(0);
 					dataSource.setDataFrom("DataWave");
 					dataSource.setClassification("001");
@@ -152,22 +152,22 @@ public class DaasService extends BaseService {
 
 					//数据连接信息
 					Map<String, Object> gsonMap = new Gson()
-														  .fromJson(new Gson().toJson(daas.getConfig()), new TypeToken<Map<String, Object>>() {
+														  .fromJson(new Gson().toJson(dss.getConfig()), new TypeToken<Map<String, Object>>() {
 														  }.getType());
 
-					if("POSTGRES".equals(daas.getType())){
-						gsonMap.put("scheme", daas.getTables().get(i).getDatabaseName());
+					if("POSTGRES".equals(dss.getType())){
+						gsonMap.put("scheme", dss.getTables().get(i).getDatabaseName());
 					}else{
-						gsonMap.put("databaseName", daas.getTables().get(i).getDatabaseName());
+						gsonMap.put("databaseName", dss.getTables().get(i).getDatabaseName());
 					}
-					gsonMap.put("tableName", daas.getTables().get(i).getTableName());
+					gsonMap.put("tableName", dss.getTables().get(i).getTableName());
 					dataSource.setDataConfig(new Gson().toJson(gsonMap));
 
 					//新增组件定义
 					ComponentDefinition cd = new ComponentDefinition();
 					cd.setId(id);
 					cd.setCode(ComponentClassification.SimpleDataSource.name());
-					cd.setName(daas.getTables().get(i).getResourceName());
+					cd.setName(dss.getTables().get(i).getResourceName());
 					cd.setClassification("001");
 //					cd.setCreator(exchangeSSOService.getAccount(token));
 					cd.setParams("");
@@ -182,11 +182,11 @@ public class DaasService extends BaseService {
 		}
 	}
 
-	/*public synchronized void createDaas(DaasDataSourceInfo daas) {
+	/*public synchronized void createdss(dssDataSourceInfo dss) {
 		try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
-			if (daas.getDaasId() != null && daas.getName() != null) {
-				dataSourceDao.insertDS(daas.getDaasId(), process_cd_id, daas.getName());
+			if (dss.getdssId() != null && dss.getName() != null) {
+				dataSourceDao.insertDS(dss.getdssId(), process_cd_id, dss.getName());
 
 
 				sqlSession.commit();
@@ -196,7 +196,7 @@ public class DaasService extends BaseService {
 
 
 	/**
-	 * 查询数据集--daas
+	 * 查询数据集--dss
 	 *
 	 * @param query
 	 * @return
@@ -226,13 +226,13 @@ public class DaasService extends BaseService {
 		try {
 			String version = "000"+RandomUtils.getNumStr_13();
 			String secondPath = "/datasets/new_untitled?parentDataset=%22" +
-										query.getDaasName() + "%22." +
+										query.getdssName() + "%22." +
 										query.getDatabaseName() + "." +
 										query.getTableName() +
 										"&newVersion=" + version +
 										"&limit=150";// 单表
-			String urlPath = this.daasServerAPIV2RootUrl + secondPath;
-			String jsonStr = "{\"parentDataset\":\"'" + query.getDaasName() +
+			String urlPath = this.dssServerAPIV2RootUrl + secondPath;
+			String jsonStr = "{\"parentDataset\":\"'" + query.getdssName() +
 									 "'." + query.getDatabaseName() + ".'" +
 									 query.getTableName()
 									 + "'\",\"newVersion\":\"" +
@@ -241,7 +241,7 @@ public class DaasService extends BaseService {
 			try {
 				vds = OkHttpServletRequest.okHttpClientPost(urlPath, jsonStr, dSSUserTokenService.getCurrentToken());
 			} catch (Exception e) {
-				log.error("ProcessService.oneTableQuery(panel_id):请求DAAS异常");
+				log.error("ProcessService.oneTableQuery(panel_id):请求dss异常");
 			}
 			JSONObject second_vds = null;
 			if (vds.contains("details")) {
@@ -259,13 +259,13 @@ public class DaasService extends BaseService {
 	//获取jobId
 	public String getJobId(String sql) {
 		String job_id = "";
-		String urlPath = this.daasServerAPIV3RootUrl + "/sql";
+		String urlPath = this.dssServerAPIV3RootUrl + "/sql";
 		JSONObject jsonParam = new JSONObject();
 		jsonParam.put("sql", sql);
 		try {
 			job_id = OkHttpServletRequest.okHttpClientPost(urlPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
 		} catch (Exception e) {
-			log.error("ProcessService.getJobId(sql):请求DAAS异常");
+			log.error("ProcessService.getJobId(sql):请求dss异常");
 		}
 		return JSON.parseObject(job_id).getString("id");
 	}
@@ -273,11 +273,11 @@ public class DaasService extends BaseService {
 	//获取job状态
 	public String getJobStatus(String job_id) {
 		String result = "";
-		String urlPath = this.daasServerAPIV3RootUrl + "/job/" + job_id;
+		String urlPath = this.dssServerAPIV3RootUrl + "/job/" + job_id;
 		try {
 			result = OkHttpServletRequest.okHttpClientGet(urlPath, dSSUserTokenService.getCurrentToken());
 		} catch (Exception e) {
-			log.error("ProcessService.getJobStatus(job_id):请求DAAS异常");
+			log.error("ProcessService.getJobStatus(job_id):请求dss异常");
 		}
 		return result;
 	}
@@ -285,30 +285,30 @@ public class DaasService extends BaseService {
 	//获取结果集
 	public String getJobResults(String job_id) {
 		String results = "";
-		String urlPath = this.daasServerAPIV3RootUrl + "/job/" + job_id + "/results?offset=0&limit=100";
+		String urlPath = this.dssServerAPIV3RootUrl + "/job/" + job_id + "/results?offset=0&limit=100";
 		System.err.println(urlPath);
 		try {
-			results = OkHttpServletRequest.okHttpClientGet(urlPath, dSSUserTokenService.getCurrentToken());
+			results = OkHttpServletRequest.okHttpClientGet(urlPath, dssUserTokenService.getCurrentToken());
 		} catch (Exception e) {
-			log.error("ProcessService.getJobResults(job_id):请求DAAS异常");
+			log.error("ProcessService.getJobResults(job_id):请求dss异常");
 		}
 		return results;
 	}
 
 	/**
-	 * 根据DaasID查询name   -- daas
+	 * 根据ID查询DSS名称
 	 *
-	 * @param daasId
+	 * @param dssId
 	 * @return
 	 */
-	public String findDaasNameByDaasId(String daasId) {
+	public String findDSSNameById(String dssId) {
 		DremioDataSourceInfo dataSourceInfo = null;
 		try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
-			//查询daas数据源信息
+			//查询dss数据源信息
 
 			try {
-				String url = this.daasServerAPIV3RootUrl+"/source/" + daasId;
+				String url = this.dssServerAPIV3RootUrl+"/source/" + dssId;
 				Request request = new Request.Builder()
 										  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
 										  .url(url)
@@ -328,7 +328,7 @@ public class DaasService extends BaseService {
 	}
 
 	/**
-	 * 更新数据元名称及描述
+	 * 更新数据源名称及描述
 	 *
 	 * @param dataSource
 	 * @return
@@ -348,7 +348,7 @@ public class DaasService extends BaseService {
 	}
 
 	/**
-	 * 根据ID查询数据源信息   -- daas
+	 * 根据ID查询数据源信息
 	 *
 	 * @param id
 	 * @return
@@ -358,11 +358,11 @@ public class DaasService extends BaseService {
 		try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
 			DataSource dataSource = dataSourceDao.findDataSourceById(id);
-			//查询daas数据源信息
-			String daasId = dataSourceDao.getDaasV3Catalog(id);
+			//查询dss数据源信息
+			String dssId = dataSourceDao.getdssV3Catalog(id);
 
 			try {
-				String url = this.daasServerAPIV3RootUrl+"/source/" + daasId;
+				String url = this.dssServerAPIV3RootUrl+"/source/" + dssId;
 				String token = "_dremiobmulbkj5m9cqh7nksk6cr2nfvt";
 				Request request = new Request.Builder()
 						.addHeader("Authorization", dSSUserTokenService.getCurrentToken())
@@ -374,7 +374,7 @@ public class DaasService extends BaseService {
 				dataSourceInfo = new Gson()
 						.fromJson(responseBody, DremioDataSourceInfo.class);
 				dataSourceInfo.setId(id);
-				dataSourceInfo.setDaasId(daasId);
+				dataSourceInfo.setdssId(dssId);
 				if ("MEMSQL".equals(dataSource.getDataDSType())) {
 					dataSourceInfo.setType("MEMSQL");
 				}
@@ -413,7 +413,7 @@ public class DaasService extends BaseService {
 	 * @param ids
 	 * @return
 	 */
-	public int deleteDatasourceById(String ids) {
+	public int deleteDataSourceById(String ids) {
 		try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			List<String> idlst = Splitter.on("^^").splitToList(ids == null ? "" : ids);
 			DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
@@ -425,16 +425,16 @@ public class DaasService extends BaseService {
 				if(componentInstanceDao.getCountByCFId(idlst.get(i))>0){
 					return 2;
 				}
-				String daasId = dataSourceDao.getDaasId(idlst.get(i));
-				int daasIdSum = dataSourceDao.getDaasIdSum(daasId);
-				if (daasIdSum == 1) {
-					String daasName = dataSourceDao.getDaasName(daasId);
-					deleteFile(daasName);
-					deleteDaasSource(daasName); //删除daas
+				String dssId = dataSourceDao.getDSSId(idlst.get(i));
+				int dssIdSum = dataSourceDao.getDSSIdSum(dssId);
+				if (dssIdSum == 1) {
+					String dssName = dataSourceDao.getDSSName(dssId);
+					deleteFile(dssName);
+					deleteDSSSource(dssName); //删除dss
 				}
 				dataSourceDao.deleteDSByAppId(idlst.get(i)); //删除关联表
 				dictionaryDao.delete(idlst.get(i));//删除组件定义
-				num += dataSourceDao.deleteDatasourceById(idlst.get(i)); //删除数据资源表
+				num += dataSourceDao.deleteDataSourceById(idlst.get(i)); //删除数据资源表
 			}
 			sqlSession.commit();
 			return num;
@@ -445,12 +445,12 @@ public class DaasService extends BaseService {
 
 
 	/**
-	 * 更新数据源
+	 * 通过ID更新数据源
 	 *
 	 * @param source
 	 * @return
 	 */
-	public int updateDatasourceById(DremioDataSourceInfo source) {
+	public int updateDataSourceById(DremioDataSourceInfo source) {
 		try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			//数据源
 			DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
@@ -466,7 +466,7 @@ public class DaasService extends BaseService {
 					dataSource.setBusinessType(source.getBusinessType());
 					dataSource.setDataDSType(source.getType());
 					dataSource.setDataType(0);
-					dataSource.setDataFrom("DataWave");
+					dataSource.setDataFrom("DSS");
 					dataSource.setClassification("001");
 					dataSource.setCode("SimpleDataSource");
 					Map<String, Object> gsonMap = new Gson()
@@ -483,7 +483,7 @@ public class DaasService extends BaseService {
 					cd.setLastModified(new Date());
 					dictionaryDao.update(cd);//更新数据源
 					//新增数据源
-					result = dataSourceDao.updateDatasourceById(dataSource);
+					result = dataSourceDao.updateDataSourceById(dataSource);
 					result++;
 				}
 				sqlSession.commit();
@@ -493,9 +493,9 @@ public class DaasService extends BaseService {
 	}
 
 	/**
-	 * 校验name
+	 * 验证数据源的名称
 	 */
-	public Map<String, String> verifyDatasourceName(List<String> nameList) {
+	public Map<String, String> verifyDataSourceName(List<String> nameList) {
 		try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 //			DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
 			ComponentDefinitionDao dictionaryDao = sqlSession.getMapper(ComponentDefinitionDao.class);
@@ -546,7 +546,7 @@ public class DaasService extends BaseService {
 	 *
 	 * @return
 	 */
-	public Map<String, Object> getSubscribeDatasource(RequestParams requestParams) {
+	public Map<String, Object> getSubscribedDataSource(RequestParams requestParams) {
 		List<DataSource> dataSourceList = new ArrayList<>();
 		Map<String, Object> map1 = new HashMap<>();
 		try (HttpClient httpClient = HttpClient.create(new URL(this.OpenAPIServerRootUrl));
@@ -557,7 +557,7 @@ public class DaasService extends BaseService {
 			String result = httpClient
 									.toBlocking()
 									.retrieve(
-											POST(this.OpenAPIServerRootUrl + "/datasource/getSubscribeDatasource",
+											POST(this.OpenAPIServerRootUrl + "/datasource/getSubscribedDataSource",
 													requestParams));
 			Map<String, List<Map<String, String>>> gsonMap = new Gson()
 																	 .fromJson(result, new TypeToken<Map<String, List<Map<String, String>>>>() {
@@ -626,7 +626,7 @@ public class DaasService extends BaseService {
 	 * @param id
 	 * @return
 	 */
-	public DataSource findDataSourceDetail(String id, String token) {
+	public DataSource findDataSourceDetails(String id, String token) {
 		ComponentInstance cinstances = getInstance(id);//根据id获取 组件实例
 //		String creator = exchangeSSOService.getAccount(token);
 		JAssert.isTrue(cinstances != null, "组件实例不存在：" + id);
@@ -640,7 +640,7 @@ public class DaasService extends BaseService {
 				baseDao = sqlSession.getMapper(DataSourceDao.class);
 				dataSource = baseDao.findDataSourceById(cdId);//根据ID查询datasource
 			}
-			if (dataSource != null && GlobalDefine.COMPONENT_CLASSIFICATION.MY_DATASOURCE.equals(dataSource.getClassification())) {
+			if (dataSource != null && GlobalConstant.COMPONENT_CLASSIFICATION.MY_DATASOURCE.equals(dataSource.getClassification())) {
 				if (!creator.equals(dataSource.getCreator())) dataSource = null;// 我的数据源，较验创建者
 			}
 			JAssert.isTrue(dataSource != null, "数据源不存在：id:" + cdId + ",用户:" + creator);
@@ -652,8 +652,8 @@ public class DaasService extends BaseService {
 //                        .fromJson(dataSource.getDataConfig(), new TypeToken<Map<String, Object>>() {
 //                        }.getType());
 //                    QueryDBDataParams query = new QueryDBDataParams();
-//                    String daasName = baseDao.getDaasNameByID(cdId);
-//                    query.setDaasName(daasName);
+//                    String dssName = baseDao.getdssNameByID(cdId);
+//                    query.setdssName(dssName);
 //                    query.setDatabaseName(gsonMap.get("dataBaseName").toString());
 //                    query.setTableName(gsonMap.get("tableName").toString());
 //                    Map<String,Object> result = ciService.queryTableData(query);
@@ -680,8 +680,8 @@ public class DaasService extends BaseService {
 							   }.getType());
 					for (int i = 0; i < columnsMap.size(); i++) {
 						Map<String, String> colMap = new LinkedHashMap<>();
-						colMap.put(GlobalDefine.DATASOURCE_COLUMNNAME, columnsMap.get(i).get("name"));
-						colMap.put(GlobalDefine.DATASOURCE_COLUMNTYPE, columnsMap.get(i).get("type"));
+						colMap.put(GlobalConstant.DATASOURCE_COLUMNNAME, columnsMap.get(i).get("name"));
+						colMap.put(GlobalConstant.DATASOURCE_COLUMNTYPE, columnsMap.get(i).get("type"));
 						columns.add(colMap);
 					}
 
@@ -703,7 +703,7 @@ public class DaasService extends BaseService {
 	 * @param id
 	 * @return
 	 */
-	public ComponentInstance getInstance(String id) {
+	public ComponentInstance getComponentInstance(String id) {
 		return ciService.get(id);
 	}
 
@@ -819,9 +819,9 @@ public class DaasService extends BaseService {
 		}
 		return panels;
 	}
-	//***********************************************************************daas**********************************
+	//***********************************************************************dss**********************************
 	/**
-	 * 测试连接时在daas的创建数据源  -- daas
+	 * 测试连接时在dss的创建数据源  -- dss
 	 */
 	public String createSource(DremioDataSourceInfo es) {
 		String json;
@@ -835,7 +835,7 @@ public class DaasService extends BaseService {
 			{
 				log.info("create dataSource");
 				try {
-					String url = this.daasServerAPIV3RootUrl+"/source";
+					String url = this.dssServerAPIV3RootUrl+"/source";
 					String token = dSSUserTokenService.getCurrentToken();
 //                        httpClient.setConnectTimeout(10, TimeUnit.SECONDS);
 //                        httpClient.setWriteTimeout(10, TimeUnit.SECONDS);
@@ -848,7 +848,7 @@ public class DaasService extends BaseService {
 					Response response = httpClient.newCall(request).execute();
 					log.info(response.toString());
 					if (response.code() == 400 || response.code() == 500) {
-						url = this.daasServerAPIV2RootUrl+"/source/"+name+"?nocache=1545733655186";
+						url = this.dssServerAPIV2RootUrl+"/source/"+name+"?nocache=1545733655186";
 						request = new Request.Builder()
 								.addHeader("Authorization", token)
 								.url(url).post(body).build();
@@ -870,14 +870,14 @@ public class DaasService extends BaseService {
 	}
 
 	/**
-	 * 页面获取数据列表    --daas
+	 * 页面获取数据列表    --dss
 	 *
-	 * @param daasName
+	 * @param dssName
 	 * @return
 	 */
-	public List<Map<String, String>> listTable(String daasName) {
+	public List<Map<String, String>> listTable(String dssName) {
 		log.info("list Table");
-		String responseBody = listDBName(daasName);
+		String responseBody = listDBName(dssName);
 		log.info("{}", responseBody);
 		List<Map<String, String>> propertyValue = new ArrayList<>();
 		JsonParser jsonParser = new JsonParser();
@@ -888,7 +888,7 @@ public class DaasService extends BaseService {
 		for (JsonElement jsonElement : DBS) {
 			String DBName = jsonElement.getAsJsonObject().get("name").toString();
 			String DBName2 = DBName.substring(1, DBName.length() - 1);
-			List<String> tableNames = listDaasTables(daasName, DBName2);
+			List<String> tableNames = listdssTables(dssName, DBName2);
 			for (String table : tableNames) {
 				Map<String, String> map = new HashMap<>();
 				map.put("databaseName", DBName2);
@@ -901,14 +901,14 @@ public class DaasService extends BaseService {
 
 
 	/**
-	 * 根据daas名字从daas获取相关数据库名称
+	 * 根据dss名字从dss获取相关数据库名称
 	 *
-	 * @param daasName
+	 * @param dssName
 	 * @return
 	 */
-	public String listDBName(String daasName) {
+	public String listDBName(String dssName) {
 		try {
-			String url = this.daasServerAPIV2RootUrl+"/source/" + daasName;
+			String url = this.dssServerAPIV2RootUrl+"/source/" + dssName;
 			Request request = new Request.Builder()
 									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
 									  .url(url)
@@ -926,16 +926,16 @@ public class DaasService extends BaseService {
 
 
 	/**
-	 * 根据数据库名和daasName获取表名   --daas
+	 * 根据数据库名和dssName获取表名   --dss
 	 *
-	 * @param daasName
+	 * @param dssName
 	 * @param DBName
 	 * @return
 	 */
-	public List<String> listDaasTables(String daasName, String DBName) {
+	public List<String> listdssTables(String dssName, String DBName) {
 		try {
-			String urlString = URLEncoder.encode(daasName, "utf-8");
-			String url = this.daasServerAPIV2RootUrl+"/source/" + urlString + "/folder/" + DBName;
+			String urlString = URLEncoder.encode(dssName, "utf-8");
+			String url = this.dssServerAPIV2RootUrl+"/source/" + urlString + "/folder/" + DBName;
 			Request request = new Request.Builder()
 									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
 									  .url(url)
@@ -966,13 +966,13 @@ public class DaasService extends BaseService {
 	/**
 	 * 删除功能
 	 *
-	 * @param daasName
+	 * @param dssName
 	 * @return
 	 */
-	public boolean deleteDaasSource(String daasName) {
+	public boolean deletedssSource(String dssName) {
 		try {
-			String urlString = URLEncoder.encode(daasName, "utf-8");
-			String url = this.daasServerAPIV2RootUrl+"/source/" + urlString + "?version=0";
+			String urlString = URLEncoder.encode(dssName, "utf-8");
+			String url = this.dssServerAPIV2RootUrl+"/source/" + urlString + "?version=0";
 			Request request = new Request.Builder()
 									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
 									  .url(url)
@@ -999,7 +999,7 @@ public class DaasService extends BaseService {
 	 */
 	public JSONInfo uploadStart(CompletedFileUpload file1) throws IOException {
 		File tempFile = new File("temp" + "//" + UUID.randomUUID().toString()+file1.getFilename());
-//		tempFile = new File("/home/yun-lian-data/app/java/daas_reource.manager/temp"+UUID.randomUUID().toString()+file1.getFilename());
+//		tempFile = new File("/home/yun-lian-data/app/java/dss_reource.manager/temp"+UUID.randomUUID().toString()+file1.getFilename());
 		Path path = Paths.get(tempFile.getAbsolutePath());
 //		System.out.println(path);
 //		String name = path.toString().substring(path.toString().lastIndexOf("\\") + 1);
@@ -1014,11 +1014,11 @@ public class DaasService extends BaseService {
 		RequestBody multipartBody = new MultipartBody.Builder()
 											.setType(MultipartBody.FORM)
 											.addFormDataPart("file", fileName, fileBody)//这里选择本地缓存的文件名
-											.addFormDataPart("fileName", fileName)//这里可以自定义上传到daas的名字
+											.addFormDataPart("fileName", fileName)//这里可以自定义上传到dss的名字
 											.build();
 		try {
-//            String urlString = URLEncoder.encode(daasName, "utf-8");
-			String url = this.daasServerAPIV2RootUrl +"/home/%40daas/upload_start/";
+//            String urlString = URLEncoder.encode(dssName, "utf-8");
+			String url = this.dssServerAPIV2RootUrl +"/home/%40dss/upload_start/";
 			Request request = new Request.Builder()
 									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
 									  .header("Content-Type", "application/json")
@@ -1072,7 +1072,7 @@ public class DaasService extends BaseService {
 		{
 			{
 				try {
-					String url = this.daasServerAPIV2RootUrl +"/home/%40daas/file_preview_unsaved/" + name;
+					String url = this.dssServerAPIV2RootUrl +"/home/%40dss/file_preview_unsaved/" + name;
 					Request request = new Request.Builder()
 											  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
 											  .header("Content-Type", "application/json")
@@ -1114,7 +1114,7 @@ public class DaasService extends BaseService {
 		{
 			{
 				try {
-					String url = this.daasServerAPIV2RootUrl+"/home/%40daas/upload_finish/" + JSONInfo2.getName();
+					String url = this.dssServerAPIV2RootUrl+"/home/%40dss/upload_finish/" + JSONInfo2.getName();
 					Request request = new Request.Builder()
 											  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
 											  .header("Content-Type", "application/json")
@@ -1138,25 +1138,25 @@ public class DaasService extends BaseService {
 	}
 
 	/**
-	 * 根据ID查询daasName
+	 * 根据ID查询dssName
 	 * @param id
 	 * @return
 	 */
-	public String getDaasNameByID(String id) {
+	public String getdssNameByID(String id) {
 		try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
-			String daasName = dataSourceDao.getDaasNameByID(id);
-			return daasName;
+			String dssName = dataSourceDao.getdssNameByID(id);
+			return dssName;
 		}
 	}
 
 
 	/**
 	 * json文件信息传入数据库
-	 * @param daas
+	 * @param dss
 	 * @return
 	 */
-	public int createJSON(JSONInfo daas, String token) {
+	public int createJSON(JSONInfo dss, String token) {
 		try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			String id=null;
 			//数据源
@@ -1164,19 +1164,19 @@ public class DaasService extends BaseService {
 			//组建定义
 			ComponentDefinitionDao dictionaryDao = sqlSession.getMapper(ComponentDefinitionDao.class);
 			int result = 0;
-			if (daas != null) {
+			if (dss != null) {
 				DataSource dataSource = new DataSource();
-				if(daas.getResourceId()==null){
+				if(dss.getResourceId()==null){
 					id = UUID.randomUUID().toString();
 				}else{
-					id=daas.getResourceId();
+					id=dss.getResourceId();
 				}
 				dataSource.setId(id);
-				dataSource.setName(daas.getResourceName());
-				dataSource.setDataDesc(daas.getResourceDesc());
-				dataSource.setBusinessType(daas.getBusinessType());
-				dataSource.setDataDSType(daas.getType());
-				if("TEXT".equals(daas.getType())){
+				dataSource.setName(dss.getResourceName());
+				dataSource.setDataDesc(dss.getResourceDesc());
+				dataSource.setBusinessType(dss.getBusinessType());
+				dataSource.setDataDSType(dss.getType());
+				if("TEXT".equals(dss.getType())){
 					dataSource.setDataDSType("CSV");
 				}
 				dataSource.setDataType(0);
@@ -1186,21 +1186,21 @@ public class DaasService extends BaseService {
 				dataSource.setCreateTime(new Date());
 //				dataSource.setCreator(exchangeSSOService.getAccount(token));
 				JsonObject jsonObject=new JsonObject();
-				jsonObject.addProperty("tableName",daas.getName());
-				jsonObject.addProperty("databaseName","@daas"); //TODO 暂时写死
+				jsonObject.addProperty("tableName",dss.getName());
+				jsonObject.addProperty("databaseName","@dss"); //TODO 暂时写死
 				//数据连接信息
 				dataSource.setDataConfig(jsonObject.toString());
 				//新增组件定义
 				ComponentDefinition cd = new ComponentDefinition();
 				cd.setId(id);
 				cd.setCode(ComponentClassification.SimpleDataSource.name());
-				cd.setName(daas.getResourceName());
+				cd.setName(dss.getResourceName());
 				cd.setClassification("001");
 //				cd.setCreator(exchangeSSOService.getAccount(token));
 				cd.setParams("");
 				//新增数据源
-				if(daas.getResourceId()==null){
-					dataSourceDao.insertDS(null, id, daas.getName());
+				if(dss.getResourceId()==null){
+					dataSourceDao.insertDS(null, id, dss.getName());
 					dictionaryDao.insert(cd);
 					dataSourceDao.insert(dataSource);
 				}
@@ -1214,28 +1214,28 @@ public class DaasService extends BaseService {
 
 	/**
 	 * 更新JSON
-	 * @param daas
+	 * @param dss
 	 * @return
 	 */
-	public int updateJSON(JSONInfo daas, String token) {
+	public int updateJSON(JSONInfo dss, String token) {
 		try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			//数据源
 			DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
 			//组建定义
 			ComponentDefinitionDao dictionaryDao = sqlSession.getMapper(ComponentDefinitionDao.class);
-			uploadFinish(daas, token);
-			String daasName = getDaasNameByID(daas.getResourceId());
-			deleteFile(daasName);
+			uploadFinish(dss, token);
+			String dssName = getdssNameByID(dss.getResourceId());
+			deleteFile(dssName);
 			int result = 0;
-			if (daas != null) {
+			if (dss != null) {
 				DataSource dataSource = new DataSource();
-				String id = daas.getResourceId();
-				dataSourceDao.updateDSByDataSourceID(null, id, daas.getName());
+				String id = dss.getResourceId();
+				dataSourceDao.updateDSByDataSourceID(null, id, dss.getName());
 				dataSource.setId(id);
-				dataSource.setName(daas.getResourceName());
-				dataSource.setDataDesc(daas.getResourceDesc());
-				dataSource.setBusinessType(daas.getBusinessType());
-				dataSource.setDataDSType(daas.getType());
+				dataSource.setName(dss.getResourceName());
+				dataSource.setDataDesc(dss.getResourceDesc());
+				dataSource.setBusinessType(dss.getBusinessType());
+				dataSource.setDataDSType(dss.getType());
 				dataSource.setDataType(0);
 				dataSource.setDataFrom("DataWave");
 				dataSource.setClassification("001");
@@ -1243,12 +1243,12 @@ public class DaasService extends BaseService {
 				dataSource.setCreateTime(new Date());
 //				dataSource.setCreator(exchangeSSOService.getAccount(token));
 				//数据连接信息
-				dataSource.setDataConfig(daas.getType());
+				dataSource.setDataConfig(dss.getType());
 				//更新组件定义
 				ComponentDefinition cd = new ComponentDefinition();
 				cd.setId(id);
 				cd.setCode(ComponentClassification.SimpleDataSource.name());
-				cd.setName(daas.getResourceName());
+				cd.setName(dss.getResourceName());
 				cd.setClassification("001");
 //				cd.setCreator(exchangeSSOService.getAccount(token));
 				cd.setParams("");
@@ -1271,13 +1271,13 @@ public class DaasService extends BaseService {
 	public Object listJSON(String id)  {
 		try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
-			String daasName = dataSourceDao.getDaasNameByID(id);
-			String daasName2 = URLEncoder.encode(daasName, "utf-8");
+			String dssName = dataSourceDao.getdssNameByID(id);
+			String dssName2 = URLEncoder.encode(dssName, "utf-8");
 			RequestBody body = new MultipartBody.Builder()
 												.setType(MultipartBody.FORM)
 												.addFormDataPart("id",id)
 												.build();
-			String url = this.daasServerAPIV2RootUrl+"/datasets/new_untitled?parentDataset=%22%40daas%22.%22"+daasName2+"%22&newVersion="+"000" + RandomUtils.getNumStr_13()+"&limit=150";
+			String url = this.dssServerAPIV2RootUrl+"/datasets/new_untitled?parentDataset=%22%40dss%22.%22"+dssName2+"%22&newVersion="+"000" + RandomUtils.getNumStr_13()+"&limit=150";
 			Request request = new Request.Builder()
 									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
 									  .header("Content-Type", "application/json")
@@ -1320,7 +1320,7 @@ public class DaasService extends BaseService {
 		{
 			{
 				try {
-					String url = this.daasServerAPIV2RootUrl+"/home/%40daas/upload_finish/" + JSONInfo2.getName();
+					String url = this.dssServerAPIV2RootUrl+"/home/%40dss/upload_finish/" + JSONInfo2.getName();
 					Request request = new Request.Builder()
 											  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
 											  .header("Content-Type", "application/json")
@@ -1371,11 +1371,11 @@ public class DaasService extends BaseService {
 		RequestBody multipartBody = new MultipartBody.Builder()
 											.setType(MultipartBody.FORM)
 											.addFormDataPart("file", fileName, fileBody)//这里选择本地缓存的文件名
-											.addFormDataPart("fileName", fileName)//这里可以自定义上传到daas的名字
+											.addFormDataPart("fileName", fileName)//这里可以自定义上传到dss的名字
 											.build();
 		try {
-//            String urlString = URLEncoder.encode(daasName, "utf-8");
-			String url = this.daasServerAPIV2RootUrl+"/home/%40daas/upload_start/";
+//            String urlString = URLEncoder.encode(dssName, "utf-8");
+			String url = this.dssServerAPIV2RootUrl+"/home/%40dss/upload_start/";
 			Request request = new Request.Builder()
 									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
 									  .header("Content-Type", "application/json")
@@ -1432,7 +1432,7 @@ public class DaasService extends BaseService {
 		{
 			{
 				try {
-					String url = this.daasServerAPIV2RootUrl+"/home/%40daas/file_preview_unsaved/" + name;
+					String url = this.dssServerAPIV2RootUrl+"/home/%40dss/file_preview_unsaved/" + name;
 					Request request = new Request.Builder()
 											  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
 											  .header("Content-Type", "application/json")
@@ -1457,26 +1457,26 @@ public class DaasService extends BaseService {
 
 	/**
 	 * 更新CSV文件
-	 * @param daas
+	 * @param dss
 	 * @return
 	 */
-	public int updateCSV(JSONInfo daas, String token) {
+	public int updateCSV(JSONInfo dss, String token) {
 		try (SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			//数据源
 			DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
 			//组建定义
 			ComponentDefinitionDao dictionaryDao = sqlSession.getMapper(ComponentDefinitionDao.class);
-			uploadFinishCSV(daas, token);
+			uploadFinishCSV(dss, token);
 			int result = 0;
-			if (daas != null) {
+			if (dss != null) {
 				DataSource dataSource = new DataSource();
-				String id = daas.getResourceId();
-				dataSourceDao.updateDSByDataSourceID(null, id, daas.getName());
+				String id = dss.getResourceId();
+				dataSourceDao.updateDSByDataSourceID(null, id, dss.getName());
 				dataSource.setId(id);
-				dataSource.setName(daas.getResourceName());
-				dataSource.setDataDesc(daas.getResourceDesc());
-				dataSource.setBusinessType(daas.getBusinessType());
-				dataSource.setDataDSType(daas.getType());
+				dataSource.setName(dss.getResourceName());
+				dataSource.setDataDesc(dss.getResourceDesc());
+				dataSource.setBusinessType(dss.getBusinessType());
+				dataSource.setDataDSType(dss.getType());
 				dataSource.setDataType(0);
 				dataSource.setDataFrom("DataWave");
 				dataSource.setClassification("001");
@@ -1484,15 +1484,15 @@ public class DaasService extends BaseService {
 				dataSource.setCreateTime(new Date());
 //				dataSource.setCreator(exchangeSSOService.getAccount(token));
 				JsonObject jsonObject=new JsonObject();
-				jsonObject.addProperty("tableName",daas.getName());
-				jsonObject.addProperty("databaseName","@daas"); //TODO 暂时写死
+				jsonObject.addProperty("tableName",dss.getName());
+				jsonObject.addProperty("databaseName","@dss"); //TODO 暂时写死
 				//数据连接信息
 				dataSource.setDataConfig(jsonObject.toString());
 				//更新组件定义
 				ComponentDefinition cd = new ComponentDefinition();
 				cd.setId(id);
 				cd.setCode(ComponentClassification.SimpleDataSource.name());
-				cd.setName(daas.getResourceName());
+				cd.setName(dss.getResourceName());
 				cd.setClassification("001");
 //				cd.setCreator(exchangeSSOService.getAccount(token));
 				cd.setParams("");
@@ -1512,7 +1512,7 @@ public class DaasService extends BaseService {
 	 */
 	public String deleteFile(String name) {
 		try {
-			String url = this.daasServerAPIV2RootUrl+"/home/%40daas/file/" + name + "?version=0";
+			String url = this.dssServerAPIV2RootUrl+"/home/%40dss/file/" + name + "?version=0";
 			Request request = new Request.Builder()
 									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
 									  .header("Content-Type", "application/json")

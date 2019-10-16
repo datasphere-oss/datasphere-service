@@ -1,10 +1,12 @@
 package com.datasphere.engine.manager.resource.provider.model;
 
-public class DaasDataSource {
+public class DSSDataSource {
+	// 用户名称
 	private String username;
 	private String password;
 	private String hostname;
 	private String port;
+	// 认证类型
 	private String authenticationType;
 	private String fetchSize;
 

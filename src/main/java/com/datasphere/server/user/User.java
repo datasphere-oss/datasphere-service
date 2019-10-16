@@ -132,7 +132,7 @@ public class User extends AbstractHistoryEntity implements UserDetails, DSSDomai
   @Transient
   @JsonProperty(access = WRITE_ONLY)
   private Boolean passMailer = false;
-
+  // 角色集名称
   @Transient
   @JsonProperty(access = WRITE_ONLY)
   private String roleSetName;
@@ -140,7 +140,7 @@ public class User extends AbstractHistoryEntity implements UserDetails, DSSDomai
   @Transient
   @JsonProperty(access = WRITE_ONLY)
   private String workspaceType;
-
+  // 角色服务
   @Transient
   private RoleService roleService;
 

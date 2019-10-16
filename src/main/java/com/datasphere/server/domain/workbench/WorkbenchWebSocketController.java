@@ -42,7 +42,7 @@ public class WorkbenchWebSocketController {
 
   @Autowired
   public SimpMessageSendingOperations messagingTemplate;
-
+  // 工作表数据源管理
   @Autowired
   WorkbenchDataSourceManager workbenchDataSourceManager;
 
@@ -60,11 +60,11 @@ public class WorkbenchWebSocketController {
                                UserInfo userInfo) throws Exception {
     LOGGER.debug("Connect workbench : Workbench - {}, DataConnection - {}, user - {}, session id - {}",
             workbenchId, dataConnectionId, accessor.getUser().getName(), accessor.getSessionId());
-
+    // 获得用户名和密码
     String sessionId = accessor.getSessionId();
     String username = userInfo != null ? userInfo.getUsername() : "";
     String password = userInfo != null ? userInfo.getPassword() : "";
-
+    // 工作表的命令列表
     Map<String, Object> message = new HashMap<>();
     message.put("command", WorkbenchWebSocketCommand.CONNECT);
     message.put("connected", true);
@@ -79,7 +79,7 @@ public class WorkbenchWebSocketController {
   }
 
   /**
-   * Workspace 화면 나갈때 호출
+   * Workspace 断开工作表连接
    *
    * @param accessor
    * @param workbenchId
@@ -103,6 +103,7 @@ public class WorkbenchWebSocketController {
 
   /**
    * Message Payload
+   * 用户信息，用户名和密码
    */
   public static class UserInfo implements Serializable {
 

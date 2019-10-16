@@ -38,6 +38,10 @@ import com.datasphere.common.utils.RandomUtils;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.core.common.utils.UUIDUtils;
 import com.datasphere.engine.core.utils.JsonWrapper;
+import com.datasphere.engine.datasource.connections.constant.ConnectionInfoAndOthers;
+import com.datasphere.engine.datasource.connections.dao.DataSetInstanceDao;
+import com.datasphere.engine.datasource.connections.jdbc.service.DataAccessor;
+import com.datasphere.engine.datasource.connections.model.DataSetInstance;
 import com.datasphere.engine.manager.resource.provider.db.dao.DataSourceDao;
 import com.datasphere.engine.manager.resource.provider.db.service.DBOperationService;
 import com.datasphere.engine.manager.resource.provider.model.DataSource;
@@ -58,12 +62,8 @@ import com.datasphere.engine.shaker.processor.instance.service.ComponentInstance
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 import com.datasphere.engine.shaker.processor.runner.ProcessRunner;
 import com.datasphere.engine.shaker.processor.stop.StopSingleInstance;
-import com.datasphere.engine.shaker.workflow.panel.constant.PanelState;
-import com.datasphere.engine.shaker.workflow.panel.service.PanelServiceImpl;
-import com.datasphere.server.connections.constant.ConnectionInfoAndOthers;
-import com.datasphere.server.connections.dao.DataSetInstanceDao;
-import com.datasphere.server.connections.model.DataSetInstance;
-import com.datasphere.server.connections.service.DataAccessor;
+import com.datasphere.engine.shaker.workflow.panelboard.constant.PanelState;
+import com.datasphere.engine.shaker.workflow.panelboard.service.PanelServiceImpl;
 import com.datasphere.server.sso.service.DSSUserTokenService;
 import com.datasphere.server.sso.service.DSSVersionService;
 import com.google.gson.Gson;
@@ -83,7 +83,7 @@ public class ProcessService extends BaseService {
 	public static String TOKEN;
 
 	@Autowired
-	private ProcessDaasService processDaasService;
+	private ProcessDSSService processDSSService;
 	@Autowired
 	private DSSUserTokenService dssUserTokenService;
 	@Autowired
@@ -498,7 +498,7 @@ public class ProcessService extends BaseService {
 
 		// 获取目标数据库的 space_name,db_name,table_name
 		String daas_ds_id = getDaasCatalogId(getComponentDefinitionId(left_ci_id));
-		String space_name = processDaasService.getCatalogEntity(daas_ds_id);
+		String space_name = processDSSService.getCatalogEntity(daas_ds_id);
 		String db_name;
 		if("POSTGRES".equals(source_ds.getDataDSType())) {
 			db_name = JSON.parseObject(source_ds.getDataConfig()).getString("scheme");
@@ -509,7 +509,7 @@ public class ProcessService extends BaseService {
 		left_full_name.append("\"").append(space_name).append("\".").append(db_name).append(".").append(left_table_name);
         String left_full_name2 = left_full_name.toString();
 		daas_ds_id = getDaasCatalogId(getComponentDefinitionId(right_ci_id));
-		space_name = processDaasService.getCatalogEntity(daas_ds_id);
+		space_name = processDSSService.getCatalogEntity(daas_ds_id);
 		if("POSTGRES".equals(source_ds.getDataDSType())) {
 			db_name = JSON.parseObject(target_ds.getDataConfig()).getString("scheme");
 		} else {
@@ -679,7 +679,7 @@ public class ProcessService extends BaseService {
 		}else{
 			String source_table_name = JSON.parseObject(source_ds.getDataConfig()).getString("tableName");
 			String daas_ds_id = getDaasCatalogId(getComponentDefinitionId(getSourceCIIdsByDestCIId(current_ci_id).get(0)));
-			String space_name = processDaasService.getCatalogEntity(daas_ds_id);
+			String space_name = processDSSService.getCatalogEntity(daas_ds_id);
 			String db_name;
 			if("POSTGRES".equals(source_ds.getDataDSType())){
 				db_name = JSON.parseObject(source_ds.getDataConfig()).getString("scheme");
@@ -726,7 +726,7 @@ public class ProcessService extends BaseService {
 		} else {
 			String source_table_name = JSON.parseObject(source_ds.getDataConfig()).getString("tableName");
 			String daas_ds_id = getDaasCatalogId(cfId);
-			String space_name = processDaasService.getCatalogEntity(daas_ds_id);
+			String space_name = processDSSService.getCatalogEntity(daas_ds_id);
 			String db_name;
 			if ("POSTGRES".equals(source_ds.getDataDSType())) {
 				db_name = JSON.parseObject(source_ds.getDataConfig()).getString("scheme");
@@ -857,7 +857,7 @@ public class ProcessService extends BaseService {
 			right_cd_id = getComponentDefinitionId(upper_ci_id);// 根据组件实例ID获取到组件定义ID，即数据源ID
 			daas_ds_id = getDaasCatalogId(right_cd_id);
 		}
-		space_name = processDaasService.getCatalogEntity(daas_ds_id);
+		space_name = processDSSService.getCatalogEntity(daas_ds_id);
 		if (space_name == null) return null;
 		dataSource = getDataSourceById(right_cd_id);
 		if("POSTGRES".equals(dataSource.getDataDSType())) {
@@ -954,7 +954,7 @@ public class ProcessService extends BaseService {
 			if (jsonParam.getString("joinType").equals("Union")) {
                 JSONObject ci_params = getCiParams(middle_process_ci_id);
                 String union_sql = getSQLUnion(ci_params);
-				virtualDataset = processDaasService.runSqlOnDaas(union_sql);
+				virtualDataset = processDSSService.runSqlOnDaas(union_sql);
             } else if (jsonParam.getString("joinType").equals("Diff")) {
                 JSONObject ci_params = getCiParams(middle_process_ci_id);
                 String diff_sql = getSQLDiff(ci_params);
@@ -1000,7 +1000,7 @@ public class ProcessService extends BaseService {
 
 	private String getNewVersion2(String daas_ds_id, String right_cd_id) {
 		// 获取(right-源数据库)的space_name,db_name,table_name
-		String space_name = processDaasService.getCatalogEntity(daas_ds_id);
+		String space_name = processDSSService.getCatalogEntity(daas_ds_id);
 		DataSource dataSource = getDataSourceById(right_cd_id);
 		JSONObject dataConfig = JSON.parseObject(dataSource.getDataConfig());
 		String db_name;
@@ -1033,7 +1033,7 @@ public class ProcessService extends BaseService {
 
 	public String getVDS(String dass_ds_id, String app_ds_id) {
 		// 获取源数据库的 space_name,db_name,table_name
-		String space_name = processDaasService.getCatalogEntity(dass_ds_id);
+		String space_name = processDSSService.getCatalogEntity(dass_ds_id);
 		DataSource dataSource = getDataSourceById(app_ds_id);
 		String db_name;
 		if("POSTGRES".equals(dataSource.getDataDSType())) {
@@ -1193,7 +1193,7 @@ public class ProcessService extends BaseService {
 				JSONObject ci_params = getCiParams(second_ci_id);
 				String union_sql = getSQLUnion(ci_params);
 				if (union_sql == null) return "处理组件:"+componentType.name()+"，获取SQL失败！1106";
-				virtualDatasetStr = processDaasService.runSqlOnDaas(union_sql);
+				virtualDatasetStr = processDSSService.runSqlOnDaas(union_sql);
 				addCILog(PROCESS_ID,PANEL_ID,second_ci_id,"并表结果集，存储成功",1);
 			} else {
 				if("Diff".equals(componentType.name())) {//处理组件：Diff
@@ -1474,7 +1474,7 @@ public class ProcessService extends BaseService {
             addCILog(PROCESS_ID,PANEL_ID, target_ci_ids.get(0),"结果集开始入库", 1);
             List<String> upper_ci_ids = getSourceCIIdsByDestCIIds(target_ci_ids);
 			String upper_sql = getSqlByCIId(upper_ci_ids.get(0)).getString("sql");
-            String result = processDaasService.runSqlOnDaas(upper_sql);
+            String result = processDSSService.runSqlOnDaas(upper_sql);
             return insertToTargetDB(toComponents, result);
         }
     }

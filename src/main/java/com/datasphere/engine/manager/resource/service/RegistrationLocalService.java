@@ -37,7 +37,7 @@ public class RegistrationLocalService {
     private RegistrationRepository registrationRepository;
 
     /*
-     * Data
+     * Data 构建注册信息 - 用户信息, 消费者信息
      */
 
     public Registration add(String scopeId, String userId, String type, String consumer,

@@ -31,25 +31,25 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.datasphere.engine.datasource.DataSourceRepository;
+import com.datasphere.engine.datasource.QDataSource;
 import com.datasphere.server.common.MatrixResponse;
 import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
-import com.datasphere.server.datasource.DataSourceRepository;
-import com.datasphere.server.datasource.QDataSource;
-import com.datasphere.server.domain.CollectionPatch;
+import com.datasphere.server.common.domain.CollectionPatch;
 import com.datasphere.server.domain.activities.ActivityStreamService;
-import com.datasphere.server.domain.user.CachedUserService;
-import com.datasphere.server.domain.user.DirectoryProfile;
-import com.datasphere.server.domain.user.User;
-import com.datasphere.server.domain.user.group.Group;
-import com.datasphere.server.domain.user.group.GroupRepository;
-import com.datasphere.server.domain.user.group.GroupService;
-import com.datasphere.server.domain.user.role.Role;
-import com.datasphere.server.domain.user.role.RoleRepository;
-import com.datasphere.server.domain.user.role.RoleService;
-import com.datasphere.server.domain.user.role.RoleSet;
-import com.datasphere.server.domain.user.role.RoleSetRepository;
-import com.datasphere.server.domain.user.role.RoleSetService;
+import com.datasphere.server.user.service.CachedUserService;
+import com.datasphere.server.user.DirectoryProfile;
+import com.datasphere.server.user.User;
+import com.datasphere.server.user.group.Group;
+import com.datasphere.server.user.group.GroupRepository;
+import com.datasphere.server.user.group.GroupService;
+import com.datasphere.server.user.role.Role;
+import com.datasphere.server.user.role.RoleRepository;
+import com.datasphere.server.user.role.RoleService;
+import com.datasphere.server.user.role.RoleSet;
+import com.datasphere.server.user.role.RoleSetRepository;
+import com.datasphere.server.user.role.RoleSetService;
 import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 import com.datasphere.server.util.AuthUtils;
 import com.datasphere.server.util.EnumUtils;
@@ -108,7 +108,7 @@ public class WorkspaceService {
 
   @Transactional
   public Workspace createWorkspaceByUserCreation(User user, boolean ifExistThrowException) {
-
+	// 用户创建的同时, 创建工作空间
     // Create Workspace (if no workspace is registered)
     Workspace checkedWorkspace = workspaceRepository.findPrivateWorkspaceByOwnerId(user.getUsername());
     if(checkedWorkspace != null) {

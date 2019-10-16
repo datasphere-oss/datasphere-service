@@ -29,9 +29,9 @@ import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
-import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
-import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
-import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.engine.datasource.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.engine.datasource.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataconnection.DataConnectionRepository;

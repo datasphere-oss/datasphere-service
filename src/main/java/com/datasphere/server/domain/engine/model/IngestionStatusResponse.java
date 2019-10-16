@@ -14,13 +14,12 @@
 
 package com.datasphere.server.domain.engine.model;
 
+import com.datasphere.engine.datasource.ingestion.IngestionHistory;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.Map;
-
-import com.datasphere.datasource.ingestion.IngestionHistory;
 
 public class IngestionStatusResponse implements Serializable {
 

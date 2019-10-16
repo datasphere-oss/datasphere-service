@@ -16,8 +16,8 @@ package com.datasphere.server.domain.dataprep;
 
 import static com.datasphere.server.domain.dataprep.entity.PrDataset.RS_TYPE.QUERY;
 
+import com.datasphere.engine.datasource.connections.jdbc.accessor.JdbcAccessor;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
-import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
 import com.datasphere.server.domain.dataconnection.DataConnection;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataconnection.DataConnectionRepository;

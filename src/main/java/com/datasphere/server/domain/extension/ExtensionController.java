@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.util.CaseInsensitiveConverter;
 
 @RestController

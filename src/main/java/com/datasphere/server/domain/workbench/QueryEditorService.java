@@ -57,11 +57,11 @@ import org.supercsv.io.CsvMapReader;
 import org.supercsv.io.ICsvMapReader;
 import org.supercsv.prefs.CsvPreference;
 
+import com.datasphere.engine.datasource.connections.jdbc.accessor.JdbcAccessor;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.datasource.DataType;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
-import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
-import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.datasource.Field;
 import com.datasphere.server.datasource.connection.jdbc.JdbcConnectionService;
 import com.datasphere.server.domain.audit.Audit;

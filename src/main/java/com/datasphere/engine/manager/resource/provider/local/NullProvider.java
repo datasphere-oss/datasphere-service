@@ -83,7 +83,7 @@ public class NullProvider extends ResourceProvider {
     public int getStatus() {
         return STATUS;
     }
-
+    // 创建数据资源
     @Override
     public Resource createResource(String scopeId, String userId, String name, Map<String, Serializable> properties)
             throws ResourceProviderException {
@@ -105,19 +105,19 @@ public class NullProvider extends ResourceProvider {
 
         return res;
     }
-
+    // 更新资源
     @Override
     public void updateResource(Resource resource) throws ResourceProviderException {
         // nothing to do
 
     }
-
+    // 删除资源
     @Override
     public void deleteResource(Resource resource) throws ResourceProviderException {
         // nothing to do
 
     }
-
+    // 检查资源
     @Override
     public void checkResource(Resource resource) throws ResourceProviderException {
         // nothing to do

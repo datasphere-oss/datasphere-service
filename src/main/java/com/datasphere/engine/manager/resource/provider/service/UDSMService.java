@@ -6,6 +6,9 @@ import com.datasphere.common.data.Dataset;
 import com.datasphere.common.utils.PageUtil;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.engine.core.utils.JAssert;
+import com.datasphere.engine.datasource.connections.dao.DataSetInstanceDao;
+import com.datasphere.engine.datasource.connections.jdbc.accessor.DremioDataAccessor;
+import com.datasphere.engine.datasource.connections.model.DataSetInstance;
 import com.datasphere.engine.manager.resource.provider.catalog.model.RequestParams;
 import com.datasphere.engine.manager.resource.provider.db.dao.DataSourceDao;
 import com.datasphere.engine.manager.resource.provider.db.model.DBCommonInfo;
@@ -13,9 +16,9 @@ import com.datasphere.engine.manager.resource.provider.db.service.DataSourceData
 import com.datasphere.engine.manager.resource.provider.db.service.DataSourceDatabaseService;
 import com.datasphere.engine.manager.resource.provider.db.util.BeanToMapUtil;
 import com.datasphere.engine.manager.resource.provider.elastic.model.DremioDataSourceInfo;
-import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseConnectionInfo;
-import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseDataSourceInfo;
-import com.datasphere.engine.manager.resource.provider.hbase.model.HbaseTableInfo;
+import com.datasphere.engine.manager.resource.provider.hbase.model.HBaseConnectionInfo;
+import com.datasphere.engine.manager.resource.provider.hbase.model.HBaseDataSourceInfo;
+import com.datasphere.engine.manager.resource.provider.hbase.model.HBaseTableInfo;
 import com.datasphere.engine.manager.resource.provider.hive.model.HiveConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.hive.model.HiveDataSourceInfo;
 import com.datasphere.engine.manager.resource.provider.model.*;
@@ -31,9 +34,6 @@ import com.datasphere.engine.shaker.processor.instance.service.ComponentInstance
 import com.datasphere.engine.shaker.processor.prep.service.ProgramService;
 import com.datasphere.server.common.exception.JIllegalOperationException;
 import com.datasphere.server.common.exception.http.HttpClientException;
-import com.datasphere.server.connections.dao.DataSetInstanceDao;
-import com.datasphere.server.connections.model.DataSetInstance;
-import com.datasphere.server.connections.service.DataAccessor;
 import com.datasphere.server.sso.service.DSSUserTokenService;
 import com.google.common.base.Splitter;
 import com.google.gson.Gson;
@@ -85,7 +85,7 @@ public class UDSMService extends BaseService {
             map.put("name", name);
             map.put("pageIndex", PageUtil.getPageStart(pageIndex, pageSize));
             map.put("pageSize", pageSize);
-            map.put("dataFrom", "DataWave");
+            map.put("dataFrom", "DSS");
 //            if("root".equals(account)){
 //                map.put("account",null);
 //                map.put("userId",null);
@@ -221,7 +221,7 @@ public class UDSMService extends BaseService {
                     dataSource.setBusinessType(dataSourceInfo.getBusinessType());
                     dataSource.setDataDSType(dataSourceInfo.getDataDSType());
                     dataSource.setDataType(dataSourceInfo.getDataType());
-                    dataSource.setDataFrom("DataWave");
+                    dataSource.setDataFrom("DSS");
                     dataSource.setClassification("001");
                     dataSource.setCode("SimpleDataSource");
                     dataSource.setCreateTime(new Date());
@@ -271,7 +271,7 @@ public class UDSMService extends BaseService {
     }
 
     /**
-     * 测试database
+     * 测试数据库
      * @param connectionInfo
      * @return
      */
@@ -331,15 +331,15 @@ public class UDSMService extends BaseService {
     }
 
     /**
-     * 更新数据元名称及描述
+     * 更新数据源名称及描述
      * @param dataSource
      * @return
      */
-    public int update(DataSource dataSource) {
+    public int updateDataSource(DataSource dataSource) {
         try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
             DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
             ComponentDefinitionDao dictionaryDao = sqlSession.getMapper(ComponentDefinitionDao.class);
-
+            // 更新数据源信息
             int result = dataSourceDao.update(dataSource);
 
             ComponentDefinition cd = new ComponentDefinition();
@@ -370,7 +370,7 @@ public class UDSMService extends BaseService {
      * @param ids
      * @return
      */
-    public int deleteDatasourceById(String ids) {
+    public int deleteDataSourceById(String ids) {
         try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
             DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
             List<String> idlst = Splitter.on("^^").splitToList(ids == null ? "" : ids);
@@ -390,7 +390,7 @@ public class UDSMService extends BaseService {
      * @param dataSourceInfo
      * @return
      */
-    public int updateDatasourceById(DBDataSourceInfo dataSourceInfo,String token) {
+    public int updateDataSourceById(DBDataSourceInfo dataSourceInfo,String token) {
         try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
             DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
             ComponentDefinitionDao dictionaryDao = sqlSession.getMapper(ComponentDefinitionDao.class);
@@ -405,7 +405,7 @@ public class UDSMService extends BaseService {
                 dataSource.setBusinessType(dataSourceInfo.getBusinessType());
                 dataSource.setDataDSType(dataSourceInfo.getDataDSType());
                 dataSource.setDataType(dataSourceInfo.getDataType());
-                dataSource.setDataFrom("DataWave");
+                dataSource.setDataFrom("DSS");
                 dataSource.setLastModified(new Date());
 //                dataSource.setCreator(exchangeSSOService.getAccount(token));
                 //数据连接信息
@@ -428,7 +428,7 @@ public class UDSMService extends BaseService {
                 cd.setLastModified(new Date());
                 dictionaryDao.update(cd);//更新数据源
 
-                result = dataSourceDao.updateDatasourceById(dataSource);
+                result = dataSourceDao.updateDataSourceById(dataSource);
                 sqlSession.commit();
             }
             return result;
@@ -440,14 +440,14 @@ public class UDSMService extends BaseService {
      * @param name
      * @return
      */
-    public List<String> verifyDatasourceName(String name) {
+    public List<String> verifyDataSourceName(String name) {
         try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
             DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
             List<String> namelst = Splitter.on("^^").splitToList(name);
             List<String> names = new ArrayList<>();
             for (int i = 0; i < namelst.size(); i++) {
                 //TODO 根据名称和用户查询是否有数据
-                int count = dataSourceDao.findDatasourceByName(namelst.get(i));
+                int count = dataSourceDao.findDataSourceByName(namelst.get(i));
                 if (count > 0){
                     names.add(namelst.get(i));
                 }
@@ -460,7 +460,7 @@ public class UDSMService extends BaseService {
      * 查询已定阅资源
      * @return
      */
-    public Map<String,Object> getSubscribeDatasource(RequestParams requestParams) {
+    public Map<String,Object> getSubscribedDataSource(RequestParams requestParams) {
         List<DataSource> dataSourceList = new ArrayList<>();
         Map<String,Object> map1 = new HashMap<>();
         try(HttpClient httpClient = HttpClient.create(new URL(this.OpenAPIServerRootUrl));
@@ -507,7 +507,7 @@ public class UDSMService extends BaseService {
                 if(dataSourceById == null){
                     baseDao.insert(dataSource);
                 }else{
-                    baseDao.updateDatasourceById(dataSource);
+                    baseDao.updateDataSourceById(dataSource);
                 }
             }
             sqlSession.commit();
@@ -539,7 +539,7 @@ public class UDSMService extends BaseService {
      * @param id
      * @return
      */
-    public DataSource findDataSourceDetail(String id,String token) {
+    public DataSource findDataSourceDetails(String id,String token) {
         ComponentInstance cinstances = getInstance(id);//根据id获取 组件实例
 //        String creator = exchangeSSOService.getAccount(token);
         JAssert.isTrue(cinstances != null, "组件实例不存在：" + id);
@@ -551,13 +551,13 @@ public class UDSMService extends BaseService {
                 DataSourceDao baseDao = sqlSession.getMapper(DataSourceDao.class);
                 dataSource = baseDao.findDataSourceById(cdId);//根据ID查询datasource
             }
-            if (dataSource != null && GlobalDefine.COMPONENT_CLASSIFICATION.MY_DATASOURCE.equals(dataSource.getClassification())) {
+            if (dataSource != null && GlobalConstant.COMPONENT_CLASSIFICATION.MY_DATASOURCE.equals(dataSource.getClassification())) {
                 if (!creator.equals(dataSource.getCreator())) dataSource = null;// 我的数据源，较验创建者
             }
             JAssert.isTrue(dataSource != null, "数据源不存在：id:" + cdId + ",用户:" + creator);
             if (dataSource != null) {
                 try {
-                    DataAccessor dataAccessor = new DataAccessor(DataAccessor.PG_URL);
+                    DremioDataAccessor dataAccessor = new DremioDataAccessor(DremioDataAccessor.PG_URL);
 					Dataset dataset = dataAccessor.getDatasetMetadata(cdId); //datasetDAO.get(key);
                     JAssert.isTrue(dataset != null, "dataset_instance表不存在！keyId=" + cdId);
                     List<Map<String, String>> columns = new ArrayList<Map<String, String>>();
@@ -565,8 +565,8 @@ public class UDSMService extends BaseService {
                     if (columns2 != null && columns2.length > 0) {
                         for (int i = 0; i < columns2.length; i++) {
                             Map<String, String> colMap = new LinkedHashMap<>();
-                            colMap.put(GlobalDefine.DATASOURCE_COLUMNNAME, columns2[i].getName());
-                            colMap.put(GlobalDefine.DATASOURCE_COLUMNTYPE, columns2[i].getType());
+                            colMap.put(GlobalConstant.DATASOURCE_COLUMNNAME, columns2[i].getName());
+                            colMap.put(GlobalConstant.DATASOURCE_COLUMNTYPE, columns2[i].getType());
                             columns.add(colMap);
                         }
                         dataSource.setDataColumnsType(columns);
@@ -590,7 +590,7 @@ public class UDSMService extends BaseService {
     }
 
     /**
-     * 根据组件实例id，获取组件实例
+     * 根据组件实例Id，获取组件实例
      * @param id
      * @return
      */
@@ -604,9 +604,9 @@ public class UDSMService extends BaseService {
      * @param processId
      * @return
      */
-    public Map<String, Object> dataPreProcess(String processId) {
+    public Map<String, Object> dataPrep(String processId) {
         Map<String, Object> preProcess = new HashMap<>();
-        // TODO 组建处理相关
+        // TODO 组件处理相关
 //		PreProcess= (Map)WebsiteTerminalUtils.sendRequest(preprocessTerminal,HttpMethod.GET, "/program/getDefault?processId="+id,"");
 //        ProgramOutputData data = programService.getDefaultProgram(processId);
         ComponentInstance data = ciService.get(processId);
@@ -626,7 +626,7 @@ public class UDSMService extends BaseService {
             }
         }
 
-        preProcess.put("DataPreProcess",data);
+        preProcess.put("DataPrep",data);
         preProcess.put("getOutPut",getoutput);
         return preProcess;
     }
@@ -678,7 +678,7 @@ public class UDSMService extends BaseService {
                     dataSource.setId(id);
                     dataSource.setName(dataSources.get(i).getName());
                     dataSource.setDataDesc(dataSources.get(i).getDataDesc());
-                    dataSource.setDataFrom("DataWave");
+                    dataSource.setDataFrom("DSS");
                     dataSource.setCreateTime(new Date());
 //                    dataSource.setCreator(exchangeSSOService.getAccount(token));
                     //hive数据连接信息
@@ -827,7 +827,7 @@ public class UDSMService extends BaseService {
      * @param id
      * @return
      */
-    public DataSourceWithAll getWithPanel(String id,String token) {
+    public DataSourceWithAll getDataSourceWithPanel(String id,String token) {
         List<DataSourceWithAll> all = null;
 //        String userId = exchangeSSOService.getAccount(token);
         try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
@@ -883,17 +883,17 @@ public class UDSMService extends BaseService {
 //**************************************hbase**************************************
     /**
      * test connection
-     * @param hbaseConnectionInfo
+     * @param hBaseConnectionInfo
      * @return
      */
-    public int testHBase(HbaseConnectionInfo hbaseConnectionInfo) {
+    public int testHBaseConnection(HBaseConnectionInfo hBaseConnectionInfo) {
         ResultInfo resultInfo = null;
         try(HttpClient httpClient = HttpClient.create(new URL(this.dataServiceOnPrestoServerRootUrl))) {
 
             resultInfo = httpClient
                     .toBlocking()
                     .retrieve(
-                            POST(this.dataServiceOnPrestoServerRootUrl + "/bigdata/hbase/test-connection",hbaseConnectionInfo),
+                            POST(this.dataServiceOnPrestoServerRootUrl + "/bigdata/hbase/test-connection",hBaseConnectionInfo),
                             ResultInfo.class);
             if(resultInfo != null && resultInfo.isData()){
                 return 1;
@@ -906,10 +906,10 @@ public class UDSMService extends BaseService {
 
     /**
      * select hbase list table info
-     * @param hbaseConnectionInfo
+     * @param hBaseConnectionInfo
      * @return
      */
-    public List<DBTableInfodmp> hBaseListTable(HbaseConnectionInfo hbaseConnectionInfo) {
+    public List<DBTableInfodmp> listHBaseTables(HBaseConnectionInfo hBaseConnectionInfo) {
         List<DBTableInfodmp> lst = null;
 
         try(HttpClient httpClient = HttpClient.create(new URL(this.dataServiceOnPrestoServerRootUrl))) {
@@ -917,7 +917,7 @@ public class UDSMService extends BaseService {
             String result= httpClient
                     .toBlocking()
                     .retrieve(
-                            POST(this.dataServiceOnPrestoServerRootUrl + "/bigdata/hbase/table-list",hbaseConnectionInfo));
+                            POST(this.dataServiceOnPrestoServerRootUrl + "/bigdata/hbase/table-list",hBaseConnectionInfo));
             //处理数据
             if(result == null){
                 return lst;
@@ -934,10 +934,10 @@ public class UDSMService extends BaseService {
 
     /**
      * query hbase table data
-     * @param hbaseConnectionInfo
+     * @param hBaseConnectionInfo
      * @return
      */
-    public Map<String,Object> queryHBaseTableData(HbaseConnectionInfo hbaseConnectionInfo) {
+    public Map<String,Object> queryHBaseTableData(HBaseConnectionInfo hBaseConnectionInfo) {
         Map<String,Object> lst = null;
 
         try(HttpClient httpClient = HttpClient.create(new URL(this.dataServiceOnPrestoServerRootUrl))) {
@@ -945,7 +945,7 @@ public class UDSMService extends BaseService {
             String result= httpClient
                     .toBlocking()
                     .retrieve(
-                            POST(this.dataServiceOnPrestoServerRootUrl + "/bigdata/hbase/query",hbaseConnectionInfo));
+                            POST(this.dataServiceOnPrestoServerRootUrl + "/bigdata/hbase/query",hBaseConnectionInfo));
             //处理数据
             if(result == null){
                 return lst;
@@ -961,10 +961,10 @@ public class UDSMService extends BaseService {
 
     /**
      * create hbase datasource
-     * @param hbaseDataSourceInfo
+     * @param hBaseDataSourceInfo
      * @return
      */
-    public int createHBase(HbaseDataSourceInfo hbaseDataSourceInfo,String token) {
+    public int createHBase(HBaseDataSourceInfo hBaseDataSourceInfo,String token) {
         try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
             //数据源
             DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
@@ -972,24 +972,24 @@ public class UDSMService extends BaseService {
             ComponentDefinitionDao dictionaryDao = sqlSession.getMapper(ComponentDefinitionDao.class);
             Gson gson = new Gson();
 
-            List<HbaseTableInfo> dataSources = hbaseDataSourceInfo.getDataSources();
+            List<HBaseTableInfo> dataSources = hBaseDataSourceInfo.getDataSources();
             int result = 0;
             if(dataSources != null && dataSources.size() > 0){
                 for (int i = 0; i < dataSources.size() ; i++) {
                     DataSource dataSource =
-                            gson.fromJson(gson.toJson(hbaseDataSourceInfo), DataSource.class);
+                            gson.fromJson(gson.toJson(hBaseDataSourceInfo), DataSource.class);
                     String id = UUID.randomUUID().toString();
                     dataSource.setId(id);
                     dataSource.setName(dataSources.get(i).getName());
                     dataSource.setDataDesc(dataSources.get(i).getDataDesc());
-                    dataSource.setDataFrom("DataWave");
+                    dataSource.setDataFrom("DSS");
                     dataSource.setClassification("001");
                     dataSource.setCreateTime(new Date());
 //                    dataSource.setCreator(exchangeSSOService.getAccount(token));
                     //hbase数据连接信息
-                    HbaseConnectionInfo connectionInfo =
-                            gson.fromJson(gson.toJson(hbaseDataSourceInfo), HbaseConnectionInfo.class);
-                    connectionInfo.setTypeName(hbaseDataSourceInfo.getDataDSType());
+                    HBaseConnectionInfo connectionInfo =
+                            gson.fromJson(gson.toJson(hBaseDataSourceInfo), HBaseConnectionInfo.class);
+                    connectionInfo.setTypeName(hBaseDataSourceInfo.getDataDSType());
                     connectionInfo.setTableName(dataSources.get(i).getTableName());
                     connectionInfo.setColumns(dataSources.get(i).getColumns());
                     connectionInfo.setRows(dataSources.get(i).getRows());
@@ -1017,10 +1017,10 @@ public class UDSMService extends BaseService {
 
     /**
      * update hbase datasource by id
-     * @param hbaseDataSourceInfo
+     * @param hBaseDataSourceInfo
      * @return
      */
-    public int updateHBaseById(HbaseDataSourceInfo hbaseDataSourceInfo,String token) {
+    public int updateHBaseById(HBaseDataSourceInfo hBaseDataSourceInfo,String token) {
         try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
             //数据源
             DataSourceDao dataSourceDao = sqlSession.getMapper(DataSourceDao.class);
@@ -1028,21 +1028,21 @@ public class UDSMService extends BaseService {
             ComponentDefinitionDao dictionaryDao = sqlSession.getMapper(ComponentDefinitionDao.class);
             Gson gson = new Gson();
 
-            List<HbaseTableInfo> dataSources = hbaseDataSourceInfo.getDataSources();
+            List<HBaseTableInfo> dataSources = hBaseDataSourceInfo.getDataSources();
             int result = 0;
             if(dataSources != null && dataSources.size() == 1){
                 for (int i = 0; i < dataSources.size() ; i++) {
                     DataSource dataSource =
-                            gson.fromJson(gson.toJson(hbaseDataSourceInfo), DataSource.class);
+                            gson.fromJson(gson.toJson(hBaseDataSourceInfo), DataSource.class);
                     dataSource.setName(dataSources.get(i).getName());
                     dataSource.setDataDesc(dataSources.get(i).getDataDesc());
 //                    dataSource.setDataFrom("DataWave");
                     dataSource.setLastModified(new Date());
 //                    dataSource.setCreator(exchangeSSOService.getAccount(token));
                     //hbase数据连接信息
-                    HbaseConnectionInfo connectionInfo =
-                            gson.fromJson(gson.toJson(hbaseDataSourceInfo), HbaseConnectionInfo.class);
-                    connectionInfo.setTypeName(hbaseDataSourceInfo.getDataDSType());
+                    HBaseConnectionInfo connectionInfo =
+                            gson.fromJson(gson.toJson(hBaseDataSourceInfo), HBaseConnectionInfo.class);
+                    connectionInfo.setTypeName(hBaseDataSourceInfo.getDataDSType());
                     connectionInfo.setTableName(dataSources.get(i).getTableName());
                     connectionInfo.setColumns(dataSources.get(i).getColumns());
                     connectionInfo.setRows(dataSources.get(i).getRows());
@@ -1051,7 +1051,7 @@ public class UDSMService extends BaseService {
 
                     //更新组件定义
                     ComponentDefinition cd = new ComponentDefinition();
-                    cd.setId(hbaseDataSourceInfo.getId());
+                    cd.setId(hBaseDataSourceInfo.getId());
                     cd.setCode(ComponentClassification.SimpleDataSource.name());
                     cd.setName(dataSources.get(i).getName());
 //                    cd.setCreator(exchangeSSOService.getAccount(token));
@@ -1075,7 +1075,7 @@ public class UDSMService extends BaseService {
         RequestBody body = RequestBody.create(ESJSON, json);
         {
             {
-                log.info("create dataSource");
+                log.info("create data source");
                 try {
                     String url = this.daasServerAPIV3RootUrl+"/source";
                     Request request = new Request.Builder()
@@ -1174,7 +1174,7 @@ public class UDSMService extends BaseService {
         return 0;
     }
 
-    public List<DBTableInfodmp> webHDFSListFiles(WebHDFSConnectionInfo webHDFSConnectionInfo) {
+    public List<DBTableInfo> webHDFSListFiles(WebHDFSConnectionInfo webHDFSConnectionInfo) {
         return null;
     }
 
@@ -1186,7 +1186,6 @@ public class UDSMService extends BaseService {
         return 0;
     }
 
-//**********DAAS查询：ES、hive、hbase、json、csv*****************************************
     @Autowired
     DataQueryService dataQueryService;
 
@@ -1213,13 +1212,13 @@ public class UDSMService extends BaseService {
     }
 
     /**
-     * 数据查询：(on-presto + daas)
+     * 数据查询
      * @param dbQuery
      * @return
      */
     public Map<String, Object> queryTableDataById(DBQuery dbQuery) {
         Map<String, Object> result = new HashMap<>();
-        if(GlobalDefine.COMPONENT_CLASSIFICATION.MY_DATASOURCE.equals(dbQuery.getClassification())) {
+        if(GlobalConstant.COMPONENT_CLASSIFICATION.MY_DATASOURCE.equals(dbQuery.getClassification())) {
             DataSource dataSource = findDataSourceById(dbQuery.getId());
             if(dataSource != null) {
                 String dataConfig = dataSource.getDataConfig();

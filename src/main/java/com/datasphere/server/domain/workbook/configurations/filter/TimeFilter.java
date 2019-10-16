@@ -27,8 +27,8 @@ import org.joda.time.format.ISODateTimeFormat;
 import java.util.List;
 import java.util.Locale;
 
+import com.datasphere.engine.datasource.Field;
 import com.datasphere.server.common.exception.BadRequestException;
-import com.datasphere.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.format.TimeFieldFormat;
 import com.datasphere.server.util.EnumUtils;
 

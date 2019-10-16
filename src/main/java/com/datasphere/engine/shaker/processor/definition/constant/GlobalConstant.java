@@ -12,8 +12,8 @@
 
 package com.datasphere.engine.shaker.processor.definition.constant;
 
-public class GlobalDefine {
-	public final static String USER_CONTEXT = "JUSFOUN_USER_CONTEXT";
+public class GlobalConstant {
+	public final static String USER_CONTEXT = "DATASPHERE_USER_CONTEXT";
 	
 	public final static String DATASOURCE_CSV = "CSV";
 	public final static String DATASOURCE_ARFF = "ARFF";

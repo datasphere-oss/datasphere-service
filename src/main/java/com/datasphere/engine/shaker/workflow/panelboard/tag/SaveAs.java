@@ -10,7 +10,7 @@
  * See the Mulan PSL v1 for more details.
  */
 
-package com.datasphere.engine.shaker.workflow.panel.tag;
+package com.datasphere.engine.shaker.workflow.panelboard.tag;
 
 public interface SaveAs {
 

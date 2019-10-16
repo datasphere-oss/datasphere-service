@@ -26,10 +26,10 @@ import java.util.Map;
 import org.springframework.jdbc.datasource.ConnectionProxy;
 import org.springframework.jdbc.support.JdbcUtils;
 
-import com.datasphere.server.connections.jdbc.JdbcConnectInformation;
-import com.datasphere.server.connections.jdbc.connector.JdbcConnector;
-import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
-import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
+import com.datasphere.engine.datasource.connections.jdbc.JdbcConnectInformation;
+import com.datasphere.engine.datasource.connections.jdbc.connector.JdbcConnector;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.engine.datasource.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
 import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
 import com.datasphere.server.domain.workbench.QueryStatus;

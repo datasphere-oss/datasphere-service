@@ -26,15 +26,15 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class ProcessDaasService extends BaseService {
-    private final static Logger logger = LoggerFactory.getLogger(ProcessDaasService.class);
+public class ProcessDSSService extends BaseService {
+    private final static Logger logger = LoggerFactory.getLogger(ProcessDSSService.class);
 
     @Autowired
     private DSSUserTokenService dSSUserTokenService;
 
-    public String runSqlOnDaas(String upper_sql) {
-        //调用daas接口执行sql语句
-        String job_id = executeSqlOnDaas(upper_sql);
+    public String runSQL(String upper_sql) {
+        //调用 datasphere 接口执行sql语句
+        String job_id = executeSQL(upper_sql);
         if (job_id.equals("")) return ReturnMessageUtils.DaasAuthorizationInvalid;
         job_id = JSON.parseObject(job_id).getString("id");
         String state = getJobState(job_id);
@@ -81,14 +81,14 @@ public class ProcessDaasService extends BaseService {
         return results;
     }
 
-    public String executeSqlOnDaas(String sql) {
+    public String executeSql(String sql) {
         String urlPath = this.daasServerAPIV3RootUrl + "/sql";
         JSONObject jsonParam = new JSONObject();
         jsonParam.put("sql", sql.toString());
         try {
             return OkHttpServletRequest.okHttpClientPost(urlPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
         } catch (Exception e) {
-            logger.error("ProcessService.executeSqlOnDaas(sql):请求DAAS异常");
+            logger.error("ProcessService.executeSQL(sql): DataSphere 请求发生异常");
         }
         return "";
     }

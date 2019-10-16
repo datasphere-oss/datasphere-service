@@ -21,6 +21,7 @@ public interface WorkspaceRepositoryExtends {
 
   /**
    *
+   * 通过链接的数据源来查找工作空间
    * @param dataSourceId
    * @param publicType
    * @param nameContains
@@ -31,7 +32,7 @@ public interface WorkspaceRepositoryExtends {
                                                         String nameContains);
 
   /**
-   *
+   * 通过链接的连接来查找工作空间
    * @param connectionId
    * @param publicType
    * @param nameContains
@@ -48,12 +49,12 @@ public interface WorkspaceRepositoryExtends {
    * @return
    */
   List<String> findMyWorkspaceIds(String username, List<String> memberIds, String... includeRole);
-
+  // 通过权限来查找工作空间
   List<String> findMyWorkspaceIdsByPermission(String username, List<String> memberIds, String... permissions);
 
   Map<String, Long> countByBookType(Workspace workspace);
-
+  // 通过成员类型来计数
   Map<WorkspaceMember.MemberType, Long> countByMemberType(Workspace workspace);
-
+  // 通过工作表来计算仪表盘
   Double avgDashBoardByWorkBook(Workspace workspace);
 }

@@ -22,29 +22,31 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 
+import static com.datasphere.engine.datasource.ingestion.jdbc.BatchIngestionInfo.IngestionScope.ALL;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.datasphere.engine.datasource.DataSource;
+import com.datasphere.engine.datasource.DataSourceIngestionException;
+import com.datasphere.engine.datasource.Field;
+import com.datasphere.engine.datasource.ingestion.HdfsIngestionInfo;
+import com.datasphere.engine.datasource.ingestion.HiveIngestionInfo;
+import com.datasphere.engine.datasource.ingestion.IngestionInfo;
+import com.datasphere.engine.datasource.ingestion.LocalFileIngestionInfo;
+import com.datasphere.engine.datasource.ingestion.file.CsvFileFormat;
+import com.datasphere.engine.datasource.ingestion.file.ExcelFileFormat;
+import com.datasphere.engine.datasource.ingestion.file.FileFormat;
+import com.datasphere.engine.datasource.ingestion.file.JsonFileFormat;
+import com.datasphere.engine.datasource.ingestion.file.OrcFileFormat;
+import com.datasphere.engine.datasource.ingestion.file.ParquetFileFormat;
+import com.datasphere.engine.datasource.ingestion.jdbc.BatchIngestionInfo;
+import com.datasphere.engine.datasource.ingestion.rule.EvaluationRule;
+import com.datasphere.engine.datasource.ingestion.rule.IngestionRule;
+import com.datasphere.engine.datasource.ingestion.rule.ReplaceNullRule;
+import com.datasphere.engine.datasource.ingestion.rule.ValidationRule;
 import com.datasphere.server.common.datasource.DataType;
-import com.datasphere.datasource.DataSource;
-import com.datasphere.datasource.DataSourceIngestionException;
-import com.datasphere.datasource.Field;
-import com.datasphere.datasource.ingestion.HdfsIngestionInfo;
-import com.datasphere.datasource.ingestion.HiveIngestionInfo;
-import com.datasphere.datasource.ingestion.IngestionInfo;
-import com.datasphere.datasource.ingestion.LocalFileIngestionInfo;
-import com.datasphere.datasource.ingestion.file.CsvFileFormat;
-import com.datasphere.datasource.ingestion.file.ExcelFileFormat;
-import com.datasphere.datasource.ingestion.file.FileFormat;
-import com.datasphere.datasource.ingestion.file.JsonFileFormat;
-import com.datasphere.datasource.ingestion.file.OrcFileFormat;
-import com.datasphere.datasource.ingestion.file.ParquetFileFormat;
-import com.datasphere.datasource.ingestion.jdbc.BatchIngestionInfo;
-import com.datasphere.datasource.ingestion.rule.EvaluationRule;
-import com.datasphere.datasource.ingestion.rule.IngestionRule;
-import com.datasphere.datasource.ingestion.rule.ReplaceNullRule;
-import com.datasphere.datasource.ingestion.rule.ValidationRule;
 import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 import com.datasphere.server.domain.workbook.configurations.format.GeoFormat;
 import com.datasphere.server.domain.workbook.configurations.format.GeoPointFormat;
@@ -59,8 +61,6 @@ import com.datasphere.server.spec.druid.ingestion.index.LuceneIndexStrategy;
 import com.datasphere.server.spec.druid.ingestion.index.LuceneIndexing;
 import com.datasphere.server.spec.druid.ingestion.index.SecondaryIndexing;
 import com.datasphere.server.spec.druid.ingestion.parser.*;
-
-import static com.datasphere.datasource.ingestion.jdbc.BatchIngestionInfo.IngestionScope.ALL;
 
 public class AbstractSpecBuilder {
 

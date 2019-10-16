@@ -22,16 +22,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import com.datasphere.engine.datasource.connections.DataConnection;
+import com.datasphere.engine.datasource.connections.DataConnectionHelper;
+import com.datasphere.engine.datasource.connections.DataConnectionRepository;
+import com.datasphere.engine.datasource.connections.jdbc.connector.JdbcConnector;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.JdbcDialect;
+import com.datasphere.engine.datasource.connections.jdbc.exception.JdbcDataConnectionException;
 import com.datasphere.server.common.exception.BadRequestException;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
-import com.datasphere.server.connections.jdbc.connector.JdbcConnector;
-import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
-import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
-import com.datasphere.server.domain.dataconnection.DataConnection;
-import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
-import com.datasphere.server.domain.dataconnection.DataConnectionRepository;
-import com.datasphere.server.domain.user.CachedUserService;
-import com.datasphere.server.domain.user.User;
+import com.datasphere.server.user.User;
+import com.datasphere.server.user.service.CachedUserService;
 import com.datasphere.server.util.AuthUtils;
 
 /**
@@ -110,9 +110,10 @@ public class WorkbenchDataSourceManager {
   public Map<String, WorkbenchDataSource> getCurrentConnections(){
     return pooledDataSourceList;
   }
-
+  // 根据用户名和密码获取用户的数据源
   public WorkbenchDataSource getWorkbenchDataSource(String dataConnectionId, String webSocketId, String username, String password) throws ResourceNotFoundException, BadRequestException, JdbcDataConnectionException {
-    WorkbenchDataSource dataSource = this.findDataSourceInfo(webSocketId);
+    // 首先查询数据源信息
+	WorkbenchDataSource dataSource = this.findDataSourceInfo(webSocketId);
     if(dataSource == null){
       DataConnection dataConnection = dataConnectionRepository.findById(dataConnectionId).get();
       if(dataConnection == null){
@@ -123,18 +124,18 @@ public class WorkbenchDataSourceManager {
     }
     return dataSource;
   }
-
+  // 获得数据源
   public WorkbenchDataSource getWorkbenchDataSource(DataConnection jdbcDataConnection, String webSocketId, String username, String password) throws ResourceNotFoundException, BadRequestException, JdbcDataConnectionException{
     WorkbenchDataSource dataSource = this.findDataSourceInfo(webSocketId);
     if(dataSource == null){
       String connectionUsername;
       String connectionPassword;
-
+      // 获得认证类型
       DataConnection.AuthenticationType authenticationType = jdbcDataConnection.getAuthenticationType();
       if(authenticationType == null){
         authenticationType = DataConnection.AuthenticationType.MANUAL;
       }
-
+      // 获得已认证的用户名和密码
       switch (authenticationType){
         case USERINFO:
           connectionUsername = AuthUtils.getAuthUserName();
@@ -144,6 +145,7 @@ public class WorkbenchDataSourceManager {
           }
           connectionPassword = cachedUserService.findUser(connectionUsername).getPassword();
           break;
+        // 数据源连接的用户名和密码
         case MANUAL:
           connectionUsername = jdbcDataConnection.getUsername();
           connectionPassword = jdbcDataConnection.getPassword();
