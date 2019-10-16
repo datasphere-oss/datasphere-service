@@ -1,6 +1,5 @@
 package com.datasphere.engine.manager.resource.provider.db.dao;
 
-import com.datasphere.engine.datasource.connections.constant.ConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.config.DBConfig;
 import com.datasphere.server.common.exception.JRuntimeException;
 import com.google.gson.Gson;
