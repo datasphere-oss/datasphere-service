@@ -12,7 +12,7 @@
 
 package com.datasphere.engine.shaker.processor.controller;
 
-import com.datasphere.core.common.BaseController;
+import com.datasphere.engine.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.datasource.connections.utils.StringUtils;
 import com.datasphere.engine.shaker.processor.service.ProcessInstanceService;
