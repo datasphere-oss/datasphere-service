@@ -12,7 +12,7 @@
 
 package com.datasphere.engine.shaker.processor.instance.model;
 
-import com.datasphere.core.common.BaseEntity;
+import com.datasphere.engine.core.common.BaseEntity;
 import com.datasphere.engine.shaker.processor.common.constant.ComponentClassification;
 import com.datasphere.engine.shaker.processor.model.ProcessRecord;
 import com.fasterxml.jackson.annotation.JsonInclude;
