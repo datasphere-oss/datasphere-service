@@ -2,9 +2,13 @@ package com.datasphere.engine.manager.resource.provider.elastic.model;
 
 public class MetadataPolicy {
 	private Integer authTTLMs;
+	// 数据集刷新
 	private Integer datasetRefreshAfterMs;
+	// 数据集超时
 	private Integer datasetExpireAfterMs;
+	// 名称刷新
 	private Integer namesRefreshMs;
+	// 数据集刷新
 	private String datasetUpdateMode;
 
 
