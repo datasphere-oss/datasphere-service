@@ -12,7 +12,7 @@
 
 package com.datasphere.engine.shaker.processor.service;
 
-import com.datasphere.core.common.BaseService;
+import com.datasphere.engine.core.common.BaseService;
 import com.datasphere.engine.shaker.processor.dao.ProcessInstanceDao;
 import com.datasphere.engine.shaker.processor.model.ProcessInstance;
 
