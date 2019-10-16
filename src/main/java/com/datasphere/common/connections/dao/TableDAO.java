@@ -2,9 +2,9 @@ package com.datasphere.common.connections.dao;
 
 
 import com.datasphere.common.data.Column;
-import com.datasphere.datasource.connections.dbutils.ConnectionFactory;
-import com.datasphere.datasource.connections.model.TableMetaData;
-import com.datasphere.datasource.connections.model.TableQuery;
+import com.datasphere.engine.datasource.connections.dbutils.ConnectionFactory;
+import com.datasphere.engine.datasource.connections.model.TableMetaData;
+import com.datasphere.engine.datasource.connections.model.TableQuery;
 
 import java.sql.SQLException;
 
