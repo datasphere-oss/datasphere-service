@@ -21,7 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
-import com.datasphere.core.common.BaseService;
+import com.datasphere.engine.core.common.BaseService;
 import com.datasphere.engine.manager.resource.provider.dictionary.model.DSSWord;
 import com.datasphere.engine.shaker.processor.definition.ComponentDefinition;
 import com.datasphere.engine.shaker.processor.definition.constant.GlobalConstant;
