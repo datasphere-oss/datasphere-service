@@ -4,7 +4,7 @@ import java.util.List;
 
 public class DremioDataSourceInfo {
 	private String id;
-	private String daasId;
+	private String dssId;
 	private String name;
 	private String description;
 	private String type;
@@ -49,12 +49,12 @@ public class DremioDataSourceInfo {
 		this.tables = tables;
 	}
 
-	public String getDaasId() {
-		return daasId;
+	public String getDssId() {
+		return dssId;
 	}
 
-	public void setDaasId(String daasID) {
-		this.daasId = daasID;
+	public void setDssId(String dssId) {
+		this.dssId = dssId;
 	}
 
 	public String getName() {
