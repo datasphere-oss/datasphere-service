@@ -13,9 +13,9 @@
 package com.datasphere.engine.manager.resource.provider.config;
 
 public class OracleDBConfig extends DBConfig {
-	
+	// 服务名
 	private String serviceName;
-	
+	// 服务类型
 	private String serviceType;
 
 
