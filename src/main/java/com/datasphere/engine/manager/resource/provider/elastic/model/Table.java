@@ -1,10 +1,15 @@
 package com.datasphere.engine.manager.resource.provider.elastic.model;
 
 public class Table {
+	// 表的标识符
 	private String tableID;
+	// 资源名称
 	private String resourceName;
+	// 资源描述
 	private String resourceDesc;
+	// 数据库名称
 	private String databaseName;
+	// 表名称
 	private String tableName;
 
 
