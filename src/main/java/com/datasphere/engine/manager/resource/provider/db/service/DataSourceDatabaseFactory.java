@@ -7,7 +7,7 @@ import com.datasphere.engine.manager.resource.provider.config.OracleDBConfig;
 import com.datasphere.engine.manager.resource.provider.db.dao.MSSQLDao;
 import com.datasphere.engine.manager.resource.provider.db.dao.MySQLDao;
 import com.datasphere.engine.manager.resource.provider.db.dao.OracleDao;
-import com.datasphere.engine.manager.resource.provider.db.service.impl.MMSQLDatabaseServiceImpl;
+import com.datasphere.engine.manager.resource.provider.db.service.impl.MSSQLDatabaseServiceImpl;
 import com.datasphere.engine.manager.resource.provider.db.service.impl.MySQLDatabaseServiceImpl;
 import com.datasphere.engine.manager.resource.provider.db.service.impl.OracleDatabaseServiceImpl;
 import com.datasphere.engine.manager.resource.provider.db.util.BeanToMapUtil;
@@ -33,7 +33,7 @@ public class DataSourceDatabaseFactory {
 				oracleService.setBaseDao(oracleDao);
 				return oracleService;
 			case "MSSQL":
-				MMSQLDatabaseServiceImpl mssqlService = new MMSQLDatabaseServiceImpl();
+				MSSQLDatabaseServiceImpl mssqlService = new MSSQLDatabaseServiceImpl();
 				MSSQLDao mSSQLDao = new MSSQLDao();
 				DBConfig msconf = BeanToMapUtil.convertMap(DBConfig.class, config);
 				mSSQLDao.setConfig(msconf);
