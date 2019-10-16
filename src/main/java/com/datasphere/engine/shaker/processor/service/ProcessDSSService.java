@@ -14,9 +14,9 @@ package com.datasphere.engine.shaker.processor.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.datasphere.common.utils.OkHttpServletRequest;
-import com.datasphere.core.common.BaseService;
-import com.datasphere.engine.shaker.processor.buscommon.ReturnMessageUtils;
+import com.datasphere.engine.common.utils.OkHttpServletRequest;
+import com.datasphere.engine.core.common.BaseService;
+import com.datasphere.engine.shaker.processor.utils.ReturnMessageUtils;
 import com.datasphere.server.sso.service.DSSUserTokenService;
 
 import org.slf4j.Logger;
