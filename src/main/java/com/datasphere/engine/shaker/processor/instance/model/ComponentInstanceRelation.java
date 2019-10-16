@@ -12,7 +12,7 @@
 
 package com.datasphere.engine.shaker.processor.instance.model;
 
-import com.datasphere.core.common.BaseEntity;
+import com.datasphere.engine.core.common.BaseEntity;
 
 
 public class ComponentInstanceRelation extends BaseEntity {
