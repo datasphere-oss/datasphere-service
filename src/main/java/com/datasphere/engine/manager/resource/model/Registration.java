@@ -150,7 +150,7 @@ public class Registration {
         this.map = map;
         sync();
     }
-
+    
     @PrePersist
     @PreUpdate
     private void sync() {

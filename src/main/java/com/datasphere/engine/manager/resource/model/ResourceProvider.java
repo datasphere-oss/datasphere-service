@@ -32,7 +32,7 @@ public abstract class ResourceProvider {
     public abstract int getStatus();
 
     /*
-     * Resources
+     * 创建资源、更新资源、删除资源、检查资源
      */
     public abstract Resource createResource(String scopeId, String userId, String name,
             Map<String, Serializable> properties)

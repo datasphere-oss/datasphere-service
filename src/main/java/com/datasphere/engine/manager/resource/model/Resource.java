@@ -65,6 +65,7 @@ public class Resource {
     private String scopeId;
     private String properties;
 
+    // 由资源管理器托管
     // flag if managed by resourcemanager
     private boolean managed;
 

@@ -13,7 +13,7 @@
 package com.datasphere.engine.manager.resource.provider.catalog.model;
 
 /**
- * 已定阅资源参数
+ * 资源目录中已定阅资源参数
  */
 public class RequestParams {
     private String name;

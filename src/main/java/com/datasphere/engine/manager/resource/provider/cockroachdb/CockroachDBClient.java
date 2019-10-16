@@ -20,6 +20,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+/**
+ * 提供商客户端主要对目标数据库进行操作:
+ * 添加数据库、删除数据库、创建用户、
+ * @author theseusyang
+ *
+ */
 public class CockroachDBClient {
 
     private final String HOST;
@@ -50,7 +56,7 @@ public class CockroachDBClient {
 
         return conn;
     }
-
+    // 连接测试
     public boolean ping() {
         try {
             Connection conn = connect(true);
@@ -63,7 +69,7 @@ public class CockroachDBClient {
             return false;
         }
     }
-
+    // 是否有数据库
     public boolean hasDatabase(String name) throws SQLException {
         boolean ret = false;
 
@@ -91,7 +97,7 @@ public class CockroachDBClient {
 
         return ret;
     }
-
+    // 创建数据库
     public void createDatabase(String name) throws SQLException {
         Connection conn = connect(false);
 
@@ -104,7 +110,7 @@ public class CockroachDBClient {
         stmt.close();
         conn.close();
     }
-
+    // 删除数据库
     public void deleteDatabase(String name) throws SQLException {
         Connection conn = connect(false);
 
@@ -117,7 +123,7 @@ public class CockroachDBClient {
         stmt.close();
         conn.close();
     }
-
+    // 创建用户
     public void createUser(String database, String username, String password) throws SQLException {
         Connection conn = connect(false);
 
@@ -136,7 +142,7 @@ public class CockroachDBClient {
 
         conn.close();
     }
-
+    // 删除用户
     public void deleteUser(String database, String username) throws SQLException {
         Connection conn = connect(false);
 

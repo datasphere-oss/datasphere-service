@@ -20,7 +20,7 @@ import javax.persistence.AttributeConverter;
 
 public class StringListConverter implements AttributeConverter<List<String>, String> {
     private static final String SPLIT_CHAR = ";";
-
+    // 转换为数据库的列
     @Override
     public String convertToDatabaseColumn(List<String> list) {
         if (list != null) {
@@ -29,7 +29,7 @@ public class StringListConverter implements AttributeConverter<List<String>, Str
             return "";
         }
     }
-
+    // 转换为实体属性
     @Override
     public List<String> convertToEntityAttribute(String string) {
         if (string != null && !string.isEmpty()) {

@@ -14,9 +14,9 @@ package com.datasphere.common.connections.controller;
 
 import com.datasphere.common.Field;
 import com.datasphere.engine.datasource.DataSourceProperties;
-import com.datasphere.engine.datasource.connection.jdbc.HiveTableInformation;
-import com.datasphere.engine.datasource.connection.jdbc.JdbcConnectionService;
-import com.datasphere.engine.datasource.connection.jdbc.JdbcQueryResultResponse;
+import com.datasphere.engine.datasource.connections.jdbc.HiveTableInformation;
+import com.datasphere.engine.datasource.connections.jdbc.JdbcConnectionService;
+import com.datasphere.engine.datasource.connections.jdbc.JdbcQueryResultResponse;
 import com.datasphere.engine.datasource.connections.*;
 import com.datasphere.engine.datasource.connections.jdbc.accessor.HiveDataAccessor;
 import com.datasphere.engine.datasource.connections.jdbc.accessor.HiveDataAccessorUsingMetastore;

@@ -26,7 +26,9 @@ import java.io.File;
 public class DataSourceService {
   private static final Logger log = LoggerFactory.getLogger(DataSourceService.class);
   private HikariDataSource dataSource;
-
+  /**
+   * 初始化数据源
+   */
   @PostConstruct
   public void initialize() {
     log.info("Initialize data source....");

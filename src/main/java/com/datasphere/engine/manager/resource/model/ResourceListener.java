@@ -50,7 +50,7 @@ public class ResourceListener {
 	 * Service
 	 */
 	private ResourceEventHandler service;
-
+	// 对资源进行监听
 	@Autowired
 	public ResourceListener(ResourceEventHandler rs) {
 		service = rs;
