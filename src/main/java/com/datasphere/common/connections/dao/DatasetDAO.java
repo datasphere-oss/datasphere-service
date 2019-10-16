@@ -1,7 +1,7 @@
 package com.datasphere.common.connections.dao;
 
 import com.datasphere.common.data.Dataset;
-import com.datasphere.datasource.connections.dbutils.ConnectionFactory;
+import com.datasphere.engine.datasource.connections.dbutils.ConnectionFactory;
 
 import java.sql.SQLException;
 
