@@ -10,7 +10,7 @@ import com.datasphere.engine.manager.resource.provider.db.service.AbstractDataba
 import com.datasphere.engine.manager.resource.provider.db.service.DataSourceDatabaseService;
 import com.datasphere.engine.manager.resource.provider.db.util.DALTypeUtil;
 import com.datasphere.engine.manager.resource.provider.exception.JSQLException;
-import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
+import com.datasphere.engine.manager.resource.provider.model.DBTableInfo;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -63,14 +63,14 @@ public class OracleDatabaseServiceImpl extends AbstractDatabaseService<OracleDao
 		
 	}
 	
-	public List<DBTableInfodmp> listTableInfo(DBQuery query){
-		List<DBTableInfodmp> tbinfoList = new LinkedList<>();
+	public List<DBTableInfo> listTableInfo(DBQuery query){
+		List<DBTableInfo> tbinfoList = new LinkedList<>();
 		try{
 			String[] tableNames = StringUtils.isBlank(query.getSearchName()) ?
 					baseDao.listTable() : baseDao.listTable(query.getSearchName());
 			
 			for(String tableName : tableNames){
-				DBTableInfodmp tbinfo = new DBTableInfodmp();
+				DBTableInfo tbinfo = new DBTableInfo();
 				int tableRows = baseDao.readTableRowcount(null, tableName);
 				if(tableRows != 0){
 					Map<String,Integer> typeMap = baseDao.readTableMetaType(null, tableName);
