@@ -3,6 +3,7 @@ package com.datasphere.engine.manager.resource.provider.db.service;
 import com.datasphere.core.common.BaseService;
 import com.datasphere.core.common.utils.UUIDUtils;
 import com.datasphere.engine.core.utils.JAssert;
+import com.datasphere.engine.datasource.connections.utils.ObjectMapperUtils;
 import com.datasphere.engine.manager.resource.provider.db.model.DBCommonInfo;
 import com.datasphere.engine.manager.resource.provider.db.model.DBDataSourceInfo;
 import com.datasphere.engine.manager.resource.provider.db.model.DBTableDataList;
@@ -11,7 +12,6 @@ import com.datasphere.engine.manager.resource.provider.db.util.BeanToMapUtil;
 import com.datasphere.engine.manager.resource.provider.db.util.DALTypeUtil;
 import com.datasphere.engine.manager.resource.provider.model.DBTableInfodmp;
 import com.datasphere.engine.manager.resource.provider.model.DataSource;
-import com.datasphere.server.connections.utils.ObjectMapperUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
