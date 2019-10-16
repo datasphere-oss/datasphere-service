@@ -1,8 +1,8 @@
 package com.datasphere.engine.manager.resource.provider.db.dao;
 
 import com.datasphere.core.common.utils.O;
+import com.datasphere.engine.datasource.connections.constant.ConnectionInfo;
 import com.datasphere.server.common.exception.JRuntimeException;
-import com.datasphere.server.connections.constant.ConnectionInfo;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
