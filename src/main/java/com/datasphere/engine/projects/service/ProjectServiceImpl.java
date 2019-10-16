@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.datasphere.core.common.BaseService;
+import com.datasphere.engine.core.common.BaseService;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.manager.resource.provider.mybatis.page.Pager;
 import com.datasphere.engine.projects.dao.ProjectDao;
@@ -132,7 +132,7 @@ public class ProjectServiceImpl extends BaseService {
 //		String userId = UserContextHolder.getUserContext().getOmSysUser().getUserId();
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			ProjectDao dao = sqlSession.getMapper(ProjectDao.class);
-			List<Project> projects = dao.listAll(null, project.getSortField(), project.getOrderBy());
+			List<Project> projects = dao.listAllProjects(null, project.getSortField(), project.getOrderBy());
 			if(projects.size()>0){ //获取面板信息，放入项目中
 				return getPanelByProjectIdList(projects, project.getSortField(), project.getOrderBy(),project.getPanelPageSize(),project.getPanelPageNumber(),null);
 			} else {
@@ -162,7 +162,7 @@ public class ProjectServiceImpl extends BaseService {
 		List<Project> projectWithPanelList = null;
 		try(SqlSession sqlSession = sqlSessionFactoryService.getSqlSession()) {
 			ProjectDao dao = sqlSession.getMapper(ProjectDao.class);
-			List<Project> projectList = dao.listAllWithPanelsPager(null, project.getSortField(), project.getOrderBy(),project.getPager());
+			List<Project> projectList = dao.listAllProjectsByPage(null, project.getSortField(), project.getOrderBy(),project.getPager());
 			if(projectList.size()>0){
 				//将面板list加入各个项目中
 				projectWithPanelList=getPanelByProjectIdList(projectList,project.getSortField(), project.getOrderBy(),project.getPanelPageSize(),project.getPanelPageNumber(),null);
