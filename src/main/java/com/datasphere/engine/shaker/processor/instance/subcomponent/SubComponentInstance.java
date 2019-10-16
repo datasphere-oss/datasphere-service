@@ -26,7 +26,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.util.CollectionUtils;
 
 import com.datasphere.common.data.Dataset;
-import com.datasphere.core.common.utils.UUIDUtils;
+import com.datasphere.engine.core.common.utils.UUIDUtils;
 import com.datasphere.engine.shaker.processor.instance.AbstractComponent;
 import com.datasphere.engine.shaker.processor.instance.Component;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
