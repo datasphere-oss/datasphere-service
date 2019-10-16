@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.datasphere.core.common.BaseController;
+import com.datasphere.engine.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.manager.resource.provider.catalog.model.RequestParams;
 import com.datasphere.engine.manager.resource.provider.db.service.DBOperationService;
@@ -95,7 +95,7 @@ public class DataSourceController extends BaseController {
 		return Single.fromCallable(() -> {
 			if(StringUtils.isBlank(name)) return JsonWrapper.failureWrapper("数据源名称不能为空!");
 			List<String> nameList = Splitter.on("^^").splitToList(name);
-			Map<String, String> result = dataSourceService.verifyDatasourceName(nameList);
+			Map<String, String> result = dataSourceService.verifyDataSourceName(nameList);
 			if(result.size() == 0) {
 				return JsonWrapper.successWrapper("验证成功！");
 			} else { //返回重复数据
@@ -195,7 +195,7 @@ public class DataSourceController extends BaseController {
 			for (Table table:tables) {
 				names.add(table.getResourceName());
 			}
-			Map<String, String> verifyResult = dataSourceService.verifyDatasourceName(names);
+			Map<String, String> verifyResult = dataSourceService.verifyDataSourceName(names);
 			if(verifyResult.size() != 0) {
 				return JsonWrapper.failureWrapper(verifyResult);// Insert failed! Data source name is duplicated!
 			}
@@ -249,8 +249,8 @@ public class DataSourceController extends BaseController {
 						gsonMap.get("scheme").toString():gsonMap.get("databaseName").toString());
 				query.setTableName(gsonMap.get("tableName").toString());
 				
-				String dssName = dataSourceService.getDaasNameByID(query.getId());
-				query.setDaasName(daasName);
+				String dssName = dataSourceService.getDssNameByID(query.getId());
+				query.setDSSName(dssName);
 				if("CSV".equals(dataSource.getDataDSType()) || "JSON".equals(dataSource.getDataDSType())){
 					query.setSql("SELECT * FROM \""+query.getDatabaseName()+"\".\""+query.getTableName()+"\"");
 				} else {
