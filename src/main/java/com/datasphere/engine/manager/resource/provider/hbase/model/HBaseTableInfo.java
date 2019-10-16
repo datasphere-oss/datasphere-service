@@ -1,6 +1,6 @@
 package com.datasphere.engine.manager.resource.provider.hbase.model;
 
-public class HbaseTableInfo {
+public class HBaseTableInfo {
     //表名称
     private String tableName;
     //行列
