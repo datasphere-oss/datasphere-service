@@ -14,7 +14,7 @@ package com.datasphere.engine.shaker.processor.prep.service;
 
 import com.datasphere.common.data.Column;
 import com.datasphere.common.data.Dataset;
-import com.datasphere.core.common.BaseService;
+import com.datasphere.engine.core.common.BaseService;
 import com.datasphere.engine.datasource.connections.jdbc.service.DataAccessor;
 import com.datasphere.engine.shaker.processor.prep.dao.DataProcessDao;
 import com.datasphere.engine.shaker.processor.prep.data.JoinInputColumn;
