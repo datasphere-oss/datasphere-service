@@ -82,13 +82,14 @@ public class CockroachDBProvider extends ResourceProvider {
     public String getType() {
         return TYPE;
     }
-
+    // 列出属性
     @Override
     public Set<String> listProperties() {
         return new HashSet<String>(PROPERTIES);
     }
 
     /*
+     * 初始化客户端
      * Init method - POST constructor since spring injects properties *after
      * creation*
      */
@@ -116,7 +117,7 @@ public class CockroachDBProvider extends ResourceProvider {
     public int getStatus() {
         return STATUS;
     }
-
+    // 创建资源
     @Override
     public Resource createResource(String scopeId, String userId, String name, Map<String, Serializable> properties)
             throws ResourceProviderException, InvalidNameException, DuplicateNameException {
@@ -162,7 +163,7 @@ public class CockroachDBProvider extends ResourceProvider {
 
             _log.info("create database " + name + " with scope " + scopeId + " for user " + userId);
 
-            // create database
+            // 客户端创建数据库
             _client.createDatabase(name);
 
             // generate uri
@@ -176,14 +177,14 @@ public class CockroachDBProvider extends ResourceProvider {
                 String password = RandomStringUtils.randomAlphanumeric(10);
 
                 _log.info("create user " + username + " for database " + name);
-
+                // 客户端创建用户
                 _client.createUser(name, username, password);
 
                 // generate uri
                 uri = SqlUtil.encodeURI("cockroachdb", endpoint, name, username, password);
             }
 
-            // update res
+            // 更新资源, 更新名称和URI
             res.setName(name);
             res.setUri(uri);
 
@@ -199,7 +200,7 @@ public class CockroachDBProvider extends ResourceProvider {
         // TODO
 
     }
-
+    // 删除资源
     @Override
     public void deleteResource(Resource resource) throws ResourceProviderException {
 
