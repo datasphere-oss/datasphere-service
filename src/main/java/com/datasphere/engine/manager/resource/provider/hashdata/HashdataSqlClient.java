@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-public class PostgresSqlClient {
+public class HashdataSqlClient {
 
 	private final String HOST;
 	private final int PORT;
@@ -32,7 +32,7 @@ public class PostgresSqlClient {
 	// required for JDBC connection
 	private final static String DB = "postgres";
 
-	public PostgresSqlClient(String host, int port, boolean ssl, String username, String password) {
+	public HashdataSqlClient(String host, int port, boolean ssl, String username, String password) {
 		super();
 		HOST = host;
 		PORT = port;
