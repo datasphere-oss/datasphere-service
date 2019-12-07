@@ -24,14 +24,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 
-import com.datasphere.server.datasource.DataSource;
+import com.datasphere.engine.datasource.DataSource;
 import com.datasphere.server.domain.notebook.Notebook;
 import com.datasphere.server.domain.notebook.NotebookConnector;
 import com.datasphere.server.domain.notebook.NotebookModel;
-import com.datasphere.server.domain.user.role.PermissionRepository;
-import com.datasphere.server.domain.user.role.Role;
-import com.datasphere.server.domain.user.role.RoleRepository;
-import com.datasphere.server.domain.user.role.RoleSet;
+import com.datasphere.server.user.role.PermissionRepository;
+import com.datasphere.server.user.role.Role;
+import com.datasphere.server.user.role.RoleRepository;
+import com.datasphere.server.user.role.RoleSet;
 import com.datasphere.server.domain.workbench.Workbench;
 import com.datasphere.server.domain.workbook.DashBoard;
 import com.datasphere.server.domain.workbook.WorkBook;

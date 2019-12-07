@@ -25,12 +25,12 @@ public class BaseService {
         this.dataServiceOnPrestoServerRootUrl = PropertyUtil.getProperty("dataservice-on-presto.server.root.url");
         this.OpenAPIServerRootUrl = PropertyUtil.getProperty("open.api.server.root.url");
 
-        this.daasServerAPIV2RootUrl = PropertyUtil.getProperty("daas.server.apiv2.root.url");
-        this.daasServerAPIV3RootUrl = PropertyUtil.getProperty("daas.server.apiv3.root.url");
-        this.daasClassName = PropertyUtil.getProperty("daas.class.name");
-        this.daasJdbcUrl = PropertyUtil.getProperty("daas.jdbc.url");
-        this.daasUsername = PropertyUtil.getProperty("daas.username");
-        this.daasPassword = PropertyUtil.getProperty("daas.password");
+        this.DSSServerAPIV2RootUrl = PropertyUtil.getProperty("dss.server.apiv2.root.url");
+        this.DSSServerAPIV3RootUrl = PropertyUtil.getProperty("dss.server.apiv3.root.url");
+        this.DSSClassName = PropertyUtil.getProperty("dss.class.name");
+        this.DSSJdbcUrl = PropertyUtil.getProperty("dss.jdbc.url");
+        this.DSSUserName = PropertyUtil.getProperty("dss.username");
+        this.DSSPassWord = PropertyUtil.getProperty("dss.password");
 
         this.userLoginToken = PropertyUtil.getProperty("user.login.token");
         this.userInfoKey = PropertyUtil.getProperty("user.info.key");
@@ -53,12 +53,12 @@ public class BaseService {
     protected String OpenAPIServerRootUrl;
 
     // datasphere
-    protected String daasServerAPIV2RootUrl;
-    protected String daasServerAPIV3RootUrl;
-    protected String daasClassName;
-    protected String daasJdbcUrl;
-    protected String daasUsername;
-    protected String daasPassword;
+    protected String DSSServerAPIV2RootUrl;
+    protected String DSSServerAPIV3RootUrl;
+    protected String DSSClassName;
+    protected String DSSJdbcUrl;
+    protected String DSSUserName;
+    protected String DSSPassWord;
 
     // redis
     protected String redisHost;

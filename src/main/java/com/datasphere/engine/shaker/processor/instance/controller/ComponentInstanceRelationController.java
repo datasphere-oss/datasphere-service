@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.datasphere.core.common.BaseController;
+import com.datasphere.engine.core.common.BaseController;
 import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstanceRelation;
 import com.datasphere.engine.shaker.processor.instance.service.ComponentInstanceRelationService;

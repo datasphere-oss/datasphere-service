@@ -31,10 +31,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
 
-import com.datasphere.server.datasource.DataSource;
-import com.datasphere.server.datasource.DataSourceRepository;
-import com.datasphere.server.datasource.DataSourceSizeHistory;
-import com.datasphere.server.datasource.DataSourceSizeHistoryRepository;
+import com.datasphere.engine.datasource.DataSource;
+import com.datasphere.engine.datasource.DataSourceRepository;
+import com.datasphere.engine.datasource.DataSourceSizeHistory;
+import com.datasphere.engine.datasource.DataSourceSizeHistoryRepository;
 import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
 
 /**

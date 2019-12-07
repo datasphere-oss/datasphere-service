@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.datasphere.common.data.Dataset;
-import com.datasphere.core.common.BaseController;
+import com.datasphere.engine.core.common.BaseController;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.core.utils.JsonWrapper;
 import com.datasphere.engine.datasource.connections.model.DataSetInstance;

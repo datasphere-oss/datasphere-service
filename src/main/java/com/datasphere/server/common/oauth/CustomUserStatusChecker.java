@@ -21,7 +21,7 @@ import org.springframework.security.core.SpringSecurityMessageSource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsChecker;
 
-import com.datasphere.server.domain.user.User;
+import com.datasphere.server.user.User;
 
 /**
  * Created by aladin on 2019. 2. 19..

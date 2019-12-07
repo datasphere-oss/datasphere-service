@@ -17,7 +17,7 @@ import com.datasphere.engine.core.common.BaseService;
 import com.datasphere.engine.core.utils.ExceptionConst;
 import com.datasphere.engine.shaker.processor.prep.ReturnData;
 import com.datasphere.engine.shaker.processor.utils.HttpUtils;
-import com.datasphere.engine.shaker.workflow.panelboard.model.sub.PreDataProcessEntity;
+import com.datasphere.engine.shaker.workflow.panelboard.model.sub.PrepEntity;
 import com.datasphere.server.common.exception.JIllegalOperationException;
 
 import java.io.IOException;
@@ -28,7 +28,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PreDataComponentService extends BaseService {
 
-	public PreDataProcessEntity getPreDataProcessEntity(String id, String creator) throws Exception {
+	public PrepEntity getPreDataProcessEntity(String id, String creator) throws Exception {
 		int status = check(id);
 		if (0 != status) {
 			return null;
@@ -38,14 +38,14 @@ public class PreDataComponentService extends BaseService {
 		if (StringUtils.isBlank(res)) {
 			throw new JIllegalOperationException("Request failed!url=" + url);
 		}
-		PreDataProcessEntity preDataProcessEntity = null;
+		PrepEntity prepEntity = null;
 		ReturnData result = JSONObject.parseObject(res, ReturnData.class);
 		if (result.getCode() == ExceptionConst.Success) {
 			String strData = String.valueOf(result.getData());
-			preDataProcessEntity = JSONObject.parseObject(strData, PreDataProcessEntity.class);
-			preDataProcessEntity.setCreator(creator);
+			prepEntity = JSONObject.parseObject(strData, PrepEntity.class);
+			prepEntity.setCreator(creator);
 		}
-		return preDataProcessEntity;
+		return prepEntity;
 	}
 
 	public int check(String id) throws Exception {

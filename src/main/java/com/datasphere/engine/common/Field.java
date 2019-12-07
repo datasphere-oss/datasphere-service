@@ -15,7 +15,6 @@ package com.datasphere.engine.common;
 
 import com.datasphere.engine.datasource.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.engine.datasource.ingestion.rule.IngestionRule;
-import com.datasphere.government.mdm.MetadataColumn;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.datasource.DataType;
@@ -57,7 +56,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-//import com.datasphere.server.domain.mdm.MetadataColumn;
 
 @Entity
 @Table(name = "field")
@@ -112,6 +110,7 @@ public class Field implements DSSDomain<Long> {
 
   /**
    * Physical data type on engine
+   * 物理数据类型
    */
   @Column(name = "field_type")
   @Enumerated(EnumType.STRING)
@@ -120,6 +119,7 @@ public class Field implements DSSDomain<Long> {
 
   /**
    * Logical data type
+   * 逻辑数据类型
    */
   @Column(name = "field_logical_type")
   @Enumerated(EnumType.STRING)
@@ -127,6 +127,7 @@ public class Field implements DSSDomain<Long> {
 
   /**
    * OLAP Role
+   * OLAP分析角色
    */
   @Column(name = "field_role")
   @Enumerated(EnumType.STRING)
@@ -134,12 +135,14 @@ public class Field implements DSSDomain<Long> {
 
   /**
    * Whether partitioned field
+   * 是否为分区域
    */
   @Column(name = "field_partitioned")
   private Boolean partitioned;
 
   /**
    * Whether to use as mandatory filter
+   * 是否使用托管过滤
    */
   @Column(name = "field_filtering")
   private Boolean filtering;
@@ -181,12 +184,14 @@ public class Field implements DSSDomain<Long> {
 
   /**
    * Whether to derived field (not physical field)
+   * 是否为衍生值域
    */
   @Column(name = "field_derived")
   private Boolean derived;
 
   /**
    * Derivation rule
+   * 衍生规则
    */
   @Column(name = "field_derivation_rule", length = 65535, columnDefinition = "TEXT")
   @Basic(fetch = FetchType.LAZY)
@@ -197,6 +202,7 @@ public class Field implements DSSDomain<Long> {
 
   /**
    * Ingestion rule (Discard or Set Default Value)
+   * 数据接入规则
    */
   @Column(name = "field_ingestion_rule", length = 65535, columnDefinition = "TEXT")
   @Basic(fetch = FetchType.LAZY)
@@ -207,6 +213,7 @@ public class Field implements DSSDomain<Long> {
 
   /**
    * Field data format
+   * 值域数据格式
    */
   @Column(name = "field_format", length = 65535, columnDefinition = "TEXT")
   @Spec(target = FieldFormat.class)
@@ -272,7 +279,7 @@ public class Field implements DSSDomain<Long> {
 
     setFormat(patch.getObjectValue("format"));
   }
-
+  // 检查去重域
   public static void checkDuplicatedField(List<Field> fields, boolean changeOriginalName) {
 
     String dupSuffixFormat = "_DUP%d";
@@ -306,7 +313,7 @@ public class Field implements DSSDomain<Long> {
     }
 
   }
-
+  // 更新值域
   public void updateField(CollectionPatch patch) throws BadRequestException {
     // if(patch.hasProperty("name")) this.name = patch.getValue("name");
     if (patch.hasProperty("logicalName")) this.logicalName = patch.getValue("logicalName");
@@ -332,14 +339,14 @@ public class Field implements DSSDomain<Long> {
     }
 
   }
-
-  public void updateFromMetaColumn(MetadataColumn column) {
-    this.logicalName = column.getName();
-    this.logicalType = column.getType();
-    this.description = column.getDescription();
-    this.format = column.getFormat();
-    this.seq = column.getSeq();
-  }
+  // 从元数据字段更新
+//  public void updateFromMetaColumn(MetadataColumn column) {
+//    this.logicalName = column.getName();
+//    this.logicalType = column.getType();
+//    this.description = column.getDescription();
+//    this.format = column.getFormat();
+//    this.seq = column.getSeq();
+//  }
 
   public boolean changedName() {
     if (StringUtils.isEmpty(name)) {

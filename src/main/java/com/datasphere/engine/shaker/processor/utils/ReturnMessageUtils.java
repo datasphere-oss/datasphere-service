@@ -30,7 +30,7 @@ public class ReturnMessageUtils {
     public static String ComponentInstanceResultsIsNull = "当前组件实例结果集为空，请先运行此工作流！";
     public static String ComponentInstanceResultsIsNotNull = "当前组件实例结果集存在";
 
-    public static String DaasAuthorizationInvalid = "token失效，请check!";
+    public static String DSSAuthorizationInvalid = "token失效，请check!";
 
 
 }

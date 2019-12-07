@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.datasphere.common.data.Column;
 import com.datasphere.common.data.Dataset;
 import com.datasphere.common.utils.PageUtil;
-import com.datasphere.core.common.BaseService;
+import com.datasphere.engine.core.common.BaseService;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.datasource.connections.dao.DataSetInstanceDao;
 import com.datasphere.engine.datasource.connections.jdbc.accessor.DremioDataAccessor;
@@ -138,11 +138,11 @@ public class UDSMService extends BaseService {
      * @param info
      * @return
      */
-    public List<DBTableInfodmp> listTableInfo(DBCommonInfo info) {
+    public List<DBTableInfo> listTableInfo(DBCommonInfo info) {
         try{
             // validate(info);
             DataSourceDatabaseService databaseService = getDatabaseService(info);
-            List<DBTableInfodmp> infoList = databaseService.listTableInfo(info);
+            List<DBTableInfo> infoList = databaseService.listTableInfo(info);
             //infoList 不会为null
             JAssert.isTrue(infoList.size() > 0, "没有发现数据库");
             return infoList;
@@ -715,8 +715,8 @@ public class UDSMService extends BaseService {
      * @param hiveConnectionInfo
      * @return
      */
-    public List<DBTableInfodmp> HiveListTable(HiveConnectionInfo hiveConnectionInfo) {
-        List<DBTableInfodmp> lst = null;
+    public List<DBTableInfo> HiveListTable(HiveConnectionInfo hiveConnectionInfo) {
+        List<DBTableInfo> lst = null;
 
         try(HttpClient httpClient = HttpClient.create(new URL(this.dataServiceOnPrestoServerRootUrl))) {
 
@@ -728,8 +728,8 @@ public class UDSMService extends BaseService {
             if(result == null){
                 return lst;
             }
-            Type listType = new TypeToken<Map<String,List<DBTableInfodmp>>>(){}.getType();
-            Map<String,List<DBTableInfodmp>> map = new Gson().fromJson(result, listType);
+            Type listType = new TypeToken<Map<String,List<DBTableInfo>>>(){}.getType();
+            Map<String,List<DBTableInfo>> map = new Gson().fromJson(result, listType);
             lst = map.get("data");
             return lst;
         } catch(Exception ex) {
@@ -909,8 +909,8 @@ public class UDSMService extends BaseService {
      * @param hBaseConnectionInfo
      * @return
      */
-    public List<DBTableInfodmp> listHBaseTables(HBaseConnectionInfo hBaseConnectionInfo) {
-        List<DBTableInfodmp> lst = null;
+    public List<DBTableInfo> listHBaseTables(HBaseConnectionInfo hBaseConnectionInfo) {
+        List<DBTableInfo> lst = null;
 
         try(HttpClient httpClient = HttpClient.create(new URL(this.dataServiceOnPrestoServerRootUrl))) {
 
@@ -922,8 +922,8 @@ public class UDSMService extends BaseService {
             if(result == null){
                 return lst;
             }
-            Type listType = new TypeToken<Map<String,List<DBTableInfodmp>>>(){}.getType();
-            Map<String,List<DBTableInfodmp>> map = new Gson().fromJson(result, listType);
+            Type listType = new TypeToken<Map<String,List<DBTableInfo>>>(){}.getType();
+            Map<String,List<DBTableInfo>> map = new Gson().fromJson(result, listType);
             lst = map.get("data");
             return lst;
         } catch(Exception ex) {

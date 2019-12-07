@@ -36,7 +36,7 @@ import com.datasphere.engine.shaker.processor.instance.constant.ComponentInstanc
 import com.datasphere.engine.shaker.processor.instance.model.ComponentInstance;
 import com.datasphere.engine.shaker.processor.message.status.notice.CallBackStatusMessage;
 import com.datasphere.engine.shaker.processor.utils.HttpUtils;
-import com.datasphere.engine.shaker.workflow.panelboard.model.sub.PreDataProcessEntity;
+import com.datasphere.engine.shaker.workflow.panelboard.model.sub.PrepEntity;
 import com.datasphere.server.common.exception.JIllegalOperationException;
 
 /**
@@ -48,7 +48,7 @@ public class PreDataComponentInstance extends AbstractComponent {
 
 	private final static Log logger = LogFactory.getLog(PreDataComponentInstance.class);
 	private Map<String, Object> paramMap = new HashMap<>();
-	private PreDataProcessEntity preDataProcessEntity;
+	private PrepEntity prepEntity;
 	private static final String INPUT = "IN001";
 	private static final String OUTPUT = "OUT001";
 	private static final String OUTPUTPRE = "PRE001";
@@ -140,8 +140,8 @@ public class PreDataComponentInstance extends AbstractComponent {
 	@Override
 	protected void compute() throws Exception {
 		if(null==inputsMap) throw new JIllegalOperationException("没有数据输入！");
-		preDataProcessEntity = this.getComponentInstancesFromPre();
-		if (null == preDataProcessEntity || null == preDataProcessEntity.getOperates()) {
+		prepEntity = this.getComponentInstancesFromPre();
+		if (null == prepEntity || null == prepEntity.getOperates()) {
 			preDataProcessEntityIsNull();
 		} else {
 			preDataProcessEntityIsNotNull();
@@ -156,7 +156,7 @@ public class PreDataComponentInstance extends AbstractComponent {
 	 * @return
 	 * @throws Exception
 	 */
-	private PreDataProcessEntity getComponentInstancesFromPre() throws Exception {
+	private PrepEntity getComponentInstancesFromPre() throws Exception {
 		return preDataComponentService.getPreDataProcessEntity(this.getId(), this.componentInstance.getCreator());
 	}
 
@@ -216,7 +216,7 @@ public class PreDataComponentInstance extends AbstractComponent {
 	 * @throws Exception
 	 */
 	private void setAlgms() throws Exception {
-		List<BaseComponentParams> operates = JSONArray.parseArray(preDataProcessEntity.getOperates(),
+		List<BaseComponentParams> operates = JSONArray.parseArray(prepEntity.getOperates(),
 				BaseComponentParams.class);
 		paramMap.put("algms", operates);
 	}
@@ -227,7 +227,7 @@ public class PreDataComponentInstance extends AbstractComponent {
 	 * @author kevin 2017年7月31日 下午6:16:58
 	 */
 	private void setCiParams() {
-		List<PreDataFinalFiledEntity> fileds = JSONArray.parseArray(preDataProcessEntity.getColumns(),
+		List<PreDataFinalFiledEntity> fileds = JSONArray.parseArray(prepEntity.getColumns(),
 				PreDataFinalFiledEntity.class);
 		// List<String> filedList = new ArrayList<>();
 		for (PreDataFinalFiledEntity entity : fileds) {

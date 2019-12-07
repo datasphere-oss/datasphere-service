@@ -22,7 +22,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.datasphere.server.domain.DSSDomain;
+import com.datasphere.server.common.domain.DSSDomain;
 
 /**
  * Created by aladin on 2019. 9. 21..

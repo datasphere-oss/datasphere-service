@@ -18,7 +18,7 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
-import com.datasphere.server.domain.user.UserProfile;
+import com.datasphere.server.user.UserProfile;
 
 /**
  * Created by aladin on 2019. 11. 2..

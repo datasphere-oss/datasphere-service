@@ -53,7 +53,7 @@ public class ProgramController extends BaseController {
      * @param processId 流程ID
      * @return
      */
-    @RequestMapping(value = BASE_PATH + "/getDefault", method = RequestMethod.POST)
+    @RequestMapping(value = "/project/default", method = RequestMethod.POST)
     public Object getDefault(@RequestParam String processId) {
         return Single.fromCallable(() -> {
             ReturnData result = new ReturnData();

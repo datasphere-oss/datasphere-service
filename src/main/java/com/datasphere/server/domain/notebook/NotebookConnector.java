@@ -26,8 +26,8 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.DSSDomain;
+import com.datasphere.server.common.domain.AbstractHistoryEntity;
+import com.datasphere.server.common.domain.DSSDomain;
 import com.datasphere.server.domain.notebook.connector.HttpRepository;
 import com.datasphere.server.domain.notebook.connector.NotebookAction;
 import com.datasphere.server.domain.workspace.Workspace;

@@ -1,6 +1,6 @@
 package com.datasphere.engine.manager.resource.provider.db.service;
 
-import com.datasphere.core.common.BaseService;
+import com.datasphere.engine.core.common.BaseService;
 import com.datasphere.engine.datasource.connections.constant.ConnectionInfo;
 import com.datasphere.engine.manager.resource.provider.db.dao.ElasticSearchDao;
 import com.datasphere.engine.manager.resource.provider.db.dao.MySQLDao;

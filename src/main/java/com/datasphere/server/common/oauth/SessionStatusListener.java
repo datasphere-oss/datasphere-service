@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import com.datasphere.server.domain.user.User;
+import com.datasphere.server.user.User;
 
 public class SessionStatusListener implements HttpSessionListener {
 

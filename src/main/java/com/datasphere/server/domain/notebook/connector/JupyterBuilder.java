@@ -35,7 +35,7 @@ import com.datasphere.server.domain.notebook.Notebook;
 public abstract class JupyterBuilder implements JupyterAction {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JupyterBuilder.class);
-    private static final String DEFAULT_SPARK_HOME = "/home/metatron/servers/spark";
+    private static final String DEFAULT_SPARK_HOME = "/home/datasphere/servers/spark";
 
     protected List<String> dataSourceQuery;
     protected final String sparkDir = getSparkHome();

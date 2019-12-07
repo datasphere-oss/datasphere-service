@@ -12,15 +12,16 @@
 
 package com.datasphere.server.common.saml;
 
-import com.datasphere.server.domain.user.UserRepository;
-import com.datasphere.server.domain.user.UserService;
-import com.datasphere.server.domain.user.group.Group;
-import com.datasphere.server.domain.user.group.GroupMember;
-import com.datasphere.server.domain.user.group.GroupService;
-import com.datasphere.server.domain.user.role.RoleService;
-import com.datasphere.server.domain.user.role.RoleSet;
-import com.datasphere.server.domain.user.role.RoleSetRepository;
-import com.datasphere.server.domain.user.role.RoleSetService;
+import com.datasphere.server.user.User;
+import com.datasphere.server.user.UserRepository;
+import com.datasphere.server.user.UserService;
+import com.datasphere.server.user.group.Group;
+import com.datasphere.server.user.group.GroupMember;
+import com.datasphere.server.user.group.GroupService;
+import com.datasphere.server.user.role.RoleService;
+import com.datasphere.server.user.role.RoleSet;
+import com.datasphere.server.user.role.RoleSetRepository;
+import com.datasphere.server.user.role.RoleSetService;
 import com.datasphere.server.domain.workspace.Workspace;
 import com.datasphere.server.domain.workspace.WorkspaceRepository;
 import com.datasphere.server.util.PolarisUtils;
@@ -91,38 +92,38 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService{
     LOGGER.debug("loadUserBySAML from {}, for : {}", credential.getRemoteEntityID(), nameID);
 
 		//New user registration
-    UserDetails metatronUser = userRepository.findByUsername(nameID);
-		if(metatronUser == null) {
-      LOGGER.debug("{} is not metatron user.", nameID);
-			metatronUser = createMetatronUser(credential, getUserMapper(credential));
+    UserDetails datasphereUser = userRepository.findByUsername(nameID);
+		if(datasphereUser == null) {
+      LOGGER.debug("{} is not datasphere user.", nameID);
+			datasphereUser = createdatasphereUser(credential, getUserMapper(credential));
 		} else {
-      LOGGER.debug("{} is metatron user.", nameID);
+      LOGGER.debug("{} is datasphere user.", nameID);
     }
 
-    ((com.datasphere.server.domain.user.User) metatronUser).setRoleService(roleService);
+    ((User) datasphereUser).setRoleService(roleService);
 
     // Preload credentials
-    metatronUser.getAuthorities();
+    datasphereUser.getAuthorities();
 
-		return metatronUser;
+		return datasphereUser;
 	}
 
   @Transactional
-	public com.datasphere.server.domain.user.User createMetatronUser(SAMLCredential credential, SAMLUserMapper samlUserMapper){
-    LOGGER.debug("create metatron user for {}", credential.getNameID().getValue());
+	public User createdatasphereUser(SAMLCredential credential, SAMLUserMapper samlUserMapper){
+    LOGGER.debug("create datasphere user for {}", credential.getNameID().getValue());
 
-	  com.datasphere.server.domain.user.User metatronUser;
+	  com.datasphere.server.user.User datasphereUser;
 
 		if(samlUserMapper == null){
-      metatronUser = new com.datasphere.server.domain.user.User();
+      datasphereUser = new User();
     } else {
-		  metatronUser = samlUserMapper.createUser(credential);
+		  datasphereUser = samlUserMapper.createUser(credential);
     }
 
 		//UserName uses NameID
 		String nameID = credential.getNameID().getValue();
-		metatronUser.setUsername(nameID);
-		metatronUser.setUserOrigin(credential.getRemoteEntityID());
+		datasphereUser.setUsername(nameID);
+		datasphereUser.setUserOrigin(credential.getRemoteEntityID());
 
     for(Attribute attr : credential.getAttributes()){
       Map<String, String> attrMap = new HashMap<>();
@@ -132,15 +133,15 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService{
 			LOGGER.debug("name : {}, value : {}, friendlyName : {}", attrMap.get("name"), attrMap.get("value"), attrMap.get("friendlyName"));
     }
 
-		if (StringUtils.isBlank(metatronUser.getFullName())) {
-			metatronUser.setFullName(metatronUser.getUsername());
+		if (StringUtils.isBlank(datasphereUser.getFullName())) {
+			datasphereUser.setFullName(datasphereUser.getUsername());
 		}
 
 		// mail If you do not perform a transfer and do not specify a password, the system generates a password
-		metatronUser.setPassword(PolarisUtils.createTemporaryPassword(8));
+		datasphereUser.setPassword(PolarisUtils.createTemporaryPassword(8));
 
 		//Basic is deactivated
-		metatronUser.setStatus(com.datasphere.server.domain.user.User.Status.ACTIVATED);
+		datasphereUser.setStatus(User.Status.ACTIVATED);
 
 		// Group Specify default group if no information
 		Group defaultGroup = groupService.getDefaultGroup();
@@ -148,30 +149,30 @@ public class SAMLUserDetailsServiceImpl implements SAMLUserDetailsService{
 			LOGGER.warn("Default group not found.");
 		} else {
       Session session = entityManager.unwrap(org.hibernate.Session.class);
-			defaultGroup.addGroupMember(new GroupMember(metatronUser.getUsername(), metatronUser.getFullName()));
+			defaultGroup.addGroupMember(new GroupMember(datasphereUser.getUsername(), datasphereUser.getFullName()));
 		}
 
-    userRepository.save(metatronUser);
+    userRepository.save(datasphereUser);
 
 		// Create Workspace (if no workspace is registered)
 		RoleSet roleSet = roleSetService.getDefaultRoleSet();
 
 		Workspace workspace = new Workspace();
 		workspace.setPublicType(Workspace.PublicType.PRIVATE);
-		workspace.setName(metatronUser.getFullName() + " Workspace");
-		workspace.setOwnerId(metatronUser.getUsername());
+		workspace.setName(datasphereUser.getFullName() + " Workspace");
+		workspace.setOwnerId(datasphereUser.getUsername());
 		workspace.addRoleSet(roleSet);
 
-		if(StringUtils.isNotEmpty(metatronUser.getWorkspaceType())
-						&& Workspace.workspaceTypes.contains(metatronUser.getWorkspaceType())) {
-			workspace.setType(metatronUser.getWorkspaceType());
+		if(StringUtils.isNotEmpty(datasphereUser.getWorkspaceType())
+						&& Workspace.workspaceTypes.contains(datasphereUser.getWorkspaceType())) {
+			workspace.setType(datasphereUser.getWorkspaceType());
 		} else {
 			workspace.setType(Workspace.workspaceTypes.get(0)); // "DEFAULT" setting
 		}
 
 		workspaceRepository.saveAndFlush(workspace);
 
-		return metatronUser;
+		return datasphereUser;
 	}
 
 	private SAMLUserMapper getUserMapper(SAMLCredential samlCredential) throws AuthenticationException{

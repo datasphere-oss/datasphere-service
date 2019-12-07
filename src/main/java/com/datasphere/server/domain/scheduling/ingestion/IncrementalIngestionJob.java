@@ -30,11 +30,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import com.datasphere.server.datasource.DataSource;
-import com.datasphere.server.datasource.DataSourceRepository;
-import com.datasphere.server.datasource.ingestion.IngestionHistory;
-import com.datasphere.server.datasource.ingestion.IngestionHistoryRepository;
-import com.datasphere.server.datasource.ingestion.job.IngestionJobRunner;
+import com.datasphere.engine.datasource.DataSource;
+import com.datasphere.engine.datasource.DataSourceRepository;
+import com.datasphere.engine.datasource.ingestion.IngestionHistory;
+import com.datasphere.engine.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.engine.datasource.ingestion.job.IngestionJobRunner;
 import com.datasphere.server.domain.engine.EngineIngestionService;
 
 /**

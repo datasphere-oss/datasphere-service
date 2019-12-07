@@ -14,10 +14,10 @@ package com.datasphere.engine.manager.resource.provider.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.datasphere.common.utils.OkHttpServletRequest;
 import com.datasphere.common.utils.PageUtil;
 import com.datasphere.common.utils.RandomUtils;
-import com.datasphere.core.common.BaseService;
+import com.datasphere.engine.common.utils.OkHttpServletRequest;
+import com.datasphere.engine.core.common.BaseService;
 import com.datasphere.engine.core.utils.JAssert;
 import com.datasphere.engine.datasource.connections.dao.DataSetInstanceDao;
 import com.datasphere.engine.datasource.connections.model.DataSetInstance;
@@ -134,7 +134,7 @@ public class DSSService extends BaseService {
 				for (int i = 0; i < dss.getTables().size(); i++) {
 					DataSource dataSource = new DataSource();
 					String id = UUID.randomUUID().toString();
-					dataSourceDao.insertDS(dss.getdssId(), id, dss.getName());
+					dataSourceDao.insertDS(dss.getDssId(), id, dss.getName());
 					dataSource.setId(id);
 					dataSource.setName(dss.getTables().get(i).getResourceName());
 					dataSource.setDataDesc(dss.getTables().get(i).getResourceDesc());
@@ -144,7 +144,7 @@ public class DSSService extends BaseService {
 					}
 					dataSource.setDataDSType(dss.getType());
 					dataSource.setDataType(0);
-					dataSource.setDataFrom("DataWave");
+					dataSource.setDataFrom("DSS");
 					dataSource.setClassification("001");
 					dataSource.setCode("SimpleDataSource");
 					dataSource.setCreateTime(new Date());
@@ -226,20 +226,20 @@ public class DSSService extends BaseService {
 		try {
 			String version = "000"+RandomUtils.getNumStr_13();
 			String secondPath = "/datasets/new_untitled?parentDataset=%22" +
-										query.getdssName() + "%22." +
+										query.getDssName() + "%22." +
 										query.getDatabaseName() + "." +
 										query.getTableName() +
 										"&newVersion=" + version +
 										"&limit=150";// 单表
 			String urlPath = this.dssServerAPIV2RootUrl + secondPath;
-			String jsonStr = "{\"parentDataset\":\"'" + query.getdssName() +
+			String jsonStr = "{\"parentDataset\":\"'" + query.getDssName() +
 									 "'." + query.getDatabaseName() + ".'" +
 									 query.getTableName()
 									 + "'\",\"newVersion\":\"" +
 									 version +
 									 "\",\"limit\":\"150\"}";
 			try {
-				vds = OkHttpServletRequest.okHttpClientPost(urlPath, jsonStr, dSSUserTokenService.getCurrentToken());
+				vds = OkHttpServletRequest.okHttpClientPost(urlPath, jsonStr, dssUserTokenService.getCurrentToken());
 			} catch (Exception e) {
 				log.error("ProcessService.oneTableQuery(panel_id):请求dss异常");
 			}
@@ -263,7 +263,7 @@ public class DSSService extends BaseService {
 		JSONObject jsonParam = new JSONObject();
 		jsonParam.put("sql", sql);
 		try {
-			job_id = OkHttpServletRequest.okHttpClientPost(urlPath, jsonParam.toString(), dSSUserTokenService.getCurrentToken());
+			job_id = OkHttpServletRequest.okHttpClientPost(urlPath, jsonParam.toString(), dssUserTokenService.getCurrentToken());
 		} catch (Exception e) {
 			log.error("ProcessService.getJobId(sql):请求dss异常");
 		}
@@ -275,7 +275,7 @@ public class DSSService extends BaseService {
 		String result = "";
 		String urlPath = this.dssServerAPIV3RootUrl + "/job/" + job_id;
 		try {
-			result = OkHttpServletRequest.okHttpClientGet(urlPath, dSSUserTokenService.getCurrentToken());
+			result = OkHttpServletRequest.okHttpClientGet(urlPath, dssUserTokenService.getCurrentToken());
 		} catch (Exception e) {
 			log.error("ProcessService.getJobStatus(job_id):请求dss异常");
 		}
@@ -310,7 +310,7 @@ public class DSSService extends BaseService {
 			try {
 				String url = this.dssServerAPIV3RootUrl+"/source/" + dssId;
 				Request request = new Request.Builder()
-										  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
+										  .addHeader("Authorization", dssUserTokenService.getCurrentToken())
 										  .url(url)
 										  .build();
 				Response response = httpClient.newCall(request).execute();
@@ -365,7 +365,7 @@ public class DSSService extends BaseService {
 				String url = this.dssServerAPIV3RootUrl+"/source/" + dssId;
 				String token = "_dremiobmulbkj5m9cqh7nksk6cr2nfvt";
 				Request request = new Request.Builder()
-						.addHeader("Authorization", dSSUserTokenService.getCurrentToken())
+						.addHeader("Authorization", dssUserTokenService.getCurrentToken())
 						.url(url)
 						.build();
 				Response response = httpClient.newCall(request).execute();
@@ -836,7 +836,7 @@ public class DSSService extends BaseService {
 				log.info("create dataSource");
 				try {
 					String url = this.dssServerAPIV3RootUrl+"/source";
-					String token = dSSUserTokenService.getCurrentToken();
+					String token = dssUserTokenService.getCurrentToken();
 //                        httpClient.setConnectTimeout(10, TimeUnit.SECONDS);
 //                        httpClient.setWriteTimeout(10, TimeUnit.SECONDS);
 //                        httpClient.setReadTimeout(30, TimeUnit.SECONDS);
@@ -910,7 +910,7 @@ public class DSSService extends BaseService {
 		try {
 			String url = this.dssServerAPIV2RootUrl+"/source/" + dssName;
 			Request request = new Request.Builder()
-									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
+									  .addHeader("Authorization", dssUserTokenService.getCurrentToken())
 									  .url(url)
 									  .build();
 			Response response = httpClient.newCall(request).execute();
@@ -937,7 +937,7 @@ public class DSSService extends BaseService {
 			String urlString = URLEncoder.encode(dssName, "utf-8");
 			String url = this.dssServerAPIV2RootUrl+"/source/" + urlString + "/folder/" + DBName;
 			Request request = new Request.Builder()
-									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
+									  .addHeader("Authorization", dssUserTokenService.getCurrentToken())
 									  .url(url)
 									  .build();
 			Response response = httpClient.newCall(request).execute();
@@ -974,7 +974,7 @@ public class DSSService extends BaseService {
 			String urlString = URLEncoder.encode(dssName, "utf-8");
 			String url = this.dssServerAPIV2RootUrl+"/source/" + urlString + "?version=0";
 			Request request = new Request.Builder()
-									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
+									  .addHeader("Authorization", dssUserTokenService.getCurrentToken())
 									  .url(url)
 									  .delete()
 									  .build();
@@ -1020,7 +1020,7 @@ public class DSSService extends BaseService {
 //            String urlString = URLEncoder.encode(dssName, "utf-8");
 			String url = this.dssServerAPIV2RootUrl +"/home/%40dss/upload_start/";
 			Request request = new Request.Builder()
-									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
+									  .addHeader("Authorization", dssUserTokenService.getCurrentToken())
 									  .header("Content-Type", "application/json")
 									  .url(url)
 									  .post(multipartBody)
@@ -1074,7 +1074,7 @@ public class DSSService extends BaseService {
 				try {
 					String url = this.dssServerAPIV2RootUrl +"/home/%40dss/file_preview_unsaved/" + name;
 					Request request = new Request.Builder()
-											  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
+											  .addHeader("Authorization", dssUserTokenService.getCurrentToken())
 											  .header("Content-Type", "application/json")
 											  .url(url)
 											  .post(body)
@@ -1116,7 +1116,7 @@ public class DSSService extends BaseService {
 				try {
 					String url = this.dssServerAPIV2RootUrl+"/home/%40dss/upload_finish/" + JSONInfo2.getName();
 					Request request = new Request.Builder()
-											  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
+											  .addHeader("Authorization", dssUserTokenService.getCurrentToken())
 											  .header("Content-Type", "application/json")
 											  .url(url)
 											  .post(body)
@@ -1279,7 +1279,7 @@ public class DSSService extends BaseService {
 												.build();
 			String url = this.dssServerAPIV2RootUrl+"/datasets/new_untitled?parentDataset=%22%40dss%22.%22"+dssName2+"%22&newVersion="+"000" + RandomUtils.getNumStr_13()+"&limit=150";
 			Request request = new Request.Builder()
-									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
+									  .addHeader("Authorization", dssUserTokenService.getCurrentToken())
 									  .header("Content-Type", "application/json")
 									  .url(url)
 									  .post(body)
@@ -1322,7 +1322,7 @@ public class DSSService extends BaseService {
 				try {
 					String url = this.dssServerAPIV2RootUrl+"/home/%40dss/upload_finish/" + JSONInfo2.getName();
 					Request request = new Request.Builder()
-											  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
+											  .addHeader("Authorization", dssUserTokenService.getCurrentToken())
 											  .header("Content-Type", "application/json")
 											  .url(url)
 											  .post(body)
@@ -1377,7 +1377,7 @@ public class DSSService extends BaseService {
 //            String urlString = URLEncoder.encode(dssName, "utf-8");
 			String url = this.dssServerAPIV2RootUrl+"/home/%40dss/upload_start/";
 			Request request = new Request.Builder()
-									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
+									  .addHeader("Authorization", dssUserTokenService.getCurrentToken())
 									  .header("Content-Type", "application/json")
 									  .url(url)
 									  .post(multipartBody)
@@ -1434,7 +1434,7 @@ public class DSSService extends BaseService {
 				try {
 					String url = this.dssServerAPIV2RootUrl+"/home/%40dss/file_preview_unsaved/" + name;
 					Request request = new Request.Builder()
-											  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
+											  .addHeader("Authorization", dssUserTokenService.getCurrentToken())
 											  .header("Content-Type", "application/json")
 											  .url(url)
 											  .post(body)
@@ -1514,7 +1514,7 @@ public class DSSService extends BaseService {
 		try {
 			String url = this.dssServerAPIV2RootUrl+"/home/%40dss/file/" + name + "?version=0";
 			Request request = new Request.Builder()
-									  .addHeader("Authorization", dSSUserTokenService.getCurrentToken())
+									  .addHeader("Authorization", dssUserTokenService.getCurrentToken())
 									  .header("Content-Type", "application/json")
 									  .url(url).delete()
 									  .build();

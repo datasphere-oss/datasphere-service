@@ -39,21 +39,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.datasphere.server.datasource.DataSource;
-import com.datasphere.server.datasource.DataSourceRepository;
-import com.datasphere.server.datasource.DataSourceSummary;
-import com.datasphere.server.datasource.Field;
-import com.datasphere.server.datasource.ingestion.IngestionHistoryRepository;
+import com.datasphere.engine.datasource.DataSource;
+import com.datasphere.engine.datasource.DataSourceRepository;
+import com.datasphere.engine.datasource.DataSourceSummary;
+import com.datasphere.engine.datasource.Field;
+import com.datasphere.engine.datasource.ingestion.IngestionHistoryRepository;
 import com.datasphere.server.domain.engine.DruidEngineMetaRepository;
 import com.datasphere.server.domain.engine.DruidEngineRepository;
 import com.datasphere.server.domain.engine.EngineQueryService;
 import com.datasphere.server.domain.engine.model.SegmentMetaDataResponse;
 import com.datasphere.server.query.druid.meta.AnalysisType;
 
-import static com.datasphere.server.datasource.DataSource.Status.DISABLED;
-import static com.datasphere.server.datasource.DataSource.Status.ENABLED;
-import static com.datasphere.server.datasource.DataSource.Status.FAILED;
-import static com.datasphere.server.datasource.DataSource.Status.PREPARING;
+import static com.datasphere.engine.datasource.DataSource.Status.DISABLED;
+import static com.datasphere.engine.datasource.DataSource.Status.ENABLED;
+import static com.datasphere.engine.datasource.DataSource.Status.FAILED;
+import static com.datasphere.engine.datasource.DataSource.Status.PREPARING;
 
 
 /**

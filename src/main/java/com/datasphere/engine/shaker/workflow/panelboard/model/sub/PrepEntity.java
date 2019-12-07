@@ -14,7 +14,7 @@ package com.datasphere.engine.shaker.workflow.panelboard.model.sub;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-public class PreDataProcessEntity {
+public class PrepEntity {
 	@JSONField(name = "processId")
 	private String componentId;
 	@JSONField(name = "programId")

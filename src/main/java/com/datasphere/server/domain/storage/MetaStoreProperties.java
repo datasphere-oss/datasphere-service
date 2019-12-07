@@ -4,8 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 
-import com.datasphere.server.domain.dataconnection.dialect.HiveDialect;
-import com.datasphere.server.domain.dataconnection.dialect.MySQLDialect;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.HiveDialect;
+import com.datasphere.engine.datasource.connections.jdbc.dialect.MySQLDialect;
 
 public class MetaStoreProperties implements Serializable {
 

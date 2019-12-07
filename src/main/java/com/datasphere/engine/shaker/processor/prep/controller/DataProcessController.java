@@ -39,14 +39,13 @@ import static com.datasphere.engine.shaker.processor.prep.constant.ReturnConst.P
  */
 public class DataProcessController extends BaseController{
     private final static Log logger = LogFactory.getLog(DataProcessController.class);
-    public static final String BASE_PATH = "/prepsc/process";
 
     @Autowired
     private DataProcessService dataProcessService;
     @Autowired
     ProgramService programService;
 
-	@RequestMapping(value = BASE_PATH+"/check", method = RequestMethod.POST) 
+	@RequestMapping(value = "/data/prep/process/check", method = RequestMethod.POST) 
     public Object check(@RequestParam String processId) {
         return Single.fromCallable(() -> {
             ReturnData result = new ReturnData();
@@ -63,7 +62,7 @@ public class DataProcessController extends BaseController{
         });
     }
 
-	@RequestMapping(value = BASE_PATH+"/getDefaultProgramOperates/{processId}", method = RequestMethod.POST) 
+	@RequestMapping(value = "/data/prep/process/getDefaultProgramOperates/{processId}", method = RequestMethod.POST) 
     public ReturnData<ProgramFlowData> getDefaultProgramOperates(@RequestParam("processId") String processId) {
         ReturnData result = new ReturnData();
         try {
@@ -91,7 +90,7 @@ public class DataProcessController extends BaseController{
      * @param inputdata
      * @return
      */
-	@RequestMapping(value = BASE_PATH+"/join", method = RequestMethod.POST) 
+	@RequestMapping(value = "/data/prep/process/join", method = RequestMethod.POST) 
     public ReturnData join(@RequestBody JoinInputData inputdata) {
         ReturnData result = new ReturnData();
         try {

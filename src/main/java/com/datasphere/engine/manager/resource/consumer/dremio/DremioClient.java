@@ -167,7 +167,7 @@ public class DremioClient {
         }
 
     }
-    // 更新资源
+    // 更新资源池中的资源
     public String updateSource(
             String type,
             String name,
@@ -224,6 +224,10 @@ public class DremioClient {
             return getPostgresConfiguration(host, port, database, username, password);
         }
         
+        if (type.equals("TBASE")) {
+            return getTbaseConfiguration(host, port, database, username, password);
+        }
+        
         if (type.equals("HASHDATA")) {
             return getHashdataConfiguration(host, port, database, username, password);
         }
@@ -238,6 +242,10 @@ public class DremioClient {
             return getS3Configuration(host, port, database, username, password);
         }
 
+        if (type.equals("UFILE")) {
+            // requires forked dremio to disable per bucket region lookup
+            return getUfileConfiguration(host, port, database, username, password);
+        }
         if (type.equals("MONGO")) {
             return getMongoConfiguration(host, port, database, username, password);
         }
@@ -247,6 +255,22 @@ public class DremioClient {
     }
 
     private JSONObject getPostgresConfiguration(
+            String host, int port,
+            String database,
+            String username, String password) {
+        JSONObject json = new JSONObject();
+
+        json.put("username", username);
+        json.put("password", password);
+        json.put("hostname", host);
+        json.put("port", Integer.toString(port));
+        json.put("databaseName", database);
+
+        return json;
+
+    }
+    
+    private JSONObject getTbaseConfiguration(
             String host, int port,
             String database,
             String username, String password) {
@@ -327,6 +351,39 @@ public class DremioClient {
 
     }
 
+    private JSONObject getUfileConfiguration(
+            String host, int port,
+            String bucket,
+            String accessKey, String secretKey) {
+        JSONObject json = new JSONObject();
+
+        json.put("credentialType", "ACCESS_KEY");
+        json.put("accessKey", accessKey);
+        json.put("accessSecret", secretKey);
+        json.put("secure", false);
+        json.put("externalBucketList", new JSONArray());
+        json.put("enableAsync", true);
+        json.put("allowCreateDrop", false);
+        json.put("rootPath", "/" + bucket);
+
+        // custom properties for hadoop.s3a
+        JSONArray properties = new JSONArray();
+        JSONObject endpoint = new JSONObject();
+        endpoint.put("name", "fs.s3a.endpoint");
+        endpoint.put("value", "http://" + host + ":" + Integer.toString(port));
+        properties.put(endpoint);
+
+        JSONObject pathStyle = new JSONObject();
+        pathStyle.put("name", "fs.s3a.path.style.access");
+        pathStyle.put("value", true);
+        properties.put(pathStyle);
+
+        json.put("propertyList", properties);
+
+        return json;
+
+    }
+    
     private JSONObject getMongoConfiguration(
             String host, int port,
             String database,

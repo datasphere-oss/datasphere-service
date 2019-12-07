@@ -12,7 +12,7 @@
 
 package com.datasphere.engine.shaker.processor.definition;
 
-import com.datasphere.core.common.BaseEntity;
+import com.datasphere.engine.core.common.BaseEntity;
 
 public class ComponentDefinition extends BaseEntity {
 	private String id;		// 组件唯一标识

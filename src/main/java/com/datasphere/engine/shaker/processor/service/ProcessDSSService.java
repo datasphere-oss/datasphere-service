@@ -34,8 +34,8 @@ public class ProcessDSSService extends BaseService {
 
     public String runSQL(String upper_sql) {
         //调用 datasphere 接口执行sql语句
-        String job_id = executeSQL(upper_sql);
-        if (job_id.equals("")) return ReturnMessageUtils.DaasAuthorizationInvalid;
+        String job_id = executeSql(upper_sql);
+        if (job_id.equals("")) return ReturnMessageUtils.DSSAuthorizationInvalid;
         job_id = JSON.parseObject(job_id).getString("id");
         String state = getJobState(job_id);
         System.out.println("The job [" +job_id+ "] is " + state);
@@ -55,7 +55,7 @@ public class ProcessDSSService extends BaseService {
         String result = "";
         while (!jobState.equals("COMPLETED")) {
             System.out.println("The job ["+job_id+"] is "+ jobState);
-            String urlPath = this.daasServerAPIV3RootUrl + "/job/" + job_id;
+            String urlPath = this.DSSServerAPIV3RootUrl + "/job/" + job_id;
             try {
                 result = OkHttpServletRequest.okHttpClientGet(urlPath, dSSUserTokenService.getCurrentToken());
                 Thread.sleep(200);
@@ -71,7 +71,7 @@ public class ProcessDSSService extends BaseService {
 
     public String getJobResults(String job_id) {
         String results = "";
-        String urlPath = this.daasServerAPIV3RootUrl + "/job/" +job_id+ "/results?offset=0&limit=100";
+        String urlPath = this.DSSServerAPIV3RootUrl + "/job/" +job_id+ "/results?offset=0&limit=100";
         System.out.println(urlPath);
         try {
             results = OkHttpServletRequest.okHttpClientGet(urlPath, dSSUserTokenService.getCurrentToken());
@@ -82,7 +82,7 @@ public class ProcessDSSService extends BaseService {
     }
 
     public String executeSql(String sql) {
-        String urlPath = this.daasServerAPIV3RootUrl + "/sql";
+        String urlPath = this.DSSServerAPIV3RootUrl + "/sql";
         JSONObject jsonParam = new JSONObject();
         jsonParam.put("sql", sql.toString());
         try {
@@ -96,7 +96,7 @@ public class ProcessDSSService extends BaseService {
     public String getCatalogEntity(String dass_ds_id) {
         try {
             Thread.sleep(100);
-            String catalogEntity = OkHttpServletRequest.okHttpClientGet(this.daasServerAPIV3RootUrl+"/catalog/"+dass_ds_id, dSSUserTokenService.getCurrentToken());
+            String catalogEntity = OkHttpServletRequest.okHttpClientGet(this.DSSServerAPIV3RootUrl+"/catalog/"+dass_ds_id, dSSUserTokenService.getCurrentToken());
             System.err.println(catalogEntity);
             if(catalogEntity.contains("\"errorMessage\"")) return null;
             return JSON.parseObject(catalogEntity).getString("name");

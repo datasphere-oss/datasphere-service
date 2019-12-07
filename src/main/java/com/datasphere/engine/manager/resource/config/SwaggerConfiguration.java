@@ -44,13 +44,13 @@ public class SwaggerConfiguration {
 
 	@Value("${security.oauth2.client.client-id}")
 	private String CLIENT_ID;
-
+	// 客户端安全认证
 	@Value("${security.oauth2.client.client-secret}")
 	private String CLIENT_SECRET;
-
+	// 客户端口令URL
 	@Value("${security.oauth2.client.access-token-uri}")
 	private String TOKEN_URL;
-
+	// 认证授权URL
 	@Value("${security.oauth2.client.user-authorization-uri}")
 	private String AUTH_URL;
 

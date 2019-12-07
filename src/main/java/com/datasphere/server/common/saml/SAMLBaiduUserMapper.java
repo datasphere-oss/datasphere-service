@@ -14,7 +14,7 @@ package com.datasphere.server.common.saml;
 
 import org.springframework.security.saml.SAMLCredential;
 
-import com.datasphere.server.domain.user.User;
+import com.datasphere.server.user.User;
 
 public class SAMLBaiduUserMapper extends SAMLUserMapper{
 

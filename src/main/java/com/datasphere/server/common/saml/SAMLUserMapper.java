@@ -17,7 +17,7 @@ import org.springframework.security.saml.SAMLCredential;
 
 import java.util.Optional;
 
-import com.datasphere.server.domain.user.User;
+import com.datasphere.server.user.User;
 
 public abstract class SAMLUserMapper {
   public abstract User createUser(SAMLCredential credential);

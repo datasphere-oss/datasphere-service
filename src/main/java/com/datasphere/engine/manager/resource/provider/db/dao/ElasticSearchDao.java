@@ -2,7 +2,7 @@ package com.datasphere.engine.manager.resource.provider.db.dao;
 
 import com.datasphere.common.utils.RandomUtils;
 import com.datasphere.engine.datasource.connections.constant.DBConnectionInfo;
-import com.datasphere.engine.shaker.processor.buscommon.DatasetVersion;
+import com.datasphere.engine.shaker.processor.utils.DatasetVersion;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

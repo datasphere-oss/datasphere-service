@@ -26,8 +26,8 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.DSSDomain;
+import com.datasphere.server.common.domain.AbstractHistoryEntity;
+import com.datasphere.server.common.domain.DSSDomain;
 
 /**
  * Created by aladin on 2019. 7. 12..
